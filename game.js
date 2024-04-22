@@ -198,6 +198,8 @@ function updateCostDisplay() {
     document.getElementById('pistolPotency-cost').textContent = pistolPotencyUpgradeCost;
     document.getElementById('pistolFirerate-level').textContent = pistolFirerateLevel;
     document.getElementById('pistolPotency-level').textContent = pistolPotencyLevel;
+    document.getElementById('pistol-firerate-display').textContent = `Pistol Firerate Level: ${pistolFirerateLevel} (${1000 - pistolFirerateLevel * 100}ms)`;
+    document.getElementById('pistol-potency-display').textContent = `Pistol Potency Level: ${pistolPotencyLevel} (${1 + pistolPotencyLevel} point)`;
     document.getElementById('smg-cost').textContent = smgCost;
     document.getElementById('smgFirerate-cost').textContent = smgFirerateUpgradeCost;
     document.getElementById('smgPotency-cost').textContent = smgPotencyUpgradeCost;

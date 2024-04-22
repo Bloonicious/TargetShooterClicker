@@ -12,6 +12,8 @@ let smgFireRate = 200; // in milliseconds
 let smgFirerateUpgradeCost = 750;
 let smgPotencyUpgradeCost = 1500;
 let points = 0;
+let pistolPurchased = false;
+let smgPurchased = false;
 
 // Function to update points display
 function updatePointsDisplay() {
@@ -35,6 +37,32 @@ function purchase(item) {
                 updatePointsDisplay();
             } else {
                 alert("Not enough points to purchase Touch Gun!");
+            }
+            break;
+        case 'pistol':
+            if (!pistolPurchased && points >= pistolCost) {
+                points -= pistolCost;
+                pistolCost *= 2; // Double cost for next purchase
+                pistolPurchased = true; // Mark as purchased
+                document.getElementById('pistol-purchase').style.display = 'none'; // Hide purchase button
+                updatePointsDisplay();
+            } else if (pistolPurchased) {
+                alert("Pistol has already been purchased!");
+            } else {
+                alert("Not enough points to purchase Pistol!");
+            }
+            break;
+        case 'smg':
+            if (!smgPurchased && points >= smgCost) {
+                points -= smgCost;
+                smgCost *= 2; // Double cost for next purchase
+                smgPurchased = true; // Mark as purchased
+                document.getElementById('smg-purchase').style.display = 'none'; // Hide purchase button
+                updatePointsDisplay();
+            } else if (smgPurchased) {
+                alert("SMG has already been purchased!");
+            } else {
+                alert("Not enough points to purchase SMG!");
             }
             break;
         case 'pistolFirerate':

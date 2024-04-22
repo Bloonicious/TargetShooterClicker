@@ -40,6 +40,22 @@ body {
     display: none;
 }
 
+#game-screen {
+    position: relative;
+}
+
+#target {
+    font-family: monospace;
+    color: red;
+}
+
+.floating-text {
+    position: absolute;
+    font-family: monospace;
+    font-size: 16px;
+    color: green;
+}
+
 .tab h1 {
     color: white; /* White text color */
 }

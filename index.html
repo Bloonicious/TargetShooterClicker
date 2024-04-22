@@ -20,8 +20,21 @@
     <div id="main" class="tab">
         <!-- Main game interface content here -->
         <h1>Target Shooter Clicker</h1>
-        <div id="game-screen">
-            <!-- Display the game screen where targets appear -->
+        <<div id="game-screen">
+            <!-- ASCII representation of the target -->
+            <pre id="target">
+               ___
+             //   \\
+            //     \\
+           //       \\
+           \\       //
+            \\_____//
+             \\___//
+               ‾‾‾
+            </pre>
+
+            <!-- Container for floating point text -->
+            <div id="floating-text-container"></div>
         </div>
         <div id="score">
             <h2>Score: <span id="score-value">0</span></h2>

@@ -40,7 +40,7 @@ let lastShotgunPointsTime = 0;
 
 // Function to update points display
 function updatePointsDisplay() {
-    document.getElementById('score-value').textContent = points;
+    document.getElementById('score-value').textContent = formatNumber(points);
 }
 
 // Function to handle clicking the earn points button
@@ -243,25 +243,34 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
 
 // Function to update weapon and upgrade costs in the HTML
 function updateCostDisplay() {
-    document.getElementById('touchGun-cost').textContent = touchGunCost;
+    document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
     document.getElementById('touchGun-level').textContent = touchGunLevel;
-    document.getElementById('pistol-cost').textContent = pistolCost;
-    document.getElementById('pistolFirerate-cost').textContent = pistolFirerateUpgradeCost;
-    document.getElementById('pistolPotency-cost').textContent = pistolPotencyUpgradeCost;
+    document.getElementById('pistol-cost').textContent = formatNumber(pistolCost);
+    document.getElementById('pistolFirerate-cost').textContent = formatNumber(pistolFirerateUpgradeCost);
+    document.getElementById('pistolPotency-cost').textContent = formatNumber(pistolPotencyUpgradeCost);
     document.getElementById('pistolFirerate-level').textContent = pistolFirerateLevel;
     document.getElementById('pistolPotency-level').textContent = pistolPotencyLevel;
-    document.getElementById('smg-cost').textContent = smgCost;
-    document.getElementById('smgFirerate-cost').textContent = smgFirerateUpgradeCost;
-    document.getElementById('smgPotency-cost').textContent = smgPotencyUpgradeCost;
+    document.getElementById('smg-cost').textContent = formatNumber(smgCost);
+    document.getElementById('smgFirerate-cost').textContent = formatNumber(smgFirerateUpgradeCost);
+    document.getElementById('smgPotency-cost').textContent = formatNumber(smgPotencyUpgradeCost);
     document.getElementById('smgFirerate-level').textContent = smgFirerateLevel;
     document.getElementById('smgPotency-level').textContent = smgPotencyLevel;
-    document.getElementById('shotgun-cost').textContent = shotgunCost;
-    document.getElementById('shotgunFirerate-cost').textContent = shotgunFirerateUpgradeCost;
-    document.getElementById('shotgunPotency-cost').textContent = shotgunPotencyUpgradeCost;
-    document.getElementById('shotgunMultiFire-cost').textContent = shotgunMultiFireUpgradeCost;
+    document.getElementById('shotgun-cost').textContent = formatNumber(shotgunCost);
+    document.getElementById('shotgunFirerate-cost').textContent = formatNumber(shotgunFirerateUpgradeCost);
+    document.getElementById('shotgunPotency-cost').textContent = formatNumber(shotgunPotencyUpgradeCost);
+    document.getElementById('shotgunMultiFire-cost').textContent = formatNumber(shotgunMultiFireUpgradeCost);
     document.getElementById('shotgunFirerate-level').textContent = shotgunFirerateLevel;
     document.getElementById('shotgunPotency-level').textContent = shotgunPotencyLevel;
     document.getElementById('shotgunMultiFire-level').textContent = shotgunMultiFireLevel;
+}
+
+// Function to format numbers into units
+function formatNumber(number) {
+    const suffixes = ['', 'k', 'M', 'B', 'T', 'Q', 'Sx', 'Sp', 'O', 'N', 'Dc'];
+    const suffixIndex = Math.floor(Math.log10(number) / 3);
+    const suffix = suffixes[suffixIndex];
+    const scaledNumber = number / Math.pow(10, suffixIndex * 3);
+    return scaledNumber.toFixed(2) + suffix;
 }
 
 function shoot() {

@@ -26,19 +26,13 @@
         <div id="score">
             <h2>Score: <span id="score-value">0</span></h2>
         </div>
-        <!-- Button for earning points -->
-        <button id="earn-points-button" onclick="earnPoints()">Earn Points (+1)</button>
-        <div>
-            <button onclick="purchaseWeapon('touchGun')">Purchase Touch Gun (Cost: 10)</button>
-            <span>Points per click: 1</span>
-        </div>
-        <div>
-            <button onclick="purchaseWeapon('pistol')">Purchase Pistol (Cost: 10)</button>
-            <span>Points per shot: 1, Fire rate: 1 second</span>
-        </div>
-        <div>
-            <button onclick="purchaseWeapon('smg')">Purchase SMG (Cost: 100)</button>
-            <span>Points per shot: 1, Fire rate: 0.2 seconds</span>
+        <!-- Buttons for purchasing weapons and upgrades -->
+        <div id="weapon-upgrades">
+            <button onclick="purchase('touchGun')">Purchase Touch Gun (Cost: <span id="touchGun-cost">100</span>)</button>
+            <button onclick="purchase('pistolFirerate')">Improve Pistol's Firerate (Cost: <span id="pistolFirerate-cost">50</span>)</button>
+            <button onclick="purchase('pistolPotency')">Improve Pistol's Potency (Cost: <span id="pistolPotency-cost">100</span>)</button>
+            <button onclick="purchase('smgFirerate')">Improve SMG's Firerate (Cost: <span id="smgFirerate-cost">750</span>)</button>
+            <button onclick="purchase('smgPotency')">Improve SMG's Potency (Cost: <span id="smgPotency-cost">1500</span>)</button>
         </div>
     </div>
 

@@ -21,8 +21,10 @@ let shotgunBulletsPerShot = 3; // Initial bullets per shot
 let points = 0;
 let pistolPurchased = false;
 let smgPurchased = false;
+let shotgunPurchased = false;
 let lastPistolPointsTime = 0;
 let lastSMGPointsTime = 0;
+let lastShotgunPointsTime = 0;
 
 // Function to update points display
 function updatePointsDisplay() {

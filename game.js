@@ -212,16 +212,24 @@ function purchase(item) {
 // Function to update weapon and upgrade costs in the HTML
 function updateCostDisplay() {
     document.getElementById('touchGun-cost').textContent = touchGunCost;
+    document.getElementById('touchGun-level').textContent = touchGunLevel;
     document.getElementById('pistol-cost').textContent = pistolCost;
     document.getElementById('pistolFirerate-cost').textContent = pistolFirerateUpgradeCost;
     document.getElementById('pistolPotency-cost').textContent = pistolPotencyUpgradeCost;
+    document.getElementById('pistolFirerate-level').textContent = pistolFirerateLevel;
+    document.getElementById('pistolPotency-level').textContent = pistolPotencyLevel;
     document.getElementById('smg-cost').textContent = smgCost;
     document.getElementById('smgFirerate-cost').textContent = smgFirerateUpgradeCost;
     document.getElementById('smgPotency-cost').textContent = smgPotencyUpgradeCost;
+    document.getElementById('smgFirerate-level').textContent = smgFirerateLevel;
+    document.getElementById('smgPotency-level').textContent = smgPotencyLevel;
     document.getElementById('shotgun-cost').textContent = shotgunCost;
     document.getElementById('shotgunFirerate-cost').textContent = shotgunFirerateUpgradeCost;
     document.getElementById('shotgunPotency-cost').textContent = shotgunPotencyUpgradeCost;
     document.getElementById('shotgunMultiFire-cost').textContent = shotgunMultiFireUpgradeCost;
+    document.getElementById('shotgunFirerate-level').textContent = shotgunFirerateLevel;
+    document.getElementById('shotgunPotency-level').textContent = shotgunPotencyLevel;
+    document.getElementById('shotgunMultiFire-level').textContent = shotgunMultiFireLevel;
 }
 
 function shoot() {

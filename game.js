@@ -111,7 +111,13 @@ function automaticPointsGeneration() {
         setInterval(function() {
             const currentTime = Date.now();
             if (currentTime - lastSniperRiflePointsTime >= sniperRifleFireRate) {
-                points += sniperRiflePointsPerShot;
+                // Check for critical hit
+                const criticalChance = Math.random() * 100; // Generate random number between 0 and 100
+                if (criticalChance <= sniperRifleCriticalShotChance) {
+                    points += sniperRiflePointsPerShot * sniperRifleCriticalDamageMultiplier;
+                } else {
+                    points += sniperRiflePointsPerShot;
+                }
                 updatePointsDisplay();
                 lastSniperRiflePointsTime = currentTime;
                 playWeaponSoundEffect(sniperRifleSFX); // Play sniper rifle sound effect
@@ -386,23 +392,6 @@ function playWeaponSoundEffect(weaponSFX) {
     if (soundEnabled) {
         weaponSFX.play();
     }
-}
-
-function handleSniperRifleCriticalShot() {
-    // Calculate a random number between 0 and 1
-    const randomChance = Math.random();
-
-    // Check if the random number falls within the critical shot chance range
-    if (randomChance <= sniperRifleCriticalShotChance) {
-        // Critical shot triggered, apply critical damage multiplier
-        points += sniperRiflePointsPerShot * sniperRifleCriticalDamageMultiplier;
-    } else {
-        // No critical shot, apply regular points per shot
-        points += sniperRiflePointsPerShot;
-    }
-
-    // Update points display
-    updatePointsDisplay();
 }
 
 function shoot() {

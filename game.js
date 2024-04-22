@@ -170,6 +170,32 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
     if (points >= cost) {
         points -= cost;
         cost *= costMultiplier; // Update cost for next upgrade
+        // Update the global variable with the new cost for the next upgrade
+        switch (upgradeType) {
+            case 'pistolFirerate':
+                pistolFirerateUpgradeCost = cost;
+                break;
+            case 'pistolPotency':
+                pistolPotencyUpgradeCost = cost;
+                break;
+            case 'smgFirerate':
+                smgFirerateUpgradeCost = cost;
+                break;
+            case 'smgPotency':
+                smgPotencyUpgradeCost = cost;
+                break;
+            case 'shotgunFirerate':
+                shotgunFirerateUpgradeCost = cost;
+                break;
+            case 'shotgunPotency':
+                shotgunPotencyUpgradeCost = cost;
+                break;
+            case 'shotgunMultiFire':
+                shotgunMultiFireUpgradeCost = cost;
+                break;
+            default:
+                console.error("Invalid upgradeType:", upgradeType);
+        }
         if (upgradeCategory === 'firerate') {
             pistolFireRate += valueIncrement;
             smgFireRate += valueIncrement;

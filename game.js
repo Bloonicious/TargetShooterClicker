@@ -22,7 +22,7 @@ function updatePointsDisplay() {
 
 // Function to handle clicking the earn points button
 function earnPoints() {
-    points++;
+    points += touchGunPointsPerClick; // Increment points based on Touch Gun
     updatePointsDisplay();
 }
 
@@ -109,9 +109,6 @@ function purchase(item) {
             console.error("Invalid item:", item);
     }
 }
-
-// Start earning points automatically
-setInterval(earnPoints, 1000); // 1000ms = 1 second
 
 // Update points display initially
 updatePointsDisplay();

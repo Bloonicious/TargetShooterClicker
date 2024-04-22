@@ -24,9 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Function to toggle sound effects
+let soundEnabled = true; // Ensure sound is enabled by default
+
 function toggleSound() {
-    soundEnabled = !soundEnabled;
+    soundEnabled = document.getElementById("toggle-sound").checked; // Update soundEnabled based on checkbox state
     if (soundEnabled) {
         // Play a sound effect
         playSoundEffect();

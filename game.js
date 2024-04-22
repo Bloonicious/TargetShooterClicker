@@ -38,6 +38,10 @@ let lastPistolPointsTime = 0;
 let lastSMGPointsTime = 0;
 let lastShotgunPointsTime = 0;
 
+let pistolSFX;
+let smgSFX;
+let shotgunSFX;
+
 // Function to update points display
 function updatePointsDisplay() {
     document.getElementById('score-value').textContent = formatNumber(points);
@@ -58,6 +62,7 @@ function automaticPointsGeneration() {
                 points += pistolPointsPerShot;
                 updatePointsDisplay();
                 lastPistolPointsTime = currentTime;
+                playWeaponSoundEffect(pistolSFX); // Play pistol sound effect
             }
         }, 100); // Check every 100 milliseconds for points generation
     }
@@ -68,6 +73,7 @@ function automaticPointsGeneration() {
                 points += smgPointsPerShot;
                 updatePointsDisplay();
                 lastSMGPointsTime = currentTime;
+                playWeaponSoundEffect(smgSFX); // Play SMG sound effect
             }
         }, 100); // Check every 100 milliseconds for points generation
     }
@@ -78,6 +84,7 @@ function automaticPointsGeneration() {
                 points += shotgunPointsPerShot * shotgunBulletsPerShot; // Multiply points by number of bullets
                 updatePointsDisplay();
                 lastShotgunPointsTime = currentTime;
+                playWeaponSoundEffect(shotgunSFX); // Play shotgun sound effect
             }
         }, 100); // Check every 100 milliseconds for points generation
     }
@@ -273,6 +280,21 @@ function formatNumber(number) {
     const suffix = suffixes[suffixIndex];
     const scaledNumber = number / Math.pow(10, suffixIndex * 3);
     return scaledNumber.toFixed(3) + suffix;
+}
+
+// Function to initialize sound effects
+function initializeSoundEffects() {
+    // Load or create SFX IDs for each weapon
+    pistolSFX = new Audio('pistol.mp3');
+    smgSFX = new Audio('smg.mp3');
+    shotgunSFX = new Audio('shotgun.mp3');
+}
+
+// Function to play sound effect for a specific weapon
+function playWeaponSoundEffect(weaponSFX) {
+    if (soundEnabled) {
+        weaponSFX.play();
+    }
 }
 
 function shoot() {

@@ -182,11 +182,37 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             shotgunBulletsPerShot += valueIncrement;
         }
         level++; // Increment level
+        // Update the global variable with the new level
+        switch (upgradeType) {
+            case 'pistolFirerate':
+                pistolFirerateLevel = level;
+                break;
+            case 'pistolPotency':
+                pistolPotencyLevel = level;
+                break;
+            case 'smgFirerate':
+                smgFirerateLevel = level;
+                break;
+            case 'smgPotency':
+                smgPotencyLevel = level;
+                break;
+            case 'shotgunFirerate':
+                shotgunFirerateLevel = level;
+                break;
+            case 'shotgunPotency':
+                shotgunPotencyLevel = level;
+                break;
+            case 'shotgunMultiFire':
+                shotgunMultiFireLevel = level;
+                break;
+            default:
+                console.error("Invalid upgradeType:", upgradeType);
+        }
         updatePointsDisplay();
     } else {
         alert(`Not enough points to upgrade ${upgradeType}!`);
     }
-    updateCostDisplay(); // Move this outside the if-else block
+    updateCostDisplay();
 }
 
 // Function to update weapon and upgrade costs in the HTML

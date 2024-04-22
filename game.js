@@ -1,6 +1,8 @@
 // Define variables for weapons, points, and upgrades
 let touchGunCost = 100;
 let touchGunPointsPerClick = 1;
+let touchGunLevel = 0;
+
 let pistolCost = 10;
 let pistolPointsPerShot = 1;
 let pistolFireRate = 1000; // in milliseconds

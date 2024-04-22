@@ -56,10 +56,7 @@ let lastSMGPointsTime = 0;
 let lastShotgunPointsTime = 0;
 let lastSniperRiflePointsTime = 0;
 
-let pistolSFX;
-let smgSFX;
-let shotgunSFX;
-let sniperRifleSFX;
+let pistolSFX, smgSFX, shotgunSFX, sniperRifleSFX; // Declare variables for storing sound effects
 
 // Function to update points display
 function updatePointsDisplay() {

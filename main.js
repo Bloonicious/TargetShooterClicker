@@ -12,6 +12,9 @@ function switchTab(tabName) {
 
 // Add event listeners to tab buttons
 document.addEventListener('DOMContentLoaded', function() {
+    // Switch to the "Main" tab when the page is loaded
+    switchTab('main');
+
     var tabButtons = document.querySelectorAll('.tab-button');
     tabButtons.forEach(function(button) {
         button.addEventListener('click', function() {

@@ -37,6 +37,17 @@ function automaticPointsGeneration() {
     updatePointsDisplay();
 }
 
+// Function to update weapon and upgrade costs in the HTML
+function updateCostDisplay() {
+    document.getElementById('touchGun-cost').textContent = touchGunCost;
+    document.getElementById('pistol-cost').textContent = pistolCost;
+    document.getElementById('smg-cost').textContent = smgCost;
+    document.getElementById('pistolFirerate-cost').textContent = pistolFirerateUpgradeCost;
+    document.getElementById('pistolPotency-cost').textContent = pistolPotencyUpgradeCost;
+    document.getElementById('smgFirerate-cost').textContent = smgFirerateUpgradeCost;
+    document.getElementById('smgPotency-cost').textContent = smgPotencyUpgradeCost;
+}
+
 // Function to handle purchasing weapons and upgrades
 function purchase(item) {
     switch (item) {
@@ -46,6 +57,7 @@ function purchase(item) {
                 touchGunCost *= 2; // Double cost for next purchase
                 touchGunPointsPerClick++; // Increase points per click
                 updatePointsDisplay();
+                updateCostDisplay();
             } else {
                 alert("Not enough points to purchase Touch Gun!");
             }
@@ -57,6 +69,7 @@ function purchase(item) {
                 pistolPurchased = true; // Mark as purchased
                 document.getElementById('pistol-purchase').style.display = 'none'; // Hide purchase button
                 updatePointsDisplay();
+                updateCostDisplay();
             } else if (pistolPurchased) {
                 alert("Pistol has already been purchased!");
             } else {
@@ -70,6 +83,7 @@ function purchase(item) {
                 smgPurchased = true; // Mark as purchased
                 document.getElementById('smg-purchase').style.display = 'none'; // Hide purchase button
                 updatePointsDisplay();
+                updateCostDisplay();
             } else if (smgPurchased) {
                 alert("SMG has already been purchased!");
             } else {
@@ -82,6 +96,7 @@ function purchase(item) {
                 pistolFirerateUpgradeCost *= 2; // Double cost for next upgrade
                 pistolFireRate -= 100; // Decrease fire rate by 100ms
                 updatePointsDisplay();
+                updateCostDisplay();
             } else {
                 alert("Not enough points to upgrade Pistol's firerate!");
             }
@@ -92,6 +107,7 @@ function purchase(item) {
                 pistolPotencyUpgradeCost *= 1.5; // Increase cost by 50% for next upgrade
                 pistolPointsPerShot++; // Increase points per shot
                 updatePointsDisplay();
+                updateCostDisplay();
             } else {
                 alert("Not enough points to upgrade Pistol's potency!");
             }
@@ -102,6 +118,7 @@ function purchase(item) {
                 smgFirerateUpgradeCost *= 2; // Double cost for next upgrade
                 smgFireRate -= 25; // Decrease fire rate by 25ms
                 updatePointsDisplay();
+                updateCostDisplay();
             } else {
                 alert("Not enough points to upgrade SMG's firerate!");
             }
@@ -112,6 +129,7 @@ function purchase(item) {
                 smgPotencyUpgradeCost *= 1.5; // Increase cost by 50% for next upgrade
                 smgPointsPerShot++; // Increase points per shot
                 updatePointsDisplay();
+                updateCostDisplay();
             } else {
                 alert("Not enough points to upgrade SMG's potency!");
             }
@@ -121,8 +139,9 @@ function purchase(item) {
     }
 }
 
-// Update points display initially
+// Update points and cost display initially
 updatePointsDisplay();
+updateCostDisplay();
 
 // Start earning points automatically for purchased weapons
 setInterval(automaticPointsGeneration, 200); // Check every 200 milliseconds for points generation

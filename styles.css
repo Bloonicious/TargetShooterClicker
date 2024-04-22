@@ -50,7 +50,8 @@ body {
 }
 
 #pistol,
-#smg {
+#smg,
+#shotgun {
     font-family: monospace;
     color: red;
 }

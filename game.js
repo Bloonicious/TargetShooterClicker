@@ -29,12 +29,17 @@ function earnPoints() {
 // Function to handle automatic points generation for purchased weapons
 function automaticPointsGeneration() {
     if (pistolPurchased) {
-        points += pistolPointsPerShot;
+        setInterval(function() {
+            points += pistolPointsPerShot;
+            updatePointsDisplay();
+        }, pistolFireRate);
     }
     if (smgPurchased) {
-        points += smgPointsPerShot;
+        setInterval(function() {
+            points += smgPointsPerShot;
+            updatePointsDisplay();
+        }, smgFireRate);
     }
-    updatePointsDisplay();
 }
 
 // Function to handle purchasing weapons and upgrades

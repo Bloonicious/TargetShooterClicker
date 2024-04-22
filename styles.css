@@ -5,9 +5,10 @@
     box-sizing: border-box;
 }
 
-/* Set font family to Lilita One */
+/* Set font family to Lilita One and text color to white */
 body {
     font-family: 'Lilita One', cursive;
+    color: white;
 }
 
 /* Set background color to grey-silver */
@@ -64,22 +65,14 @@ body {
     color: green;
 }
 
-.tab h1 {
-    color: white; /* White text color */
-}
-
+.tab h1,
 .tab p {
-    color: white; /* White text color */
-}
-
-/* Style game screen */
-#game-screen {
-    /* Add styles for game screen */
+    /* Apply white color to all headings and paragraphs inside tabs */
+    color: white;
 }
 
 /* Style score display */
 #score {
-    color: white; /* White text color */
     margin-top: 10px;
 }
 

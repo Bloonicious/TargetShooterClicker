@@ -192,9 +192,9 @@ function purchase(item) {
             }
             break;
         case 'shotgunMultiFire':
-            if (points >= multiFireUpgradeCost) {
-                points -= multiFireUpgradeCost;
-                multiFireUpgradeCost *= 5; // Increase cost by 5 times for next upgrade
+            if (points >= shotgunMultiFireUpgradeCost) {
+                points -= shotgunMultiFireUpgradeCost;
+                shotgunMultiFireUpgradeCost *= 5; // Increase cost by 5 times for next upgrade
                 shotgunBulletsPerShot++; // Increase number of bullets per shot
                 updatePointsDisplay();
                 updateCostDisplay();
@@ -211,11 +211,15 @@ function purchase(item) {
 function updateCostDisplay() {
     document.getElementById('touchGun-cost').textContent = touchGunCost;
     document.getElementById('pistol-cost').textContent = pistolCost;
-    document.getElementById('smg-cost').textContent = smgCost;
     document.getElementById('pistolFirerate-cost').textContent = pistolFirerateUpgradeCost;
     document.getElementById('pistolPotency-cost').textContent = pistolPotencyUpgradeCost;
+    document.getElementById('smg-cost').textContent = smgCost;
     document.getElementById('smgFirerate-cost').textContent = smgFirerateUpgradeCost;
     document.getElementById('smgPotency-cost').textContent = smgPotencyUpgradeCost;
+    document.getElementById('shotgun-cost').textContent = shotgunCost;
+    document.getElementById('shotgunFirerate-cost').textContent = shotgunFirerateUpgradeCost;
+    document.getElementById('shotgunPotency-cost').textContent = shotgunPotencyUpgradeCost;
+    document.getElementById('shotgunMultiFire-cost').textContent = shotgunMultiFireUpgradeCost;
 }
 
 function shoot() {

@@ -33,3 +33,6 @@ function toggleSound() {
         playSoundEffect();
     }
 }
+
+// Initialize sound effects
+initializeSoundEffects();

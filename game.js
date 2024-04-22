@@ -191,7 +191,7 @@ function purchase(item) {
                 alert("Not enough points to upgrade Shotgun's potency!");
             }
             break;
-        case 'multiFire':
+        case 'shotgunMultiFire':
             if (points >= multiFireUpgradeCost) {
                 points -= multiFireUpgradeCost;
                 multiFireUpgradeCost *= 5; // Increase cost by 5 times for next upgrade

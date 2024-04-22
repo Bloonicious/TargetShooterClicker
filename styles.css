@@ -52,7 +52,7 @@ body {
 #pistol,
 #smg,
 #shotgun,
-#sniper_rifle {
+#sniper-rifle {
     font-family: monospace;
     color: red;
 }

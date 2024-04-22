@@ -29,23 +29,12 @@ function earnPoints() {
 // Function to handle automatic points generation for purchased weapons
 function automaticPointsGeneration() {
     if (pistolPurchased) {
-        points += Math.floor(1000 / pistolFireRate) * pistolPointsPerShot;
+        points += pistolPointsPerShot;
     }
     if (smgPurchased) {
-        points += Math.floor(1000 / smgFireRate) * smgPointsPerShot;
+        points += smgPointsPerShot;
     }
     updatePointsDisplay();
-}
-
-// Function to update weapon and upgrade costs in the HTML
-function updateCostDisplay() {
-    document.getElementById('touchGun-cost').textContent = touchGunCost;
-    document.getElementById('pistol-cost').textContent = pistolCost;
-    document.getElementById('smg-cost').textContent = smgCost;
-    document.getElementById('pistolFirerate-cost').textContent = pistolFirerateUpgradeCost;
-    document.getElementById('pistolPotency-cost').textContent = pistolPotencyUpgradeCost;
-    document.getElementById('smgFirerate-cost').textContent = smgFirerateUpgradeCost;
-    document.getElementById('smgPotency-cost').textContent = smgPotencyUpgradeCost;
 }
 
 // Function to handle purchasing weapons and upgrades
@@ -139,9 +128,20 @@ function purchase(item) {
     }
 }
 
+// Function to update weapon and upgrade costs in the HTML
+function updateCostDisplay() {
+    document.getElementById('touchGun-cost').textContent = touchGunCost;
+    document.getElementById('pistol-cost').textContent = pistolCost;
+    document.getElementById('smg-cost').textContent = smgCost;
+    document.getElementById('pistolFirerate-cost').textContent = pistolFirerateUpgradeCost;
+    document.getElementById('pistolPotency-cost').textContent = pistolPotencyUpgradeCost;
+    document.getElementById('smgFirerate-cost').textContent = smgFirerateUpgradeCost;
+    document.getElementById('smgPotency-cost').textContent = smgPotencyUpgradeCost;
+}
+
 // Update points and cost display initially
 updatePointsDisplay();
 updateCostDisplay();
 
 // Start earning points automatically for purchased weapons
-setInterval(automaticPointsGeneration, 200); // Check every 200 milliseconds for points generation
+setInterval(automaticPointsGeneration, 1000); // Check every second for points generation

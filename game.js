@@ -266,7 +266,9 @@ function updateCostDisplay() {
 
 // Function to format numbers into units
 function formatNumber(number) {
-    const suffixes = ['', 'k', 'M', 'B', 'T', 'Q', 'Sx', 'Sp', 'O', 'N', 'Dc'];
+    if (number === 0) return '0';
+    
+    const suffixes = ['', 'k', 'M', 'B', 'T', 'Qd', 'Qn', 'Sx', 'Sp', 'O', 'N', 'Dc'];
     const suffixIndex = Math.floor(Math.log10(number) / 3);
     const suffix = suffixes[suffixIndex];
     const scaledNumber = number / Math.pow(10, suffixIndex * 3);

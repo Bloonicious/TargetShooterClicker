@@ -14,6 +14,8 @@ let smgPotencyUpgradeCost = 1500;
 let points = 0;
 let pistolPurchased = false;
 let smgPurchased = false;
+let lastPistolPointsTime = 0;
+let lastSMGPointsTime = 0;
 
 // Function to update points display
 function updatePointsDisplay() {
@@ -30,15 +32,23 @@ function earnPoints() {
 function automaticPointsGeneration() {
     if (pistolPurchased) {
         setInterval(function() {
-            points += pistolPointsPerShot;
-            updatePointsDisplay();
-        }, pistolFireRate);
+            const currentTime = Date.now();
+            if (currentTime - lastPistolPointsTime >= pistolFireRate) {
+                points += pistolPointsPerShot;
+                updatePointsDisplay();
+                lastPistolPointsTime = currentTime;
+            }
+        }, 100); // Check every 100 milliseconds for points generation
     }
     if (smgPurchased) {
         setInterval(function() {
-            points += smgPointsPerShot;
-            updatePointsDisplay();
-        }, smgFireRate);
+            const currentTime = Date.now();
+            if (currentTime - lastSMGPointsTime >= smgFireRate) {
+                points += smgPointsPerShot;
+                updatePointsDisplay();
+                lastSMGPointsTime = currentTime;
+            }
+        }, 100); // Check every 100 milliseconds for points generation
     }
 }
 

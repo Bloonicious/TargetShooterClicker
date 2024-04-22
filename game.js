@@ -285,9 +285,9 @@ function formatNumber(number) {
 // Function to initialize sound effects
 function initializeSoundEffects() {
     // Load or create SFX IDs for each weapon
-    pistolSFX = new Audio('pistol.mp3');
-    smgSFX = new Audio('smg.mp3');
-    shotgunSFX = new Audio('shotgun.mp3');
+    pistolSFX = new Audio('sfx/pistol.wav');
+    smgSFX = new Audio('sfx/smg.wav');
+    shotgunSFX = new Audio('sfx/shotgun.wav');
 }
 
 // Function to play sound effect for a specific weapon

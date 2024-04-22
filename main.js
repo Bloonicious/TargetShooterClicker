@@ -27,12 +27,13 @@ document.addEventListener('DOMContentLoaded', function() {
 let soundEnabled = true; // Ensure sound is enabled by default
 
 function toggleSound() {
-    soundEnabled = document.getElementById("toggle-sound").checked; // Update soundEnabled based on checkbox state
+    soundEnabled = !soundEnabled;
     if (soundEnabled) {
         // Play a sound effect
         playSoundEffect();
     }
 }
 
-// Initialize sound effects
-initializeSoundEffects();
+window.addEventListener('DOMContentLoaded', (event) => {
+    initializeSoundEffects();
+});

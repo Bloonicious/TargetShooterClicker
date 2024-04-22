@@ -1,0 +1,64 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set font family to Lilita One */
+body {
+    font-family: 'Lilita One', cursive;
+}
+
+/* Set background color to grey-silver */
+body {
+    background-color: #c0c0c0;
+}
+
+/* Style tab buttons */
+.tab-buttons {
+    margin-bottom: 20px;
+}
+
+.tab-buttons button {
+    background-color: #808080; /* Grey-silver background color */
+    color: white; /* White text color */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.tab-buttons button:hover {
+    background-color: #606060; /* Darker grey on hover */
+}
+
+/* Style tab content */
+.tab {
+    display: none;
+}
+
+.tab h1 {
+    color: white; /* White text color */
+}
+
+.tab p {
+    color: white; /* White text color */
+}
+
+/* Style game screen */
+#game-screen {
+    /* Add styles for game screen */
+}
+
+/* Style score display */
+#score {
+    color: white; /* White text color */
+    margin-top: 10px;
+}
+
+#score-value {
+    font-weight: bold;
+}

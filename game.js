@@ -6,11 +6,17 @@ let pistolPointsPerShot = 1;
 let pistolFireRate = 1000; // in milliseconds
 let pistolFirerateUpgradeCost = 50;
 let pistolPotencyUpgradeCost = 100;
+let pistolFirerateLevel = 0;
+let pistolPotencyLevel = 0;
+
 let smgCost = 100;
 let smgPointsPerShot = 1;
 let smgFireRate = 200; // in milliseconds
 let smgFirerateUpgradeCost = 750;
 let smgPotencyUpgradeCost = 1500;
+let smgFirerateLevel = 0;
+let smgPotencyLevel = 0;
+
 let shotgunCost = 500;
 let shotgunPointsPerShot = 4;
 let shotgunFireRate = 1500; // in milliseconds
@@ -18,6 +24,10 @@ let shotgunMultiFireUpgradeCost = 25000;
 let shotgunFirerateUpgradeCost = 5000;
 let shotgunPotencyUpgradeCost = 12500;
 let shotgunBulletsPerShot = 3; // Initial bullets per shot
+let shotgunFirerateLevel = 0;
+let shotgunPotencyLevel = 0;
+let shotgunMultiFireLevel = 0;
+
 let points = 0;
 let pistolPurchased = false;
 let smgPurchased = false;
@@ -79,6 +89,7 @@ function purchase(item) {
                 points -= touchGunCost;
                 touchGunCost *= 2; // Double cost for next purchase
                 touchGunPointsPerClick++; // Increase points per click
+                touchGunLevel++; // Increment Touch Gun level
                 updatePointsDisplay();
                 updateCostDisplay();
             } else {
@@ -132,6 +143,7 @@ function purchase(item) {
                 points -= pistolFirerateUpgradeCost;
                 pistolFirerateUpgradeCost *= 2; // Double cost for next upgrade
                 pistolFireRate -= 100; // Decrease fire rate by 100ms
+                pistolFirerateLevel++; // Increment Pistol Firerate level
                 updatePointsDisplay();
                 updateCostDisplay();
             } else {
@@ -143,6 +155,7 @@ function purchase(item) {
                 points -= pistolPotencyUpgradeCost;
                 pistolPotencyUpgradeCost *= 1.5; // Increase cost by 50% for next upgrade
                 pistolPointsPerShot++; // Increase points per shot
+                pistolPotencyLevel++; // Increment Pistol Potency level
                 updatePointsDisplay();
                 updateCostDisplay();
             } else {
@@ -154,6 +167,7 @@ function purchase(item) {
                 points -= smgFirerateUpgradeCost;
                 smgFirerateUpgradeCost *= 2; // Double cost for next upgrade
                 smgFireRate -= 25; // Decrease fire rate by 25ms
+                smgFirerateLevel++; // Increment SMG Firerate level
                 updatePointsDisplay();
                 updateCostDisplay();
             } else {
@@ -165,6 +179,7 @@ function purchase(item) {
                 points -= smgPotencyUpgradeCost;
                 smgPotencyUpgradeCost *= 1.5; // Increase cost by 50% for next upgrade
                 smgPointsPerShot++; // Increase points per shot
+                smgPotencyLevel++; // Increment SMG Potency level
                 updatePointsDisplay();
                 updateCostDisplay();
             } else {
@@ -176,6 +191,7 @@ function purchase(item) {
                 points -= shotgunFirerateUpgradeCost;
                 shotgunFirerateUpgradeCost *= 2; // Double cost for next upgrade
                 shotgunFireRate -= 100; // Decrease fire rate by 100ms
+                shotgunFirerateLevel++; // Increment Shotgun Firerate level
                 updatePointsDisplay();
                 updateCostDisplay();
             } else {
@@ -187,6 +203,7 @@ function purchase(item) {
                 points -= shotgunPotencyUpgradeCost;
                 shotgunPotencyUpgradeCost *= 1.5; // Increase cost by 50% for next upgrade
                 shotgunPointsPerShot += 4; // Increase points per shot
+                shotgunPotencyLevel++; // Increment Shotgun Potency level
                 updatePointsDisplay();
                 updateCostDisplay();
             } else {
@@ -198,6 +215,7 @@ function purchase(item) {
                 points -= shotgunMultiFireUpgradeCost;
                 shotgunMultiFireUpgradeCost *= 5; // Increase cost by 5 times for next upgrade
                 shotgunBulletsPerShot++; // Increase number of bullets per shot
+                shotgunMultiFireLevel++; // Increment Shotgun Multi-Fire level
                 updatePointsDisplay();
                 updateCostDisplay();
             } else {

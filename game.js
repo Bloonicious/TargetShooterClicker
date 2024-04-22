@@ -210,14 +210,6 @@ function updateCostDisplay() {
     document.getElementById('shotgunFirerate-level').textContent = shotgunFirerateLevel;
     document.getElementById('shotgunPotency-level').textContent = shotgunPotencyLevel;
     document.getElementById('shotgunMultiFire-level').textContent = shotgunMultiFireLevel;
-
-    // Calculate current firerate in milliseconds based on level
-    const currentFirerateMs = 1000 - (pistolFirerateLevel * 100);
-    document.getElementById('pistol-firerate-display').textContent = `Pistol Firerate Level: ${pistolFirerateLevel} (${currentFirerateMs}ms)`;
-
-    // Calculate current points per shot based on level
-    const currentPointsPerShot = 1 + pistolPotencyLevel;
-    document.getElementById('pistol-potency-display').textContent = `Pistol Potency Level: ${pistolPotencyLevel} (${currentPointsPerShot} point)`;
 }
 
 function shoot() {

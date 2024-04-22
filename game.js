@@ -141,91 +141,51 @@ function purchase(item) {
             }
             break;
         case 'pistolFirerate':
-            if (points >= pistolFirerateUpgradeCost) {
-                points -= pistolFirerateUpgradeCost;
-                pistolFirerateUpgradeCost *= 2; // Double cost for next upgrade
-                pistolFireRate -= 100; // Decrease fire rate by 100ms
-                pistolFirerateLevel++; // Increment Pistol Firerate level
-                updatePointsDisplay();
-                updateCostDisplay();
-            } else {
-                alert("Not enough points to upgrade Pistol's firerate!");
-            }
+            purchaseUpgrade('pistolFirerate', pistolFirerateLevel, pistolFirerateUpgradeCost, 2, -100, 'firerate');
             break;
         case 'pistolPotency':
-            if (points >= pistolPotencyUpgradeCost) {
-                points -= pistolPotencyUpgradeCost;
-                pistolPotencyUpgradeCost *= 1.5; // Increase cost by 50% for next upgrade
-                pistolPointsPerShot++; // Increase points per shot
-                pistolPotencyLevel++; // Increment Pistol Potency level
-                updatePointsDisplay();
-                updateCostDisplay();
-            } else {
-                alert("Not enough points to upgrade Pistol's potency!");
-            }
+            purchaseUpgrade('pistolPotency', pistolPotencyLevel, pistolPotencyUpgradeCost, 1.5, 1, 'potency');
             break;
         case 'smgFirerate':
-            if (points >= smgFirerateUpgradeCost) {
-                points -= smgFirerateUpgradeCost;
-                smgFirerateUpgradeCost *= 2; // Double cost for next upgrade
-                smgFireRate -= 25; // Decrease fire rate by 25ms
-                smgFirerateLevel++; // Increment SMG Firerate level
-                updatePointsDisplay();
-                updateCostDisplay();
-            } else {
-                alert("Not enough points to upgrade SMG's firerate!");
-            }
+            purchaseUpgrade('smgFirerate', smgFirerateLevel, smgFirerateUpgradeCost, 2, -25, 'firerate');
             break;
         case 'smgPotency':
-            if (points >= smgPotencyUpgradeCost) {
-                points -= smgPotencyUpgradeCost;
-                smgPotencyUpgradeCost *= 1.5; // Increase cost by 50% for next upgrade
-                smgPointsPerShot++; // Increase points per shot
-                smgPotencyLevel++; // Increment SMG Potency level
-                updatePointsDisplay();
-                updateCostDisplay();
-            } else {
-                alert("Not enough points to upgrade SMG's potency!");
-            }
+            purchaseUpgrade('smgPotency', smgPotencyLevel, smgPotencyUpgradeCost, 1.5, 1, 'potency');
             break;
         case 'shotgunFirerate':
-            if (points >= shotgunFirerateUpgradeCost) {
-                points -= shotgunFirerateUpgradeCost;
-                shotgunFirerateUpgradeCost *= 2; // Double cost for next upgrade
-                shotgunFireRate -= 100; // Decrease fire rate by 100ms
-                shotgunFirerateLevel++; // Increment Shotgun Firerate level
-                updatePointsDisplay();
-                updateCostDisplay();
-            } else {
-                alert("Not enough points to upgrade Shotgun's firerate!");
-            }
+            purchaseUpgrade('shotgunFirerate', shotgunFirerateLevel, shotgunFirerateUpgradeCost, 2, -100, 'firerate');
             break;
         case 'shotgunPotency':
-            if (points >= shotgunPotencyUpgradeCost) {
-                points -= shotgunPotencyUpgradeCost;
-                shotgunPotencyUpgradeCost *= 1.5; // Increase cost by 50% for next upgrade
-                shotgunPointsPerShot += 4; // Increase points per shot
-                shotgunPotencyLevel++; // Increment Shotgun Potency level
-                updatePointsDisplay();
-                updateCostDisplay();
-            } else {
-                alert("Not enough points to upgrade Shotgun's potency!");
-            }
+            purchaseUpgrade('shotgunPotency', shotgunPotencyLevel, shotgunPotencyUpgradeCost, 1.5, 4, 'potency');
             break;
         case 'shotgunMultiFire':
-            if (points >= shotgunMultiFireUpgradeCost) {
-                points -= shotgunMultiFireUpgradeCost;
-                shotgunMultiFireUpgradeCost *= 5; // Increase cost by 5 times for next upgrade
-                shotgunBulletsPerShot++; // Increase number of bullets per shot
-                shotgunMultiFireLevel++; // Increment Shotgun Multi-Fire level
-                updatePointsDisplay();
-                updateCostDisplay();
-            } else {
-                alert("Not enough points to upgrade MultiFire!");
-            }
+            purchaseUpgrade('shotgunMultiFire', shotgunMultiFireLevel, shotgunMultiFireUpgradeCost, 5, 1, 'multiFire');
             break;
         default:
             console.error("Invalid item:", item);
+    }
+}
+
+function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncrement, upgradeCategory) {
+    if (points >= cost) {
+        points -= cost;
+        cost *= costMultiplier; // Update cost for next upgrade
+        if (upgradeCategory === 'firerate') {
+            pistolFireRate += valueIncrement;
+            smgFireRate += valueIncrement;
+            shotgunFireRate += valueIncrement;
+        } else if (upgradeCategory === 'potency') {
+            pistolPointsPerShot += valueIncrement;
+            smgPointsPerShot += valueIncrement;
+            shotgunPointsPerShot += valueIncrement;
+        } else if (upgradeCategory === 'multiFire') {
+            shotgunBulletsPerShot += valueIncrement;
+        }
+        level++; // Increment level
+        updatePointsDisplay();
+        updateCostDisplay();
+    } else {
+        alert(`Not enough points to upgrade ${upgradeType}!`);
     }
 }
 

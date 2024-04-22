@@ -108,15 +108,16 @@ function automaticPointsGeneration() {
         }, 100); // Check every 100 milliseconds for points generation
     }
     if (sniperRiflePurchased) {
-    setInterval(function() {
-        const currentTime = Date.now();
-        if (currentTime - lastSniperRiflePointsTime >= sniperRifleFireRate) {
-            points += sniperRiflePointsPerShot;
-            updatePointsDisplay();
-            lastSniperRiflePointsTime = currentTime;
-            playWeaponSoundEffect(sniperRifleSFX); // Play sniper rifle sound effect
-        }
-    }, 100); // Check every 100 milliseconds for points generation
+        setInterval(function() {
+            const currentTime = Date.now();
+            if (currentTime - lastSniperRiflePointsTime >= sniperRifleFireRate) {
+                points += sniperRiflePointsPerShot;
+                updatePointsDisplay();
+                lastSniperRiflePointsTime = currentTime;
+                playWeaponSoundEffect(sniperRifleSFX); // Play sniper rifle sound effect
+            }
+        }, 100); // Check every 100 milliseconds for points generation
+    }
 }
 
 // Function to handle purchasing weapons and upgrades

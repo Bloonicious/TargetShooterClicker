@@ -30,17 +30,36 @@ let shotgunFirerateLevel = 0;
 let shotgunPotencyLevel = 0;
 let shotgunMultiFireLevel = 0;
 
+let sniperRifleCost = 7500;
+let sniperRiflePointsPerShot = 80;
+let sniperRifleFireRate = 4000; // in milliseconds
+let sniperRifleFirerateUpgradeCost = 50000;
+let sniperRiflePotencyUpgradeCost = 100000;
+let sniperRifleCriticalShotUpgradeCost = 75000;
+let sniperRifleCriticalDamageUpgradeCost = 250000;
+let sniperRifleCriticalShotChance = 0.25; // 25% chance for a "Critical Shot" for increased points
+let sniperRifleCriticalDamageMultiplier = 2.0; // The amount of extra points yielded from a "Critical Shot"
+let sniperRifleCriticalShotValueIncrement = 0.02; // Increases the chance to trigger a "Critical Shot" by 2%
+let sniperRifleCriticalDamageValueIncrement = 0.2; // Increases the point multiplier gained from crits by x0.2
+let sniperRifleFirerateLevel = 0;
+let sniperRiflePotencyLevel = 0;
+let sniperRifleCriticalShotLevel = 0;
+let sniperRifleCriticalDamageLevel = 0;
+
 let points = 0;
 let pistolPurchased = false;
 let smgPurchased = false;
 let shotgunPurchased = false;
+let sniperRiflePurchased = false;
 let lastPistolPointsTime = 0;
 let lastSMGPointsTime = 0;
 let lastShotgunPointsTime = 0;
+let lastSniperRiflePointsTime = 0;
 
 let pistolSFX;
 let smgSFX;
 let shotgunSFX;
+let sniperRifleSFX;
 
 // Function to update points display
 function updatePointsDisplay() {
@@ -88,6 +107,16 @@ function automaticPointsGeneration() {
             }
         }, 100); // Check every 100 milliseconds for points generation
     }
+    if (sniperRiflePurchased) {
+    setInterval(function() {
+        const currentTime = Date.now();
+        if (currentTime - lastSniperRiflePointsTime >= sniperRifleFireRate) {
+            points += sniperRiflePointsPerShot;
+            updatePointsDisplay();
+            lastSniperRiflePointsTime = currentTime;
+            playWeaponSoundEffect(sniperRifleSFX); // Play sniper rifle sound effect
+        }
+    }, 100); // Check every 100 milliseconds for points generation
 }
 
 // Function to handle purchasing weapons and upgrades
@@ -147,6 +176,19 @@ function purchase(item) {
                 alert("Not enough points to purchase Shotgun!");
             }
             break;
+        case 'sniperRifle':
+           if (!sniperRiflePurchased && points >= sniperRifleCost) {
+               points -= sniperRifleCost;
+               sniperRiflePurchased = true; // Mark as purchased
+               document.getElementById('sniper-rifle-purchase').style.display = 'none'; // Hide purchase button
+               updatePointsDisplay();
+               updateCostDisplay();
+           } else if (sniperRiflePurchased) {
+               alert("Sniper Rifle has already been purchased!");
+           } else {
+               alert("Not enough points to purchase Sniper Rifle!");
+           }
+           break;
         case 'pistolFirerate':
             purchaseUpgrade('pistolFirerate', pistolFirerateLevel, pistolFirerateUpgradeCost, 2, -100, 'firerate');
             break;
@@ -167,6 +209,18 @@ function purchase(item) {
             break;
         case 'shotgunMultiFire':
             purchaseUpgrade('shotgunMultiFire', shotgunMultiFireLevel, shotgunMultiFireUpgradeCost, 5, 1, 'multiFire');
+            break;
+        case 'sniperRifleFirerate':
+            purchaseUpgrade('sniperRifleFirerate', sniperRifleFirerateLevel, sniperRifleFirerateUpgradeCost, 2, -2000, 'firerate');
+            break;
+        case 'sniperRiflePotency':
+            purchaseUpgrade('sniperRiflePotency', sniperRiflePotencyLevel, sniperRiflePotencyUpgradeCost, 1.5, 80, 'potency');
+            break;
+        case 'sniperRifleCriticalShot':
+            purchaseUpgrade('sniperRifleCriticalShot', sniperRifleCriticalShotLevel, sniperRifleCriticalShotUpgradeCost, 3, 0.02, 'criticalShotChance');
+            break;
+        case 'sniperRifleCriticalDamage':
+            purchaseUpgrade('sniperRifleCriticalDamage', sniperRifleCriticalDamageLevel, sniperRifleCriticalDamageUpgradeCost, 2.5, 0.2, 'criticalDamage');
             break;
         default:
             console.error("Invalid item:", item);
@@ -200,6 +254,18 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'shotgunMultiFire':
                 shotgunMultiFireUpgradeCost = cost;
                 break;
+            case 'sniperRifleFirerate':
+                sniperRifleFirerateUpgradeCost = cost;
+                break;
+            case 'sniperRiflePotency':
+                sniperRiflePotencyUpgradeCost = cost;
+                break;
+            case 'sniperRifleCriticalShot':
+                sniperRifleCriticalShotUpgradeCost = cost;
+                break;
+            case 'sniperRifleCriticalDamage':
+                sniperRifleCriticalDamageUpgradeCost = cost;
+                break;
             default:
                 console.error("Invalid upgradeType:", upgradeType);
         }
@@ -207,10 +273,12 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             pistolFireRate += valueIncrement;
             smgFireRate += valueIncrement;
             shotgunFireRate += valueIncrement;
+            sniperRifleFireRate += valueIncrement;
         } else if (upgradeCategory === 'potency') {
             pistolPointsPerShot += valueIncrement;
             smgPointsPerShot += valueIncrement;
             shotgunPointsPerShot += valueIncrement;
+            sniperRiflePointsPerShot += valueIncrement;
         } else if (upgradeCategory === 'multiFire') {
             shotgunBulletsPerShot += valueIncrement;
         }
@@ -237,6 +305,18 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 break;
             case 'shotgunMultiFire':
                 shotgunMultiFireLevel = level;
+                break;
+            case 'sniperRifleFirerate':
+                sniperRifleFirerateLevel = level;
+                break;
+            case 'sniperRiflePotency':
+                sniperRiflePotencyLevel = level;
+                break;
+            case 'sniperRifleCriticalShot':
+                sniperRifleCriticalShotLevel = level;
+                break;
+            case 'sniperRifleCriticalDamage':
+                sniperRifleCriticalDamageLevel = level;
                 break;
             default:
                 console.error("Invalid upgradeType:", upgradeType);
@@ -269,6 +349,15 @@ function updateCostDisplay() {
     document.getElementById('shotgunFirerate-level').textContent = shotgunFirerateLevel;
     document.getElementById('shotgunPotency-level').textContent = shotgunPotencyLevel;
     document.getElementById('shotgunMultiFire-level').textContent = shotgunMultiFireLevel;
+    document.getElementById('sniperRifle-cost').textContent = formatNumber(sniperRifleCost);
+    document.getElementById('sniperRifleFirerate-cost').textContent = formatNumber(sniperRifleFirerateUpgradeCost);
+    document.getElementById('sniperRiflePotency-cost').textContent = formatNumber(sniperRiflePotencyUpgradeCost);
+    document.getElementById('sniperRifleCriticalShot-cost').textContent = formatNumber(sniperRifleCriticalShotUpgradeCost);
+    document.getElementById('sniperRifleCriticalDamage-cost').textContent = formatNumber(sniperRifleCriticalDamageUpgradeCost);
+    document.getElementById('sniperRifleFirerate-level').textContent = sniperRifleFirerateLevel;
+    document.getElementById('sniperRiflePotency-level').textContent = sniperRiflePotencyLevel;
+    document.getElementById('sniperRifleCriticalShot-level').textContent = sniperRifleCriticalShotLevel;
+    document.getElementById('sniperRifleCriticalDamage-level').textContent = sniperRifleCriticalDamageLevel;
 }
 
 // Function to format numbers into units
@@ -288,6 +377,7 @@ function initializeSoundEffects() {
     pistolSFX = new Audio('sfx/pistol.wav');
     smgSFX = new Audio('sfx/smg.wav');
     shotgunSFX = new Audio('sfx/shotgun.wav');
+    sniperRifleSFX = new Audio('sfx/sniper.wav');
 }
 
 // Function to play sound effect for a specific weapon
@@ -295,6 +385,23 @@ function playWeaponSoundEffect(weaponSFX) {
     if (soundEnabled) {
         weaponSFX.play();
     }
+}
+
+function handleSniperRifleCriticalShot() {
+    // Calculate a random number between 0 and 1
+    const randomChance = Math.random();
+
+    // Check if the random number falls within the critical shot chance range
+    if (randomChance <= sniperRifleCriticalShotChance) {
+        // Critical shot triggered, apply critical damage multiplier
+        points += sniperRiflePointsPerShot * sniperRifleCriticalDamageMultiplier;
+    } else {
+        // No critical shot, apply regular points per shot
+        points += sniperRiflePointsPerShot;
+    }
+
+    // Update points display
+    updatePointsDisplay();
 }
 
 function shoot() {

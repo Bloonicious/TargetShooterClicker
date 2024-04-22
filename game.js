@@ -183,10 +183,10 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
         }
         level++; // Increment level
         updatePointsDisplay();
-        updateCostDisplay();
     } else {
         alert(`Not enough points to upgrade ${upgradeType}!`);
     }
+    updateCostDisplay(); // Move this outside the if-else block
 }
 
 // Function to update weapon and upgrade costs in the HTML

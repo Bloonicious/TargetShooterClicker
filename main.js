@@ -23,3 +23,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Function to toggle sound effects
+function toggleSound() {
+    soundEnabled = !soundEnabled;
+    if (soundEnabled) {
+        // Play a sound effect
+        playSoundEffect();
+    }
+}

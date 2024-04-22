@@ -49,6 +49,12 @@ body {
     color: red;
 }
 
+#pistol,
+#smg {
+    font-family: monospace;
+    color: red;
+}
+
 .floating-text {
     position: absolute;
     font-family: monospace;

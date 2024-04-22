@@ -11,6 +11,13 @@ let smgPointsPerShot = 1;
 let smgFireRate = 200; // in milliseconds
 let smgFirerateUpgradeCost = 750;
 let smgPotencyUpgradeCost = 1500;
+let shotgunCost = 500;
+let shotgunPointsPerShot = 4;
+let shotgunFireRate = 1500; // in milliseconds
+let shotgunMultiFireUpgradeCost = 25000;
+let shotgunFirerateUpgradeCost = 5000;
+let shotgunPotencyUpgradeCost = 12500;
+let shotgunBulletsPerShot = 3; // Initial bullets per shot
 let points = 0;
 let pistolPurchased = false;
 let smgPurchased = false;
@@ -47,6 +54,16 @@ function automaticPointsGeneration() {
                 points += smgPointsPerShot;
                 updatePointsDisplay();
                 lastSMGPointsTime = currentTime;
+            }
+        }, 100); // Check every 100 milliseconds for points generation
+    }
+    if (shotgunPurchased) {
+        setInterval(function() {
+            const currentTime = Date.now();
+            if (currentTime - lastShotgunPointsTime >= shotgunFireRate) {
+                points += shotgunPointsPerShot * shotgunBulletsPerShot; // Multiply points by number of bullets
+                updatePointsDisplay();
+                lastShotgunPointsTime = currentTime;
             }
         }, 100); // Check every 100 milliseconds for points generation
     }
@@ -94,6 +111,20 @@ function purchase(item) {
                 alert("Not enough points to purchase SMG!");
             }
             break;
+        case 'shotgun':
+            if (!shotgunPurchased && points >= shotgunCost) {
+                points -= shotgunCost;
+                shotgunCost *= 2; // Double cost for next purchase
+                shotgunPurchased = true; // Mark as purchased
+                document.getElementById('shotgun-purchase').style.display = 'none'; // Hide purchase button
+                updatePointsDisplay();
+                updateCostDisplay();
+            } else if (shotgunPurchased) {
+                alert("Shotgun has already been purchased!");
+            } else {
+                alert("Not enough points to purchase Shotgun!");
+            }
+            break;
         case 'pistolFirerate':
             if (points >= pistolFirerateUpgradeCost) {
                 points -= pistolFirerateUpgradeCost;
@@ -136,6 +167,39 @@ function purchase(item) {
                 updateCostDisplay();
             } else {
                 alert("Not enough points to upgrade SMG's potency!");
+            }
+            break;
+        case 'shotgunFirerate':
+            if (points >= shotgunFirerateUpgradeCost) {
+                points -= shotgunFirerateUpgradeCost;
+                shotgunFirerateUpgradeCost *= 2; // Double cost for next upgrade
+                shotgunFireRate -= 100; // Decrease fire rate by 100ms
+                updatePointsDisplay();
+                updateCostDisplay();
+            } else {
+                alert("Not enough points to upgrade Shotgun's firerate!");
+            }
+            break;
+        case 'shotgunPotency':
+            if (points >= shotgunPotencyUpgradeCost) {
+                points -= shotgunPotencyUpgradeCost;
+                shotgunPotencyUpgradeCost *= 1.5; // Increase cost by 50% for next upgrade
+                shotgunPointsPerShot += 4; // Increase points per shot
+                updatePointsDisplay();
+                updateCostDisplay();
+            } else {
+                alert("Not enough points to upgrade Shotgun's potency!");
+            }
+            break;
+        case 'multiFire':
+            if (points >= multiFireUpgradeCost) {
+                points -= multiFireUpgradeCost;
+                multiFireUpgradeCost *= 5; // Increase cost by 5 times for next upgrade
+                shotgunBulletsPerShot++; // Increase number of bullets per shot
+                updatePointsDisplay();
+                updateCostDisplay();
+            } else {
+                alert("Not enough points to upgrade MultiFire!");
             }
             break;
         default:

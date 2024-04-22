@@ -26,6 +26,17 @@ function earnPoints() {
     updatePointsDisplay();
 }
 
+// Function to handle automatic points generation for purchased weapons
+function automaticPointsGeneration() {
+    if (pistolPurchased) {
+        points += Math.floor(1000 / pistolFireRate) * pistolPointsPerShot;
+    }
+    if (smgPurchased) {
+        points += Math.floor(1000 / smgFireRate) * smgPointsPerShot;
+    }
+    updatePointsDisplay();
+}
+
 // Function to handle purchasing weapons and upgrades
 function purchase(item) {
     switch (item) {
@@ -112,3 +123,6 @@ function purchase(item) {
 
 // Update points display initially
 updatePointsDisplay();
+
+// Start earning points automatically for purchased weapons
+setInterval(automaticPointsGeneration, 200); // Check every 200 milliseconds for points generation

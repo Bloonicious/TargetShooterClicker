@@ -12,7 +12,7 @@ body {
 
 /* Set background color to grey-silver */
 body {
-    background-color: #c0c0c0;
+    background-color: black;
 }
 
 /* Style tab buttons */
@@ -21,7 +21,7 @@ body {
 }
 
 .tab-buttons button {
-    background-color: #808080; /* Grey-silver background color */
+    background-color: black; /* Grey-silver background color */
     color: white; /* White text color */
     padding: 10px 20px;
     border: none;
@@ -32,7 +32,7 @@ body {
 }
 
 .tab-buttons button:hover {
-    background-color: #606060; /* Darker grey on hover */
+    background-color: black; /* Darker grey on hover */
 }
 
 /* Style tab content */

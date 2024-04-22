@@ -272,7 +272,7 @@ function formatNumber(number) {
     const suffixIndex = Math.floor(Math.log10(number) / 3);
     const suffix = suffixes[suffixIndex];
     const scaledNumber = number / Math.pow(10, suffixIndex * 3);
-    return scaledNumber.toFixed(2) + suffix;
+    return scaledNumber.toFixed(3) + suffix;
 }
 
 function shoot() {

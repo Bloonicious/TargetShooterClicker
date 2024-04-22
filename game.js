@@ -154,6 +154,45 @@ function updateCostDisplay() {
     document.getElementById('smgPotency-cost').textContent = smgPotencyUpgradeCost;
 }
 
+function shoot() {
+    // Calculate points based on the selected weapon's fire rate
+    let pointsPerShot;
+    if (pistolPurchased) {
+        pointsPerShot = pistolPointsPerShot;
+    } else if (smgPurchased) {
+        pointsPerShot = smgPointsPerShot;
+    } else {
+        // If no weapon is purchased, do nothing
+        return;
+    }
+
+    // Generate points and display them as floating text
+    const floatingText = document.createElement('div');
+    floatingText.textContent = '+' + pointsPerShot;
+    floatingText.classList.add('floating-text');
+
+    // Randomize position above the target
+    const target = document.getElementById('target');
+    const targetRect = target.getBoundingClientRect();
+    const randomX = targetRect.left + Math.random() * targetRect.width;
+    const randomY = targetRect.top + Math.random() * targetRect.height;
+    floatingText.style.left = randomX + 'px';
+    floatingText.style.top = randomY + 'px';
+
+    // Append the floating text to the container
+    const floatingTextContainer = document.getElementById('floating-text-container');
+    floatingTextContainer.appendChild(floatingText);
+
+    // Remove the floating text after a short delay
+    setTimeout(() => {
+        floatingText.remove();
+    }, 1000); // Adjust the delay as needed
+
+    // Increment the total points
+    points += pointsPerShot;
+    updatePointsDisplay();
+}
+
 // Update points and cost display initially
 updatePointsDisplay();
 updateCostDisplay();

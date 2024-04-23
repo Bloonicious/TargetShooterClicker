@@ -1,6 +1,3 @@
-// Import the Break Infinity library
-const BI = require('break_infinity.js');
-
 // Define function to switch tabs
 function switchTab(tabName) {
     // Hide all tabs

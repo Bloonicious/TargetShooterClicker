@@ -229,67 +229,69 @@ function purchaseWeapon(weapon, cost) {
 }
 
 // Function to purchase an upgrade
-function purchaseUpgrade(upgradeType, level, baseCost, costMultiplier, valueIncrement, upgradeCategory) {
-    // Calculate the cost for the current level
-    var cost = baseCost + (level - 1) * costMultiplier;
-    
+function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncrement, upgradeCategory) {
     if (points >= cost) {
         points -= cost;
         cost *= costMultiplier;
         level++;
         switch (upgradeType) {
+            case 'touchGun':
+                touchGunCost = cost;
+                touchGunLevel = level;
+                pistolPointsPerShot += valueIncrement;
+                break;
             case 'pistolFirerate':
-                pistolFirerateUpgradeCost = baseCost + level * costMultiplier;
+                pistolFirerateUpgradeCost = cost;
                 pistolFirerateLevel = level;
                 pistolFireRate += valueIncrement;
                 break;
             case 'pistolPotency':
-                pistolPotencyUpgradeCost = baseCost + level * costMultiplier;
+                pistolPotencyUpgradeCost = cost;
                 pistolPotencyLevel = level;
                 pistolPointsPerShot += valueIncrement;
                 break;
             case 'smgFirerate':
-                smgFirerateUpgradeCost = baseCost + level * costMultiplier;
+                smgFirerateUpgradeCost = cost;
                 smgFirerateLevel = level;
                 smgFireRate += valueIncrement;
                 break;
             case 'smgPotency':
-                smgPotencyUpgradeCost = baseCost + level * costIncrement;
+                smgPotencyUpgradeCost = cost;
                 smgPotencyLevel = level;
                 smgPointsPerShot += valueIncrement;
                 break;
             case 'shotgunFirerate':
-                shotgunFirerateUpgradeCost = baseCost + level * costMultiplier;
+                shotgunFirerateUpgradeCost = cost;
                 shotgunFirerateLevel = level;
                 shotgunFireRate += valueIncrement;
                 break;
             case 'shotgunPotency':
-                shotgunPotencyUpgradeCost = baseCost + level * costMultiplier;
+                shotgunPotencyUpgradeCost = cost;
                 shotgunPotencyLevel = level;
                 shotgunPointsPerShot += valueIncrement;
                 break;
             case 'shotgunMultiFire':
-                shotgunMultiFireUpgradeCost = baseCost + level * costMultiplier;
+                shotgunMultiFireUpgradeCost = cost;
                 shotgunMultiFireLevel = level;
                 shotgunBulletsPerShot += valueIncrement;
                 break;
             case 'sniperRifleFirerate':
-                sniperRifleFirerateUpgradeCost = baseCost + level * costMultiplier;
+                sniperRifleFirerateUpgradeCost = cost;
                 sniperRifleFirerateLevel = level;
                 sniperRifleFireRate += valueIncrement;
                 break;
             case 'sniperRiflePotency':
-                sniperRiflePotencyUpgradeCost = baseCost + level * costMultiplier;
+                sniperRiflePotencyUpgradeCost = cost;
                 sniperRiflePotencyLevel = level;
                 sniperRiflePointsPerShot += valueIncrement;
                 break;
             case 'sniperRifleCriticalShot':
-                sniperRifleCriticalShotUpgradeCost = baseCost;
+                sniperRifleCriticalShotUpgradeCost = cost;
                 sniperRifleCriticalShotLevel = level;
                 sniperRifleCriticalShotChance += valueIncrement;
                 break;
             case 'sniperRifleCriticalDamage':
-                sniperRifleCriticalDamageUpgradeCost = baseCost;
+                sniperRifleCriticalDamageUpgradeCost = cost;
                 sniperRifleCriticalDamageLevel = level;
                 sniperRifleCriticalDamageMultiplier += valueIncrement;
                 break;

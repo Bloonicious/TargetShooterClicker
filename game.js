@@ -122,7 +122,7 @@ function automaticPointsGeneration() {
             if (currentTime - lastSniperRiflePointsTime >= sniperRifleFireRate) {
                 // Check for critical hit
                 const criticalChance = Math.random();
-                if (criticalChance <= 0.25) {
+                if (criticalChance <= (0.25 + sniperRifleCriticalShotLevel * 0.02)) {
                     points += sniperRiflePointsPerShot * sniperRifleCriticalDamageMultiplier;
                 } else {
                     points += sniperRiflePointsPerShot;

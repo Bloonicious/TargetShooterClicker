@@ -51,11 +51,6 @@ body {
     position: relative;
 }
 
-#target {
-    font-family: monospace;
-    color: red;
-}
-
 /* Adjust the position of the target within the weapon zone */
 .target {
     font-family: monospace;
@@ -85,19 +80,6 @@ body {
     color: white;
 }
 
-.floating-text {
-    position: absolute;
-    font-family: monospace;
-    font-size: 16px;
-    color: green;
-}
-
-.tab h1,
-.tab p {
-    /* Apply white color to all headings and paragraphs inside tabs */
-    color: white;
-}
-
 /* Style score display */
 #score {
     margin-top: 10px;
@@ -109,9 +91,11 @@ body {
 
 .floating-text {
     position: absolute;
-    color: white; /* Default text color */
-    font-size: 16px; /* Adjust font size as needed */
+    font-family: monospace;
+    font-size: 16px;
+    color: green;
     transition: all 0.5s ease-out; /* Add transition for smooth appearance */
+    z-index: 2; /* Ensure the floating text appears above other elements */
 }
 
 .floating-text.critical {

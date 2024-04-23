@@ -160,6 +160,34 @@
                     <p id="sniper-rifle-criticalshot-display">Sniper Rifle Critical Shot Level: <span id="sniperRifleCriticalShot-level">0</span> (<span id="sniperRifleCriticalChance-value">25</span>%)</p>
                     <p id="sniper-rifle-criticaldamage-display">Sniper Rifle Critical Damage Level: <span id="sniperRifleCriticalDamage-level">0</span> (<span id="sniperRifleCriticalDamage-value">2</span>x)</p>
                 </div>
+                <div class="weapon-zone" id="ak47-zone">
+                    <!-- AK-47 ASCII representation -->
+                    <pre id="ak47">
+                        <!-- ASCII representation of the AK-47 -->
+                        _______________
+                       |  |          |
+                       |  |________  |
+                       |__________| |
+                                  | |
+                                  | |
+                    </pre>
+                    <!-- Target for AK-47 -->
+                    <pre class="target" id="ak47-target">
+                       ___
+                     //   \\
+                    //     \\
+                   //       \\
+                   \\       //
+                    \\_____//
+                     \\___//
+                       ‾‾‾
+                    </pre>
+                    <!-- Purchase button and upgrades for AK-47 -->
+                    <button id="ak47-purchase" onclick="purchase('ak47')">Purchase AK-47 (Cost: <span id="ak47-cost">60000</span>)</button><button onclick="purchase('ak47Firerate')">Improve AK-47's Firerate (Cost: <span id="ak47Firerate-cost">300000</span>)</button><button onclick="purchase('ak47Potency')">Improve AK-47's Potency (Cost: <span id="ak47Potency-cost">400000</span>)</button>
+                    <!-- Level displays for AK-47 Firerate and Potency -->
+                    <p id="ak47-firerate-display">AK-47 Firerate Level: <span id="ak47Firerate-level">0</span> (<span id="ak47Firerate-value">500</span>ms)</p>
+                    <p id="ak47-potency-display">AK-47 Potency Level: <span id="ak47Potency-level">0</span> (<span id="ak47Potency-value">150</span> points)</p>
+                </div>
             </div>
         </div>
     </div>

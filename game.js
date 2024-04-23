@@ -307,10 +307,17 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
 
 // Function to update weapon and upgrade costs in the HTML
 function updateCostDisplay() {
-    const pistolFirerateValue = (pistolFirerateLevel + 1) * 1000; // Assuming each level reduces by 1000ms
-    const pistolPotencyValue = pistolPotencyLevel + 1; // Assuming each level increases by 1 point
-    const smgFirerateValue = (smgFirerateLevel + 1) * 200; // Assuming each level reduces by 200ms
-    const smgPotencyValue = smgPotencyLevel + 1; // Assuming each level increases by 1 point
+    const pistolFirerateValue = 1000 / pistolFireRate; // Convert fire rate to milliseconds
+    const pistolPotencyValue = pistolPointsPerShot; // No need for calculations, potency is already in points per shot
+    const smgFirerateValue = 200 / smgFireRate;
+    const smgPotencyValue = smgPointsPerShot;
+    const shotgunFirerateValue = 1500 / shotgunFireRate;
+    const shotgunPotencyValue = shotgunPointsPerShot;
+    const shotgunMultiFireValue = shotgunBulletsPerShot;
+    const sniperRifleFirerateValue = 4000 / sniperRifleFireRate;
+    const sniperRiflePotencyValue = sniperRiflePointsPerShot;
+    const sniperRifleCriticalChanceValue = sniperRifleCriticalShotChance;
+    const sniperRifleCriticalDamageValue = sniperRifleCriticalDamageMultiplier;
     
     document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
     document.getElementById('touchGun-level').textContent = touchGunLevel;
@@ -339,6 +346,9 @@ function updateCostDisplay() {
     document.getElementById('shotgunFirerate-level').textContent = shotgunFirerateLevel;
     document.getElementById('shotgunPotency-level').textContent = shotgunPotencyLevel;
     document.getElementById('shotgunMultiFire-level').textContent = shotgunMultiFireLevel;
+    document.getElementById('shotgunFirerate-value').textContent = formatNumber(shotgunFirerateValue) + 'ms';
+    document.getElementById('shotgunPotency-value').textContent = formatNumber(shotgunPotencyValue);
+    document.getElementById('shotgunMultiFire-value').textContent = shotgunMultiFireValue;
     
     document.getElementById('sniperRifle-cost').textContent = formatNumber(sniperRifleCost);
     document.getElementById('sniperRifleFirerate-cost').textContent = formatNumber(sniperRifleFirerateUpgradeCost);
@@ -349,6 +359,10 @@ function updateCostDisplay() {
     document.getElementById('sniperRiflePotency-level').textContent = sniperRiflePotencyLevel;
     document.getElementById('sniperRifleCriticalShot-level').textContent = sniperRifleCriticalShotLevel;
     document.getElementById('sniperRifleCriticalDamage-level').textContent = sniperRifleCriticalDamageLevel;
+    document.getElementById('sniperRifleFirerate-value').textContent = formatNumber(sniperRifleFirerateValue) + 'ms';
+    document.getElementById('sniperRiflePotency-value').textContent = formatNumber(sniperRiflePotencyValue);
+    document.getElementById('sniperRifleCriticalChance-value').textContent = sniperRifleCriticalChanceValue;
+    document.getElementById('sniperRifleCriticalDamage-value').textContent = sniperRifleCriticalDamageValue;
 }
 
 // Function to format numbers into units

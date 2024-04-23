@@ -356,24 +356,11 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
 
 // Function for big upgrades
 function bigUpgrades(weapon, upgrade, cost) {
-    // Define constants for big upgrades
-    const bigUpgradeCosts = {
-        'pistol': {
-            'biggerBullets': 1000
-        },
-        'smg': {
-            'betterSpread': 10000
-        },
-        'shotgun': {
-            'moreBarrels': 100000
-        }
-    };
-
     // Retrieve the HTML element for the specific upgrade option
     const upgradeOption = document.getElementById(`${weapon}-${upgrade}`);
 
     // Check if the upgrade is already bought
-    if (upgradeOption.style.display === 'none') {
+    if (upgradeOption.classList.contains('bought')) {
         alert(`${upgrade} already bought!`);
         return; // Exit the function if the upgrade is already bought
     }
@@ -414,6 +401,9 @@ function bigUpgrades(weapon, upgrade, cost) {
 
         // Update points display after purchasing the upgrade
         updatePointsDisplay();
+
+        // Mark the upgrade as bought to prevent re-purchasing
+        upgradeOption.classList.add('bought');
 
         // Hide the upgrade option after purchasing
         upgradeOption.style.display = 'none';

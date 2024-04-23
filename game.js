@@ -429,11 +429,11 @@ function formatNumber(number) {
     if (number === 0) return '0';
     
     if (numberFormat === 'standard') {
-        const suffixes = ['', 'k', 'M', 'B', 'T', 'Qd', 'Qn', 'Sx', 'Sp', 'O', 'N', 'Dc'];
+        const suffixes = ['', 'k', 'M', 'B', 'T', 'Qd', 'Qn', 'Sx', 'Sp', 'O', 'N', 'Dc', 'UD', 'DD'];
         const suffixIndex = Math.floor(Math.log10(number) / 3);
         const suffix = suffixes[suffixIndex];
         const scaledNumber = number / Math.pow(10, suffixIndex * 3);
-        return scaledNumber.toFixed(3) + ' ' + suffix;
+        return scaledNumber.toFixed(3) + '' + suffix;
     } else if (numberFormat === 'scientific') {
         if (number < 1000) {
             // Display numbers less than 1000 without scientific notation
@@ -446,7 +446,7 @@ function formatNumber(number) {
             return number.toExponential(3);
         }
     } else if (numberFormat === 'long') {
-        const longSuffixes = ['', ' thousand', ' million', ' billion', ' trillion', ' quadrillion', ' quintillion', ' sextillion', ' septillion', ' octillion', ' nonillion', ' decillion'];
+        const longSuffixes = ['', ' thousand', ' million', ' billion', ' trillion', ' quadrillion', ' quintillion', ' sextillion', ' septillion', ' octillion', ' nonillion', ' decillion', ' undecillion', ' duodecillion'];
         const longSuffixIndex = Math.floor(Math.log10(number) / 3);
         const longSuffix = longSuffixes[longSuffixIndex];
         const longScaledNumber = number / Math.pow(10, longSuffixIndex * 3);

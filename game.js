@@ -309,16 +309,19 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
 function updateCostDisplay() {
     document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
     document.getElementById('touchGun-level').textContent = touchGunLevel;
+    
     document.getElementById('pistol-cost').textContent = formatNumber(pistolCost);
     document.getElementById('pistolFirerate-cost').textContent = formatNumber(pistolFirerateUpgradeCost);
     document.getElementById('pistolPotency-cost').textContent = formatNumber(pistolPotencyUpgradeCost);
     document.getElementById('pistolFirerate-level').textContent = pistolFirerateLevel;
     document.getElementById('pistolPotency-level').textContent = pistolPotencyLevel;
+    
     document.getElementById('smg-cost').textContent = formatNumber(smgCost);
     document.getElementById('smgFirerate-cost').textContent = formatNumber(smgFirerateUpgradeCost);
     document.getElementById('smgPotency-cost').textContent = formatNumber(smgPotencyUpgradeCost);
     document.getElementById('smgFirerate-level').textContent = smgFirerateLevel;
     document.getElementById('smgPotency-level').textContent = smgPotencyLevel;
+    
     document.getElementById('shotgun-cost').textContent = formatNumber(shotgunCost);
     document.getElementById('shotgunFirerate-cost').textContent = formatNumber(shotgunFirerateUpgradeCost);
     document.getElementById('shotgunPotency-cost').textContent = formatNumber(shotgunPotencyUpgradeCost);
@@ -326,6 +329,7 @@ function updateCostDisplay() {
     document.getElementById('shotgunFirerate-level').textContent = shotgunFirerateLevel;
     document.getElementById('shotgunPotency-level').textContent = shotgunPotencyLevel;
     document.getElementById('shotgunMultiFire-level').textContent = shotgunMultiFireLevel;
+    
     document.getElementById('sniperRifle-cost').textContent = formatNumber(sniperRifleCost);
     document.getElementById('sniperRifleFirerate-cost').textContent = formatNumber(sniperRifleFirerateUpgradeCost);
     document.getElementById('sniperRiflePotency-cost').textContent = formatNumber(sniperRiflePotencyUpgradeCost);

@@ -455,44 +455,39 @@ function playWeaponSoundEffect(weaponSFX) {
 }
 
 function shoot() {
-    // Calculate points based on the selected weapon's fire rate
-    let pointsPerShot;
-    let critical = false;
-    
-    if (pistolPurchased) {
-        pointsPerShot = pistolPointsPerShot;
-    } else if (smgPurchased) {
-        pointsPerShot = smgPointsPerShot;
-    } else if (shotgunPurchased) {
-        pointsPerShot = shotgunPointsPerShot;
-    } else if (sniperRiflePurchased) {
-        // For sniper rifle, check for critical shot
-        const criticalChance = Math.random() * 100; // Generate random number for critical chance
-        if (criticalChance <= sniperRifleCriticalShotLevel) {
-            // Critical shot
-            pointsPerShot = sniperRiflePointsPerShot * sniperRifleCriticalDamageLevel;
-            critical = true;
-        } else {
-            pointsPerShot = sniperRiflePointsPerShot;
-        }
-    } else {
+    // Check if any weapon is purchased
+    if (!pistolPurchased && !smgPurchased && !shotgunPurchased && !sniperRiflePurchased) {
         // If no weapon is purchased, do nothing
         return;
     }
+
+    // Get the active weapon's zone and corresponding points per shot
+    let weaponZoneId;
+    let pointsPerShot;
+    if (pistolPurchased) {
+        weaponZoneId = 'pistol-zone';
+        pointsPerShot = pistolPointsPerShot;
+    } else if (smgPurchased) {
+        weaponZoneId = 'smg-zone';
+        pointsPerShot = smgPointsPerShot;
+    } else if (shotgunPurchased) {
+        weaponZoneId = 'shotgun-zone';
+        pointsPerShot = shotgunPointsPerShot;
+    } else if (sniperRiflePurchased) {
+        weaponZoneId = 'sniper-rifle-zone';
+        pointsPerShot = sniperRiflePointsPerShot;
+    }
+
+    // Get the target within the active weapon's zone
+    const weaponZone = document.getElementById(weaponZoneId);
+    const target = weaponZone.querySelector('.target');
 
     // Generate points and display them as floating text
     const floatingText = document.createElement('div');
     floatingText.textContent = '+' + pointsPerShot;
     floatingText.classList.add('floating-text');
-    
-    // Set text color based on critical status
-    if (critical) {
-        floatingText.style.color = 'red';
-        floatingText.textContent += ' Crit!';
-    }
 
     // Randomize position above the target
-    const target = document.getElementById('target');
     const targetRect = target.getBoundingClientRect();
     const randomX = targetRect.left + Math.random() * targetRect.width;
     const randomY = targetRect.top + Math.random() * targetRect.height;

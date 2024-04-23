@@ -43,10 +43,23 @@ function setNumberFormat(selectedFormat) {
 function saveGameState() {
     var gameState = {
         score: points,
+        touchGunPointsPerClick: touchGunPointsPerClick,
+        touchGunLevel: touchGunLevel,
         pistolPurchased: pistolPurchased,
+        pistolFirerateLevel: pistolFirerateLevel,
+        pistolPotencyLevel: pistolPotencyLevel,
         smgPurchased: smgPurchased,
+        smgFirerateLevel: smgFirerateLevel,
+        smgPotencyLevel: smgPotencyLevel,
         shotgunPurchased: shotgunPurchased,
+        shotgunFirerateLevel: shotgunFirerateLevel,
+        shotgunPotencyLevel: shotgunPotencyLevel,
+        shotgunMultiFireLevel: shotgunMultiFireLevel,
         sniperRiflePurchased: sniperRiflePurchased,
+        sniperRifleFirerateLevel: sniperRifleFirerateLevel,
+        sniperRiflePotencyLevel: sniperRiflePotencyLevel,
+        sniperRifleCriticalShotLevel: sniperRifleCriticalShotLevel,
+        sniperRifleCriticalDamageLevel: sniperRifleCriticalDamageLevel,
         // Add any other variables you want to save here
     };
 
@@ -63,10 +76,23 @@ function loadGameState() {
         var gameState = JSON.parse(gameStateJSON);
 
         points = gameState.score;
+        touchGunPointsPerClick = gameState.touchGunPointsPerClick;
+        touchGunLevel = gameState.touchGunLevel;
         pistolPurchased = gameState.pistolPurchased;
+        pistolFirerateLevel = gameState.pistolFirerateLevel;
+        pistolPotencyLevel = gameState.pistolPotencyLevel;
         smgPurchased = gameState.smgPurchased;
+        smgFirerateLevel = gameState.smgFirerateLevel;
+        smgPotencyLevel = gameState.smgPotencyLevel;
         shotgunPurchased = gameState.shotgunPurchased;
+        shotgunFirerateLevel = gameState.shotgunFirerateLevel;
+        shotgunPotencyLevel = gameState.shotgunPotencyLevel;
+        shotgunMultiFireLevel = gameState.shotgunMultiFireLevel;
         sniperRiflePurchased = gameState.sniperRiflePurchased;
+        sniperRifleFirerateLevel = gameState.sniperRifleFirerateLevel;
+        sniperRiflePotencyLevel = gameState.sniperRiflePotencyLevel;
+        sniperRifleCriticalShotLevel = gameState.sniperRifleCriticalShotLevel;
+        sniperRifleCriticalDamageLevel = gameState.sniperRifleCriticalDamageLevel;
         // Add any other variables you saved here
 
         // Update the interface
@@ -115,10 +141,23 @@ function resetProgress() {
         localStorage.removeItem('gameState');
         // Reset all variables to their default values
         points = 0;
+        touchGunPointsPerClick = 1;
+        touchGunLevel = 0;
         pistolPurchased = false;
+        pistolFirerateLevel = 0;
+        pistolPotencyLevel = 0;
         smgPurchased = false;
+        smgFirerateLevel = 0;
+        smgPotencyLevel = 0;
         shotgunPurchased = false;
+        shotgunFirerateLevel = 0;
+        shotgunPotencyLevel = 0;
+        shotgunMultiFireLevel = 0;
         sniperRiflePurchased = false;
+        sniperRifleFirerateLevel = 0;
+        sniperRiflePotencyLevel = 0;
+        sniperRifleCriticalShotLevel = 0;
+        sniperRifleCriticalDamageLevel = 0;
         // Reset any other variables as needed
 
         clearInterval(pistolFireRate);

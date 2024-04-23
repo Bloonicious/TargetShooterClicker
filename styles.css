@@ -50,6 +50,25 @@ body {
     color: red;
 }
 
+/* Style for weapon */
+.weapon {
+    font-family: monospace;
+    color: red;
+}
+
+/* Style for target */
+.target {
+    font-family: monospace;
+    color: red;
+}
+
+/* Style for points display */
+.points-display {
+    font-family: 'Lilita One', cursive;
+    color: white;
+}
+
+
 #pistol,
 #smg,
 #shotgun,

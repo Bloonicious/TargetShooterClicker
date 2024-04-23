@@ -150,6 +150,22 @@ function loadGameState() {
 
         // Update the interface
         updatePointsDisplay();
+
+        // Update firerate and potency display for each weapon
+        document.getElementById('pistolFirerate-value').textContent = formatNumber(1000 / pistolFireRate) + 'ms';
+        document.getElementById('pistolPotency-value').textContent = formatNumber(pistolPointsPerShot);
+        
+        document.getElementById('smgFirerate-value').textContent = formatNumber(200 / smgFireRate) + 'ms';
+        document.getElementById('smgPotency-value').textContent = formatNumber(smgPointsPerShot);
+
+        document.getElementById('shotgunFirerate-value').textContent = formatNumber(1500 / shotgunFireRate) + 'ms';
+        document.getElementById('shotgunPotency-value').textContent = formatNumber(shotgunPointsPerShot);
+        document.getElementById('shotgunMultiFire-value').textContent = shotgunBulletsPerShot;
+
+        document.getElementById('sniperRifleFirerate-value').textContent = formatNumber(4000 / sniperRifleFireRate) + 'ms';
+        document.getElementById('sniperRiflePotency-value').textContent = formatNumber(sniperRiflePointsPerShot);
+        document.getElementById('sniperRifleCriticalChance-value').textContent = sniperRifleCriticalShotChance;
+        document.getElementById('sniperRifleCriticalDamage-value').textContent = sniperRifleCriticalDamageMultiplier;
         
         // Hide purchase buttons for purchased weapons
         if (pistolPurchased) {

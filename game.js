@@ -307,6 +307,9 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
 
 // Function to update weapon and upgrade costs in the HTML
 function updateCostDisplay() {
+    const pistolFirerateValue = (pistolFirerateLevel + 1) * 1000; // Assuming each level reduces by 1000ms
+    const pistolPotencyValue = pistolPotencyLevel + 1; // Assuming each level increases by 1 point
+    
     document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
     document.getElementById('touchGun-level').textContent = touchGunLevel;
     document.getElementById('touchGun-points-per-click').textContent = touchGunPointsPerClick;
@@ -316,6 +319,8 @@ function updateCostDisplay() {
     document.getElementById('pistolPotency-cost').textContent = formatNumber(pistolPotencyUpgradeCost);
     document.getElementById('pistolFirerate-level').textContent = pistolFirerateLevel;
     document.getElementById('pistolPotency-level').textContent = pistolPotencyLevel;
+    document.getElementById('pistolFirerate-value').textContent = formatNumber(pistolFirerateValue) + 'ms';
+    document.getElementById('pistolPotency-value').textContent = formatNumber(pistolPotencyValue);
     
     document.getElementById('smg-cost').textContent = formatNumber(smgCost);
     document.getElementById('smgFirerate-cost').textContent = formatNumber(smgFirerateUpgradeCost);

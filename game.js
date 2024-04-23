@@ -128,7 +128,7 @@ function automaticPointsGeneration() {
 function purchase(item) {
     switch (item) {
         case 'touchGun':
-            purchaseUpgrade('touchGun', touchGunLevel, touchGunCost, 100, 2, 'touchGun');
+            purchaseUpgrade('touchGun', touchGunLevel, touchGunCost, 2, 1, 'touchGun');
             break;
         case 'pistol':
             if (!pistolPurchased) {
@@ -238,7 +238,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'touchGun':
                 touchGunCost = cost;
                 touchGunLevel = level;
-                pistolPointsPerShot += valueIncrement;
+                touchGunPointsPerClick += valueIncrement;
                 break;
             case 'pistolFirerate':
                 pistolFirerateUpgradeCost = cost;

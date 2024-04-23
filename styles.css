@@ -106,3 +106,14 @@ body {
 #score-value {
     font-weight: bold;
 }
+
+.floating-text {
+    position: absolute;
+    color: white; /* Default text color */
+    font-size: 16px; /* Adjust font size as needed */
+    transition: all 0.5s ease-out; /* Add transition for smooth appearance */
+}
+
+.floating-text.critical {
+    color: red; /* Color for critical hits */
+}

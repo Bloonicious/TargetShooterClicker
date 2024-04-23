@@ -67,7 +67,7 @@ let lastShotgunPointsTime = 0;
 let lastSniperRiflePointsTime = 0;
 let lastAK47PointsTime = 0;
 
-let pistolSFX, smgSFX, shotgunSFX, sniperRifleSFX, ak47SFX; // Declare variables for storing sound effects
+let pistolSFX, smgSFX, shotgunSFX, sniperRifleSFX, ak47SFX, revolverSFX, bazookaSFX; // Declare variables for storing sound effects
 let numberFormat = 'standard'; // Default number format
 
 // Function to update points display
@@ -464,6 +464,9 @@ function initializeSoundEffects() {
     smgSFX = new Audio('sfx/smg.wav');
     shotgunSFX = new Audio('sfx/shotgun.wav');
     sniperRifleSFX = new Audio('sfx/sniper.wav');
+    ak47SFX = new Audio('sfx/ak47.wav');
+    revolverSFX = new Audio('sfx/revolver.wav');
+    bazookaSFX = new Audio('sfx/bazooka.wav');
 }
 
 // Function to play sound effect for a specific weapon

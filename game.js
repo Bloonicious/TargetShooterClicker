@@ -274,17 +274,57 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 console.error("Invalid upgradeType:", upgradeType);
         }
         if (upgradeCategory === 'firerate') {
-            pistolFireRate += valueIncrement;
-            smgFireRate += valueIncrement;
-            shotgunFireRate += valueIncrement;
-            sniperRifleFireRate += valueIncrement;
+            switch (upgradeType) {
+                case 'pistolFirerate':
+                    pistolFireRate += valueIncrement;
+                    break;
+                case 'smgFirerate':
+                    smgFireRate += valueIncrement;
+                    break;
+                case 'shotgunFirerate':
+                    shotgunFireRate += valueIncrement;
+                    break;
+                case 'sniperRifleFirerate':
+                    sniperRifleFireRate += valueIncrement;
+                    break;
+                default:
+                    console.error("Invalid upgradeType for firerate:", upgradeType);
+            }
         } else if (upgradeCategory === 'potency') {
-            pistolPointsPerShot += valueIncrement;
-            smgPointsPerShot += valueIncrement;
-            shotgunPointsPerShot += valueIncrement;
-            sniperRiflePointsPerShot += valueIncrement;
+            switch (upgradeType) {
+                case 'pistolPotency':
+                    pistolPointsPerShot += valueIncrement;
+                    break;
+                case 'smgPotency':
+                    smgPointsPerShot += valueIncrement;
+                    break;
+                case 'shotgunPotency':
+                    shotgunPointsPerShot += valueIncrement;
+                    break;
+                case 'sniperRiflePotency':
+                    sniperRiflePointsPerShot += valueIncrement;
+                    break;
+                default:
+                    console.error("Invalid upgradeType for potency:", upgradeType);
+            }
         } else if (upgradeCategory === 'multiFire') {
-            shotgunBulletsPerShot += valueIncrement;
+            if (upgradeType === 'shotgunMultiFire') {
+                shotgunBulletsPerShot += valueIncrement;
+            } else {
+                console.error("Invalid upgradeType for multiFire:", upgradeType);
+            }
+        } else if (upgradeCategory === 'criticalShotChance') {
+            if (upgradeType === 'sniperRifleCriticalShot') {
+                sniperRifleCriticalShotChance += valueIncrement;
+            } else {
+                console.error("Invalid upgradeType for criticalShotChance:", upgradeType);
+            }
+        } else if (upgradeCategory === 'criticalDamage') {
+            if (upgradeType === 'sniperRifleCriticalDamage') {
+                sniperRifleCriticalDamageMultiplier += valueIncrement;
+            } else {
+                console.error("Invalid upgradeType for criticalDamage:", upgradeType);
+            }
         }
         level++; // Increment level
         // Update the global variable with the new level

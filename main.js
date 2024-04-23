@@ -194,24 +194,50 @@ function resetProgress() {
         localStorage.removeItem('gameState');
         // Reset all variables to their default values
         points = 0;
+        touchGunCost = 100;
         touchGunPointsPerClick = 1;
         touchGunLevel = 0;
+        
         pistolPurchased = false;
+        pistolPointsPerShot = 1;
+        pistolFireRate = 1000;
+        pistolFirerateUpgradeCost = 50;
+        pistolPotencyUpgradeCost = 100;
         pistolFirerateLevel = 0;
         pistolPotencyLevel = 0;
+        
         smgPurchased = false;
+        smgPointsPerShot = 1;
+        smgFireRate = 200;
+        smgFirerateUpgradeCost = 750;
+        smgPotencyUpgradeCost = 1500;
         smgFirerateLevel = 0;
         smgPotencyLevel = 0;
+        
         shotgunPurchased = false;
+        shotgunPointsPerShot = 4;
+        shotgunFireRate = 1500;
+        shotgunBulletsPerShot = 3,
+        shotgunFirerateUpgradeCost = 5000;
+        shotgunPotencyUpgradeCost = 12500;
+        shotgunMultiFireUpgradeCost = 25000;
         shotgunFirerateLevel = 0;
         shotgunPotencyLevel = 0;
         shotgunMultiFireLevel = 0;
+        
         sniperRiflePurchased = false;
+        sniperRiflePointsPerShot = 80;
+        sniperRifleFireRate = 4000;
+        sniperRifleCriticalShotChance = 0.25;
+        sniperRifleCriticalDamageMultiplier = 2.0;
+        sniperRifleFirerateUpgradeCost = 50000;
+        sniperRiflePotencyUpgradeCost = 100000;
+        sniperRifleCriticalShotUpgradeCost = 75000;
+        sniperRifleCriticalDamageUpgradeCost = 250000;
         sniperRifleFirerateLevel = 0;
         sniperRiflePotencyLevel = 0;
         sniperRifleCriticalShotLevel = 0;
         sniperRifleCriticalDamageLevel = 0;
-        // Reset any other variables as needed
 
         clearInterval(pistolFireRate);
         clearInterval(smgFireRate);

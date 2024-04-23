@@ -41,10 +41,10 @@ body {
     display: none;
 }
 
-#upgrades.tab,
-#tutorial.tab,
-#settings.tab {
-    display: block; /* or any other desired display value */
+.tab#upgrades,
+.tab#tutorial,
+.tab#settings {
+    display: block; /* Show the content of non-main tabs */
 }
 
 #game-screen {

@@ -41,7 +41,6 @@ function setNumberFormat(selectedFormat) {
 
 // Function to save the game state to local storage
 function saveGameState() {
-    // Create an object to store the game state
     var gameState = {
         score: points,
         pistolPurchased: pistolPurchased,
@@ -51,24 +50,18 @@ function saveGameState() {
         // Add any other variables you want to save here
     };
 
-    // Convert the game state object to a JSON string
     var gameStateJSON = JSON.stringify(gameState);
 
-    // Save the JSON string to local storage
     localStorage.setItem('gameState', gameStateJSON);
 }
 
 // Function to load the game state from local storage
 function loadGameState() {
-    // Retrieve the JSON string from local storage
     var gameStateJSON = localStorage.getItem('gameState');
 
-    // If the JSON string is not null (i.e., if there is a saved game state)
     if (gameStateJSON !== null) {
-        // Parse the JSON string to get the game state object
         var gameState = JSON.parse(gameStateJSON);
 
-        // Set the game variables based on the saved game state
         points = gameState.score;
         pistolPurchased = gameState.pistolPurchased;
         smgPurchased = gameState.smgPurchased;
@@ -76,20 +69,33 @@ function loadGameState() {
         sniperRiflePurchased = gameState.sniperRiflePurchased;
         // Add any other variables you saved here
 
-        // Update the game interface to reflect the loaded game state
         updatePointsDisplay();
         // Add any other interface updates here
     }
 }
 
-// Call the loadGameState function when the page is loaded
+// Function to auto-save the game state every 60 seconds
+function autoSave() {
+    setInterval(function() {
+        saveGameState();
+    }, 60000); // 60 seconds
+}
+
+// Function to handle saving progress manually
+function saveProgress() {
+    saveGameState();
+}
+
+// Event listener to load game state when the page is loaded
 document.addEventListener('DOMContentLoaded', function() {
     loadGameState();
+    autoSave();
 });
 
 // Function to reset game progress
 function resetProgress() {
-    // Reset all game variables to their default values
+    localStorage.removeItem('gameState');
+    // Reset all variables to their default values
     points = 0;
     pistolPurchased = false;
     smgPurchased = false;
@@ -97,15 +103,9 @@ function resetProgress() {
     sniperRiflePurchased = false;
     // Reset any other variables as needed
 
-    // Update the game interface to reflect the reset progress
+    // Update the interface
     updatePointsDisplay();
-    // Reset any other interface elements as needed
-
-    // Save the game state to update local storage
-    saveGameState();
-
-    // Optionally, you can add a confirmation message to notify the player that their progress has been reset
-    alert('Your progress has been reset.');
+    // Add any other interface updates here
 }
 
 // Call the saveGameState function whenever the game state changes

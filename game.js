@@ -424,7 +424,7 @@ function shoot(weaponId) {
 
     // Set text color based on critical status
     if (critical) {
-        floatingText.style.color = 'red';
+        floatingText.classList.add('critical'); // Add critical class for critical hits
         floatingText.textContent += ' Crit!';
     }
 

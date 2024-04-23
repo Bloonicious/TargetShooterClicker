@@ -46,6 +46,38 @@
     <!-- Touch Gun -->
     <button id="touchGun-purchase" onclick="purchase('touchGun')">Purchase Touch Gun (Cost: <span id="touchGun-cost">100</span>)</button>
     <p>Touch Gun Level: <span id="touchGun-level">0</span></p>
+    <!-- Container for weapon zones -->
+    <div id="weapon-zones">
+        <!-- Pistol Weapon Zone -->
+        <div class="weapon-zone" id="pistol-zone">
+            <!-- Pistol ASCII representation -->
+            <pre class="weapon">
+                 ___________
+                |            |
+                |   __|__    |
+                |  |_____|   |
+                |____________|
+            </pre>
+            <!-- Target for Pistol -->
+            <pre class="target" id="pistol-target">
+               ___
+             //   \\
+            //     \\
+           //       \\
+           \\       //
+            \\_____//
+             \\___//
+               ‾‾‾
+            </pre>
+            <!-- Points display for Pistol -->
+            <div class="points-display" id="pistol-points">0</div>
+            <!-- Purchase buttons and level displays for Pistol -->
+            <button id="pistol-purchase" onclick="purchase('pistol')">Purchase Pistol (Cost: <span id="pistol-cost">10</span>)</button><button onclick="purchase('pistolFirerate')">Improve Pistol's Firerate (Cost: <span id="pistolFirerate-cost">50</span>)</button><button onclick="purchase('pistolPotency')">Improve Pistol's Potency (Cost: <span id="pistolPotency-cost">100</span>)</button>
+            <p id="pistol-firerate-display">Pistol Firerate Level: <span id="pistolFirerate-level">0</span> (1,000ms)</p>
+            <p id="pistol-potency-display">Pistol Potency Level: <span id="pistolPotency-level">0</span> (1 point)</p>
+        </div>
+        <!-- Add similar elements for other weapon zones -->
+    </div>
     <!-- Pistol -->
     <pre id="pistol">
         <!-- ASCII representation of the pistol -->

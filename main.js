@@ -39,6 +39,58 @@ function setNumberFormat(selectedFormat) {
     // You can add additional logic here if needed
 }
 
+// Function to save the game state to local storage
+function saveGameState() {
+    // Create an object to store the game state
+    var gameState = {
+        score: points,
+        pistolPurchased: pistolPurchased,
+        smgPurchased: smgPurchased,
+        shotgunPurchased: shotgunPurchased,
+        sniperRiflePurchased: sniperRiflePurchased,
+        // Add any other variables you want to save here
+    };
+
+    // Convert the game state object to a JSON string
+    var gameStateJSON = JSON.stringify(gameState);
+
+    // Save the JSON string to local storage
+    localStorage.setItem('gameState', gameStateJSON);
+}
+
+// Function to load the game state from local storage
+function loadGameState() {
+    // Retrieve the JSON string from local storage
+    var gameStateJSON = localStorage.getItem('gameState');
+
+    // If the JSON string is not null (i.e., if there is a saved game state)
+    if (gameStateJSON !== null) {
+        // Parse the JSON string to get the game state object
+        var gameState = JSON.parse(gameStateJSON);
+
+        // Set the game variables based on the saved game state
+        points = gameState.score;
+        pistolPurchased = gameState.pistolPurchased;
+        smgPurchased = gameState.smgPurchased;
+        shotgunPurchased = gameState.shotgunPurchased;
+        sniperRiflePurchased = gameState.sniperRiflePurchased;
+        // Add any other variables you saved here
+
+        // Update the game interface to reflect the loaded game state
+        updatePointsDisplay();
+        // Add any other interface updates here
+    }
+}
+
+// Call the loadGameState function when the page is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    loadGameState();
+});
+
+// Call the saveGameState function whenever the game state changes
+// For example, after earning points, purchasing weapons, etc.
+// You can call this function wherever you modify game state variables
+
 window.addEventListener('DOMContentLoaded', (event) => {
     initializeSoundEffects();
 });

@@ -41,6 +41,12 @@ body {
     display: none;
 }
 
+#upgrades.tab,
+#tutorial.tab,
+#settings.tab {
+    display: block; /* or any other desired display value */
+}
+
 #game-screen {
     position: relative;
 }

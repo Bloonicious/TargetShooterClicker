@@ -59,9 +59,6 @@ let lastSniperRiflePointsTime = 0;
 let pistolSFX, smgSFX, shotgunSFX, sniperRifleSFX; // Declare variables for storing sound effects
 let numberFormat = 'standard'; // Default number format
 
-// Import the Break Infinity library
-const BI = require('break_infinity.js');
-
 // Function to update points display
 function updatePointsDisplay() {
     document.getElementById('score-value').textContent = formatNumber(points);

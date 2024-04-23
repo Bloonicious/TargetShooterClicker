@@ -244,6 +244,20 @@ function resetProgress() {
         clearInterval(shotgunFireRate);
         clearInterval(sniperRifleFireRate);
 
+        // Enable purchase buttons for reset weapons
+        if (pistolPurchased = false) {
+            document.getElementById('pistol-purchase').style.display = 'block';
+        }
+        if (smgPurchased = false) {
+            document.getElementById('smg-purchase').style.display = 'block';
+        }
+        if (shotgunPurchased = false) {
+            document.getElementById('shotgun-purchase').style.display = 'block';
+        }
+        if (sniperRiflePurchased = false) {
+            document.getElementById('sniperRifle-purchase').style.display = 'block';
+        }
+
         // Update the interface
         updatePointsDisplay();
         // Add any other interface updates here

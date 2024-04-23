@@ -421,7 +421,7 @@ function formatNumber(number) {
             return number.toLocaleString();
         } else if (number < 1000000000000000) {
             // Display numbers between 1000 and 1 quadrillion in scientific notation with commas for thousands
-            return number.toExponential(3).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            return number.toLocaleString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         } else {
             // Display numbers greater than or equal to 1 quadrillion in scientific notation
             return number.toExponential(3);

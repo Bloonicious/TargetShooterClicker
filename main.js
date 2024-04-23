@@ -43,24 +43,50 @@ function setNumberFormat(selectedFormat) {
 function saveGameState() {
     var gameState = {
         score: points,
+        touchGunCost: touchGunCost,
         touchGunPointsPerClick: touchGunPointsPerClick,
         touchGunLevel: touchGunLevel,
+        
         pistolPurchased: pistolPurchased,
+        pistolPointsPerShot: pistolPointsPerShot,
+        pistolFireRate: pistolFireRate,
+        pistolFirerateUpgradeCost: pistolFirerateUpgradeCost,
+        pistolPotencyUpgradeCost: pistolPotencyUpgradeCost,
         pistolFirerateLevel: pistolFirerateLevel,
         pistolPotencyLevel: pistolPotencyLevel,
+        
         smgPurchased: smgPurchased,
+        smgPointsPerShot: smgPointsPerShot,
+        smgFireRate: smgFireRate,
+        smgFirerateUpgradeCost: smgFirerateUpgradeCost,
+        smgPotencyUpgradeCost: smgPotencyUpgradeCost,
         smgFirerateLevel: smgFirerateLevel,
         smgPotencyLevel: smgPotencyLevel,
+        
         shotgunPurchased: shotgunPurchased,
+        shotgunPointsPerShot: shotgunPointsPerShot,
+        shotgunFireRate: shotgunFireRate,
+        shotgunBulletsPerShot: shotgunBulletsPerShot,
+        shotgunFirerateUpgradeCost: shotgunFirerateUpgradeCost,
+        shotgunPotencyUpgradeCost: shotgunPotencyUpgradeCost,
+        shotgunMultiFireUpgradeCost: shotgunMultiFireUpgradeCost,
         shotgunFirerateLevel: shotgunFirerateLevel,
         shotgunPotencyLevel: shotgunPotencyLevel,
         shotgunMultiFireLevel: shotgunMultiFireLevel,
+        
         sniperRiflePurchased: sniperRiflePurchased,
+        sniperRiflePointsPerShot: sniperRiflePointsPerShot,
+        sniperRifleFireRate: sniperRifleFireRate,
+        sniperRifleCriticalShotChance: sniperRifleCriticalShotChance,
+        sniperRifleCriticalDamageMultiplier: sniperRifleCriticalDamageMultiplier,
+        sniperRifleFirerateUpgradeCost: ssniperRifleFirerateUpgradeCost,
+        sniperRiflePotencyUpgradeCost: sniperRiflePotencyUpgradeCost,
+        sniperRifleCriticalShotUpgradeCost: sniperRifleCriticalShotUpgradeCost,
+        sniperRifleCriticalDamageUpgradeCost: sniperRifleCriticalDamageUpgradeCost,
         sniperRifleFirerateLevel: sniperRifleFirerateLevel,
         sniperRiflePotencyLevel: sniperRiflePotencyLevel,
         sniperRifleCriticalShotLevel: sniperRifleCriticalShotLevel,
-        sniperRifleCriticalDamageLevel: sniperRifleCriticalDamageLevel,
-        // Add any other variables you want to save here
+        sniperRifleCriticalDamageLevel: sniperRifleCriticalDamageLevel
     };
 
     var gameStateJSON = JSON.stringify(gameState);
@@ -76,19 +102,46 @@ function loadGameState() {
         var gameState = JSON.parse(gameStateJSON);
 
         points = gameState.score;
+        touchGunCost = gameState.touchGunCost,
         touchGunPointsPerClick = gameState.touchGunPointsPerClick;
         touchGunLevel = gameState.touchGunLevel;
+        
         pistolPurchased = gameState.pistolPurchased;
+        pistolPointsPerShot = gameState.pistolPointsPerShot;
+        pistolFireRate = gameState.pistolFireRate;
+        pistolFirerateUpgradeCost = gameState.pistolFirerateUpgradeCost;
+        pistolPotencyUpgradeCost = gameState.pistolPotencyUpgradeCost;
         pistolFirerateLevel = gameState.pistolFirerateLevel;
         pistolPotencyLevel = gameState.pistolPotencyLevel;
+        
         smgPurchased = gameState.smgPurchased;
+        smgPointsPerShot = gameState.smgPointsPerShot;
+        smgFireRate = gameState.smgFireRate;
+        smgFirerateUpgradeCost = gameState.smgFirerateUpgradeCost;
+        smgPotencyUpgradeCost = gameState.smgPotencyUpgradeCost;
         smgFirerateLevel = gameState.smgFirerateLevel;
         smgPotencyLevel = gameState.smgPotencyLevel;
+        
         shotgunPurchased = gameState.shotgunPurchased;
+        shotgunPointsPerShot = gameState.shotgunPointsPerShot;
+        shotgunFireRate = gameState.shotgunFireRate;
+        shotgunBulletsPerShot = gameState.shotgunBulletsPerShot,
+        shotgunFirerateUpgradeCost = gameState.shotgunFirerateUpgradeCost;
+        shotgunPotencyUpgradeCost = gameState.shotgunPotencyUpgradeCost;
+        shotgunMultiFireUpgradeCost = gameState.shotgunMultiFireUpgradeCost;
         shotgunFirerateLevel = gameState.shotgunFirerateLevel;
         shotgunPotencyLevel = gameState.shotgunPotencyLevel;
         shotgunMultiFireLevel = gameState.shotgunMultiFireLevel;
+        
         sniperRiflePurchased = gameState.sniperRiflePurchased;
+        sniperRiflePointsPerShot = gameState.sniperRiflePointsPerShot;
+        sniperRifleFireRate = gameState.sniperRifleFireRate;
+        sniperRifleCriticalShotChance = gameState.sniperRifleCriticalShotChance;
+        sniperRifleCriticalDamageMultiplier = gameState.sniperRifleCriticalDamageMultiplier;
+        sniperRifleFirerateUpgradeCost = gameState.sniperRifleFirerateUpgradeCost;
+        sniperRiflePotencyUpgradeCost = gameState.sniperRiflePotencyUpgradeCost;
+        sniperRifleCriticalShotUpgradeCost = gameState.sniperRifleCriticalShotUpgradeCost;
+        sniperRifleCriticalDamageUpgradeCost = gameState.sniperRifleCriticalDamageUpgradeCost;
         sniperRifleFirerateLevel = gameState.sniperRifleFirerateLevel;
         sniperRiflePotencyLevel = gameState.sniperRiflePotencyLevel;
         sniperRifleCriticalShotLevel = gameState.sniperRifleCriticalShotLevel;
@@ -109,7 +162,7 @@ function loadGameState() {
             document.getElementById('shotgun-purchase').style.display = 'none';
         }
         if (sniperRiflePurchased) {
-            document.getElementById('sniper-rifle-purchase').style.display = 'none';
+            document.getElementById('sniperRifle-purchase').style.display = 'none';
         }
     }
 }

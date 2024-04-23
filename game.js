@@ -67,6 +67,18 @@ let lastShotgunPointsTime = 0;
 let lastSniperRiflePointsTime = 0;
 let lastAK47PointsTime = 0;
 
+const pistolBiggerBulletsCost = 1000;
+const smgBetterSpreadCost = 10000;
+const shotgunMoreBarrelsCost = 100000;
+
+const pistolBiggerBulletsUpgrade = document.getElementById('pistol-bigger-bullets');
+const smgBetterSpreadUpgrade = document.getElementById('smg-better-spread');
+const shotgunMoreBarrelsUpgrade = document.getElementById('shotgun-more-barrels');
+
+pistolBiggerBulletsUpgrade.querySelector('.upgrade-cost').textContent = formatNumber(pistolBiggerBulletsCost);
+smgBetterSpreadUpgrade.querySelector('.upgrade-cost').textContent = formatNumber(smgBetterSpreadCost);
+shotgunMoreBarrelsUpgrade.querySelector('.upgrade-cost').textContent = formatNumber(shotgunMoreBarrelsCost);
+
 let pistolSFX, smgSFX, shotgunSFX, sniperRifleSFX, ak47SFX, revolverSFX, bazookaSFX; // Declare variables for storing sound effects
 let numberFormat = 'standard'; // Default number format
 
@@ -355,6 +367,15 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
 }
 
 function bigUpgrades(weapon, upgrade, cost) {
+    // Retrieve the HTML element for the specific upgrade option
+    const upgradeOption = document.getElementById(`${weapon}-${upgrade}`);
+
+    // Check if the upgrade is already bought
+    if (upgradeOption.style.display === 'none') {
+        alert(`${upgrade} already bought!`);
+        return; // Exit the function if the upgrade is already bought
+    }
+
     // Check if the player has enough points to purchase the upgrade
     if (points >= cost) {
         // Deduct the cost of the upgrade from the player's points
@@ -391,6 +412,9 @@ function bigUpgrades(weapon, upgrade, cost) {
 
         // Update points display after purchasing the upgrade
         updatePointsDisplay();
+
+        // Hide the upgrade option after purchasing
+        upgradeOption.style.display = 'none';
     } else {
         // Player doesn't have enough points to purchase the upgrade
         console.log("Insufficient points to purchase the upgrade.");

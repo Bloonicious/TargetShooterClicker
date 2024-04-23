@@ -73,8 +73,8 @@
                     <!-- Purchase buttons and level displays for Pistol -->
                     <button id="pistol-purchase" onclick="purchase('pistol')">Purchase Pistol (Cost: <span id="pistol-cost">10</span>)</button><button onclick="purchase('pistolFirerate')">Improve Pistol's Firerate (Cost: <span id="pistolFirerate-cost">50</span>)</button><button onclick="purchase('pistolPotency')">Improve Pistol's Potency (Cost: <span id="pistolPotency-cost">100</span>)</button>
                     <!-- Level displays for Pistol Firerate and Potency -->
-                    <p id="pistol-firerate-display">Pistol Firerate Level: <span id="pistolFirerate-level">0</span> (<span id="pistolFirerate-value">1,000</span>ms)</p>
-                    <p id="pistol-potency-display">Pistol Potency Level: <span id="pistolPotency-level">0</span> (<span id="pistolPotency-value">1</span> point)</p>
+                    <p id="pistol-firerate-display">Pistol Firerate Level: <span id="pistolFirerate-level">0</span> (<span id="pistolFirerate-value">1,000</span>)</p>
+                    <p id="pistol-potency-display">Pistol Potency Level: <span id="pistolPotency-level">0</span> (<span id="pistolPotency-value">1</span> points)</p>
                 </div>
                 <div class="weapon-zone" id="smg-zone">
                     <!-- SMG ASCII representation -->
@@ -102,7 +102,7 @@
                     <button id="smg-purchase" onclick="purchase('smg')">Purchase SMG (Cost: <span id="smg-cost">100</span>)</button><button onclick="purchase('smgFirerate')">Improve SMG's Firerate (Cost: <span id="smgFirerate-cost">750</span>)</button><button onclick="purchase('smgPotency')">Improve SMG's Potency (Cost: <span id="smgPotency-cost">1500</span>)</button>
                     <!-- Level displays for SMG Firerate and Potency -->
                     <p id="smg-firerate-display">SMG Firerate Level: <span id="smgFirerate-level">0</span> (<span id="smgFirerate-value">200</span>ms)</p>
-                    <p id="smg-potency-display">SMG Potency Level: <span id="smgPotency-level">0</span> (<span id="smgPotency-value">1</span> point)</p>
+                    <p id="smg-potency-display">SMG Potency Level: <span id="smgPotency-level">0</span> (<span id="smgPotency-value">1</span> points)</p>
                 </div>
                 <div class="weapon-zone" id="shotgun-zone">
                     <!-- Shotgun ASCII representation -->
@@ -127,9 +127,9 @@
                     <!-- Purchase button and upgrades for Shotgun -->
                     <button id="shotgun-purchase" onclick="purchase('shotgun')">Purchase Shotgun (Cost: <span id="shotgun-cost">500</span>)</button><button onclick="purchase('shotgunFirerate')">Improve Shotgun's Firerate (Cost: <span id="shotgunFirerate-cost">5000</span>)</button><button onclick="purchase('shotgunPotency')">Improve Shotgun's Potency (Cost: <span id="shotgunPotency-cost">12500</span>)</button><button onclick="purchase('shotgunMultiFire')">Improve Shotgun's Multi-Fire (Cost: <span id="shotgunMultiFire-cost">25000</span>)</button>
                     <!-- Level displays for Shotgun Firerate, Potency, and Multi-Fire -->
-                    <p>Shotgun Firerate Level: <span id="shotgunFirerate-level">0</span></p>
-                    <p>Shotgun Potency Level: <span id="shotgunPotency-level">0</span></p>
-                    <p>Shotgun Multi-Fire Level: <span id="shotgunMultiFire-level">0</span></p>
+                    <p id="shotgun-firerate-display">Shotgun Firerate Level: <span id="shotgunFirerate-level">0</span> (<span id="shotgunFirerate-value">1,500</span>)</p>
+                    <p id="shotgun-potency-display">Shotgun Potency Level: <span id="shotgunPotency-level">0</span> (<span id="shotgunPotency-value">4</span> points)</p>
+                    <p id="shotgun-multifire-display">Shotgun Multi-Fire Level: <span id="shotgunMultiFire-level">0</span> (<span id="shotgunMultiFire-value">3</span> shots)</p>
                 </div>
                 <div class="weapon-zone" id="sniper-rifle-zone">
                     <!-- Sniper Rifle ASCII representation -->
@@ -155,10 +155,10 @@
                     <!-- Purchase button and upgrades for Sniper Rifle -->
                     <button id="sniperRifle-purchase" onclick="purchase('sniperRifle')">Purchase Sniper Rifle (Cost: <span id="sniperRifle-cost">7500</span>)</button><button id="sniper-firerate-purchase" onclick="purchase('sniperRifleFirerate')">Improve Sniper Rifle's Firerate (Cost: <span id="sniperRifleFirerate-cost">50000</span>)</button><button id="sniper-potency-purchase" onclick="purchase('sniperRiflePotency')">Improve Sniper Rifle's Potency (Cost: <span id="sniperRiflePotency-cost">100000</span>)</button><button id="critical-shot-purchase" onclick="purchase('sniperRifleCriticalShot')">Upgrade Critical Shot Chance (Cost: <span id="sniperRifleCriticalShot-cost">75000</span>)</button><button id="critical-damage-purchase" onclick="purchase('sniperRifleCriticalDamage')">Upgrade Critical Damage (Cost: <span id="sniperRifleCriticalDamage-cost">250000</span>)</button>
                     <!-- Level displays for Sniper Rifle Firerate, Potency, Critical Shot Chance, and Critical Damage -->
-                    <p>Sniper Rifle Firerate Level: <span id="sniperRifleFirerate-level">0</span> (4 seconds)</p>
-                    <p>Sniper Rifle Potency Level: <span id="sniperRiflePotency-level">0</span> (80 points)</p>
-                    <p>Critical Shot Chance: <span id="sniperRifleCriticalShot-level">25</span>%</p>
-                    <p>Critical Damage Multiplier: <span id="sniperRifleCriticalDamage-level">2</span>x</p>
+                    <p id="sniper-rifle-firerate-display">Sniper Rifle Firerate Level: <span id="sniperRifleFirerate-level">0</span> (<span id="sniperRifleFirerate-value">4,000</span>)</p>
+                    <p id="sniper-rifle-potency-display">Sniper Rifle Potency Level: <span id="sniperRiflePotency-level">0</span> (<span id="sniperRiflePotency-value">80</span> points)</p>
+                    <p id="sniper-rifle-criticalshot-display">Sniper Rifle Critical Shot Level: <span id="sniperRifleCriticalShot-level">0</span> (<span id="sniperRifleCriticalChance-value">25</span>%)</p>
+                    <p id="sniper-rifle-criticaldamage-display">Sniper Rifle Critical Damage Level: <span id="sniperRifleCriticalDamage-level">0</span> (<span id="sniperRifleCriticalDamage-value">2</span>x)</p>
                 </div>
             </div>
         </div>

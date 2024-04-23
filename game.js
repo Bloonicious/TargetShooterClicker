@@ -457,10 +457,24 @@ function playWeaponSoundEffect(weaponSFX) {
 function shoot() {
     // Calculate points based on the selected weapon's fire rate
     let pointsPerShot;
+    let critical = false;
+    
     if (pistolPurchased) {
         pointsPerShot = pistolPointsPerShot;
     } else if (smgPurchased) {
         pointsPerShot = smgPointsPerShot;
+    } else if (shotgunPurchased) {
+        pointsPerShot = shotgunPointsPerShot;
+    } else if (sniperRiflePurchased) {
+        // For sniper rifle, check for critical shot
+        const criticalChance = Math.random() * 100; // Generate random number for critical chance
+        if (criticalChance <= sniperRifleCriticalShotLevel) {
+            // Critical shot
+            pointsPerShot = sniperRiflePointsPerShot * sniperRifleCriticalDamageLevel;
+            critical = true;
+        } else {
+            pointsPerShot = sniperRiflePointsPerShot;
+        }
     } else {
         // If no weapon is purchased, do nothing
         return;
@@ -470,6 +484,12 @@ function shoot() {
     const floatingText = document.createElement('div');
     floatingText.textContent = '+' + pointsPerShot;
     floatingText.classList.add('floating-text');
+    
+    // Set text color based on critical status
+    if (critical) {
+        floatingText.style.color = 'red';
+        floatingText.textContent += ' Crit!';
+    }
 
     // Randomize position above the target
     const target = document.getElementById('target');

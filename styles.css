@@ -61,6 +61,8 @@ body {
 
 /* Adjust the position of the weapon zone if necessary */
 .weapon-zone {
+    font-family: monospace;
+    color: red;
     position: relative;
     margin-bottom: 20px; /* Add margin for spacing between weapon zones */
 }

@@ -50,23 +50,25 @@ body {
     color: red;
 }
 
-/* Style for weapon zone */
+/* Adjust the position of the target within the weapon zone */
+.target {
+    font-family: monospace;
+    color: red;
+    position: absolute;
+    right: 5px; /* Adjust as needed */
+    z-index: 1; /* Ensure the target appears above other elements */
+}
+
+/* Adjust the position of the weapon zone if necessary */
 .weapon-zone {
-    position: relative; /* Ensure relative positioning */
+    position: relative;
+    margin-bottom: 20px; /* Add margin for spacing between weapon zones */
 }
 
 /* Style for weapon */
 .weapon {
     font-family: monospace;
     color: red;
-}
-
-/* Style for target */
-.target {
-    font-family: monospace;
-    color: red;
-    position: absolute; /* Position the target relative to the weapon zone */
-    right: 10px; /* Adjust the distance from the right side */
 }
 
 /* Style for points display */

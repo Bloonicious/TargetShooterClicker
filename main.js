@@ -36,8 +36,7 @@ function toggleSound() {
 
 function setNumberFormat(selectedFormat) {
     numberFormat = selectedFormat.value;
-    // Update the number display in the game interface accordingly
-    updateNumberDisplay();
+    // You can add additional logic here if needed
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {

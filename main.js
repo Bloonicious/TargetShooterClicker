@@ -121,10 +121,10 @@ function resetProgress() {
         sniperRiflePurchased = false;
         // Reset any other variables as needed
 
-        clearInterval(pistolInterval);
-        clearInterval(smgInterval);
-        clearInterval(shotgunInterval);
-        clearInterval(sniperRifleInterval);
+        clearInterval(pistolFireRate);
+        clearInterval(smgFireRate);
+        clearInterval(shotgunFireRate);
+        clearInterval(sniperRifleFireRate);
 
         // Update the interface
         updatePointsDisplay();

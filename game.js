@@ -67,18 +67,6 @@ let lastShotgunPointsTime = 0;
 let lastSniperRiflePointsTime = 0;
 let lastAK47PointsTime = 0;
 
-const pistolBiggerBulletsCost = 1000;
-const smgBetterSpreadCost = 10000;
-const shotgunMoreBarrelsCost = 100000;
-
-const pistolBiggerBulletsUpgrade = document.getElementById('pistol-bigger-bullets');
-const smgBetterSpreadUpgrade = document.getElementById('smg-better-spread');
-const shotgunMoreBarrelsUpgrade = document.getElementById('shotgun-more-barrels');
-
-pistolBiggerBulletsUpgrade.querySelector('.upgrade-cost').textContent = formatNumber(pistolBiggerBulletsCost);
-smgBetterSpreadUpgrade.querySelector('.upgrade-cost').textContent = formatNumber(smgBetterSpreadCost);
-shotgunMoreBarrelsUpgrade.querySelector('.upgrade-cost').textContent = formatNumber(shotgunMoreBarrelsCost);
-
 let pistolSFX, smgSFX, shotgunSFX, sniperRifleSFX, ak47SFX, revolverSFX, bazookaSFX; // Declare variables for storing sound effects
 let numberFormat = 'standard'; // Default number format
 
@@ -366,7 +354,21 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
     }
 }
 
+// Function for big upgrades
 function bigUpgrades(weapon, upgrade, cost) {
+    // Define constants for big upgrades
+    const bigUpgradeCosts = {
+        'pistol': {
+            'biggerBullets': 1000
+        },
+        'smg': {
+            'betterSpread': 10000
+        },
+        'shotgun': {
+            'moreBarrels': 100000
+        }
+    };
+
     // Retrieve the HTML element for the specific upgrade option
     const upgradeOption = document.getElementById(`${weapon}-${upgrade}`);
 

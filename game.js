@@ -46,17 +46,28 @@ let sniperRiflePotencyLevel = 0;
 let sniperRifleCriticalShotLevel = 0;
 let sniperRifleCriticalDamageLevel = 0;
 
+let ak47Cost = 60000;
+let ak47PointsPerShot = 150;
+let ak47FireRate = 500; // in milliseconds
+let ak47FirerateUpgradeCost = 300000;
+let ak47PotencyUpgradeCost = 400000;
+let ak47FirerateLevel = 0;
+let ak47PotencyLevel = 0;
+
 let points = 0;
 let pistolPurchased = false;
 let smgPurchased = false;
 let shotgunPurchased = false;
 let sniperRiflePurchased = false;
+let ak47Purchased = false;
+
 let lastPistolPointsTime = 0;
 let lastSMGPointsTime = 0;
 let lastShotgunPointsTime = 0;
 let lastSniperRiflePointsTime = 0;
+let lastAK47PointsTime = 0;
 
-let pistolSFX, smgSFX, shotgunSFX, sniperRifleSFX; // Declare variables for storing sound effects
+let pistolSFX, smgSFX, shotgunSFX, sniperRifleSFX, ak47SFX; // Declare variables for storing sound effects
 let numberFormat = 'standard'; // Default number format
 
 // Function to update points display
@@ -122,6 +133,17 @@ function automaticPointsGeneration() {
             }
         }, 100); // Check every 100 milliseconds for points generation
     }
+    if (ak47Purchased) {
+        setInterval(function() {
+            const currentTime = Date.now();
+            if (currentTime - lastAK47PointsTime >= ak47FireRate) {
+                points += ak47PointsPerShot;
+                updatePointsDisplay();
+                lastAK47PointsTime = currentTime;
+                playWeaponSoundEffect(ak47SFX); // Play SMG sound effect
+            }
+        }, 100); // Check every 100 milliseconds for points generation
+    }
 }
 
 // Function to handle purchasing weapons and upgrades
@@ -158,6 +180,13 @@ function purchase(item) {
                 alert("Sniper Rifle has already been purchased!");
             }
             break;
+        case 'ak47':
+            if (!ak47Purchased) {
+                purchaseWeapon('ak47', ak47Cost);
+            } else {
+                alert("AK-47 has already been purchased!");
+            }
+            break;
         case 'pistolFirerate':
             purchaseUpgrade('pistolFirerate', pistolFirerateLevel, pistolFirerateUpgradeCost, 2, -100, 'firerate');
             break;
@@ -180,7 +209,7 @@ function purchase(item) {
             purchaseUpgrade('shotgunMultiFire', shotgunMultiFireLevel, shotgunMultiFireUpgradeCost, 5, 1, 'multiFire');
             break;
         case 'sniperRifleFirerate':
-            purchaseUpgrade('sniperRifleFirerate', sniperRifleFirerateLevel, sniperRifleFirerateUpgradeCost, 2, -2000, 'firerate');
+            purchaseUpgrade('sniperRifleFirerate', sniperRifleFirerateLevel, sniperRifleFirerateUpgradeCost, 2, -600, 'firerate');
             break;
         case 'sniperRiflePotency':
             purchaseUpgrade('sniperRiflePotency', sniperRiflePotencyLevel, sniperRiflePotencyUpgradeCost, 1.5, 80, 'potency');
@@ -190,6 +219,12 @@ function purchase(item) {
             break;
         case 'sniperRifleCriticalDamage':
             purchaseUpgrade('sniperRifleCriticalDamage', sniperRifleCriticalDamageLevel, sniperRifleCriticalDamageUpgradeCost, 2.5, 0.2, 'criticalDamage');
+            break;
+        case 'ak47Firerate':
+            purchaseUpgrade('ak47Firerate', ak47FirerateLevel, ak47FirerateUpgradeCost, 2, -50, 'firerate');
+            break;
+        case 'ak47Potency':
+            purchaseUpgrade('ak47Potency', ak47PotencyLevel, ak47PotencyUpgradeCost, 1.5, 150, 'potency');
             break;
         default:
             console.error("Invalid item:", item);
@@ -216,6 +251,10 @@ function purchaseWeapon(weapon, cost) {
             case 'sniperRifle':
                 sniperRifleCost *= 2;
                 sniperRiflePurchased = true;
+                break;
+            case 'ak47':
+                ak47Cost *= 2;
+                ak47Purchased = true;
                 break;
             default:
                 console.error("Invalid weapon:", weapon);
@@ -295,6 +334,16 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 sniperRifleCriticalDamageLevel = level;
                 sniperRifleCriticalDamageMultiplier += valueIncrement;
                 break;
+            case 'ak47Firerate':
+                ak47FirerateUpgradeCost = cost;
+                ak47FirerateLevel = level;
+                ak47FireRate += valueIncrement;
+                break;
+            case 'ak47Potency':
+                ak47PotencyUpgradeCost = cost;
+                ak47PotencyLevel = level;
+                ak47PointsPerShot += valueIncrement;
+                break;
             default:
                 console.error("Invalid upgradeType:", upgradeType);
         }
@@ -318,6 +367,8 @@ function updateCostDisplay() {
     const sniperRiflePotencyValue = sniperRiflePointsPerShot;
     const sniperRifleCriticalChanceValue = sniperRifleCriticalShotChance;
     const sniperRifleCriticalDamageValue = sniperRifleCriticalDamageMultiplier;
+    const ak47FirerateValue = 500 / ak47FireRate;
+    const ak47PotencyValue = ak47PointsPerShot;
     
     document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
     document.getElementById('touchGun-level').textContent = touchGunLevel;
@@ -363,6 +414,14 @@ function updateCostDisplay() {
     document.getElementById('sniperRiflePotency-value').textContent = formatNumber(sniperRiflePotencyValue);
     document.getElementById('sniperRifleCriticalChance-value').textContent = sniperRifleCriticalChanceValue;
     document.getElementById('sniperRifleCriticalDamage-value').textContent = sniperRifleCriticalDamageValue;
+
+    document.getElementById('ak47-cost').textContent = formatNumber(ak47Cost);
+    document.getElementById('ak47Firerate-cost').textContent = formatNumber(ak47FirerateUpgradeCost);
+    document.getElementById('ak47Potency-cost').textContent = formatNumber(ak47PotencyUpgradeCost);
+    document.getElementById('ak47Firerate-level').textContent = ak47FirerateLevel;
+    document.getElementById('ak47Potency-level').textContent = ak47PotencyLevel;
+    document.getElementById('ak47Firerate-value').textContent = formatNumber(ak47FirerateValue) + 'ms';
+    document.getElementById('ak47Potency-value').textContent = formatNumber(ak47PotencyValue);
 }
 
 // Function to format numbers into units
@@ -439,6 +498,9 @@ function shoot(weaponId) {
             } else {
                 pointsPerShot = sniperRiflePointsPerShot;
             }
+            break;
+        case 'ak47':
+            pointsPerShot = ak47PointsPerShot;
             break;
         default:
             // If an invalid weaponId is provided, do nothing

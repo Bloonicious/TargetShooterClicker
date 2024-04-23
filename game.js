@@ -128,72 +128,36 @@ function automaticPointsGeneration() {
 function purchase(item) {
     switch (item) {
         case 'touchGun':
-            if (points >= touchGunCost) {
-                points -= touchGunCost;
-                touchGunCost *= 2; // Double cost for next purchase
-                touchGunPointsPerClick++; // Increase points per click
-                touchGunLevel++; // Increment Touch Gun level
-                updatePointsDisplay();
-                updateCostDisplay();
-            } else {
-                alert("Not enough points to purchase Touch Gun!");
-            }
+            purchaseUpgrade('touchGun', touchGunLevel, touchGunCost, 100, 2, 'touchGun');
             break;
         case 'pistol':
-            if (!pistolPurchased && points >= pistolCost) {
-                points -= pistolCost;
-                pistolCost *= 2; // Double cost for next purchase
-                pistolPurchased = true; // Mark as purchased
-                document.getElementById('pistol-purchase').style.display = 'none'; // Hide purchase button
-                updatePointsDisplay();
-                updateCostDisplay();
-            } else if (pistolPurchased) {
-                alert("Pistol has already been purchased!");
+            if (!pistolPurchased) {
+                purchaseWeapon('pistol', pistolCost);
             } else {
-                alert("Not enough points to purchase Pistol!");
+                alert("Pistol has already been purchased!");
             }
             break;
         case 'smg':
-            if (!smgPurchased && points >= smgCost) {
-                points -= smgCost;
-                smgCost *= 2; // Double cost for next purchase
-                smgPurchased = true; // Mark as purchased
-                document.getElementById('smg-purchase').style.display = 'none'; // Hide purchase button
-                updatePointsDisplay();
-                updateCostDisplay();
-            } else if (smgPurchased) {
-                alert("SMG has already been purchased!");
+            if (!smgPurchased) {
+                purchaseWeapon('smg', smgCost);
             } else {
-                alert("Not enough points to purchase SMG!");
+                alert("SMG has already been purchased!");
             }
             break;
         case 'shotgun':
-            if (!shotgunPurchased && points >= shotgunCost) {
-                points -= shotgunCost;
-                shotgunCost *= 2; // Double cost for next purchase
-                shotgunPurchased = true; // Mark as purchased
-                document.getElementById('shotgun-purchase').style.display = 'none'; // Hide purchase button
-                updatePointsDisplay();
-                updateCostDisplay();
-            } else if (shotgunPurchased) {
-                alert("Shotgun has already been purchased!");
+            if (!shotgunPurchased) {
+                purchaseWeapon('shotgun', shotgunCost);
             } else {
-                alert("Not enough points to purchase Shotgun!");
+                alert("Shotgun has already been purchased!");
             }
             break;
         case 'sniperRifle':
-           if (!sniperRiflePurchased && points >= sniperRifleCost) {
-               points -= sniperRifleCost;
-               sniperRiflePurchased = true; // Mark as purchased
-               document.getElementById('sniper-rifle-purchase').style.display = 'none'; // Hide purchase button
-               updatePointsDisplay();
-               updateCostDisplay();
-           } else if (sniperRiflePurchased) {
-               alert("Sniper Rifle has already been purchased!");
-           } else {
-               alert("Not enough points to purchase Sniper Rifle!");
-           }
-           break;
+            if (!sniperRiflePurchased) {
+                purchaseWeapon('sniperRifle', sniperRifleCost);
+            } else {
+                alert("Sniper Rifle has already been purchased!");
+            }
+            break;
         case 'pistolFirerate':
             purchaseUpgrade('pistolFirerate', pistolFirerateLevel, pistolFirerateUpgradeCost, 2, -100, 'firerate');
             break;
@@ -232,145 +196,108 @@ function purchase(item) {
     }
 }
 
+// Function to purchase a weapon
+function purchaseWeapon(weapon, cost) {
+    if (points >= cost) {
+        points -= cost;
+        switch (weapon) {
+            case 'pistol':
+                pistolCost *= 2;
+                pistolPurchased = true;
+                break;
+            case 'smg':
+                smgCost *= 2;
+                smgPurchased = true;
+                break;
+            case 'shotgun':
+                shotgunCost *= 2;
+                shotgunPurchased = true;
+                break;
+            case 'sniperRifle':
+                sniperRifleCost *= 2;
+                sniperRiflePurchased = true;
+                break;
+            default:
+                console.error("Invalid weapon:", weapon);
+        }
+        document.getElementById(`${weapon}-purchase`).style.display = 'none';
+        updatePointsDisplay();
+        updateCostDisplay();
+    } else {
+        alert(`Not enough points to purchase ${weapon}!`);
+    }
+}
+
+// Function to purchase an upgrade
 function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncrement, upgradeCategory) {
     if (points >= cost) {
         points -= cost;
-        cost *= costMultiplier; // Update cost for next upgrade
-        // Update the global variable with the new cost for the next upgrade
+        cost *= costMultiplier;
+        level++;
         switch (upgradeType) {
             case 'pistolFirerate':
                 pistolFirerateUpgradeCost = cost;
+                pistolFirerateLevel = level;
+                pistolFireRate += valueIncrement;
                 break;
             case 'pistolPotency':
                 pistolPotencyUpgradeCost = cost;
+                pistolPotencyLevel = level;
+                pistolPointsPerShot += valueIncrement;
                 break;
             case 'smgFirerate':
                 smgFirerateUpgradeCost = cost;
+                smgFirerateLevel = level;
+                smgFireRate += valueIncrement;
                 break;
             case 'smgPotency':
                 smgPotencyUpgradeCost = cost;
+                smgPotencyLevel = level;
+                smgPointsPerShot += valueIncrement;
                 break;
             case 'shotgunFirerate':
                 shotgunFirerateUpgradeCost = cost;
+                shotgunFirerateLevel = level;
+                shotgunFireRate += valueIncrement;
                 break;
             case 'shotgunPotency':
                 shotgunPotencyUpgradeCost = cost;
+                shotgunPotencyLevel = level;
+                shotgunPointsPerShot += valueIncrement;
                 break;
             case 'shotgunMultiFire':
                 shotgunMultiFireUpgradeCost = cost;
+                shotgunMultiFireLevel = level;
+                shotgunBulletsPerShot += valueIncrement;
                 break;
             case 'sniperRifleFirerate':
                 sniperRifleFirerateUpgradeCost = cost;
+                sniperRifleFirerateLevel = level;
+                sniperRifleFireRate += valueIncrement;
                 break;
             case 'sniperRiflePotency':
                 sniperRiflePotencyUpgradeCost = cost;
+                sniperRiflePotencyLevel = level;
+                sniperRiflePointsPerShot += valueIncrement;
                 break;
             case 'sniperRifleCriticalShot':
                 sniperRifleCriticalShotUpgradeCost = cost;
+                sniperRifleCriticalShotLevel = level;
+                sniperRifleCriticalShotChance += valueIncrement;
                 break;
             case 'sniperRifleCriticalDamage':
                 sniperRifleCriticalDamageUpgradeCost = cost;
-                break;
-            default:
-                console.error("Invalid upgradeType:", upgradeType);
-        }
-        if (upgradeCategory === 'firerate') {
-            switch (upgradeType) {
-                case 'pistolFirerate':
-                    pistolFireRate += valueIncrement;
-                    break;
-                case 'smgFirerate':
-                    smgFireRate += valueIncrement;
-                    break;
-                case 'shotgunFirerate':
-                    shotgunFireRate += valueIncrement;
-                    break;
-                case 'sniperRifleFirerate':
-                    sniperRifleFireRate += valueIncrement;
-                    break;
-                default:
-                    console.error("Invalid upgradeType for firerate:", upgradeType);
-            }
-        } else if (upgradeCategory === 'potency') {
-            switch (upgradeType) {
-                case 'pistolPotency':
-                    pistolPointsPerShot += valueIncrement;
-                    break;
-                case 'smgPotency':
-                    smgPointsPerShot += valueIncrement;
-                    break;
-                case 'shotgunPotency':
-                    shotgunPointsPerShot += valueIncrement;
-                    break;
-                case 'sniperRiflePotency':
-                    sniperRiflePointsPerShot += valueIncrement;
-                    break;
-                default:
-                    console.error("Invalid upgradeType for potency:", upgradeType);
-            }
-        } else if (upgradeCategory === 'multiFire') {
-            if (upgradeType === 'shotgunMultiFire') {
-                shotgunBulletsPerShot += valueIncrement;
-            } else {
-                console.error("Invalid upgradeType for multiFire:", upgradeType);
-            }
-        } else if (upgradeCategory === 'criticalShotChance') {
-            if (upgradeType === 'sniperRifleCriticalShot') {
-                sniperRifleCriticalShotChance += valueIncrement;
-            } else {
-                console.error("Invalid upgradeType for criticalShotChance:", upgradeType);
-            }
-        } else if (upgradeCategory === 'criticalDamage') {
-            if (upgradeType === 'sniperRifleCriticalDamage') {
-                sniperRifleCriticalDamageMultiplier += valueIncrement;
-            } else {
-                console.error("Invalid upgradeType for criticalDamage:", upgradeType);
-            }
-        }
-        level++; // Increment level
-        // Update the global variable with the new level
-        switch (upgradeType) {
-            case 'pistolFirerate':
-                pistolFirerateLevel = level;
-                break;
-            case 'pistolPotency':
-                pistolPotencyLevel = level;
-                break;
-            case 'smgFirerate':
-                smgFirerateLevel = level;
-                break;
-            case 'smgPotency':
-                smgPotencyLevel = level;
-                break;
-            case 'shotgunFirerate':
-                shotgunFirerateLevel = level;
-                break;
-            case 'shotgunPotency':
-                shotgunPotencyLevel = level;
-                break;
-            case 'shotgunMultiFire':
-                shotgunMultiFireLevel = level;
-                break;
-            case 'sniperRifleFirerate':
-                sniperRifleFirerateLevel = level;
-                break;
-            case 'sniperRiflePotency':
-                sniperRiflePotencyLevel = level;
-                break;
-            case 'sniperRifleCriticalShot':
-                sniperRifleCriticalShotLevel = level;
-                break;
-            case 'sniperRifleCriticalDamage':
                 sniperRifleCriticalDamageLevel = level;
+                sniperRifleCriticalDamageMultiplier += valueIncrement;
                 break;
             default:
                 console.error("Invalid upgradeType:", upgradeType);
         }
         updatePointsDisplay();
+        updateCostDisplay();
     } else {
         alert(`Not enough points to upgrade ${upgradeType}!`);
     }
-    updateCostDisplay();
 }
 
 // Function to update weapon and upgrade costs in the HTML

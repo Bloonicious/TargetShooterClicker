@@ -69,8 +69,22 @@ function loadGameState() {
         sniperRiflePurchased = gameState.sniperRiflePurchased;
         // Add any other variables you saved here
 
+        // Update the interface
         updatePointsDisplay();
-        // Add any other interface updates here
+        
+        // Hide purchase buttons for purchased weapons
+        if (pistolPurchased) {
+            document.getElementById('pistol-purchase').style.display = 'none';
+        }
+        if (smgPurchased) {
+            document.getElementById('smg-purchase').style.display = 'none';
+        }
+        if (shotgunPurchased) {
+            document.getElementById('shotgun-purchase').style.display = 'none';
+        }
+        if (sniperRiflePurchased) {
+            document.getElementById('sniper-rifle-purchase').style.display = 'none';
+        }
     }
 }
 

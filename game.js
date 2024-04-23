@@ -229,16 +229,11 @@ function purchaseWeapon(weapon, cost) {
 }
 
 // Function to purchase an upgrade
-function purchaseUpgrade(upgradeType, level, baseCost, costMultiplier, valueIncrement, upgradeCategory) {
-    // Calculate the cost based on the current level and the cost multiplier
-    let cost = baseCost * Math.pow(costMultiplier, level);
-    
+function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncrement, upgradeCategory) {
     if (points >= cost) {
         points -= cost;
-        baseCost *= costMultiplier;
+        cost *= costMultiplier;
         level++;
-        document.getElementById(`${upgradeType}-cost`).textContent = formatNumber(baseCost);
-        document.getElementById(`${upgradeType}-level`).textContent = level;
         switch (upgradeType) {
             case 'pistolFirerate':
                 pistolFirerateUpgradeCost = cost;
@@ -299,10 +294,10 @@ function purchaseUpgrade(upgradeType, level, baseCost, costMultiplier, valueIncr
                 console.error("Invalid upgradeType:", upgradeType);
         }
         updatePointsDisplay();
+        updateCostDisplay();
     } else {
         alert(`Not enough points to upgrade ${upgradeType}!`);
     }
-    updateCostDisplay();
 }
 
 // Function to update weapon and upgrade costs in the HTML

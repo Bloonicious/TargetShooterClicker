@@ -70,6 +70,37 @@ let lastAK47PointsTime = 0;
 let pistolSFX, smgSFX, shotgunSFX, sniperRifleSFX, ak47SFX, revolverSFX, bazookaSFX; // Declare variables for storing sound effects
 let numberFormat = 'standard'; // Default number format
 
+const upgrades = {
+    pistol: {
+        biggerBullets: {
+            cost: 1000,
+            effect: function() {
+                pistolPointsPerShot *= 2; // Double the points per shot
+            }
+        },
+        // Add more upgrades for pistol here
+    },
+    smg: {
+        betterSpread: {
+            cost: 10000,
+            effect: function() {
+                smgPointsPerShot *= 2; // Double the points per shot
+            }
+        },
+        // Add more upgrades for smg here
+    },
+    shotgun: {
+        moreBarrels: {
+            cost: 100000,
+            effect: function() {
+                shotgunBulletsPerShot += 2; // Increase the number of barrels by 2
+            }
+        },
+        // Add more upgrades for shotgun here
+    }
+    // Add more weapons and upgrades as needed
+};
+
 // Function to update points display
 function updatePointsDisplay() {
     document.getElementById('score-value').textContent = formatNumber(points);
@@ -354,62 +385,36 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
     }
 }
 
-// Function for big upgrades
-function bigUpgrades(weapon, upgrade, cost) {
-    // Construct the ID of the upgrade option based on weapon and upgrade
-    var upgradeId = weapon + "-" + upgrade;
+// Function to handle big upgrades
+function bigUpgrades(weapon, upgrade) {
+    // Retrieve upgrade data based on weapon and upgrade
+    const upgradeData = upgrades[weapon][upgrade];
     
-    // Find the upgrade option element by ID
-    var upgradeOption = document.getElementById(upgradeId);
-
     // Check if the upgrade is already bought
-    if (upgradeOption.classList.contains('bought')) {
+    if (upgradeData.bought) {
         alert(`${upgrade} already bought!`);
         return; // Exit the function if the upgrade is already bought
     }
 
     // Check if the player has enough points to purchase the upgrade
-    if (points >= cost) {
+    if (points >= upgradeData.cost) {
         // Deduct the cost of the upgrade from the player's points
-        points -= cost;
+        points -= upgradeData.cost;
 
-        // Apply the upgrade based on the weapon and upgrade type
-        switch (weapon) {
-            case 'pistol':
-                switch (upgrade) {
-                    case 'biggerBullets':
-                        pistolPointsPerShot *= 2; // Double the points per shot
-                        break;
-                    // Add more upgrade cases for Pistol if needed
-                }
-                break;
-            case 'smg':
-                switch (upgrade) {
-                    case 'betterSpread':
-                        smgPointsPerShot *= 2; // Double the points per shot
-                        break;
-                    // Add more upgrade cases for SMG if needed
-                }
-                break;
-            case 'shotgun':
-                switch (upgrade) {
-                    case 'moreBarrels':
-                        shotgunBulletsPerShot += 2; // Increase the number of barrels by 2
-                        break;
-                    // Add more upgrade cases for Shotgun if needed
-                }
-                break;
-            // Add more cases for other weapons if needed
-        }
+        // Apply the upgrade effect
+        upgradeData.effect();
 
         // Update points display after purchasing the upgrade
         updatePointsDisplay();
 
         // Mark the upgrade as bought to prevent re-purchasing
-        upgradeOption.classList.add('bought');
+        upgradeData.bought = true;
 
-        // Hide the upgrade option after purchasing
-        upgradeOption.style.display = 'none';
+        // Hide the upgrade option after purchasing (optional)
+        const upgradeOption = document.getElementById(`${weapon}-${upgrade}`);
+        if (upgradeOption) {
+            upgradeOption.style.display = 'none';
+        }
     } else {
         // Player doesn't have enough points to purchase the upgrade
         console.log("Insufficient points to purchase the upgrade.");

@@ -75,15 +75,6 @@ body {
     color: white;
 }
 
-
-#pistol,
-#smg,
-#shotgun,
-#sniper-rifle {
-    font-family: monospace;
-    color: red;
-}
-
 .floating-text {
     position: absolute;
     font-family: monospace;

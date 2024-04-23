@@ -50,6 +50,11 @@ body {
     color: red;
 }
 
+/* Style for weapon zone */
+.weapon-zone {
+    position: relative; /* Ensure relative positioning */
+}
+
 /* Style for weapon */
 .weapon {
     font-family: monospace;
@@ -60,6 +65,8 @@ body {
 .target {
     font-family: monospace;
     color: red;
+    position: absolute; /* Position the target relative to the weapon zone */
+    right: 10px; /* Adjust the distance from the right side */
 }
 
 /* Style for points display */

@@ -408,11 +408,24 @@ function updateCostDisplay() {
 function formatNumber(number) {
     if (number === 0) return '0';
     
-    const suffixes = ['', 'k', 'M', 'B', 'T', 'Qd', 'Qn', 'Sx', 'Sp', 'O', 'N', 'Dc'];
-    const suffixIndex = Math.floor(Math.log10(number) / 3);
-    const suffix = suffixes[suffixIndex];
-    const scaledNumber = number / Math.pow(10, suffixIndex * 3);
-    return scaledNumber.toFixed(3) + suffix;
+    if (numberFormat === 'standard') {
+        const suffixes = ['', 'k', 'M', 'B', 'T', 'Qd', 'Qn', 'Sx', 'Sp', 'O', 'N', 'Dc'];
+        const suffixIndex = Math.floor(Math.log10(number) / 3);
+        const suffix = suffixes[suffixIndex];
+        const scaledNumber = number / Math.pow(10, suffixIndex * 3);
+        return scaledNumber.toFixed(3) + ' ' + suffix;
+    } else if (numberFormat === 'scientific') {
+        return number.toExponential(3); // Display in scientific notation with 3 decimal places
+    } else if (numberFormat === 'long') {
+        const longSuffixes = ['', ' thousand', ' million', ' billion', ' trillion', ' quadrillion', ' quintillion', ' sextillion', ' septillion', ' octillion', ' nonillion', ' decillion'];
+        const longSuffixIndex = Math.floor(Math.log10(number) / 3);
+        const longSuffix = longSuffixes[longSuffixIndex];
+        const longScaledNumber = number / Math.pow(10, longSuffixIndex * 3);
+        return longScaledNumber.toFixed(3) + longSuffix;
+    } else {
+        console.error("Invalid numberFormat:", numberFormat);
+        return 'ERROR';
+    }
 }
 
 // Function to initialize sound effects

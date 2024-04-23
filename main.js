@@ -152,16 +152,46 @@ function loadGameState() {
         updatePointsDisplay();
 
         // Update firerate and potency display for each weapon
+        document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
+        document.getElementById('touchGun-level').textContent = touchGunLevel;
+        document.getElementById('touchGun-points-per-click').textContent = touchGunPointsPerClick;
+
+        document.getElementById('pistol-cost').textContent = formatNumber(pistolCost);
+        document.getElementById('pistolFirerate-cost').textContent = formatNumber(pistolFirerateUpgradeCost);
+        document.getElementById('pistolPotency-cost').textContent = formatNumber(pistolPotencyUpgradeCost);
+        document.getElementById('pistolFirerate-level').textContent = pistolFirerateLevel;
+        document.getElementById('pistolPotency-level').textContent = pistolPotencyLevel;
         document.getElementById('pistolFirerate-value').textContent = formatNumber(1000 / pistolFireRate) + 'ms';
         document.getElementById('pistolPotency-value').textContent = formatNumber(pistolPointsPerShot);
-        
+
+        document.getElementById('smg-cost').textContent = formatNumber(smgCost);
+        document.getElementById('smgFirerate-cost').textContent = formatNumber(smgFirerateUpgradeCost);
+        document.getElementById('smgPotency-cost').textContent = formatNumber(smgPotencyUpgradeCost);
+        document.getElementById('smgFirerate-level').textContent = smgFirerateLevel;
+        document.getElementById('smgPotency-level').textContent = smgPotencyLevel;
         document.getElementById('smgFirerate-value').textContent = formatNumber(200 / smgFireRate) + 'ms';
         document.getElementById('smgPotency-value').textContent = formatNumber(smgPointsPerShot);
 
+        document.getElementById('shotgun-cost').textContent = formatNumber(shotgunCost);
+        document.getElementById('shotgunFirerate-cost').textContent = formatNumber(shotgunFirerateUpgradeCost);
+        document.getElementById('shotgunPotency-cost').textContent = formatNumber(shotgunPotencyUpgradeCost);
+        document.getElementById('shotgunMultiFire-cost').textContent = formatNumber(shotgunMultiFireUpgradeCost);
+        document.getElementById('shotgunFirerate-level').textContent = shotgunFirerateLevel;
+        document.getElementById('shotgunPotency-level').textContent = shotgunPotencyLevel;
+        document.getElementById('shotgunMultiFire-level').textContent = shotgunMultiFireLevel;
         document.getElementById('shotgunFirerate-value').textContent = formatNumber(1500 / shotgunFireRate) + 'ms';
         document.getElementById('shotgunPotency-value').textContent = formatNumber(shotgunPointsPerShot);
         document.getElementById('shotgunMultiFire-value').textContent = shotgunBulletsPerShot;
 
+        document.getElementById('sniperRifle-cost').textContent = formatNumber(sniperRifleCost);
+        document.getElementById('sniperRifleFirerate-cost').textContent = formatNumber(sniperRifleFirerateUpgradeCost);
+        document.getElementById('sniperRiflePotency-cost').textContent = formatNumber(sniperRiflePotencyUpgradeCost);
+        document.getElementById('sniperRifleCriticalShot-cost').textContent = formatNumber(sniperRifleCriticalShotUpgradeCost);
+        document.getElementById('sniperRifleCriticalDamage-cost').textContent = formatNumber(sniperRifleCriticalDamageUpgradeCost);
+        document.getElementById('sniperRifleFirerate-level').textContent = sniperRifleFirerateLevel;
+        document.getElementById('sniperRiflePotency-level').textContent = sniperRiflePotencyLevel;
+        document.getElementById('sniperRifleCriticalShot-level').textContent = sniperRifleCriticalShotLevel;
+        document.getElementById('sniperRifleCriticalDamage-level').textContent = sniperRifleCriticalDamageLevel;
         document.getElementById('sniperRifleFirerate-value').textContent = formatNumber(4000 / sniperRifleFireRate) + 'ms';
         document.getElementById('sniperRiflePotency-value').textContent = formatNumber(sniperRiflePointsPerShot);
         document.getElementById('sniperRifleCriticalChance-value').textContent = sniperRifleCriticalShotChance;

@@ -454,45 +454,65 @@ function playWeaponSoundEffect(weaponSFX) {
     }
 }
 
-function shoot() {
-    // Check if any weapon is purchased
-    if (!pistolPurchased && !smgPurchased && !shotgunPurchased && !sniperRiflePurchased) {
-        // If no weapon is purchased, do nothing
-        return;
-    }
-
-    // Get the active weapon's zone and corresponding points per shot
-    let weaponZoneId;
+function shoot(weaponId) {
+    // Calculate points based on the selected weapon's fire rate
     let pointsPerShot;
-    if (pistolPurchased) {
-        weaponZoneId = 'pistol-zone';
-        pointsPerShot = pistolPointsPerShot;
-    } else if (smgPurchased) {
-        weaponZoneId = 'smg-zone';
-        pointsPerShot = smgPointsPerShot;
-    } else if (shotgunPurchased) {
-        weaponZoneId = 'shotgun-zone';
-        pointsPerShot = shotgunPointsPerShot;
-    } else if (sniperRiflePurchased) {
-        weaponZoneId = 'sniper-rifle-zone';
-        pointsPerShot = sniperRiflePointsPerShot;
-    }
+    let critical = false;
 
-    // Get the target within the active weapon's zone
-    const weaponZone = document.getElementById(weaponZoneId);
-    const target = weaponZone.querySelector('.target');
+    switch (weaponId) {
+        case 'pistol':
+            pointsPerShot = pistolPointsPerShot;
+            break;
+        case 'smg':
+            pointsPerShot = smgPointsPerShot;
+            break;
+        case 'shotgun':
+            pointsPerShot = shotgunPointsPerShot;
+            break;
+        case 'sniperRifle':
+            // For sniper rifle, check for critical shot
+            const criticalChance = Math.random() * 100; // Generate random number for critical chance
+            if (criticalChance <= sniperRifleCriticalShotLevel) {
+                // Critical shot
+                pointsPerShot = sniperRiflePointsPerShot * sniperRifleCriticalDamageLevel;
+                critical = true;
+            } else {
+                pointsPerShot = sniperRiflePointsPerShot;
+            }
+            break;
+        default:
+            // If an invalid weaponId is provided, do nothing
+            return;
+    }
 
     // Generate points and display them as floating text
     const floatingText = document.createElement('div');
     floatingText.textContent = '+' + pointsPerShot;
     floatingText.classList.add('floating-text');
 
-    // Randomize position above the target
+    // Set text color based on critical status
+    if (critical) {
+        floatingText.style.color = 'red';
+        floatingText.textContent += ' Crit!';
+    }
+
+    // Get the target element based on the weaponId
+    const targetId = weaponId + '-target';
+    const target = document.getElementById(targetId);
+
+    if (!target) {
+        // If target element doesn't exist, do nothing
+        return;
+    }
+
+    // Calculate position at the center of the target
     const targetRect = target.getBoundingClientRect();
-    const randomX = targetRect.left + Math.random() * targetRect.width;
-    const randomY = targetRect.top + Math.random() * targetRect.height;
-    floatingText.style.left = randomX + 'px';
-    floatingText.style.top = randomY + 'px';
+    const centerX = targetRect.left + targetRect.width / 2;
+    const centerY = targetRect.top + targetRect.height / 2;
+
+    // Set floating text position
+    floatingText.style.left = centerX + 'px';
+    floatingText.style.top = centerY + 'px';
 
     // Append the floating text to the container
     const floatingTextContainer = document.getElementById('floating-text-container');

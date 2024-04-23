@@ -231,7 +231,7 @@ function purchaseWeapon(weapon, cost) {
 // Function to purchase an upgrade
 function purchaseUpgrade(upgradeType, level, baseCost, costMultiplier, valueIncrement, upgradeCategory) {
     // Calculate the cost for the current level
-    var cost = baseCost + (level - 1) * costIncrement;
+    var cost = baseCost + (level - 1) * costMultiplier;
     
     if (points >= cost) {
         points -= cost;

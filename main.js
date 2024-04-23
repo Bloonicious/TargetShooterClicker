@@ -86,7 +86,15 @@ function saveGameState() {
         sniperRifleFirerateLevel: sniperRifleFirerateLevel,
         sniperRiflePotencyLevel: sniperRiflePotencyLevel,
         sniperRifleCriticalShotLevel: sniperRifleCriticalShotLevel,
-        sniperRifleCriticalDamageLevel: sniperRifleCriticalDamageLevel
+        sniperRifleCriticalDamageLevel: sniperRifleCriticalDamageLevel,
+
+        ak47Purchased: ak47Purchased,
+        ak47PointsPerShot: ak47PointsPerShot,
+        ak47FireRate: ak47FireRate,
+        ak47FirerateUpgradeCost: ak47FirerateUpgradeCost,
+        ak47PotencyUpgradeCost: ak47PotencyUpgradeCost,
+        ak47FirerateLevel: ak47FirerateLevel,
+        ak47PotencyLevel: ak47PotencyLevel
     };
 
     var gameStateJSON = JSON.stringify(gameState);
@@ -146,6 +154,14 @@ function loadGameState() {
         sniperRiflePotencyLevel = gameState.sniperRiflePotencyLevel;
         sniperRifleCriticalShotLevel = gameState.sniperRifleCriticalShotLevel;
         sniperRifleCriticalDamageLevel = gameState.sniperRifleCriticalDamageLevel;
+
+        ak47Purchased = gameState.ak47Purchased;
+        ak47PointsPerShot = gameState.ak47PointsPerShot;
+        ak47FireRate = gameState.ak47FireRate;
+        ak47FirerateUpgradeCost = gameState.ak47FirerateUpgradeCost;
+        ak47PotencyUpgradeCost = gameState.ak47PotencyUpgradeCost;
+        ak47FirerateLevel = gameState.ak47FirerateLevel;
+        ak47PotencyLevel = gameState.ak47PotencyLevel;
         // Add any other variables you saved here
 
         // Update the interface
@@ -196,6 +212,14 @@ function loadGameState() {
         document.getElementById('sniperRiflePotency-value').textContent = formatNumber(sniperRiflePointsPerShot);
         document.getElementById('sniperRifleCriticalChance-value').textContent = sniperRifleCriticalShotChance;
         document.getElementById('sniperRifleCriticalDamage-value').textContent = sniperRifleCriticalDamageMultiplier;
+
+        document.getElementById('ak47-cost').textContent = formatNumber(ak47Cost);
+        document.getElementById('ak47Firerate-cost').textContent = formatNumber(ak47FirerateUpgradeCost);
+        document.getElementById('ak47Potency-cost').textContent = formatNumber(ak47PotencyUpgradeCost);
+        document.getElementById('ak47Firerate-level').textContent = ak47FirerateLevel;
+        document.getElementById('ak47Potency-level').textContent = ak47PotencyLevel;
+        document.getElementById('ak47Firerate-value').textContent = formatNumber(500 / sniperRifleFireRate) + 'ms';
+        document.getElementById('ak47Potency-value').textContent = formatNumber(ak47PointsPerShot);
         
         // Hide purchase buttons for purchased weapons
         if (pistolPurchased) {
@@ -209,6 +233,9 @@ function loadGameState() {
         }
         if (sniperRiflePurchased) {
             document.getElementById('sniperRifle-purchase').style.display = 'none';
+        }
+        if (ak47Purchased) {
+            document.getElementById('sak47-purchase').style.display = 'none';
         }
     }
 }
@@ -285,10 +312,19 @@ function resetProgress() {
         sniperRifleCriticalShotLevel = 0;
         sniperRifleCriticalDamageLevel = 0;
 
+        ak47Cost = 60000;
+        ak47PointsPerShot = 150;
+        ak47FireRate = 500;
+        ak47FirerateUpgradeCost = 300000;
+        ak47PotencyUpgradeCost = 400000;
+        ak47FirerateLevel = 0;
+        ak47PotencyLevel = 0;
+
         clearInterval(pistolFireRate);
         clearInterval(smgFireRate);
         clearInterval(shotgunFireRate);
         clearInterval(sniperRifleFireRate);
+        clearInterval(ak47FireRate);
 
         // Enable purchase buttons for reset weapons
         if (pistolPurchased = false) {
@@ -302,6 +338,9 @@ function resetProgress() {
         }
         if (sniperRiflePurchased = false) {
             document.getElementById('sniperRifle-purchase').style.display = 'block';
+        }
+        if (ak47Purchased = false) {
+            document.getElementById('ak47-purchase').style.display = 'block';
         }
 
         // Update the interface

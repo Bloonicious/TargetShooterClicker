@@ -128,10 +128,18 @@
             </label>
         </div>
         <div id="number-format-settings">
-        <h2>Number Format</h2>
+            <h2>Number Format</h2>
             <label>
-                <input type="checkbox" id="toggle-number-format" onchange="toggleNumberFormat()">
+                <input type="radio" name="number-format" value="standard" onchange="setNumberFormat(this)">
+                Standard
+            </label>
+            <label>
+                <input type="radio" name="number-format" value="scientific" onchange="setNumberFormat(this)">
                 Scientific Notation
+            </label>
+            <label>
+                <input type="radio" name="number-format" value="long" onchange="setNumberFormat(this)">
+                Long Units
             </label>
         </div>
      </div>

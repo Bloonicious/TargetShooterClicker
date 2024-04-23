@@ -87,6 +87,27 @@ document.addEventListener('DOMContentLoaded', function() {
     loadGameState();
 });
 
+// Function to reset game progress
+function resetProgress() {
+    // Reset all game variables to their default values
+    points = 0;
+    pistolPurchased = false;
+    smgPurchased = false;
+    shotgunPurchased = false;
+    sniperRiflePurchased = false;
+    // Reset any other variables as needed
+
+    // Update the game interface to reflect the reset progress
+    updatePointsDisplay();
+    // Reset any other interface elements as needed
+
+    // Save the game state to update local storage
+    saveGameState();
+
+    // Optionally, you can add a confirmation message to notify the player that their progress has been reset
+    alert('Your progress has been reset.');
+}
+
 // Call the saveGameState function whenever the game state changes
 // For example, after earning points, purchasing weapons, etc.
 // You can call this function wherever you modify game state variables

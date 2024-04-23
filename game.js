@@ -416,7 +416,16 @@ function formatNumber(number) {
         const scaledNumber = number / Math.pow(10, suffixIndex * 3);
         return scaledNumber.toFixed(3) + ' ' + suffix;
     } else if (numberFormat === 'scientific') {
-        return number.toExponential(3); // Display in scientific notation with 3 decimal places
+        if (number < 1000) {
+            // Display numbers less than 1000 without scientific notation
+            return number.toLocaleString();
+        } else if (number < 1000000000000000) {
+            // Display numbers between 1000 and 1 quadrillion in scientific notation with commas for thousands
+            return number.toExponential(3).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        } else {
+            // Display numbers greater than or equal to 1 quadrillion in scientific notation
+            return number.toExponential(3);
+        }
     } else if (numberFormat === 'long') {
         const longSuffixes = ['', ' thousand', ' million', ' billion', ' trillion', ' quadrillion', ' quintillion', ' sextillion', ' septillion', ' octillion', ' nonillion', ' decillion'];
         const longSuffixIndex = Math.floor(Math.log10(number) / 3);

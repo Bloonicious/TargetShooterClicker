@@ -280,6 +280,11 @@ function resetProgress() {
         touchGunCost = 100;
         touchGunPointsPerClick = 1;
         touchGunLevel = 0;
+
+        // Reset big upgrades
+        upgrades.pistol.biggerBullets.bought = false;
+        upgrades.smg.betterSpread.bought = false;
+        upgrades.shotgun.moreBarrels.bought = false;
         
         pistolPurchased = false;
         pistolPointsPerShot = 1;

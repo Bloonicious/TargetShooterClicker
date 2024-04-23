@@ -354,6 +354,49 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
     }
 }
 
+function bigUpgrades(weapon, upgrade, cost) {
+    // Check if the player has enough points to purchase the upgrade
+    if (points >= cost) {
+        // Deduct the cost of the upgrade from the player's points
+        points -= cost;
+
+        // Apply the upgrade based on the weapon and upgrade type
+        switch (weapon) {
+            case 'pistol':
+                switch (upgrade) {
+                    case 'biggerBullets':
+                        pistolPointsPerShot *= 2; // Double the points per shot
+                        break;
+                    // Add more upgrade cases for Pistol if needed
+                }
+                break;
+            case 'smg':
+                switch (upgrade) {
+                    case 'betterSpread':
+                        smgPointsPerShot *= 2; // Double the points per shot
+                        break;
+                    // Add more upgrade cases for SMG if needed
+                }
+                break;
+            case 'shotgun':
+                switch (upgrade) {
+                    case 'moreBarrels':
+                        shotgunBulletsPerShot += 2; // Increase the number of barrels by 2
+                        break;
+                    // Add more upgrade cases for Shotgun if needed
+                }
+                break;
+            // Add more cases for other weapons if needed
+        }
+
+        // Update points display after purchasing the upgrade
+        updatePointsDisplay();
+    } else {
+        // Player doesn't have enough points to purchase the upgrade
+        console.log("Insufficient points to purchase the upgrade.");
+    }
+}
+
 // Function to update weapon and upgrade costs in the HTML
 function updateCostDisplay() {
     const pistolFirerateValue = 1000 / pistolFireRate; // Convert fire rate to milliseconds

@@ -309,6 +309,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
 function updateCostDisplay() {
     document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
     document.getElementById('touchGun-level').textContent = touchGunLevel;
+    document.getElementById('touchGun-points-per-click').textContent = touchGunPointsPerClick;
     
     document.getElementById('pistol-cost').textContent = formatNumber(pistolCost);
     document.getElementById('pistolFirerate-cost').textContent = formatNumber(pistolFirerateUpgradeCost);

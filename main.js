@@ -108,18 +108,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Function to reset game progress
 function resetProgress() {
-    localStorage.removeItem('gameState');
-    // Reset all variables to their default values
-    points = 0;
-    pistolPurchased = false;
-    smgPurchased = false;
-    shotgunPurchased = false;
-    sniperRiflePurchased = false;
-    // Reset any other variables as needed
+    // Prompt confirmation before resetting progress
+    var confirmation = confirm("Are you sure you want to clear your whole progression? NOTE: this cannot be reversed!");
+    
+    if (confirmation) {
+        localStorage.removeItem('gameState');
+        // Reset all variables to their default values
+        points = 0;
+        pistolPurchased = false;
+        smgPurchased = false;
+        shotgunPurchased = false;
+        sniperRiflePurchased = false;
+        // Reset any other variables as needed
 
-    // Update the interface
-    updatePointsDisplay();
-    // Add any other interface updates here
+        // Reset weapon zones and disable automatic points generation
+        document.getElementById('pistol-zone').style.display = 'none';
+        document.getElementById('smg-zone').style.display = 'none';
+        document.getElementById('shotgun-zone').style.display = 'none';
+        document.getElementById('sniper-rifle-zone').style.display = 'none';
+
+        clearInterval(pistolInterval);
+        clearInterval(smgInterval);
+        clearInterval(shotgunInterval);
+        clearInterval(sniperRifleInterval);
+
+        // Update the interface
+        updatePointsDisplay();
+        // Add any other interface updates here
+    }
 }
 
 // Call the saveGameState function whenever the game state changes

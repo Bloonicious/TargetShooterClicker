@@ -218,7 +218,7 @@ function loadGameState() {
         document.getElementById('ak47Potency-cost').textContent = formatNumber(ak47PotencyUpgradeCost);
         document.getElementById('ak47Firerate-level').textContent = ak47FirerateLevel;
         document.getElementById('ak47Potency-level').textContent = ak47PotencyLevel;
-        document.getElementById('ak47Firerate-value').textContent = formatNumber(500 / sniperRifleFireRate) + 'ms';
+        document.getElementById('ak47Firerate-value').textContent = formatNumber(500 / ak47RifleFireRate) + 'ms';
         document.getElementById('ak47Potency-value').textContent = formatNumber(ak47PointsPerShot);
         
         // Hide purchase buttons for purchased weapons
@@ -235,7 +235,7 @@ function loadGameState() {
             document.getElementById('sniperRifle-purchase').style.display = 'none';
         }
         if (ak47Purchased) {
-            document.getElementById('sak47-purchase').style.display = 'none';
+            document.getElementById('ak47-purchase').style.display = 'none';
         }
     }
 }

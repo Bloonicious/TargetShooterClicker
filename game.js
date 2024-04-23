@@ -140,7 +140,7 @@ function automaticPointsGeneration() {
                 points += ak47PointsPerShot;
                 updatePointsDisplay();
                 lastAK47PointsTime = currentTime;
-                playWeaponSoundEffect(ak47SFX); // Play SMG sound effect
+                playWeaponSoundEffect(ak47SFX); // Play AK-47 sound effect
             }
         }, 100); // Check every 100 milliseconds for points generation
     }

@@ -46,6 +46,11 @@ function saveGameState() {
         touchGunCost: touchGunCost,
         touchGunPointsPerClick: touchGunPointsPerClick,
         touchGunLevel: touchGunLevel,
+
+        // Add big upgrade data for each weapon
+        pistolBiggerBulletsBought: upgrades.pistol.biggerBullets.bought,
+        smgBetterSpreadBought: upgrades.smg.betterSpread.bought,
+        shotgunMoreBarrelsBought: upgrades.shotgun.moreBarrels.bought,
         
         pistolPurchased: pistolPurchased,
         pistolPointsPerShot: pistolPointsPerShot,
@@ -113,6 +118,11 @@ function loadGameState() {
         touchGunCost = gameState.touchGunCost,
         touchGunPointsPerClick = gameState.touchGunPointsPerClick;
         touchGunLevel = gameState.touchGunLevel;
+
+        // Load big upgrade data for each weapon
+        upgrades.pistol.biggerBullets.bought = gameState.pistolBiggerBulletsBought;
+        upgrades.smg.betterSpread.bought = gameState.smgBetterSpreadBought;
+        upgrades.shotgun.moreBarrels.bought = gameState.shotgunMoreBarrelsBought;
         
         pistolPurchased = gameState.pistolPurchased;
         pistolPointsPerShot = gameState.pistolPointsPerShot;

@@ -79,7 +79,7 @@ function saveGameState() {
         sniperRifleFireRate: sniperRifleFireRate,
         sniperRifleCriticalShotChance: sniperRifleCriticalShotChance,
         sniperRifleCriticalDamageMultiplier: sniperRifleCriticalDamageMultiplier,
-        sniperRifleFirerateUpgradeCost: ssniperRifleFirerateUpgradeCost,
+        sniperRifleFirerateUpgradeCost: sniperRifleFirerateUpgradeCost,
         sniperRiflePotencyUpgradeCost: sniperRiflePotencyUpgradeCost,
         sniperRifleCriticalShotUpgradeCost: sniperRifleCriticalShotUpgradeCost,
         sniperRifleCriticalDamageUpgradeCost: sniperRifleCriticalDamageUpgradeCost,

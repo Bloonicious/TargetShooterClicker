@@ -356,8 +356,11 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
 
 // Function for big upgrades
 function bigUpgrades(weapon, upgrade, cost) {
-    // Retrieve the HTML element for the specific upgrade option
-    const upgradeOption = document.getElementById(`${weapon}-${upgrade}`);
+    // Construct the ID of the upgrade option based on weapon and upgrade
+    var upgradeId = weapon + "-" + upgrade;
+    
+    // Find the upgrade option element by ID
+    var upgradeOption = document.getElementById(upgradeId);
 
     // Check if the upgrade is already bought
     if (upgradeOption.classList.contains('bought')) {
@@ -488,7 +491,7 @@ function formatNumber(number) {
     if (number === 0) return '0';
     
     if (numberFormat === 'standard') {
-        const suffixes = ['', 'k', 'M', 'B', 'T', 'Qd', 'Qn', 'Sx', 'Sp', 'O', 'N', 'Dc', 'UD', 'DD'];
+        const suffixes = ['', 'k', 'M', 'B', 'T', 'Qd', 'Qn', 'Sx', 'Sp', 'O', 'N', 'Dc', 'UD', 'DD', 'TD'];
         const suffixIndex = Math.floor(Math.log10(number) / 3);
         const suffix = suffixes[suffixIndex];
         const scaledNumber = number / Math.pow(10, suffixIndex * 3);
@@ -505,7 +508,7 @@ function formatNumber(number) {
             return number.toExponential(3);
         }
     } else if (numberFormat === 'long') {
-        const longSuffixes = ['', ' thousand', ' million', ' billion', ' trillion', ' quadrillion', ' quintillion', ' sextillion', ' septillion', ' octillion', ' nonillion', ' decillion', ' undecillion', ' duodecillion'];
+        const longSuffixes = ['', ' thousand', ' million', ' billion', ' trillion', ' quadrillion', ' quintillion', ' sextillion', ' septillion', ' octillion', ' nonillion', ' decillion', ' undecillion', ' duodecillion', ' tredecillion'];
         const longSuffixIndex = Math.floor(Math.log10(number) / 3);
         const longSuffix = longSuffixes[longSuffixIndex];
         const longScaledNumber = number / Math.pow(10, longSuffixIndex * 3);

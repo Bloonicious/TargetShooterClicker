@@ -121,12 +121,6 @@ function resetProgress() {
         sniperRiflePurchased = false;
         // Reset any other variables as needed
 
-        // Reset weapon zones and disable automatic points generation
-        document.getElementById('pistol-zone').style.display = 'none';
-        document.getElementById('smg-zone').style.display = 'none';
-        document.getElementById('shotgun-zone').style.display = 'none';
-        document.getElementById('sniper-rifle-zone').style.display = 'none';
-
         clearInterval(pistolInterval);
         clearInterval(smgInterval);
         clearInterval(shotgunInterval);

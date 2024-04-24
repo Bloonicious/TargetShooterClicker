@@ -75,6 +75,8 @@ function saveGameState() {
         shotgunMoreBarrelsBought: upgrades.shotgun.moreBarrels.bought,
         sniperRifleDeadlyPrecisionBought: upgrades.sniperRifle.deadlyPrecision.bought,
         ak47HeatTippedBulletsBought: upgrades.ak47.heatTippedBullets.bought,
+
+        purchasedBigUpgrades: getPurchasedBigUpgrades();
         
         pistolPurchased: pistolPurchased,
         pistolPointsPerShot: pistolPointsPerShot,
@@ -123,9 +125,7 @@ function saveGameState() {
         ak47FirerateUpgradeCost: ak47FirerateUpgradeCost,
         ak47PotencyUpgradeCost: ak47PotencyUpgradeCost,
         ak47FirerateLevel: ak47FirerateLevel,
-        ak47PotencyLevel: ak47PotencyLevel,
-
-        purchasedBigUpgrades: getPurchasedBigUpgrades();
+        ak47PotencyLevel: ak47PotencyLevel
     };
 
     var gameStateJSON = JSON.stringify(gameState);

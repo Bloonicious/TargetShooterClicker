@@ -510,9 +510,6 @@ function bigUpgrades(weapon, upgrade, cost) {
         return;
     }
 
-    // Hide the upgrade option after purchasing (optional)
-    upgradeOption.style.display = 'none';
-    
     // Check if the upgrade is already bought
     if (upgradeData.bought) {
         alert(`${upgrade} already bought!`);
@@ -538,6 +535,9 @@ function bigUpgrades(weapon, upgrade, cost) {
         if (costDisplay) {
             costDisplay.textContent = "Bought!";
         }
+
+        // Remove the display: none style to make the upgrade option visible again
+        upgradeOption.style.display = '';
 
         // Move the upgrade option to the "bought" subtab
         const boughtSubtab = document.getElementById('bought-upgrades');

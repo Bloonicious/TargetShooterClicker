@@ -542,6 +542,8 @@ function bigUpgrades(weapon, upgrade, cost) {
         // Move the upgrade option to the "bought" subtab
         const boughtSubtab = document.getElementById('bought-upgrades');
         if (boughtSubtab) {
+            // Remove the upgrade option from its current parent
+            upgradeOption.parentNode.removeChild(upgradeOption);
             // Add the upgrade option to the "bought" subtab
             boughtSubtab.appendChild(upgradeOption);
         }

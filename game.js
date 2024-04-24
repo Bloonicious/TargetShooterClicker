@@ -37,7 +37,7 @@ let sniperRifleFirerateUpgradeCost = 50000;
 let sniperRiflePotencyUpgradeCost = 100000;
 let sniperRifleCriticalShotUpgradeCost = 75000;
 let sniperRifleCriticalDamageUpgradeCost = 250000;
-let sniperRifleCriticalShotChance = 0.25; // 25% chance for a "Critical Shot" for increased points
+let sniperRifleCriticalShotChance = 25; // 25% chance for a "Critical Shot" for increased points
 let sniperRifleCriticalDamageMultiplier = 2.0; // The amount of extra points yielded from a "Critical Shot"
 let sniperRifleCriticalShotValueIncrement = 0.02; // Increases the chance to trigger a "Critical Shot" by 2%
 let sniperRifleCriticalDamageValueIncrement = 0.2; // Increases the point multiplier gained from crits by x0.2
@@ -156,7 +156,7 @@ function automaticPointsGeneration() {
                 let critical = false;
 
                 // For sniper rifle, check for critical hit
-                const criticalChance = Math.min(100, 0.25 + sniperRifleCriticalShotLevel * 0.02);
+                const criticalChance = Math.min(100, 25 + sniperRifleCriticalShotLevel * 2);
                 if (criticalChance >= Math.random() * 100) {
                     // Critical shot
                     pointsPerShot *= sniperRifleCriticalDamageMultiplier;
@@ -249,7 +249,7 @@ function purchase(item) {
             purchaseUpgrade('sniperRiflePotency', sniperRiflePotencyLevel, sniperRiflePotencyUpgradeCost, 1.5, 80, 'potency');
             break;
         case 'sniperRifleCriticalShot':
-            purchaseUpgrade('sniperRifleCriticalShot', sniperRifleCriticalShotLevel, sniperRifleCriticalShotUpgradeCost, 3, 0.02, 'criticalShotChance');
+            purchaseUpgrade('sniperRifleCriticalShot', sniperRifleCriticalShotLevel, sniperRifleCriticalShotUpgradeCost, 3, 2, 'criticalShotChance');
             break;
         case 'sniperRifleCriticalDamage':
             purchaseUpgrade('sniperRifleCriticalDamage', sniperRifleCriticalDamageLevel, sniperRifleCriticalDamageUpgradeCost, 2.5, 0.2, 'criticalDamage');

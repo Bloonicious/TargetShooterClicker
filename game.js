@@ -55,6 +55,8 @@ let ak47FirerateLevel = 0;
 let ak47PotencyLevel = 0;
 
 let points = 0;
+let numberFormat = 'standard'; // Default number format
+
 let pistolPurchased = false;
 let smgPurchased = false;
 let shotgunPurchased = false;
@@ -67,8 +69,14 @@ let lastShotgunPointsTime = 0;
 let lastSniperRiflePointsTime = 0;
 let lastAK47PointsTime = 0;
 
-let pistolSFX, smgSFX, shotgunSFX, sniperRifleSFX, ak47SFX, revolverSFX, bazookaSFX; // Declare variables for storing sound effects
-let numberFormat = 'standard'; // Default number format
+// Define weapon sound effects constants
+const weaponSFX = {
+    pistol: new Audio('pistol.wav'),
+    smg: new Audio('smg.wav'),
+    shotgun: new Audio('shotgun.wav'),
+    sniperRifle: new Audio('sniper.wav'),
+    ak47: new Audio('ak47.wav')
+};
 
 const upgrades = {
     pistol: {
@@ -547,20 +555,26 @@ function formatNumber(number) {
 
 // Function to initialize sound effects
 function initializeSoundEffects() {
-    // Load or create SFX IDs for each weapon
-    pistolSFX = new Audio('sfx/pistol.wav');
-    smgSFX = new Audio('sfx/smg.wav');
-    shotgunSFX = new Audio('sfx/shotgun.wav');
-    sniperRifleSFX = new Audio('sfx/sniper.wav');
-    ak47SFX = new Audio('sfx/ak47.wav');
-    revolverSFX = new Audio('sfx/revolver.wav');
-    bazookaSFX = new Audio('sfx/bazooka.wav');
+    // Define weapon sound effects constants
+    weaponSFX = {
+        pistol: new Audio('sfx/pistol.wav'),
+        smg: new Audio('sfx/smg.wav'),
+        shotgun: new Audio('sfx/shotgun.wav'),
+        sniperRifle: new Audio('sfx/sniper.wav'),
+        ak47: new Audio('sfx/ak47.wav'),
+        revolver: new Audio('sfx/revolver.wav'),
+        bazooka: new Audio('sfx/bazooka.wav')
+    };
 }
 
 // Function to play sound effect for a specific weapon
-function playWeaponSoundEffect(weaponSFX) {
-    if (soundEnabled) {
-        weaponSFX.play();
+function playWeaponSoundEffect(weaponId) {
+    try {
+        if (soundEnabled && weaponSFX.hasOwnProperty(weaponId)) {
+            weaponSFX[weaponId].play();
+        }
+    } catch (error) {
+        console.error('Error playing sound effect:', error);
     }
 }
 

@@ -54,14 +54,15 @@ function toggleSound() {
     }
 }
 
-// Adjust the setNumberFormat function to update the display without modifying the game state
+// Adjust the setNumberFormat function to update the display based on the selected format
 function setNumberFormat(selectedFormat) {
     if (selectedFormat && selectedFormat.value) {
         // Update the display based on the selected format
         const formatValue = selectedFormat.value;
         const numberElements = document.querySelectorAll('.number-format');
         numberElements.forEach(function(element) {
-            element.textContent = formatNumber(parseFloat(element.textContent), formatValue);
+            const number = parseFloat(element.textContent);
+            element.textContent = formatNumber(number, formatValue);
         });
     }
 }

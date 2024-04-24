@@ -502,6 +502,12 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
 function bigUpgrades(weapon, upgrade, cost) {
     // Retrieve upgrade data based on weapon and upgrade
     const upgradeData = upgrades[weapon][upgrade];
+
+    // Hide the upgrade option after purchasing (optional)
+    const upgradeOption = document.getElementById(`${weapon}-${upgrade}`);
+    if (upgradeOption) {
+        upgradeOption.style.display = 'none';
+    }
     
     // Check if the upgrade is already bought
     if (upgradeData.bought) {
@@ -523,11 +529,6 @@ function bigUpgrades(weapon, upgrade, cost) {
         // Mark the upgrade as bought to prevent re-purchasing
         upgradeData.bought = true;
 
-        // Hide the upgrade option after purchasing (optional)
-        const upgradeOption = document.getElementById(`${weapon}-${upgrade}`);
-        if (upgradeOption) {
-            upgradeOption.style.display = 'none';
-        }
 
         // Update the cost display to indicate "Bought!" and format the cost
         const costDisplay = upgradeOption.querySelector('.upgrade-cost');

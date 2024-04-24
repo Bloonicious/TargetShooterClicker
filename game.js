@@ -503,11 +503,15 @@ function bigUpgrades(weapon, upgrade, cost) {
     // Retrieve upgrade data based on weapon and upgrade
     const upgradeData = upgrades[weapon][upgrade];
 
-    // Hide the upgrade option after purchasing (optional)
-    const upgradeOption = document.getElementById(`upgrade-${weapon}-${upgrade}`);
-    if (upgradeOption) {
-        upgradeOption.style.display = 'none';
+    // Find the upgrade option element based on class name
+    const upgradeOption = document.querySelector(`.upgrade-option#${weapon}-${upgrade}`);
+    if (!upgradeOption) {
+        console.error(`Upgrade option ${weapon}-${upgrade} not found.`);
+        return;
     }
+
+    // Hide the upgrade option after purchasing (optional)
+    upgradeOption.style.display = 'none';
     
     // Check if the upgrade is already bought
     if (upgradeData.bought) {
@@ -533,19 +537,11 @@ function bigUpgrades(weapon, upgrade, cost) {
         const costDisplay = upgradeOption.querySelector('.upgrade-cost');
         if (costDisplay) {
             costDisplay.textContent = "Bought!";
-            // Apply number formatting to the cost
-            costDisplay.dataset.cost = cost; // Store the original cost for future reference
-            costDisplay.textContent = formatNumber(cost);
         }
 
         // Move the upgrade option to the "bought" subtab
         const boughtSubtab = document.getElementById('bought-upgrades');
-        if (boughtSubtab && upgradeOption) {
-            // Remove the upgrade option from its current parent
-            const parent = upgradeOption.parentNode;
-            if (parent) {
-                parent.removeChild(upgradeOption);
-            }
+        if (boughtSubtab) {
             // Add the upgrade option to the "bought" subtab
             boughtSubtab.appendChild(upgradeOption);
         }

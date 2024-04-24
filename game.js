@@ -222,31 +222,31 @@ function purchase(item) {
             }
             break;
         case 'pistolFirerate':
-            purchaseUpgrade('pistolFirerate', pistolFirerateLevel, pistolFirerateUpgradeCost, 2, -100, 'firerate');
+            purchaseUpgrade('pistolFirerate', pistolFirerateLevel, pistolFirerateUpgradeCost, 1.8, -25, 'firerate');
             break;
         case 'pistolPotency':
-            purchaseUpgrade('pistolPotency', pistolPotencyLevel, pistolPotencyUpgradeCost, 1.5, 1, 'potency');
+            purchaseUpgrade('pistolPotency', pistolPotencyLevel, pistolPotencyUpgradeCost, 1.4, 1, 'potency');
             break;
         case 'smgFirerate':
-            purchaseUpgrade('smgFirerate', smgFirerateLevel, smgFirerateUpgradeCost, 2, -25, 'firerate');
+            purchaseUpgrade('smgFirerate', smgFirerateLevel, smgFirerateUpgradeCost, 2.2, -10, 'firerate');
             break;
         case 'smgPotency':
-            purchaseUpgrade('smgPotency', smgPotencyLevel, smgPotencyUpgradeCost, 1.5, 1, 'potency');
+            purchaseUpgrade('smgPotency', smgPotencyLevel, smgPotencyUpgradeCost, 1.4, 1, 'potency');
             break;
         case 'shotgunFirerate':
-            purchaseUpgrade('shotgunFirerate', shotgunFirerateLevel, shotgunFirerateUpgradeCost, 2, -100, 'firerate');
+            purchaseUpgrade('shotgunFirerate', shotgunFirerateLevel, shotgunFirerateUpgradeCost, 2, -50, 'firerate');
             break;
         case 'shotgunPotency':
-            purchaseUpgrade('shotgunPotency', shotgunPotencyLevel, shotgunPotencyUpgradeCost, 1.5, 4, 'potency');
+            purchaseUpgrade('shotgunPotency', shotgunPotencyLevel, shotgunPotencyUpgradeCost, 1.4, 4, 'potency');
             break;
         case 'shotgunMultiFire':
             purchaseUpgrade('shotgunMultiFire', shotgunMultiFireLevel, shotgunMultiFireUpgradeCost, 5, 1, 'multiFire');
             break;
         case 'sniperRifleFirerate':
-            purchaseUpgrade('sniperRifleFirerate', sniperRifleFirerateLevel, sniperRifleFirerateUpgradeCost, 2, -600, 'firerate');
+            purchaseUpgrade('sniperRifleFirerate', sniperRifleFirerateLevel, sniperRifleFirerateUpgradeCost, 2, -200, 'firerate');
             break;
         case 'sniperRiflePotency':
-            purchaseUpgrade('sniperRiflePotency', sniperRiflePotencyLevel, sniperRiflePotencyUpgradeCost, 1.5, 80, 'potency');
+            purchaseUpgrade('sniperRiflePotency', sniperRiflePotencyLevel, sniperRiflePotencyUpgradeCost, 1.4, 80, 'potency');
             break;
         case 'sniperRifleCriticalShot':
             purchaseUpgrade('sniperRifleCriticalShot', sniperRifleCriticalShotLevel, sniperRifleCriticalShotUpgradeCost, 3, 2, 'criticalShotChance');
@@ -255,10 +255,10 @@ function purchase(item) {
             purchaseUpgrade('sniperRifleCriticalDamage', sniperRifleCriticalDamageLevel, sniperRifleCriticalDamageUpgradeCost, 2.5, 0.2, 'criticalDamage');
             break;
         case 'ak47Firerate':
-            purchaseUpgrade('ak47Firerate', ak47FirerateLevel, ak47FirerateUpgradeCost, 2, -50, 'firerate');
+            purchaseUpgrade('ak47Firerate', ak47FirerateLevel, ak47FirerateUpgradeCost, 1.8, -20, 'firerate');
             break;
         case 'ak47Potency':
-            purchaseUpgrade('ak47Potency', ak47PotencyLevel, ak47PotencyUpgradeCost, 1.5, 150, 'potency');
+            purchaseUpgrade('ak47Potency', ak47PotencyLevel, ak47PotencyUpgradeCost, 1.4, 150, 'potency');
             break;
         default:
             console.error("Invalid item:", item);
@@ -314,28 +314,58 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 touchGunPointsPerClick += valueIncrement;
                 break;
             case 'pistolFirerate':
-                pistolFirerateUpgradeCost = cost;
-                pistolFirerateLevel = level;
-                pistolFireRate += valueIncrement;
+                if (level <= 20) {
+                    pistolFirerateUpgradeCost = cost;
+                    pistolFirerateLevel = level;
+                    pistolFireRate += valueIncrement;
+                } else {
+                    console.log("Maximum level reached for pistol fire rate upgrade.");
+                    alert("Pistol's firing rate has been maxed out!");
+                    // Change the upgrade cost text to "MAX"
+                    const costDisplay = document.getElementById('pistolFirerate-cost');
+                    if (costDisplay) {
+                        costDisplay.textContent = "MAX";
+                    }
+                    // Change the fire rate level text to "Max"
+                    const levelDisplay = document.getElementById('pistolFirerate-level');
+                    if (levelDisplay) {
+                        levelDisplay.textContent = "Max";
+                    }
+                }
                 break;
             case 'pistolPotency':
                 pistolPotencyUpgradeCost = cost;
                 pistolPotencyLevel = level;
                 if (upgrades.pistol.biggerBullets.bought) {
-                    valueIncrement = 2; // Set valueIncrement to 2 if biggerBullets upgrade is purchased
+                    valueIncrement += 1; // Set valueIncrement to 2 if biggerBullets upgrade is purchased
                 }
                 pistolPointsPerShot += valueIncrement;
                 break;
             case 'smgFirerate':
-                smgFirerateUpgradeCost = cost;
-                smgFirerateLevel = level;
-                smgFireRate += valueIncrement;
+                if (level <= 10) {
+                    smgFirerateUpgradeCost = cost;
+                    smgFirerateLevel = level;
+                    smgFireRate += valueIncrement;
+                } else {
+                    console.log("Maximum level reached for smg fire rate upgrade.");
+                    alert("SMG's firing rate has been maxed out!");
+                    // Change the upgrade cost text to "MAX"
+                    const costDisplay = document.getElementById('smgFirerate-cost');
+                    if (costDisplay) {
+                        costDisplay.textContent = "MAX";
+                    }
+                    // Change the fire rate level text to "Max"
+                    const levelDisplay = document.getElementById('smgFirerate-level');
+                    if (levelDisplay) {
+                        levelDisplay.textContent = "Max";
+                    }
+                }
                 break;
             case 'smgPotency':
                 smgPotencyUpgradeCost = cost;
                 smgPotencyLevel = level;
                 if (upgrades.smg.betterSpread.bought) {
-                    valueIncrement = 2; // Set valueIncrement to 2 if betterSpread upgrade is purchased
+                    valueIncrement += 1; // Set valueIncrement to 2 if betterSpread upgrade is purchased
                 }
                 smgPointsPerShot += valueIncrement;
                 break;

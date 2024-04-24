@@ -105,6 +105,8 @@ function saveGameState() {
         touchGunCost: touchGunCost,
         touchGunPointsPerClick: touchGunPointsPerClick,
         touchGunLevel: touchGunLevel,
+        
+        numberFormat: numberFormat, // Add the selected number format to the game state
 
         // Add big upgrade data for each weapon
         pistolBiggerBulletsBought: upgrades.pistol.biggerBullets.bought,
@@ -182,6 +184,9 @@ function loadGameState() {
         touchGunCost = gameState.touchGunCost,
         touchGunPointsPerClick = gameState.touchGunPointsPerClick;
         touchGunLevel = gameState.touchGunLevel;
+
+        numberFormat = gameState.numberFormat;
+        setNumberFormat(); // Call the setNumberFormat function to update the display based on the loaded format
 
         // Load big upgrade data for each weapon
         upgrades.pistol.biggerBullets.bought = gameState.pistolBiggerBulletsBought;
@@ -401,6 +406,8 @@ function resetProgress() {
         touchGunCost = 100;
         touchGunPointsPerClick = 1;
         touchGunLevel = 0;
+
+        numberFormat = 'standard';
 
         // Reset big upgrades
         upgrades.pistol.biggerBullets.bought = false;

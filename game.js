@@ -624,6 +624,58 @@ function updateCostDisplay() {
     document.getElementById('ak47Potency-level').textContent = ak47PotencyLevel;
     document.getElementById('ak47Firerate-value').textContent = ak47FirerateValue + 'ms';
     document.getElementById('ak47Potency-value').textContent = formatNumber(ak47PotencyValue);
+
+    // Check if fire rate level is at maximum for each weapon
+    if (pistolFirerateLevel === 20) {
+        const pistolFirerateLevelDisplay = document.getElementById('pistolFirerate-level');
+        if (pistolFirerateLevelDisplay) {
+            pistolFirerateLevelDisplay.textContent = "Max";
+        }
+        const pistolFirerateCostDisplay = document.getElementById('pistolFirerate-cost');
+        if (pistolFirerateCostDisplay) {
+            pistolFirerateCostDisplay.textContent = "MAX";
+        }
+    }
+    if (smgFirerateLevel === 10) {
+        const smgFirerateLevelDisplay = document.getElementById('smgFirerate-level');
+        if (smgFirerateLevelDisplay) {
+            smgFirerateLevelDisplay.textContent = "Max";
+        }
+        const smgFirerateCostDisplay = document.getElementById('smgFirerate-cost');
+        if (smgFirerateCostDisplay) {
+            smgFirerateCostDisplay.textContent = "MAX";
+        }
+    }
+    if (shotgunFirerateLevel === 15) {
+        const shotgunFirerateLevelDisplay = document.getElementById('shotgunFirerate-level');
+        if (shotgunFirerateLevelDisplay) {
+            shotgunFirerateLevelDisplay.textContent = "Max";
+        }
+        const shotgunFirerateCostDisplay = document.getElementById('shotgunFirerate-cost');
+        if (shotgunFirerateCostDisplay) {
+            shotgunFirerateCostDisplay.textContent = "MAX";
+        }
+    }
+    if (sniperRifleFirerateLevel === 10) {
+        const sniperRifleFirerateLevelDisplay = document.getElementById('sniperRifleFirerate-level');
+        if (sniperRifleFirerateLevelDisplay) {
+            sniperRifleFirerateLevelDisplay.textContent = "Max";
+        }
+        const sniperRifleFirerateCostDisplay = document.getElementById('sniperRifleFirerate-cost');
+        if (sniperRifleFirerateCostDisplay) {
+            sniperRifleFirerateCostDisplay.textContent = "MAX";
+        }
+    }
+    if (ak47FirerateLevel === 15) {
+        const ak47FirerateLevelDisplay = document.getElementById('ak47Firerate-level');
+        if (ak47FirerateLevelDisplay) {
+            ak47FirerateLevelDisplay.textContent = "Max";
+        }
+        const ak47FirerateCostDisplay = document.getElementById('ak47Firerate-cost');
+        if (ak47FirerateCostDisplay) {
+            ak47FirerateCostDisplay.textContent = "MAX";
+        }
+    }
 }
 
 // Function to format numbers into units

@@ -149,7 +149,7 @@ function loadGameState() {
         pistolFireRate = gameState.pistolFireRate;
         pistolFirerateUpgradeCost = gameState.pistolFirerateUpgradeCost;
         pistolPotencyUpgradeCost = gameState.pistolPotencyUpgradeCost;
-        pistolFirerateLevel = gameState.pistolFirerateLevel;
+        pistolFirerateLevel = Math.min(gameState.pistolFirerateLevel, 20);
         pistolPotencyLevel = gameState.pistolPotencyLevel;
         
         smgPurchased = gameState.smgPurchased;
@@ -157,7 +157,7 @@ function loadGameState() {
         smgFireRate = gameState.smgFireRate;
         smgFirerateUpgradeCost = gameState.smgFirerateUpgradeCost;
         smgPotencyUpgradeCost = gameState.smgPotencyUpgradeCost;
-        smgFirerateLevel = gameState.smgFirerateLevel;
+        smgFirerateLevel = Math.min(gameState.smgFirerateLevel, 10);
         smgPotencyLevel = gameState.smgPotencyLevel;
         
         shotgunPurchased = gameState.shotgunPurchased;
@@ -167,7 +167,7 @@ function loadGameState() {
         shotgunFirerateUpgradeCost = gameState.shotgunFirerateUpgradeCost;
         shotgunPotencyUpgradeCost = gameState.shotgunPotencyUpgradeCost;
         shotgunMultiFireUpgradeCost = gameState.shotgunMultiFireUpgradeCost;
-        shotgunFirerateLevel = gameState.shotgunFirerateLevel;
+        shotgunFirerateLevel = Math.min(gameState.shotgunFirerateLevel, 15);
         shotgunPotencyLevel = gameState.shotgunPotencyLevel;
         shotgunMultiFireLevel = gameState.shotgunMultiFireLevel;
         
@@ -180,7 +180,7 @@ function loadGameState() {
         sniperRiflePotencyUpgradeCost = gameState.sniperRiflePotencyUpgradeCost;
         sniperRifleCriticalShotUpgradeCost = gameState.sniperRifleCriticalShotUpgradeCost;
         sniperRifleCriticalDamageUpgradeCost = gameState.sniperRifleCriticalDamageUpgradeCost;
-        sniperRifleFirerateLevel = gameState.sniperRifleFirerateLevel;
+        sniperRifleFirerateLevel = Math.min(gameState.sniperRifleFirerateLevel, 10);
         sniperRiflePotencyLevel = gameState.sniperRiflePotencyLevel;
         sniperRifleCriticalShotLevel = gameState.sniperRifleCriticalShotLevel;
         sniperRifleCriticalDamageLevel = gameState.sniperRifleCriticalDamageLevel;
@@ -190,7 +190,7 @@ function loadGameState() {
         ak47FireRate = gameState.ak47FireRate;
         ak47FirerateUpgradeCost = gameState.ak47FirerateUpgradeCost;
         ak47PotencyUpgradeCost = gameState.ak47PotencyUpgradeCost;
-        ak47FirerateLevel = gameState.ak47FirerateLevel;
+        ak47FirerateLevel = Math.min(gameState.ak47FirerateLevel, 15);
         ak47PotencyLevel = gameState.ak47PotencyLevel;
         // Add any other variables you saved here
 
@@ -250,6 +250,58 @@ function loadGameState() {
         document.getElementById('ak47Potency-level').textContent = ak47PotencyLevel;
         document.getElementById('ak47Firerate-value').textContent = ak47FireRate + 'ms';
         document.getElementById('ak47Potency-value').textContent = formatNumber(ak47PointsPerShot);
+
+        // Check if pistol fire rate level is at maximum
+        if (pistolFirerateLevel === 20) {
+            const pistolFirerateLevelDisplay = document.getElementById('pistolFirerate-level');
+            if (pistolFirerateLevelDisplay) {
+                pistolFirerateLevelDisplay.textContent = "Max";
+            }
+            const pistolFirerateCostDisplay = document.getElementById('pistolFirerate-cost');
+            if (pistolFirerateCostDisplay) {
+                pistolFirerateCostDisplay.textContent = "MAX";
+            }
+        }
+        if (smgFirerateLevel === 10) {
+            const smgFirerateLevelDisplay = document.getElementById('smgFirerate-level');
+            if (smgFirerateLevelDisplay) {
+                smgFirerateLevelDisplay.textContent = "Max";
+            }
+            const smgFirerateCostDisplay = document.getElementById('smgFirerate-cost');
+            if (smgFirerateCostDisplay) {
+                smgFirerateCostDisplay.textContent = "MAX";
+            }
+        }
+        if (shotgunFirerateLevel === 15) {
+            const shotgunFirerateLevelDisplay = document.getElementById('shotgunFirerate-level');
+            if (shotgunFirerateLevelDisplay) {
+                shotgunFirerateLevelDisplay.textContent = "Max";
+            }
+            const shotgunFirerateCostDisplay = document.getElementById('shotgunFirerate-cost');
+            if (shotgunFirerateCostDisplay) {
+                shotgunFirerateCostDisplay.textContent = "MAX";
+            }
+        }
+        if (sniperRifleFirerateLevel === 10) {
+            const sniperRifleFirerateLevelDisplay = document.getElementById('sniperRifleFirerate-level');
+            if (sniperRifleFirerateLevelDisplay) {
+                sniperRifleFirerateLevelDisplay.textContent = "Max";
+            }
+            const sniperRifleFirerateCostDisplay = document.getElementById('sniperRifleFirerate-cost');
+            if (sniperRifleFirerateCostDisplay) {
+                sniperRifleFirerateCostDisplay.textContent = "MAX";
+            }
+        }
+        if (ak47FirerateLevel === 15) {
+            const ak47FirerateLevelDisplay = document.getElementById('ak47Firerate-level');
+            if (ak47FirerateLevelDisplay) {
+                ak47FirerateLevelDisplay.textContent = "Max";
+            }
+            const ak47FirerateCostDisplay = document.getElementById('ak47Firerate-cost');
+            if (ak47FirerateCostDisplay) {
+                ak47FirerateCostDisplay.textContent = "MAX";
+            }
+        }
         
         // Hide purchase buttons for purchased weapons
         if (pistolPurchased) {

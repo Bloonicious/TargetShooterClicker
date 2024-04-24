@@ -322,7 +322,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 pistolPotencyUpgradeCost = cost;
                 pistolPotencyLevel = level;
                 if (upgrades.pistol.biggerBullets.bought) {
-                    valueIncrement + 1; // Set valueIncrement to 2 if biggerBullets upgrade is purchased
+                    valueIncrement = 2; // Set valueIncrement to 2 if biggerBullets upgrade is purchased
                 }
                 pistolPointsPerShot += valueIncrement;
                 break;
@@ -335,7 +335,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 smgPotencyUpgradeCost = cost;
                 smgPotencyLevel = level;
                 if (upgrades.smg.betterSpread.bought) {
-                    valueIncrement + 1; // Set valueIncrement to 2 if betterSpread upgrade is purchased
+                    valueIncrement = 2; // Set valueIncrement to 2 if betterSpread upgrade is purchased
                 }
                 smgPointsPerShot += valueIncrement;
                 break;
@@ -394,7 +394,6 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
     }
 }
 
-// Function to handle big upgrades
 function bigUpgrades(weapon, upgrade) {
     // Retrieve upgrade data based on weapon and upgrade
     const upgradeData = upgrades[weapon][upgrade];
@@ -433,7 +432,7 @@ function bigUpgrades(weapon, upgrade) {
 
         // Move the upgrade option to the "bought" subtab
         const boughtSubtab = document.getElementById('bought-upgrades');
-        if (boughtSubtab) {
+        if (boughtSubtab && upgradeOption) {
             boughtSubtab.appendChild(upgradeOption);
         }
     } else {

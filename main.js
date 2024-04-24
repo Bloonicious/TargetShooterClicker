@@ -180,7 +180,7 @@ function loadGameState() {
         var gameState = JSON.parse(gameStateJSON);
 
         points = gameState.score;
-        upgrades = gameState.upgrades;
+        let upgrades = gameState.upgrades;
         touchGunCost = gameState.touchGunCost,
         touchGunPointsPerClick = gameState.touchGunPointsPerClick;
         touchGunLevel = gameState.touchGunLevel;

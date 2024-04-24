@@ -469,7 +469,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
     }
 }
 
-function bigUpgrades(weapon, upgrade) {
+function bigUpgrades(weapon, upgrade, cost) {
     // Retrieve upgrade data based on weapon and upgrade
     const upgradeData = upgrades[weapon][upgrade];
     
@@ -480,9 +480,9 @@ function bigUpgrades(weapon, upgrade) {
     }
 
     // Check if the player has enough points to purchase the upgrade
-    if (points >= upgradeData.cost) {
+    if (points >= cost) {
         // Deduct the cost of the upgrade from the player's points
-        points -= upgradeData.cost;
+        points -= cost;
 
         // Apply the upgrade effect
         upgradeData.effect();
@@ -508,6 +508,12 @@ function bigUpgrades(weapon, upgrade) {
         // Move the upgrade option to the "bought" subtab
         const boughtSubtab = document.getElementById('bought-upgrades');
         if (boughtSubtab && upgradeOption) {
+            // Remove the upgrade option from its current parent
+            const parent = upgradeOption.parentNode;
+            if (parent) {
+                parent.removeChild(upgradeOption);
+            }
+            // Add the upgrade option to the "bought" subtab
             boughtSubtab.appendChild(upgradeOption);
         }
     } else {

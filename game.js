@@ -69,15 +69,7 @@ let lastShotgunPointsTime = 0;
 let lastSniperRiflePointsTime = 0;
 let lastAK47PointsTime = 0;
 
-// Define weapon sound effects constants
-const weaponSFX = {
-    pistol: new Audio('pistol.wav'),
-    smg: new Audio('smg.wav'),
-    shotgun: new Audio('shotgun.wav'),
-    sniperRifle: new Audio('sniper.wav'),
-    ak47: new Audio('ak47.wav')
-};
-
+const weaponSFX = {};
 const upgrades = {
     pistol: {
         biggerBullets: {
@@ -555,16 +547,12 @@ function formatNumber(number) {
 
 // Function to initialize sound effects
 function initializeSoundEffects() {
-    // Define weapon sound effects constants
-    weaponSFX = {
-        pistol: new Audio('sfx/pistol.wav'),
-        smg: new Audio('sfx/smg.wav'),
-        shotgun: new Audio('sfx/shotgun.wav'),
-        sniperRifle: new Audio('sfx/sniper.wav'),
-        ak47: new Audio('sfx/ak47.wav'),
-        revolver: new Audio('sfx/revolver.wav'),
-        bazooka: new Audio('sfx/bazooka.wav')
-    };
+    // Load or create SFX IDs for each weapon
+    weaponSFX.pistol = new Audio('sfx/pistol.wav');
+    weaponSFX.smg = new Audio('sfx/smg.wav');
+    weaponSFX.shotgun = new Audio('sfx/shotgun.wav');
+    weaponSFX.sniperRifle = new Audio('sfx/sniper.wav');
+    weaponSFX.ak47 = new Audio('sfx/ak47.wav');
 }
 
 // Function to play sound effect for a specific weapon
@@ -624,22 +612,23 @@ function shoot(weaponId, pointsPerShot, critical) {
     // Play sound effect based on weapon type
     switch (weaponId) {
         case 'pistol':
-            playWeaponSoundEffect(pistolSFX);
+            playWeaponSoundEffect('pistol');
             break;
         case 'smg':
-            playWeaponSoundEffect(smgSFX);
+            playWeaponSoundEffect('smg');
             break;
         case 'shotgun':
-            playWeaponSoundEffect(shotgunSFX);
+            playWeaponSoundEffect('shotgun');
             break;
         case 'sniperRifle':
-            playWeaponSoundEffect(sniperRifleSFX);
+            playWeaponSoundEffect('sniperRifle');
             break;
         case 'ak47':
-            playWeaponSoundEffect(ak47SFX);
+            playWeaponSoundEffect('ak47');
             break;
         default:
             break;
+    }
 }
 
 // Update points and cost display initially

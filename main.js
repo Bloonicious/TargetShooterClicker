@@ -191,7 +191,6 @@ function loadGameState() {
         touchGunLevel = gameState.touchGunLevel;
 
         numberFormat = gameState.numberFormat;
-        setNumberFormat() // Call the setNumberFormat function to update the display based on the loaded format
 
         // Load big upgrade data for each weapon
         upgrades.pistol.biggerBullets.bought = gameState.pistolBiggerBulletsBought;
@@ -252,6 +251,9 @@ function loadGameState() {
 
         // Load the purchased big upgrades interface
         loadPurchasedBigUpgrades(gameState.purchasedBigUpgrades);
+        
+        // Call the setNumberFormat function to update the display based on the loaded format
+        setNumberFormat();
 
         // Update the interface
         updatePointsDisplay();

@@ -12,8 +12,11 @@
     <div class="tab-buttons">
         <button class="tab-button" data-tab="main">Main</button>
         <button class="tab-button" data-tab="upgrades">Upgrades</button>
+        <button class="tab-button" data-tab="battle">Battle</button>
         <button class="tab-button" data-tab="tutorial">Tutorial</button>
+        <button class="tab-button" data-tab="changelog">Changelog</button>
         <button class="tab-button" data-tab="settings">Settings</button>
+        <button class="tab-button" data-tab="achievements">Achievements</button>
     </div>
 
     <!-- Content for each tab -->
@@ -193,37 +196,62 @@
     </div>
 
     <div id="upgrades" class="tab">
-    <h1>Upgrades</h1>
-        <!-- Upgrade options and their costs -->
-        <div id="upgrade-list">
-            <!-- Pistol Upgrade: Bigger Bullets -->
-            <div class="upgrade-option" id="pistol-bigger-bullets">
-                <button onclick="bigUpgrades('pistol', 'biggerBullets', 1000)">Pistol: Bigger Bullets</button>
-                <span class="upgrade-cost">Cost: 1,000</span>
-                <p class="upgrade-description">Doubles the amount of points yielded from target shots</p>
+        <h1>Upgrades</h1>
+        <!-- Subtab buttons -->
+        <div id="subtab-buttons">
+            <button onclick="switchSubtab('buy')">Buy</button>
+            <button onclick="switchSubtab('bought')">Bought</button>
+        </div>
+        <!-- Buy subtab content -->
+        <div id="buy-upgrades" class="subtab">
+            <!-- Upgrade options and their costs -->
+            <div id="buy-upgrade-list">
+                <!-- Pistol Upgrade: Bigger Bullets -->
+                <div class="upgrade-option" id="pistol-bigger-bullets">
+                    <button onclick="bigUpgrades('pistol', 'biggerBullets', 1000)">Pistol: Bigger Bullets</button>
+                    <span class="upgrade-cost">Cost: 1,000</span>
+                    <p class="upgrade-description">Doubles the amount of points yielded from target shots</p>
+                </div>
+
+                <!-- SMG Upgrade: Better Spread -->
+                <div class="upgrade-option" id="smg-better-spread">
+                    <button onclick="bigUpgrades('smg', 'betterSpread', 10000)">SMG: Better Spread</button>
+                    <span class="upgrade-cost">Cost: 10,000</span>
+                    <p class="upgrade-description">Doubles the amount of points yielded from target shots</p>
+                </div>
+
+                <!-- Shotgun Upgrade: More Barrels -->
+                <div class="upgrade-option" id="shotgun-more-barrels">
+                    <button onclick="bigUpgrades('shotgun', 'moreBarrels', 100000)">Shotgun: More Barrels</button>
+                    <span class="upgrade-cost">Cost: 100,000</span>
+                    <p class="upgrade-description">Increases the amount of bullets shot from the shotgun by 2</p>
+                </div>
             </div>
-    
-            <!-- SMG Upgrade: Better Spread -->
-            <div class="upgrade-option" id="smg-better-spread">
-                <button onclick="bigUpgrades('smg', 'betterSpread', 10000)">SMG: Better Spread</button>
-                <span class="upgrade-cost">Cost: 10,000</span>
-                <p class="upgrade-description">Doubles the amount of points yielded from target shots</p>
-            </div>
-    
-            <!-- Shotgun Upgrade: More Barrels -->
-            <div class="upgrade-option" id="shotgun-more-barrels">
-                <button onclick="bigUpgrades('shotgun', 'moreBarrels', 100000)">Shotgun: More Barrels</button>
-                <span class="upgrade-cost">Cost: 100,000</span>
-                <p class="upgrade-description">Increases the amount of bullets shot from the shotgun by 2</p>
-            </div>
+        </div>
+        <!-- Bought subtab content -->
+        <div id="bought-upgrades" class="subtab" style="display: none;">
+            <!-- Display bought upgrades here -->
         </div>
     </div>
 
+    <div id="battle" class="tab">
+        <!-- Battle content here -->
+        <h1>Battle</h1>
+        <p>Coming Soon!</p>
+        <!-- For battle and target shooting mechanisms -->
+    </div>
+    
     <div id="tutorial" class="tab">
         <!-- Tutorial content here -->
         <h1>Tutorial</h1>
         <p>Welcome to Target Shooter Clicker! Here's how to play...</p>
         <!-- Instructions and guidance for playing the game -->
+    </div>
+
+    <div id="changelog" class="tab">
+        <!-- Changelog content here -->
+        <h1>Changelog</h1>
+        <p>Initial release of Target Shooter Clicker.</p>
     </div>
 
     <div id="settings" class="tab">
@@ -260,6 +288,13 @@
             <button onclick="resetProgress()">Reset Progress</button>
         </div>
      </div>
+
+    <div id="achievements" class="tab">
+        <!-- Achievement content here -->
+        <h1>Achievements</h1>
+        <p>Coming Soon!</p>
+        <!-- For showing and handling achievements -->
+    </div>
 
     <!-- JavaScript files -->
     <script src="main.js"></script>

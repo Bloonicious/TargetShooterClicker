@@ -606,6 +606,26 @@ function shoot(weaponId, pointsPerShot, critical) {
     // Increment the total points
     points += pointsPerShot;
     updatePointsDisplay();
+
+    // Play sound effect based on weapon type
+    switch (weaponId) {
+        case 'pistol':
+            playWeaponSoundEffect(pistolSFX);
+            break;
+        case 'smg':
+            playWeaponSoundEffect(smgSFX);
+            break;
+        case 'shotgun':
+            playWeaponSoundEffect(shotgunSFX);
+            break;
+        case 'sniperRifle':
+            playWeaponSoundEffect(sniperRifleSFX);
+            break;
+        case 'ak47':
+            playWeaponSoundEffect(ak47SFX);
+            break;
+        default:
+            break;
 }
 
 // Update points and cost display initially

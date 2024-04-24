@@ -76,8 +76,8 @@ function getPurchasedBigUpgrades() {
 
 // Function to load purchased big upgrades from IDs
 function loadPurchasedBigUpgrades(purchasedBigUpgradeIds) {
-    purchasedBigUpgradeIds.forEach(id => {
-        const upgradeOption = document.getElementById(id);
+    purchasedBigUpgradeIds.forEach(bigUpgradeId => {
+        const upgradeOption = document.getElementById(bigUpgradeId);
         if (upgradeOption) {
             // Update the display and move to "Bought" subtab
             const boughtSubtab = document.getElementById('bought-upgrades');
@@ -102,7 +102,6 @@ function loadPurchasedBigUpgrades(purchasedBigUpgradeIds) {
 function saveGameState() {
     var gameState = {
         score: points,
-        upgrades: upgrades,
         touchGunCost: touchGunCost,
         touchGunPointsPerClick: touchGunPointsPerClick,
         touchGunLevel: touchGunLevel,
@@ -180,7 +179,6 @@ function loadGameState() {
         var gameState = JSON.parse(gameStateJSON);
 
         points = gameState.score;
-        let upgrades = gameState.upgrades;
         touchGunCost = gameState.touchGunCost,
         touchGunPointsPerClick = gameState.touchGunPointsPerClick;
         touchGunLevel = gameState.touchGunLevel;

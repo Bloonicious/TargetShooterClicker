@@ -56,12 +56,14 @@ function toggleSound() {
 
 // Adjust the setNumberFormat function to update the display without modifying the game state
 function setNumberFormat(selectedFormat) {
-    // Update the display based on the selected format
-    const formatValue = selectedFormat.value;
-    const numberElements = document.querySelectorAll('.number-format');
-    numberElements.forEach(function(element) {
-        element.textContent = formatNumber(parseFloat(element.textContent), formatValue);
-    });
+    if (selectedFormat && selectedFormat.value) {
+        // Update the display based on the selected format
+        const formatValue = selectedFormat.value;
+        const numberElements = document.querySelectorAll('.number-format');
+        numberElements.forEach(function(element) {
+            element.textContent = formatNumber(parseFloat(element.textContent), formatValue);
+        });
+    }
 }
 
 // Function to get IDs of purchased big upgrades

@@ -415,6 +415,18 @@ function bigUpgrades(weapon, upgrade) {
         if (upgradeOption) {
             upgradeOption.style.display = 'none';
         }
+
+        // Update the cost display to indicate "Bought!"
+        const costDisplay = upgradeOption.querySelector('.upgrade-cost');
+        if (costDisplay) {
+            costDisplay.textContent = "Bought!";
+        }
+
+        // Move the upgrade option to the "bought" subtab
+        const boughtSubtab = document.getElementById('bought-upgrades');
+        if (boughtSubtab) {
+            boughtSubtab.appendChild(upgradeOption);
+        }
     } else {
         // Player doesn't have enough points to purchase the upgrade
         console.log("Insufficient points to purchase the upgrade.");

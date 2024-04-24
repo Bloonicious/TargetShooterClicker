@@ -156,8 +156,8 @@ function automaticPointsGeneration() {
                 let critical = false;
 
                 // For sniper rifle, check for critical hit
-                const criticalChance = Math.random() * 100; // Generate random number for critical chance
-                if (criticalChance <= (0.25 + sniperRifleCriticalShotLevel * 0.02)) {
+                const criticalChance = Math.min(100, 0.25 + sniperRifleCriticalShotLevel * 0.02);
+                if (criticalChance >= Math.random() * 100) {
                     // Critical shot
                     pointsPerShot *= sniperRifleCriticalDamageMultiplier;
                     critical = true;

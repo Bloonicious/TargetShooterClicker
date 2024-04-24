@@ -207,7 +207,7 @@ function loadGameState() {
         document.getElementById('pistolPotency-cost').textContent = formatNumber(pistolPotencyUpgradeCost);
         document.getElementById('pistolFirerate-level').textContent = pistolFirerateLevel;
         document.getElementById('pistolPotency-level').textContent = pistolPotencyLevel;
-        document.getElementById('pistolFirerate-value').textContent = formatNumber(1000 / pistolFireRate) + 'ms';
+        document.getElementById('pistolFirerate-value').textContent = pistolFireRate + 'ms';
         document.getElementById('pistolPotency-value').textContent = formatNumber(pistolPointsPerShot);
 
         document.getElementById('smg-cost').textContent = formatNumber(smgCost);
@@ -215,7 +215,7 @@ function loadGameState() {
         document.getElementById('smgPotency-cost').textContent = formatNumber(smgPotencyUpgradeCost);
         document.getElementById('smgFirerate-level').textContent = smgFirerateLevel;
         document.getElementById('smgPotency-level').textContent = smgPotencyLevel;
-        document.getElementById('smgFirerate-value').textContent = formatNumber(200 / smgFireRate) + 'ms';
+        document.getElementById('smgFirerate-value').textContent = smgFireRate + 'ms';
         document.getElementById('smgPotency-value').textContent = formatNumber(smgPointsPerShot);
 
         document.getElementById('shotgun-cost').textContent = formatNumber(shotgunCost);
@@ -225,7 +225,7 @@ function loadGameState() {
         document.getElementById('shotgunFirerate-level').textContent = shotgunFirerateLevel;
         document.getElementById('shotgunPotency-level').textContent = shotgunPotencyLevel;
         document.getElementById('shotgunMultiFire-level').textContent = shotgunMultiFireLevel;
-        document.getElementById('shotgunFirerate-value').textContent = formatNumber(1500 / shotgunFireRate) + 'ms';
+        document.getElementById('shotgunFirerate-value').textContent = shotgunFireRate + 'ms';
         document.getElementById('shotgunPotency-value').textContent = formatNumber(shotgunPointsPerShot);
         document.getElementById('shotgunMultiFire-value').textContent = shotgunBulletsPerShot;
 
@@ -238,7 +238,7 @@ function loadGameState() {
         document.getElementById('sniperRiflePotency-level').textContent = sniperRiflePotencyLevel;
         document.getElementById('sniperRifleCriticalShot-level').textContent = sniperRifleCriticalShotLevel;
         document.getElementById('sniperRifleCriticalDamage-level').textContent = sniperRifleCriticalDamageLevel;
-        document.getElementById('sniperRifleFirerate-value').textContent = formatNumber(4000 / sniperRifleFireRate) + 'ms';
+        document.getElementById('sniperRifleFirerate-value').textContent = sniperRifleFireRate + 'ms';
         document.getElementById('sniperRiflePotency-value').textContent = formatNumber(sniperRiflePointsPerShot);
         document.getElementById('sniperRifleCriticalChance-value').textContent = sniperRifleCriticalShotChance;
         document.getElementById('sniperRifleCriticalDamage-value').textContent = sniperRifleCriticalDamageMultiplier;
@@ -248,7 +248,7 @@ function loadGameState() {
         document.getElementById('ak47Potency-cost').textContent = formatNumber(ak47PotencyUpgradeCost);
         document.getElementById('ak47Firerate-level').textContent = ak47FirerateLevel;
         document.getElementById('ak47Potency-level').textContent = ak47PotencyLevel;
-        document.getElementById('ak47Firerate-value').textContent = formatNumber(500 / ak47FireRate) + 'ms';
+        document.getElementById('ak47Firerate-value').textContent = ak47FireRate + 'ms';
         document.getElementById('ak47Potency-value').textContent = formatNumber(ak47PointsPerShot);
         
         // Hide purchase buttons for purchased weapons

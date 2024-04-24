@@ -63,6 +63,7 @@ function setNumberFormat(selectedFormat) {
 function saveGameState() {
     var gameState = {
         score: points,
+        upgrades: upgrades,
         touchGunCost: touchGunCost,
         touchGunPointsPerClick: touchGunPointsPerClick,
         touchGunLevel: touchGunLevel,
@@ -122,7 +123,9 @@ function saveGameState() {
         ak47FirerateUpgradeCost: ak47FirerateUpgradeCost,
         ak47PotencyUpgradeCost: ak47PotencyUpgradeCost,
         ak47FirerateLevel: ak47FirerateLevel,
-        ak47PotencyLevel: ak47PotencyLevel
+        ak47PotencyLevel: ak47PotencyLevel,
+
+        purchasedBigUpgrades: getPurchasedBigUpgrades();
     };
 
     var gameStateJSON = JSON.stringify(gameState);
@@ -138,6 +141,7 @@ function loadGameState() {
         var gameState = JSON.parse(gameStateJSON);
 
         points = gameState.score;
+        upgrades = gameState.upgrades;
         touchGunCost = gameState.touchGunCost,
         touchGunPointsPerClick = gameState.touchGunPointsPerClick;
         touchGunLevel = gameState.touchGunLevel;
@@ -198,7 +202,9 @@ function loadGameState() {
         ak47PotencyUpgradeCost = gameState.ak47PotencyUpgradeCost;
         ak47FirerateLevel = Math.min(gameState.ak47FirerateLevel, 15);
         ak47PotencyLevel = gameState.ak47PotencyLevel;
-        // Add any other variables you saved here
+
+        // Load the purchased big upgrades interface
+        loadPurchasedBigUpgrades(gameState.purchasedBigUpgrades);
 
         // Update the interface
         updatePointsDisplay();
@@ -326,6 +332,45 @@ function loadGameState() {
             document.getElementById('ak47-purchase').style.display = 'none';
         }
     }
+}
+
+// Function to get IDs of purchased big upgrades
+function getPurchasedBigUpgrades() {
+    const purchasedBigUpgrades = [];
+    // Loop through the big upgrades and check if they are bought
+    for (const weapon in upgrades) {
+        for (const upgrade in upgrades[weapon]) {
+            if (upgrades[weapon][upgrade].bought) {
+                // Construct the ID and add it to the list
+                purchasedBigUpgrades.push(`${weapon}-${upgrade}`);
+            }
+        }
+    }
+    return purchasedBigUpgrades;
+}
+
+// Function to load purchased big upgrades from IDs
+function loadPurchasedBigUpgrades(purchasedBigUpgradeIds) {
+    purchasedBigUpgradeIds.forEach(id => {
+        const upgradeOption = document.getElementById(id);
+        if (upgradeOption) {
+            // Update the display and move to "Bought" subtab
+            const boughtSubtab = document.getElementById('bought-upgrades');
+            if (boughtSubtab) {
+                // Remove the upgrade option from its current parent
+                upgradeOption.parentNode.removeChild(upgradeOption);
+                // Remove the display: none style to make the upgrade option visible again
+                upgradeOption.style.display = '';
+                // Add the upgrade option to the "bought" subtab
+                boughtSubtab.appendChild(upgradeOption);
+                // Update the cost display to indicate "Bought!"
+                const costDisplay = upgradeOption.querySelector('.upgrade-cost');
+                if (costDisplay) {
+                    costDisplay.textContent = "Bought!";
+                }
+            }
+        }
+    });
 }
 
 // Function to auto-save the game state every 60 seconds

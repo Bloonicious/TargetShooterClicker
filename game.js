@@ -504,7 +504,7 @@ function bigUpgrades(weapon, upgrade, cost) {
     const upgradeData = upgrades[weapon][upgrade];
 
     // Hide the upgrade option after purchasing (optional)
-    const upgradeOption = document.getElementById(`${weapon}-${upgrade}`);
+    const upgradeOption = document.getElementById(`upgrade-${weapon}-${upgrade}`);
     if (upgradeOption) {
         upgradeOption.style.display = 'none';
     }
@@ -528,7 +528,6 @@ function bigUpgrades(weapon, upgrade, cost) {
 
         // Mark the upgrade as bought to prevent re-purchasing
         upgradeData.bought = true;
-
 
         // Update the cost display to indicate "Bought!" and format the cost
         const costDisplay = upgradeOption.querySelector('.upgrade-cost');

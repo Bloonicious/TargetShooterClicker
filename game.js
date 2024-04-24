@@ -318,8 +318,8 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'pistolPotency':
                 pistolPotencyUpgradeCost = cost;
                 pistolPotencyLevel = level;
-                if (upgradeCategory === 'potency' && pistolBigBullets) {
-                    valueIncrement = 2; // Set valueIncrement to 2 if biggerBullets upgrade is purchased
+                if (upgrades.pistol.biggerBullets.bought) {
+                    valueIncrement + 1; // Set valueIncrement to 2 if biggerBullets upgrade is purchased
                 }
                 pistolPointsPerShot += valueIncrement;
                 break;
@@ -331,8 +331,8 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'smgPotency':
                 smgPotencyUpgradeCost = cost;
                 smgPotencyLevel = level;
-                if (upgradeCategory === 'potency' && smgBetterSpread) {
-                    valueIncrement = 2; // Set valueIncrement to 2 if biggerBullets upgrade is purchased
+                if (upgrades.smg.betterSpread.bought) {
+                    valueIncrement + 1; // Set valueIncrement to 2 if betterSpread upgrade is purchased
                 }
                 smgPointsPerShot += valueIncrement;
                 break;

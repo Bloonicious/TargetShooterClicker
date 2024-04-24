@@ -370,9 +370,24 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 smgPointsPerShot += valueIncrement;
                 break;
             case 'shotgunFirerate':
-                shotgunFirerateUpgradeCost = cost;
-                shotgunFirerateLevel = level;
-                shotgunFireRate += valueIncrement;
+                if (level <= 15) {
+                    shotgunFirerateUpgradeCost = cost;
+                    shotgunFirerateLevel = level;
+                    shotgunFireRate += valueIncrement;
+                } else {
+                    console.log("Maximum level reached for shotgun fire rate upgrade.");
+                    alert("Shotgun's firing rate has been maxed out!");
+                    // Change the upgrade cost text to "MAX"
+                    const costDisplay = document.getElementById('shotgunFirerate-cost');
+                    if (costDisplay) {
+                        costDisplay.textContent = "MAX";
+                    }
+                    // Change the fire rate level text to "Max"
+                    const levelDisplay = document.getElementById('shotgunFirerate-level');
+                    if (levelDisplay) {
+                        levelDisplay.textContent = "Max";
+                    }
+                }
                 break;
             case 'shotgunPotency':
                 shotgunPotencyUpgradeCost = cost;
@@ -385,9 +400,24 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 shotgunBulletsPerShot += valueIncrement;
                 break;
             case 'sniperRifleFirerate':
-                sniperRifleFirerateUpgradeCost = cost;
-                sniperRifleFirerateLevel = level;
-                sniperRifleFireRate += valueIncrement;
+                if (level <= 10) {
+                    sniperRifleFirerateUpgradeCost = cost;
+                    sniperRifleFirerateLevel = level;
+                    sniperRifleFireRate += valueIncrement;
+                } else {
+                    console.log("Maximum level reached for sniper rifle fire rate upgrade.");
+                    alert("Sniper Rifle's firing rate has been maxed out!");
+                    // Change the upgrade cost text to "MAX"
+                    const costDisplay = document.getElementById('sniperRifleFirerate-cost');
+                    if (costDisplay) {
+                        costDisplay.textContent = "MAX";
+                    }
+                    // Change the fire rate level text to "Max"
+                    const levelDisplay = document.getElementById('sniperRifleFirerate-level');
+                    if (levelDisplay) {
+                        levelDisplay.textContent = "Max";
+                    }
+                }
                 break;
             case 'sniperRiflePotency':
                 sniperRiflePotencyUpgradeCost = cost;
@@ -405,9 +435,24 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 sniperRifleCriticalDamageMultiplier += valueIncrement;
                 break;
             case 'ak47Firerate':
-                ak47FirerateUpgradeCost = cost;
-                ak47FirerateLevel = level;
-                ak47FireRate += valueIncrement;
+                if (level <= 15) {
+                    ak47FirerateUpgradeCost = cost;
+                    ak47FirerateLevel = level;
+                    ak47FireRate += valueIncrement;
+                } else {
+                    console.log("Maximum level reached for ak47 fire rate upgrade.");
+                    alert("AK-47's firing rate has been maxed out!");
+                    // Change the upgrade cost text to "MAX"
+                    const costDisplay = document.getElementById('ak47Firerate-cost');
+                    if (costDisplay) {
+                        costDisplay.textContent = "MAX";
+                    }
+                    // Change the fire rate level text to "Max"
+                    const levelDisplay = document.getElementById('ak47Firerate-level');
+                    if (levelDisplay) {
+                        levelDisplay.textContent = "Max";
+                    }
+                }
                 break;
             case 'ak47Potency':
                 ak47PotencyUpgradeCost = cost;

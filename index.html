@@ -206,11 +206,17 @@
         <div id="buy-upgrades" class="subtab">
             <!-- Upgrade options and their costs -->
             <div id="buy-upgrade-list">
-                <!-- Pistol Upgrade: Bigger Bullets -->
+                <!-- Pistol Upgrades -->
                 <div class="upgrade-option" id="pistol-bigger-bullets">
                     <button onclick="bigUpgrades('pistol', 'biggerBullets', 1000)">Pistol: Bigger Bullets</button>
                     <span class="upgrade-cost">Cost: 1,000</span>
                     <p class="upgrade-description">Doubles the amount of points yielded from target shots</p>
+                </div>
+
+                <div class="upgrade-option" id="pistol-larger-calibre">
+                    <button onclick="bigUpgrades('pistol', 'largerCalibre', 500000)">Pistol: Larger Calibre</button>
+                    <span class="upgrade-cost">Cost: 500,000</span>
+                    <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
                 </div>
 
                 <!-- SMG Upgrade: Better Spread -->
@@ -225,6 +231,20 @@
                     <button onclick="bigUpgrades('shotgun', 'moreBarrels', 100000)">Shotgun: More Barrels</button>
                     <span class="upgrade-cost">Cost: 100,000</span>
                     <p class="upgrade-description">Increases the amount of bullets shot from the shotgun by 2</p>
+                </div>
+
+                <!-- Sniper Rifle Upgrade: Deadly Precision -->
+                <div class="upgrade-option" id="sniperRifle-deadly-precision">
+                    <button onclick="bigUpgrades('sniperRifle', 'deadlyPrecision', 2000000)">Sniper Rifle: Deadly Precision</button>
+                    <span class="upgrade-cost">Cost: 2,000,000</span>
+                    <p class="upgrade-description">Increases the critical damage multiplier factor by 1</p>
+                </div>
+
+                <!-- AK-47 Upgrade: Heat-tipped Bullets -->
+                <div class="upgrade-option" id="ak47-heat-tipped-bullets">
+                    <button onclick="bigUpgrades('ak47', 'heatTippedBullets', 15000000)">AK-47: Heat-tipped Bullets</button>
+                    <span class="upgrade-cost">Cost: 15,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of points yielded from target shots</p>
                 </div>
             </div>
         </div>

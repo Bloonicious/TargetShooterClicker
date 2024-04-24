@@ -69,8 +69,11 @@ function saveGameState() {
 
         // Add big upgrade data for each weapon
         pistolBiggerBulletsBought: upgrades.pistol.biggerBullets.bought,
+        pistolLargerCalibreBought: upgrades.pistol.largerCalibre.bought,
         smgBetterSpreadBought: upgrades.smg.betterSpread.bought,
         shotgunMoreBarrelsBought: upgrades.shotgun.moreBarrels.bought,
+        sniperRifleDeadlyPrecisionBought: upgrades.sniperRifle.deadlyPrecision.bought,
+        ak47HeatTippedBulletsBought: upgrades.ak47.heatTippedBullets.bought,
         
         pistolPurchased: pistolPurchased,
         pistolPointsPerShot: pistolPointsPerShot,
@@ -141,8 +144,11 @@ function loadGameState() {
 
         // Load big upgrade data for each weapon
         upgrades.pistol.biggerBullets.bought = gameState.pistolBiggerBulletsBought;
+        upgrades.pistol.largerCalibre.bought = gameState.pistolLargerCalibreBought;
         upgrades.smg.betterSpread.bought = gameState.smgBetterSpreadBought;
         upgrades.shotgun.moreBarrels.bought = gameState.shotgunMoreBarrelsBought;
+        upgrades.sniperRifle.deadlyPrecision.bought = gameState.sniperRifleDeadlyPrecisionBought;
+        upgrades.ak47.heatTippedBullets.bought = gameState.ak47HeatTippedBulletsBought;
         
         pistolPurchased = gameState.pistolPurchased;
         pistolPointsPerShot = gameState.pistolPointsPerShot;
@@ -355,8 +361,11 @@ function resetProgress() {
 
         // Reset big upgrades
         upgrades.pistol.biggerBullets.bought = false;
+        upgrades.pistol.largerCalibre.bought = false;
         upgrades.smg.betterSpread.bought = false;
         upgrades.shotgun.moreBarrels.bought = false;
+        upgrades.sniperRifle.deadlyPrecision.bought = false;
+        upgrades.ak47.heatTippedBullets.bought = false;
         
         pistolPurchased = false;
         pistolPointsPerShot = 1;

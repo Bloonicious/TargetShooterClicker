@@ -116,64 +116,43 @@ function earnPoints() {
 function automaticPointsGeneration() {
     if (pistolPurchased) {
         setInterval(function() {
-            const currentTime = Date.now();
-            if (currentTime - lastPistolPointsTime >= pistolFireRate) {
-                points += pistolPointsPerShot;
-                updatePointsDisplay();
-                lastPistolPointsTime = currentTime;
-                playWeaponSoundEffect(pistolSFX); // Play pistol sound effect
-            }
-        }, 100); // Check every 100 milliseconds for points generation
+            shoot('pistol');
+        }, pistolFireRate);
     }
     if (smgPurchased) {
         setInterval(function() {
-            const currentTime = Date.now();
-            if (currentTime - lastSMGPointsTime >= smgFireRate) {
-                points += smgPointsPerShot;
-                updatePointsDisplay();
-                lastSMGPointsTime = currentTime;
-                playWeaponSoundEffect(smgSFX); // Play SMG sound effect
-            }
-        }, 100); // Check every 100 milliseconds for points generation
+            shoot('smg');
+        }, smgFireRate);
     }
     if (shotgunPurchased) {
         setInterval(function() {
-            const currentTime = Date.now();
-            if (currentTime - lastShotgunPointsTime >= shotgunFireRate) {
-                points += shotgunPointsPerShot * shotgunBulletsPerShot; // Multiply points by number of bullets
-                updatePointsDisplay();
-                lastShotgunPointsTime = currentTime;
-                playWeaponSoundEffect(shotgunSFX); // Play shotgun sound effect
-            }
-        }, 100); // Check every 100 milliseconds for points generation
+            shoot('shotgun');
+        }, shotgunFireRate);
     }
     if (sniperRiflePurchased) {
         setInterval(function() {
-            const currentTime = Date.now();
-            if (currentTime - lastSniperRiflePointsTime >= sniperRifleFireRate) {
-                // Check for critical hit
-                const criticalChance = Math.random();
-                if (criticalChance <= (0.25 + sniperRifleCriticalShotLevel * 0.02)) {
-                    points += sniperRiflePointsPerShot * sniperRifleCriticalDamageMultiplier;
-                } else {
-                    points += sniperRiflePointsPerShot;
-                }
-                updatePointsDisplay();
-                lastSniperRiflePointsTime = currentTime;
-                playWeaponSoundEffect(sniperRifleSFX); // Play sniper rifle sound effect
+            // Calculate points based on the selected weapon's fire rate
+            let pointsPerShot;
+            let critical = false;
+
+            // For sniper rifle, check for critical hit
+            const criticalChance = Math.random() * 100; // Generate random number for critical chance
+            if (criticalChance <= (0.25 + sniperRifleCriticalShotLevel * 0.02)) {
+                // Critical shot
+                pointsPerShot = sniperRiflePointsPerShot * sniperRifleCriticalDamageMultiplier;
+                critical = true;
+            } else {
+                pointsPerShot = sniperRiflePointsPerShot;
             }
-        }, 100); // Check every 100 milliseconds for points generation
+
+            // Call the shoot function with sniper rifle data
+            shoot('sniperRifle', pointsPerShot, critical);
+        }, sniperRifleFireRate);
     }
     if (ak47Purchased) {
         setInterval(function() {
-            const currentTime = Date.now();
-            if (currentTime - lastAK47PointsTime >= ak47FireRate) {
-                points += ak47PointsPerShot;
-                updatePointsDisplay();
-                lastAK47PointsTime = currentTime;
-                playWeaponSoundEffect(ak47SFX); // Play AK-47 sound effect
-            }
-        }, 100); // Check every 100 milliseconds for points generation
+            shoot('ak47');
+        }, ak47FireRate);
     }
 }
 
@@ -561,40 +540,7 @@ function playWeaponSoundEffect(weaponSFX) {
     }
 }
 
-function shoot(weaponId) {
-    // Calculate points based on the selected weapon's fire rate
-    let pointsPerShot;
-    let critical = false;
-
-    switch (weaponId) {
-        case 'pistol':
-            pointsPerShot = pistolPointsPerShot;
-            break;
-        case 'smg':
-            pointsPerShot = smgPointsPerShot;
-            break;
-        case 'shotgun':
-            pointsPerShot = shotgunPointsPerShot;
-            break;
-        case 'sniperRifle':
-            // For sniper rifle, check for critical shot
-            const criticalChance = Math.random() * 100; // Generate random number for critical chance
-            if (criticalChance <= sniperRifleCriticalShotLevel) {
-                // Critical shot
-                pointsPerShot = sniperRiflePointsPerShot * sniperRifleCriticalDamageLevel;
-                critical = true;
-            } else {
-                pointsPerShot = sniperRiflePointsPerShot;
-            }
-            break;
-        case 'ak47':
-            pointsPerShot = ak47PointsPerShot;
-            break;
-        default:
-            // If an invalid weaponId is provided, do nothing
-            return;
-    }
-
+function shoot(weaponId, pointsPerShot, critical) {
     // Generate points and display them as floating text
     const floatingText = document.createElement('div');
     floatingText.textContent = '+' + pointsPerShot;

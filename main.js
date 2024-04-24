@@ -186,7 +186,7 @@ function loadGameState() {
         touchGunLevel = gameState.touchGunLevel;
 
         numberFormat = gameState.numberFormat;
-        setNumberFormat(); // Call the setNumberFormat function to update the display based on the loaded format
+        setNumberFormat() // Call the setNumberFormat function to update the display based on the loaded format
 
         // Load big upgrade data for each weapon
         upgrades.pistol.biggerBullets.bought = gameState.pistolBiggerBulletsBought;
@@ -473,19 +473,19 @@ function resetProgress() {
         clearInterval(ak47FireRate);
 
         // Enable purchase buttons for reset weapons
-        if (pistolPurchased = false) {
+        if (pistolPurchased === false) {
             document.getElementById('pistol-purchase').style.display = 'block';
         }
-        if (smgPurchased = false) {
+        if (smgPurchased === false) {
             document.getElementById('smg-purchase').style.display = 'block';
         }
-        if (shotgunPurchased = false) {
+        if (shotgunPurchased === false) {
             document.getElementById('shotgun-purchase').style.display = 'block';
         }
-        if (sniperRiflePurchased = false) {
+        if (sniperRiflePurchased === false) {
             document.getElementById('sniperRifle-purchase').style.display = 'block';
         }
-        if (ak47Purchased = false) {
+        if (ak47Purchased === false) {
             document.getElementById('ak47-purchase').style.display = 'block';
         }
 

@@ -116,43 +116,67 @@ function earnPoints() {
 function automaticPointsGeneration() {
     if (pistolPurchased) {
         setInterval(function() {
-            shoot('pistol');
-        }, pistolFireRate);
+            const currentTime = Date.now();
+            if (currentTime - lastPistolPointsTime >= pistolFireRate) {
+                // Calculate points per shot
+                let pointsPerShot = pistolPointsPerShot;
+                shoot('pistol', pointsPerShot, false);
+                lastPistolPointsTime = currentTime;
+            }
+        }, 100); // Check every 100 milliseconds for points generation
     }
     if (smgPurchased) {
         setInterval(function() {
-            shoot('smg');
-        }, smgFireRate);
+            const currentTime = Date.now();
+            if (currentTime - lastSMGPointsTime >= smgFireRate) {
+                // Calculate points per shot
+                let pointsPerShot = smgPointsPerShot;
+                shoot('smg', pointsPerShot, false);
+                lastSMGPointsTime = currentTime;
+            }
+        }, 100); // Check every 100 milliseconds for points generation
     }
     if (shotgunPurchased) {
         setInterval(function() {
-            shoot('shotgun');
-        }, shotgunFireRate);
+            const currentTime = Date.now();
+            if (currentTime - lastShotgunPointsTime >= shotgunFireRate) {
+                // Calculate points per shot
+                let pointsPerShot = shotgunPointsPerShot * shotgunBulletsPerShot;
+                shoot('shotgun', pointsPerShot, false);
+                lastShotgunPointsTime = currentTime;
+            }
+        }, 100); // Check every 100 milliseconds for points generation
     }
     if (sniperRiflePurchased) {
         setInterval(function() {
-            // Calculate points based on the selected weapon's fire rate
-            let pointsPerShot;
-            let critical = false;
+            const currentTime = Date.now();
+            if (currentTime - lastSniperRiflePointsTime >= sniperRifleFireRate) {
+                // Calculate points per shot
+                let pointsPerShot = sniperRiflePointsPerShot;
+                let critical = false;
 
-            // For sniper rifle, check for critical hit
-            const criticalChance = Math.random() * 100; // Generate random number for critical chance
-            if (criticalChance <= (0.25 + sniperRifleCriticalShotLevel * 0.02)) {
-                // Critical shot
-                pointsPerShot = sniperRiflePointsPerShot * sniperRifleCriticalDamageMultiplier;
-                critical = true;
-            } else {
-                pointsPerShot = sniperRiflePointsPerShot;
+                // For sniper rifle, check for critical hit
+                const criticalChance = Math.random() * 100; // Generate random number for critical chance
+                if (criticalChance <= (0.25 + sniperRifleCriticalShotLevel * 0.02)) {
+                    // Critical shot
+                    pointsPerShot *= sniperRifleCriticalDamageMultiplier;
+                    critical = true;
+                }
+                shoot('sniperRifle', pointsPerShot, critical);
+                lastSniperRiflePointsTime = currentTime;
             }
-
-            // Call the shoot function with sniper rifle data
-            shoot('sniperRifle', pointsPerShot, critical);
-        }, sniperRifleFireRate);
+        }, 100); // Check every 100 milliseconds for points generation
     }
     if (ak47Purchased) {
         setInterval(function() {
-            shoot('ak47');
-        }, ak47FireRate);
+            const currentTime = Date.now();
+            if (currentTime - lastAK47PointsTime >= ak47FireRate) {
+                // Calculate points per shot
+                let pointsPerShot = ak47PointsPerShot;
+                shoot('ak47', pointsPerShot, false);
+                lastAK47PointsTime = currentTime;
+            }
+        }, 100); // Check every 100 milliseconds for points generation
     }
 }
 

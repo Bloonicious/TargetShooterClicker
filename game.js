@@ -318,6 +318,9 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'pistolPotency':
                 pistolPotencyUpgradeCost = cost;
                 pistolPotencyLevel = level;
+                if (upgradeCategory === 'potency' && pistolBigBullets) {
+                    valueIncrement = 2; // Set valueIncrement to 2 if biggerBullets upgrade is purchased
+                }
                 pistolPointsPerShot += valueIncrement;
                 break;
             case 'smgFirerate':
@@ -328,6 +331,9 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'smgPotency':
                 smgPotencyUpgradeCost = cost;
                 smgPotencyLevel = level;
+                if (upgradeCategory === 'potency' && smgBetterSpread) {
+                    valueIncrement = 2; // Set valueIncrement to 2 if biggerBullets upgrade is purchased
+                }
                 smgPointsPerShot += valueIncrement;
                 break;
             case 'shotgunFirerate':
@@ -435,18 +441,18 @@ function bigUpgrades(weapon, upgrade) {
 
 // Function to update weapon and upgrade costs in the HTML
 function updateCostDisplay() {
-    const pistolFirerateValue = 1000 / pistolFireRate; // Convert fire rate to milliseconds
+    const pistolFirerateValue = pistolFireRate; // Convert fire rate to milliseconds
     const pistolPotencyValue = pistolPointsPerShot; // No need for calculations, potency is already in points per shot
-    const smgFirerateValue = 200 / smgFireRate;
+    const smgFirerateValue = smgFireRate;
     const smgPotencyValue = smgPointsPerShot;
-    const shotgunFirerateValue = 1500 / shotgunFireRate;
+    const shotgunFirerateValue = shotgunFireRate;
     const shotgunPotencyValue = shotgunPointsPerShot;
     const shotgunMultiFireValue = shotgunBulletsPerShot;
-    const sniperRifleFirerateValue = 4000 / sniperRifleFireRate;
+    const sniperRifleFirerateValue = sniperRifleFireRate;
     const sniperRiflePotencyValue = sniperRiflePointsPerShot;
     const sniperRifleCriticalChanceValue = sniperRifleCriticalShotChance;
     const sniperRifleCriticalDamageValue = sniperRifleCriticalDamageMultiplier;
-    const ak47FirerateValue = 500 / ak47FireRate;
+    const ak47FirerateValue = ak47FireRate;
     const ak47PotencyValue = ak47PointsPerShot;
     
     document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
@@ -458,7 +464,7 @@ function updateCostDisplay() {
     document.getElementById('pistolPotency-cost').textContent = formatNumber(pistolPotencyUpgradeCost);
     document.getElementById('pistolFirerate-level').textContent = pistolFirerateLevel;
     document.getElementById('pistolPotency-level').textContent = pistolPotencyLevel;
-    document.getElementById('pistolFirerate-value').textContent = formatNumber(pistolFirerateValue) + 'ms';
+    document.getElementById('pistolFirerate-value').textContent = pistolFirerateValue + 'ms';
     document.getElementById('pistolPotency-value').textContent = formatNumber(pistolPotencyValue);
     
     document.getElementById('smg-cost').textContent = formatNumber(smgCost);
@@ -466,7 +472,7 @@ function updateCostDisplay() {
     document.getElementById('smgPotency-cost').textContent = formatNumber(smgPotencyUpgradeCost);
     document.getElementById('smgFirerate-level').textContent = smgFirerateLevel;
     document.getElementById('smgPotency-level').textContent = smgPotencyLevel;
-    document.getElementById('smgFirerate-value').textContent = formatNumber(smgFirerateValue) + 'ms';
+    document.getElementById('smgFirerate-value').textContent = smgFirerateValue + 'ms';
     document.getElementById('smgPotency-value').textContent = formatNumber(smgPotencyValue);
     
     document.getElementById('shotgun-cost').textContent = formatNumber(shotgunCost);
@@ -476,7 +482,7 @@ function updateCostDisplay() {
     document.getElementById('shotgunFirerate-level').textContent = shotgunFirerateLevel;
     document.getElementById('shotgunPotency-level').textContent = shotgunPotencyLevel;
     document.getElementById('shotgunMultiFire-level').textContent = shotgunMultiFireLevel;
-    document.getElementById('shotgunFirerate-value').textContent = formatNumber(shotgunFirerateValue) + 'ms';
+    document.getElementById('shotgunFirerate-value').textContent = shotgunFirerateValue + 'ms';
     document.getElementById('shotgunPotency-value').textContent = formatNumber(shotgunPotencyValue);
     document.getElementById('shotgunMultiFire-value').textContent = shotgunMultiFireValue;
     
@@ -489,7 +495,7 @@ function updateCostDisplay() {
     document.getElementById('sniperRiflePotency-level').textContent = sniperRiflePotencyLevel;
     document.getElementById('sniperRifleCriticalShot-level').textContent = sniperRifleCriticalShotLevel;
     document.getElementById('sniperRifleCriticalDamage-level').textContent = sniperRifleCriticalDamageLevel;
-    document.getElementById('sniperRifleFirerate-value').textContent = formatNumber(sniperRifleFirerateValue) + 'ms';
+    document.getElementById('sniperRifleFirerate-value').textContent = sniperRifleFirerateValue + 'ms';
     document.getElementById('sniperRiflePotency-value').textContent = formatNumber(sniperRiflePotencyValue);
     document.getElementById('sniperRifleCriticalChance-value').textContent = sniperRifleCriticalChanceValue;
     document.getElementById('sniperRifleCriticalDamage-value').textContent = sniperRifleCriticalDamageValue;
@@ -499,7 +505,7 @@ function updateCostDisplay() {
     document.getElementById('ak47Potency-cost').textContent = formatNumber(ak47PotencyUpgradeCost);
     document.getElementById('ak47Firerate-level').textContent = ak47FirerateLevel;
     document.getElementById('ak47Potency-level').textContent = ak47PotencyLevel;
-    document.getElementById('ak47Firerate-value').textContent = formatNumber(ak47FirerateValue) + 'ms';
+    document.getElementById('ak47Firerate-value').textContent = ak47FirerateValue + 'ms';
     document.getElementById('ak47Potency-value').textContent = formatNumber(ak47PotencyValue);
 }
 

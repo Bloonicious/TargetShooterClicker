@@ -24,6 +24,26 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Function to switch between Buy and Bought subtabs
+function switchSubtab(subtabName) {
+    // Hide all subtabs
+    var subtabs = document.querySelectorAll('.subtab');
+    subtabs.forEach(function(subtab) {
+        subtab.style.display = 'none';
+    });
+
+    // Show the selected subtab
+    var selectedSubtab = document.getElementById(subtabName + '-upgrades');
+    if (selectedSubtab) {
+        selectedSubtab.style.display = 'block';
+    }
+}
+
+// Call switchSubtab() when the page loads to display the default subtab
+document.addEventListener('DOMContentLoaded', function() {
+    switchSubtab('buy');
+});
+
 let soundEnabled = true; // Ensure sound is enabled by default
 
 function toggleSound() {

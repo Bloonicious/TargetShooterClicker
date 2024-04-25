@@ -327,7 +327,7 @@ function loadGameState() {
         rocketLauncherSplashDamageUpgradeCost = gameState.rocketLauncherSplashDamageUpgradeCost;
         rocketLauncherFirerateLevel = Math.min(gameState.rocketLauncherFirerateLevel, 15);
         rocketLauncherPotencyLevel = gameState.rocketLauncherPotencyLevel;
-        rocketLauncherSplashRadiusLevel = gameState.rocketLauncherSplashRadiusLevel;
+        rocketLauncherSplashRadiusLevel = Math.min(gameState.rocketLauncherSplashRadiusLevel, 5);
         rocketLauncherSplashDamageLevel = gameState.rocketLauncherSplashDamageLevel;
 
         tommyGunPurchased = gameState.tommyGunPurchased;

@@ -332,7 +332,7 @@ function purchase(item) {
             purchaseUpgrade('touchGun', touchGunLevel, touchGunCost, 2, 1, 'touchGun');
             break;
         case 'touchGunAwaken':
-            purchaseUpgrade('touchGunAwaken', touchGunAwakenLevel, touchGunAwakenCost, 4, 100, 'touchGun');
+            purchaseUpgrade('touchGunAwaken', awokenTouchGunLevel, awokenTouchGunCost, 4, 100, 'touchGun');
             break;
         case 'pistol':
             if (!pistolPurchased) {

@@ -200,7 +200,7 @@ const upgrades = {
                 rocketLauncherPointsPerShot *= 2;
             }
         },
-        // Add more upgrades for ak47 here
+        // Add more upgrades for rocketLauncher here
     },
     tommyGun: {
         preciseAccuracy: {
@@ -209,7 +209,7 @@ const upgrades = {
                 tommyGunInaccuracyChance -= 10; // Reduces the inaccuracy chance of the tommy gun
             }
         },
-        // Add more upgrades for ak47 here
+        // Add more upgrades for tommyGun here
     }
     // Add more weapons and upgrades as needed
 };

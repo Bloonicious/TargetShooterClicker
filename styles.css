@@ -126,3 +126,12 @@ body {
     transition: all 0.5s ease-out; /* Add transition for smooth appearance */
     z-index: 2; /* Ensure the floating text appears above other elements */
 }
+
+.floating-text.miss {
+    position: absolute;
+    font-family: monospace;
+    font-size: 16px;
+    color: crimson; /* Color for missing hits */
+    transition: all 0.5s ease-out; /* Add transition for smooth appearance */
+    z-index: 2; /* Ensure the floating text appears above other elements */
+}

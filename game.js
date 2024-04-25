@@ -943,8 +943,8 @@ function shoot(weaponId, pointsPerShot, critical) {
 
     // Check if the shot misses the center based on Tommy Gun's inaccuracy chance
     if (weaponId === 'tommyGun' && Math.random() < tommyGunInaccuracyChance) {
-        floatingText.textContent = 'Miss!';
-        floatingText.style.color = 'orange-crimson';
+        floatingText.classList.add('miss'); // Add miss class for missed shots
+        floatingText.textContent = ' Miss!';
     }
 
     // Append the floating text to the container

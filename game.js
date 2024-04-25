@@ -57,10 +57,12 @@ let ak47PotencyLevel = 0;
 let rocketLauncherCost = 400000;
 let rocketLauncherPointsPerShot = 1000;
 let rocketLauncherFireRate = 5000; // in milliseconds
-let rocketLauncherFirerateUpgradeCost = 1000000;
-let rocketLauncherPotencyUpgradeCost = 750000;
 let rocketLauncherSplashRadius = 3;
 let rocketLauncherSplashDamage = 0.4;
+let rocketLauncherFirerateUpgradeCost = 1000000;
+let rocketLauncherPotencyUpgradeCost = 750000;
+let rocketLauncherSplashRadiusUpgradeCost = 10000000;
+let rocketLauncherSplashDamageUpgradeCost = 5000000;
 let rocketLauncherFirerateLevel = 0;
 let rocketLauncherPotencyLevel = 0;
 let rocketLauncherSplashRadiusLevel = 0;
@@ -71,6 +73,9 @@ let tommyGunPointsPerShot = 600;
 let tommyGunFireRate = 150; // in milliseconds
 let tommyGunInaccuracyChance = 50; // 50% chance to not successfully hit a target; ineffective shot
 let tommyGunAccuracyPenalty = 0.5; // 50% less points for inaccurate shots
+let tommyGunFirerateUpgradeCost = 15000000;
+let tommyGunPotencyUpgradeCost = 10000000;
+let tommyGunAccuracyUpgradeCost = 20000000;
 let tommyGunFirerateLevel = 0;
 let tommyGunPotencyLevel = 0;
 let tommyGunAccuracyLevel = 0;
@@ -574,6 +579,11 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 tommyGunPotencyUpgradeCost = cost;
                 tommyGunPotencyLevel = level;
                 tommyGunPointsPerShot += valueIncrement;
+                break;
+            case 'tommyGunAccuracy':
+                tommyGunAccuracyUpgradeCost = cost;
+                tommyGunAccuracyLevel = level;
+                tommyGunInaccuracyChance -= valueIncrement;
                 break;
             default:
                 console.error("Invalid upgradeType:", upgradeType);

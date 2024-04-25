@@ -120,7 +120,9 @@ function saveGameState() {
         pistolBiggerBulletsBought: upgrades.pistol.biggerBullets.bought,
         pistolLargerCalibreBought: upgrades.pistol.largerCalibre.bought,
         smgBetterSpreadBought: upgrades.smg.betterSpread.bought,
+        smgStrongHoldBought: upgrades.smg.strongHold.bought,
         shotgunMoreBarrelsBought: upgrades.shotgun.moreBarrels.bought,
+        shotgunPowerfulBurstBought: upgrades.shotgun.powerfulBurst.bought,
         sniperRifleDeadlyPrecisionBought: upgrades.sniperRifle.deadlyPrecision.bought,
         ak47HeatTippedBulletsBought: upgrades.ak47.heatTippedBullets.bought,
         
@@ -173,6 +175,26 @@ function saveGameState() {
         ak47FirerateLevel: ak47FirerateLevel,
         ak47PotencyLevel: ak47PotencyLevel,
 
+        rocketLauncherPurchased: rocketLauncherPurchased,
+        rocketLauncherPointsPerShot: rocketLauncherPointsPerShot,
+        rocketLauncherFireRate: rocketLauncherFireRate,
+        rocketLauncherFirerateUpgradeCost: rocketLauncherFirerateUpgradeCost,
+        rocketLauncherPotencyUpgradeCost: rocketLauncherPotencyUpgradeCost,
+        rocketLauncherFirerateLevel: rocketLauncherFirerateLevel,
+        rocketLauncherPotencyLevel: rocketLauncherPotencyLevel,
+
+        tommyGunPurchased: tommyGunPurchased,
+        tommyGunPointsPerShot: tommyGunPointsPerShot,
+        tommyGunFireRate: tommyGunFireRate,
+        tommyGunInaccuracyChance:  tommyGunInaccuracyChance,
+        tommyGunAccuracyPenalty: tommyGunAccuracyPenalty,
+        tommyGunFirerateUpgradeCost: tommyGunFirerateUpgradeCost,
+        tommyGunPotencyUpgradeCost: tommyGunPotencyUpgradeCost,
+        tommyGunAccuracyUpgradeCost: tommyGunAccuracyUpgradeCost,
+        tommyGunFirerateLevel: tommyGunFirerateLevel,
+        tommyGunPotencyLevel: tommyGunPotencyLevel,
+        tommyGunAccuracyLevel: tommyGunPotencyLevel,
+
         purchasedBigUpgrades: getPurchasedBigUpgrades()
     };
 
@@ -199,7 +221,9 @@ function loadGameState() {
         upgrades.pistol.biggerBullets.bought = gameState.pistolBiggerBulletsBought;
         upgrades.pistol.largerCalibre.bought = gameState.pistolLargerCalibreBought;
         upgrades.smg.betterSpread.bought = gameState.smgBetterSpreadBought;
+        upgrades.smg.strongHold.bought = gameState.smgStrongHoldBought;
         upgrades.shotgun.moreBarrels.bought = gameState.shotgunMoreBarrelsBought;
+        upgrades.shotgun.powerfulBurst.bought = gameState.shotgunPowerfulBurstBought;
         upgrades.sniperRifle.deadlyPrecision.bought = gameState.sniperRifleDeadlyPrecisionBought;
         upgrades.ak47.heatTippedBullets.bought = gameState.ak47HeatTippedBulletsBought;
         
@@ -251,6 +275,26 @@ function loadGameState() {
         ak47PotencyUpgradeCost = gameState.ak47PotencyUpgradeCost;
         ak47FirerateLevel = Math.min(gameState.ak47FirerateLevel, 15);
         ak47PotencyLevel = gameState.ak47PotencyLevel;
+
+        rocketLauncherPurchased = gameState.rocketLauncherPurchased;
+        rocketLauncherPointsPerShot = gameState.rocketLauncherPointsPerShot;
+        rocketLauncherFireRate = gameState.rocketLauncherFireRate;
+        rocketLauncherFirerateUpgradeCost = gameState.rocketLauncherFirerateUpgradeCost;
+        rocketLauncherPotencyUpgradeCost = gameState.rocketLauncherPotencyUpgradeCost;
+        rocketLauncherFirerateLevel = Math.min(gameState.rocketLauncherFirerateLevel, 15);
+        rocketLauncherPotencyLevel = gameState.rocketLauncherPotencyLevel;
+
+        tommyGunPurchased = gameState.tommyGunPurchased;
+        tommyGunPointsPerShot = gameState.tommyGunPointsPerShot;
+        tommyGunFireRate = gameState.tommyGunFireRate;
+        tommyGunInaccuracyChance = gameState.tommyGunInaccuracyChance;
+        tommyGunAccuracyPenalty = gameState.tommyGunAccuracyPenalty;
+        tommyGunFirerateUpgradeCost = gameState.tommyGunFirerateUpgradeCost;
+        tommyGunPotencyUpgradeCost = gameState.tommyGunPotencyUpgradeCost;
+        tommyGunAccuracyUpgradeCost = gameState.tommyGunAccuracyUpgradeCost;
+        tommyGunFirerateLevel = Math.min(gameState.tommyGunFirerateLevel, 20);
+        tommyGunPotencyLevel = gameState.tommyGunPotencyLevel;
+        tommyGunAccuracyLevel = gameState.tommyGunAccuracyLevel;
 
         // Load the purchased big upgrades interface
         loadPurchasedBigUpgrades(gameState.purchasedBigUpgrades);
@@ -315,6 +359,14 @@ function loadGameState() {
         document.getElementById('ak47Firerate-value').textContent = ak47FireRate + 'ms';
         document.getElementById('ak47Potency-value').textContent = formatNumber(ak47PointsPerShot);
 
+        document.getElementById('rocketLauncher-cost').textContent = formatNumber(rocketLauncherCost);
+        document.getElementById('rocketLauncherFirerate-cost').textContent = formatNumber(rocketLauncherFirerateUpgradeCost);
+        document.getElementById('rocketLauncherPotency-cost').textContent = formatNumber(rocketLauncherPotencyUpgradeCost);
+        document.getElementById('rocketLauncherFirerate-level').textContent = rocketLauncherFirerateLevel;
+        document.getElementById('rocketLauncherPotency-level').textContent = rocketLauncherPotencyLevel;
+        document.getElementById('rocketLauncherFirerate-value').textContent = rocketLauncherFireRate + 'ms';
+        document.getElementById('rocketLauncherPotency-value').textContent = formatNumber(rocketLauncherPointsPerShot);
+
         // Check if pistol fire rate level is at maximum
         if (pistolFirerateLevel === 20) {
             const pistolFirerateLevelDisplay = document.getElementById('pistolFirerate-level');
@@ -366,6 +418,26 @@ function loadGameState() {
                 ak47FirerateCostDisplay.textContent = "MAX";
             }
         }
+        if (rocketLauncherFirerateLevel === 15) {
+            const rocketLauncherFirerateLevelDisplay = document.getElementById('rocketLauncherFirerate-level');
+            if (rocketLauncherFirerateLevelDisplay) {
+                rocketLauncherFirerateLevelDisplay.textContent = "Max";
+            }
+            const rocketLauncherFirerateCostDisplay = document.getElementById('rocketLauncherFirerate-cost');
+            if (rocketLauncherFirerateCostDisplay) {
+                rocketLauncherFirerateCostDisplay.textContent = "MAX";
+            }
+        }
+        if (tommyGunFirerateLevel === 20) {
+            const tommyGunFirerateLevelDisplay = document.getElementById('tommyGunFirerate-level');
+            if (tommyGunFirerateLevelDisplay) {
+            tommyGunFirerateLevelDisplay.textContent = "Max";
+            }
+            const tommyGunFirerateCostDisplay = document.getElementById('tommyGunFirerate-cost');
+            if (tommyGunFirerateCostDisplay) {
+                tommyGunFirerateCostDisplay.textContent = "MAX";
+            }
+        }
         
         // Hide purchase buttons for purchased weapons
         if (pistolPurchased) {
@@ -382,6 +454,12 @@ function loadGameState() {
         }
         if (ak47Purchased) {
             document.getElementById('ak47-purchase').style.display = 'none';
+        }
+        if (rocketLauncherPurchased) {
+            document.getElementById('rocketLauncher-purchase').style.display = 'none';
+        }
+        if (tommyGunPurchased) {
+            document.getElementById('tommyGun-purchase').style.display = 'none';
         }
     }
 }
@@ -423,11 +501,14 @@ function resetProgress() {
         upgrades.pistol.biggerBullets.bought = false;
         upgrades.pistol.largerCalibre.bought = false;
         upgrades.smg.betterSpread.bought = false;
+        upgrades.smg.strongHold.bought = false;
         upgrades.shotgun.moreBarrels.bought = false;
+        upgrades.shotgun.powerfulBurst.bought = false;
         upgrades.sniperRifle.deadlyPrecision.bought = false;
         upgrades.ak47.heatTippedBullets.bought = false;
         
         pistolPurchased = false;
+        pistolCost = 10;
         pistolPointsPerShot = 1;
         pistolFireRate = 1000;
         pistolFirerateUpgradeCost = 50;
@@ -436,6 +517,7 @@ function resetProgress() {
         pistolPotencyLevel = 0;
         
         smgPurchased = false;
+        smgCost = 100;
         smgPointsPerShot = 1;
         smgFireRate = 200;
         smgFirerateUpgradeCost = 750;
@@ -444,6 +526,7 @@ function resetProgress() {
         smgPotencyLevel = 0;
         
         shotgunPurchased = false;
+        shotgunCost = 500;
         shotgunPointsPerShot = 4;
         shotgunFireRate = 1500;
         shotgunBulletsPerShot = 3,
@@ -455,6 +538,7 @@ function resetProgress() {
         shotgunMultiFireLevel = 0;
         
         sniperRiflePurchased = false;
+        sniperRifleCost = 7500;
         sniperRiflePointsPerShot = 80;
         sniperRifleFireRate = 4000;
         sniperRifleCriticalShotChance = 0.25;
@@ -468,6 +552,7 @@ function resetProgress() {
         sniperRifleCriticalShotLevel = 0;
         sniperRifleCriticalDamageLevel = 0;
 
+        ak47Purchased = false;
         ak47Cost = 60000;
         ak47PointsPerShot = 150;
         ak47FireRate = 500;
@@ -476,11 +561,41 @@ function resetProgress() {
         ak47FirerateLevel = 0;
         ak47PotencyLevel = 0;
 
+        rocketLauncherPurchased = false;
+        rocketLauncherCost = 400000;
+        rocketLauncherPointsPerShot = 1000;
+        rocketLauncherFireRate = 5000;
+        rocketLauncherSplashRadius = 3;
+        rocketLauncherSplashDamage = 0.4;
+        rocketLauncherFirerateUpgradeCost = 1000000;
+        rocketLauncherPotencyUpgradeCost = 750000;
+        rocketLauncherSplashRadiusUpgradeCost = 10000000;
+        rocketLauncherSplashDamageUpgradeCost = 5000000;
+        rocketLauncherFirerateLevel = 0;
+        rocketLauncherPotencyLevel = 0;
+        rocketLauncherSplashRadiusLevel = 0;
+        rocketLauncherSplashDamageLevel = 0;
+
+        tommyGunPurchased = false;
+        tommyGunCost = 2500000;
+        tommyGunPointsPerShot = 600;
+        tommyGunFireRate = 150;
+        tommyGunInaccuracyChance = 50;
+        tommyGunAccuracyPenalty = 0.5;
+        tommyGunFirerateUpgradeCost = 15000000;
+        tommyGunPotencyUpgradeCost = 10000000;
+        tommyGunAccuracyUpgradeCost = 20000000;
+        tommyGunFirerateLevel = 0;
+        tommyGunPotencyLevel = 0;
+        tommyGunAccuracyLevel = 0;
+
         clearInterval(pistolFireRate);
         clearInterval(smgFireRate);
         clearInterval(shotgunFireRate);
         clearInterval(sniperRifleFireRate);
         clearInterval(ak47FireRate);
+        clearInterval(rocketLauncherFireRate);
+        clearInterval(tommyGunFireRate);
 
         // Enable purchase buttons for reset weapons
         if (pistolPurchased === false) {
@@ -497,6 +612,12 @@ function resetProgress() {
         }
         if (ak47Purchased === false) {
             document.getElementById('ak47-purchase').style.display = 'block';
+        }
+        if (rocketLauncherPurchased === false) {
+            document.getElementById('rocketLauncher-purchase').style.display = 'block';
+        }
+        if (tommyGunPurchased === false) {
+            document.getElementById('tommyGun-purchase').style.display = 'block';
         }
 
         // Update the interface

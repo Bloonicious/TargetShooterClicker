@@ -770,6 +770,7 @@ function updateCostDisplay() {
     document.getElementById('touchGun-level').textContent = touchGunLevel;
     document.getElementById('touchGun-points-per-click').textContent = touchGunPointsPerClick;
 
+    document.getElementById('touchGunAwaken-purchase').style.display = 'none';
     document.getElementById('touchGunAwaken-cost').style.display = 'none';
     document.getElementById('touchGunAwaken-level').style.display = 'none';
     
@@ -929,7 +930,8 @@ function updateCostDisplay() {
         }
     }
     if (upgrades.touchGun.awakenUpgrade.bought) {
-        document.getElementById('touchGunAwaken-purchase').textContent = formatNumber(awokenTouchGunCost);
+        document.getElementById('touchGunAwaken-purchase').style.display = 'block';
+        document.getElementById('touchGunAwaken-cost').textContent = formatNumber(awokenTouchGunCost);
         document.getElementById('touchGunAwaken-level').textContent = awokenTouchGunLevel;
     }
 }

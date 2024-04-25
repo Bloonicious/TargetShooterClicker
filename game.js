@@ -950,7 +950,7 @@ function shoot(weaponId, pointsPerShot, critical) {
     // Handle rocket launcher's splash radius
     if (weaponId === 'rocketLauncher') {
         // Get all shooting-range targets
-        const targets = document.querySelectorAll('.target');
+        const targets = document.querySelectorAll('.-target');
         
         // Loop through targets and calculate distance from the center
         targets.forEach(t => {

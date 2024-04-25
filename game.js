@@ -316,11 +316,15 @@ function automaticPointsGeneration() {
             if (currentTime - lastTommyGunPointsTime >= tommyGunFireRate) {
                 // Calculate points per shot
                 let pointsPerShot = tommyGunPointsPerShot;
-                // Apply inaccuracy
-                if (Math.random() < tommyGunInaccuracyChance) {
+                let miss = false;
+                // Check for miss based on inaccuracy chance
+                const inaccuracyChance = Math.min(100, 50 + tommyGunAccuracyLevel * 2);
+                if (inaccuracyChance >= Math.random() * 100) {
+                    // Apply inaccuracy penalty if missed
                     pointsPerShot *= tommyGunAccuracyPenalty; // 50% less points for inaccurate shots
+                    miss = true;
                 }
-                shoot('tommyGun', pointsPerShot, false);
+                shoot('tommyGun', pointsPerShot, miss); // Pass 'miss' to indicate if the shot missed
                 lastTommyGunPointsTime = currentTime;
             }
         }, 100); // Check every 100 milliseconds for points generation
@@ -1004,6 +1008,12 @@ function shoot(weaponId, pointsPerShot, critical) {
     if (critical) {
         floatingText.classList.add('critical'); // Add critical class for critical hits
         floatingText.textContent += ' Crit!';
+    }
+
+    // Set text color based on miss status
+    if (miss) {
+        floatingText.classList.add('miss'); // Add miss class for missed shots
+        floatingText.textContent += ' Miss!';
     }
 
     // Get the target element based on the weaponId

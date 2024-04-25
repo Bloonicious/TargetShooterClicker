@@ -1034,12 +1034,6 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     floatingText.style.left = centerX + 'px';
     floatingText.style.top = centerY + 'px';
 
-    // Check if the shot misses the center based on Tommy Gun's inaccuracy chance
-    if (weaponId === 'tommyGun' && Math.random() < tommyGunInaccuracyChance) {
-        floatingText.classList.add('miss'); // Add miss class for missed shots
-        floatingText.textContent = ' Miss!';
-    }
-
     // Handle rocket launcher's splash radius
     if (weaponId === 'rocketLauncher') {
         // Get all shooting-range targets

@@ -665,6 +665,11 @@ function updateCostDisplay() {
     const sniperRifleCriticalDamageValue = sniperRifleCriticalDamageMultiplier;
     const ak47FirerateValue = ak47FireRate;
     const ak47PotencyValue = ak47PointsPerShot;
+    const rocketLauncherFirerateValue = rocketLauncherFireRate;
+    const rocketLauncherPotencyValue = rocketLauncherPointsPerShot;
+    const tommyGunFirerateValue = tommyGunFireRate;
+    const tommyGunPotencyValue = tommyGunPointsPerShot;
+    const tommyGunInaccuracyChanceValue = tommyGunInaccuracyChance;
     
     document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
     document.getElementById('touchGun-level').textContent = touchGunLevel;
@@ -722,18 +727,25 @@ function updateCostDisplay() {
     document.getElementById('rocketLauncher-cost').textContent = formatNumber(rocketLauncherCost);
     document.getElementById('rocketLauncherFirerate-cost').textContent = formatNumber(rocketLauncherFirerateUpgradeCost);
     document.getElementById('rocketLauncherPotency-cost').textContent = formatNumber(rocketLauncherPotencyUpgradeCost);
+    document.getElementById('rocketLauncherSplashRadius-cost').textContent = formatNumber(rocketLauncherSplashRadiusUpgradeCost);
+    document.getElementById('rocketLauncherSplashDamage-cost').textContent = formatNumber(rocketLauncherSplashDamageUpgradeCost);
     document.getElementById('rocketLauncherFirerate-level').textContent = rocketLauncherFirerateLevel;
     document.getElementById('rocketLauncherPotency-level').textContent = rocketLauncherPotencyLevel;
+    document.getElementById('rocketLauncherSplashRadius-level').textContent = rocketLauncherSplashRadiusLevel;
+    document.getElementById('rocketLauncherSplashDamage-level').textContent = rocketLauncherSplashDamageLevel;
     document.getElementById('rocketLauncherFirerate-value').textContent = rocketLauncherFirerateValue + 'ms';
     document.getElementById('rocketLauncherPotency-value').textContent = formatNumber(rocketLauncherPotencyValue);
 
     document.getElementById('tommyGun-cost').textContent = formatNumber(tommyGunCost);
     document.getElementById('tommyGunFirerate-cost').textContent = formatNumber(tommyGunFirerateUpgradeCost);
     document.getElementById('tommyGunPotency-cost').textContent = formatNumber(tommyGunPotencyUpgradeCost);
+    document.getElementById('tommyGunAccuracy-cost').textContent = formatNumber(tommyGunPotencyUpgradeCost);
     document.getElementById('tommyGunFirerate-level').textContent = tommyGunFirerateLevel;
     document.getElementById('tommyGunPotency-level').textContent = tommyGunPotencyLevel;
+    document.getElementById('tommyGunAccuracy-level').textContent = tommyGunAccuracyLevel;
     document.getElementById('tommyGunFirerate-value').textContent = tommyGunFirerateValue + 'ms';
     document.getElementById('tommyGunPotency-value').textContent = formatNumber(tommyGunPotencyValue);
+    document.getElementById('tommyGunAccuracy-value').textContent = tommyGunInaccuracyChanceValue;
 
     // Check if fire rate level is at maximum for each weapon
     if (pistolFirerateLevel === 20) {

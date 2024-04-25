@@ -75,13 +75,13 @@ const upgrades = {
         biggerBullets: {
             cost: 1000,
             effect: function() {
-                pistolPointsPerShot *= 2; // Double the points per shot
+                pistolPointsPerShot *= 2; // Doubles the amount of points per shot
             }
         },
         largerCalibre: {
             cost: 500000,
             effect: function() {
-                pistolPointsPerShot *= 3; // Triples the points per shot
+                pistolPointsPerShot *= 3; // Triples the amount of points per shot
             }
         },
         // Add more upgrades for pistol here
@@ -90,7 +90,13 @@ const upgrades = {
         betterSpread: {
             cost: 10000,
             effect: function() {
-                smgPointsPerShot *= 2; // Double the points per shot
+                smgPointsPerShot *= 2;
+            }
+        },
+        strongHold: {
+            cost: 3000000,
+            effect: function() {
+                smgPointsPerShot *= 3;
             }
         },
         // Add more upgrades for smg here
@@ -100,6 +106,12 @@ const upgrades = {
             cost: 100000,
             effect: function() {
                 shotgunBulletsPerShot += 2; // Increases the number of barrels by 2
+            }
+        },
+        powerfulBurst: {
+            cost: 15000000,
+            effect: function() {
+                shotgunPointsPerShot *= 2;
             }
         },
         // Add more upgrades for shotgun here
@@ -117,7 +129,7 @@ const upgrades = {
         heatTippedBullets: {
             cost: 15000000,
             effect: function() {
-                ak47PointsPerShot *= 2; // Double the points per shot
+                ak47PointsPerShot *= 2;
             }
         },
         // Add more upgrades for ak47 here
@@ -364,7 +376,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 2; // Multiplies valueIncrement by 2 if biggerBullets upgrade is purchased
                 }
                 if (upgrades.pistol.largerCalibre.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if biggerBullets upgrade is purchased
+                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if largerCalibre upgrade is purchased
                 }
                 pistolPointsPerShot += valueIncrement;
                 break;
@@ -394,6 +406,9 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.smg.betterSpread.bought) {
                     valueIncrement *= 2; // Set valueIncrement to 2 if betterSpread upgrade is purchased
                 }
+                if (upgrades.smg.strongHold.bought) {
+                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if strongHold upgrade is purchased
+                }
                 smgPointsPerShot += valueIncrement;
                 break;
             case 'shotgunFirerate':
@@ -419,6 +434,9 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'shotgunPotency':
                 shotgunPotencyUpgradeCost = cost;
                 shotgunPotencyLevel = level;
+                if (upgrades.shotgun.powerfulBurst.bought) {
+                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if powerfulBurst upgrade is purchased
+                }
                 shotgunPointsPerShot += valueIncrement;
                 break;
             case 'shotgunMultiFire':
@@ -485,7 +503,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 ak47PotencyUpgradeCost = cost;
                 ak47PotencyLevel = level;
                 if (upgrades.ak47.heatTippedBullets.bought) {
-                    valueIncrement *= 2; // Set valueIncrement to 2 if betterSpread upgrade is purchased
+                    valueIncrement *= 2; // Set valueIncrement to 2 if heatTippedBullets upgrade is purchased
                 }
                 ak47PointsPerShot += valueIncrement;
                 break;

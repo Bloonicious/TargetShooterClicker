@@ -512,7 +512,7 @@ function loadGameState() {
             }
         }
         if (upgrades.touchGun.awakenUpgrade.bought) {
-            document.getElementById('touchGunAwaken-cost').textContent = formatNumber(awokenTouchGunCost);
+            document.getElementById('touchGunAwaken-purchase').textContent = formatNumber(awokenTouchGunCost);
             document.getElementById('touchGunAwaken-level').textContent = awokenTouchGunLevel;
         }
         
@@ -714,7 +714,7 @@ function resetProgress() {
             document.getElementById('tommyGun-purchase').style.display = 'block';
         }
         if (upgrades.touchGun.awakenUpgrade.bought === false) {
-            document.getElementById('touchGunAwaken-cost').style.display = 'block';
+            document.getElementById('touchGunAwaken-purchase').style.display = 'block';
             document.getElementById('touchGunAwaken-level').style.display = 'block';
         }
 

@@ -998,7 +998,7 @@ function playWeaponSoundEffect(weaponId) {
     }
 }
 
-function shoot(weaponId, pointsPerShot, critical) {
+function shoot(weaponId, pointsPerShot, critical, miss) {
     // Generate points and display them as floating text
     const floatingText = document.createElement('div');
     floatingText.textContent = '+' + formatNumber(pointsPerShot);

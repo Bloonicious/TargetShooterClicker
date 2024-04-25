@@ -397,6 +397,8 @@ function purchaseWeapon(weapon, cost) {
     if (points >= cost) {
         points -= cost;
         switch (weapon) {
+            case 'touchGun':
+                break;
             case 'pistol':
                 pistolCost *= 2;
                 pistolPurchased = true;

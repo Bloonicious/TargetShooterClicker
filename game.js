@@ -101,6 +101,29 @@ let lastTommyGunPointsTime = 0;
 
 const weaponSFX = {};
 const upgrades = {
+    touchGun: {
+        pointyFingers: {
+            cost: 500,
+            effect: function() {
+                touchGunPointsPerClick *= 2; // Doubles the amount of points per click
+            }
+        },
+        ambidextrous: {
+            cost: 10000,
+            effect: function() {
+                touchGunPointsPerClick *= 2;
+            }
+        },
+        tapMaster: {
+            cost: 250000,
+            effect: function() {}
+        },
+        awakenUpgrade: {
+            cost: 100000000,
+            effect: function() {}
+        },
+        // Add more upgrades for touchGun here
+    },
     pistol: {
         biggerBullets: {
             cost: 1000,
@@ -153,6 +176,12 @@ const upgrades = {
                 sniperRifleCriticalDamageMultiplier += 1; // Increases the critical damage multiplier by 1
             }
         },
+        cripplingShots: {
+            cost: 75000000,
+            effect: function() {
+                sniperRiflePointsPerShot *= 2;
+            }
+        },
         // Add more upgrades for sniperRifle here
     },
     ak47: {
@@ -160,6 +189,24 @@ const upgrades = {
             cost: 15000000,
             effect: function() {
                 ak47PointsPerShot *= 2;
+            }
+        },
+        // Add more upgrades for ak47 here
+    },
+    rocketLauncher: {
+        potentRockets: {
+            cost: 200000000,
+            effect: function() {
+                rocketLauncherPointsPerShot *= 2;
+            }
+        },
+        // Add more upgrades for ak47 here
+    },
+    tommyGun: {
+        preciseAccuracy: {
+            cost: 750000000,
+            effect: function() {
+                tommyGunInaccuracyChance -= 10; // Reduces the inaccuracy chance of the tommy gun
             }
         },
         // Add more upgrades for ak47 here
@@ -448,6 +495,9 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'touchGun':
                 touchGunCost = cost;
                 touchGunLevel = level;
+                if (upgrades.touchGun.pointyFingers.bought || upgrades.touchGun.ambidextrous.bought) {
+                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if both of those touchGun upgrades are purchased
+                }
                 touchGunPointsPerClick += valueIncrement;
                 break;
             case 'pistolFirerate':
@@ -485,10 +535,10 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 smgPotencyUpgradeCost = cost;
                 smgPotencyLevel = level;
                 if (upgrades.smg.betterSpread.bought) {
-                    valueIncrement *= 2; // Set valueIncrement to 2 if betterSpread upgrade is purchased
+                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the betterSpread upgrade is purchased
                 }
                 if (upgrades.smg.strongHold.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if strongHold upgrade is purchased
+                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the strongHold upgrade is purchased
                 }
                 smgPointsPerShot += valueIncrement;
                 break;
@@ -506,7 +556,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 shotgunPotencyUpgradeCost = cost;
                 shotgunPotencyLevel = level;
                 if (upgrades.shotgun.powerfulBurst.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if powerfulBurst upgrade is purchased
+                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the powerfulBurst upgrade is purchased
                 }
                 shotgunPointsPerShot += valueIncrement;
                 break;
@@ -528,6 +578,9 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'sniperRiflePotency':
                 sniperRiflePotencyUpgradeCost = cost;
                 sniperRiflePotencyLevel = level;
+                if (upgrades.sniperRifle.cripplingShots.bought) {
+                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the cripplingShots upgrade is purchased
+                }
                 sniperRiflePointsPerShot += valueIncrement;
                 break;
             case 'sniperRifleCriticalShot':
@@ -554,7 +607,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 ak47PotencyUpgradeCost = cost;
                 ak47PotencyLevel = level;
                 if (upgrades.ak47.heatTippedBullets.bought) {
-                    valueIncrement *= 2; // Set valueIncrement to 2 if heatTippedBullets upgrade is purchased
+                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the heatTippedBullets upgrade is purchased
                 }
                 ak47PointsPerShot += valueIncrement;
                 break;

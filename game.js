@@ -372,6 +372,12 @@ function purchase(item) {
         case 'rocketLauncherPotency':
             purchaseUpgrade('rocketLauncherPotency', rocketLauncherPotencyLevel, rocketLauncherPotencyUpgradeCost, 1.4, 1000, 'potency');
             break;
+        case 'rocketLauncherSplashRadius':
+            purchaseUpgrade('rocketLauncherSplashRadius', rocketLauncherSplashRadiusLevel, rocketLauncherSplashRadiusUpgradeCost, 50, 1, 'splashRadius');
+            break;
+        case 'rocketLauncherSplashDamage':
+            purchaseUpgrade('rocketLauncherSplashDamage', rocketLauncherSplashDamageLevel, rocketLauncherSplashDamageUpgradeCost, 7.5, 5, 'splashDamage');
+            break;
         case 'tommyGunFirerate':
             purchaseUpgrade('tommyGunFirerate', tommyGunFirerateLevel, tommyGunFirerateUpgradeCost, 2.2, -5, 'firerate');
             break;
@@ -564,6 +570,21 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 rocketLauncherPotencyUpgradeCost = cost;
                 rocketLauncherPotencyLevel = level;
                 rocketLauncherPointsPerShot += valueIncrement;
+                break;
+            case 'rocketLauncherSplashRadius':
+                if (level <= 5) {
+                    rocketLauncherSplashRadiusUpgradeCost = cost;
+                    rocketLauncherSplashRadiusLevel = level;
+                    rocketLauncherSplashRadius += valueIncrement;
+                } else {
+                    console.log("Maximum level reached for rocket launcher splash radius upgrade.");
+                    alert("Rocket Launcher's splash radius has been maxed out!");
+                }
+                break;
+            case 'rocketLauncherSplashDamage':
+                rocketLauncherSplashDamageUpgradeCost = cost;
+                rocketLauncherSplashDamageLevel = level;
+                rocketLauncherSplashDamage += valueIncrement;
                 break;
             case 'tommyGunFirerate':
                 if (level <= 20) {
@@ -810,6 +831,16 @@ function updateCostDisplay() {
         const rocketLauncherFirerateCostDisplay = document.getElementById('rocketLauncherFirerate-cost');
         if (rocketLauncherFirerateCostDisplay) {
             rocketLauncherFirerateCostDisplay.textContent = "MAX";
+        }
+    }
+    if (rocketLauncherSplashRadiusLevel === 5) {
+        const rocketLauncherSplashRadiusLevelDisplay = document.getElementById('rocketLauncherSplashRadius-level');
+        if (rocketLauncherSplashRadiusLevelDisplay) {
+            rocketLauncherSplashRadiusLevelDisplay.textContent = "Max";
+        }
+        const rocketLauncherSplashRadiusCostDisplay = document.getElementById('rocketLauncherSplashRadius-cost');
+        if (rocketLauncherSplashRadiusCostDisplay) {
+            rocketLauncherSplashRadiusCostDisplay.textContent = "MAX";
         }
     }
     if (tommyGunFirerateLevel === 20) {

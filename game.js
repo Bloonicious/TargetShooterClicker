@@ -116,7 +116,10 @@ const upgrades = {
         },
         tapMaster: {
             cost: 250000,
-            effect: function() {}
+            effect: function() {
+                const totalPotencyLevel = pistolPotencyLevel + smgPotencyLevel + shotgunPotencyLevel + sniperRiflePotencyLevel + ak47PotencyLevel + rocketLauncherPotencyLevel + tommyGunPotencyLevel;
+                touchGunPointsPerClick += totalPotencyLevel * 0.5; // Increase points per click by 0.5 for each level of combined potency
+            }
         },
         awakenUpgrade: {
             cost: 100000000,
@@ -325,6 +328,9 @@ function purchase(item) {
         case 'touchGun':
             purchaseUpgrade('touchGun', touchGunLevel, touchGunCost, 2, 1, 'touchGun');
             break;
+        case 'touchGunAwaken':
+            purchaseUpgrade('touchGunAwaken', touchGunAwakenLevel, touchGunAwakenCost, 4, 100, 'touchGun');
+            break;
         case 'pistol':
             if (!pistolPurchased) {
                 purchaseWeapon('pistol', pistolCost);
@@ -495,10 +501,18 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'touchGun':
                 touchGunCost = cost;
                 touchGunLevel = level;
-                if (upgrades.touchGun.pointyFingers.bought || upgrades.touchGun.ambidextrous.bought) {
+                touchGunPointsPerClick += valueIncrement;
+                if (upgrades.touchGun.pointyFingers.bought && upgrades.touchGun.ambidextrous.bought) {
                     valueIncrement *= 2; // Multiplies valueIncrement by 2 if both of those touchGun upgrades are purchased
                 }
+                break;
+            case 'touchGunAwaken':
+                touchGunAwakenCost = cost;
+                touchGunAwakenLevel = level;
                 touchGunPointsPerClick += valueIncrement;
+                if (upgrades.touchGun.pointyFingers.bought && upgrades.touchGun.ambidextrous.bought) {
+                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if both of those touchGun upgrades are purchased
+                }
                 break;
             case 'pistolFirerate':
                 if (level <= 20) {

@@ -121,7 +121,9 @@ const upgrades = {
             cost: 250000,
             effect: function() {
                 const totalPotencyLevel = pistolPotencyLevel + smgPotencyLevel + shotgunPotencyLevel + sniperRiflePotencyLevel + ak47PotencyLevel + rocketLauncherPotencyLevel + tommyGunPotencyLevel;
-                touchGunPointsPerClick += totalPotencyLevel * 0.5; // Increase points per click by 0.5 for each level of combined potency
+                if (totalPotencyLevel > 0) {
+                    touchGunPointsPerClick += 0.5; // Increases touch gun value based on the current potency levels of those weapons
+                }
             }
         },
         awakenUpgrade: {

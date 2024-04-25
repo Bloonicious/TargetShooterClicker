@@ -3,6 +3,9 @@ let touchGunCost = 100;
 let touchGunPointsPerClick = 1;
 let touchGunLevel = 0;
 
+let awokenTouchGunCost = 500000;
+let awokenTouchGunLevel = 0;
+
 let pistolCost = 10;
 let pistolPointsPerShot = 1;
 let pistolFireRate = 1000; // in milliseconds
@@ -507,8 +510,8 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 }
                 break;
             case 'touchGunAwaken':
-                touchGunAwakenCost = cost;
-                touchGunAwakenLevel = level;
+                awokenTouchGunCost = cost;
+                awokenTouchGunLevel = level;
                 touchGunPointsPerClick += valueIncrement;
                 if (upgrades.touchGun.pointyFingers.bought && upgrades.touchGun.ambidextrous.bought) {
                     valueIncrement *= 2; // Multiplies valueIncrement by 2 if both of those touchGun upgrades are purchased
@@ -766,6 +769,9 @@ function updateCostDisplay() {
     document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
     document.getElementById('touchGun-level').textContent = touchGunLevel;
     document.getElementById('touchGun-points-per-click').textContent = touchGunPointsPerClick;
+
+    document.getElementById('touchGunAwaken-cost').style.display = 'none';
+    document.getElementById('touchGunAwaken-level').style.display = 'none';
     
     document.getElementById('pistol-cost').textContent = formatNumber(pistolCost);
     document.getElementById('pistolFirerate-cost').textContent = formatNumber(pistolFirerateUpgradeCost);
@@ -921,6 +927,10 @@ function updateCostDisplay() {
         if (tommyGunFirerateCostDisplay) {
             tommyGunFirerateCostDisplay.textContent = "MAX";
         }
+    }
+    if (upgrades.touchGun.awakenUpgrade.bought) {
+        document.getElementById('touchGunAwaken-cost').textContent = formatNumber(awokenTouchGunCost);
+        document.getElementById('touchGunAwaken-level').textContent = awokenTouchGunLevel;
     }
 }
 

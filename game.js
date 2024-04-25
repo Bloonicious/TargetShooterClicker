@@ -929,7 +929,7 @@ function updateCostDisplay() {
         }
     }
     if (upgrades.touchGun.awakenUpgrade.bought) {
-        document.getElementById('touchGunAwaken-cost').textContent = formatNumber(awokenTouchGunCost);
+        document.getElementById('touchGunAwaken-purchase').textContent = formatNumber(awokenTouchGunCost);
         document.getElementById('touchGunAwaken-level').textContent = awokenTouchGunLevel;
     }
 }

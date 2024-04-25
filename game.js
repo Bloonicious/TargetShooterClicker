@@ -764,7 +764,7 @@ function updateCostDisplay() {
     document.getElementById('tommyGun-cost').textContent = formatNumber(tommyGunCost);
     document.getElementById('tommyGunFirerate-cost').textContent = formatNumber(tommyGunFirerateUpgradeCost);
     document.getElementById('tommyGunPotency-cost').textContent = formatNumber(tommyGunPotencyUpgradeCost);
-    document.getElementById('tommyGunAccuracy-cost').textContent = formatNumber(tommyGunPotencyUpgradeCost);
+    document.getElementById('tommyGunAccuracy-cost').textContent = formatNumber(tommyGunAccuracyUpgradeCost);
     document.getElementById('tommyGunFirerate-level').textContent = tommyGunFirerateLevel;
     document.getElementById('tommyGunPotency-level').textContent = tommyGunPotencyLevel;
     document.getElementById('tommyGunAccuracy-level').textContent = tommyGunAccuracyLevel;
@@ -914,7 +914,7 @@ function playWeaponSoundEffect(weaponId) {
 function shoot(weaponId, pointsPerShot, critical) {
     // Generate points and display them as floating text
     const floatingText = document.createElement('div');
-    floatingText.textContent = '+' + pointsPerShot;
+    floatingText.textContent = '+' + formatNumber(pointsPerShot);
     floatingText.classList.add('floating-text');
 
     // Set text color based on critical status

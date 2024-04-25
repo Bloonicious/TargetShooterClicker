@@ -318,7 +318,7 @@ function automaticPointsGeneration() {
                 let pointsPerShot = tommyGunPointsPerShot;
                 let miss = false;
                 // Check for miss based on inaccuracy chance
-                const inaccuracyChance = Math.min(100, 50 + tommyGunAccuracyLevel * 2);
+                const inaccuracyChance = Math.min(100, 50 + tommyGunAccuracyLevel * -2);
                 if (inaccuracyChance >= Math.random() * 100) {
                     // Apply inaccuracy penalty if missed
                     pointsPerShot *= tommyGunAccuracyPenalty; // 50% less points for inaccurate shots

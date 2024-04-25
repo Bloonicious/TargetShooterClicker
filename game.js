@@ -14,8 +14,8 @@ let pistolPotencyLevel = 0;
 let smgCost = 100;
 let smgPointsPerShot = 1;
 let smgFireRate = 200; // in milliseconds
-let smgFirerateUpgradeCost = 750;
-let smgPotencyUpgradeCost = 1500;
+let smgFirerateUpgradeCost = 600;
+let smgPotencyUpgradeCost = 1200;
 let smgFirerateLevel = 0;
 let smgPotencyLevel = 0;
 
@@ -24,7 +24,7 @@ let shotgunPointsPerShot = 4;
 let shotgunFireRate = 1500; // in milliseconds
 let shotgunMultiFireUpgradeCost = 25000;
 let shotgunFirerateUpgradeCost = 5000;
-let shotgunPotencyUpgradeCost = 12500;
+let shotgunPotencyUpgradeCost = 10000;
 let shotgunBulletsPerShot = 3; // Initial bullets per shot
 let shotgunFirerateLevel = 0;
 let shotgunPotencyLevel = 0;
@@ -33,9 +33,9 @@ let shotgunMultiFireLevel = 0;
 let sniperRifleCost = 7500;
 let sniperRiflePointsPerShot = 80;
 let sniperRifleFireRate = 4000; // in milliseconds
-let sniperRifleFirerateUpgradeCost = 50000;
-let sniperRiflePotencyUpgradeCost = 100000;
-let sniperRifleCriticalShotUpgradeCost = 75000;
+let sniperRifleFirerateUpgradeCost = 37500;
+let sniperRiflePotencyUpgradeCost = 75000;
+let sniperRifleCriticalShotUpgradeCost = 750000;
 let sniperRifleCriticalDamageUpgradeCost = 250000;
 let sniperRifleCriticalShotChance = 25; // 25% chance for a "Critical Shot" for increased points
 let sniperRifleCriticalDamageMultiplier = 2.0; // The amount of extra points yielded from a "Critical Shot"
@@ -49,10 +49,31 @@ let sniperRifleCriticalDamageLevel = 0;
 let ak47Cost = 60000;
 let ak47PointsPerShot = 150;
 let ak47FireRate = 500; // in milliseconds
-let ak47FirerateUpgradeCost = 300000;
-let ak47PotencyUpgradeCost = 400000;
+let ak47FirerateUpgradeCost = 175000;
+let ak47PotencyUpgradeCost = 250000;
 let ak47FirerateLevel = 0;
 let ak47PotencyLevel = 0;
+
+let rocketLauncherCost = 400000;
+let rocketLauncherPointsPerShot = 1000;
+let rocketLauncherFireRate = 5000; // in milliseconds
+let rocketLauncherFirerateUpgradeCost = 1000000;
+let rocketLauncherPotencyUpgradeCost = 750000;
+let rocketLauncherSplashRadius = 3;
+let rocketLauncherSplashDamage = 0.4;
+let rocketLauncherFirerateLevel = 0;
+let rocketLauncherPotencyLevel = 0;
+let rocketLauncherSplashRadiusLevel = 0;
+let rocketLauncherSplashDamageLevel = 0;
+
+let tommyGunCost = 2500000;
+let tommyGunPointsPerShot = 600;
+let tommyGunFireRate = 150; // in milliseconds
+let tommyGunInaccuracyChance = 50; // 50% chance to not successfully hit a target; ineffective shot
+let tommyGunAccuracyPenalty = 0.5; // 50% less points for inaccurate shots
+let tommyGunFirerateLevel = 0;
+let tommyGunPotencyLevel = 0;
+let tommyGunAccuracyLevel = 0;
 
 let points = 0;
 let numberFormat = 'standard'; // Default number format
@@ -62,12 +83,16 @@ let smgPurchased = false;
 let shotgunPurchased = false;
 let sniperRiflePurchased = false;
 let ak47Purchased = false;
+let rocketLauncherPurchased = false;
+let tommyGunPurchased = false;
 
 let lastPistolPointsTime = 0;
 let lastSMGPointsTime = 0;
 let lastShotgunPointsTime = 0;
 let lastSniperRiflePointsTime = 0;
 let lastAK47PointsTime = 0;
+let lastRocketLauncherPointsTime = 0;
+let lastTommyGunPointsTime = 0;
 
 const weaponSFX = {};
 const upgrades = {
@@ -214,6 +239,32 @@ function automaticPointsGeneration() {
             }
         }, 100); // Check every 100 milliseconds for points generation
     }
+    if (rocketLauncherPurchased) {
+        setInterval(function() {
+            const currentTime = Date.now();
+            if (currentTime - lastRocketLauncherPointsTime >= rocketLauncherFireRate) {
+                // Calculate points per shot
+                let pointsPerShot = rocketLauncherPointsPerShot;
+                shoot('rocketLauncher', pointsPerShot, false);
+                lastRocketLauncherPointsTime = currentTime;
+            }
+        }, 100); // Check every 100 milliseconds for points generation
+    }
+    if (tommyGunPurchased) {
+        setInterval(function() {
+            const currentTime = Date.now();
+            if (currentTime - lastTommyGunPointsTime >= tommyGunFireRate) {
+                // Calculate points per shot
+                let pointsPerShot = tommyGunPointsPerShot;
+                // Apply inaccuracy
+                if (Math.random() < tommyGunInaccuracyChance) {
+                    pointsPerShot *= tommyGunAccuracyPenalty; // 50% less points for inaccurate shots
+                }
+                shoot('tommyGun', pointsPerShot, false);
+                lastTommyGunPointsTime = currentTime;
+            }
+        }, 100); // Check every 100 milliseconds for points generation
+    }
 }
 
 // Function to handle purchasing weapons and upgrades
@@ -257,6 +308,20 @@ function purchase(item) {
                 alert("AK-47 has already been purchased!");
             }
             break;
+        case 'rocketLauncher':
+            if (!rocketLauncherPurchased) {
+                purchaseWeapon('rocketLauncher', rocketLauncherCost);
+            } else {
+                alert("Rocket Launcher has already been purchased!");
+            }
+            break;
+        case 'tommyGun':
+            if (!tommyGunPurchased) {
+                purchaseWeapon('tommyGun', tommyGunCost);
+            } else {
+                alert("Tommy Gun has already been purchased!");
+            }
+            break;
         case 'pistolFirerate':
             purchaseUpgrade('pistolFirerate', pistolFirerateLevel, pistolFirerateUpgradeCost, 1.8, -25, 'firerate');
             break;
@@ -296,6 +361,21 @@ function purchase(item) {
         case 'ak47Potency':
             purchaseUpgrade('ak47Potency', ak47PotencyLevel, ak47PotencyUpgradeCost, 1.4, 150, 'potency');
             break;
+        case 'rocketLauncherFirerate':
+            purchaseUpgrade('rocketLauncherFirerate', rocketLauncherFirerateLevel, rocketLauncherFirerateUpgradeCost, 2, -200, 'firerate');
+            break;
+        case 'rocketLauncherPotency':
+            purchaseUpgrade('rocketLauncherPotency', rocketLauncherPotencyLevel, rocketLauncherPotencyUpgradeCost, 1.4, 1000, 'potency');
+            break;
+        case 'tommyGunFirerate':
+            purchaseUpgrade('tommyGunFirerate', tommyGunFirerateLevel, tommyGunFirerateUpgradeCost, 2.2, -5, 'firerate');
+            break;
+        case 'tommyGunPotency':
+            purchaseUpgrade('tommyGunPotency', tommyGunPotencyLevel, tommyGunPotencyUpgradeCost, 1.4, 600, 'potency');
+            break;
+        case 'tommyGunAccuracy':
+            purchaseUpgrade('tommyGunAccuracy', tommyGunAccuracyLevel, tommyGunAccuracyUpgradeCost, 2.5, 2, 'accuracy');
+            break;
         default:
             console.error("Invalid item:", item);
     }
@@ -325,6 +405,14 @@ function purchaseWeapon(weapon, cost) {
             case 'ak47':
                 ak47Cost *= 2;
                 ak47Purchased = true;
+                break;
+            case 'rocketLauncher':
+                rocketLauncherCost *= 2;
+                rocketLauncherPurchased = true;
+                break;
+            case 'tommyGun':
+                tommyGunCost *= 2;
+                tommyGunPurchased = true;
                 break;
             default:
                 console.error("Invalid weapon:", weapon);
@@ -357,16 +445,6 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 } else {
                     console.log("Maximum level reached for pistol fire rate upgrade.");
                     alert("Pistol's firing rate has been maxed out!");
-                    // Change the upgrade cost text to "MAX"
-                    const costDisplay = document.getElementById('pistolFirerate-cost');
-                    if (costDisplay) {
-                        costDisplay.textContent = "MAX";
-                    }
-                    // Change the fire rate level text to "Max"
-                    const levelDisplay = document.getElementById('pistolFirerate-level');
-                    if (levelDisplay) {
-                        levelDisplay.textContent = "Max";
-                    }
                 }
                 break;
             case 'pistolPotency':
@@ -388,16 +466,6 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 } else {
                     console.log("Maximum level reached for smg fire rate upgrade.");
                     alert("SMG's firing rate has been maxed out!");
-                    // Change the upgrade cost text to "MAX"
-                    const costDisplay = document.getElementById('smgFirerate-cost');
-                    if (costDisplay) {
-                        costDisplay.textContent = "MAX";
-                    }
-                    // Change the fire rate level text to "Max"
-                    const levelDisplay = document.getElementById('smgFirerate-level');
-                    if (levelDisplay) {
-                        levelDisplay.textContent = "Max";
-                    }
                 }
                 break;
             case 'smgPotency':
@@ -419,16 +487,6 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 } else {
                     console.log("Maximum level reached for shotgun fire rate upgrade.");
                     alert("Shotgun's firing rate has been maxed out!");
-                    // Change the upgrade cost text to "MAX"
-                    const costDisplay = document.getElementById('shotgunFirerate-cost');
-                    if (costDisplay) {
-                        costDisplay.textContent = "MAX";
-                    }
-                    // Change the fire rate level text to "Max"
-                    const levelDisplay = document.getElementById('shotgunFirerate-level');
-                    if (levelDisplay) {
-                        levelDisplay.textContent = "Max";
-                    }
                 }
                 break;
             case 'shotgunPotency':
@@ -452,16 +510,6 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 } else {
                     console.log("Maximum level reached for sniper rifle fire rate upgrade.");
                     alert("Sniper Rifle's firing rate has been maxed out!");
-                    // Change the upgrade cost text to "MAX"
-                    const costDisplay = document.getElementById('sniperRifleFirerate-cost');
-                    if (costDisplay) {
-                        costDisplay.textContent = "MAX";
-                    }
-                    // Change the fire rate level text to "Max"
-                    const levelDisplay = document.getElementById('sniperRifleFirerate-level');
-                    if (levelDisplay) {
-                        levelDisplay.textContent = "Max";
-                    }
                 }
                 break;
             case 'sniperRiflePotency':
@@ -487,16 +535,6 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 } else {
                     console.log("Maximum level reached for ak47 fire rate upgrade.");
                     alert("AK-47's firing rate has been maxed out!");
-                    // Change the upgrade cost text to "MAX"
-                    const costDisplay = document.getElementById('ak47Firerate-cost');
-                    if (costDisplay) {
-                        costDisplay.textContent = "MAX";
-                    }
-                    // Change the fire rate level text to "Max"
-                    const levelDisplay = document.getElementById('ak47Firerate-level');
-                    if (levelDisplay) {
-                        levelDisplay.textContent = "Max";
-                    }
                 }
                 break;
             case 'ak47Potency':
@@ -506,6 +544,36 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 2; // Set valueIncrement to 2 if heatTippedBullets upgrade is purchased
                 }
                 ak47PointsPerShot += valueIncrement;
+                break;
+            case 'rocketLauncherFirerate':
+                if (level <= 15) {
+                    rocketLauncherFirerateUpgradeCost = cost;
+                    rocketLauncherFirerateLevel = level;
+                    rocketLauncherFireRate += valueIncrement;
+                } else {
+                    console.log("Maximum level reached for rocket launcher fire rate upgrade.");
+                    alert("Rocket Launcher's firing rate has been maxed out!");
+                }
+                break;
+            case 'rocketLauncherPotency':
+                rocketLauncherPotencyUpgradeCost = cost;
+                rocketLauncherPotencyLevel = level;
+                rocketLauncherPointsPerShot += valueIncrement;
+                break;
+            case 'tommyGunFirerate':
+                if (level <= 20) {
+                    tommyGunFirerateUpgradeCost = cost;
+                    tommyGunFirerateLevel = level;
+                    tommyGunFireRate += valueIncrement;
+                } else {
+                    console.log("Maximum level reached for tommy gun fire rate upgrade.");
+                    alert("Tommy Gun's firing rate has been maxed out!");
+                }
+                break;
+            case 'tommyGunPotency':
+                tommyGunPotencyUpgradeCost = cost;
+                tommyGunPotencyLevel = level;
+                tommyGunPointsPerShot += valueIncrement;
                 break;
             default:
                 console.error("Invalid upgradeType:", upgradeType);
@@ -641,6 +709,22 @@ function updateCostDisplay() {
     document.getElementById('ak47Firerate-value').textContent = ak47FirerateValue + 'ms';
     document.getElementById('ak47Potency-value').textContent = formatNumber(ak47PotencyValue);
 
+    document.getElementById('rocketLauncher-cost').textContent = formatNumber(rocketLauncherCost);
+    document.getElementById('rocketLauncherFirerate-cost').textContent = formatNumber(rocketLauncherFirerateUpgradeCost);
+    document.getElementById('rocketLauncherPotency-cost').textContent = formatNumber(rocketLauncherPotencyUpgradeCost);
+    document.getElementById('rocketLauncherFirerate-level').textContent = rocketLauncherFirerateLevel;
+    document.getElementById('rocketLauncherPotency-level').textContent = rocketLauncherPotencyLevel;
+    document.getElementById('rocketLauncherFirerate-value').textContent = rocketLauncherFirerateValue + 'ms';
+    document.getElementById('rocketLauncherPotency-value').textContent = formatNumber(rocketLauncherPotencyValue);
+
+    document.getElementById('tommyGun-cost').textContent = formatNumber(tommyGunCost);
+    document.getElementById('tommyGunFirerate-cost').textContent = formatNumber(tommyGunFirerateUpgradeCost);
+    document.getElementById('tommyGunPotency-cost').textContent = formatNumber(tommyGunPotencyUpgradeCost);
+    document.getElementById('tommyGunFirerate-level').textContent = tommyGunFirerateLevel;
+    document.getElementById('tommyGunPotency-level').textContent = tommyGunPotencyLevel;
+    document.getElementById('tommyGunFirerate-value').textContent = tommyGunFirerateValue + 'ms';
+    document.getElementById('tommyGunPotency-value').textContent = formatNumber(tommyGunPotencyValue);
+
     // Check if fire rate level is at maximum for each weapon
     if (pistolFirerateLevel === 20) {
         const pistolFirerateLevelDisplay = document.getElementById('pistolFirerate-level');
@@ -692,6 +776,26 @@ function updateCostDisplay() {
             ak47FirerateCostDisplay.textContent = "MAX";
         }
     }
+    if (rocketLauncherFirerateLevel === 15) {
+        const rocketLauncherFirerateLevelDisplay = document.getElementById('rocketLauncherFirerate-level');
+        if (rocketLauncherFirerateLevelDisplay) {
+            rocketLauncherFirerateLevelDisplay.textContent = "Max";
+        }
+        const rocketLauncherFirerateCostDisplay = document.getElementById('rocketLauncherFirerate-cost');
+        if (rocketLauncherFirerateCostDisplay) {
+            rocketLauncherFirerateCostDisplay.textContent = "MAX";
+        }
+    }
+    if (tommyGunFirerateLevel === 20) {
+        const tommyGunFirerateLevelDisplay = document.getElementById('tommyGunFirerate-level');
+        if (tommyGunFirerateLevelDisplay) {
+            tommyGunFirerateLevelDisplay.textContent = "Max";
+        }
+        const tommyGunFirerateCostDisplay = document.getElementById('tommyGunFirerate-cost');
+        if (tommyGunFirerateCostDisplay) {
+            tommyGunFirerateCostDisplay.textContent = "MAX";
+        }
+    }
 }
 
 // Function to format numbers into units
@@ -699,7 +803,7 @@ function formatNumber(number) {
     if (number === 0) return '0';
     
     if (numberFormat === 'standard') {
-        const suffixes = ['', 'k', 'M', 'B', 'T', 'Qd', 'Qn', 'Sx', 'Sp', 'O', 'N', 'Dc', 'UD', 'DD', 'TD'];
+        const suffixes = ['', 'k', 'M', 'B', 'T', 'Qd', 'Qn', 'Sx', 'Sp', 'O', 'N', 'Dc', 'UD', 'DD', 'TD', 'QdD', 'QQD', 'SxD', 'SpD', 'OcD', 'NoD', 'Vg', 'UV', 'DV'];
         const suffixIndex = Math.floor(Math.log10(number) / 3);
         const suffix = suffixes[suffixIndex];
         const scaledNumber = number / Math.pow(10, suffixIndex * 3);
@@ -716,7 +820,7 @@ function formatNumber(number) {
             return number.toExponential(3);
         }
     } else if (numberFormat === 'long') {
-        const longSuffixes = ['', ' thousand', ' million', ' billion', ' trillion', ' quadrillion', ' quintillion', ' sextillion', ' septillion', ' octillion', ' nonillion', ' decillion', ' undecillion', ' duodecillion', ' tredecillion'];
+        const longSuffixes = ['', ' thousand', ' million', ' billion', ' trillion', ' quadrillion', ' quintillion', ' sextillion', ' septillion', ' octillion', ' nonillion', ' decillion', ' undecillion', ' duodecillion', ' tredecillion', ' quattuordecillion', ' quindecillion', ' sexdecillion', 'septendecillion', ' octodecillion', ' novemdecillion', ' vigintillion', ' unvigintillion', ' duovigintillion'];
         const longSuffixIndex = Math.floor(Math.log10(number) / 3);
         const longSuffix = longSuffixes[longSuffixIndex];
         const longScaledNumber = number / Math.pow(10, longSuffixIndex * 3);
@@ -735,6 +839,8 @@ function initializeSoundEffects() {
     weaponSFX.shotgun = new Audio('sfx/shotgun.wav');
     weaponSFX.sniperRifle = new Audio('sfx/sniper.wav');
     weaponSFX.ak47 = new Audio('sfx/ak47.wav');
+    weaponSFX.rocketLauncher = new Audio('sfx/bazooka.wav');
+    weaponSFX.tommyGun = new Audio('sfx/smg.wav');
 }
 
 // Function to play sound effect for a specific weapon
@@ -807,6 +913,12 @@ function shoot(weaponId, pointsPerShot, critical) {
             break;
         case 'ak47':
             playWeaponSoundEffect('ak47');
+            break;
+        case 'rocketLauncher':
+            playWeaponSoundEffect('rocketLauncher');
+            break;
+        case 'tommyGun':
+            playWeaponSoundEffect('tommyGun');
             break;
         default:
             break;

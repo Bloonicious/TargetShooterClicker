@@ -178,6 +178,8 @@ function saveGameState() {
         rocketLauncherPurchased: rocketLauncherPurchased,
         rocketLauncherPointsPerShot: rocketLauncherPointsPerShot,
         rocketLauncherFireRate: rocketLauncherFireRate,
+        rocketLauncherSplashRadius: rocketLauncherSplashRadius,
+        rocketLauncherSplashDamage: rocketLauncherSplashDamage,
         rocketLauncherFirerateUpgradeCost: rocketLauncherFirerateUpgradeCost,
         rocketLauncherPotencyUpgradeCost: rocketLauncherPotencyUpgradeCost,
         rocketLauncherSplashRadiusUpgradeCost: rocketLauncherSplashRadiusUpgradeCost,
@@ -283,6 +285,8 @@ function loadGameState() {
         rocketLauncherPurchased = gameState.rocketLauncherPurchased;
         rocketLauncherPointsPerShot = gameState.rocketLauncherPointsPerShot;
         rocketLauncherFireRate = gameState.rocketLauncherFireRate;
+        rocketLauncherSplashRadius = gameState.rocketLauncherSplashRadius;
+        rocketLauncherSplashDamage = gameState.rocketLauncherSplashDamage;
         rocketLauncherFirerateUpgradeCost = gameState.rocketLauncherFirerateUpgradeCost;
         rocketLauncherPotencyUpgradeCost = gameState.rocketLauncherPotencyUpgradeCost;
         rocketLauncherSplashRadiusUpgradeCost = gameState.rocketLauncherSplashRadiusUpgradeCost;
@@ -378,6 +382,8 @@ function loadGameState() {
         document.getElementById('rocketLauncherSplashDamage-level').textContent = rocketLauncherSplashDamageLevel;
         document.getElementById('rocketLauncherFirerate-value').textContent = rocketLauncherFireRate + 'ms';
         document.getElementById('rocketLauncherPotency-value').textContent = formatNumber(rocketLauncherPointsPerShot);
+        document.getElementById('rocketLauncherSplashRadius-value').textContent = rocketLauncherSplashRadius;
+        document.getElementById('rocketLauncherSplashDamage-value').textContent = rocketLauncherSplashDamage;
 
         document.getElementById('tommyGun-cost').textContent = formatNumber(tommyGunCost);
         document.getElementById('tommyGunFirerate-cost').textContent = formatNumber(tommyGunFirerateUpgradeCost);
@@ -386,8 +392,8 @@ function loadGameState() {
         document.getElementById('tommyGunFirerate-level').textContent = tommyGunFirerateLevel;
         document.getElementById('tommyGunPotency-level').textContent = tommyGunPotencyLevel;
         document.getElementById('tommyGunAccuracy-level').textContent = tommyGunAccuracyLevel;
-        document.getElementById('tommyGunFirerate-value').textContent = tommyGunFirerateValue + 'ms';
-        document.getElementById('tommyGunPotency-value').textContent = formatNumber(tommyGunPotencyValue);
+        document.getElementById('tommyGunFirerate-value').textContent = tommyGunFireRate + 'ms';
+        document.getElementById('tommyGunPotency-value').textContent = formatNumber(tommyGunPointsPerShot);
         document.getElementById('tommyGunAccuracy-value').textContent = tommyGunInaccuracyChanceValue;
 
         // Check if pistol fire rate level is at maximum

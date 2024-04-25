@@ -667,6 +667,8 @@ function updateCostDisplay() {
     const ak47PotencyValue = ak47PointsPerShot;
     const rocketLauncherFirerateValue = rocketLauncherFireRate;
     const rocketLauncherPotencyValue = rocketLauncherPointsPerShot;
+    const rocketLauncherSplashRadiusValue = rocketLauncherSplashRadius;
+    const rocketLauncherSplashDamageValue = rocketLauncherSplashDamage;
     const tommyGunFirerateValue = tommyGunFireRate;
     const tommyGunPotencyValue = tommyGunPointsPerShot;
     const tommyGunInaccuracyChanceValue = tommyGunInaccuracyChance;
@@ -735,6 +737,8 @@ function updateCostDisplay() {
     document.getElementById('rocketLauncherSplashDamage-level').textContent = rocketLauncherSplashDamageLevel;
     document.getElementById('rocketLauncherFirerate-value').textContent = rocketLauncherFirerateValue + 'ms';
     document.getElementById('rocketLauncherPotency-value').textContent = formatNumber(rocketLauncherPotencyValue);
+    document.getElementById('rocketLauncherSplashRadius-value').textContent = rocketLauncherSplashRadiusValue;
+    document.getElementById('rocketLauncherSplashDamage-value').textContent = rocketLauncherSplashDamageValue;
 
     document.getElementById('tommyGun-cost').textContent = formatNumber(tommyGunCost);
     document.getElementById('tommyGunFirerate-cost').textContent = formatNumber(tommyGunFirerateUpgradeCost);

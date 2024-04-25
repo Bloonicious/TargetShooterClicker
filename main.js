@@ -457,6 +457,16 @@ function loadGameState() {
                 rocketLauncherFirerateCostDisplay.textContent = "MAX";
             }
         }
+        if (rocketLauncherSplashRadiusLevel === 5) {
+            const rocketLauncherSplashRadiusLevelDisplay = document.getElementById('rocketLauncherSplashRadius-level');
+            if (rocketLauncherSplashRadiusLevelDisplay) {
+                rocketLauncherSplashRadiusLevelDisplay.textContent = "Max";
+            }
+            const rocketLauncherSplashRadiusCostDisplay = document.getElementById('rocketLauncherSplashRadius-cost');
+            if (rocketLauncherSplashRadiusCostDisplay) {
+                rocketLauncherSplashRadiusCostDisplay.textContent = "MAX";
+            }
+        }
         if (tommyGunFirerateLevel === 20) {
             const tommyGunFirerateLevelDisplay = document.getElementById('tommyGunFirerate-level');
             if (tommyGunFirerateLevelDisplay) {

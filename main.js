@@ -719,8 +719,9 @@ function resetProgress() {
             document.getElementById('tommyGun-purchase').style.display = 'block';
         }
         if (upgrades.touchGun.awakenUpgrade.bought === false) {
-            document.getElementById('touchGunAwaken-purchase').style.display = 'block';
-            document.getElementById('touchGunAwaken-level').style.display = 'block';
+            document.getElementById('touchGunAwaken-purchase').style.display = 'none';
+            document.getElementById('touchGunAwaken-cost').style.display = 'none';
+            document.getElementById('touchGunAwaken-level').style.display = 'none';
         }
 
         // Update the interface

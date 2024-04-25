@@ -113,6 +113,9 @@ function saveGameState() {
         touchGunCost: touchGunCost,
         touchGunPointsPerClick: touchGunPointsPerClick,
         touchGunLevel: touchGunLevel,
+
+        awokenTouchGunCost: awokenTouchGunCost,
+        awokenTouchGunLevel: awokenTouchGunLevel,
         
         numberFormat: numberFormat, // Add the selected number format to the game state
 
@@ -234,6 +237,9 @@ function loadGameState() {
         touchGunCost = gameState.touchGunCost,
         touchGunPointsPerClick = gameState.touchGunPointsPerClick;
         touchGunLevel = gameState.touchGunLevel;
+
+        awokenTouchGunCost = gameState.awokenTouchGunCost;
+        awokenTouchGunLevel = gameState.awokenTouchGunLevel;
 
         numberFormat = gameState.numberFormat;
 
@@ -505,6 +511,10 @@ function loadGameState() {
                 tommyGunFirerateCostDisplay.textContent = "MAX";
             }
         }
+        if (upgrades.touchGun.awakenUpgrade.bought) {
+            document.getElementById('touchGunAwaken-cost').textContent = formatNumber(awokenTouchGunCost);
+            document.getElementById('touchGunAwaken-level').textContent = awokenTouchGunLevel;
+        }
         
         // Hide purchase buttons for purchased weapons
         if (pistolPurchased) {
@@ -561,6 +571,9 @@ function resetProgress() {
         touchGunCost = 100;
         touchGunPointsPerClick = 1;
         touchGunLevel = 0;
+
+        awokenTouchGunCost = 500000;
+        awokenTouchGunLevel = 0;
 
         numberFormat = 'standard';
 
@@ -699,6 +712,10 @@ function resetProgress() {
         }
         if (tommyGunPurchased === false) {
             document.getElementById('tommyGun-purchase').style.display = 'block';
+        }
+        if (upgrades.touchGun.awakenUpgrade.bought === false) {
+            document.getElementById('touchGunAwaken-cost').style.display = 'block';
+            document.getElementById('touchGunAwaken-level').style.display = 'block';
         }
 
         // Update the interface

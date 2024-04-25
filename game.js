@@ -947,6 +947,41 @@ function shoot(weaponId, pointsPerShot, critical) {
         floatingText.textContent = ' Miss!';
     }
 
+    // Handle rocket launcher's splash radius
+    if (weaponId === 'rocketLauncher') {
+        // Get all shooting-range targets
+        const targets = document.querySelectorAll('.target');
+        
+        // Loop through targets and calculate distance from the center
+        targets.forEach(t => {
+            const tRect = t.getBoundingClientRect();
+            const tCenterX = tRect.left + tRect.width / 2;
+            const tCenterY = tRect.top + tRect.height / 2;
+            
+            const distanceX = Math.abs(centerX - tCenterX);
+            const distanceY = Math.abs(centerY - tCenterY);
+            
+            // Check if the target is within the splash radius
+            if (distanceX <= 50 && distanceY <= 50 && !(distanceX === 0 && distanceY === 0)) {
+                // Apply splash damage
+                const splashDamage = rocketLauncherSplashDamage; // 40% of points per shot
+                points *= splashDamage;
+                updatePointsDisplay();
+                
+                // Show splash damage text for each affected target
+                const splashText = document.createElement('div');
+                splashText.textContent = '+' + formatNumber(splashDamage);
+                splashText.classList.add('floating-text');
+                splashText.style.left = tCenterX + 'px';
+                splashText.style.top = tCenterY + 'px';
+                floatingTextContainer.appendChild(splashText);
+                setTimeout(() => {
+                    splashText.remove();
+                }, 1000); // Adjust the delay as needed
+            }
+        });
+    }
+
     // Append the floating text to the container
     const floatingTextContainer = document.getElementById('floating-text-container');
     floatingTextContainer.appendChild(floatingText);

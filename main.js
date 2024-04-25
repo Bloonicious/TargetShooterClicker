@@ -388,7 +388,7 @@ function loadGameState() {
         document.getElementById('tommyGun-cost').textContent = formatNumber(tommyGunCost);
         document.getElementById('tommyGunFirerate-cost').textContent = formatNumber(tommyGunFirerateUpgradeCost);
         document.getElementById('tommyGunPotency-cost').textContent = formatNumber(tommyGunPotencyUpgradeCost);
-        document.getElementById('tommyGunAccuracy-cost').textContent = formatNumber(tommyGunPotencyUpgradeCost);
+        document.getElementById('tommyGunAccuracy-cost').textContent = formatNumber(tommyGunAccuracyUpgradeCost);
         document.getElementById('tommyGunFirerate-level').textContent = tommyGunFirerateLevel;
         document.getElementById('tommyGunPotency-level').textContent = tommyGunPotencyLevel;
         document.getElementById('tommyGunAccuracy-level').textContent = tommyGunAccuracyLevel;

@@ -894,6 +894,12 @@ function shoot(weaponId, pointsPerShot, critical) {
     floatingText.style.left = centerX + 'px';
     floatingText.style.top = centerY + 'px';
 
+    // Check if the shot misses the center based on Tommy Gun's inaccuracy chance
+    if (weaponId === 'tommyGun' && Math.random() < tommyGunInaccuracyChance) {
+        floatingText.textContent = 'Miss!';
+        floatingText.style.color = 'orange-crimson';
+    }
+
     // Append the floating text to the container
     const floatingTextContainer = document.getElementById('floating-text-container');
     floatingTextContainer.appendChild(floatingText);

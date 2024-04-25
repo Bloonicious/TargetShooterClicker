@@ -505,7 +505,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 touchGunCost = cost;
                 touchGunLevel = level;
                 touchGunPointsPerClick += valueIncrement;
-                if (upgrades.touchGun.pointyFingers.bought && upgrades.touchGun.ambidextrous.bought) {
+                if (upgrades.touchGun.pointyFingers.bought || upgrades.touchGun.ambidextrous.bought) {
                     valueIncrement *= 2; // Multiplies valueIncrement by 2 if both of those touchGun upgrades are purchased
                 }
                 break;
@@ -513,7 +513,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 awokenTouchGunCost = cost;
                 awokenTouchGunLevel = level;
                 touchGunPointsPerClick += valueIncrement;
-                if (upgrades.touchGun.pointyFingers.bought && upgrades.touchGun.ambidextrous.bought) {
+                if (upgrades.touchGun.pointyFingers.bought || upgrades.touchGun.ambidextrous.bought) {
                     valueIncrement *= 2; // Multiplies valueIncrement by 2 if both of those touchGun upgrades are purchased
                 }
                 break;

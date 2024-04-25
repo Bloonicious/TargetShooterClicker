@@ -117,14 +117,28 @@ function saveGameState() {
         numberFormat: numberFormat, // Add the selected number format to the game state
 
         // Add big upgrade data for each weapon
+        touchGunPointyFingersBought: upgrades.touchGun.pointyFingers.bought,
+        touchGunAmbidextrousBought: upgrades.touchGun.ambidextrous.bought,
+        touchGunTapMasterBought: upgrades.touchGun.tapMaster.bought,
+        touchGunAwakenBought: upgrades.touchGun.awakenUpgrade.bought,
+        
         pistolBiggerBulletsBought: upgrades.pistol.biggerBullets.bought,
         pistolLargerCalibreBought: upgrades.pistol.largerCalibre.bought,
+        
         smgBetterSpreadBought: upgrades.smg.betterSpread.bought,
         smgStrongHoldBought: upgrades.smg.strongHold.bought,
+        
         shotgunMoreBarrelsBought: upgrades.shotgun.moreBarrels.bought,
         shotgunPowerfulBurstBought: upgrades.shotgun.powerfulBurst.bought,
+        
         sniperRifleDeadlyPrecisionBought: upgrades.sniperRifle.deadlyPrecision.bought,
+        sniperRifleCripplingShotsBought: upgrades.sniperRifle.cripplingShots.bought,
+        
         ak47HeatTippedBulletsBought: upgrades.ak47.heatTippedBullets.bought,
+        
+        rocketLauncherPotentRocketsBought: upgrades.rocketLauncher.potentRockets.bought,
+        
+        tommyGunPreciseAccuracyBought: upgrades.tommyGun.preciseAccuracy.bought,
         
         pistolPurchased: pistolPurchased,
         pistolPointsPerShot: pistolPointsPerShot,
@@ -224,14 +238,28 @@ function loadGameState() {
         numberFormat = gameState.numberFormat;
 
         // Load big upgrade data for each weapon
+        upgrades.touchGun.pointyFingers.bought = gameState.touchGunPointyFingersBought;
+        upgrades.touchGun.ambidextrous.bought = gameState.touchGunAmbidextrousBought;
+        upgrades.touchGun.tapMaster.bought = gameState.touchGunTapMasterBought;
+        upgrades.touchGun.awakenUpgrade.bought = gameState.touchGunAwakenBought;
+        
         upgrades.pistol.biggerBullets.bought = gameState.pistolBiggerBulletsBought;
         upgrades.pistol.largerCalibre.bought = gameState.pistolLargerCalibreBought;
+        
         upgrades.smg.betterSpread.bought = gameState.smgBetterSpreadBought;
         upgrades.smg.strongHold.bought = gameState.smgStrongHoldBought;
+        
         upgrades.shotgun.moreBarrels.bought = gameState.shotgunMoreBarrelsBought;
         upgrades.shotgun.powerfulBurst.bought = gameState.shotgunPowerfulBurstBought;
+        
         upgrades.sniperRifle.deadlyPrecision.bought = gameState.sniperRifleDeadlyPrecisionBought;
+        upgrades.sniperRifle.cripplingShots.bought = gameState.sniperRifleCripplingShotsBought;
+        
         upgrades.ak47.heatTippedBullets.bought = gameState.ak47HeatTippedBulletsBought;
+
+        upgrades.rocketLauncher.potentRockets.bought = gameState.rocketLauncherPotentRocketsBought;
+
+        upgrades.tommyGun.preciseAccuracy.bought = gameState.tommyGunPreciseAccuracyBought;
         
         pistolPurchased = gameState.pistolPurchased;
         pistolPointsPerShot = gameState.pistolPointsPerShot;
@@ -537,14 +565,28 @@ function resetProgress() {
         numberFormat = 'standard';
 
         // Reset big upgrades
+        upgrades.touchGun.pointyFingers.bought = false;
+        upgrades.touchGun.ambidextrous.bought = false;
+        upgrades.touchGun.tapMaster.bought = false;
+        upgrades.touchGun.awakenUpgrade.bought = false;
+        
         upgrades.pistol.biggerBullets.bought = false;
         upgrades.pistol.largerCalibre.bought = false;
+        
         upgrades.smg.betterSpread.bought = false;
         upgrades.smg.strongHold.bought = false;
+        
         upgrades.shotgun.moreBarrels.bought = false;
         upgrades.shotgun.powerfulBurst.bought = false;
+        
         upgrades.sniperRifle.deadlyPrecision.bought = false;
+        upgrades.sniperRifle.cripplingShots.bought = false;
+        
         upgrades.ak47.heatTippedBullets.bought = false;
+
+        upgrades.rocketLauncher.potentRockets.bought = false;
+
+        upgrades.tommyGun.preciseAccuracy.bought = false;
         
         pistolPurchased = false;
         pistolCost = 10;

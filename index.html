@@ -226,6 +226,40 @@
                     <p id="rocketLauncher-splash-radius-display">Rocket Launcher Splash Radius Level: <span id="rocketLauncherSplashRadius-level">0</span> (<span id="rocketLauncherSplashRadius-value">3x3</span>)</p>
                     <p id="rocketLauncher-splash-damage-display">Rocket Launcher Splash Damage Level: <span id="rocketLauncherSplashDamage-level">0</span> (<span id="rocketLauncherSplashDamage-value">40%</span>)</p>
                 </div>
+                <div class="weapon-zone" id="tommyGun-zone">
+                    <!-- Tommy Gun ASCII representation -->
+                    <pre id="tommyGun">
+                        <!-- ASCII representation of the Tommy Gun -->
+                     ______
+                    /  \   \
+                    |  |    \
+                    |  |     \
+                    \  \______\
+                     \________|
+                     |   ___  |
+                     |  |___| |
+                     |________|
+                     |________|
+                     |________|
+                    </pre>
+                    <!-- Target for Tommy Gun -->
+                    <pre class="target" id="tommyGun-target">
+                       ___
+                     //   \\
+                    //     \\
+                   //       \\
+                   \\       //
+                    \\_____//
+                     \\___//
+                       ‾‾‾
+                    </pre>
+                    <!-- Purchase button and upgrades for Tommy Gun -->
+                    <button id="tommyGun-purchase" onclick="purchase('tommyGun')">Purchase Tommy Gun (Cost: <span id="tommyGun-cost">2500000</span>)</button><button onclick="purchase('tommyGunFirerate')">Improve Tommy Gun's Firerate (Cost: <span id="tommyGunFirerate-cost">15000000</span>)</button><button onclick="purchase('tommyGunPotency')">Improve Tommy Gun's Potency (Cost: <span id="tommyGunPotency-cost">10000000</span>)</button><button onclick="purchase('tommyGunAccuracy')">Improve Tommy Gun's Accuracy (Cost: <span id="tommyGunAccuracy-cost">20000000</span>)</button>
+                    <!-- Level displays for Tommy Gun upgrades -->
+                    <p id="tommyGun-firerate-display">Tommy Gun Firerate Level: <span id="tommyGunFirerate-level">0</span> (<span id="tommyGunFirerate-value">150</span>ms)</p>
+                    <p id="tommyGun-potency-display">Tommy Gun Potency Level: <span id="tommyGunPotency-level">0</span> (<span id="tommyGunPotency-value">600</span> points per shot)</p>
+                    <p id="tommyGun-accuracy-display">Tommy Gun Accuracy Level: <span id="tommyGunAccuracy-level">0</span> (<span id="tommyGunAccuracy-value">50%</span> less points for inaccurate shots)</p>
+                </div>
             </div>
         </div>
     </div>
@@ -241,7 +275,7 @@
         <div id="buy-upgrades" class="subtab">
             <!-- Upgrade options and their costs -->
             <div id="buy-upgrade-list">
-                <!-- Pistol Upgrades -->
+                <!-- Pistol Big Upgrades -->
                 <div class="upgrade-option" id="pistol-biggerBullets">
                     <button onclick="bigUpgrades('pistol', 'biggerBullets', 1000)">Pistol: Bigger Bullets</button>
                     <span class="upgrade-cost">Cost: 1,000</span>
@@ -254,28 +288,40 @@
                     <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
                 </div>
 
-                <!-- SMG Upgrade: Better Spread -->
+                <!-- SMG Big Upgrades -->
                 <div class="upgrade-option" id="smg-betterSpread">
                     <button onclick="bigUpgrades('smg', 'betterSpread', 10000)">SMG: Better Spread</button>
                     <span class="upgrade-cost">Cost: 10,000</span>
                     <p class="upgrade-description">Doubles the amount of points yielded from target shots</p>
                 </div>
 
-                <!-- Shotgun Upgrade: More Barrels -->
+                <div class="upgrade-option" id="smg-strongHold">
+                    <button onclick="bigUpgrades('smg', 'strongHold', 3000000)">SMG: Strong Hold</button>
+                    <span class="upgrade-cost">Cost: 3,000,000</span>
+                    <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
+                </div>
+
+                <!-- Shotgun Big Upgrades -->
                 <div class="upgrade-option" id="shotgun-moreBarrels">
                     <button onclick="bigUpgrades('shotgun', 'moreBarrels', 100000)">Shotgun: More Barrels</button>
                     <span class="upgrade-cost">Cost: 100,000</span>
                     <p class="upgrade-description">Increases the amount of bullets shot from the shotgun by 2</p>
                 </div>
 
-                <!-- Sniper Rifle Upgrade: Deadly Precision -->
+                <div class="upgrade-option" id="shotgun-powerfulBurst">
+                    <button onclick="bigUpgrades('shotgun', 'powerfulBurst', 15000000)">Shotgun: Powerful Burst</button>
+                    <span class="upgrade-cost">Cost: 15,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of points yielded from target shots</p>
+                </div>
+
+                <!-- Sniper Rifle Big Upgrades -->
                 <div class="upgrade-option" id="sniperRifle-deadlyPrecision">
                     <button onclick="bigUpgrades('sniperRifle', 'deadlyPrecision', 2000000)">Sniper Rifle: Deadly Precision</button>
                     <span class="upgrade-cost">Cost: 2,000,000</span>
                     <p class="upgrade-description">Increases the critical damage multiplier factor by 1</p>
                 </div>
 
-                <!-- AK-47 Upgrade: Heat-tipped Bullets -->
+                <!-- AK-47 Big Upgrades -->
                 <div class="upgrade-option" id="ak47-heatTippedBullets">
                     <button onclick="bigUpgrades('ak47', 'heatTippedBullets', 15000000)">AK-47: Heat-tipped Bullets</button>
                     <span class="upgrade-cost">Cost: 15,000,000</span>

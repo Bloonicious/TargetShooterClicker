@@ -138,7 +138,7 @@ function loadPurchasedBigUpgrades(purchasedBigUpgradeIds) {
 // Function to save the game state to local storage
 function saveGameState() {
     var gameState = {
-        score: points,
+        points: points,
         touchGunCost: touchGunCost,
         touchGunPointsPerClick: touchGunPointsPerClick,
         touchGunLevel: touchGunLevel,
@@ -147,6 +147,10 @@ function saveGameState() {
         awokenTouchGunLevel: awokenTouchGunLevel,
         
         numberFormat: numberFormat, // Add the selected number format to the game state
+
+        // Add statistics data to the save file
+        weaponUpgradeLevels: statistics.weaponUpgradeLevels,
+        lifetimePoints: statistics.lifetimePoints,
 
         // Add big upgrade data for each weapon
         touchGunPointyFingersBought: upgrades.touchGun.pointyFingers.bought,
@@ -302,12 +306,19 @@ function saveGameState() {
 
 // Function to load the game state from local storage
 function loadGameState() {
+    const savedState = JSON.parse(localStorage.getItem('gameState'));
+    if (savedState) {
+        points = savedState.points;
+        statistics.weaponUpgradeLevels = savedState.weaponUpgradeLevels; // Load statistics data
+        statistics.lifetimePoints = savedState.lifetimePoints; // Load lifetime points
+        updateStatisticsDisplay(); // Update statistics display after loading
+        updatePointsDisplay(); // Update points display after loading
+    }
     var gameStateJSON = localStorage.getItem('gameState');
-
     if (gameStateJSON !== null) {
         var gameState = JSON.parse(gameStateJSON);
 
-        points = gameState.score;
+        points = gameState.points;
         touchGunCost = gameState.touchGunCost,
         touchGunPointsPerClick = gameState.touchGunPointsPerClick;
         touchGunLevel = gameState.touchGunLevel;
@@ -716,6 +727,20 @@ function resetProgress() {
         localStorage.removeItem('gameState');
         // Reset all variables to their default values
         points = 0;
+        statistics = {
+        lifetimePoints: 0,
+        weaponUpgradeLevels: {
+                touchGun: { firerate: 0, potency: 0 },
+                pistol: { firerate: 0, potency: 0 },
+                smg: { firerate: 0, potency: 0 },
+                shotgun: { firerate: 0, potency: 0, multiFire: 0 },
+                sniperRifle: { firerate: 0, potency: 0, criticalChance: 0, criticalDamage: 0 },
+                ak47: { firerate: 0, potency: 0 },
+                rocketLauncher: { firerate: 0, potency: 0, splashRadius: 0, splashDamage: 0 },
+                tommyGun: { firerate: 0, potency: 0, accuracy: 0 },
+                doubleBarrel: { firerate: 0, potency: 0, multiFire: 0 }
+            }
+        };
         touchGunCost = 100;
         touchGunPointsPerClick = 1;
         touchGunLevel = 0;
@@ -916,7 +941,8 @@ function resetProgress() {
             document.getElementById('touchGunAwaken-display').style.display = 'none';
         }
 
-        // Update the interface
+        // Update the interfaces
+        updateStatisticsDisplay();
         updatePointsDisplay();
         // Add any other interface updates here
     }

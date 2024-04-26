@@ -145,6 +145,18 @@ const upgrades = {
                 pistolPointsPerShot *= 3; // Triples the amount of points per shot
             }
         },
+        easierReloading: {
+            cost: 2500000,
+            effect: function() {
+                pistolFireRate -= 150; // Reduces the fire rate speed (in milliseconds) for the pistol
+            }
+        },
+        louderFiring: {
+            cost: 17500000,
+            effect: function() {
+                pistolPointsPerShot *= 3; // Triples the amount of points per shot
+            }
+        },
         // Add more upgrades for pistol here
     },
     smg: {
@@ -156,6 +168,12 @@ const upgrades = {
         },
         strongHold: {
             cost: 3000000,
+            effect: function() {
+                smgPointsPerShot *= 3;
+            }
+        },
+        pressureBullets: {
+            cost: 40000000,
             effect: function() {
                 smgPointsPerShot *= 3;
             }
@@ -197,6 +215,12 @@ const upgrades = {
             cost: 15000000,
             effect: function() {
                 ak47PointsPerShot *= 2;
+            }
+        },
+        staggeringBullets: {
+            cost: 2500000000,
+            effect: function() {
+                ak47PointsPerShot *= 3;
             }
         },
         // Add more upgrades for ak47 here
@@ -539,8 +563,8 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.pistol.biggerBullets.bought) {
                     valueIncrement *= 2; // Multiplies valueIncrement by 2 if biggerBullets upgrade is purchased
                 }
-                if (upgrades.pistol.largerCalibre.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if largerCalibre upgrade is purchased
+                if (upgrades.pistol.largerCalibre.bought || upgrades.pistol.louderFiring.bought) {
+                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the largerCalibre and louderFiring and upgrades were purchased
                 }
                 pistolPointsPerShot += valueIncrement;
                 break;
@@ -560,8 +584,8 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.smg.betterSpread.bought) {
                     valueIncrement *= 2; // Multiplies valueIncrement by 2 if the betterSpread upgrade is purchased
                 }
-                if (upgrades.smg.strongHold.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the strongHold upgrade is purchased
+                if (upgrades.smg.strongHold.bought || upgrades.smg.pressureBullets.bought) {
+                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the strongHold and pressureBullets upgrades were purchased
                 }
                 smgPointsPerShot += valueIncrement;
                 break;
@@ -631,6 +655,9 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 ak47PotencyLevel = level;
                 if (upgrades.ak47.heatTippedBullets.bought) {
                     valueIncrement *= 2; // Multiplies valueIncrement by 2 if the heatTippedBullets upgrade is purchased
+                }
+                if (upgrades.ak47.staggeringBullets.bought) {
+                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the staggeringBullets upgrade is purchased
                 }
                 ak47PointsPerShot += valueIncrement;
                 break;

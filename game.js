@@ -1526,14 +1526,14 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     }
 }
 
-// Example function to generate points
-function generatePoints(points) {
-    // Add points to the lifetime total
-    points += points;
+// Function to generate points for statistics
+function generatePoints(amount) {
+    // Increment the global points variable
+    points += amount;
     
-    // Emit event to notify statistics.js about the points generated
-    const pointsGeneratedEvent = new CustomEvent('pointsGenerated', { detail: { points: points } });
-    document.dispatchEvent(pointsGeneratedEvent);
+    // Emit an event to notify statistics.js about the points earned
+    const pointsEarnedEvent = new CustomEvent('pointsEarned', { detail: { pointsEarned: amount } });
+    document.dispatchEvent(pointsEarnedEvent);
 }
 
 // Example function to upgrade weapon level

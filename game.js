@@ -356,7 +356,7 @@ const upgrades = {
         biggerExplosions: {
             cost: 250000000000,
             effect: function() {
-                rocketLauncherSplashRadius += 1;
+                rocketLauncherSplashRadius += 10;
             }
         },
         extraGunpowder: {

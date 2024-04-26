@@ -1526,6 +1526,91 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     }
 }
 
+// Example function to generate points
+function generatePoints(points) {
+    // Add points to the lifetime total
+    points += points;
+    
+    // Emit event to notify statistics.js about the points generated
+    const pointsGeneratedEvent = new CustomEvent('pointsGenerated', { detail: { points: points } });
+    document.dispatchEvent(pointsGeneratedEvent);
+}
+
+// Example function to upgrade weapon level
+function upgradeWeaponLevel(weapon, upgradeType) {
+    // Perform upgrade logic
+    switch (weapon) {
+        case 'pistol':
+            // Upgrade pistol level
+            switch (upgradeType) {
+                case 'firerate':
+                    // Upgrade pistol firerate level
+                    pistolFirerateLevel++;
+                    break;
+                case 'potency':
+                    // Upgrade pistol potency level
+                    pistolPotencyLevel++;
+                    break;
+                default:
+                    console.error('Invalid upgrade type for pistol.');
+                    return;
+            }
+            break;
+        case 'smg':
+            // Upgrade SMG level
+            switch (upgradeType) {
+                case 'firerate':
+                    // Upgrade SMG firerate level
+                    smgFirerateLevel++;
+                    break;
+                case 'potency':
+                    // Upgrade SMG potency level
+                    smgPotencyLevel++;
+                    break;
+                default:
+                    console.error('Invalid upgrade type for SMG.');
+                    return;
+            }
+            break;
+        case 'ak47':
+            // Upgrade AK-47 level
+            switch (upgradeType) {
+                case 'firerate':
+                    // Upgrade AK-47 firerate level
+                    ak47FirerateLevel++;
+                    break;
+                case 'potency':
+                    // Upgrade AK-47 potency level
+                    ak47PotencyLevel++;
+                    break;
+                default:
+                    console.error('Invalid upgrade type for AK-47.');
+                    return;
+            }
+            break;
+        case 'shotgun':
+        case 'doubleBarrel':
+            // Upgrade shotgun/double barrel level
+            switch (upgradeType) {
+                case 'multiFire':
+                    // Upgrade shotgun/double barrel multi-fire level
+                    shotgunMultiFireLevel++;
+                    break;
+                default:
+                    console.error('Invalid upgrade type for shotgun/double barrel.');
+                    return;
+            }
+            break;
+        default:
+            console.error('Invalid weapon.');
+            return;
+    }
+    
+    // Emit event to notify statistics.js about the weapon level upgrade
+    const upgradeLevelUpdatedEvent = new CustomEvent('upgradeLevelUpdated', { detail: { weapon: weapon, upgradeType: upgradeType } });
+    document.dispatchEvent(upgradeLevelUpdatedEvent);
+}
+
 // Update points and cost display initially
 updatePointsDisplay();
 updateCostDisplay();

@@ -49,9 +49,12 @@ let statistics = {
 };
 
 // Function to update lifetime points
-function updateLifetimePoints(points) {
-    statistics.lifetimePoints += points;
-    updateStatisticsDisplay();
+function updateLifetimePoints() {
+    const lifetimePointsElement = document.getElementById('lifetime-points');
+    if (lifetimePointsElement) {
+        lifetimePointsElement.textContent = points.toLocaleString(); // Format lifetime points
+        statistics.lifetimePoints = points; // Update statistics data with current points
+    }
 }
 
 // Function to update weapon upgrade levels

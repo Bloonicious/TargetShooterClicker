@@ -1406,6 +1406,8 @@ function playWeaponSoundEffect(weaponId) {
 }
 
 function shoot(weaponId, pointsPerShot, critical, miss) {
+    // Define floatingTextContainer variable
+    const floatingTextContainer = document.getElementById('floating-text-container');
     // Generate points and display them as floating text
     const floatingText = document.createElement('div');
     floatingText.textContent = '+' + formatNumber(pointsPerShot);
@@ -1483,10 +1485,6 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
             }
         });
     }
-
-    // Append the floating text to the container
-    const floatingTextContainer = document.getElementById('floating-text-container');
-    floatingTextContainer.appendChild(floatingText);
 
     // Remove the floating text after a short delay
     setTimeout(() => {

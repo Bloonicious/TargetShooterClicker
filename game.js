@@ -1031,12 +1031,11 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     floatingText.textContent = '+' + formatNumber(pointsPerShot);
     floatingText.classList.add('floating-text');
 
-    // Set text color based on critical and miss status
+    // Check if it's a critical hit or miss
     if (critical) {
         floatingText.classList.add('critical'); // Add critical class for critical hits
         floatingText.textContent += ' Crit!';
-    }
-    else if (miss) {
+    } else if (miss) {
         floatingText.classList.add('miss'); // Add miss class for missed shots
         floatingText.textContent += ' Miss!';
     }

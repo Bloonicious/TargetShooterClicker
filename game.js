@@ -665,7 +665,10 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 2;
                 }
                 if (upgrades.touchGun.ambidextrous.bought) {
-                    valueIncrement *= 2
+                    valueIncrement *= 2;
+                }
+                if (upgrades.touchGun.bazillionFingers.bought) {
+                    valueIncrement *= 5;
                 }
                 break;
             case 'touchGunAwaken':
@@ -677,6 +680,9 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 }
                 if (upgrades.touchGun.ambidextrous.bought) {
                     valueIncrement *= 2;
+                }
+                if (upgrades.touchGun.bazillionFingers.bought) {
+                    valueIncrement *= 5;
                 }
                 break;
             case 'pistolFirerate':

@@ -69,6 +69,10 @@ function switchMiniTab(subtab, weaponId) {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    switchMiniTab('buy', 'touchGun');
+});
+
 let soundEnabled = true; // Ensure sound is enabled by default
 
 function toggleSound() {

@@ -744,6 +744,12 @@ function bigUpgrades(weapon, upgrade, cost) {
         return;
     }
 
+    // Check if the upgrade is already bought
+    if (upgradeData.bought) {
+        alert(`${upgrade} already bought!`);
+        return; // Exit the function if the upgrade is already bought
+    }
+
     // Check if the player has enough points to purchase the upgrade
     if (points >= cost) {
         // Deduct the cost of the upgrade from the player's points
@@ -758,7 +764,7 @@ function bigUpgrades(weapon, upgrade, cost) {
         // Mark the upgrade as bought to prevent re-purchasing
         upgradeData.bought = true;
 
-        // Update the cost display to indicate "Bought!" for already purchased upgrades
+        // Update the cost display to indicate "Bought!" and format the cost
         const costDisplay = upgradeOption.querySelector('.upgrade-cost');
         if (costDisplay) {
             costDisplay.textContent = "Bought!";

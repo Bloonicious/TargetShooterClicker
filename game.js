@@ -6,6 +6,9 @@ let touchGunLevel = 0;
 let awokenTouchGunCost = 500000;
 let awokenTouchGunLevel = 0;
 
+let superAwokenTouchGunCost = 500000000000;
+let superAwokenTouchGunLevel = 0;
+
 let pistolCost = 10;
 let pistolPointsPerShot = 1;
 let pistolFireRate = 1000; // in milliseconds
@@ -115,6 +118,8 @@ let lastRocketLauncherPointsTime = 0;
 let lastTommyGunPointsTime = 0;
 let lastDoubleBarrelPointsTime = 0;
 
+let totalPotencyLevel = pistolPotencyLevel + smgPotencyLevel + shotgunPotencyLevel + sniperRiflePotencyLevel + ak47PotencyLevel + rocketLauncherPotencyLevel + tommyGunPotencyLevel + doubleBarrelPotencyLevel;
+
 const weaponSFX = {};
 const upgrades = {
     touchGun: {
@@ -133,10 +138,7 @@ const upgrades = {
         tapMaster: {
             cost: 250000,
             effect: function() {
-                const totalPotencyLevel = pistolPotencyLevel + smgPotencyLevel + shotgunPotencyLevel + sniperRiflePotencyLevel + ak47PotencyLevel + rocketLauncherPotencyLevel + tommyGunPotencyLevel;
-                if (totalPotencyLevel > 0) {
-                    touchGunPointsPerClick + 0.5 * totalPotencyLevel * -2 // Increases touch gun value based on the current potency levels of those weapons
-                }
+                touchGunPointsPerClick + 0.5 * totalPotencyLevel; // Increases touch gun value based on the current potency levels of those weapons
             }
         },
         antirestingCream: {
@@ -153,6 +155,16 @@ const upgrades = {
         },
         awakenUpgrade: {
             cost: 100000000,
+            effect: function() {}
+        },
+        potentTaps: {
+            cost: 250000000,
+            effect: function() {
+                touchGunPointsPerClick + 5 * totalPotencyLevel; // Increases touch gun value based on the current potency levels of those weapons
+            }
+        },
+        superAwakenUpgrade: {
+            cost: 100000000000000,
             effect: function() {}
         },
         // Add more upgrades for touchGun here
@@ -194,6 +206,19 @@ const upgrades = {
                 pistolPointsPerShot *= 4; // Quadruples the amount of points per shot
             }
         },
+        fineTuning: {
+            cost: 10000000000,
+            effect: function() {
+                pistolPointsPerShot *= 1.5;
+                pistolFireRate -= 100;
+            }
+        },
+        versatileGunshots: {
+            cost: 100000000000,
+            effect: function() {
+                pistolPointsPerShot *= 5;
+            }
+        },
         // Add more upgrades for pistol here
     },
     smg: {
@@ -233,6 +258,18 @@ const upgrades = {
                 smgPointsPerShot *= 4;
             }
         },
+        lightweight: {
+            cost: 50000000000,
+            effect: function() {
+                smgFireRate *= 0.85;
+            }
+        },
+        metalPassers: {
+            cost: 250000000000,
+            effect: function() {
+                smgPointsPerShot *= 5;
+            }
+        },
         // Add more upgrades for smg here
     },
     shotgun: {
@@ -264,6 +301,18 @@ const upgrades = {
             cost: 50000000000,
             effect: function() {
                 shotgunBulletsPerShot *= 2; // Multiplies the number of barrels by 2
+            }
+        },
+        gigaBurst: {
+            cost: 300000000000,
+            effect: function() {
+                shotgunPointsPerShot *= 4;
+            }
+        },
+        omegaBurst: {
+            cost: 2000000000000,
+            effect: function() {
+                shotgunPointsPerShot *= 4;
             }
         },
         // Add more upgrades for shotgun here
@@ -299,6 +348,19 @@ const upgrades = {
                 sniperRifleCriticalShotChance += 10; // Increases the critical chance by an additional 10%
             }
         },
+        enhancedTracers: {
+            cost: 150000000000,
+            effect: function() {
+                sniperRiflePointsPerShot *= 3;
+            }
+        },
+        infraredScope: {
+            cost: 750000000000,
+            effect: function() {
+                sniperRiflePointsPerShot *= 2;
+                sniperRifleCriticalDamageMultiplier *= 1.5;
+            }
+        },
         // Add more upgrades for sniperRifle here
     },
     ak47: {
@@ -330,6 +392,18 @@ const upgrades = {
             cost: 1500000000000,
             effect: function() {
                 ak47PointsPerShot *= 4;
+            }
+        },
+        poweredVelocity: {
+            cost: 7500000000000,
+            effect: function() {
+                ak47PointsPerShot *= 2;
+            }
+        },
+        instantaneousVelocity: {
+            cost: 75000000000000,
+            effect: function() {
+                ak47PointsPerShot *= 5;
             }
         },
         // Add more upgrades for ak47 here
@@ -365,6 +439,12 @@ const upgrades = {
                 rocketLauncherPointsPerShot *= 3;
             }
         },
+        shatteringExplosions: {
+            cost: 5000000000000,
+            effect: function() {
+                rocketLauncherPointsPerShot *= 4;
+            }
+        },
         // Add more upgrades for rocketLauncher here
     },
     tommyGun: {
@@ -396,6 +476,12 @@ const upgrades = {
             cost: 750000000000,
             effect: function() {
                 tommyGunPointsPerShot *= 3;
+            }
+        },
+        theVector: {
+            cost: 6000000000000,
+            effect: function() {
+                tommyGunPointsPerShot *= 4;
             }
         },
         // Add more upgrades for tommyGun here
@@ -431,7 +517,13 @@ const upgrades = {
                 doubleBarrelBulletsPerShot *= 2;
             }
         },
-        // Add more upgrades for shotgun here
+        clumpedShots: {
+            cost: 200000000000000,
+            effect: function() {
+                doubleBarrelPointsPerShot *= 4;
+            }
+        },
+        // Add more upgrades for doubleBarrel here
     }
     // Add more weapons and upgrades as needed
 };
@@ -563,7 +655,10 @@ function purchase(item) {
             purchaseUpgrade('touchGun', touchGunLevel, touchGunCost, 2, 1, 'touchGun');
             break;
         case 'touchGunAwaken':
-            purchaseUpgrade('touchGunAwaken', awokenTouchGunLevel, awokenTouchGunCost, 4, 100, 'touchGun');
+            purchaseUpgrade('touchGunAwaken', superAwokenTouchGunLevel, awokenTouchGunCost, 4, 100, 'touchGun');
+            break;
+        case 'touchGunSuperAwaken':
+            purchaseUpgrade('touchGunAwaken', superAwokenTouchGunLevel, awokenTouchGunCost, 8, 10000, 'touchGun');
             break;
         case 'pistol':
             if (!pistolPurchased) {
@@ -761,8 +856,17 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.touchGun.ambidextrous.bought) {
                     valueIncrement *= 2;
                 }
+                if (upgrades.touchGun.tapMaster.bought) {
+                    valueIncrement += 0.5 * totalPotencyLevel;
+                }
+                if (upgrades.touchGun.antirestingCream.bought) {
+                    valueIncrement *= 3;
+                }
                 if (upgrades.touchGun.bazillionFingers.bought) {
                     valueIncrement *= 5;
+                }
+                if (upgrades.touchGun.potentTaps.bought) {
+                    valueIncrement += 5 * totalPotencyLevel;
                 }
                 touchGunPointsPerClick += valueIncrement;
                 break;
@@ -775,8 +879,40 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.touchGun.ambidextrous.bought) {
                     valueIncrement *= 2;
                 }
+                if (upgrades.touchGun.tapMaster.bought) {
+                    valueIncrement += 50 * totalPotencyLevel;
+                }
+                if (upgrades.touchGun.antirestingCream.bought) {
+                    valueIncrement *= 3;
+                }
                 if (upgrades.touchGun.bazillionFingers.bought) {
                     valueIncrement *= 5;
+                }
+                if (upgrades.touchGun.potentTaps.bought) {
+                    valueIncrement += 500 * totalPotencyLevel;
+                }
+                touchGunPointsPerClick += valueIncrement;
+                break;
+            case 'touchGunSuperAwaken':
+                superAwokenTouchGunCost = cost;
+                superAwokenTouchGunLevel = level;
+                if (upgrades.touchGun.pointyFingers.bought) {
+                    valueIncrement *= 2;
+                }
+                if (upgrades.touchGun.ambidextrous.bought) {
+                    valueIncrement *= 2;
+                }
+                if (upgrades.touchGun.tapMaster.bought) {
+                    valueIncrement += 5000 * totalPotencyLevel;
+                }
+                if (upgrades.touchGun.antirestingCream.bought) {
+                    valueIncrement *= 3;
+                }
+                if (upgrades.touchGun.bazillionFingers.bought) {
+                    valueIncrement *= 5;
+                }
+                if (upgrades.touchGun.potentTaps.bought) {
+                    valueIncrement += 50000 * totalPotencyLevel;
                 }
                 touchGunPointsPerClick += valueIncrement;
                 break;
@@ -805,6 +941,12 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.pistol.metalPiercing.bought) {
                     valueIncrement *= 4; // Multiplies valueIncrement by 4 if the metalPiercing upgrade is purchased
                 }
+                if (upgrades.pistol.fineTuning.bought) {
+                    valueIncrement *= 1.5; // Multiplies valueIncrement by 1.5 if the fineTuning upgrade is purchased
+                }
+                if (upgrades.pistol.versatileGunshots.bought) {
+                    valueIncrement *= 5; // Multiplies valueIncrement by 5 if the versatileGunshots upgrade is purchased
+                }
                 pistolPointsPerShot += valueIncrement;
                 break;
             case 'smgFirerate':
@@ -832,6 +974,12 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.smg.bashingRounds.bought) {
                     valueIncrement *= 4; // Multiplies valueIncrement by 4 if the bashingRounds upgrade is purchased
                 }
+                if (upgrades.smg.autoAimer.bought) {
+                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the autoAimer upgrade is purchased
+                }
+                if (upgrades.smg.metalPassers.bought) {
+                    valueIncrement *= 5; // Multiplies valueIncrement by 5 if the metalPassers upgrade is purchased
+                }
                 smgPointsPerShot += valueIncrement;
                 break;
             case 'shotgunFirerate':
@@ -855,6 +1003,12 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 }
                 if (upgrades.shotgun.megaBurst.bought) {
                     valueIncrement *= 3; // Multiplies valueIncrement by 3 if the megaBurst upgrade is purchased
+                }
+                if (upgrades.shotgun.gigaBurst.bought) {
+                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the gigaBurst upgrade is purchased
+                }
+                if (upgrades.shotgun.omegaBurst.bought) {
+                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the omegaBurst upgrade is purchased
                 }
                 shotgunPointsPerShot += valueIncrement;
                 break;
@@ -885,6 +1039,12 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.sniperRifle.dangerousRifling.bought) {
                     valueIncrement *= 3; // Multiplies valueIncrement by 3 if the dangerousRifling upgrade is purchased
                 }
+                if (upgrades.sniperRifle.enhancedTracers.bought) {
+                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the enhancedTracers upgrade is purchased
+                }
+                if (upgrades.sniperRifle.infraredScope.bought) {
+                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the infraredScope upgrade is purchased
+                }
                 sniperRiflePointsPerShot += valueIncrement;
                 break;
             case 'sniperRifleCriticalShot':
@@ -895,6 +1055,9 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'sniperRifleCriticalDamage':
                 sniperRifleCriticalDamageUpgradeCost = cost;
                 sniperRifleCriticalDamageLevel = level;
+                if (upgrades.sniperRifle.infraredScope.bought) {
+                    valueIncrement *= 1.5;
+                }
                 sniperRifleCriticalDamageMultiplier += valueIncrement;
                 break;
             case 'ak47Firerate':
@@ -925,6 +1088,12 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.ak47.overbearingVelocity.bought) {
                     valueIncrement *= 4; // Multiplies valueIncrement by 4 if the overbearingVelocity upgrade is purchased
                 }
+                if (upgrades.ak47.poweredVelocity.bought) {
+                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the poweredVelocity upgrade is purchased
+                }
+                if (upgrades.ak47.instantaneousVelocity.bought) {
+                    valueIncrement *= 5; // Multiplies valueIncrement by 5 if the instantaneousVelocity upgrade is purchased
+                }
                 ak47PointsPerShot += valueIncrement;
                 break;
             case 'rocketLauncherFirerate':
@@ -948,6 +1117,9 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 }
                 if (upgrades.rocketLauncher.extraGunpowder.bought) {
                     valueIncrement *= 3; // Multiplies valueIncrement by 3 if the extraGunpowder upgrade is purchased
+                }
+                if (upgrades.rocketLauncher.shatteringExplosions.bought) {
+                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the shatteringExplosions upgrade is purchased
                 }
                 rocketLauncherPointsPerShot += valueIncrement;
                 break;
@@ -988,6 +1160,9 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.tommyGun.vehementBurst.bought) {
                     valueIncrement *= 3; // Multiplies valueIncrement by 3 if the vehementBurst upgrade is purchased
                 }
+                if (upgrades.tommyGun.theVector.bought) {
+                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the theVector upgrade is purchased
+                }
                 tommyGunPointsPerShot += valueIncrement;
                 break;
             case 'tommyGunAccuracy':
@@ -1016,6 +1191,9 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 }
                 if (upgrades.doubleBarrel.energized.bought) {
                     valueIncrement *= 3; // Multiplies valueIncrement by 3 if the energized upgrade is purchased
+                }
+                if (upgrades.doubleBarrel.clumpedShots.bought) {
+                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the clumpedShots upgrade is purchased
                 }
                 doubleBarrelPointsPerShot += valueIncrement;
                 break;

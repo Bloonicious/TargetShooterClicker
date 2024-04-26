@@ -299,7 +299,6 @@ function automaticPointsGeneration() {
                 // Calculate points per shot
                 let pointsPerShot = sniperRiflePointsPerShot;
                 let critical = false;
-                let miss = false;
 
                 // For sniper rifle, check for critical hit
                 const criticalChance = Math.min(100, 25 + sniperRifleCriticalShotLevel * 2);

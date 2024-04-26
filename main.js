@@ -382,13 +382,6 @@ function loadGameState() {
         // Load the purchased big upgrades interface
         loadPurchasedBigUpgrades(gameState.purchasedBigUpgrades);
 
-        // Format upgrade cost values
-        const upgradeOptions = document.querySelectorAll('.upgrade-cost');
-        upgradeOptions.forEach(costDisplay => {
-            const costValue = parseInt(costDisplay.textContent.replace(/,/g, ''));
-            costDisplay.textContent = formatNumber(costValue);
-        });
-        
         // Call the setNumberFormat function to update the display based on the loaded format
         setNumberFormat();
 
@@ -780,6 +773,11 @@ function resetProgress() {
 // Call the saveGameState function whenever the game state changes
 // For example, after earning points, purchasing weapons, etc.
 // You can call this function wherever you modify game state variables
+
+// Event listener for DOMContentLoaded to initialize upgrade costs
+document.addEventListener('DOMContentLoaded', function() {
+    initializeUpgradeCosts();
+});
 
 window.addEventListener('DOMContentLoaded', (event) => {
     initializeSoundEffects();

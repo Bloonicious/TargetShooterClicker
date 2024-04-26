@@ -152,29 +152,50 @@ function saveGameState() {
         touchGunPointyFingersBought: upgrades.touchGun.pointyFingers.bought,
         touchGunAmbidextrousBought: upgrades.touchGun.ambidextrous.bought,
         touchGunTapMasterBought: upgrades.touchGun.tapMaster.bought,
+        touchGunBazillionFingersBought: upgrades.touchGun.bazillionFingers.bought,
         touchGunAwakenBought: upgrades.touchGun.awakenUpgrade.bought,
         
         pistolBiggerBulletsBought: upgrades.pistol.biggerBullets.bought,
         pistolLargerCalibreBought: upgrades.pistol.largerCalibre.bought,
         pistolEasierReloadingBought: upgrades.pistol.easierReloading.bought,
         pistolLouderFiringBought: upgrades.pistol.louderFiring.bought,
+        pistolMetalPiercingBought: upgrades.pistol.metalPiercing.bought,
         
         smgBetterSpreadBought: upgrades.smg.betterSpread.bought,
         smgStrongHoldBought: upgrades.smg.strongHold.bought,
         smgPressureBulletsBought: upgrades.smg.pressureBullets.bought,
+        smgWickedAimerBought: upgrades.smg.wickedAimer.bought,
+        smgBashingRoundsBought: upgrades.smg.bashingRounds.bought,
         
         shotgunMoreBarrelsBought: upgrades.shotgun.moreBarrels.bought,
         shotgunPowerfulBurstBought: upgrades.shotgun.powerfulBurst.bought,
+        shotgunDevastatingBurstBought: upgrades.shotgun.devastatingBurst.bought,
+        shotgunMegaBurstBought: upgrades.shotgun.megaBurst.bought,
+        shotgunScattershotBought: upgrades.shotgun.scattershot.bought,
         
         sniperRifleDeadlyPrecisionBought: upgrades.sniperRifle.deadlyPrecision.bought,
         sniperRifleCripplingShotsBought: upgrades.sniperRifle.cripplingShots.bought,
+        sniperRifleHeadShotBought: upgrades.sniperRifle.headShot.bought,
+        sniperRifleDangerousRiflingBought: upgrades.sniperRifle.dangerousRifling.bought,
+        sniperRifleLuckyShotBought: upgrades.sniperRifle.luckyShot.bought,
         
         ak47HeatTippedBulletsBought: upgrades.ak47.heatTippedBullets.bought,
         ak47StaggeringBulletsBought: upgrades.ak47.staggeringBullets.bought,
+        ak47RippingBulletsBought: upgrades.ak47.rippingBullets.bought,
+        ak47VehementBulletsBought: upgrades.ak47.vehementBullets.bought,
+        ak47OverbearingVelocityBought: upgrades.ak47.overbearingVelocity.bought,
         
         rocketLauncherPotentRocketsBought: upgrades.rocketLauncher.potentRockets.bought,
+        rocketLauncherViolentExplosionsBought: upgrades.rocketLauncher.violentExplosions.bought,
+        rocketLauncherRepeatedExplosionsBought: upgrades.rocketLauncher.repeatedExplosions.bought,
+        rocketLauncherBiggerExplosionsBought: upgrades.rocketLauncher.biggerExplosions.bought,
+        rocketLauncherExtraGunpowderBought: upgrades.rocketLauncher.extraGunpowder.bought,
         
         tommyGunPreciseAccuracyBought: upgrades.tommyGun.preciseAccuracy.bought,
+        tommyGunTightPressureBought: upgrades.tommyGun.tightPressure.bought,
+        tommyGunLessPunishingBought: upgrades.tommyGun.lessPunishing.bought,
+        tommyGunPowerfulOutcomesBought: upgrades.tommyGun.powerfulOutcomes.bought,
+        tommyGunVehementBurstBought: upgrades.tommyGun.vehementBurst.bought,
         
         pistolPurchased: pistolPurchased,
         pistolPointsPerShot: pistolPointsPerShot,
@@ -280,29 +301,50 @@ function loadGameState() {
         upgrades.touchGun.pointyFingers.bought = gameState.touchGunPointyFingersBought;
         upgrades.touchGun.ambidextrous.bought = gameState.touchGunAmbidextrousBought;
         upgrades.touchGun.tapMaster.bought = gameState.touchGunTapMasterBought;
+        upgrades.touchGun.bazillionFingers.bought = gameState.touchGunBazillionFingersBought;
         upgrades.touchGun.awakenUpgrade.bought = gameState.touchGunAwakenBought;
         
         upgrades.pistol.biggerBullets.bought = gameState.pistolBiggerBulletsBought;
         upgrades.pistol.largerCalibre.bought = gameState.pistolLargerCalibreBought;
         upgrades.pistol.easierReloading.bought = gameState.pistolEasierReloadingBought;
         upgrades.pistol.louderFiring.bought = gameState.pistolLouderFiringBought;
+        upgrades.pistol.metalPiercing.bought = gameState.pistolMetalPiercingBought;
         
         upgrades.smg.betterSpread.bought = gameState.smgBetterSpreadBought;
         upgrades.smg.strongHold.bought = gameState.smgStrongHoldBought;
         upgrades.smg.pressureBullets.bought = gameState.smgPressureBulletsBought;
+        upgrades.smg.wickedAimer.bought = gameState.smgWickedAimerBought;
+        upgrades.smg.bashingRounds.bought = gameState.smgBashingRoundsBought;
         
         upgrades.shotgun.moreBarrels.bought = gameState.shotgunMoreBarrelsBought;
         upgrades.shotgun.powerfulBurst.bought = gameState.shotgunPowerfulBurstBought;
+        upgrades.shotgun.devastatingBurst.bought = gameState.shotgunDevastatingBurstBought;
+        upgrades.shotgun.megaBurst.bought = gameState.shotgunMegaBurstBought;
+        upgrades.shotgun.scattershot.bought = gameState.shotgunScattershotBought;
         
         upgrades.sniperRifle.deadlyPrecision.bought = gameState.sniperRifleDeadlyPrecisionBought;
         upgrades.sniperRifle.cripplingShots.bought = gameState.sniperRifleCripplingShotsBought;
+        upgrades.sniperRifle.headShot.bought = gameState.sniperRifleHeadShotBought;
+        upgrades.sniperRifle.dangerousRifling.bought = gameState.sniperRifleDangerousRiflingBought;
+        upgrades.sniperRifle.luckyShot.bought = gameState.sniperRifleLuckyShotBought;
         
         upgrades.ak47.heatTippedBullets.bought = gameState.ak47HeatTippedBulletsBought;
         upgrades.ak47.staggeringBullets.bought = gameState.ak47StaggeringBulletsBought;
+        upgrades.ak47.rippingBullets.bought = gameState.ak47RippingBulletsBought;
+        upgrades.ak47.vehementBullets.bought = gameState.ak47VehementBulletsBought;
+        upgrades.ak47.overbearingVelocity.bought = gameState.ak47OverbearingVelocityBought;
 
         upgrades.rocketLauncher.potentRockets.bought = gameState.rocketLauncherPotentRocketsBought;
+        upgrades.rocketLauncher.violentExplosions.bought = gameState.rocketLauncherViolentExplosionsBought;
+        upgrades.rocketLauncher.repeatedExplosions.bought = gameState.rocketLauncherRepeatedExplosionsBought;
+        upgrades.rocketLauncher.biggerExplosions.bought = gameState.rocketLauncherBiggerExplosionsBought;
+        upgrades.rocketLauncher.extraGunpowder.bought = gameState.rocketLauncherExtraGunpowderBought;
 
         upgrades.tommyGun.preciseAccuracy.bought = gameState.tommyGunPreciseAccuracyBought;
+        upgrades.tommyGun.tightPressure.bought = gameState.tommyGunTightPressureBought;
+        upgrades.tommyGun.lessPunishing.bought = gameState.tommyGunLessPunishingBought;
+        upgrades.tommyGun.powerfulOutcomes.bought = gameState.tommyGunPowerfulOutcomesBought;
+        upgrades.tommyGun.vehementBurst.bought = gameState.tommyGunVehementBurstBought;
         
         pistolPurchased = gameState.pistolPurchased;
         pistolPointsPerShot = gameState.pistolPointsPerShot;
@@ -623,29 +665,50 @@ function resetProgress() {
         upgrades.touchGun.pointyFingers.bought = false;
         upgrades.touchGun.ambidextrous.bought = false;
         upgrades.touchGun.tapMaster.bought = false;
+        upgrades.touchGun.bazillionFingers.bought = false;
         upgrades.touchGun.awakenUpgrade.bought = false;
         
         upgrades.pistol.biggerBullets.bought = false;
         upgrades.pistol.largerCalibre.bought = false;
         upgrades.pistol.easierReloading.bought = false;
         upgrades.pistol.louderFiring.bought = false;
+        upgrades.pistol.metalPiercing.bought = false;
         
         upgrades.smg.betterSpread.bought = false;
         upgrades.smg.strongHold.bought = false;
         upgrades.smg.pressureBullets.bought = false;
+        upgrades.smg.wickedAimer.bought = false;
+        upgrades.smg.bashingRounds.bought = false;
         
         upgrades.shotgun.moreBarrels.bought = false;
         upgrades.shotgun.powerfulBurst.bought = false;
+        upgrades.shotgun.devastatingBurst.bought = false;
+        upgrades.shotgun.megaBurst.bought = false;
+        upgrades.shotgun.scattershot.bought = false;
         
         upgrades.sniperRifle.deadlyPrecision.bought = false;
         upgrades.sniperRifle.cripplingShots.bought = false;
+        upgrades.sniperRifle.headShot.bought = false;
+        upgrades.sniperRifle.dangerousRifling.bought = false;
+        upgrades.sniperRifle.luckyShot.bought = false;
         
         upgrades.ak47.heatTippedBullets.bought = false;
         upgrades.ak47.staggeringBullets.bought = false;
+        upgrades.ak47.rippingBullets.bought = false;
+        upgrades.ak47.vehementBullets.bought = false;
+        upgrades.ak47.overbearingVelocity.bought = false;
 
         upgrades.rocketLauncher.potentRockets.bought = false;
+        upgrades.rocketLauncher.violentExplosions.bought = false;
+        upgrades.rocketLauncher.repeatedExplosions.bought = false;
+        upgrades.rocketLauncher.biggerExplosions.bought = false;
+        upgrades.rocketLauncher.extraGunpowder.bought = false;
 
         upgrades.tommyGun.preciseAccuracy.bought = false;
+        upgrades.tommyGun.tightPressure.bought = false;
+        upgrades.tommyGun.lessPunishing.bought = false;
+        upgrades.tommyGun.powerfulOutcomes.bought = false;
+        upgrades.tommyGun.vehementBurst.bought = false;
         
         pistolPurchased = false;
         pistolCost = 10;

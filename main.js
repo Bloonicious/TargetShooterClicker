@@ -159,6 +159,8 @@ function saveGameState() {
         touchGunBazillionFingersBought: upgrades.touchGun.bazillionFingers.bought,
         touchGunAntirestingCreamBought: upgrades.touchGun.antirestingCream.bought,
         touchGunAwakenBought: upgrades.touchGun.awakenUpgrade.bought,
+        touchGunPotentTapsBought: upgrades.touchGun.potentTaps.bought,
+        touchGunSuperAwakenBought: upgrades.touchGun.superAwakenUpgrade.bought,
         
         pistolBiggerBulletsBought: upgrades.pistol.biggerBullets.bought,
         pistolLargerCalibreBought: upgrades.pistol.largerCalibre.bought,
@@ -326,6 +328,9 @@ function loadGameState() {
         awokenTouchGunCost = gameState.awokenTouchGunCost;
         awokenTouchGunLevel = gameState.awokenTouchGunLevel;
 
+        superAwokenTouchGunCost = gameState.superAwokenTouchGunCost;
+        superAwokenTouchGunLevel = gameState.superAwokenTouchGunLevel;
+
         numberFormat = gameState.numberFormat;
 
         // Load big upgrade data for each weapon
@@ -335,6 +340,8 @@ function loadGameState() {
         upgrades.touchGun.antirestingCream.bought = gameState.touchGunAntirestingCreamBought;
         upgrades.touchGun.bazillionFingers.bought = gameState.touchGunBazillionFingersBought;
         upgrades.touchGun.awakenUpgrade.bought = gameState.touchGunAwakenBought;
+        upgrades.touchGun.potentTaps.bought = gameState.touchGunPotentTapsBought;
+        upgrades.touchGun.superAwakenUpgrade.bought = gameState.touchGunSuperAwakenBought;
         
         upgrades.pistol.biggerBullets.bought = gameState.pistolBiggerBulletsBought;
         upgrades.pistol.largerCalibre.bought = gameState.pistolLargerCalibreBought;
@@ -490,6 +497,11 @@ function loadGameState() {
         document.getElementById('touchGunAwaken-level').textContent = awokenTouchGunLevel;
         document.getElementById('touchGunAwaken-purchase').style.display = 'none';
         document.getElementById('touchGunAwaken-display').style.display = 'none';
+
+        document.getElementById('touchGunSuperAwaken-cost').textContent = formatNumber(superAwokenTouchGunCost);
+        document.getElementById('touchGunSuperAwaken-level').textContent = superAwokenTouchGunLevel;
+        document.getElementById('touchGunSuperAwaken-purchase').style.display = 'none';
+        document.getElementById('touchGunSuperAwaken-display').style.display = 'none';
 
         document.getElementById('pistol-cost').textContent = formatNumber(pistolCost);
         document.getElementById('pistolFirerate-cost').textContent = formatNumber(pistolFirerateUpgradeCost);
@@ -761,6 +773,8 @@ function resetProgress() {
         upgrades.touchGun.antirestingCream.bought = false;
         upgrades.touchGun.bazillionFingers.bought = false;
         upgrades.touchGun.awakenUpgrade.bought = false;
+        upgrades.touchGun.potentTaps.bought = false;
+        upgrades.touchGun.superAwakenUpgrade.bought = false;
         
         upgrades.pistol.biggerBullets.bought = false;
         upgrades.pistol.largerCalibre.bought = false;
@@ -941,6 +955,10 @@ function resetProgress() {
             document.getElementById('tommyGun-purchase').style.display = 'block';
         }
         if (upgrades.touchGun.awakenUpgrade.bought === false) {
+            document.getElementById('touchGunAwaken-purchase').style.display = 'none';
+            document.getElementById('touchGunAwaken-display').style.display = 'none';
+        }
+        if (upgrades.touchGun.superAwakenUpgrade.bought === false) {
             document.getElementById('touchGunAwaken-purchase').style.display = 'none';
             document.getElementById('touchGunAwaken-display').style.display = 'none';
         }

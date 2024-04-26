@@ -1031,13 +1031,15 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     floatingText.textContent = '+' + formatNumber(pointsPerShot);
     floatingText.classList.add('floating-text');
 
-    // Check if it's a critical hit or miss
-    if (miss && weaponId === 'tommyGun') {
-        floatingText.classList.add('miss'); // Add miss class for missed shots
-        floatingText.textContent += ' Miss!';
-    } else if (critical) {
-        floatingText.classList.add('critical'); // Add critical class for critical hits
+    // Set text color based on critical and miss status
+    if (critical) {
         floatingText.textContent += ' Crit!';
+        floatingText.classList.add('critical'); // Add critical class for critical hits
+    }
+    
+    if (miss) {
+        floatingText.textContent += ' Miss!';
+        floatingText.classList.add('miss'); // Add miss class for missed shots
     }
 
     // Get the target element based on the weaponId

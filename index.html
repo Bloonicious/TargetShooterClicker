@@ -261,6 +261,33 @@
                     <p id="tommyGun-potency-display">Tommy Gun Potency Level: <span id="tommyGunPotency-level">0</span> (<span id="tommyGunPotency-value">600</span> points per shot)</p>
                     <p id="tommyGun-accuracy-display">Tommy Gun Accuracy Level: <span id="tommyGunAccuracy-level">0</span> (<span id="tommyGunAccuracy-value">50</span>%)</p>
                 </div>
+                <div class="weapon-zone" id="doubleBarrel-zone">
+                    <!-- Double-Barrel ASCII representation -->
+                    <pre id="doubleBarrel">
+                        <!-- ASCII representation of the double-barrel -->
+                             ______________
+                            /             \
+                          |     _         \
+                          |____|_|___/    |
+                          \__________\___|
+                    </pre>
+                    <pre class="target" id="doubleBarrel-target">
+                       ___
+                     //   \\
+                    //     \\
+                   //       \\
+                   \\       //
+                    \\_____//
+                     \\___//
+                       ‾‾‾
+                    </pre>
+                    <!-- Purchase button and upgrades for Double-Barrel -->
+                    <button id="doubleBarrel-purchase" onclick="purchase('doubleBarrel')">Purchase Double-Barrel (Cost: <span id="doubleBarrel-cost">30000000</span>)</button><button onclick="purchase('doubleBarrelFirerate')">Improve Double-Barrel's Firerate (Cost: <span id="doubleBarrelFirerate-cost">80000000</span>)</button><button onclick="purchase('doubleBarrelPotency')">Improve Double-Barrel's Potency (Cost: <span id="doubleBarrelPotency-cost">60000000</span>)</button><button onclick="purchase('doubleBarrelMultiFire')">Improve Double-Barrel's Multi-Fire (Cost: <span id="doubleBarrelMultiFire-cost">150000000</span>)</button>
+                    <!-- Level displays for Double-Barrel Firerate, Potency, and Multi-Fire -->
+                    <p id="doubleBarrel-firerate-display">Double-Barrel Firerate Level: <span id="doubleBarrelFirerate-level">0</span> (<span id="doubleBarrelFirerate-value">2000</span>)</p>
+                    <p id="doubleBarrel-potency-display">Double-Barrel Potency Level: <span id="doubleBarrelPotency-level">0</span> (<span id="doubleBarrelPotency-value">4000</span> points)</p>
+                    <p id="doubleBarrel-multifire-display">Double-Barrel Multi-Fire Level: <span id="doubleBarrelMultiFire-level">0</span> (<span id="doubleBarrelMultiFire-value">2</span> shots)</p>
+                </div>
             </div>
         </div>
     </div>
@@ -282,6 +309,7 @@
             <button onclick="switchMiniTab('buy', 'ak47')">AK-47</button>
             <button onclick="switchMiniTab('buy', 'rocketLauncher')">Rocket Launcher</button>
             <button onclick="switchMiniTab('buy', 'tommyGun')">Tommy Gun</button>
+            <button onclick="switchMiniTab('buy', 'doubleBarrel')">Double-Barrel</button>
         </div>
         <!-- Buy subtab content -->
         <div id="buy-upgrades" class="subtab">
@@ -306,6 +334,12 @@
                     <p class="upgrade-description">For every weapon potency upgrade level you get, it increases the efficiency of the touch gun by 0.5</p>
                 </div>
 
+                <div class="upgrade-option touchGun" id="touchGun-antirestingCream">
+                    <button onclick="bigUpgrades('touchGun', 'antirestingCream', 1000000)">Touch Gun: Antiresting Cream</button>
+                    <span class="upgrade-cost">Cost: 1,000,000</span>
+                    <p class="upgrade-description">Triples touch gun efficiency</p>
+                </div>
+
                 <div class="upgrade-option touchGun" id="touchGun-bazillionFingers">
                     <button onclick="bigUpgrades('touchGun', 'bazillionFingers', 50000000)">Touch Gun: Bazillion Fingers</button>
                     <span class="upgrade-cost">Cost: 50,000,000</span>
@@ -327,8 +361,8 @@
                 </div>
 
                 <div class="upgrade-option pistol" id="pistol-largerCalibre">
-                    <button onclick="bigUpgrades('pistol', 'largerCalibre', 500000)">Pistol: Larger Calibre</button>
-                    <span class="upgrade-cost">Cost: 500,000</span>
+                    <button onclick="bigUpgrades('pistol', 'largerCalibre', 200000)">Pistol: Larger Calibre</button>
+                    <span class="upgrade-cost">Cost: 200,000</span>
                     <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
                 </div>
 
@@ -347,6 +381,12 @@
                 <div class="upgrade-option pistol" id="pistol-metalPiercing">
                     <button onclick="bigUpgrades('pistol', 'metalPiercing', 300000000)">Pistol: Metal Piercing</button>
                     <span class="upgrade-cost">Cost: 300,000,000</span>
+                    <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
+                </div>
+
+                <div class="upgrade-option pistol" id="pistol-specializedMechanisms">
+                    <button onclick="bigUpgrades('pistol', 'specializedMechanisms', 5000000000)">Pistol: Specialized Mechanisms</button>
+                    <span class="upgrade-cost">Cost: 5,000,000,000</span>
                     <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
                 </div>
 
@@ -378,6 +418,12 @@
                 <div class="upgrade-option smg" id="smg-bashingRounds">
                     <button onclick="bigUpgrades('smg', 'bashingRounds', 1500000000)">SMG: Bashing Rounds</button>
                     <span class="upgrade-cost">Cost: 1,500,000,000</span>
+                    <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
+                </div>
+
+                <div class="upgrade-option smg" id="smg-autoAimer">
+                    <button onclick="bigUpgrades('smg', 'autoAimer', 10000000000)">SMG: Auto Aimer</button>
+                    <span class="upgrade-cost">Cost: 10,000,000,000</span>
                     <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
                 </div>
 
@@ -535,6 +581,37 @@
                     <span class="upgrade-cost">Cost: 1,500,000,000,000</span>
                     <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
                 </div>
+
+                <!-- Double-Barrel Big Upgrades -->
+                <div class="upgrade-option doubleBarrel" id="doubleBarrel-lethalShots">
+                    <button onclick="bigUpgrades('doubleBarrel', 'lethalShots', 1000000000)">Double Barrel: Lethal Shots</button>
+                    <span class="upgrade-cost">Cost: 1,000,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of points yielded from target shots</p>
+                </div>
+
+                <div class="upgrade-option doubleBarrel" id="doubleBarrel-arcSwitchingBarrels">
+                    <button onclick="bigUpgrades('doubleBarrel', 'arcSwitchingBarrels', 10000000000)">Double Barrel: Arc-Switching Barrels</button>
+                    <span class="upgrade-cost">Cost: 10,000,000,000</span>
+                    <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
+                </div>
+
+                <div class="upgrade-option doubleBarrel" id="doubleBarrel-doubleTrouble">
+                    <button onclick="bigUpgrades('doubleBarrel', 'doubleTrouble', 250000000000)">Double Barrel: Double Trouble</button>
+                    <span class="upgrade-cost">Cost: 250,000,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of projectiles fired each barrel!</p>
+                </div>
+
+                <div class="upgrade-option doubleBarrel" id="doubleBarrel-energized">
+                    <button onclick="bigUpgrades('doubleBarrel', 'energized', 1500000000000)">Double Barrel: Energized</button>
+                    <span class="upgrade-cost">Cost: 1,500,000,000,000</span>
+                    <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
+                </div>
+
+                <div class="upgrade-option doubleBarrel" id="doubleBarrel-doubleSwarm">
+                    <button onclick="bigUpgrades('doubleBarrel', 'doubleSwarm', 75000000000000)">Double Barrel: Double Swarm</button>
+                    <span class="upgrade-cost">Cost: 75,000,000,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of projectiles fired each barrel!</p>
+                </div>
             </div>
         </div>
         <!-- Bought subtab content -->
@@ -554,21 +631,37 @@
         <!-- Tutorial content here -->
         <h1>Tutorial</h1>
         <p>Welcome to Target Shooter Clicker! Here's how to play...
-        <br>
+        <br><br>
         1. Getting Your First Weapon: It's simple. Click on "Earn Points" to activate your touch gun to earn points. You may upgrade your touch gun to increase the amount of points it gives per click. After earning 10 points, you can finally buy the Pistol to start your shooting-range tycoon! Remember that you can purchase more weapons once you rack up enough points.
-        <br>
+        <br><br>
         2. Weapon Stats: Each weapon has its own and unique stats. Some weapons have basic stats. Some weapons have unique stats, such as the Shotgun being able to pelt more projectiles at the target range. "Firerate" improves the weapon's firing speed, increasing their overall PPS (Points Per Second) and gets gradually expensive overtime, but also has a maximum level cap to prevent making weapons shoot hypersonically. "Potency" improves the weapon's overall power, increasing the amount of points it gets from shooting a target, additively based on the weapon's current Points Per Shot.
-        <br>
+        <br><br>
         3. Big Upgrades: On the "Upgrades" tab, you'll find plenty of improvements for your weapons. Improving your weapons increases their Points Per Shot, their firerate and their special stats. They do come with such a hefty cost but only one-time purchases so definitely worth getting.
-        <br>
+        <br><br>
         4. Settings: If you feel like turning off the gunshots, changing your numberformat or saving your game data, it's possible to configure them through the "Settings" tab.
-        <br>
+        <br><br>
         5. You're Ready To Go!: Keep upgrading your weapons, installing big improvements on them and become the Ultimate Shooting Range Master!</p>
     </div>
 
     <div id="changelog" class="tab">
         <!-- Changelog content here -->
         <h1>Changelog</h1>
+        <h3>26th April 2024:</h3>
+        <h5>Update 1.1:</h5>
+        <p>
+        - New weapon: Double Barrel!
+        <br>
+        - Revamped the upgrades menu; each weapon has its own minitab to navigate to their big upgrades. Not only that a lot of new big upgrades were added and adjusted.
+        <br>
+        - Fixed tommy gun's missed shots displaying improperly
+        <br>
+        - Balance changes: The big upgrade prices for Pistol, SMG, Shotgun, Sniper, AK-47 and Rocket Launcher were lowered!</p>
+        <br>
+        - Added a statistics tab to view the total amount of lifetime points you've made; note that the statistics may be reset by resetting the game data
+        <br>
+        - They'll also calculate the total amount of firerate and potency upgrade levels you've bought in-game!
+        <h3>22nd April 2024:</h3>
+        <h5>Update 1.0</h5>
         <p>Initial release of Target Shooter Clicker.</p>
     </div>
 

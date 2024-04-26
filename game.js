@@ -913,13 +913,6 @@ function updateCostDisplay() {
     document.getElementById('tommyGunPotency-value').textContent = formatNumber(tommyGunPotencyValue);
     document.getElementById('tommyGunAccuracy-value').textContent = tommyGunInaccuracyChanceValue;
 
-    // Format upgrade cost values
-    const upgradeOptions = document.querySelectorAll('.upgrade-cost');
-    upgradeOptions.forEach(costDisplay => {
-        const costValue = parseInt(costDisplay.textContent.replace(/,/g, ''));
-        costDisplay.textContent = formatNumber(costValue);
-    });
-
     // Check if fire rate level is at maximum for each weapon
     if (pistolFirerateLevel === 20) {
         const pistolFirerateLevelDisplay = document.getElementById('pistolFirerate-level');
@@ -1038,6 +1031,19 @@ function formatNumber(number) {
         console.error("Invalid numberFormat:", numberFormat);
         return 'ERROR';
     }
+}
+
+// Function to initialize upgrade costs with proper formatting
+function initializeUpgradeCosts() {
+    const upgradeOptions = document.querySelectorAll('.upgrade-option');
+    upgradeOptions.forEach(upgradeOption => {
+        const costElement = upgradeOption.querySelector('.upgrade-cost');
+        if (costElement) {
+            const cost = parseInt(costElement.textContent.replace(/\D/g, ''), 10); // Extract cost as integer
+            const formattedCost = formatNumber(cost); // Format the cost using your numberFormat function
+            costElement.textContent = `Cost: ${formattedCost}`; // Update the cost display
+        }
+    });
 }
 
 // Function to initialize sound effects

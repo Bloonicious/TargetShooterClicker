@@ -1439,6 +1439,7 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     // Set floating text position
     floatingText.style.left = centerX + 'px';
     floatingText.style.top = centerY + 'px';
+    floatingText.style.animation = 'float-upwards 1s ease-out'; // Add animation for floating upwards
 
     // Handle rocket launcher's splash radius and damage
     if (weaponId === 'rocketLauncher') {
@@ -1474,6 +1475,7 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
                 splashText.classList.add('floating-text');
                 splashText.style.left = tCenterX + 'px';
                 splashText.style.top = tCenterY + 'px';
+                splashText.style.animation = 'float-upwards 1s ease-out'; // Add animation for floating upwards
                 floatingTextContainer.appendChild(splashText);
                 setTimeout(() => {
                     splashText.remove();

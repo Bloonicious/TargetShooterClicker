@@ -737,8 +737,17 @@ function bigUpgrades(weapon, upgrade, cost) {
     // Retrieve upgrade data based on weapon and upgrade
     const upgradeData = upgrades[weapon][upgrade];
 
-    // Find the upgrade option element based on class name
-    const upgradeOption = document.querySelector(`.upgrade-option#${weapon}-${upgrade}`);
+    // Find the upgrade option elements based on class name
+    const upgradeOptions = document.querySelectorAll(`.upgrade-option.${weapon}`);
+    let upgradeOption; // Variable to hold the specific upgrade option
+
+    // Find the specific upgrade option based on its ID
+    upgradeOptions.forEach(option => {
+        if (option.id === `${weapon}-${upgrade}`) {
+            upgradeOption = option;
+        }
+    });
+
     if (!upgradeOption) {
         console.error(`Upgrade option ${weapon}-${upgrade} not found.`);
         return;
@@ -789,7 +798,7 @@ function bigUpgrades(weapon, upgrade, cost) {
 
     // Format the cost for non-bought upgrades
     if (!upgradeData.bought) {
-        const formattedCost = numberFormat(cost);
+        const formattedCost = formatNumber(cost);
         // Update the cost display with the formatted cost
         const costDisplay = upgradeOption.querySelector('.upgrade-cost');
         if (costDisplay) {

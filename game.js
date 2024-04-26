@@ -660,7 +660,6 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'touchGun':
                 touchGunCost = cost;
                 touchGunLevel = level;
-                touchGunPointsPerClick += valueIncrement;
                 if (upgrades.touchGun.pointyFingers.bought) {
                     valueIncrement *= 2;
                 }
@@ -670,11 +669,11 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.touchGun.bazillionFingers.bought) {
                     valueIncrement *= 5;
                 }
+                touchGunPointsPerClick += valueIncrement;
                 break;
             case 'touchGunAwaken':
                 awokenTouchGunCost = cost;
                 awokenTouchGunLevel = level;
-                touchGunPointsPerClick += valueIncrement;
                 if (upgrades.touchGun.pointyFingers.bought) {
                     valueIncrement *= 2;
                 }
@@ -684,6 +683,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.touchGun.bazillionFingers.bought) {
                     valueIncrement *= 5;
                 }
+                touchGunPointsPerClick += valueIncrement;
                 break;
             case 'pistolFirerate':
                 if (level <= 20) {

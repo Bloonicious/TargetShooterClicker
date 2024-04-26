@@ -265,7 +265,7 @@ function automaticPointsGeneration() {
             if (currentTime - lastPistolPointsTime >= pistolFireRate) {
                 // Calculate points per shot
                 let pointsPerShot = pistolPointsPerShot;
-                shoot('pistol', pointsPerShot, false);
+                shoot('pistol', pointsPerShot, false, false);
                 lastPistolPointsTime = currentTime;
             }
         }, 100); // Check every 100 milliseconds for points generation
@@ -276,7 +276,7 @@ function automaticPointsGeneration() {
             if (currentTime - lastSMGPointsTime >= smgFireRate) {
                 // Calculate points per shot
                 let pointsPerShot = smgPointsPerShot;
-                shoot('smg', pointsPerShot, false);
+                shoot('smg', pointsPerShot, false, false);
                 lastSMGPointsTime = currentTime;
             }
         }, 100); // Check every 100 milliseconds for points generation
@@ -287,7 +287,7 @@ function automaticPointsGeneration() {
             if (currentTime - lastShotgunPointsTime >= shotgunFireRate) {
                 // Calculate points per shot
                 let pointsPerShot = shotgunPointsPerShot * shotgunBulletsPerShot;
-                shoot('shotgun', pointsPerShot, false);
+                shoot('shotgun', pointsPerShot, false, false);
                 lastShotgunPointsTime = currentTime;
             }
         }, 100); // Check every 100 milliseconds for points generation
@@ -299,6 +299,7 @@ function automaticPointsGeneration() {
                 // Calculate points per shot
                 let pointsPerShot = sniperRiflePointsPerShot;
                 let critical = false;
+                let miss = false;
 
                 // For sniper rifle, check for critical hit
                 const criticalChance = Math.min(100, 25 + sniperRifleCriticalShotLevel * 2);
@@ -307,7 +308,7 @@ function automaticPointsGeneration() {
                     pointsPerShot *= sniperRifleCriticalDamageMultiplier;
                     critical = true;
                 }
-                shoot('sniperRifle', pointsPerShot, critical);
+                shoot('sniperRifle', pointsPerShot, critical, false);
                 lastSniperRiflePointsTime = currentTime;
             }
         }, 100); // Check every 100 milliseconds for points generation
@@ -318,7 +319,7 @@ function automaticPointsGeneration() {
             if (currentTime - lastAK47PointsTime >= ak47FireRate) {
                 // Calculate points per shot
                 let pointsPerShot = ak47PointsPerShot;
-                shoot('ak47', pointsPerShot, false);
+                shoot('ak47', pointsPerShot, false, false);
                 lastAK47PointsTime = currentTime;
             }
         }, 100); // Check every 100 milliseconds for points generation
@@ -329,7 +330,7 @@ function automaticPointsGeneration() {
             if (currentTime - lastRocketLauncherPointsTime >= rocketLauncherFireRate) {
                 // Calculate points per shot
                 let pointsPerShot = rocketLauncherPointsPerShot;
-                shoot('rocketLauncher', pointsPerShot, false);
+                shoot('rocketLauncher', pointsPerShot, false, false);
                 lastRocketLauncherPointsTime = currentTime;
             }
         }, 100); // Check every 100 milliseconds for points generation
@@ -348,7 +349,7 @@ function automaticPointsGeneration() {
                     pointsPerShot *= tommyGunAccuracyPenalty; // 50% less points for inaccurate shots
                     miss = true;
                 }
-                shoot('tommyGun', pointsPerShot, miss); // Pass 'miss' to indicate if the shot missed
+                shoot('tommyGun', pointsPerShot, false, miss); // Pass 'miss' to indicate if the shot missed
                 lastTommyGunPointsTime = currentTime;
             }
         }, 100); // Check every 100 milliseconds for points generation

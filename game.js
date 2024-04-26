@@ -1443,6 +1443,20 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     floatingText.style.top = centerY + 'px';
     floatingText.style.animation = 'float-upwards 1s ease-out'; // Add animation for floating upwards
 
+    // Append the floating text to the container
+    floatingTextContainer.appendChild(floatingText);
+
+    // Remove the floating text after a short delay
+    setTimeout(() => {
+        floatingText.remove();
+    }, 1000); // Adjust the delay as needed
+
+    // Increment the total points if it's not a rocket launcher or a rocket launcher's splash damage
+    if (weaponId !== 'rocketLauncher' || (weaponId === 'rocketLauncher' && !miss)) {
+        points += pointsPerShot;
+        updatePointsDisplay();
+    }
+
     // Handle rocket launcher's splash radius and damage
     if (weaponId === 'rocketLauncher') {
         // Get all shooting-range targets
@@ -1484,17 +1498,6 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
                 }, 1000); // Adjust the delay as needed
             }
         });
-    }
-
-    // Remove the floating text after a short delay
-    setTimeout(() => {
-        floatingText.remove();
-    }, 1000); // Adjust the delay as needed
-
-    // Increment the total points
-    if (weaponId !== 'rocketLauncher') {
-        points += pointsPerShot;
-        updatePointsDisplay();
     }
 
     // Play sound effect based on weapon type

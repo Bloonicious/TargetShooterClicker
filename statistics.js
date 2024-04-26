@@ -87,5 +87,27 @@ function updateStatisticsDisplay() {
     }
 }
 
+// Function to update statistics
+function updateStatistics(lifetimePoints, weaponUpgrades) {
+    const lifetimePointsElement = document.getElementById('lifetime-points');
+    if (lifetimePointsElement) {
+        lifetimePointsElement.textContent = lifetimePoints;
+    }
+
+    const weaponUpgradesElement = document.getElementById('weapon-upgrades');
+    if (weaponUpgradesElement) {
+        // Clear previous content
+        weaponUpgradesElement.innerHTML = '';
+
+        // Append new content
+        for (const weapon in weaponUpgrades) {
+            const weaponUpgradeLevel = weaponUpgrades[weapon];
+            const weaponUpgradeItem = document.createElement('div');
+            weaponUpgradeItem.textContent = `${weapon}: ${weaponUpgradeLevel}`;
+            weaponUpgradesElement.appendChild(weaponUpgradeItem);
+        }
+    }
+}
+
 // Initial update of statistics display when the page loads
 document.addEventListener('DOMContentLoaded', updateStatisticsDisplay);

@@ -1,7 +1,5 @@
-// statistics.js
-
 // Object to store statistics data
-const statistics = {
+let statistics = {
     lifetimePoints: 0,
     weaponUpgradeLevels: {
         touchGun: {

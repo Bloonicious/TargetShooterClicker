@@ -44,6 +44,20 @@ document.addEventListener('DOMContentLoaded', function() {
     switchSubtab('buy');
 });
 
+function switchMiniTab(subtab, weapon) {
+    // Hide all upgrade options
+    const upgradeOptions = document.querySelectorAll('.upgrade-option');
+    upgradeOptions.forEach(option => {
+        option.style.display = 'none';
+    });
+
+    // Show upgrade options for the selected weapon
+    const weaponUpgradeOptions = document.querySelectorAll(`.upgrade-option#${weapon}`);
+    weaponUpgradeOptions.forEach(option => {
+        option.style.display = '';
+    });
+}
+
 let soundEnabled = true; // Ensure sound is enabled by default
 
 function toggleSound() {

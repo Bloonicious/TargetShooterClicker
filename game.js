@@ -913,6 +913,13 @@ function updateCostDisplay() {
     document.getElementById('tommyGunPotency-value').textContent = formatNumber(tommyGunPotencyValue);
     document.getElementById('tommyGunAccuracy-value').textContent = tommyGunInaccuracyChanceValue;
 
+    // Format upgrade cost values
+    const upgradeOptions = document.querySelectorAll('.upgrade-cost');
+    upgradeOptions.forEach(costDisplay => {
+        const costValue = parseInt(costDisplay.textContent.replace(/,/g, ''));
+        costDisplay.textContent = formatNumber(costValue);
+    });
+
     // Check if fire rate level is at maximum for each weapon
     if (pistolFirerateLevel === 20) {
         const pistolFirerateLevelDisplay = document.getElementById('pistolFirerate-level');

@@ -1435,8 +1435,8 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
 
     // Calculate position at the center of the target
     const targetRect = target.getBoundingClientRect();
-    const centerX = targetRect.left + targetRect.width / 2;
-    const centerY = targetRect.top + targetRect.height / 2;
+    const centerX = targetRect.left + window.pageXOffset + targetRect.width / 2;
+    const centerY = targetRect.top + window.pageYOffset + targetRect.height / 2;
 
     // Set floating text position
     floatingText.style.left = centerX + 'px';

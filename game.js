@@ -1467,7 +1467,7 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
             // Check if target is within splash radius
             if (distanceX <= rocketLauncherSplashRadius && distanceY <= rocketLauncherSplashRadius && !(distanceX === 0 && distanceY === 0)) {
                 // Apply splash damage
-                const splashDamage = rocketLauncherSplashDamage; // 40% of points per shot
+                const splashDamage = rocketLauncherPointsPerShot * rocketLauncherSplashDamage; // 40% of points per shot
                 points += splashDamage;
                 updatePointsDisplay();
 
@@ -1491,6 +1491,12 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
         floatingText.remove();
     }, 1000); // Adjust the delay as needed
 
+    // Increment the total points (only if it's not a rocket launcher splash)
+    if (weaponId !== 'rocketLauncher') {
+        points += pointsPerShot;
+        updatePointsDisplay();
+    }
+    
     // Increment the total points
     points += pointsPerShot;
     updatePointsDisplay();

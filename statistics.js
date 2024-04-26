@@ -59,3 +59,33 @@ function updateWeaponUpgradeLevel(weapon, upgradeType) {
 function getStatistics() {
     return statistics;
 }
+
+// Function to update the statistics displayed in the HTML
+function updateStatisticsDisplay() {
+    const lifetimePointsElement = document.getElementById('lifetime-points');
+    if (lifetimePointsElement) {
+        lifetimePointsElement.textContent = statistics.lifetimePoints.toLocaleString(); // Format lifetime points
+    }
+
+    const weaponUpgradesDiv = document.getElementById('weapon-upgrades');
+    if (weaponUpgradesDiv) {
+        weaponUpgradesDiv.innerHTML = ''; // Clear previous content
+
+        for (const weapon in statistics.weaponUpgradeLevels) {
+            if (statistics.weaponUpgradeLevels.hasOwnProperty(weapon)) {
+                const weaponUpgradeLevels = statistics.weaponUpgradeLevels[weapon];
+                const weaponUpgradeHTML = `
+                    <div class="weapon-upgrade">
+                        <h3>${weapon.toUpperCase()}</h3>
+                        <p>Firerate: ${weaponUpgradeLevels.firerate}</p>
+                        <p>Potency: ${weaponUpgradeLevels.potency}</p>
+                    </div>
+                `;
+                weaponUpgradesDiv.insertAdjacentHTML('beforeend', weaponUpgradeHTML);
+            }
+        }
+    }
+}
+
+// Initial update of statistics display when the page loads
+document.addEventListener('DOMContentLoaded', updateStatisticsDisplay);

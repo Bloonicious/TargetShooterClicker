@@ -1326,6 +1326,11 @@ function updateCostDisplay() {
     document.getElementById('touchGunAwaken-level').textContent = awokenTouchGunLevel;
     document.getElementById('touchGunAwaken-purchase').style.display = 'none';
     document.getElementById('touchGunAwaken-display').style.display = 'none';
+
+    document.getElementById('touchGunSuperAwaken-cost').textContent = formatNumber(superAwokenTouchGunCost);
+    document.getElementById('touchGunSuperAwaken-level').textContent = superAwokenTouchGunLevel;
+    document.getElementById('touchGunSuperAwaken-purchase').style.display = 'none';
+    document.getElementById('touchGunSuperAwaken-display').style.display = 'none';
     
     document.getElementById('pistol-cost').textContent = formatNumber(pistolCost);
     document.getElementById('pistolFirerate-cost').textContent = formatNumber(pistolFirerateUpgradeCost);
@@ -1506,6 +1511,10 @@ function updateCostDisplay() {
     if (upgrades.touchGun.awakenUpgrade.bought) {
         document.getElementById('touchGunAwaken-purchase').style.display = 'block';
         document.getElementById('touchGunAwaken-display').style.display = 'block';
+    }
+    if (upgrades.touchGun.superAwakenUpgrade.bought) {
+        document.getElementById('touchGunSuperAwaken-purchase').style.display = 'block';
+        document.getElementById('touchGunSuperAwaken-display').style.display = 'block';
     }
 }
 

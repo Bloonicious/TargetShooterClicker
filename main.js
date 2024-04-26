@@ -931,6 +931,29 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeUpgradeCosts();
 });
 
+// Event listener for generating points from weapons
+document.addEventListener('pointsGenerated', function(event) {
+    const generatedPoints = event.detail.points;
+    updateLifetimePoints(generatedPoints);
+});
+
+// Event listener for updating weapon upgrade levels
+document.addEventListener('upgradeLevelUpdated', function(event) {
+    const weapon = event.detail.weapon;
+    const upgradeType = event.detail.upgradeType;
+    updateWeaponUpgradeLevel(weapon, upgradeType);
+});
+
+// Example usage in your game.js where events might be emitted:
+
+// Assuming points are generated and added to the `points` variable
+const pointsGeneratedEvent = new CustomEvent('pointsGenerated', { detail: { points: points } });
+document.dispatchEvent(pointsGeneratedEvent);
+
+// Assuming weapon firerate level is updated
+const upgradeLevelUpdatedEvent = new CustomEvent('upgradeLevelUpdated', { detail: { weapon: 'shotgun', upgradeType: 'firerate' } });
+document.dispatchEvent(upgradeLevelUpdatedEvent);
+
 window.addEventListener('DOMContentLoaded', (event) => {
     initializeSoundEffects();
 });

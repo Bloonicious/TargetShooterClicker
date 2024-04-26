@@ -366,6 +366,13 @@ function loadGameState() {
 
         // Load the purchased big upgrades interface
         loadPurchasedBigUpgrades(gameState.purchasedBigUpgrades);
+
+        // Format upgrade cost values
+        const upgradeOptions = document.querySelectorAll('.upgrade-cost');
+        upgradeOptions.forEach(costDisplay => {
+            const costValue = parseInt(costDisplay.textContent.replace(/,/g, ''));
+            costDisplay.textContent = formatNumber(costValue);
+        });
         
         // Call the setNumberFormat function to update the display based on the loaded format
         setNumberFormat();

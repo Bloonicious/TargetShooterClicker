@@ -18,11 +18,14 @@ const statistics = {
         },
         shotgun: {
             firerate: 0,
-            potency: 0
+            potency: 0,
+            multiFire: 0 // Special upgrade stat for Shotgun
         },
         sniperRifle: {
             firerate: 0,
-            potency: 0
+            potency: 0,
+            criticalChance: 0, // Special upgrade stat for Sniper Rifle
+            criticalDamage: 0 // Special upgrade stat for Sniper Rifle
         },
         ak47: {
             firerate: 0,
@@ -30,15 +33,19 @@ const statistics = {
         },
         rocketLauncher: {
             firerate: 0,
-            potency: 0
+            potency: 0,
+            splashRadius: 0, // Special upgrade stat for Rocket Launcher
+            splashDamage: 0 // Special upgrade stat for Rocket Launcher
         },
         tommyGun: {
             firerate: 0,
-            potency: 0
+            potency: 0,
+            accuracy: 0 // Special upgrade stat for Tommy Gun
         },
         doubleBarrel: {
             firerate: 0,
-            potency: 0
+            potency: 0,
+            multiFire: 0 // Special upgrade stat for Double Barrel
         }
     }
 };
@@ -50,7 +57,7 @@ function updateLifetimePoints(points) {
 
 // Function to update weapon upgrade levels
 function updateWeaponUpgradeLevel(weapon, upgradeType) {
-    if (statistics.weaponUpgradeLevels.hasOwnProperty(weapon) && (upgradeType === 'firerate' || upgradeType === 'potency')) {
+    if (statistics.weaponUpgradeLevels.hasOwnProperty(weapon) && upgradeType in statistics.weaponUpgradeLevels[weapon]) {
         statistics.weaponUpgradeLevels[weapon][upgradeType]++;
     }
 }
@@ -79,32 +86,14 @@ function updateStatisticsDisplay() {
                         <h3>${weapon.toUpperCase()}</h3>
                         <p>Firerate: ${weaponUpgradeLevels.firerate}</p>
                         <p>Potency: ${weaponUpgradeLevels.potency}</p>
+                        ${weapon === 'shotgun' || weapon === 'doubleBarrel' ? `<p>Multi-Fire: ${weaponUpgradeLevels.multiFire}</p>` : ''}
+                        ${weapon === 'sniperRifle' ? `<p>Critical Chance: ${weaponUpgradeLevels.criticalChance}</p><p>Critical Damage: ${weaponUpgradeLevels.criticalDamage}</p>` : ''}
+                        ${weapon === 'rocketLauncher' ? `<p>Splash Radius: ${weaponUpgradeLevels.splashRadius}</p><p>Splash Damage: ${weaponUpgradeLevels.splashDamage}</p>` : ''}
+                        ${weapon === 'tommyGun' ? `<p>Accuracy: ${weaponUpgradeLevels.accuracy}</p>` : ''}
                     </div>
                 `;
                 weaponUpgradesDiv.insertAdjacentHTML('beforeend', weaponUpgradeHTML);
             }
-        }
-    }
-}
-
-// Function to update statistics
-function updateStatistics(lifetimePoints, weaponUpgrades) {
-    const lifetimePointsElement = document.getElementById('lifetime-points');
-    if (lifetimePointsElement) {
-        lifetimePointsElement.textContent = lifetimePoints;
-    }
-
-    const weaponUpgradesElement = document.getElementById('weapon-upgrades');
-    if (weaponUpgradesElement) {
-        // Clear previous content
-        weaponUpgradesElement.innerHTML = '';
-
-        // Append new content
-        for (const weapon in weaponUpgrades) {
-            const weaponUpgradeLevel = weaponUpgrades[weapon];
-            const weaponUpgradeItem = document.createElement('div');
-            weaponUpgradeItem.textContent = `${weapon}: ${weaponUpgradeLevel}`;
-            weaponUpgradesElement.appendChild(weaponUpgradeItem);
         }
     }
 }

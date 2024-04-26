@@ -44,17 +44,31 @@ document.addEventListener('DOMContentLoaded', function() {
     switchSubtab('buy');
 });
 
-function switchMiniTab(subtab, weapon) {
-    // Hide all upgrade options
-    const upgradeOptions = document.querySelectorAll('.upgrade-option');
-    upgradeOptions.forEach(option => {
-        option.style.display = 'none';
+// Function to switch between mini-tabs
+function switchMiniTab(subtab, weaponId) {
+    // Get all mini-tab buttons
+    const miniTabButtons = document.querySelectorAll('#mini-tabs button');
+
+    // Loop through each mini-tab button
+    miniTabButtons.forEach(button => {
+        // Remove the 'active' class from all mini-tab buttons
+        button.classList.remove('active');
     });
 
-    // Show upgrade options for the selected weapon
-    const weaponUpgradeOptions = document.querySelectorAll(`.upgrade-option#${weapon}`);
-    weaponUpgradeOptions.forEach(option => {
-        option.style.display = '';
+    // Set the clicked mini-tab button as active
+    event.target.classList.add('active');
+
+    // Show/hide upgrade options based on the selected mini-tab
+    const upgradeOptions = document.querySelectorAll('.upgrade-option');
+    upgradeOptions.forEach(option => {
+        // Check if the upgrade option belongs to the selected weaponId
+        if (option.classList.contains(weaponId)) {
+            // Show the upgrade option if it belongs to the selected weaponId
+            option.style.display = '';
+        } else {
+            // Hide the upgrade option if it doesn't belong to the selected weaponId
+            option.style.display = 'none';
+        }
     });
 }
 

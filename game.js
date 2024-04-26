@@ -122,7 +122,7 @@ const upgrades = {
             effect: function() {
                 const totalPotencyLevel = pistolPotencyLevel + smgPotencyLevel + shotgunPotencyLevel + sniperRiflePotencyLevel + ak47PotencyLevel + rocketLauncherPotencyLevel + tommyGunPotencyLevel;
                 if (totalPotencyLevel > 0) {
-                    touchGunPointsPerClick += 0.5; // Increases touch gun value based on the current potency levels of those weapons
+                    touchGunPointsPerClick + 0.5 * totalPotencyLevel * -2 // Increases touch gun value based on the current potency levels of those weapons
                 }
             }
         },
@@ -535,16 +535,22 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 touchGunCost = cost;
                 touchGunLevel = level;
                 touchGunPointsPerClick += valueIncrement;
-                if (upgrades.touchGun.pointyFingers.bought || upgrades.touchGun.ambidextrous.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if both of those touchGun upgrades are purchased
+                if (upgrades.touchGun.pointyFingers.bought) {
+                    valueIncrement *= 2;
+                }
+                if (upgrades.touchGun.ambidextrous.bought) {
+                    valueIncrement *= 2
                 }
                 break;
             case 'touchGunAwaken':
                 awokenTouchGunCost = cost;
                 awokenTouchGunLevel = level;
                 touchGunPointsPerClick += valueIncrement;
-                if (upgrades.touchGun.pointyFingers.bought || upgrades.touchGun.ambidextrous.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if both of those touchGun upgrades are purchased
+                if (upgrades.touchGun.pointyFingers.bought) {
+                    valueIncrement *= 2;
+                }
+                if (upgrades.touchGun.ambidextrous.bought) {
+                    valueIncrement *= 2;
                 }
                 break;
             case 'pistolFirerate':
@@ -563,8 +569,11 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.pistol.biggerBullets.bought) {
                     valueIncrement *= 2; // Multiplies valueIncrement by 2 if biggerBullets upgrade is purchased
                 }
-                if (upgrades.pistol.largerCalibre.bought || upgrades.pistol.louderFiring.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the largerCalibre and louderFiring and upgrades were purchased
+                if (upgrades.pistol.largerCalibre.bought) {
+                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the largerCalibre upgrade is purchased
+                }
+                if (upgrades.pistol.louderFiring.bought) {
+                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the louderFiring upgrade is purchased
                 }
                 pistolPointsPerShot += valueIncrement;
                 break;
@@ -584,8 +593,11 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.smg.betterSpread.bought) {
                     valueIncrement *= 2; // Multiplies valueIncrement by 2 if the betterSpread upgrade is purchased
                 }
-                if (upgrades.smg.strongHold.bought || upgrades.smg.pressureBullets.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the strongHold and pressureBullets upgrades were purchased
+                if (upgrades.smg.strongHold.bought) {
+                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the strongHold upgrade is purchased
+                }
+                if (upgrades.smg.pressureBullets.bought) {
+                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the pressureBullets upgrade is purchased
                 }
                 smgPointsPerShot += valueIncrement;
                 break;
@@ -773,6 +785,16 @@ function bigUpgrades(weapon, upgrade, cost) {
         // Player doesn't have enough points to purchase the upgrade
         console.log("Insufficient points to purchase the upgrade.");
         alert(`You don't have enough points to purchase ${upgrade}!`);
+    }
+
+    // Format the cost for non-bought upgrades
+    if (!upgradeData.bought) {
+        const formattedCost = numberFormat(cost);
+        // Update the cost display with the formatted cost
+        const costDisplay = upgradeOption.querySelector('.upgrade-cost');
+        if (costDisplay) {
+            costDisplay.textContent = formattedCost;
+        }
     }
 }
 

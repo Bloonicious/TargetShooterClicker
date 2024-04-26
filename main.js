@@ -512,7 +512,7 @@ function loadGameState() {
         document.getElementById('tommyGunAccuracy-level').textContent = tommyGunAccuracyLevel;
         document.getElementById('tommyGunFirerate-value').textContent = tommyGunFireRate + 'ms';
         document.getElementById('tommyGunPotency-value').textContent = formatNumber(tommyGunPointsPerShot);
-        document.getElementById('tommyGunAccuracy-value').textContent = tommyGunInaccuracyChance;
+        document.getElementById('tommyGunAccuracy-value').textContent = -2 + tommyGunInaccuracyChance;
 
         // Check if pistol fire rate level is at maximum
         if (pistolFirerateLevel === 20) {

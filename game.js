@@ -38,7 +38,7 @@ let sniperRiflePointsPerShot = 80;
 let sniperRifleFireRate = 4000; // in milliseconds
 let sniperRifleFirerateUpgradeCost = 37500;
 let sniperRiflePotencyUpgradeCost = 75000;
-let sniperRifleCriticalShotUpgradeCost = 750000;
+let sniperRifleCriticalShotUpgradeCost = 75000;
 let sniperRifleCriticalDamageUpgradeCost = 250000;
 let sniperRifleCriticalShotChance = 25; // 25% chance for a "Critical Shot" for increased points
 let sniperRifleCriticalDamageMultiplier = 2.0; // The amount of extra points yielded from a "Critical Shot"
@@ -83,6 +83,17 @@ let tommyGunFirerateLevel = 0;
 let tommyGunPotencyLevel = 0;
 let tommyGunAccuracyLevel = 0;
 
+let doubleBarrelCost = 30000000;
+let doubleBarrelPointsPerShot = 4000;
+let doubleBarrelFireRate = 2000; // in milliseconds
+let doubleBarrelMultiFireUpgradeCost = 150000000;
+let doubleBarrelFirerateUpgradeCost = 80000000;
+let doubleBarrelPotencyUpgradeCost = 60000000;
+let doubleBarrelBulletsPerShot = 2; // Initial bullets per shot
+let doubleBarrelFirerateLevel = 0;
+let doubleBarrelPotencyLevel = 0;
+let doubleBarrelMultiFireLevel = 0;
+
 let points = 0;
 let numberFormat = 'standard'; // Default number format
 
@@ -93,6 +104,7 @@ let sniperRiflePurchased = false;
 let ak47Purchased = false;
 let rocketLauncherPurchased = false;
 let tommyGunPurchased = false;
+let doubleBarrelPurchased = false;
 
 let lastPistolPointsTime = 0;
 let lastSMGPointsTime = 0;
@@ -101,6 +113,7 @@ let lastSniperRiflePointsTime = 0;
 let lastAK47PointsTime = 0;
 let lastRocketLauncherPointsTime = 0;
 let lastTommyGunPointsTime = 0;
+let lastDoubleBarrelPointsTime = 0;
 
 const weaponSFX = {};
 const upgrades = {
@@ -126,6 +139,12 @@ const upgrades = {
                 }
             }
         },
+        antirestingCream: {
+            cost: 1000000,
+            effect: function() {
+                touchGunPointsPerClick *= 3;
+            }
+        },
         bazillionFingers: {
             cost: 50000000,
             effect: function() {
@@ -146,27 +165,33 @@ const upgrades = {
             }
         },
         largerCalibre: {
-            cost: 500000,
+            cost: 200000,
             effect: function() {
                 pistolPointsPerShot *= 3; // Triples the amount of points per shot
             }
         },
         easierReloading: {
-            cost: 2500000,
+            cost: 875000,
             effect: function() {
                 pistolFireRate -= 150; // Reduces the fire rate speed (in milliseconds) for the pistol
             }
         },
         louderFiring: {
-            cost: 17500000,
+            cost: 5000000,
             effect: function() {
                 pistolPointsPerShot *= 3; // Triples the amount of points per shot
             }
         },
         metalPiercing: {
-            cost: 300000000,
+            cost: 100000000,
             effect: function() {
-                pistolPointsPerShot *= 4; // Triples the amount of points per shot
+                pistolPointsPerShot *= 4; // Quadruples the amount of points per shot
+            }
+        },
+        specializedMechanisms: {
+            cost: 3000000000,
+            effect: function() {
+                pistolPointsPerShot *= 4; // Quadruples the amount of points per shot
             }
         },
         // Add more upgrades for pistol here
@@ -179,25 +204,31 @@ const upgrades = {
             }
         },
         strongHold: {
-            cost: 3000000,
+            cost: 1500000,
             effect: function() {
                 smgPointsPerShot *= 3;
             }
         },
         pressureBullets: {
-            cost: 40000000,
+            cost: 22500000,
             effect: function() {
                 smgPointsPerShot *= 3;
             }
         },
         wickedAimer: {
-            cost: 225000000,
+            cost: 125000000,
             effect: function() {
                 smgFireRate *= 0.8;
             }
         },
         bashingRounds: {
-            cost: 1500000000,
+            cost: 1000000000,
+            effect: function() {
+                smgPointsPerShot *= 4;
+            }
+        },
+        autoAimer: {
+            cost: 10000000000,
             effect: function() {
                 smgPointsPerShot *= 4;
             }
@@ -212,19 +243,19 @@ const upgrades = {
             }
         },
         powerfulBurst: {
-            cost: 15000000,
+            cost: 7500000,
             effect: function() {
                 shotgunPointsPerShot *= 2;
             }
         },
         devastatingBurst: {
-            cost: 375000000,
+            cost: 200000000,
             effect: function() {
                 shotgunPointsPerShot *= 3;
             }
         },
         megaBurst: {
-            cost: 5000000000,
+            cost: 2500000000,
             effect: function() {
                 shotgunPointsPerShot *= 3;
             }
@@ -245,25 +276,25 @@ const upgrades = {
             }
         },
         cripplingShots: {
-            cost: 75000000,
+            cost: 37500000,
             effect: function() {
                 sniperRiflePointsPerShot *= 2;
             }
         },
         headShot: {
-            cost: 1250000000,
+            cost: 750000000,
             effect: function() {
                 sniperRifleCriticalDamageMultiplier += 2;
             }
         },
         dangerousRifling: {
-            cost: 6667000000,
+            cost: 3333000000,
             effect: function() {
                 sniperRiflePointsPerShot *= 3;
             }
         },
         luckyShot: {
-            cost: 80000000000,
+            cost: 77777000000,
             effect: function() {
                 sniperRifleCriticalShotChance += 10; // Increases the critical chance by an additional 10%
             }
@@ -272,31 +303,31 @@ const upgrades = {
     },
     ak47: {
         heatTippedBullets: {
-            cost: 15000000,
+            cost: 12000000,
             effect: function() {
                 ak47PointsPerShot *= 2;
             }
         },
         staggeringBullets: {
-            cost: 2500000000,
+            cost: 800000000,
             effect: function() {
                 ak47PointsPerShot *= 3;
             }
         },
         rippingBullets: {
-            cost: 37500000000,
+            cost: 17500000000,
             effect: function() {
                 ak47PointsPerShot *= 3;
             }
         },
         vehementBullets: {
-            cost: 250000000000,
+            cost: 150000000000,
             effect: function() {
                 ak47PointsPerShot *= 4;
             }
         },
         overbearingVelocity: {
-            cost: 2000000000000,
+            cost: 1500000000000,
             effect: function() {
                 ak47PointsPerShot *= 4;
             }
@@ -305,31 +336,31 @@ const upgrades = {
     },
     rocketLauncher: {
         potentRockets: {
-            cost: 200000000,
+            cost: 150000000,
             effect: function() {
                 rocketLauncherPointsPerShot *= 2;
             }
         },
         violentExplosions: {
-            cost: 4000000000,
+            cost: 3000000000,
             effect: function() {
                 rocketLauncherSplashDamage += 0.2;
             }
         },
         repeatedExplosions: {
-            cost: 30000000000,
+            cost: 15000000000,
             effect: function() {
                 rocketLauncherPointsPerShot *= 3;
             }
         },
         biggerExplosions: {
-            cost: 300000000000,
+            cost: 250000000000,
             effect: function() {
                 rocketLauncherSplashRadius += 1;
             }
         },
         extraGunpowder: {
-            cost: 600000000000,
+            cost: 500000000000,
             effect: function() {
                 rocketLauncherPointsPerShot *= 3;
             }
@@ -344,30 +375,63 @@ const upgrades = {
             }
         },
         tightPressure: {
-            cost: 3000000000,
+            cost: 2500000000,
             effect: function() {
                 tommyGunPointsPerShot *= 2;
             }
         },
         lessPunishing: {
-            cost: 15000000000,
+            cost: 10000000000,
             effect: function() {
                 tommyGunAccuracyPenalty += 0.17; // Reduces the accuracy penalty of the tommy gun
             }
         },
         powerfulOutcomes: {
-            cost: 87500000000,
+            cost: 62500000000,
             effect: function() {
                 tommyGunPointsPerShot *= 3;
             }
         },
         vehementBurst: {
-            cost: 1500000000000,
+            cost: 750000000000,
             effect: function() {
                 tommyGunPointsPerShot *= 3;
             }
         },
         // Add more upgrades for tommyGun here
+    },
+    doubleBarrel: {
+        lethalShots: {
+            cost: 1000000000,
+            effect: function() {
+                doubleBarrelPointsPerShot *= 2;
+            }
+        },
+        arcSwitchingBarrels: {
+            cost: 10000000000,
+            effect: function() {
+                doubleBarrelPointsPerShot *= 3;
+            }
+        },
+        doubleTrouble: {
+            cost: 250000000000,
+            effect: function() {
+                doubleBarrelBulletsPerShot *= 2;
+            }
+        },
+        energized: {
+            cost: 1500000000000,
+            effect: function() {
+                doubleBarrelPointsPerShot *= 3;
+            }
+        },
+        doubleSwarm: {
+            cost: 75000000000000,
+            effect: function() {
+                doubleBarrelBulletsPerShot *= 2;
+            }
+        },
+        // Add more upgrades for shotgun here
     }
     // Add more weapons and upgrades as needed
 };
@@ -479,6 +543,17 @@ function automaticPointsGeneration() {
             }
         }, 100); // Check every 100 milliseconds for points generation
     }
+    if (doubleBarrelPurchased) {
+        setInterval(function() {
+            const currentTime = Date.now();
+            if (currentTime - lastDoubleBarrelPointsTime >= doubleBarrelFireRate) {
+                // Calculate points per shot
+                let pointsPerShot = doubleBarrelPointsPerShot * doubleBarrelBulletsPerShot;
+                shoot('doubleBarrel', pointsPerShot, false, false);
+                lastDoubleBarrelPointsTime = currentTime;
+            }
+        }, 100); // Check every 100 milliseconds for points generation
+    }
 }
 
 // Function to handle purchasing weapons and upgrades
@@ -537,6 +612,13 @@ function purchase(item) {
                 purchaseWeapon('tommyGun', tommyGunCost);
             } else {
                 alert("Tommy Gun has already been purchased!");
+            }
+            break;
+        case 'doubleBarrel':
+            if (!doubleBarrelPurchased) {
+                purchaseWeapon('doubleBarrel', doubleBarrelCost);
+            } else {
+                alert("Double Barrel has already been purchased!");
             }
             break;
         case 'pistolFirerate':
@@ -599,6 +681,15 @@ function purchase(item) {
         case 'tommyGunAccuracy':
             purchaseUpgrade('tommyGunAccuracy', tommyGunAccuracyLevel, tommyGunAccuracyUpgradeCost, 2.5, 2, 'accuracy');
             break;
+        case 'doubleBarrelFirerate':
+            purchaseUpgrade('doubleBarrelFirerate', doubleBarrelFirerateLevel, doubleBarrelFirerateUpgradeCost, 1.8, -50, 'firerate');
+            break;
+        case 'doubleBarrelPotency':
+            purchaseUpgrade('doubleBarrelPotency', doubleBarrelPotencyLevel, doubleBarrelPotencyUpgradeCost, 1.4, 4000, 'potency');
+            break;
+        case 'doubleBarrelMultiFire':
+            purchaseUpgrade('doubleBarrelMultiFire', doubleBarrelMultiFireLevel, doubleBarrelMultiFireUpgradeCost, 10, 2, 'multiFire');
+            break;
         default:
             console.error("Invalid item:", item);
     }
@@ -638,6 +729,10 @@ function purchaseWeapon(weapon, cost) {
             case 'tommyGun':
                 tommyGunCost *= 2;
                 tommyGunPurchased = true;
+                break;
+            case 'doubleBarrel':
+                doubleBarrelCost *= 2;
+                doubleBarrelPurchased = true;
                 break;
             default:
                 console.error("Invalid weapon:", weapon);
@@ -900,6 +995,41 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 tommyGunAccuracyLevel = level;
                 tommyGunInaccuracyChance -= valueIncrement;
                 break;
+            case 'doubleBarrelFirerate':
+                if (level <= 25) {
+                    doubleBarrelFirerateUpgradeCost = cost;
+                    doubleBarrelFirerateLevel = level;
+                    doubleBarrelFireRate += valueIncrement;
+                } else {
+                    console.log("Maximum level reached for double barrel fire rate upgrade.");
+                    alert("Double Barrel's firing rate has been maxed out!");
+                }
+                break;
+            case 'doubleBarrelPotency':
+                doubleBarrelPotencyUpgradeCost = cost;
+                doubleBarrelPotencyLevel = level;
+                if (upgrades.doubleBarrel.lethalShots.bought) {
+                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the lethalShots upgrade is purchased
+                }
+                if (upgrades.doubleBarrel.arcSwitchingBarrels.bought) {
+                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the arcSwitchingBarrels upgrade is purchased
+                }
+                if (upgrades.doubleBarrel.energized.bought) {
+                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the energized upgrade is purchased
+                }
+                doubleBarrelPointsPerShot += valueIncrement;
+                break;
+            case 'doubleBarrelMultiFire':
+                doubleBarrelMultiFireUpgradeCost = cost;
+                doubleBarrelMultiFireLevel = level;
+                if (upgrades.doubleBarrel.doubleTrouble.bought) {
+                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the doubleTrouble upgrade is purchased
+                }
+                if (upgrades.doubleBarrel.doubleSwarm.bought) {
+                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the doubleSwarm upgrade is purchased
+                }
+                doubleBarrelBulletsPerShot += valueIncrement;
+                break;
             default:
                 console.error("Invalid upgradeType:", upgradeType);
         }
@@ -1006,6 +1136,9 @@ function updateCostDisplay() {
     const tommyGunFirerateValue = tommyGunFireRate;
     const tommyGunPotencyValue = tommyGunPointsPerShot;
     const tommyGunInaccuracyChanceValue = -0 + tommyGunInaccuracyChance;
+    const doubleBarrelFirerateValue = doubleBarrelFireRate;
+    const doubleBarrelPotencyValue = doubleBarrelPointsPerShot;
+    const doubleBarrelMultiFireValue = doubleBarrelBulletsPerShot;
     
     document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
     document.getElementById('touchGun-level').textContent = touchGunLevel;
@@ -1090,6 +1223,17 @@ function updateCostDisplay() {
     document.getElementById('tommyGunPotency-value').textContent = formatNumber(tommyGunPotencyValue);
     document.getElementById('tommyGunAccuracy-value').textContent = tommyGunInaccuracyChanceValue;
 
+    document.getElementById('doubleBarrel-cost').textContent = formatNumber(doubleBarrelCost);
+    document.getElementById('doubleBarrelFirerate-cost').textContent = formatNumber(doubleBarrelFirerateUpgradeCost);
+    document.getElementById('doubleBarrelPotency-cost').textContent = formatNumber(doubleBarrelPotencyUpgradeCost);
+    document.getElementById('doubleBarrelMultiFire-cost').textContent = formatNumber(doubleBarrelMultiFireUpgradeCost);
+    document.getElementById('doubleBarrelFirerate-level').textContent = doubleBarrelFirerateLevel;
+    document.getElementById('doubleBarrelPotency-level').textContent = doubleBarrelPotencyLevel;
+    document.getElementById('doubleBarrelMultiFire-level').textContent = doubleBarrelMultiFireLevel;
+    document.getElementById('doubleBarrelFirerate-value').textContent = doubleBarrelFirerateValue + 'ms';
+    document.getElementById('doubleBarrelPotency-value').textContent = formatNumber(doubleBarrelPotencyValue);
+    document.getElementById('doubleBarrelMultiFire-value').textContent = doubleBarrelMultiFireValue;
+
     // Check if fire rate level is at maximum for each weapon
     if (pistolFirerateLevel === 20) {
         const pistolFirerateLevelDisplay = document.getElementById('pistolFirerate-level');
@@ -1171,6 +1315,16 @@ function updateCostDisplay() {
             tommyGunFirerateCostDisplay.textContent = "MAX";
         }
     }
+    if (doubleBarrelFirerateLevel === 25) {
+        const doubleBarrelFirerateLevelDisplay = document.getElementById('doubleBarrelFirerate-level');
+        if (doubleBarrelFirerateLevelDisplay) {
+            doubleBarrelFirerateLevelDisplay.textContent = "Max";
+        }
+        const doubleBarrelFirerateCostDisplay = document.getElementById('doubleBarrelFirerate-cost');
+        if (doubleBarrelFirerateCostDisplay) {
+            doubleBarrelFirerateCostDisplay.textContent = "MAX";
+        }
+    }
     if (upgrades.touchGun.awakenUpgrade.bought) {
         document.getElementById('touchGunAwaken-purchase').style.display = 'block';
         document.getElementById('touchGunAwaken-display').style.display = 'block';
@@ -1237,6 +1391,7 @@ function initializeSoundEffects() {
     weaponSFX.ak47 = new Audio('sfx/ak47.wav');
     weaponSFX.rocketLauncher = new Audio('sfx/bazooka.wav');
     weaponSFX.tommyGun = new Audio('sfx/smg.wav');
+    weaponSFX.doubleBarrel = new Audio('sfx/doublebarrel.wav');
 }
 
 // Function to play sound effect for a specific weapon
@@ -1362,6 +1517,9 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
             break;
         case 'tommyGun':
             playWeaponSoundEffect('tommyGun');
+            break;
+        case 'doubleBarrel':
+            playWeaponSoundEffect('doubleBarrel');
             break;
         default:
             break;

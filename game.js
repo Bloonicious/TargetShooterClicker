@@ -1444,7 +1444,7 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     // Handle rocket launcher's splash radius and damage
     if (weaponId === 'rocketLauncher') {
         // Get all shooting-range targets
-        const targets = document.querySelectorAll('.-target');
+        const targets = document.querySelectorAll('.target');
 
         // Calculate position of rocket launcher target
         const rocketTarget = document.getElementById('rocketLauncher-target');

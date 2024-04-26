@@ -1039,9 +1039,13 @@ function initializeUpgradeCosts() {
     upgradeOptions.forEach(upgradeOption => {
         const costElement = upgradeOption.querySelector('.upgrade-cost');
         if (costElement) {
-            const cost = parseInt(costElement.textContent.replace(/\D/g, ''), 10); // Extract cost as integer
-            const formattedCost = formatNumber(cost); // Format the cost using your numberFormat function
-            costElement.textContent = `Cost: ${formattedCost}`; // Update the cost display
+            const costText = costElement.textContent.trim(); // Trim any leading/trailing whitespace
+            const isBought = costText === "Bought!"; // Check if upgrade is already bought
+            if (!isBought) {
+                const cost = parseInt(costText.replace(/\D/g, ''), 10); // Extract cost as integer
+                const formattedCost = formatNumber(cost); // Format the cost using your formatNumber function
+                costElement.textContent = `Cost: ${formattedCost}`; // Update the cost display
+            }
         }
     });
 }

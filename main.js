@@ -671,6 +671,10 @@ function loadGameState() {
             document.getElementById('touchGunAwaken-purchase').style.display = 'block';
             document.getElementById('touchGunAwaken-display').style.display = 'block';
         }
+        if (upgrades.touchGun.superAwakenUpgrade.bought) {
+            document.getElementById('touchGunSuperAwaken-purchase').style.display = 'block';
+            document.getElementById('touchGunSuperAwaken-display').style.display = 'block';
+        }
         
         // Hide purchase buttons for purchased weapons
         if (pistolPurchased) {

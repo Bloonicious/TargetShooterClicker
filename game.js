@@ -60,7 +60,7 @@ let ak47PotencyLevel = 0;
 let rocketLauncherCost = 400000;
 let rocketLauncherPointsPerShot = 1000;
 let rocketLauncherFireRate = 5000; // in milliseconds
-let rocketLauncherSplashRadius = 3;
+let rocketLauncherSplashRadius = 30;
 let rocketLauncherSplashDamage = 0.4;
 let rocketLauncherFirerateUpgradeCost = 1000000;
 let rocketLauncherPotencyUpgradeCost = 750000;
@@ -667,7 +667,7 @@ function purchase(item) {
             purchaseUpgrade('rocketLauncherPotency', rocketLauncherPotencyLevel, rocketLauncherPotencyUpgradeCost, 1.4, 1000, 'potency');
             break;
         case 'rocketLauncherSplashRadius':
-            purchaseUpgrade('rocketLauncherSplashRadius', rocketLauncherSplashRadiusLevel, rocketLauncherSplashRadiusUpgradeCost, 50, 1, 'splashRadius');
+            purchaseUpgrade('rocketLauncherSplashRadius', rocketLauncherSplashRadiusLevel, rocketLauncherSplashRadiusUpgradeCost, 50, 10, 'splashRadius');
             break;
         case 'rocketLauncherSplashDamage':
             purchaseUpgrade('rocketLauncherSplashDamage', rocketLauncherSplashDamageLevel, rocketLauncherSplashDamageUpgradeCost, 7.5, 5, 'splashDamage');

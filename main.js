@@ -127,9 +127,12 @@ function saveGameState() {
         
         pistolBiggerBulletsBought: upgrades.pistol.biggerBullets.bought,
         pistolLargerCalibreBought: upgrades.pistol.largerCalibre.bought,
+        pistolEasierReloadingBought: upgrades.pistol.easierReloading.bought,
+        pistolLouderFiringBought: upgrades.pistol.louderFiring.bought,
         
         smgBetterSpreadBought: upgrades.smg.betterSpread.bought,
         smgStrongHoldBought: upgrades.smg.strongHold.bought,
+        smgPressureBulletsBought: upgrades.smg.pressureBullets.bought,
         
         shotgunMoreBarrelsBought: upgrades.shotgun.moreBarrels.bought,
         shotgunPowerfulBurstBought: upgrades.shotgun.powerfulBurst.bought,
@@ -138,6 +141,7 @@ function saveGameState() {
         sniperRifleCripplingShotsBought: upgrades.sniperRifle.cripplingShots.bought,
         
         ak47HeatTippedBulletsBought: upgrades.ak47.heatTippedBullets.bought,
+        ak47StaggeringBulletsBought: upgrades.ak47.staggeringBullets.bought,
         
         rocketLauncherPotentRocketsBought: upgrades.rocketLauncher.potentRockets.bought,
         
@@ -251,9 +255,12 @@ function loadGameState() {
         
         upgrades.pistol.biggerBullets.bought = gameState.pistolBiggerBulletsBought;
         upgrades.pistol.largerCalibre.bought = gameState.pistolLargerCalibreBought;
+        upgrades.pistol.easierReloading.bought = gameState.pistolEasierReloadingBought;
+        upgrades.pistol.louderFiring.bought = gameState.pistolLouderFiringBought;
         
         upgrades.smg.betterSpread.bought = gameState.smgBetterSpreadBought;
         upgrades.smg.strongHold.bought = gameState.smgStrongHoldBought;
+        upgrades.smg.pressureBullets.bought = gameState.smgPressureBulletsBought;
         
         upgrades.shotgun.moreBarrels.bought = gameState.shotgunMoreBarrelsBought;
         upgrades.shotgun.powerfulBurst.bought = gameState.shotgunPowerfulBurstBought;
@@ -262,6 +269,7 @@ function loadGameState() {
         upgrades.sniperRifle.cripplingShots.bought = gameState.sniperRifleCripplingShotsBought;
         
         upgrades.ak47.heatTippedBullets.bought = gameState.ak47HeatTippedBulletsBought;
+        upgrades.ak47.staggeringBullets.bought = gameState.ak47StaggeringBulletsBought;
 
         upgrades.rocketLauncher.potentRockets.bought = gameState.rocketLauncherPotentRocketsBought;
 
@@ -590,9 +598,12 @@ function resetProgress() {
         
         upgrades.pistol.biggerBullets.bought = false;
         upgrades.pistol.largerCalibre.bought = false;
+        upgrades.pistol.easierReloading.bought = false;
+        upgrades.pistol.louderFiring.bought = false;
         
         upgrades.smg.betterSpread.bought = false;
         upgrades.smg.strongHold.bought = false;
+        upgrades.smg.pressureBullets.bought = false;
         
         upgrades.shotgun.moreBarrels.bought = false;
         upgrades.shotgun.powerfulBurst.bought = false;
@@ -601,6 +612,7 @@ function resetProgress() {
         upgrades.sniperRifle.cripplingShots.bought = false;
         
         upgrades.ak47.heatTippedBullets.bought = false;
+        upgrades.ak47.staggeringBullets.bought = false;
 
         upgrades.rocketLauncher.potentRockets.bought = false;
 

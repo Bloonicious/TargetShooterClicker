@@ -153,6 +153,7 @@ function saveGameState() {
         touchGunAmbidextrousBought: upgrades.touchGun.ambidextrous.bought,
         touchGunTapMasterBought: upgrades.touchGun.tapMaster.bought,
         touchGunBazillionFingersBought: upgrades.touchGun.bazillionFingers.bought,
+        touchGunAntirestingCreamBought: upgrades.touchGun.antirestingCream.bought,
         touchGunAwakenBought: upgrades.touchGun.awakenUpgrade.bought,
         
         pistolBiggerBulletsBought: upgrades.pistol.biggerBullets.bought,
@@ -160,12 +161,14 @@ function saveGameState() {
         pistolEasierReloadingBought: upgrades.pistol.easierReloading.bought,
         pistolLouderFiringBought: upgrades.pistol.louderFiring.bought,
         pistolMetalPiercingBought: upgrades.pistol.metalPiercing.bought,
+        pistolSpecializedMechanismsBought: upgrades.pistol.specializedMechanisms.bought,
         
         smgBetterSpreadBought: upgrades.smg.betterSpread.bought,
         smgStrongHoldBought: upgrades.smg.strongHold.bought,
         smgPressureBulletsBought: upgrades.smg.pressureBullets.bought,
         smgWickedAimerBought: upgrades.smg.wickedAimer.bought,
         smgBashingRoundsBought: upgrades.smg.bashingRounds.bought,
+        smgAutoAimerBought: upgrades.smg.autoAimer.bought,
         
         shotgunMoreBarrelsBought: upgrades.shotgun.moreBarrels.bought,
         shotgunPowerfulBurstBought: upgrades.shotgun.powerfulBurst.bought,
@@ -196,6 +199,12 @@ function saveGameState() {
         tommyGunLessPunishingBought: upgrades.tommyGun.lessPunishing.bought,
         tommyGunPowerfulOutcomesBought: upgrades.tommyGun.powerfulOutcomes.bought,
         tommyGunVehementBurstBought: upgrades.tommyGun.vehementBurst.bought,
+
+        doubleBarrelLethalShotsBought: upgrades.doubleBarrel.lethalShots.bought,
+        doubleBarrelArcSwitchingBarrelsBought: upgrades.doubleBarrel.arcSwitchingBarrels.bought,
+        doubleBarrelDoubleTroubleBought: upgrades.doubleBarrel.doubleTrouble.bought,
+        doubleBarrelEnergizedBought: upgrades.doubleBarrel.energized.bought,
+        doubleBarrelDoubleSwarmBought: upgrades.doubleBarrel.doubleSwarm.bought,
         
         pistolPurchased: pistolPurchased,
         pistolPointsPerShot: pistolPointsPerShot,
@@ -272,6 +281,17 @@ function saveGameState() {
         tommyGunPotencyLevel: tommyGunPotencyLevel,
         tommyGunAccuracyLevel: tommyGunPotencyLevel,
 
+        doubleBarrelPurchased: doubleBarrelPurchased,
+        doubleBarrelPointsPerShot: doubleBarrelPointsPerShot,
+        doubleBarrelFireRate: doubleBarrelFireRate,
+        doubleBarrelBulletsPerShot: doubleBarrelBulletsPerShot,
+        doubleBarrelFirerateUpgradeCost: doubleBarrelFirerateUpgradeCost,
+        doubleBarrelPotencyUpgradeCost: doubleBarrelPotencyUpgradeCost,
+        doubleBarrelMultiFireUpgradeCost: doubleBarrelMultiFireUpgradeCost,
+        doubleBarrelFirerateLevel: doubleBarrelFirerateLevel,
+        doubleBarrelPotencyLevel: doubleBarrelPotencyLevel,
+        doubleBarrelMultiFireLevel: doubleBarrelMultiFireLevel,
+
         purchasedBigUpgrades: getPurchasedBigUpgrades()
     };
 
@@ -301,6 +321,7 @@ function loadGameState() {
         upgrades.touchGun.pointyFingers.bought = gameState.touchGunPointyFingersBought;
         upgrades.touchGun.ambidextrous.bought = gameState.touchGunAmbidextrousBought;
         upgrades.touchGun.tapMaster.bought = gameState.touchGunTapMasterBought;
+        upgrades.touchGun.antirestingCream.bought = gameState.touchGunAntirestingCreamBought;
         upgrades.touchGun.bazillionFingers.bought = gameState.touchGunBazillionFingersBought;
         upgrades.touchGun.awakenUpgrade.bought = gameState.touchGunAwakenBought;
         
@@ -309,12 +330,14 @@ function loadGameState() {
         upgrades.pistol.easierReloading.bought = gameState.pistolEasierReloadingBought;
         upgrades.pistol.louderFiring.bought = gameState.pistolLouderFiringBought;
         upgrades.pistol.metalPiercing.bought = gameState.pistolMetalPiercingBought;
+        upgrades.pistol.specializedMechanisms.bought = gameState.pistolSpecializedMechanismsBought;
         
         upgrades.smg.betterSpread.bought = gameState.smgBetterSpreadBought;
         upgrades.smg.strongHold.bought = gameState.smgStrongHoldBought;
         upgrades.smg.pressureBullets.bought = gameState.smgPressureBulletsBought;
         upgrades.smg.wickedAimer.bought = gameState.smgWickedAimerBought;
         upgrades.smg.bashingRounds.bought = gameState.smgBashingRoundsBought;
+        upgrades.smg.autoAimer.bought = gameState.smgAutoAimerBought;
         
         upgrades.shotgun.moreBarrels.bought = gameState.shotgunMoreBarrelsBought;
         upgrades.shotgun.powerfulBurst.bought = gameState.shotgunPowerfulBurstBought;
@@ -345,6 +368,12 @@ function loadGameState() {
         upgrades.tommyGun.lessPunishing.bought = gameState.tommyGunLessPunishingBought;
         upgrades.tommyGun.powerfulOutcomes.bought = gameState.tommyGunPowerfulOutcomesBought;
         upgrades.tommyGun.vehementBurst.bought = gameState.tommyGunVehementBurstBought;
+
+        upgrades.doubleBarrel.lethalShots.bought = gameState.doubleBarrelLethalShotsBought;
+        upgrades.doubleBarrel.arcSwitchingBarrels.bought = gameState.doubleBarrelArcSwitchingBarrelsBought;
+        upgrades.doubleBarrel.doubleTrouble.bought = gameState.doubleBarrelDoubleTroubleBought;
+        upgrades.doubleBarrel.energized.bought = gameState.doubleBarrelEnergizedBought;
+        upgrades.doubleBarrel.doubleSwarm.bought = gameState.doubleBarrelDoubleSwarmBought;
         
         pistolPurchased = gameState.pistolPurchased;
         pistolPointsPerShot = gameState.pistolPointsPerShot;
@@ -420,6 +449,17 @@ function loadGameState() {
         tommyGunFirerateLevel = Math.min(gameState.tommyGunFirerateLevel, 20);
         tommyGunPotencyLevel = gameState.tommyGunPotencyLevel;
         tommyGunAccuracyLevel = gameState.tommyGunAccuracyLevel;
+
+        doubleBarrelPurchased = gameState.doubleBarrelPurchased;
+        doubleBarrelPointsPerShot = gameState.doubleBarrelPointsPerShot;
+        doubleBarrelFireRate = gameState.doubleBarrelFireRate;
+        doubleBarrelBulletsPerShot = gameState.doubleBarrelBulletsPerShot,
+        doubleBarrelFirerateUpgradeCost = gameState.doubleBarrelFirerateUpgradeCost;
+        doubleBarrelPotencyUpgradeCost = gameState.doubleBarrelPotencyUpgradeCost;
+        doubleBarrelMultiFireUpgradeCost = gameState.doubleBarrelMultiFireUpgradeCost;
+        doubleBarrelFirerateLevel = Math.min(gameState.doubleBarrelFirerateLevel, 25);
+        doubleBarrelPotencyLevel = gameState.doubleBarrelPotencyLevel;
+        doubleBarrelMultiFireLevel = gameState.doubleBarrelMultiFireLevel;
 
         // Load the purchased big upgrades interface
         loadPurchasedBigUpgrades(gameState.purchasedBigUpgrades);
@@ -514,6 +554,17 @@ function loadGameState() {
         document.getElementById('tommyGunPotency-value').textContent = formatNumber(tommyGunPointsPerShot);
         document.getElementById('tommyGunAccuracy-value').textContent = -0 + tommyGunInaccuracyChance;
 
+        document.getElementById('doubleBarrel-cost').textContent = formatNumber(doubleBarrelCost);
+        document.getElementById('doubleBarrelFirerate-cost').textContent = formatNumber(doubleBarrelFirerateUpgradeCost);
+        document.getElementById('doubleBarrelPotency-cost').textContent = formatNumber(doubleBarrelPotencyUpgradeCost);
+        document.getElementById('doubleBarrelMultiFire-cost').textContent = formatNumber(doubleBarrelMultiFireUpgradeCost);
+        document.getElementById('doubleBarrelFirerate-level').textContent = doubleBarrelFirerateLevel;
+        document.getElementById('doubleBarrelPotency-level').textContent = doubleBarrelPotencyLevel;
+        document.getElementById('doubleBarrelMultiFire-level').textContent = doubleBarrelMultiFireLevel;
+        document.getElementById('doubleBarrelFirerate-value').textContent = doubleBarrelFireRate + 'ms';
+        document.getElementById('doubleBarrelPotency-value').textContent = formatNumber(doubleBarrelPointsPerShot);
+        document.getElementById('doubleBarrelMultiFire-value').textContent = doubleBarrelBulletsPerShot;
+
         // Check if pistol fire rate level is at maximum
         if (pistolFirerateLevel === 20) {
             const pistolFirerateLevelDisplay = document.getElementById('pistolFirerate-level');
@@ -595,6 +646,16 @@ function loadGameState() {
                 tommyGunFirerateCostDisplay.textContent = "MAX";
             }
         }
+        if (doubleBarrelFirerateLevel === 25) {
+            const doubleBarrelFirerateLevelDisplay = document.getElementById('doubleBarrelFirerate-level');
+            if (doubleBarrelFirerateLevelDisplay) {
+                doubleBarrelFirerateLevelDisplay.textContent = "Max";
+            }
+            const doubleBarrelFirerateCostDisplay = document.getElementById('doubleBarrelFirerate-cost');
+            if (doubleBarrelFirerateCostDisplay) {
+                doubleBarrelFirerateCostDisplay.textContent = "MAX";
+            }
+        }
         if (upgrades.touchGun.awakenUpgrade.bought) {
             document.getElementById('touchGunAwaken-purchase').style.display = 'block';
             document.getElementById('touchGunAwaken-display').style.display = 'block';
@@ -620,6 +681,9 @@ function loadGameState() {
             document.getElementById('rocketLauncher-purchase').style.display = 'none';
         }
         if (tommyGunPurchased) {
+            document.getElementById('tommyGun-purchase').style.display = 'none';
+        }
+        if (doubleBarrelPurchased) {
             document.getElementById('tommyGun-purchase').style.display = 'none';
         }
     }
@@ -665,6 +729,7 @@ function resetProgress() {
         upgrades.touchGun.pointyFingers.bought = false;
         upgrades.touchGun.ambidextrous.bought = false;
         upgrades.touchGun.tapMaster.bought = false;
+        upgrades.touchGun.antirestingCream.bought = false;
         upgrades.touchGun.bazillionFingers.bought = false;
         upgrades.touchGun.awakenUpgrade.bought = false;
         
@@ -673,12 +738,14 @@ function resetProgress() {
         upgrades.pistol.easierReloading.bought = false;
         upgrades.pistol.louderFiring.bought = false;
         upgrades.pistol.metalPiercing.bought = false;
+        upgrades.pistol.specializedMechanisms.bought = false;
         
         upgrades.smg.betterSpread.bought = false;
         upgrades.smg.strongHold.bought = false;
         upgrades.smg.pressureBullets.bought = false;
         upgrades.smg.wickedAimer.bought = false;
         upgrades.smg.bashingRounds.bought = false;
+        upgrades.smg.autoAimer.bought = false;
         
         upgrades.shotgun.moreBarrels.bought = false;
         upgrades.shotgun.powerfulBurst.bought = false;
@@ -709,6 +776,12 @@ function resetProgress() {
         upgrades.tommyGun.lessPunishing.bought = false;
         upgrades.tommyGun.powerfulOutcomes.bought = false;
         upgrades.tommyGun.vehementBurst.bought = false;
+
+        upgrades.doubleBarrel.lethalShots.bought = false;
+        upgrades.doubleBarrel.arcSwitchingBarrels.bought = false;
+        upgrades.doubleBarrel.doubleTrouble.bought = false;
+        upgrades.doubleBarrel.energized.bought = false;
+        upgrades.doubleBarrel.doubleSwarm.bought = false;
         
         pistolPurchased = false;
         pistolCost = 10;
@@ -792,6 +865,18 @@ function resetProgress() {
         tommyGunPotencyLevel = 0;
         tommyGunAccuracyLevel = 0;
 
+        doubleBarrelPurchased = false;
+        doubleBarrelCost = 30000000;
+        doubleBarrelPointsPerShot = 4000;
+        doubleBarrelFireRate = 2000;
+        doubleBarrelMultiFireUpgradeCost = 150000000;
+        doubleBarrelFirerateUpgradeCost = 80000000;
+        doubleBarrelPotencyUpgradeCost = 60000000;
+        doubleBarrelBulletsPerShot = 2;
+        doubleBarrelFirerateLevel = 0;
+        doubleBarrelPotencyLevel = 0;
+        doubleBarrelMultiFireLevel = 0;
+
         clearInterval(pistolFireRate);
         clearInterval(smgFireRate);
         clearInterval(shotgunFireRate);
@@ -799,6 +884,7 @@ function resetProgress() {
         clearInterval(ak47FireRate);
         clearInterval(rocketLauncherFireRate);
         clearInterval(tommyGunFireRate);
+        clearInterval(doubleBarrelFireRate);
 
         // Enable purchase buttons for reset weapons
         if (pistolPurchased === false) {
@@ -820,6 +906,9 @@ function resetProgress() {
             document.getElementById('rocketLauncher-purchase').style.display = 'block';
         }
         if (tommyGunPurchased === false) {
+            document.getElementById('tommyGun-purchase').style.display = 'block';
+        }
+        if (doubleBarrelPurchased === false) {
             document.getElementById('tommyGun-purchase').style.display = 'block';
         }
         if (upgrades.touchGun.awakenUpgrade.bought === false) {

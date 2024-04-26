@@ -979,7 +979,7 @@ function bigUpgrades(weapon, upgrade, cost) {
         // Update the cost display with the formatted cost
         const costDisplay = upgradeOption.querySelector('.upgrade-cost');
         if (costDisplay) {
-            costDisplay.textContent = formattedCost;
+            costDisplay.textContent = `Cost: ${formattedCost}`; // Update the cost display
         }
     }
 }

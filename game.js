@@ -1142,7 +1142,7 @@ function updateCostDisplay() {
     
     document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
     document.getElementById('touchGun-level').textContent = touchGunLevel;
-    document.getElementById('touchGun-points-per-click').textContent = touchGunPointsPerClick;
+    document.getElementById('touchGun-points-per-click').textContent = formatNumber(touchGunPointsPerClick);
 
     document.getElementById('touchGunAwaken-cost').textContent = formatNumber(awokenTouchGunCost);
     document.getElementById('touchGunAwaken-level').textContent = awokenTouchGunLevel;

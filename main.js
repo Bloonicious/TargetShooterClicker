@@ -728,8 +728,8 @@ function resetProgress() {
         // Reset all variables to their default values
         points = 0;
         statistics = {
-        lifetimePoints: 0,
-        weaponUpgradeLevels: {
+            lifetimePoints: 0,
+            weaponUpgradeLevels: {
                 touchGun: { firerate: 0, potency: 0 },
                 pistol: { firerate: 0, potency: 0 },
                 smg: { firerate: 0, potency: 0 },

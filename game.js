@@ -1032,12 +1032,12 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     floatingText.classList.add('floating-text');
 
     // Check if it's a critical hit or miss
-    if (critical) {
-        floatingText.classList.add('critical'); // Add critical class for critical hits
-        floatingText.textContent += ' Crit!';
-    } else if (miss) {
+    if (miss && weaponId === 'tommyGun') {
         floatingText.classList.add('miss'); // Add miss class for missed shots
         floatingText.textContent += ' Miss!';
+    } else if (critical) {
+        floatingText.classList.add('critical'); // Add critical class for critical hits
+        floatingText.textContent += ' Crit!';
     }
 
     // Get the target element based on the weaponId
@@ -1058,27 +1058,34 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     floatingText.style.left = centerX + 'px';
     floatingText.style.top = centerY + 'px';
 
-    // Handle rocket launcher's splash radius
+    // Handle rocket launcher's splash radius and damage
     if (weaponId === 'rocketLauncher') {
         // Get all shooting-range targets
         const targets = document.querySelectorAll('.-target');
-        
-        // Loop through targets and calculate distance from the center
+
+        // Calculate position of rocket launcher target
+        const rocketTarget = document.getElementById('rocketLauncher-target');
+        const rocketTargetRect = rocketTarget.getBoundingClientRect();
+        const rocketTargetX = rocketTargetRect.left + rocketTargetRect.width / 2;
+        const rocketTargetY = rocketTargetRect.top + rocketTargetRect.height / 2;
+
+        // Loop through all targets to check for splash damage
         targets.forEach(t => {
             const tRect = t.getBoundingClientRect();
             const tCenterX = tRect.left + tRect.width / 2;
             const tCenterY = tRect.top + tRect.height / 2;
-            
-            const distanceX = Math.abs(centerX - tCenterX);
-            const distanceY = Math.abs(centerY - tCenterY);
-            
-            // Check if the target is within the splash radius
-            if (distanceX <= 50 && distanceY <= 50 && !(distanceX === 0 && distanceY === 0)) {
+
+            // Calculate distance between rocket launcher target and current target
+            const distanceX = Math.abs(rocketTargetX - tCenterX);
+            const distanceY = Math.abs(rocketTargetY - tCenterY);
+
+            // Check if target is within splash radius
+            if (distanceX <= rocketLauncherSplashRadius && distanceY <= rocketLauncherSplashRadius && !(distanceX === 0 && distanceY === 0)) {
                 // Apply splash damage
                 const splashDamage = rocketLauncherSplashDamage; // 40% of points per shot
-                points *= splashDamage;
+                points += splashDamage;
                 updatePointsDisplay();
-                
+
                 // Show splash damage text for each affected target
                 const splashText = document.createElement('div');
                 splashText.textContent = '+' + formatNumber(splashDamage);

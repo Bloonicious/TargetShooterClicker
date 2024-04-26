@@ -1491,15 +1491,11 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
         floatingText.remove();
     }, 1000); // Adjust the delay as needed
 
-    // Increment the total points (only if it's not a rocket launcher splash)
+    // Increment the total points
     if (weaponId !== 'rocketLauncher') {
         points += pointsPerShot;
         updatePointsDisplay();
     }
-    
-    // Increment the total points
-    points += pointsPerShot;
-    updatePointsDisplay();
 
     // Play sound effect based on weapon type
     switch (weaponId) {

@@ -866,7 +866,7 @@ function resetProgress() {
         rocketLauncherCost = 400000;
         rocketLauncherPointsPerShot = 1000;
         rocketLauncherFireRate = 5000;
-        rocketLauncherSplashRadius = 3;
+        rocketLauncherSplashRadius = 30;
         rocketLauncherSplashDamage = 0.4;
         rocketLauncherFirerateUpgradeCost = 1000000;
         rocketLauncherPotencyUpgradeCost = 750000;

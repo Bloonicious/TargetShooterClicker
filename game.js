@@ -1005,7 +1005,7 @@ function updateCostDisplay() {
     const rocketLauncherSplashDamageValue = rocketLauncherSplashDamage;
     const tommyGunFirerateValue = tommyGunFireRate;
     const tommyGunPotencyValue = tommyGunPointsPerShot;
-    const tommyGunInaccuracyChanceValue = -2 + tommyGunInaccuracyChance;
+    const tommyGunInaccuracyChanceValue = -0 + tommyGunInaccuracyChance;
     
     document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
     document.getElementById('touchGun-level').textContent = touchGunLevel;

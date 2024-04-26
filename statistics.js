@@ -70,7 +70,7 @@ function getStatistics() {
 // Function to update the statistics displayed in the HTML
 function updateStatisticsDisplay() {
     const lifetimePointsElement = document.getElementById('lifetime-points');
-    if (lifetimePointsElement) {
+    if (lifetimePointsElement && statistics.lifetimePoints !== undefined) {
         lifetimePointsElement.textContent = statistics.lifetimePoints.toLocaleString(); // Format lifetime points
     }
 
@@ -97,6 +97,9 @@ function updateStatisticsDisplay() {
         }
     }
 }
+
+// Initial update of statistics display when the page loads
+document.addEventListener('DOMContentLoaded', updateStatisticsDisplay);
 
 // Initial update of statistics display when the page loads
 document.addEventListener('DOMContentLoaded', updateStatisticsDisplay);

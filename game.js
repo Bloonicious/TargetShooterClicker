@@ -731,13 +731,16 @@ const upgrades = {
     // Add more weapons and upgrades as needed
 };
 
-// Function to update points display and total lifetime points
+// Function to update points display
 function updatePointsDisplay() {
-    const scoreValueElement = document.getElementById('score-value');
-    if (scoreValueElement) {
-        scoreValueElement.textContent = formatNumber(points);
-    }
-    // Update total lifetime points
+    const scoreValueElements = document.querySelectorAll('.score-value');
+    scoreValueElements.forEach(element => {
+        element.textContent = formatNumber(points);
+    });
+}
+
+// Function to update total lifetime points
+function updateLifetimePoints() {
     statistics.totalLifetimePoints = points;
     updateStatisticsDisplay(); // Update statistics display
 }
@@ -2204,6 +2207,7 @@ function determineTotalPotencyUpgrades(gameData) {
 
 // Update points and cost display initially
 updatePointsDisplay();
+updateLifetimePoints();
 updateCostDisplay();
 updateAchievementsDisplay();
 updateStatisticsDisplay();

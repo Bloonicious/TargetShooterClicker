@@ -2100,7 +2100,7 @@ function upgradeWeaponLevel(weapon, upgradeType) {
     document.dispatchEvent(upgradeLevelUpdatedEvent);
 }
 
-// Function to update achievements display
+// Function to update achievements display and progress bar
 function updateAchievementsDisplay() {
     const achievementList = document.getElementById('achievement-list');
     achievementList.innerHTML = ''; // Clear previous content
@@ -2110,8 +2110,18 @@ function updateAchievementsDisplay() {
         listItem.innerHTML = `
             <h3>${achievement.name}</h3>
             <p>${achievement.description}</p>
-            <p>Status: ${achievement.condition() ? 'Achieved' : 'Not achieved'}</p>
+            <p>Status: ${achievement.achieved ? 'Achieved' : 'Not achieved'}</p>
         `;
+        
+        // Add progress bar for achievements that are achieved
+        if (achievement.achieved) {
+            listItem.innerHTML += `
+                <div class="progress-bar">
+                    <div class="progress" style="width: 100%;"></div>
+                </div>
+            `;
+        }
+        
         achievementList.appendChild(listItem);
     });
 }

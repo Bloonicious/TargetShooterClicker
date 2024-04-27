@@ -2125,6 +2125,8 @@ updateStatisticsDisplay();
 
 // Start earning points automatically for purchased weapons
 setInterval(automaticPointsGeneration, 1000); // Check every second for points generation
+// Interval timer to update cost display every second
+setInterval(updateCostDisplay, 100);
 // Interval timer to update achievements display every second
 setInterval(updateAchievementsDisplay, 100);
 // Interval timer to update statistics display every second

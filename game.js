@@ -98,6 +98,8 @@ let doubleBarrelPotencyLevel = 0;
 let doubleBarrelMultiFireLevel = 0;
 
 let points = 0;
+let previousPoints = 0;
+
 let numberFormat = 'standard'; // Default number format
 
 let pistolPurchased = false;
@@ -745,7 +747,8 @@ function updatePointsDisplay() {
     if (scoreValueUpgrades) {
         scoreValueUpgrades.textContent = formatNumber(points);
     }
-    // Updates lifetime points counter
+    
+    // Update lifetime points statistic
     updateLifetimePoints();
 }
 
@@ -2213,7 +2216,17 @@ function determineTotalPotencyUpgrades(gameData) {
 function updateLifetimePoints() {
     const lifetimePointsElement = document.getElementById('lifetime-points');
     if (lifetimePointsElement) {
+        // Calculate the difference in points since the last update
+        const pointsDifference = points - previousPoints;
+        
+        // Update the totalLifetimePoints with the points difference
+        statistics.totalLifetimePoints += pointsDifference;
+
+        // Update the lifetime points display
         lifetimePointsElement.textContent = formatNumber(statistics.totalLifetimePoints);
+
+        // Update the previousPoints variable for the next update
+        previousPoints = points;
     }
 }
 

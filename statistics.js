@@ -51,3 +51,38 @@ function updateStatisticsInterval() {
     updateStatisticsDisplay(); // Update immediately
     setInterval(updateStatisticsDisplay, 100); // Update every 100 milliseconds
 }
+
+// Function to initialize statistics based on game data
+function initializeStatistics(gameData) {
+    if (gameData) {
+        statistics.totalLifetimePoints = gameData.lifetimePoints || 0;
+        statistics.totalPotencyUpgrades = determineTotalPotencyUpgrades(gameData);
+        statistics.totalFirerateUpgrades = gameData.totalFirerateUpgrades || 0;
+        statistics.totalMultiFireUpgrades = gameData.totalMultiFireUpgrades || 0;
+        statistics.totalAccuracyUpgrades = gameData.totalAccuracyUpgrades || 0;
+        statistics.totalCriticalShotUpgrades = gameData.totalCriticalShotUpgrades || 0;
+        statistics.totalCriticalDamageUpgrades = gameData.totalCriticalDamageUpgrades || 0;
+        statistics.totalSplashRadiusUpgrades = gameData.totalSplashRadiusUpgrades || 0;
+        statistics.totalSplashDamageUpgrades = gameData.totalSplashDamageUpgrades || 0;
+        statistics.totalBigUpgradesPurchased = gameData.totalBigUpgradesPurchased || 0;
+    }
+}
+
+// Example function to get total potency upgrades from game data
+function determineTotalPotencyUpgrades(gameData) {
+    let potencyUpgrades = 0;
+    if (gameData && gameData.weaponUpgradeLevels) {
+        for (const weapon in gameData.weaponUpgradeLevels) {
+            if (gameData.weaponUpgradeLevels.hasOwnProperty(weapon)) {
+                potencyUpgrades += gameData.weaponUpgradeLevels[weapon].potency || 0;
+            }
+        }
+    }
+    return totalPotencyUpgrades;
+}
+
+// Function to update statistics at regular intervals
+function updateStatisticsInterval() {
+    updateStatisticsDisplay(); // Update immediately
+    setInterval(updateStatisticsDisplay, 100); // Update every 100 milliseconds
+}

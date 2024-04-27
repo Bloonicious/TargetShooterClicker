@@ -1847,6 +1847,60 @@ function formatNumber(number) {
     }
 }
 
+// Function to update achievements display and progress bar
+function updateAchievementsDisplay() {
+    const achievementList = document.getElementById('achievement-list');
+    achievementList.innerHTML = ''; // Clear previous content
+
+    achievements.forEach((achievement, index) => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+            <h3>${achievement.name}</h3>
+            <p>${achievement.description}</p>
+            <p>Status: ${achievement.achieved ? 'Achieved' : 'Not achieved'}</p>
+        `;
+        
+        // Add progress bar for achievements
+        const progressPercentage = calculateAchievementProgress(achievement);
+        const progressBarColor = achievement.achieved ? 'green' : 'red'; // Color based on achievement status
+        
+        listItem.innerHTML += `
+            <div class="progress-bar" style="background-color: ${progressBarColor};">
+                <div class="progress" style="width: ${progressPercentage}%;"></div>
+            </div>
+        `;
+        
+        achievementList.appendChild(listItem);
+    });
+}
+
+// Function to calculate achievement progress percentage
+function calculateAchievementProgress(achievement) {
+    // Implement logic to calculate progress percentage based on achievement condition
+    let progressPercentage = achievement.condition() ? 100 : 0;
+    return progressPercentage;
+}
+
+// Function to check and update achievements
+function checkAndUpdateAchievements() {
+    achievements.forEach((achievement, index) => {
+        if (!achievement.achieved && achievement.condition()) {
+            // Mark the achievement as achieved
+            achievements[index].achieved = true;
+        }
+    });
+
+    // Update achievements display
+    updateAchievementsDisplay();
+}
+
+// Function to get total potency upgrades
+function getTotalPotencyUpgrades() {
+    // Implement logic to calculate total potency upgrades
+    let totalPotencyLevel = pistolPotencyLevel + smgPotencyLevel + shotgunPotencyLevel + sniperRiflePotencyLevel + ak47PotencyLevel + rocketLauncherPotencyLevel + tommyGunPotencyLevel + doubleBarrelPotencyLevel;
+    return totalPotencyLevel;
+}
+
 // Function to initialize upgrade costs with proper formatting
 function initializeUpgradeCosts() {
     const upgradeOptions = document.querySelectorAll('.upgrade-option');
@@ -1862,6 +1916,27 @@ function initializeUpgradeCosts() {
             }
         }
     });
+}
+
+// Function to initialize achievements
+function initializeAchievements() {
+    // Set default values for achievements if not already set
+    achievements.forEach((achievement, index) => {
+        if (typeof achievement.achieved === 'undefined') {
+            achievements[index].achieved = false; // Set default value to false
+        }
+    });
+
+    // Update achievements based on current game state
+    achievements.forEach((achievement, index) => {
+        if (!achievement.achieved && achievement.condition()) {
+            // Mark the achievement as achieved if condition is met
+            achievements[index].achieved = true;
+        }
+    });
+
+    // Update achievements display
+    updateAchievementsDisplay();
 }
 
 // Function to initialize sound effects
@@ -2097,70 +2172,6 @@ function upgradeWeaponLevel(weapon, upgradeType) {
     // Emit event to notify statistics.js about the weapon level upgrade
     const upgradeLevelUpdatedEvent = new CustomEvent('upgradeLevelUpdated', { detail: { weapon: weapon, upgradeType: upgradeType } });
     document.dispatchEvent(upgradeLevelUpdatedEvent);
-}
-
-// Function to update achievements display and progress bar
-function updateAchievementsDisplay() {
-    const achievementList = document.getElementById('achievement-list');
-    achievementList.innerHTML = ''; // Clear previous content
-
-    achievements.forEach((achievement, index) => {
-        const listItem = document.createElement('li');
-        listItem.innerHTML = `
-            <h3>${achievement.name}</h3>
-            <p>${achievement.description}</p>
-            <p>Status: ${achievement.achieved ? 'Achieved' : 'Not achieved'}</p>
-        `;
-        
-        // Add progress bar for achievements
-        if (achievement.achieved) {
-            const progressPercentage = 100; // Progress percentage for achieved achievements
-            listItem.innerHTML += `
-                <div class="progress-bar">
-                    <div class="progress" style="width: ${progressPercentage}%;"></div>
-                </div>
-            `;
-        } else {
-            const progressPercentage = calculateAchievementProgress(achievement);
-            listItem.innerHTML += `
-                <div class="progress-bar">
-                    <div class="progress" style="width: ${progressPercentage}%;"></div>
-                </div>
-            `;
-        }
-        
-        achievementList.appendChild(listItem);
-    });
-}
-
-// Function to calculate achievement progress percentage
-function calculateAchievementProgress(achievement) {
-    // Implement logic to calculate progress percentage based on achievement condition
-    let progressPercentage = 0;
-    if (achievement.condition()) {
-        progressPercentage = 100;
-    }
-    return progressPercentage;
-}
-
-// Function to check and update achievements
-function checkAndUpdateAchievements() {
-    achievements.forEach((achievement, index) => {
-        if (!achievement.achieved && achievement.condition()) {
-            // Mark the achievement as achieved
-            achievements[index].achieved = true;
-        }
-    });
-
-    // Update achievements display
-    updateAchievementsDisplay();
-}
-
-// Function to get total potency upgrades
-function getTotalPotencyUpgrades() {
-    // Implement logic to calculate total potency upgrades
-    let totalPotencyLevel = pistolPotencyLevel + smgPotencyLevel + shotgunPotencyLevel + sniperRiflePotencyLevel + ak47PotencyLevel + rocketLauncherPotencyLevel + tommyGunPotencyLevel + doubleBarrelPotencyLevel;
-    return totalPotencyLevel;
 }
 
 // Update points and cost display initially

@@ -98,7 +98,7 @@ let doubleBarrelPotencyLevel = 0;
 let doubleBarrelMultiFireLevel = 0;
 
 let points = 0;
-let previousPoints = 0;
+let gameplayPoints = 0;
 
 let numberFormat = 'standard'; // Default number format
 
@@ -2216,17 +2216,17 @@ function determineTotalPotencyUpgrades(gameData) {
 function updateLifetimePoints() {
     const lifetimePointsElement = document.getElementById('lifetime-points');
     if (lifetimePointsElement) {
-        // Calculate the difference in points since the last update
-        const pointsDifference = points - previousPoints;
+        // Calculate the difference in points earned from gameplay since the last update
+        const pointsDifference = points - gameplayPoints;
         
-        // Update the totalLifetimePoints with the points difference
+        // Update the totalLifetimePoints with the points earned from gameplay
         statistics.totalLifetimePoints += pointsDifference;
 
         // Update the lifetime points display
         lifetimePointsElement.textContent = formatNumber(statistics.totalLifetimePoints);
 
-        // Update the previousPoints variable for the next update
-        previousPoints = points;
+        // Update the gameplayPoints variable for the next update
+        gameplayPoints = points;
     }
 }
 

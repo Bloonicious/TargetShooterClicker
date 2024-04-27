@@ -988,8 +988,8 @@ function resetProgress() {
         smgCost = 100;
         smgPointsPerShot = 1;
         smgFireRate = 200;
-        smgFirerateUpgradeCost = 750;
-        smgPotencyUpgradeCost = 1500;
+        smgFirerateUpgradeCost = 600;
+        smgPotencyUpgradeCost = 1200;
         smgFirerateLevel = 0;
         smgPotencyLevel = 0;
         
@@ -999,7 +999,7 @@ function resetProgress() {
         shotgunFireRate = 1500;
         shotgunBulletsPerShot = 3,
         shotgunFirerateUpgradeCost = 5000;
-        shotgunPotencyUpgradeCost = 12500;
+        shotgunPotencyUpgradeCost = 10000;
         shotgunMultiFireUpgradeCost = 25000;
         shotgunFirerateLevel = 0;
         shotgunPotencyLevel = 0;
@@ -1011,8 +1011,8 @@ function resetProgress() {
         sniperRifleFireRate = 4000;
         sniperRifleCriticalShotChance = 25;
         sniperRifleCriticalDamageMultiplier = 2.0;
-        sniperRifleFirerateUpgradeCost = 50000;
-        sniperRiflePotencyUpgradeCost = 100000;
+        sniperRifleFirerateUpgradeCost = 37500;
+        sniperRiflePotencyUpgradeCost = 75000;
         sniperRifleCriticalShotUpgradeCost = 75000;
         sniperRifleCriticalDamageUpgradeCost = 250000;
         sniperRifleFirerateLevel = 0;
@@ -1024,8 +1024,8 @@ function resetProgress() {
         ak47Cost = 60000;
         ak47PointsPerShot = 150;
         ak47FireRate = 500;
-        ak47FirerateUpgradeCost = 300000;
-        ak47PotencyUpgradeCost = 400000;
+        ak47FirerateUpgradeCost = 175000;
+        ak47PotencyUpgradeCost = 250000;
         ak47FirerateLevel = 0;
         ak47PotencyLevel = 0;
 
@@ -1033,7 +1033,7 @@ function resetProgress() {
         rocketLauncherCost = 400000;
         rocketLauncherPointsPerShot = 1000;
         rocketLauncherFireRate = 5000;
-        rocketLauncherSplashRadius = 30;
+        rocketLauncherSplashRadius = 300;
         rocketLauncherSplashDamage = 0.4;
         rocketLauncherFirerateUpgradeCost = 1000000;
         rocketLauncherPotencyUpgradeCost = 750000;

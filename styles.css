@@ -165,3 +165,52 @@ body {
     z-index: 0; /* Ensure the floating text appears above other elements */
 }
 
+/* Grid layout for achievement list */
+#achievement-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Four boxes per row */
+    gap: 20px; /* Gap between boxes */
+    list-style: none; /* Remove default list styles */
+}
+
+/* Style for each achievement item */
+#achievement-list li {
+    background-color: #f2f2f2; /* Light gray background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+}
+
+/* Completed achievement style */
+#achievement-list li.achieved {
+    background-color: #c7f0d8; /* Light green background for completed achievements */
+}
+
+/* Incomplete achievement style */
+#achievement-list li:not(.achieved) {
+    background-color: #f8cecc; /* Light red background for incomplete achievements */
+}
+
+/* Achievement name style */
+#achievement-list li h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Achievement description style */
+#achievement-list li p {
+    margin: 5px 0;
+    font-size: 1rem;
+}
+
+/* Progress bar style */
+.progress-bar {
+    margin-top: 10px;
+}
+
+.progress-bar .progress {
+    background-color: #4caf50; /* Green progress bar color */
+    height: 10px;
+    border-radius: 5px;
+}

@@ -718,12 +718,15 @@ const upgrades = {
     // Add more weapons and upgrades as needed
 };
 
-// Function to update points display
+// Function to update points display and total lifetime points
 function updatePointsDisplay() {
-    const scoreValueElements = document.querySelectorAll('#score-value');
-    scoreValueElements.forEach(element => {
-        element.textContent = formatNumber(points);
-    });
+    const scoreValueElement = document.getElementById('score-value');
+    if (scoreValueElement) {
+        scoreValueElement.textContent = formatNumber(points);
+    }
+    // Update total lifetime points
+    statistics.totalLifetimePoints = points;
+    updateStatisticsDisplay(); // Update statistics display
 }
 
 // Function to handle clicking the earn points button

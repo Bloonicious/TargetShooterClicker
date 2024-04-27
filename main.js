@@ -1139,7 +1139,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeAchievements();
 });
 
-document.addEventListener('DOMContentLoaded', function() => {
+document.addEventListener('DOMContentLoaded', function() {
     initializeStatistics();
 });
 

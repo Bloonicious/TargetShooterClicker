@@ -78,5 +78,5 @@ function determineTotalPotencyUpgrades(gameData) {
             }
         }
     }
-    return totalPotencyUpgrades;
+    return potencyUpgrades;
 }

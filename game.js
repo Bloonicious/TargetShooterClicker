@@ -745,6 +745,8 @@ function updatePointsDisplay() {
     if (scoreValueUpgrades) {
         scoreValueUpgrades.textContent = formatNumber(points);
     }
+    // Updates lifetime points counter
+    updateLifetimePoints();
 }
 
 // Function to handle clicking the earn points button
@@ -2220,7 +2222,6 @@ updatePointsDisplay();
 updateCostDisplay();
 updateAchievementsDisplay();
 updateStatisticsDisplay();
-updateLifetimePoints();
 
 // Start earning points automatically for purchased weapons
 setInterval(automaticPointsGeneration, 1000); // Check every second for points generation

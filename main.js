@@ -143,6 +143,7 @@ function saveGameState() {
             description: achievement.description,
             achieved: achievement.achieved
         })),
+        statistics: statistics,
         points: points,
         
         touchGunCost: touchGunCost,
@@ -154,12 +155,9 @@ function saveGameState() {
         
         superAwokenTouchGunCost: superAwokenTouchGunCost,
         superAwokenTouchGunLevel: superAwokenTouchGunLevel,
+
         
         numberFormat: numberFormat, // Add the selected number format to the game state
-
-        // Add statistics data to the save file
-        weaponUpgradeLevels: statistics.weaponUpgradeLevels,
-        lifetimePoints: statistics.lifetimePoints,
 
         // Add big upgrade data for each weapon
         touchGunPointyFingersBought: upgrades.touchGun.pointyFingers.bought,
@@ -360,13 +358,6 @@ function saveGameState() {
 // Function to load the game state from local storage
 function loadGameState() {
     const savedState = JSON.parse(localStorage.getItem('gameState'));
-    if (savedState) {
-        points = savedState.points;
-        statistics.weaponUpgradeLevels = savedState.weaponUpgradeLevels; // Load statistics data
-        statistics.lifetimePoints = savedState.lifetimePoints; // Load lifetime points
-        updateStatisticsDisplay(); // Update statistics display after loading
-        updatePointsDisplay(); // Update points display after loading
-    }
     var gameStateJSON = localStorage.getItem('gameState');
     if (gameStateJSON !== null) {
         var gameState = JSON.parse(gameStateJSON);
@@ -380,6 +371,13 @@ function loadGameState() {
                     achievements[index].achieved = savedAchievement.achieved;
                 }
             });
+        }
+        if (savedState) {
+            // Update statistics from loaded game state
+            if (gameState.statistics) {
+                statistics = gameState.statistics;
+                updateStatisticsDisplay();
+            }
         }
 
         points = gameState.points;
@@ -855,18 +853,16 @@ function resetProgress() {
             achievement.achieved = false;
         });
         statistics = {
-            lifetimePoints: 0,
-            weaponUpgradeLevels: {
-                touchGun: { firerate: 0, potency: 0 },
-                pistol: { firerate: 0, potency: 0 },
-                smg: { firerate: 0, potency: 0 },
-                shotgun: { firerate: 0, potency: 0, multiFire: 0 },
-                sniperRifle: { firerate: 0, potency: 0, criticalChance: 0, criticalDamage: 0 },
-                ak47: { firerate: 0, potency: 0 },
-                rocketLauncher: { firerate: 0, potency: 0, splashRadius: 0, splashDamage: 0 },
-                tommyGun: { firerate: 0, potency: 0, accuracy: 0 },
-                doubleBarrel: { firerate: 0, potency: 0, multiFire: 0 }
-            }
+            totalLifetimePoints: 0,
+            totalPotencyUpgrades: 0,
+            totalFirerateUpgrades: 0,
+            totalMultiFireUpgrades: 0,
+            totalAccuracyUpgrades: 0,
+            totalCriticalShotUpgrades: 0,
+            totalCriticalDamageUpgrades: 0,
+            totalSplashRadiusUpgrades: 0,
+            totalSplashDamageUpgrades: 0,
+            totalBigUpgradesPurchased: 0
         };
         touchGunCost = 100;
         touchGunPointsPerClick = 1;

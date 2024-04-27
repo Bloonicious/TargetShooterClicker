@@ -138,7 +138,7 @@ function loadPurchasedBigUpgrades(purchasedBigUpgradeIds) {
 // Function to save the game state to local storage
 function saveGameState() {
     var gameState = {
-        achievements: achievements.map(achievement => ({ achieved: achievement.condition() })),
+        achievements: achievements.map(achievement => ({ achieved: achievement.achieved })),
         points: points,
         
         touchGunCost: touchGunCost,
@@ -367,11 +367,9 @@ function loadGameState() {
     if (gameStateJSON !== null) {
         var gameState = JSON.parse(gameStateJSON);
 
-        // Update points achievements
-        achievements.forEach((achievement, index) => {
-            if (gameState.achievements[index]) {
-                achievement.achieved = gameState.achievements[index].achieved;
-            }
+        // Update achievements
+        gameState.achievements.forEach((achievement, index) => {
+            achievements[index].achieved = achievement.achieved;
         });
 
         points = gameState.points;
@@ -583,6 +581,9 @@ function loadGameState() {
 
         // Update the interface
         updatePointsDisplay();
+
+        // Update achievements display
+        updateAchievementsDisplay();
 
         // Update firerate and potency display for each weapon
         document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
@@ -839,6 +840,10 @@ function resetProgress() {
         localStorage.removeItem('gameState');
         // Reset all variables to their default values
         points = 0;
+        // Reset achievements
+        achievements.forEach(achievement => {
+            achievement.achieved = false;
+        });
         statistics = {
             lifetimePoints: 0,
             weaponUpgradeLevels: {
@@ -1104,6 +1109,8 @@ function resetProgress() {
         // Update the interfaces
         updateStatisticsDisplay();
         updatePointsDisplay();
+        updateAchievementsDisplay();
+        saveGameState();
         // Add any other interface updates here
     }
 }

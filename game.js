@@ -720,7 +720,10 @@ const upgrades = {
 
 // Function to update points display
 function updatePointsDisplay() {
-    document.getElementById('score-value').textContent = formatNumber(points);
+    const scoreValueElements = document.querySelectorAll('#score-value');
+    scoreValueElements.forEach(element => {
+        element.textContent = formatNumber(points);
+    });
 }
 
 // Function to handle clicking the earn points button

@@ -737,7 +737,6 @@ function updatePointsDisplay() {
     scoreValueElements.forEach(element => {
         element.textContent = formatNumber(points);
     });
-    updateLifetimePoints(); // Update total lifetime points
 }
 
 // Function to handle clicking the earn points button
@@ -2200,10 +2199,12 @@ function determineTotalPotencyUpgrades(gameData) {
     return potencyUpgrades;
 }
 
-// Function to update total lifetime points
+// Function to update lifetime points statistic
 function updateLifetimePoints() {
-    statistics.totalLifetimePoints = points;
-    updateStatisticsDisplay(); // Update statistics display
+    const lifetimePointsElement = document.getElementById('lifetime-points');
+    if (lifetimePointsElement) {
+        lifetimePointsElement.textContent = formatNumber(statistics.totalLifetimePoints);
+    }
 }
 
 // Update points and cost display initially
@@ -2211,6 +2212,7 @@ updatePointsDisplay();
 updateCostDisplay();
 updateAchievementsDisplay();
 updateStatisticsDisplay();
+updateLifetimePoints();
 
 // Start earning points automatically for purchased weapons
 setInterval(automaticPointsGeneration, 1000); // Check every second for points generation

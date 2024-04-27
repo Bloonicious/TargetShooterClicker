@@ -138,7 +138,7 @@ const upgrades = {
         tapMaster: {
             cost: 250000,
             effect: function() {
-                touchGunPointsPerClick + 0.5 * totalPotencyLevel; // Increases touch gun value based on the current potency levels of those weapons
+                touchGunPointsPerClick += 0.5 * totalPotencyLevel; // Increases touch gun value based on the current potency levels of those weapons
             }
         },
         antirestingCream: {
@@ -160,7 +160,7 @@ const upgrades = {
         potentTaps: {
             cost: 250000000,
             effect: function() {
-                touchGunPointsPerClick + 5 * totalPotencyLevel; // Increases touch gun value based on the current potency levels of those weapons
+                touchGunPointsPerClick += 5 * totalPotencyLevel; // Increases touch gun value based on the current potency levels of those weapons
             }
         },
         superAwakenUpgrade: {
@@ -658,7 +658,7 @@ function purchase(item) {
             purchaseUpgrade('touchGunAwaken', superAwokenTouchGunLevel, awokenTouchGunCost, 4, 100, 'touchGun');
             break;
         case 'touchGunSuperAwaken':
-            purchaseUpgrade('touchGunAwaken', superAwokenTouchGunLevel, awokenTouchGunCost, 8, 10000, 'touchGun');
+            purchaseUpgrade('touchGunSuperAwaken', superAwokenTouchGunLevel, superAwokenTouchGunCost, 8, 10000, 'touchGun');
             break;
         case 'pistol':
             if (!pistolPurchased) {

@@ -63,7 +63,7 @@ let ak47PotencyLevel = 0;
 let rocketLauncherCost = 400000;
 let rocketLauncherPointsPerShot = 1000;
 let rocketLauncherFireRate = 5000; // in milliseconds
-let rocketLauncherSplashRadius = 30;
+let rocketLauncherSplashRadius = 300;
 let rocketLauncherSplashDamage = 0.4;
 let rocketLauncherFirerateUpgradeCost = 1000000;
 let rocketLauncherPotencyUpgradeCost = 750000;
@@ -559,7 +559,7 @@ const upgrades = {
         biggerExplosions: {
             cost: 250000000000,
             effect: function() {
-                rocketLauncherSplashRadius += 10;
+                rocketLauncherSplashRadius += 100;
             }
         },
         extraGunpowder: {
@@ -596,7 +596,7 @@ const upgrades = {
             cost: 5000000000000000,
             effect: function() {
                 rocketLauncherPointsPerShot *= 2;
-                rocketLauncherSplashRadius += 10;
+                rocketLauncherSplashRadius += 100;
             }
         },
         // Add more upgrades for rocketLauncher here
@@ -977,7 +977,7 @@ function purchase(item) {
             purchaseUpgrade('rocketLauncherSplashRadius', rocketLauncherSplashRadiusLevel, rocketLauncherSplashRadiusUpgradeCost, 50, 10, 'splashRadius');
             break;
         case 'rocketLauncherSplashDamage':
-            purchaseUpgrade('rocketLauncherSplashDamage', rocketLauncherSplashDamageLevel, rocketLauncherSplashDamageUpgradeCost, 7.5, 5, 'splashDamage');
+            purchaseUpgrade('rocketLauncherSplashDamage', rocketLauncherSplashDamageLevel, rocketLauncherSplashDamageUpgradeCost, 7.5, 0.05, 'splashDamage');
             break;
         case 'tommyGunFirerate':
             purchaseUpgrade('tommyGunFirerate', tommyGunFirerateLevel, tommyGunFirerateUpgradeCost, 2.2, -5, 'firerate');

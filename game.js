@@ -733,10 +733,18 @@ const upgrades = {
 
 // Function to update points display
 function updatePointsDisplay() {
-    const scoreValueElements = document.querySelectorAll('.score-value');
-    scoreValueElements.forEach(element => {
-        element.textContent = formatNumber(points);
-    });
+    const scoreValueMain = document.getElementById('score-value-main');
+    const scoreValueUpgrades = document.getElementById('score-value-upgrades');
+
+    // Update main tab points display
+    if (scoreValueMain) {
+        scoreValueMain.textContent = formatNumber(points);
+    }
+
+    // Update upgrades tab points display
+    if (scoreValueUpgrades) {
+        scoreValueUpgrades.textContent = formatNumber(points);
+    }
 }
 
 // Function to handle clicking the earn points button

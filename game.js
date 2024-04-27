@@ -1962,6 +1962,9 @@ function initializeStatistics() {
     if (typeof totalPotencyUpgrades === 'undefined') {
         totalPotencyUpgrades = 0; // Set default value to 0
     }
+
+    // Update statistics display
+    updateStatisticsDisplay();
 }
 
 // Function to initialize sound effects
@@ -2118,6 +2121,7 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
 updatePointsDisplay();
 updateCostDisplay();
 updateAchievementsDisplay();
+updateStatisticsDisplay();
 
 // Start earning points automatically for purchased weapons
 setInterval(automaticPointsGeneration, 1000); // Check every second for points generation

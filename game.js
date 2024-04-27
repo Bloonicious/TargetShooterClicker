@@ -737,6 +737,7 @@ function updatePointsDisplay() {
     scoreValueElements.forEach(element => {
         element.textContent = formatNumber(points);
     });
+    updateLifetimePoints(); // Update total lifetime points
 }
 
 // Function to handle clicking the earn points button
@@ -2197,12 +2198,6 @@ function determineTotalPotencyUpgrades(gameData) {
         }
     }
     return potencyUpgrades;
-}
-
-// Function to update total lifetime points
-function updateLifetimePoints() {
-    statistics.totalLifetimePoints = points;
-    updateStatisticsDisplay(); // Update statistics display
 }
 
 // Update points and cost display initially

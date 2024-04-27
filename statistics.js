@@ -15,7 +15,7 @@ let statistics = {
 function updateStatisticsDisplay() {
     const lifetimePointsElement = document.getElementById('lifetime-points');
     if (lifetimePointsElement) {
-        lifetimePointsElement.textContent = statistics.totalLifetimePoints.toLocaleString(); // Format lifetime points
+        lifetimePointsElement.textContent = formatNumber(statistics.totalLifetimePoints);
     }
 
     const weaponUpgradesDiv = document.getElementById('total-weapon-upgrades');
@@ -44,12 +44,6 @@ function updateStatisticsDisplay() {
             weaponUpgradesDiv.insertAdjacentHTML('beforeend', categoryHTML);
         });
     }
-}
-
-// Function to update statistics at regular intervals
-function updateStatisticsInterval() {
-    updateStatisticsDisplay(); // Update immediately
-    setInterval(updateStatisticsDisplay, 100); // Update every 100 milliseconds
 }
 
 // Function to initialize statistics based on game data
@@ -96,3 +90,12 @@ function determineTotalPotencyUpgrades(gameData) {
     }
     return potencyUpgrades;
 }
+
+// Function to initialize statistics and update display at regular intervals
+function initializeStatisticsAndInterval() {
+    updateStatisticsDisplay(); // Update immediately
+    setInterval(updateStatisticsDisplay, 100); // Update every 100 milliseconds
+}
+
+// Call the initialization function at the end of your code
+initializeStatisticsAndInterval();

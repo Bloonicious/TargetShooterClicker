@@ -99,3 +99,9 @@ function updateStatisticsDisplay() {
         }
     }
 }
+
+// Update statistics display initially
+updateStatisticsDisplay();
+
+// Interval timer to update statistics display every second
+setInterval(updateStatisticsDisplay, 100);

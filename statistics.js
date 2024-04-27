@@ -80,9 +80,3 @@ function determineTotalPotencyUpgrades(gameData) {
     }
     return totalPotencyUpgrades;
 }
-
-// Function to update statistics at regular intervals
-function updateStatisticsInterval() {
-    updateStatisticsDisplay(); // Update immediately
-    setInterval(updateStatisticsDisplay, 100); // Update every 100 milliseconds
-}

@@ -371,7 +371,7 @@ function loadGameState() {
     if (gameStateJSON !== null) {
         var gameState = JSON.parse(gameStateJSON);
 
-        // Update achievements
+        // Load achievements
         gameState.achievements.forEach((savedAchievement, index) => {
             achievements[index].achieved = savedAchievement.achieved;
         });

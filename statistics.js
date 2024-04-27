@@ -103,6 +103,3 @@ function updateStatisticsDisplay() {
 
 // Initial update of statistics display when the page loads
 document.addEventListener('DOMContentLoaded', updateStatisticsDisplay);
-
-// Initial update of statistics display when the page loads
-document.addEventListener('DOMContentLoaded', updateStatisticsDisplay);

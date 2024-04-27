@@ -371,10 +371,16 @@ function loadGameState() {
     if (gameStateJSON !== null) {
         var gameState = JSON.parse(gameStateJSON);
 
-        // Load achievements
-        gameState.achievements.forEach((savedAchievement, index) => {
-            achievements[index].achieved = savedAchievement.achieved;
-        });
+        // Load achievements if they exist in the saved state
+        if (gameState.achievements) {
+            gameState.achievements.forEach((savedAchievement, index) => {
+                // Check if the index exists in the achievements array
+                if (achievements[index]) {
+                    // Update the achieved property
+                    achievements[index].achieved = savedAchievement.achieved;
+                }
+            });
+        }
 
         points = gameState.points;
         touchGunCost = gameState.touchGunCost,

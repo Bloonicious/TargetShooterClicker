@@ -1953,20 +1953,6 @@ function initializeAchievements() {
     updateAchievementsDisplay();
 }
 
-// Function to initialize statistics
-function initializeStatistics() {
-    // Set default values for statistics if not already set
-    if (typeof totalPoints === 'undefined') {
-        totalPoints = 0; // Set default value to 0
-    }
-    if (typeof totalPotencyUpgrades === 'undefined') {
-        totalPotencyUpgrades = 0; // Set default value to 0
-    }
-
-    // Update statistics display
-    updateStatisticsDisplay();
-}
-
 // Function to initialize sound effects
 function initializeSoundEffects() {
     // Load or create SFX IDs for each weapon

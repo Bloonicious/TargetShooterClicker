@@ -761,7 +761,7 @@ function loadGameState() {
             document.getElementById('tommyGun-purchase').style.display = 'none';
         }
         if (doubleBarrelPurchased) {
-            document.getElementById('tommyGun-purchase').style.display = 'none';
+            document.getElementById('doubleBarrel-purchase').style.display = 'none';
         }
     }
 }
@@ -1027,7 +1027,7 @@ function resetProgress() {
             document.getElementById('tommyGun-purchase').style.display = 'block';
         }
         if (doubleBarrelPurchased === false) {
-            document.getElementById('tommyGun-purchase').style.display = 'block';
+            document.getElementById('doubleBarrel-purchase').style.display = 'block';
         }
         if (upgrades.touchGun.awakenUpgrade.bought === false) {
             document.getElementById('touchGunAwaken-purchase').style.display = 'none';

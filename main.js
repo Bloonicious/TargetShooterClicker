@@ -138,13 +138,18 @@ function loadPurchasedBigUpgrades(purchasedBigUpgradeIds) {
 // Function to save the game state to local storage
 function saveGameState() {
     var gameState = {
+        achievements: achievements.map(achievement => ({ achieved: achievement.condition() })),
         points: points,
+        
         touchGunCost: touchGunCost,
         touchGunPointsPerClick: touchGunPointsPerClick,
         touchGunLevel: touchGunLevel,
-
+        
         awokenTouchGunCost: awokenTouchGunCost,
         awokenTouchGunLevel: awokenTouchGunLevel,
+        
+        superAwokenTouchGunCost: superAwokenTouchGunCost,
+        superAwokenTouchGunLevel: superAwokenTouchGunLevel,
         
         numberFormat: numberFormat, // Add the selected number format to the game state
 
@@ -361,6 +366,13 @@ function loadGameState() {
     var gameStateJSON = localStorage.getItem('gameState');
     if (gameStateJSON !== null) {
         var gameState = JSON.parse(gameStateJSON);
+
+        // Update points achievements
+        achievements.forEach((achievement, index) => {
+            if (gameState.achievements[index]) {
+                achievement.achieved = gameState.achievements[index].achieved;
+            }
+        });
 
         points = gameState.points;
         touchGunCost = gameState.touchGunCost,

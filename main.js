@@ -142,7 +142,7 @@ function saveGameState() {
             name: achievement.name,
             description: achievement.description,
             achieved: achievement.achieved
-        }));
+        })),
         points: points,
         
         touchGunCost: touchGunCost,

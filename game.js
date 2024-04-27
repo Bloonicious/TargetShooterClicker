@@ -739,12 +739,6 @@ function updatePointsDisplay() {
     });
 }
 
-// Function to update total lifetime points
-function updateLifetimePoints() {
-    statistics.totalLifetimePoints = points;
-    updateStatisticsDisplay(); // Update statistics display
-}
-
 // Function to handle clicking the earn points button
 function earnPoints() {
     points += touchGunPointsPerClick; // Increment points based on Touch Gun
@@ -2205,9 +2199,14 @@ function determineTotalPotencyUpgrades(gameData) {
     return potencyUpgrades;
 }
 
+// Function to update total lifetime points
+function updateLifetimePoints() {
+    statistics.totalLifetimePoints = points;
+    updateStatisticsDisplay(); // Update statistics display
+}
+
 // Update points and cost display initially
 updatePointsDisplay();
-updateLifetimePoints();
 updateCostDisplay();
 updateAchievementsDisplay();
 updateStatisticsDisplay();

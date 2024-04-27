@@ -55,7 +55,23 @@ function updateStatisticsInterval() {
 // Function to initialize statistics based on game data
 function initializeStatistics(gameData) {
     if (gameData) {
-        statistics.totalLifetimePoints = gameData.lifetimePoints || 0;
+        // Calculate the total lifetime points by summing up points from all sources
+        let totalLifetimePoints = 0;
+        
+        // Summing up points from items
+        if (gameData.items) {
+            gameData.items.forEach(item => {
+                totalLifetimePoints += item.points || 0;
+            });
+        }
+        
+        // Adding points from touch gun
+        totalLifetimePoints += gameData.points || 0;
+
+        // Assign the calculated total lifetime points to the statistics object
+        statistics.totalLifetimePoints = totalLifetimePoints;
+
+        // Assign other statistics properties based on game data
         statistics.totalPotencyUpgrades = determineTotalPotencyUpgrades(gameData);
         statistics.totalFirerateUpgrades = gameData.totalFirerateUpgrades || 0;
         statistics.totalMultiFireUpgrades = gameData.totalMultiFireUpgrades || 0;

@@ -1134,6 +1134,11 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeUpgradeCosts();
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Call the initializeAchievements function from game.js to fully initialize achievements
+    initializeAchievements();
+});
+
 window.addEventListener('DOMContentLoaded', (event) => {
     initializeSoundEffects();
 });

@@ -2214,19 +2214,19 @@ function determineTotalPotencyUpgrades(gameData) {
 
 // Function to update lifetime points statistic
 function updateLifetimePoints() {
+    // Calculate the difference in points earned from gameplay since the last update
+    const pointsDifference = points - gameplayPoints;
+
+    // Update the totalLifetimePoints with the points earned from gameplay
+    statistics.totalLifetimePoints += pointsDifference;
+
+    // Update the gameplayPoints variable for the next update
+    gameplayPoints = points;
+
+    // Display the updated lifetime points
     const lifetimePointsElement = document.getElementById('lifetime-points');
     if (lifetimePointsElement) {
-        // Calculate the difference in points earned from gameplay since the last update
-        const pointsDifference = points - gameplayPoints;
-        
-        // Update the totalLifetimePoints with the points earned from gameplay
-        statistics.totalLifetimePoints += pointsDifference;
-
-        // Update the lifetime points display
         lifetimePointsElement.textContent = formatNumber(statistics.totalLifetimePoints);
-
-        // Update the gameplayPoints variable for the next update
-        gameplayPoints = points;
     }
 }
 

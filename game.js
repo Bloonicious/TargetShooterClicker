@@ -1859,25 +1859,32 @@ function updateAchievementsDisplay() {
             <p>${achievement.description}</p>
             <p>Status: ${achievement.achieved ? 'Achieved' : 'Not achieved'}</p>
         `;
-        
-        // Add progress bar for achievements
+
+        // Add class based on achievement status
+        if (achievement.achieved) {
+            listItem.classList.add('achieved');
+        }
+
+        // Add progress bar
         const progressBar = document.createElement('div');
         progressBar.classList.add('progress-bar');
         const progress = document.createElement('div');
         progress.classList.add('progress');
-        if (achievement.achieved) {
-            progress.style.width = '100%'; // Fully filled progress bar for achieved achievements
-            progress.style.backgroundColor = 'green'; // Green color for achieved achievements
-        } else {
-            // Calculate completion percentage for incomplete achievements
-            const completionPercentage = calculateCompletionPercentage(achievement);
-            progress.style.width = `${completionPercentage}%`;
-            progress.style.backgroundColor = 'red'; // Red color for incomplete achievements
-        }
         progressBar.appendChild(progress);
         listItem.appendChild(progressBar);
-        
+
         achievementList.appendChild(listItem);
+        
+        // Update completion percentage every 100 milliseconds
+        setInterval(() => {
+            const completionPercentage = calculateCompletionPercentage(achievement);
+            progress.style.width = `${completionPercentage}%`;
+            if (achievement.achieved) {
+                progress.style.backgroundColor = 'green'; // Green color for completed achievements
+            } else {
+                progress.style.backgroundColor = 'red'; // Red color for incomplete achievements
+            }
+        }, 100);
     });
 }
 
@@ -2189,4 +2196,4 @@ updateAchievementsDisplay();
 // Start earning points automatically for purchased weapons
 setInterval(automaticPointsGeneration, 1000); // Check every second for points generation
 // Interval timer to update achievements display every second
-setInterval(updateAchievementsDisplay, 1000);
+setInterval(updateAchievementsDisplay, 100);

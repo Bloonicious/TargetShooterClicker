@@ -2127,3 +2127,5 @@ updateStatisticsDisplay();
 setInterval(automaticPointsGeneration, 1000); // Check every second for points generation
 // Interval timer to update achievements display every second
 setInterval(updateAchievementsDisplay, 100);
+// Interval timer to update statistics display every second
+setInterval(updateStatisticsDisplay, 100);

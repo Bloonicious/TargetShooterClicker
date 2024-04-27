@@ -138,7 +138,11 @@ function loadPurchasedBigUpgrades(purchasedBigUpgradeIds) {
 // Function to save the game state to local storage
 function saveGameState() {
     var gameState = {
-        achievements: achievements.map(achievement => ({ achieved: achievement.achieved })),
+        achievements: achievements.map(achievement => ({
+            name: achievement.name,
+            description: achievement.description,
+            achieved: achievement.achieved
+        }));
         points: points,
         
         touchGunCost: touchGunCost,
@@ -368,8 +372,8 @@ function loadGameState() {
         var gameState = JSON.parse(gameStateJSON);
 
         // Update achievements
-        gameState.achievements.forEach((achievement, index) => {
-            achievements[index].achieved = achievement.achieved;
+        gameState.achievements.forEach((savedAchievement, index) => {
+            achievements[index].achieved = savedAchievement.achieved;
         });
 
         points = gameState.points;

@@ -155,12 +155,15 @@ function saveGameState() {
         // Add big upgrade data for each weapon
         touchGunPointyFingersBought: upgrades.touchGun.pointyFingers.bought,
         touchGunAmbidextrousBought: upgrades.touchGun.ambidextrous.bought,
-        touchGunTapMasterBought: upgrades.touchGun.tapMaster.bought,
+        touchGunThousandFingersBought: upgrades.touchGun.thousandFingers.bought,
         touchGunPowerfulHandsBought: upgrades.touchGun.powerfulHands.bought,
         touchGunAntirestingCreamBought: upgrades.touchGun.antirestingCream.bought,
         touchGunAwakenBought: upgrades.touchGun.awakenUpgrade.bought,
-        touchGunPotentTapsBought: upgrades.touchGun.potentTaps.bought,
+        touchGunMillionFingersBought: upgrades.touchGun.millionFingers.bought,
         touchGunStingingTapsBought: upgrades.touchGun.stingingTaps.bought,
+        touchGunGotToTapBought: upgrades.touchGun.gotToTap.bought,
+        touchGunFingerSwarmBought: upgrades.touchGun.fingerSwarm.bought,
+        touchGunBillionFingersBought: upgrades.touchGun.billionFingers.bought,
         touchGunSuperAwakenBought: upgrades.touchGun.superAwakenUpgrade.bought,
         
         pistolBiggerBulletsBought: upgrades.pistol.biggerBullets.bought,
@@ -215,6 +218,8 @@ function saveGameState() {
         ak47PoweredVelocityBought: upgrades.ak47.poweredVelocity.bought,
         ak47InstantaneousVelocityBought: upgrades.ak47.instantaneousVelocity.bought,
         ak47SpikyBulletsBought: upgrades.ak47.spikyBullets.bought,
+        ak47FerociousBulletsBought: upgrades.ak47.ferociousBullets.bought,
+        ak47UnfathomablePressureBought: upgrades.ak47.unfathomablePressure.bought,
         
         rocketLauncherPotentRocketsBought: upgrades.rocketLauncher.potentRockets.bought,
         rocketLauncherViolentExplosionsBought: upgrades.rocketLauncher.violentExplosions.bought,
@@ -222,6 +227,10 @@ function saveGameState() {
         rocketLauncherBiggerExplosionsBought: upgrades.rocketLauncher.biggerExplosions.bought,
         rocketLauncherExtraGunpowderBought: upgrades.rocketLauncher.extraGunpowder.bought,
         rocketLauncherShatteringExplosionsBought: upgrades.rocketLauncher.shatteringExplosions.bought,
+        rocketLauncherNapalmRocketsBought: upgrades.rocketLauncher.napalmRockets.bought,
+        rocketLauncherImpulsiveExplosionsBought: upgrades.rocketLauncher.impulsiveExplosions.bought,
+        rocketLauncherRampantTipsBought: upgrades.rocketLauncher.rampantTips.bought,
+        rocketLauncherKamikazeBought: upgrades.rocketLauncher.kamikaze.bought,
         
         tommyGunPreciseAccuracyBought: upgrades.tommyGun.preciseAccuracy.bought,
         tommyGunTightPressureBought: upgrades.tommyGun.tightPressure.bought,
@@ -229,6 +238,10 @@ function saveGameState() {
         tommyGunPowerfulOutcomesBought: upgrades.tommyGun.powerfulOutcomes.bought,
         tommyGunVehementBurstBought: upgrades.tommyGun.vehementBurst.bought,
         tommyGunTheVectorBought: upgrades.tommyGun.theVector.bought,
+        tommyGunDangerZoneBought: upgrades.tommyGun.dangerZone.bought,
+        tommyGunDischargedRippersBought: upgrades.tommyGun.dischargedRippers.bought,
+        tommyGunUnstoppableBarrageBought: upgrades.tommyGun.unstoppableBarrage.bought,
+        tommyGunUnavoidableBought: upgrades.tommyGun.unavoidable.bought,
 
         doubleBarrelLethalShotsBought: upgrades.doubleBarrel.lethalShots.bought,
         doubleBarrelArcSwitchingBarrelsBought: upgrades.doubleBarrel.arcSwitchingBarrels.bought,
@@ -236,6 +249,10 @@ function saveGameState() {
         doubleBarrelEnergizedBought: upgrades.doubleBarrel.energized.bought,
         doubleBarrelDoubleSwarmBought: upgrades.doubleBarrel.doubleSwarm.bought,
         doubleBarrelClumpedShotsBought: upgrades.doubleBarrel.clumpedShots.bought,
+        doubleBarrelTightShotsBought: upgrades.doubleBarrel.tightShots.bought,
+        doubleBarrelHeavyForceBought: upgrades.doubleBarrel.heavyForce.bought,
+        doubleBarrelUnbearableForceBought: upgrades.doubleBarrel.unbearableForce.bought,
+        doubleBarrelDoubleYeahBought: upgrades.doubleBarrel.doubleYeah.bought,
         
         pistolPurchased: pistolPurchased,
         pistolPointsPerShot: pistolPointsPerShot,
@@ -361,12 +378,15 @@ function loadGameState() {
         // Load big upgrade data for each weapon
         upgrades.touchGun.pointyFingers.bought = gameState.touchGunPointyFingersBought;
         upgrades.touchGun.ambidextrous.bought = gameState.touchGunAmbidextrousBought;
-        upgrades.touchGun.tapMaster.bought = gameState.touchGunTapMasterBought;
+        upgrades.touchGun.thousandFingers.bought = gameState.touchGunThousandFingersBought;
         upgrades.touchGun.antirestingCream.bought = gameState.touchGunAntirestingCreamBought;
         upgrades.touchGun.powerfulHands.bought = gameState.touchGunPowerfulHandsBought;
         upgrades.touchGun.awakenUpgrade.bought = gameState.touchGunAwakenBought;
-        upgrades.touchGun.potentTaps.bought = gameState.touchGunPotentTapsBought;
+        upgrades.touchGun.millionFingers.bought = gameState.touchGunMillionFingersBought;
         upgrades.touchGun.stingingTaps.bought = gameState.touchGunStingingTapsBought;
+        upgrades.touchGun.gotToTap.bought = gameState.touchGunGotToTapBought;
+        upgrades.touchGun.fingerSwarm.bought = gameState.touchGunFingerSwarmBought;
+        upgrades.touchGun.billionFingers.bought = gameState.touchGunBillionFingersBought;
         upgrades.touchGun.superAwakenUpgrade.bought = gameState.touchGunSuperAwakenBought;
         
         upgrades.pistol.biggerBullets.bought = gameState.pistolBiggerBulletsBought;
@@ -421,6 +441,8 @@ function loadGameState() {
         upgrades.ak47.poweredVelocity.bought = gameState.ak47PoweredVelocityBought;
         upgrades.ak47.instantaneousVelocity.bought = gameState.ak47InstantaneousVelocityBought;
         upgrades.ak47.spikyBullets.bought = gameState.ak47SpikyBulletsBought;
+        upgrades.ak47.ferociousBullets.bought = gameState.ak47FerociousBulletsBought;
+        upgrades.ak47.unfathomablePressure.bought = gameState.ak47UnfathomablePressureBought;
 
         upgrades.rocketLauncher.potentRockets.bought = gameState.rocketLauncherPotentRocketsBought;
         upgrades.rocketLauncher.violentExplosions.bought = gameState.rocketLauncherViolentExplosionsBought;
@@ -428,6 +450,10 @@ function loadGameState() {
         upgrades.rocketLauncher.biggerExplosions.bought = gameState.rocketLauncherBiggerExplosionsBought;
         upgrades.rocketLauncher.extraGunpowder.bought = gameState.rocketLauncherExtraGunpowderBought;
         upgrades.rocketLauncher.shatteringExplosions.bought = gameState.rocketLauncherShatteringExplosionsBought;
+        upgrades.rocketLauncher.napalmRockets.bought = gameState.rocketLauncherNapalmRocketsBought;
+        upgrades.rocketLauncher.impulsiveExplosions.bought = gameState.rocketLauncherImpulsiveExplosionsBought;
+        upgrades.rocketLauncher.rampantTips.bought = gameState.rocketLauncherRampantTipsBought;
+        upgrades.rocketLauncher.kamikaze.bought = gameState.rocketLauncherKamikazeBought;
 
         upgrades.tommyGun.preciseAccuracy.bought = gameState.tommyGunPreciseAccuracyBought;
         upgrades.tommyGun.tightPressure.bought = gameState.tommyGunTightPressureBought;
@@ -435,6 +461,10 @@ function loadGameState() {
         upgrades.tommyGun.powerfulOutcomes.bought = gameState.tommyGunPowerfulOutcomesBought;
         upgrades.tommyGun.vehementBurst.bought = gameState.tommyGunVehementBurstBought;
         upgrades.tommyGun.theVector.bought = gameState.tommyGunTheVectorBought;
+        upgrades.tommyGun.dangerZone.bought = gameState.tommyGunDangerZoneBought;
+        upgrades.tommyGun.dischargedRippers.bought = gameState.tommyGunDischargedRippersBought;
+        upgrades.tommyGun.unstoppableBarrage.bought = gameState.tommyGunUnstoppableBarrageBought;
+        upgrades.tommyGun.unavoidable.bought = gameState.tommyGunUnavoidableBought;
 
         upgrades.doubleBarrel.lethalShots.bought = gameState.doubleBarrelLethalShotsBought;
         upgrades.doubleBarrel.arcSwitchingBarrels.bought = gameState.doubleBarrelArcSwitchingBarrelsBought;
@@ -442,6 +472,10 @@ function loadGameState() {
         upgrades.doubleBarrel.energized.bought = gameState.doubleBarrelEnergizedBought;
         upgrades.doubleBarrel.doubleSwarm.bought = gameState.doubleBarrelDoubleSwarmBought;
         upgrades.doubleBarrel.clumpedShots.bought = gameState.doubleBarrelClumpedShotsBought;
+        upgrades.doubleBarrel.tightShots.bought = gameState.doubleBarrelTightShotsBought;
+        upgrades.doubleBarrel.heavyForce.bought = gameState.doubleBarrelHeavyForceBought;
+        upgrades.doubleBarrel.unbearableForce.bought = gameState.doubleBarrelUnbearableForceBought;
+        upgrades.doubleBarrel.doubleYeah.bought = gameState.doubleBarrelDoubleYeahBought;
         
         pistolPurchased = gameState.pistolPurchased;
         pistolPointsPerShot = gameState.pistolPointsPerShot;
@@ -819,12 +853,15 @@ function resetProgress() {
         // Reset big upgrades
         upgrades.touchGun.pointyFingers.bought = false;
         upgrades.touchGun.ambidextrous.bought = false;
-        upgrades.touchGun.tapMaster.bought = false;
+        upgrades.touchGun.thousandFingers.bought = false;
         upgrades.touchGun.antirestingCream.bought = false;
         upgrades.touchGun.powerfulHands.bought = false;
         upgrades.touchGun.awakenUpgrade.bought = false;
-        upgrades.touchGun.potentTaps.bought = false;
+        upgrades.touchGun.millionFingers.bought = false;
         upgrades.touchGun.stingingTaps.bought = false;
+        upgrades.touchGun.gotToTap.bought = false;
+        upgrades.touchGun.fingerSwarm.bought = false;
+        upgrades.touchGun.billionFingers.bought = false;
         upgrades.touchGun.superAwakenUpgrade.bought = false;
         
         upgrades.pistol.biggerBullets.bought = false;
@@ -879,6 +916,8 @@ function resetProgress() {
         upgrades.ak47.poweredVelocity.bought = false;
         upgrades.ak47.instantaneousVelocity.bought = false;
         upgrades.ak47.spikyBullets.bought = false;
+        upgrades.ak47.ferociousBullets.bought = false;
+        upgrades.ak47.unfathomablePressure.bought = false;
 
         upgrades.rocketLauncher.potentRockets.bought = false;
         upgrades.rocketLauncher.violentExplosions.bought = false;
@@ -886,6 +925,10 @@ function resetProgress() {
         upgrades.rocketLauncher.biggerExplosions.bought = false;
         upgrades.rocketLauncher.extraGunpowder.bought = false;
         upgrades.rocketLauncher.shatteringExplosions.bought = false;
+        upgrades.rocketLauncher.napalmRockets.bought = false;
+        upgrades.rocketLauncher.impulsiveExplosions.bought = false;
+        upgrades.rocketLauncher.rampantTips.bought = false;
+        upgrades.rocketLauncher.kamikaze.bought = false;
 
         upgrades.tommyGun.preciseAccuracy.bought = false;
         upgrades.tommyGun.tightPressure.bought = false;
@@ -893,6 +936,10 @@ function resetProgress() {
         upgrades.tommyGun.powerfulOutcomes.bought = false;
         upgrades.tommyGun.vehementBurst.bought = false;
         upgrades.tommyGun.theVector.bought = false;
+        upgrades.tommyGun.dangerZone.bought = false;
+        upgrades.tommyGun.dischargedRippers.bought = false;
+        upgrades.tommyGun.unstoppableBarrage.bought = false;
+        upgrades.tommyGun.unavoidable.bought = false;
 
         upgrades.doubleBarrel.lethalShots.bought = false;
         upgrades.doubleBarrel.arcSwitchingBarrels.bought = false;
@@ -900,6 +947,10 @@ function resetProgress() {
         upgrades.doubleBarrel.energized.bought = false;
         upgrades.doubleBarrel.doubleSwarm.bought = false;
         upgrades.doubleBarrel.clumpedShots.bought = false;
+        upgrades.doubleBarrel.tightShots.bought = false;
+        upgrades.doubleBarrel.heavyForce.bought = false;
+        upgrades.doubleBarrel.unbearableForce.bought = false;
+        upgrades.doubleBarrel.doubleYeah.bought = false;
         
         pistolPurchased = false;
         pistolCost = 10;

@@ -1139,6 +1139,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeAchievements();
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    initializeStatistics();
+});
+
 window.addEventListener('DOMContentLoaded', (event) => {
     initializeSoundEffects();
 });

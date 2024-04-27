@@ -118,8 +118,6 @@ let lastRocketLauncherPointsTime = 0;
 let lastTommyGunPointsTime = 0;
 let lastDoubleBarrelPointsTime = 0;
 
-let totalPotencyLevel = pistolPotencyLevel + smgPotencyLevel + shotgunPotencyLevel + sniperRiflePotencyLevel + ak47PotencyLevel + rocketLauncherPotencyLevel + tommyGunPotencyLevel + doubleBarrelPotencyLevel;
-
 let achievements = [
     { name: "Target Practicer", description: "Start your target-shooting practice by earning your first point from the touch gun.", condition: () => points > 0, achieved: false },
     { name: "You're Doing Great!", description: "Reach 1,000 points.", condition: () => points >= 1000, achieved: false },
@@ -2114,17 +2112,35 @@ function updateAchievementsDisplay() {
             <p>Status: ${achievement.achieved ? 'Achieved' : 'Not achieved'}</p>
         `;
         
-        // Add progress bar for achievements that are achieved
+        // Add progress bar for achievements
         if (achievement.achieved) {
+            const progressPercentage = 100; // Progress percentage for achieved achievements
             listItem.innerHTML += `
                 <div class="progress-bar">
-                    <div class="progress" style="width: 100%;"></div>
+                    <div class="progress" style="width: ${progressPercentage}%;"></div>
+                </div>
+            `;
+        } else {
+            const progressPercentage = calculateAchievementProgress(achievement);
+            listItem.innerHTML += `
+                <div class="progress-bar">
+                    <div class="progress" style="width: ${progressPercentage}%;"></div>
                 </div>
             `;
         }
         
         achievementList.appendChild(listItem);
     });
+}
+
+// Function to calculate achievement progress percentage
+function calculateAchievementProgress(achievement) {
+    // Implement logic to calculate progress percentage based on achievement condition
+    let progressPercentage = 0;
+    if (achievement.condition()) {
+        progressPercentage = 100;
+    }
+    return progressPercentage;
 }
 
 // Function to check and update achievements
@@ -2140,10 +2156,10 @@ function checkAndUpdateAchievements() {
     updateAchievementsDisplay();
 }
 
-// Example function to get total potency upgrades
+// Function to get total potency upgrades
 function getTotalPotencyUpgrades() {
     // Implement logic to calculate total potency upgrades
-    totalPotencyLevel = pistolPotencyLevel + smgPotencyLevel + shotgunPotencyLevel + sniperRiflePotencyLevel + ak47PotencyLevel + rocketLauncherPotencyLevel + tommyGunPotencyLevel + doubleBarrelPotencyLevel;
+    let totalPotencyLevel = pistolPotencyLevel + smgPotencyLevel + shotgunPotencyLevel + sniperRiflePotencyLevel + ak47PotencyLevel + rocketLauncherPotencyLevel + tommyGunPotencyLevel + doubleBarrelPotencyLevel;
     return totalPotencyLevel;
 }
 

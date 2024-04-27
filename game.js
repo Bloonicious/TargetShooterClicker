@@ -121,16 +121,16 @@ let lastDoubleBarrelPointsTime = 0;
 let totalPotencyLevel = pistolPotencyLevel + smgPotencyLevel + shotgunPotencyLevel + sniperRiflePotencyLevel + ak47PotencyLevel + rocketLauncherPotencyLevel + tommyGunPotencyLevel + doubleBarrelPotencyLevel;
 
 let achievements = [
-    { name: "Target Practicer", description: "Start your target-shooting practice by earning your first point from the touch gun.", condition: () => points > 0 },
-    { name: "You're Doing Great!", description: "Reach 1,000 points.", condition: () => points >= 1000 },
-    { name: "Target Mauler", description: "Reach 10,000 points.", condition: () => points >= 10000 },
-    { name: "Target Assassin", description: "Reach 100,000 points.", condition: () => points >= 100000 },
-    { name: "Target Millionaire", description: "Reach 1,000,000 points.", condition: () => points >= 1000000 },
-    { name: "Target Billionaire", description: "Reach 1,000,000,000 points.", condition: () => points >= 1000000000 },
-    { name: "Target Trillionaire", description: "Reach 1,000,000,000,000 points.", condition: () => points >= 1000000000000 },
-    { name: "Target Quadrillionaire", description: "Reach 1,000,000,000,000,000 points.", condition: () => points >= 1000000000000000 },
-    { name: "Potency Leveller", description: "Upgrade the stat 'Potency' a total of 10 times (for any weapon type).", condition: () => getTotalPotencyUpgrades() >= 10 },
-    { name: "Potency Master", description: "Upgrade the stat 'Potency' a total of 100 times (for any weapon type).", condition: () => getTotalPotencyUpgrades() >= 100 }
+    { name: "Target Practicer", description: "Start your target-shooting practice by earning your first point from the touch gun.", condition: () => points > 0, achieved: false },
+    { name: "You're Doing Great!", description: "Reach 1,000 points.", condition: () => points >= 1000, achieved: false },
+    { name: "Target Mauler", description: "Reach 10,000 points.", condition: () => points >= 10000, achieved: false },
+    { name: "Target Assassin", description: "Reach 100,000 points.", condition: () => points >= 100000, achieved: false },
+    { name: "Target Millionaire", description: "Reach 1,000,000 points.", condition: () => points >= 1000000, achieved: false },
+    { name: "Target Billionaire", description: "Reach 1,000,000,000 points.", condition: () => points >= 1000000000, achieved: false },
+    { name: "Target Trillionaire", description: "Reach 1,000,000,000,000 points.", condition: () => points >= 1000000000000, achieved: false },
+    { name: "Target Quadrillionaire", description: "Reach 1,000,000,000,000,000 points.", condition: () => points >= 1000000000000000, achieved: false },
+    { name: "Potency Leveller", description: "Upgrade the stat 'Potency' a total of 10 times (for any weapon type).", condition: () => getTotalPotencyUpgrades() >= 10, achieved: false },
+    { name: "Potency Master", description: "Upgrade the stat 'Potency' a total of 100 times (for any weapon type).", condition: () => getTotalPotencyUpgrades() >= 100, achieved: false }
 ];
 
 const weaponSFX = {};
@@ -2130,7 +2130,7 @@ function updateAchievementsDisplay() {
 // Function to check and update achievements
 function checkAndUpdateAchievements() {
     achievements.forEach((achievement, index) => {
-        if (achievement.condition()) {
+        if (!achievement.achieved && achievement.condition()) {
             // Mark the achievement as achieved
             achievements[index].achieved = true;
         }

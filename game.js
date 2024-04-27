@@ -1861,24 +1861,31 @@ function updateAchievementsDisplay() {
         `;
         
         // Add progress bar for achievements
-        const progressPercentage = calculateAchievementProgress(achievement);
-        const progressBarColor = achievement.achieved ? 'green' : 'red'; // Color based on achievement status
-        
-        listItem.innerHTML += `
-            <div class="progress-bar" style="background-color: ${progressBarColor};">
-                <div class="progress" style="width: ${progressPercentage}%;"></div>
-            </div>
-        `;
+        const progressBar = document.createElement('div');
+        progressBar.classList.add('progress-bar');
+        const progress = document.createElement('div');
+        progress.classList.add('progress');
+        if (achievement.achieved) {
+            progress.style.width = '100%'; // Fully filled progress bar for achieved achievements
+            progress.style.backgroundColor = 'green'; // Green color for achieved achievements
+        } else {
+            // Calculate completion percentage for incomplete achievements
+            const completionPercentage = calculateCompletionPercentage(achievement);
+            progress.style.width = `${completionPercentage}%`;
+            progress.style.backgroundColor = 'red'; // Red color for incomplete achievements
+        }
+        progressBar.appendChild(progress);
+        listItem.appendChild(progressBar);
         
         achievementList.appendChild(listItem);
     });
 }
 
-// Function to calculate achievement progress percentage
-function calculateAchievementProgress(achievement) {
-    // Implement logic to calculate progress percentage based on achievement condition
-    let progressPercentage = achievement.condition() ? 100 : 0;
-    return progressPercentage;
+// Function to calculate completion percentage for incomplete achievements
+function calculateCompletionPercentage(achievement) {
+    // Calculate completion percentage based on achievement condition
+    const completionPercentage = achievement.condition() ? 100 : 0;
+    return completionPercentage;
 }
 
 // Function to check and update achievements
@@ -2181,3 +2188,5 @@ updateAchievementsDisplay();
 
 // Start earning points automatically for purchased weapons
 setInterval(automaticPointsGeneration, 1000); // Check every second for points generation
+// Interval timer to update achievements display every second
+setInterval(updateAchievementsDisplay, 1000);

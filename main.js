@@ -848,6 +848,7 @@ function resetProgress() {
         localStorage.removeItem('gameState');
         // Reset all variables to their default values
         points = 0;
+        previousPoints = 0;
         // Reset achievements
         achievements.forEach(achievement => {
             achievement.achieved = false;

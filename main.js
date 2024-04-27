@@ -1013,7 +1013,7 @@ function resetProgress() {
         sniperRifleCost = 7500;
         sniperRiflePointsPerShot = 80;
         sniperRifleFireRate = 4000;
-        sniperRifleCriticalShotChance = 0.25;
+        sniperRifleCriticalShotChance = 25;
         sniperRifleCriticalDamageMultiplier = 2.0;
         sniperRifleFirerateUpgradeCost = 50000;
         sniperRiflePotencyUpgradeCost = 100000;

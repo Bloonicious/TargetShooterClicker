@@ -857,6 +857,7 @@ function resetProgress() {
         });
         statistics = {
             totalLifetimePoints: 0,
+            totalBigUpgradesPurchased: 0,
             totalPotencyUpgrades: 0,
             totalFirerateUpgrades: 0,
             totalMultiFireUpgrades: 0,
@@ -864,8 +865,7 @@ function resetProgress() {
             totalCriticalShotUpgrades: 0,
             totalCriticalDamageUpgrades: 0,
             totalSplashRadiusUpgrades: 0,
-            totalSplashDamageUpgrades: 0,
-            totalBigUpgradesPurchased: 0
+            totalSplashDamageUpgrades: 0
         };
         touchGunCost = 100;
         touchGunPointsPerClick = 1;

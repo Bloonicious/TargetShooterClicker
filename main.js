@@ -590,10 +590,9 @@ function loadGameState() {
         // Update the interface
         updatePointsDisplay();
 
-        // Update achievements display
-        updateAchievementsDisplay();
-        calculateCompletionPercentage();
-        checkAndUpdateAchievements();
+        // Update achievements and statistics display
+        updateAchievements();
+        updateStatistics();
 
         // Update firerate and potency display for each weapon
         document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
@@ -1116,11 +1115,9 @@ function resetProgress() {
         }
 
         // Update the interfaces
-        updateStatisticsDisplay();
         updatePointsDisplay();
-        updateAchievementsDisplay();
-        calculateCompletionPercentage();
-        checkAndUpdateAchievements();
+        updateAchievements();
+        updateStatistics();
         saveGameState();
         // Add any other interface updates here
     }

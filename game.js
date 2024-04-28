@@ -145,7 +145,7 @@ let achievements = [
 
 let statistics = {
     totalLifetimePoints: 0,
-    totalBigUpgrades: 0,
+    totalBigUpgradesPurchased: 0,
     totalPotencyUpgrades: 0,
     totalFirerateUpgrades: 0,
     totalMultiFireUpgrades: 0,
@@ -153,8 +153,7 @@ let statistics = {
     totalCriticalShotUpgrades: 0,
     totalCriticalDamageUpgrades: 0,
     totalSplashRadiusUpgrades: 0,
-    totalSplashDamageUpgrades: 0,
-    totalBigUpgradesPurchased: 0
+    totalSplashDamageUpgrades: 0
 };
 
 const weaponSFX = {};

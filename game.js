@@ -1994,7 +1994,7 @@ function getTotalMultiFireUpgrades() {
 
 // Function to calculate the total number of big upgrades purchased
 function getTotalBigUpgrades() {
-    let totalBigUpgrades = 0;
+    const totalBigUpgrades = 0;
 
     // Iterate over each weapon in the upgrades object
     for (const weapon in upgrades) {
@@ -2194,7 +2194,7 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
 // Function to get the total number of big upgrades purchased
 function getTotalBigUpgradesPurchased() {
     // Loop through all upgrade data and count the total number of big upgrades purchased
-    let totalBigUpgrades = 0;
+    const totalBigUpgrades = 0;
     for (const weapon in upgrades) {
         for (const upgrade in upgrades[weapon]) {
             const upgradeData = upgrades[weapon][upgrade];
@@ -2213,12 +2213,16 @@ function updateStatisticsDisplay() {
         lifetimePointsElement.textContent = formatNumber(statistics.totalLifetimePoints);
     }
 
+    const totalBigUpgradesElement = document.getElementById('total-big-upgrades');
+    if (totalBigUpgradesElement) {
+        totalBigUpgradesElement.textContent = statistics.totalBigUpgradesPurchased;
+    }
+
     const weaponUpgradesDiv = document.getElementById('total-weapon-upgrades');
     if (weaponUpgradesDiv) {
         weaponUpgradesDiv.innerHTML = ''; // Clear previous content
 
         const upgradeCategories = [
-            { name: 'Big Upgrades Purchased', key: 'totalBigUpgradesPurchased' },
             { name: 'Potency Upgrades', key: 'totalPotencyUpgrades' },
             { name: 'Firerate Upgrades', key: 'totalFirerateUpgrades' },
             { name: 'Multi-Fire Upgrades', key: 'totalMultiFireUpgrades' },

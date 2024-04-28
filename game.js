@@ -129,10 +129,16 @@ let achievements = [
     { name: "Target Billionaire", description: "Reach 1,000,000,000 points.", condition: () => points >= 1000000000, achieved: false },
     { name: "Target Trillionaire", description: "Reach 1,000,000,000,000 points.", condition: () => points >= 1000000000000, achieved: false },
     { name: "Target Quadrillionaire", description: "Reach 1,000,000,000,000,000 points.", condition: () => points >= 1000000000000000, achieved: false },
+    { name: "Target Quintillionaire", description: "Reach 1,000,000,000,000,000,000 points.", condition: () => points >= 1000000000000000000, achieved: false },
     { name: "Potency Leveller", description: "Upgrade the stat 'Potency' a total of 10 times (for any weapon type).", condition: () => getTotalPotencyUpgrades() >= 10, achieved: false },
-    { name: "Potency Master", description: "Upgrade the stat 'Potency' a total of 100 times (for any weapon type).", condition: () => getTotalPotencyUpgrades() >= 100, achieved: false },
+    { name: "Potency Expert", description: "Upgrade the stat 'Potency' a total of 100 times (for any weapon type).", condition: () => getTotalPotencyUpgrades() >= 100, achieved: false },
+    { name: "Potency Master", description: "Upgrade the stat 'Potency' a total of 500 times (for any weapon type).", condition: () => getTotalPotencyUpgrades() >= 500, achieved: false },
+    { name: "Potency Grandmaster", description: "Upgrade the stat 'Potency' a total of 1,000 times (for any weapon type).", condition: () => getTotalPotencyUpgrades() >= 1000, achieved: false },
     { name: "Firerate Leveller", description: "Upgrade the stat 'Firerate' a total of 10 times (for any weapon type).", condition: () => getTotalFirerateUpgrades() >= 10, achieved: false },
-    { name: "Firerate Master", description: "Upgrade the stat 'Firerate' a total of 100 times (for any weapon type).", condition: () => getTotalFirerateUpgrades() >= 100, achieved: false }
+    { name: "Firerate Expert", description: "Upgrade the stat 'Firerate' a total of 100 times (for any weapon type).", condition: () => getTotalFirerateUpgrades() >= 100, achieved: false },
+    { name: "Bullet Storm", description: "Upgrade the stat 'Multi-Fire' a total of 5 times (only for Shotguns and Double Barrels).", condition: () => getTotalMultiFireUpgrades() >= 5, achieved: false },
+    { name: "Bullet Hell", description: "Upgrade the stat 'Multi-Fire' a total of 25 times (only for Shotguns and Double Barrels).", condition: () => getTotalMultiFireUpgrades() >= 25, achieved: false },
+    { name: "Weapon Forger", description: "Purchase a 'Big Upgrade' on any weapon type (including Touch Gun).", condition: () => getTotalBigUpgrades() > 0, achieved: false }
 ];
 
 let statistics = {
@@ -1977,6 +1983,32 @@ function getTotalPotencyUpgrades() {
 // Function to get total firerate upgrades
 function getTotalFirerateUpgrades() {
     return pistolFirerateLevel + smgFirerateLevel + shotgunFirerateLevel + sniperRifleFirerateLevel + ak47FirerateLevel + rocketLauncherFirerateLevel + tommyGunFirerateLevel + doubleBarrelFirerateLevel;
+}
+
+// Function to get total firerate upgrades
+function getTotalMultiFireUpgrades() {
+    return shotgunMultiFireLevel + doubleBarrelMultiFireLevel;
+}
+
+// Function to calculate the total number of big upgrades purchased
+function getTotalBigUpgrades() {
+    let totalBigUpgrades = 0;
+    
+    // Iterate over each weapon in the upgrades object
+    for (const weapon in upgrades) {
+        // Iterate over each upgrade option for the current weapon
+        for (const upgrade in upgrades[weapon]) {
+            // Retrieve the upgrade data
+            const upgradeData = upgrades[weapon][upgrade];
+            
+            // Check if the upgrade is a big upgrade and if it's bought
+            if (upgradeData.type === 'big' && upgradeData.bought) {
+                totalBigUpgrades++;
+            }
+        }
+    }
+    
+    return totalBigUpgrades;
 }
 
 // Function to initialize upgrade costs with proper formatting

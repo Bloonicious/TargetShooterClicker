@@ -120,8 +120,6 @@ let lastRocketLauncherPointsTime = 0;
 let lastTommyGunPointsTime = 0;
 let lastDoubleBarrelPointsTime = 0;
 
-let totalBigUpgrades = 0;
-
 let achievements = [
     { name: "Target Practicer", description: "Start your target-shooting practice by earning your first point from the touch gun.", condition: () => points > 0, achieved: false },
     { name: "You're Doing Great!", description: "Reach 1,000 points.", condition: () => points >= 1000, achieved: false },
@@ -140,9 +138,9 @@ let achievements = [
     { name: "Firerate Expert", description: "Upgrade the stat 'Firerate' a total of 100 times (for any weapon type).", condition: () => getTotalFirerateUpgrades() >= 100, achieved: false },
     { name: "Bullet Storm", description: "Upgrade the stat 'Multi-Fire' a total of 5 times (only for Shotguns and Double Barrels).", condition: () => getTotalMultiFireUpgrades() >= 5, achieved: false },
     { name: "Bullet Hell", description: "Upgrade the stat 'Multi-Fire' a total of 25 times (only for Shotguns and Double Barrels).", condition: () => getTotalMultiFireUpgrades() >= 25, achieved: false },
-    { name: "Weapon Forger", description: "Purchase a 'Big Upgrade' on any weapon type (including Touch Gun).", condition: () => totalBigUpgrades > 0, achieved: false },
-    { name: "Weapon Crafter", description: "Purchase 10 different types of big upgrades on any weapon (including Touch Gun).", condition: () => totalBigUpgrades >= 10, achieved: false },
-    { name: "Weapon Smelter", description: "Purchase 50 different types of big upgrades on any weapon (including Touch Gun).", condition: () => totalBigUpgrades >= 50, achieved: false }
+    { name: "Weapon Forger", description: "Purchase a 'Big Upgrade' on any weapon type (including Touch Gun).", condition: () => getTotalBigUpgrades() > 0, achieved: false },
+    { name: "Weapon Crafter", description: "Purchase 10 different types of big upgrades on any weapon (including Touch Gun).", condition: () => getTotalBigUpgrades() >= 10, achieved: false },
+    { name: "Weapon Smelter", description: "Purchase 50 different types of big upgrades on any weapon (including Touch Gun).", condition: () => getTotalBigUpgrades() >= 50, achieved: false }
 ];
 
 let statistics = {
@@ -1860,7 +1858,7 @@ function formatNumber(number) {
     if (number === 0) return '0';
     
     if (numberFormat === 'standard') {
-        const suffixes = ['', 'k', 'M', 'B', 'T', 'Qd', 'Qn', 'Sx', 'Sp', 'O', 'N', 'Dc', 'UD', 'DD', 'TD', 'QdD', 'QQD', 'SxD', 'SpD', 'OcD', 'NoD', 'Vg', 'UV', 'DV'];
+        const suffixes = ['', 'k', 'M', 'B', 'T', 'Qd', 'Qn', 'Sx', 'Sp', 'O', 'N', 'Dc', 'UD', 'DD', 'TD', 'QdD', 'QnD', 'SxD', 'SpD', 'OcD', 'NoD', 'Vg', 'UV', 'DV'];
         const suffixIndex = Math.floor(Math.log10(number) / 3);
         const suffix = suffixes[suffixIndex];
         const scaledNumber = number / Math.pow(10, suffixIndex * 3);
@@ -1996,22 +1994,22 @@ function getTotalMultiFireUpgrades() {
 
 // Function to calculate the total number of big upgrades purchased
 function getTotalBigUpgrades() {
-    totalBigUpgrades = 0;
-    
+    let totalBigUpgrades = 0;
+
     // Iterate over each weapon in the upgrades object
     for (const weapon in upgrades) {
         // Iterate over each upgrade option for the current weapon
         for (const upgrade in upgrades[weapon]) {
             // Retrieve the upgrade data
             const upgradeData = upgrades[weapon][upgrade];
-            
-            // Check if the upgrade is a big upgrade and if it's bought
-            if (upgradeData.type === 'big' && upgradeData.bought) {
+
+            // Check if the upgrade is bought
+            if (upgradeData.bought) {
                 totalBigUpgrades++;
             }
         }
     }
-    
+
     return totalBigUpgrades;
 }
 

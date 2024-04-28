@@ -2195,14 +2195,21 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
 function getTotalBigUpgradesPurchased() {
     // Loop through all upgrade data and count the total number of big upgrades purchased
     var totalBigUpgrades = 0;
+
+    // Iterate over each weapon in the upgrades object
     for (const weapon in upgrades) {
+        // Iterate over each upgrade option for the current weapon
         for (const upgrade in upgrades[weapon]) {
+            // Retrieve the upgrade data
             const upgradeData = upgrades[weapon][upgrade];
+
+            // Check if the upgrade is bought
             if (upgradeData.bought) {
                 totalBigUpgrades++;
             }
         }
     }
+
     return totalBigUpgrades;
 }
 

@@ -2275,22 +2275,28 @@ function updateLifetimePoints() {
     }
 }
 
-// Update points and cost display initially
+// Initial setup
 updatePointsDisplay();
 updateCostDisplay();
 updateAchievementsDisplay();
 updateStatisticsDisplay();
-calculateCompletionPercentage();
-checkAndUpdateAchievements();
 
 // Start earning points automatically for purchased weapons
 setInterval(automaticPointsGeneration, 1000); // Check every second for points generation
+
 // Interval timer to update cost display every second
-setInterval(updateCostDisplay, 100);
-// Interval timer to update achievements display every second
-setInterval(updateAchievementsDisplay, 100);
-// Interval timer to update statistics display every second
-setInterval(updateStatisticsDisplay, 100);
-// Interval timers to track achievement progress every second
-setInterval(calculateCompletionPercentage, 100);
-setInterval(checkAndUpdateAchievements, 100);
+setInterval(updateCostDisplay, 1000);
+
+// Function to update achievements display every second
+function updateAchievements() {
+    updateAchievementsDisplay();
+    checkAndUpdateAchievements(); // Check and update achievements status
+}
+setInterval(updateAchievements, 1000);
+
+// Function to update statistics display every second
+function updateStatistics() {
+    updateStatisticsDisplay();
+    calculateCompletionPercentage(); // Update achievement progress
+}
+setInterval(updateStatistics, 1000);

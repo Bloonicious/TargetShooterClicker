@@ -1946,9 +1946,15 @@ function handleAchievementAlert(message) {
 
 // Function to calculate completion percentage for incomplete achievements
 function calculateCompletionPercentage(achievement) {
-    // Calculate completion percentage based on achievement condition
-    const completionPercentage = achievement.condition() ? 100 : 0;
-    return completionPercentage;
+    // Find the achievement in the achievements array
+    const foundAchievement = achievements.find(a => a.name === achievement.name);
+
+    // If the achievement is found and its condition is met, return 100%
+    if (foundAchievement && foundAchievement.condition()) {
+        return 100;
+    } else {
+        return 0; // Otherwise, return 0%
+    }
 }
 
 // Function to check and update achievements

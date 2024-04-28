@@ -1994,7 +1994,7 @@ function getTotalMultiFireUpgrades() {
 
 // Function to calculate the total number of big upgrades purchased
 function getTotalBigUpgrades() {
-    const totalBigUpgrades = 0;
+    var totalBigUpgrades = 0;
 
     // Iterate over each weapon in the upgrades object
     for (const weapon in upgrades) {
@@ -2194,7 +2194,7 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
 // Function to get the total number of big upgrades purchased
 function getTotalBigUpgradesPurchased() {
     // Loop through all upgrade data and count the total number of big upgrades purchased
-    const totalBigUpgrades = 0;
+    var totalBigUpgrades = 0;
     for (const weapon in upgrades) {
         for (const upgrade in upgrades[weapon]) {
             const upgradeData = upgrades[weapon][upgrade];

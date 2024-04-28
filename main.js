@@ -874,6 +874,9 @@ function resetProgress() {
         awokenTouchGunCost = 500000;
         awokenTouchGunLevel = 0;
 
+        superAwokenTouchGunCost = 500000000000;
+        superAwokenTouchGunLevel = 0;
+
         numberFormat = 'standard';
 
         // Reset big upgrades
@@ -1111,8 +1114,8 @@ function resetProgress() {
             document.getElementById('touchGunAwaken-display').style.display = 'none';
         }
         if (upgrades.touchGun.superAwakenUpgrade.bought === false) {
-            document.getElementById('touchGunAwaken-purchase').style.display = 'none';
-            document.getElementById('touchGunAwaken-display').style.display = 'none';
+            document.getElementById('touchGunSuperAwaken-purchase').style.display = 'none';
+            document.getElementById('touchGunSuperAwaken-display').style.display = 'none';
         }
 
         // Update the interfaces

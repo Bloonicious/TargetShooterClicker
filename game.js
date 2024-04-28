@@ -145,6 +145,7 @@ let achievements = [
 
 let statistics = {
     totalLifetimePoints: 0,
+    totalBigUpgrades: 0,
     totalPotencyUpgrades: 0,
     totalFirerateUpgrades: 0,
     totalMultiFireUpgrades: 0,
@@ -2191,7 +2192,22 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     }
 }
 
-// Function to update statistics display
+// Function to get the total number of big upgrades purchased
+function getTotalBigUpgradesPurchased() {
+    // Loop through all upgrade data and count the total number of big upgrades purchased
+    let totalBigUpgrades = 0;
+    for (const weapon in upgrades) {
+        for (const upgrade in upgrades[weapon]) {
+            const upgradeData = upgrades[weapon][upgrade];
+            if (upgradeData.bought) {
+                totalBigUpgrades++;
+            }
+        }
+    }
+    return totalBigUpgrades;
+}
+
+// Update the updateStatisticsDisplay function
 function updateStatisticsDisplay() {
     const lifetimePointsElement = document.getElementById('lifetime-points');
     if (lifetimePointsElement) {
@@ -2203,6 +2219,7 @@ function updateStatisticsDisplay() {
         weaponUpgradesDiv.innerHTML = ''; // Clear previous content
 
         const upgradeCategories = [
+            { name: 'Big Upgrades Purchased', key: 'totalBigUpgradesPurchased' },
             { name: 'Potency Upgrades', key: 'totalPotencyUpgrades' },
             { name: 'Firerate Upgrades', key: 'totalFirerateUpgrades' },
             { name: 'Multi-Fire Upgrades', key: 'totalMultiFireUpgrades' },
@@ -2210,8 +2227,7 @@ function updateStatisticsDisplay() {
             { name: 'Critical Shot Upgrades', key: 'totalCriticalShotUpgrades' },
             { name: 'Critical Damage Upgrades', key: 'totalCriticalDamageUpgrades' },
             { name: 'Splash Radius Upgrades', key: 'totalSplashRadiusUpgrades' },
-            { name: 'Splash Damage Upgrades', key: 'totalSplashDamageUpgrades' },
-            { name: 'Big Upgrades Purchased', key: 'totalBigUpgradesPurchased' }
+            { name: 'Splash Damage Upgrades', key: 'totalSplashDamageUpgrades' }
         ];
 
         upgradeCategories.forEach(category => {
@@ -2226,7 +2242,7 @@ function updateStatisticsDisplay() {
     }
 }
 
-// Function to initialize statistics based on game data
+// Update the initializeStatistics function
 function initializeStatistics(gameData) {
     if (gameData) {
         // Calculate the total lifetime points by summing up points from all sources
@@ -2245,6 +2261,9 @@ function initializeStatistics(gameData) {
         // Assign the calculated total lifetime points to the statistics object
         statistics.totalLifetimePoints = totalLifetimePoints;
 
+        // Calculate and assign the total big upgrades purchased
+        statistics.totalBigUpgradesPurchased = getTotalBigUpgradesPurchased();
+
         // Assign other statistics properties based on game data
         statistics.totalPotencyUpgrades = determineTotalPotencyUpgrades(gameData);
         statistics.totalFirerateUpgrades = gameData.totalFirerateUpgrades || 0;
@@ -2254,7 +2273,6 @@ function initializeStatistics(gameData) {
         statistics.totalCriticalDamageUpgrades = gameData.totalCriticalDamageUpgrades || 0;
         statistics.totalSplashRadiusUpgrades = gameData.totalSplashRadiusUpgrades || 0;
         statistics.totalSplashDamageUpgrades = gameData.totalSplashDamageUpgrades || 0;
-        statistics.totalBigUpgradesPurchased = gameData.totalBigUpgradesPurchased || 0;
     }
 }
 

@@ -121,6 +121,7 @@ let lastTommyGunPointsTime = 0;
 let lastDoubleBarrelPointsTime = 0;
 
 let totalPotencyLevel = pistolPotencyLevel + smgPotencyLevel + shotgunPotencyLevel + sniperRiflePotencyLevel + ak47PotencyLevel + rocketLauncherPotencyLevel + tommyGunPotencyLevel + doubleBarrelPotencyLevel;
+let totalFirerateLevel = pistolFirerateLevel + smgFirerateLevel + shotgunFirerateLevel + sniperRifleFirerateLevel + ak47FirerateLevel + rocketLauncherFirerateLevel + tommyGunFirerateLevel + doubleBarrelFirerateLevel;
 
 let achievements = [
     { name: "Target Practicer", description: "Start your target-shooting practice by earning your first point from the touch gun.", condition: () => points > 0, achieved: false },
@@ -132,7 +133,9 @@ let achievements = [
     { name: "Target Trillionaire", description: "Reach 1,000,000,000,000 points.", condition: () => points >= 1000000000000, achieved: false },
     { name: "Target Quadrillionaire", description: "Reach 1,000,000,000,000,000 points.", condition: () => points >= 1000000000000000, achieved: false },
     { name: "Potency Leveller", description: "Upgrade the stat 'Potency' a total of 10 times (for any weapon type).", condition: () => getTotalPotencyUpgrades() >= 10, achieved: false },
-    { name: "Potency Master", description: "Upgrade the stat 'Potency' a total of 100 times (for any weapon type).", condition: () => getTotalPotencyUpgrades() >= 100, achieved: false }
+    { name: "Potency Master", description: "Upgrade the stat 'Potency' a total of 100 times (for any weapon type).", condition: () => getTotalPotencyUpgrades() >= 100, achieved: false },
+    { name: "Firerate Leveller", description: "Upgrade the stat 'Firerate' a total of 10 times (for any weapon type).", condition: () => getTotalFirerateUpgrades() >= 10, achieved: false },
+    { name: "Firerate Master", description: "Upgrade the stat 'Firerate' a total of 100 times (for any weapon type).", condition: () => getTotalFirerateUpgrades() >= 100, achieved: false }
 ];
 
 let statistics = {
@@ -1942,6 +1945,11 @@ function checkAndUpdateAchievements() {
 // Function to get total potency upgrades
 function getTotalPotencyUpgrades() {
     return totalPotencyLevel;
+}
+
+// Function to get total potency upgrades
+function getTotalFirerateUpgrades() {
+    return totalFirerateLevel;
 }
 
 // Function to initialize upgrade costs with proper formatting

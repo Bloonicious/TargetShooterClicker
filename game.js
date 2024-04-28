@@ -1920,12 +1920,14 @@ function updateAchievementsDisplay() {
         
         // Update completion percentage every 100 milliseconds
         setInterval(() => {
-            const completionPercentage = calculateCompletionPercentage(achievement); // Pass the achievement object directly
-            progress.style.width = `${completionPercentage}%`;
-            if (achievement.achieved) {
-                progress.style.backgroundColor = 'green'; // Green color for completed achievements
-            } else {
-                progress.style.backgroundColor = 'red'; // Red color for incomplete achievements
+            if (achievement) { // Check if achievement is defined
+                const completionPercentage = calculateCompletionPercentage(achievement); // Pass the achievement object directly
+                progress.style.width = `${completionPercentage}%`;
+                if (achievement.achieved) {
+                    progress.style.backgroundColor = 'green'; // Green color for completed achievements
+                } else {
+                    progress.style.backgroundColor = 'red'; // Red color for incomplete achievements
+                }
             }
         }, 100);
     });
@@ -2283,18 +2285,18 @@ updateStatisticsDisplay();
 setInterval(automaticPointsGeneration, 1000); // Check every second for points generation
 
 // Interval timer to update cost display every second
-setInterval(updateCostDisplay, 1000);
+setInterval(updateCostDisplay, 100);
 
 // Function to update achievements display every second
 function updateAchievements() {
     updateAchievementsDisplay();
     checkAndUpdateAchievements(); // Check and update achievements status
 }
-setInterval(updateAchievements, 1000);
+setInterval(updateAchievements, 100);
 
 // Function to update statistics display every second
 function updateStatistics() {
     updateStatisticsDisplay();
     calculateCompletionPercentage(); // Update achievement progress
 }
-setInterval(updateStatistics, 1000);
+setInterval(updateStatistics, 100);

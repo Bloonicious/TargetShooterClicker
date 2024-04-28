@@ -1957,6 +1957,8 @@ function checkAndUpdateAchievements() {
         if (!achievement.achieved && achievement.condition()) {
             // Mark the achievement as achieved
             achievements[index].achieved = true;
+            // Show achievement alert
+            handleAchievementAlert(`Achievement unlocked: ${achievement.name}`);
         }
     });
 

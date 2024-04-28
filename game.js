@@ -1920,7 +1920,7 @@ function updateAchievementsDisplay() {
         
         // Update completion percentage every 100 milliseconds
         setInterval(() => {
-            const completionPercentage = calculateCompletionPercentage(achievement);
+            const completionPercentage = calculateCompletionPercentage(achievement); // Pass the achievement object directly
             progress.style.width = `${completionPercentage}%`;
             if (achievement.achieved) {
                 progress.style.backgroundColor = 'green'; // Green color for completed achievements

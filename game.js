@@ -1987,10 +1987,34 @@ function getTotalFirerateUpgrades() {
     return pistolFirerateLevel + smgFirerateLevel + shotgunFirerateLevel + sniperRifleFirerateLevel + ak47FirerateLevel + rocketLauncherFirerateLevel + tommyGunFirerateLevel + doubleBarrelFirerateLevel;
 }
 
-// Function to get total firerate upgrades
+// Function to get total multifire upgrades
 function getTotalMultiFireUpgrades() {
     return shotgunMultiFireLevel + doubleBarrelMultiFireLevel;
 }
+
+// Function to get total accuracy upgrades
+function getTotalAccuracyUpgrades() {
+    return tommyGunAccuracyLevel;
+}
+
+// Functions to get total critical shot and damage upgrades
+function getTotalCriticalShotUpgrades() {
+    return sniperRifleCriticalShotLevel;
+}
+
+function getTotalCriticalDamageUpgrades() {
+    return sniperRifleCriticalDamageLevel;
+}
+
+// Functions to get total splash radius and damage upgrades
+function getTotalSplashRadiusUpgrades() {
+    return rocketLauncherSplashRadiusLevel;
+}
+
+function getTotalSplashDamageUpgrades() {
+    return rocketLauncherSplashDamageLevel;
+}
+
 
 // Function to calculate the total number of big upgrades purchased
 function getTotalBigUpgrades() {
@@ -2213,7 +2237,6 @@ function getTotalBigUpgradesPurchased() {
     return totalBigUpgrades;
 }
 
-// Update the updateStatisticsDisplay function
 function updateStatisticsDisplay() {
     const lifetimePointsElement = document.getElementById('lifetime-points');
     if (lifetimePointsElement) {
@@ -2252,51 +2275,33 @@ function updateStatisticsDisplay() {
     }
 }
 
-// Update the initializeStatistics function
 function initializeStatistics(gameData) {
     if (gameData) {
-        // Calculate the total lifetime points by summing up points from all sources
+        // Calculate the total lifetime points
         let totalLifetimePoints = 0;
         
-        // Summing up points from items
         if (gameData.items) {
             gameData.items.forEach(item => {
                 totalLifetimePoints += item.points || 0;
             });
         }
         
-        // Adding points from touch gun
         totalLifetimePoints += gameData.points || 0;
-
-        // Assign the calculated total lifetime points to the statistics object
         statistics.totalLifetimePoints = totalLifetimePoints;
 
         // Calculate and assign the total big upgrades purchased
         statistics.totalBigUpgradesPurchased = getTotalBigUpgradesPurchased();
 
-        // Assign other statistics properties based on game data
-        statistics.totalPotencyUpgrades = determineTotalPotencyUpgrades(gameData);
-        statistics.totalFirerateUpgrades = gameData.totalFirerateUpgrades || 0;
-        statistics.totalMultiFireUpgrades = gameData.totalMultiFireUpgrades || 0;
-        statistics.totalAccuracyUpgrades = gameData.totalAccuracyUpgrades || 0;
-        statistics.totalCriticalShotUpgrades = gameData.totalCriticalShotUpgrades || 0;
-        statistics.totalCriticalDamageUpgrades = gameData.totalCriticalDamageUpgrades || 0;
-        statistics.totalSplashRadiusUpgrades = gameData.totalSplashRadiusUpgrades || 0;
-        statistics.totalSplashDamageUpgrades = gameData.totalSplashDamageUpgrades || 0;
+        // Calculate and assign other statistics based on game data
+        statistics.totalPotencyUpgrades = getTotalPotencyUpgrades();
+        statistics.totalFirerateUpgrades = getTotalFirerateUpgrades();
+        statistics.totalMultiFireUpgrades = getTotalMultiFireUpgrades();
+        statistics.totalAccuracyUpgrades = getTotalAccuracyUpgrades();
+        statistics.totalCriticalShotUpgrades = getTotalCriticalShotUpgrades();
+        statistics.totalCriticalDamageUpgrades = getTotalCriticalDamageUpgrades();
+        statistics.totalSplashRadiusUpgrades = getTotalSplashRadiusUpgrades();
+        statistics.totalSplashDamageUpgrades = getTotalSplashDamageUpgrades();
     }
-}
-
-// Example function to get total potency upgrades from game data
-function determineTotalPotencyUpgrades(gameData) {
-    let potencyUpgrades = 0;
-    if (gameData && gameData.weaponUpgradeLevels) {
-        for (const weapon in gameData.weaponUpgradeLevels) {
-            if (gameData.weaponUpgradeLevels.hasOwnProperty(weapon)) {
-                potencyUpgrades += gameData.weaponUpgradeLevels[weapon].potency || 0;
-            }
-        }
-    }
-    return potencyUpgrades;
 }
 
 // Function to update lifetime points statistic

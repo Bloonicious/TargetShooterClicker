@@ -1917,19 +1917,9 @@ function updateAchievementsDisplay() {
         listItem.appendChild(progressBar);
 
         achievementList.appendChild(listItem);
-        
-        // Update completion percentage every 100 milliseconds
-        setInterval(() => {
-            if (achievement) { // Check if achievement is defined
-                const completionPercentage = calculateCompletionPercentage(achievement); // Pass the achievement object directly
-                progress.style.width = `${completionPercentage}%`;
-                if (achievement.achieved) {
-                    progress.style.backgroundColor = 'green'; // Green color for completed achievements
-                } else {
-                    progress.style.backgroundColor = 'red'; // Red color for incomplete achievements
-                }
-            }
-        }, 100);
+
+        // Update progress bar for this achievement
+        updateProgressBar(achievement, progress);
     });
 
     // Show achievements container
@@ -1940,6 +1930,21 @@ function updateAchievementsDisplay() {
     setTimeout(() => {
         achievementsAlert.textContent = '';
     }, 3000); // Hide after 3 seconds
+}
+
+// Function to update progress bar for a specific achievement
+function updateProgressBar(achievement, progress) {
+    setInterval(() => {
+        if (achievement) { // Check if achievement is defined
+            const completionPercentage = calculateCompletionPercentage(achievement); // Pass the achievement object directly
+            progress.style.width = `${completionPercentage}%`;
+            if (achievement.achieved) {
+                progress.style.backgroundColor = 'green'; // Green color for completed achievements
+            } else {
+                progress.style.backgroundColor = 'red'; // Red color for incomplete achievements
+            }
+        }
+    }, 100);
 }
 
 // Function to calculate completion percentage for incomplete achievements

@@ -137,12 +137,14 @@ function loadPurchasedBigUpgrades(purchasedBigUpgradeIds) {
 
 // Function to save the game state to local storage
 function saveGameState() {
+    // Save achievements data
+    const achievementsData = achievements.map(achievement => ({
+        name: achievement.name,
+        description: achievement.description,
+        achieved: achievement.achieved
+    }));
     var gameState = {
-        achievements: achievements.map(achievement => ({
-            name: achievement.name,
-            description: achievement.description,
-            achieved: achievement.achieved
-        })),
+        achievements: achievementsData,
         statistics: statistics,
         points: points,
         
@@ -361,19 +363,18 @@ function loadGameState() {
     var gameStateJSON = localStorage.getItem('gameState');
     if (gameStateJSON !== null) {
         var gameState = JSON.parse(gameStateJSON);
-
-        // Load achievements if they exist in the saved state
-        if (gameState.achievements) {
-            gameState.achievements.forEach((savedAchievement, index) => {
-                // Check if the index exists in the achievements array
-                if (achievements[index]) {
-                    // Update the achieved property
-                    achievements[index].achieved = savedAchievement.achieved;
-                }
-            });
-        }
         if (savedState) {
             // Update statistics from loaded game state
+            const savedAchievements = savedState.achievements;
+            if (savedAchievements) {
+                savedAchievements.forEach((savedAchievement, index) => {
+                    // Check if the index exists in the achievements array
+                    if (achievements[index]) {
+                        // Update the achieved property
+                        achievements[index].achieved = savedAchievement.achieved;
+                    }
+                });
+            }
             if (gameState.statistics) {
                 statistics = gameState.statistics;
                 updateStatisticsDisplay();

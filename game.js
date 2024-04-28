@@ -1939,9 +1939,10 @@ function updateProgressBar(achievement, progress) {
     }, 100);
 }
 
-// Function to calculate completion percentage for incomplete achievements
+/// Function to calculate completion percentage for incomplete achievements
 function calculateCompletionPercentage(achievement) {
-    return achievement.condition() ? 100 : 0;
+    // If the condition of the achievement is met, return 100; otherwise, return 0
+    return achievement && achievement.condition && achievement.condition() ? 100 : 0;
 }
 
 // Function to handle achievement alert

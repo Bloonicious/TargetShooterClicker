@@ -1891,6 +1891,11 @@ function updateAchievementsDisplay() {
     achievementList.innerHTML = '';
 
     achievements.forEach((achievement, index) => {
+        // Skip over undefined or null achievements
+        if (!achievement) {
+            return;
+        }
+
         const listItem = document.createElement('li');
         listItem.innerHTML = `
             <h3>${achievement.name}</h3>

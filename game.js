@@ -1883,8 +1883,12 @@ function formatNumber(number) {
 
 // Function to update achievements display and progress bar
 function updateAchievementsDisplay() {
+    const achievementsContainer = document.getElementById('achievements-container');
     const achievementList = document.getElementById('achievement-list');
-    achievementList.innerHTML = ''; // Clear previous content
+    const achievementsAlert = document.getElementById('achievements-alert');
+    
+    // Clear previous content
+    achievementList.innerHTML = '';
 
     achievements.forEach((achievement, index) => {
         const listItem = document.createElement('li');
@@ -1920,6 +1924,24 @@ function updateAchievementsDisplay() {
             }
         }, 100);
     });
+
+    // Show achievements container
+    achievementsContainer.style.display = 'block';
+
+    // Show achievements alert
+    achievementsAlert.textContent = 'New achievement unlocked!';
+    setTimeout(() => {
+        achievementsAlert.textContent = '';
+    }, 3000); // Hide after 3 seconds
+}
+
+// Function to handle achievement alert
+function handleAchievementAlert(message) {
+    const achievementsAlert = document.getElementById('achievements-alert');
+    achievementsAlert.textContent = message;
+    setTimeout(() => {
+        achievementsAlert.textContent = '';
+    }, 3000); // Hide after 3 seconds
 }
 
 // Function to calculate completion percentage for incomplete achievements

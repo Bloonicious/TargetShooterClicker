@@ -1951,8 +1951,10 @@ function handleAchievementAlert(message) {
 
 // Function to calculate completion percentage for incomplete achievements
 function calculateCompletionPercentage(achievement) {
+    console.log('Achievement:', achievement); // Debugging statement
     // Find the achievement in the achievements array
     const foundAchievement = achievements.find(a => a.name === achievement.name);
+    console.log('Found Achievement:', foundAchievement); // Debugging statement
 
     // If the achievement is found and its condition is met, return 100%
     if (foundAchievement && foundAchievement.condition()) {

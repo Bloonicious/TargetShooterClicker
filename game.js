@@ -120,6 +120,8 @@ let lastRocketLauncherPointsTime = 0;
 let lastTommyGunPointsTime = 0;
 let lastDoubleBarrelPointsTime = 0;
 
+let totalBigUpgrades = 0;
+
 let achievements = [
     { name: "Target Practicer", description: "Start your target-shooting practice by earning your first point from the touch gun.", condition: () => points > 0, achieved: false },
     { name: "You're Doing Great!", description: "Reach 1,000 points.", condition: () => points >= 1000, achieved: false },
@@ -1994,7 +1996,7 @@ function getTotalMultiFireUpgrades() {
 
 // Function to calculate the total number of big upgrades purchased
 function getTotalBigUpgrades() {
-    let totalBigUpgrades = 0;
+    totalBigUpgrades = 0;
     
     // Iterate over each weapon in the upgrades object
     for (const weapon in upgrades) {

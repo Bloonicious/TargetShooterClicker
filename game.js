@@ -1942,6 +1942,16 @@ function updateAchievementsDisplay() {
     }, 3000); // Hide after 3 seconds
 }
 
+// Function to calculate completion percentage for incomplete achievements
+function calculateCompletionPercentage(achievement) {
+    // If the achievement is found and its condition is met, return 100%
+    if (achievement.condition()) {
+        return 100;
+    } else {
+        return 0; // Otherwise, return 0%
+    }
+}
+
 // Function to handle achievement alert
 function handleAchievementAlert(message) {
     const achievementsAlert = document.getElementById('achievements-alert');
@@ -1949,19 +1959,6 @@ function handleAchievementAlert(message) {
     setTimeout(() => {
         achievementsAlert.textContent = '';
     }, 3000); // Hide after 3 seconds
-}
-
-// Function to calculate completion percentage for incomplete achievements
-function calculateCompletionPercentage(achievement) {
-    // Find the achievement in the achievements array
-    const foundAchievement = achievements.find(a => a.name === achievement.name);
-
-    // If the achievement is found and its condition is met, return 100%
-    if (foundAchievement && foundAchievement.condition()) {
-        return 100;
-    } else {
-        return 0; // Otherwise, return 0%
-    }
 }
 
 // Function to check and update achievements

@@ -592,6 +592,7 @@ function loadGameState() {
 
         // Update achievements display
         updateAchievementsDisplay();
+        checkAndUpdateAchievements();
 
         // Update firerate and potency display for each weapon
         document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
@@ -1117,6 +1118,7 @@ function resetProgress() {
         updateStatisticsDisplay();
         updatePointsDisplay();
         updateAchievementsDisplay();
+        checkAndUpdateAchievements();
         saveGameState();
         // Add any other interface updates here
     }
@@ -1126,13 +1128,12 @@ function resetProgress() {
 // For example, after earning points, purchasing weapons, etc.
 // You can call this function wherever you modify game state variables
 
-// Event listener for DOMContentLoaded to initialize upgrade costs
+// Event listeners to call in initialization of those in-game functions
 document.addEventListener('DOMContentLoaded', function() {
     initializeUpgradeCosts();
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Call the initializeAchievements function from game.js to fully initialize achievements
     initializeAchievements();
 });
 

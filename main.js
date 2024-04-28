@@ -592,6 +592,7 @@ function loadGameState() {
 
         // Update achievements display
         updateAchievementsDisplay();
+        calculateCompletionPercentage();
         checkAndUpdateAchievements();
 
         // Update firerate and potency display for each weapon
@@ -1118,6 +1119,7 @@ function resetProgress() {
         updateStatisticsDisplay();
         updatePointsDisplay();
         updateAchievementsDisplay();
+        calculateCompletionPercentage();
         checkAndUpdateAchievements();
         saveGameState();
         // Add any other interface updates here

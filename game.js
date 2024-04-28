@@ -1883,26 +1883,20 @@ function formatNumber(number) {
 
 // Function to update achievements display and progress bar
 function updateAchievementsDisplay() {
-    const achievementsContainer = document.getElementById('achievements-container');
     const achievementList = document.getElementById('achievement-list');
     const achievementsAlert = document.getElementById('achievements-alert');
     
     // Clear previous content
     achievementList.innerHTML = '';
 
-    achievements.forEach((achievement, index) => {
-        // Skip over undefined or null achievements
-        if (!achievement) {
-            return;
-        }
-
+    achievements.forEach(achievement => {
         const listItem = document.createElement('li');
         listItem.innerHTML = `
             <h3>${achievement.name}</h3>
             <p>${achievement.description}</p>
             <p>Status: ${achievement.achieved ? 'Achieved' : 'Not achieved'}</p>
         `;
-
+        
         // Add class based on achievement status
         if (achievement.achieved) {
             listItem.classList.add('achieved');
@@ -1922,39 +1916,32 @@ function updateAchievementsDisplay() {
         updateProgressBar(achievement, progress);
     });
 
-    // Show achievements container
-    achievementsContainer.style.display = 'block';
-
-    // Show achievements alert
-    achievementsAlert.textContent = 'New achievement unlocked!';
-    setTimeout(() => {
-        achievementsAlert.textContent = '';
-    }, 3000); // Hide after 3 seconds
+    // Show achievements alert for newly achieved ones
+    const newlyAchieved = achievements.filter(achievement => achievement.achieved && !achievement.notified);
+    if (newlyAchieved.length > 0) {
+        handleAchievementAlert('New achievement unlocked: ' + newlyAchieved.map(a => a.name).join(', '));
+        newlyAchieved.forEach(achievement => {
+            achievement.notified = true;
+        });
+    }
 }
 
 // Function to update progress bar for a specific achievement
 function updateProgressBar(achievement, progress) {
     setInterval(() => {
-        if (achievement) { // Check if achievement is defined
-            const completionPercentage = calculateCompletionPercentage(achievement); // Pass the achievement object directly
-            progress.style.width = `${completionPercentage}%`;
-            if (achievement.achieved) {
-                progress.style.backgroundColor = 'green'; // Green color for completed achievements
-            } else {
-                progress.style.backgroundColor = 'red'; // Red color for incomplete achievements
-            }
+        const completionPercentage = calculateCompletionPercentage(achievement);
+        progress.style.width = `${completionPercentage}%`;
+        if (achievement.achieved) {
+            progress.style.backgroundColor = 'green'; // Green color for completed achievements
+        } else {
+            progress.style.backgroundColor = 'red'; // Red color for incomplete achievements
         }
     }, 100);
 }
 
 // Function to calculate completion percentage for incomplete achievements
 function calculateCompletionPercentage(achievement) {
-    // If the achievement is found and its condition is met, return 100%
-    if (achievement.condition()) {
-        return 100;
-    } else {
-        return 0; // Otherwise, return 0%
-    }
+    return achievement.condition() ? 100 : 0;
 }
 
 // Function to handle achievement alert
@@ -1968,12 +1955,9 @@ function handleAchievementAlert(message) {
 
 // Function to check and update achievements
 function checkAndUpdateAchievements() {
-    achievements.forEach((achievement, index) => {
+    achievements.forEach(achievement => {
         if (!achievement.achieved && achievement.condition()) {
-            // Mark the achievement as achieved
-            achievements[index].achieved = true;
-            // Show achievement alert
-            handleAchievementAlert(`Achievement unlocked: ${achievement.name}`);
+            achievement.achieved = true;
         }
     });
 
@@ -2011,22 +1995,12 @@ function initializeUpgradeCosts() {
 // Function to initialize achievements
 function initializeAchievements() {
     // Set default values for achievements if not already set
-    achievements.forEach((achievement, index) => {
-        if (typeof achievement.achieved === 'undefined') {
-            achievements[index].achieved = false; // Set default value to false
-        }
+    achievements.forEach(achievement => {
+        achievement.notified = false;
     });
 
     // Update achievements based on current game state
-    achievements.forEach((achievement, index) => {
-        if (!achievement.achieved && achievement.condition()) {
-            // Mark the achievement as achieved if condition is met
-            achievements[index].achieved = true;
-        }
-    });
-
-    // Update achievements display
-    updateAchievementsDisplay();
+    checkAndUpdateAchievements();
 }
 
 // Function to initialize sound effects

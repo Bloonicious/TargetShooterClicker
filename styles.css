@@ -214,3 +214,23 @@ body {
     height: 10px;
     border-radius: 5px;
 }
+
+/* CSS for the achievements container */
+#achievements-container {
+    position: fixed;
+    top: 10px; /* Adjust top position as needed */
+    right: 10px; /* Adjust right position as needed */
+    width: 300px; /* Adjust width as needed */
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    color: #fff;
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+/* CSS for the achievements alert */
+#achievements-alert {
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+}

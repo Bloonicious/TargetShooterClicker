@@ -236,7 +236,8 @@ body {
 }
 
 /* Adjust the position of the weapon zone if necessary */
-.button,
+#earn-points-button,
+#progress-settings button,
 .weapon-zone button,
 .upgrade-option button {
     font-family: 'Lilita One', cursive;
@@ -250,14 +251,16 @@ body {
 }
 
 /* Adjust the position of the weapon zone if necessary */
-.button:hover,
+#earn-points-button:hover,
+#progress-settings button:hover,
 .weapon-zone button:hover,
 .upgrade-option button:hover {
     background-color: #f3c7ba; /* Lighter shade of pink on hover */
 }
 
 /* Adjust the width and height of the buttons */
-.button,
+#earn-points-button,
+#progress-settings button,
 .weapon-zone button,
 .upgrade-option button {
     width: 200px; /* Adjust width as needed */

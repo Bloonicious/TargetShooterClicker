@@ -1193,7 +1193,7 @@ function resetProgress() {
         uziFirerateLevel = 0;
         uziPotencyLevel = 0;
 
-        huntingRifleCost = 1250000000000;
+        huntingRifleCost = 1250000000;
         huntingRiflePointsPerShot = 90000;
         huntingRifleFireRate = 3000;
         huntingRifleFirerateUpgradeCost = 15000000000;
@@ -1216,6 +1216,7 @@ function resetProgress() {
         clearInterval(tommyGunFireRate);
         clearInterval(doubleBarrelFireRate);
         clearInterval(uziFireRate);
+        clearInterval(huntingRifleFireRate);
         
         // Enable purchase buttons for reset weapons
         if (pistolPurchased === false) {

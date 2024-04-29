@@ -1882,6 +1882,20 @@ function updateCostDisplay() {
     document.getElementById('uziFirerate-value').textContent = uziFirerateValue + 'ms';
     document.getElementById('uziPotency-value').textContent = formatNumber(uziPotencyValue);
 
+    document.getElementById('huntingRifle-cost').textContent = formatNumber(huntingRifleCost);
+    document.getElementById('huntingRifleFirerate-cost').textContent = formatNumber(huntingRifleFirerateUpgradeCost);
+    document.getElementById('huntingRiflePotency-cost').textContent = formatNumber(huntingRiflePotencyUpgradeCost);
+    document.getElementById('huntingRifleCriticalShot-cost').textContent = formatNumber(huntingRifleCriticalShotUpgradeCost);
+    document.getElementById('huntingRifleCriticalDamage-cost').textContent = formatNumber(huntingRifleCriticalDamageUpgradeCost);
+    document.getElementById('huntingRifleFirerate-level').textContent = huntingRifleFirerateLevel;
+    document.getElementById('huntingRiflePotency-level').textContent = huntingRiflePotencyLevel;
+    document.getElementById('huntingRifleCriticalShot-level').textContent = huntingRifleCriticalShotLevel;
+    document.getElementById('huntingRifleCriticalDamage-level').textContent = huntingRifleCriticalDamageLevel;
+    document.getElementById('huntingRifleFirerate-value').textContent = huntingRifleFirerateValue + 'ms';
+    document.getElementById('huntingRiflePotency-value').textContent = formatNumber(huntingRiflePotencyValue);
+    document.getElementById('huntingRifleCriticalChance-value').textContent = huntingRifleCriticalChanceValue;
+    document.getElementById('huntingRifleCriticalDamage-value').textContent = huntingRifleCriticalDamageValue;
+
     // Check if fire rate level is at maximum for each weapon
     if (pistolFirerateLevel === 20) {
         const pistolFirerateLevelDisplay = document.getElementById('pistolFirerate-level');
@@ -1983,6 +1997,16 @@ function updateCostDisplay() {
             uziFirerateCostDisplay.textContent = "MAX";
         }
     }
+    if (huntingRifleFirerateLevel === 15) {
+        const huntingRifleFirerateLevelDisplay = document.getElementById('huntingRifleFirerate-level');
+        if (huntingRifleFirerateLevelDisplay) {
+            huntingRifleFirerateLevelDisplay.textContent = "Max";
+        }
+        const huntingRifleFirerateCostDisplay = document.getElementById('huntingRifleFirerate-cost');
+        if (huntingRifleFirerateCostDisplay) {
+            huntingRifleFirerateCostDisplay.textContent = "MAX";
+        }
+    }
     if (upgrades.touchGun.awakenUpgrade.bought) {
         document.getElementById('touchGunAwaken-purchase').style.display = 'block';
         document.getElementById('touchGunAwaken-display').style.display = 'block';
@@ -2012,7 +2036,7 @@ function formatNumber(number) {
             return number.toLocaleString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         } else {
             // Display numbers greater than or equal to 1 quadrillion in scientific notation
-            return number.toExponential(3);
+            return number.toExponential(6);
         }
     } else if (numberFormat === 'long') {
         const longSuffixes = ['', ' thousand', ' million', ' billion', ' trillion', ' quadrillion', ' quintillion', ' sextillion', ' septillion', ' octillion', ' nonillion', ' decillion', ' undecillion', ' duodecillion', ' tredecillion', ' quattuordecillion', ' quindecillion', ' sexdecillion', 'septendecillion', ' octodecillion', ' novemdecillion', ' vigintillion', ' unvigintillion', ' duovigintillion'];

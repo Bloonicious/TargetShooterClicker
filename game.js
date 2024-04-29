@@ -16,7 +16,6 @@ let pistolFirerateUpgradeCost = 50;
 let pistolPotencyUpgradeCost = 100;
 let pistolFirerateLevel = 0;
 let pistolPotencyLevel = 0;
-let pistolPointsPerSecond = (1000 / pistolFireRate) * pistolPointsPerShot;
 
 let smgCost = 100;
 let smgPointsPerShot = 1;
@@ -25,7 +24,6 @@ let smgFirerateUpgradeCost = 600;
 let smgPotencyUpgradeCost = 1200;
 let smgFirerateLevel = 0;
 let smgPotencyLevel = 0;
-let smgPointsPerSecond = (1000 / smgFireRate) * smgPointsPerShot;
 
 let shotgunCost = 500;
 let shotgunPointsPerShot = 4;
@@ -37,7 +35,6 @@ let shotgunBulletsPerShot = 3; // Initial bullets per shot
 let shotgunFirerateLevel = 0;
 let shotgunPotencyLevel = 0;
 let shotgunMultiFireLevel = 0;
-let shotgunPointsPerSecond = (1000 / shotgunFireRate) * shotgunPointsPerShot * shotgunBulletsPerShot;
 
 let sniperRifleCost = 7500;
 let sniperRiflePointsPerShot = 80;

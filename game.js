@@ -1818,33 +1818,43 @@ function bigUpgrades(weapon, upgrade, cost) {
 function updateCostDisplay() {
     const pistolFirerateValue = pistolFireRate; // Convert fire rate to milliseconds
     const pistolPotencyValue = pistolPointsPerShot; // No need for calculations, potency is already in points per shot
+    const pistolPointsPerSecond = (pistolPointsPerShot / pistolFireRate) * 1000; // Convert fire rate from milliseconds to seconds
     const smgFirerateValue = smgFireRate;
     const smgPotencyValue = smgPointsPerShot;
+    const smgPointsPerSecond = (smgPointsPerShot / smgFireRate) * 1000;
     const shotgunFirerateValue = shotgunFireRate;
     const shotgunPotencyValue = shotgunPointsPerShot;
     const shotgunMultiFireValue = shotgunBulletsPerShot;
+    const shotgunPointsPerSecond = (shotgunPointsPerShot * shotgunBulletsPerShot / shotgunFireRate) * 1000;
     const sniperRifleFirerateValue = sniperRifleFireRate;
     const sniperRiflePotencyValue = sniperRiflePointsPerShot;
     const sniperRifleCriticalChanceValue = sniperRifleCriticalShotChance;
     const sniperRifleCriticalDamageValue = sniperRifleCriticalDamageMultiplier;
+    const sniperRiflePointsPerSecond = (sniperRiflePointsPerShot / sniperRifleFireRate) * 1000;
     const ak47FirerateValue = ak47FireRate;
     const ak47PotencyValue = ak47PointsPerShot;
+    const ak47PointsPerSecond = (ak47PointsPerShot / ak47FireRate) * 1000;
     const rocketLauncherFirerateValue = rocketLauncherFireRate;
     const rocketLauncherPotencyValue = rocketLauncherPointsPerShot;
     const rocketLauncherSplashRadiusValue = rocketLauncherSplashRadius;
     const rocketLauncherSplashDamageValue = rocketLauncherSplashDamage;
+    const rocketLauncherPointsPerSecond = (rocketLauncherPointsPerShot / rocketLauncherFireRate) * 1000;
     const tommyGunFirerateValue = tommyGunFireRate;
     const tommyGunPotencyValue = tommyGunPointsPerShot;
     const tommyGunInaccuracyChanceValue = -0 + tommyGunInaccuracyChance;
+    const tommyGunPointsPerSecond = (tommyGunPointsPerShot / tommyGunFireRate) * 1000;
     const doubleBarrelFirerateValue = doubleBarrelFireRate;
     const doubleBarrelPotencyValue = doubleBarrelPointsPerShot;
     const doubleBarrelMultiFireValue = doubleBarrelBulletsPerShot;
+    const doubleBarrelPointsPerSecond = (doubleBarrelPointsPerShot * doubleBarrelBulletsPerShot / doubleBarrelFireRate) * 1000;
     const uziFirerateValue = uziFireRate;
     const uziPotencyValue = uziPointsPerShot;
+    const uziPointsPerSecond = (uziPointsPerShot / uziFireRate) * 1000;
     const huntingRifleFirerateValue = huntingRifleFireRate;
     const huntingRiflePotencyValue = huntingRiflePointsPerShot;
     const huntingRifleCriticalChanceValue = huntingRifleCriticalShotChance;
     const huntingRifleCriticalDamageValue = huntingRifleCriticalDamageMultiplier;
+    const huntingRiflePointsPerSecond = (huntingRiflePointsPerShot / huntingRifleFireRate) * 1000;
     
     document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
     document.getElementById('touchGun-level').textContent = touchGunLevel;
@@ -1903,6 +1913,7 @@ function updateCostDisplay() {
     document.getElementById('sniperRiflePotency-value').textContent = formatNumber(sniperRiflePotencyValue);
     document.getElementById('sniperRifleCriticalChance-value').textContent = sniperRifleCriticalChanceValue;
     document.getElementById('sniperRifleCriticalDamage-value').textContent = sniperRifleCriticalDamageValue;
+    document.getElementById('sniperRiflePPS-value').textContent = formatNumber(sniperRiflePointsPerSecond);
 
     document.getElementById('ak47-cost').textContent = formatNumber(ak47Cost);
     document.getElementById('ak47Firerate-cost').textContent = formatNumber(ak47FirerateUpgradeCost);
@@ -1911,6 +1922,7 @@ function updateCostDisplay() {
     document.getElementById('ak47Potency-level').textContent = ak47PotencyLevel;
     document.getElementById('ak47Firerate-value').textContent = ak47FirerateValue + 'ms';
     document.getElementById('ak47Potency-value').textContent = formatNumber(ak47PotencyValue);
+    document.getElementById('ak47PPS-value').textContent = formatNumber(ak47PointsPerSecond);
 
     document.getElementById('rocketLauncher-cost').textContent = formatNumber(rocketLauncherCost);
     document.getElementById('rocketLauncherFirerate-cost').textContent = formatNumber(rocketLauncherFirerateUpgradeCost);
@@ -1925,6 +1937,7 @@ function updateCostDisplay() {
     document.getElementById('rocketLauncherPotency-value').textContent = formatNumber(rocketLauncherPotencyValue);
     document.getElementById('rocketLauncherSplashRadius-value').textContent = rocketLauncherSplashRadiusValue;
     document.getElementById('rocketLauncherSplashDamage-value').textContent = rocketLauncherSplashDamageValue;
+    document.getElementById('rocketLauncherPPS-value').textContent = formatNumber(rocketLauncherPointsPerSecond);
 
     document.getElementById('tommyGun-cost').textContent = formatNumber(tommyGunCost);
     document.getElementById('tommyGunFirerate-cost').textContent = formatNumber(tommyGunFirerateUpgradeCost);
@@ -1936,6 +1949,7 @@ function updateCostDisplay() {
     document.getElementById('tommyGunFirerate-value').textContent = tommyGunFirerateValue + 'ms';
     document.getElementById('tommyGunPotency-value').textContent = formatNumber(tommyGunPotencyValue);
     document.getElementById('tommyGunAccuracy-value').textContent = tommyGunInaccuracyChanceValue;
+    document.getElementById('tommyGunPPS-value').textContent = formatNumber(tommyGunPointsPerSecond);
 
     document.getElementById('doubleBarrel-cost').textContent = formatNumber(doubleBarrelCost);
     document.getElementById('doubleBarrelFirerate-cost').textContent = formatNumber(doubleBarrelFirerateUpgradeCost);
@@ -1947,6 +1961,7 @@ function updateCostDisplay() {
     document.getElementById('doubleBarrelFirerate-value').textContent = doubleBarrelFirerateValue + 'ms';
     document.getElementById('doubleBarrelPotency-value').textContent = formatNumber(doubleBarrelPotencyValue);
     document.getElementById('doubleBarrelMultiFire-value').textContent = doubleBarrelMultiFireValue;
+    document.getElementById('doubleBarrelPPS-value').textContent = formatNumber(doubleBarrelPointsPerSecond);
 
     document.getElementById('uzi-cost').textContent = formatNumber(uziCost);
     document.getElementById('uziFirerate-cost').textContent = formatNumber(uziFirerateUpgradeCost);
@@ -1955,6 +1970,7 @@ function updateCostDisplay() {
     document.getElementById('uziPotency-level').textContent = uziPotencyLevel;
     document.getElementById('uziFirerate-value').textContent = uziFirerateValue + 'ms';
     document.getElementById('uziPotency-value').textContent = formatNumber(uziPotencyValue);
+    document.getElementById('uziPPS-value').textContent = formatNumber(uziPointsPerSecond);
 
     document.getElementById('huntingRifle-cost').textContent = formatNumber(huntingRifleCost);
     document.getElementById('huntingRifleFirerate-cost').textContent = formatNumber(huntingRifleFirerateUpgradeCost);
@@ -1969,6 +1985,7 @@ function updateCostDisplay() {
     document.getElementById('huntingRiflePotency-value').textContent = formatNumber(huntingRiflePotencyValue);
     document.getElementById('huntingRifleCriticalChance-value').textContent = huntingRifleCriticalChanceValue;
     document.getElementById('huntingRifleCriticalDamage-value').textContent = huntingRifleCriticalDamageValue;
+    document.getElementById('huntingRiflePPS-value').textContent = formatNumber(huntingRiflePointsPerSecond);
 
     // Check if fire rate level is at maximum for each weapon
     if (pistolFirerateLevel === 20) {

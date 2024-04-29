@@ -276,6 +276,7 @@ function saveGameState() {
         pistolPotencyUpgradeCost: pistolPotencyUpgradeCost,
         pistolFirerateLevel: pistolFirerateLevel,
         pistolPotencyLevel: pistolPotencyLevel,
+        pistolPointsPerSecond: pistolPointsPerSecond,
         
         smgPurchased: smgPurchased,
         smgPointsPerShot: smgPointsPerShot,
@@ -284,6 +285,7 @@ function saveGameState() {
         smgPotencyUpgradeCost: smgPotencyUpgradeCost,
         smgFirerateLevel: smgFirerateLevel,
         smgPotencyLevel: smgPotencyLevel,
+        smgPointsPerSecond: smgPointsPerSecond,
         
         shotgunPurchased: shotgunPurchased,
         shotgunPointsPerShot: shotgunPointsPerShot,
@@ -295,6 +297,7 @@ function saveGameState() {
         shotgunFirerateLevel: shotgunFirerateLevel,
         shotgunPotencyLevel: shotgunPotencyLevel,
         shotgunMultiFireLevel: shotgunMultiFireLevel,
+        shotgunPointsPerSecond: shotgunPointsPerSecond,
         
         sniperRiflePurchased: sniperRiflePurchased,
         sniperRiflePointsPerShot: sniperRiflePointsPerShot,
@@ -537,6 +540,7 @@ function loadGameState() {
         pistolPotencyUpgradeCost = gameState.pistolPotencyUpgradeCost;
         pistolFirerateLevel = Math.min(gameState.pistolFirerateLevel, 20);
         pistolPotencyLevel = gameState.pistolPotencyLevel;
+        pistolPointsPerSecond = gameState.pistolPointsPerSecond;
         
         smgPurchased = gameState.smgPurchased;
         smgPointsPerShot = gameState.smgPointsPerShot;
@@ -545,6 +549,7 @@ function loadGameState() {
         smgPotencyUpgradeCost = gameState.smgPotencyUpgradeCost;
         smgFirerateLevel = Math.min(gameState.smgFirerateLevel, 10);
         smgPotencyLevel = gameState.smgPotencyLevel;
+        smgPointsPerSecond = gameState.smgPointsPerSecond;
         
         shotgunPurchased = gameState.shotgunPurchased;
         shotgunPointsPerShot = gameState.shotgunPointsPerShot;
@@ -556,6 +561,7 @@ function loadGameState() {
         shotgunFirerateLevel = Math.min(gameState.shotgunFirerateLevel, 15);
         shotgunPotencyLevel = gameState.shotgunPotencyLevel;
         shotgunMultiFireLevel = gameState.shotgunMultiFireLevel;
+        shotgunPointsPerSecond = gameState.shotgunPointsPerSecond;
         
         sniperRiflePurchased = gameState.sniperRiflePurchased;
         sniperRiflePointsPerShot = gameState.sniperRiflePointsPerShot;
@@ -673,6 +679,7 @@ function loadGameState() {
         document.getElementById('pistolPotency-level').textContent = pistolPotencyLevel;
         document.getElementById('pistolFirerate-value').textContent = pistolFireRate + 'ms';
         document.getElementById('pistolPotency-value').textContent = formatNumber(pistolPointsPerShot);
+        document.getElementById('pistolPPS-value').textContent = formatNumber(pistolPointsPerSecond);
 
         document.getElementById('smg-cost').textContent = formatNumber(smgCost);
         document.getElementById('smgFirerate-cost').textContent = formatNumber(smgFirerateUpgradeCost);
@@ -681,6 +688,7 @@ function loadGameState() {
         document.getElementById('smgPotency-level').textContent = smgPotencyLevel;
         document.getElementById('smgFirerate-value').textContent = smgFireRate + 'ms';
         document.getElementById('smgPotency-value').textContent = formatNumber(smgPointsPerShot);
+        document.getElementById('smgPPS-value').textContent = formatNumber(smgPointsPerSecond);
 
         document.getElementById('shotgun-cost').textContent = formatNumber(shotgunCost);
         document.getElementById('shotgunFirerate-cost').textContent = formatNumber(shotgunFirerateUpgradeCost);
@@ -692,6 +700,7 @@ function loadGameState() {
         document.getElementById('shotgunFirerate-value').textContent = shotgunFireRate + 'ms';
         document.getElementById('shotgunPotency-value').textContent = formatNumber(shotgunPointsPerShot);
         document.getElementById('shotgunMultiFire-value').textContent = shotgunBulletsPerShot;
+        document.getElementById('shotgunPPS-value').textContent = formatNumber(shotgunPointsPerSecond);
 
         document.getElementById('sniperRifle-cost').textContent = formatNumber(sniperRifleCost);
         document.getElementById('sniperRifleFirerate-cost').textContent = formatNumber(sniperRifleFirerateUpgradeCost);

@@ -2300,6 +2300,7 @@ function initializeAchievements() {
 // Function to initialize sound effects
 function initializeSoundEffects() {
     // Load or create SFX IDs for each weapon
+    weaponSFX.touchGun = new Audio('sfx/touchgun.wav');
     weaponSFX.pistol = new Audio('sfx/pistol.wav');
     weaponSFX.smg = new Audio('sfx/smg.wav');
     weaponSFX.shotgun = new Audio('sfx/shotgun.wav');
@@ -2420,6 +2421,9 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
 
     // Play sound effect based on weapon type
     switch (weaponId) {
+        case 'touchGun':
+            playWeaponSoundEffect('touchGun');
+            break;
         case 'pistol':
             playWeaponSoundEffect('pistol');
             break;

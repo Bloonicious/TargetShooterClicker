@@ -45,8 +45,6 @@ let sniperRifleCriticalShotUpgradeCost = 75000;
 let sniperRifleCriticalDamageUpgradeCost = 250000;
 let sniperRifleCriticalShotChance = 25; // 25% chance for a "Critical Shot" for increased points
 let sniperRifleCriticalDamageMultiplier = 2.0; // The amount of extra points yielded from a "Critical Shot"
-let sniperRifleCriticalShotValueIncrement = 0.02; // Increases the chance to trigger a "Critical Shot" by 2%
-let sniperRifleCriticalDamageValueIncrement = 0.2; // Increases the point multiplier gained from crits by x0.2
 let sniperRifleFirerateLevel = 0;
 let sniperRiflePotencyLevel = 0;
 let sniperRifleCriticalShotLevel = 0;
@@ -97,6 +95,28 @@ let doubleBarrelFirerateLevel = 0;
 let doubleBarrelPotencyLevel = 0;
 let doubleBarrelMultiFireLevel = 0;
 
+let uziCost = 175000000;
+let uziPointsPerShot = 3000;
+let uziFireRate = 75; // in milliseconds
+let uziFirerateUpgradeCost = 2500000000;
+let uziPotencyUpgradeCost = 2000000000;
+let uziFirerateLevel = 0;
+let uziPotencyLevel = 0;
+
+let huntingRifleCost = 1250000000000;
+let huntingRiflePointsPerShot = 90000;
+let huntingRifleFireRate = 3000; // in milliseconds
+let huntingRifleFirerateUpgradeCost = 15000000000;
+let huntingRiflePotencyUpgradeCost = 10000000000;
+let huntingRifleCriticalShotUpgradeCost = 20000000000;
+let huntingRifleCriticalDamageUpgradeCost = 30000000000;
+let huntingRifleCriticalShotChance = 40; // 40% chance for a "Critical Shot" for increased points
+let huntingRifleCriticalDamageMultiplier = 1.5; // The amount of extra points yielded from a "Critical Shot"
+let huntingRifleFirerateLevel = 0;
+let huntingRiflePotencyLevel = 0;
+let huntingRifleCriticalShotLevel = 0;
+let huntingRifleCriticalDamageLevel = 0;
+
 let points = 0;
 let gameplayPoints = 0;
 
@@ -110,6 +130,8 @@ let ak47Purchased = false;
 let rocketLauncherPurchased = false;
 let tommyGunPurchased = false;
 let doubleBarrelPurchased = false;
+let uziPurchased = false;
+let huntingRiflePurchased = false;
 
 let lastPistolPointsTime = 0;
 let lastSMGPointsTime = 0;
@@ -119,6 +141,8 @@ let lastAK47PointsTime = 0;
 let lastRocketLauncherPointsTime = 0;
 let lastTommyGunPointsTime = 0;
 let lastDoubleBarrelPointsTime = 0;
+let lastUziPointsTime = 0;
+let lastHuntingRiflePointsTime = 0;
 
 let achievements = [
     { name: "Target Practicer", description: "Start your target-shooting practice by earning your first point from the touch gun.", condition: () => points > 0, achieved: false },
@@ -174,7 +198,7 @@ const upgrades = {
         thousandFingers: {
             cost: 100000,
             effect: function() {
-                touchGunPointsPerClick += 0.5 * pistolPotencyLevel; // Increases touch gun value based on the current potency levels of those weapons
+                touchGunPointsPerClick += 0.5 * getTotalPotencyUpgrades(); // Increases touch gun value based on the current potency levels of those weapons
             }
         },
         antirestingCream: {
@@ -196,7 +220,7 @@ const upgrades = {
         millionFingers: {
             cost: 200000000,
             effect: function() {
-                touchGunPointsPerClick += 5 * pistolPotencyLevel; // Increases touch gun value based on the current potency levels of those weapons
+                touchGunPointsPerClick += 5 * getTotalPotencyUpgrades(); // Increases touch gun value based on the current potency levels of those weapons
             }
         },
         stingingTaps: {
@@ -220,7 +244,7 @@ const upgrades = {
         billionFingers: {
             cost: 300000000000,
             effect: function() {
-                touchGunPointsPerClick += 50 * pistolPotencyLevel; // Increases touch gun value based on the current potency levels of those weapons
+                touchGunPointsPerClick += 50 * getTotalPotencyUpgrades(); // Increases touch gun value based on the current potency levels of those weapons
             }
         },
         superAwakenUpgrade: {
@@ -763,6 +787,7 @@ function updatePointsDisplay() {
 // Function to handle clicking the earn points button
 function earnPoints() {
     points += touchGunPointsPerClick; // Increment points based on Touch Gun
+    shoot('touchGun', pointsPerShot, false, false);
     updatePointsDisplay();
 }
 
@@ -873,6 +898,17 @@ function automaticPointsGeneration() {
             }
         }, 100); // Check every 100 milliseconds for points generation
     }
+    if (uziPurchased) {
+        setInterval(function() {
+            const currentTime = Date.now();
+            if (currentTime - lastUziPointsTime >= uziFireRate) {
+                // Calculate points per shot
+                let pointsPerShot = uziPointsPerShot;
+                shoot('uzi', pointsPerShot, false, false);
+                lastUziPointsTime = currentTime;
+            }
+        }, 100); // Check every 100 milliseconds for points generation
+    }
 }
 
 // Function to handle purchasing weapons and upgrades
@@ -941,6 +977,20 @@ function purchase(item) {
                 purchaseWeapon('doubleBarrel', doubleBarrelCost);
             } else {
                 alert("Double Barrel has already been purchased!");
+            }
+            break;
+        case 'uzi':
+            if (!uziPurchased) {
+                purchaseWeapon('uzi', uziCost);
+            } else {
+                alert("Uzi has already been purchased!");
+            }
+            break;
+        case 'huntingRifle':
+            if (!huntingRiflePurchased) {
+                purchaseWeapon('huntingRifle', huntingRifleCost);
+            } else {
+                alert("Hunting Rifle has already been purchased!");
             }
             break;
         case 'pistolFirerate':
@@ -1012,6 +1062,24 @@ function purchase(item) {
         case 'doubleBarrelMultiFire':
             purchaseUpgrade('doubleBarrelMultiFire', doubleBarrelMultiFireLevel, doubleBarrelMultiFireUpgradeCost, 10, 2, 'multiFire');
             break;
+        case 'uziFirerate':
+            purchaseUpgrade('uziFirerate', uziFirerateLevel, uziFirerateUpgradeCost, 2.6, -2.5, 'firerate');
+            break;
+        case 'uziPotency':
+            purchaseUpgrade('uziPotency', uziPotencyLevel, uziPotencyUpgradeCost, 1.4, 3000, 'potency');
+            break;
+        case 'huntingRifleFirerate':
+            purchaseUpgrade('huntingRifleFirerate', huntingRifleFirerateLevel, huntingRifleFirerateUpgradeCost, 1.8, -100, 'firerate');
+            break;
+        case 'huntingRiflePotency':
+            purchaseUpgrade('huntingRiflePotency', huntingRiflePotencyLevel, huntingRiflePotencyUpgradeCost, 1.4, 90000, 'potency');
+            break;
+        case 'huntingRifleCriticalShot':
+            purchaseUpgrade('huntingRifleCriticalShot', huntingRifleCriticalShotLevel, huntingRifleCriticalShotUpgradeCost, 3.5, 2, 'criticalShotChance');
+            break;
+        case 'huntingRifleCriticalDamage':
+            purchaseUpgrade('huntingRifleCriticalDamage', huntingRifleCriticalDamageLevel, huntingRifleCriticalDamageUpgradeCost, 5, 0.1, 'criticalDamage');
+            break;
         default:
             console.error("Invalid item:", item);
     }
@@ -1056,6 +1124,14 @@ function purchaseWeapon(weapon, cost) {
                 doubleBarrelCost *= 2;
                 doubleBarrelPurchased = true;
                 break;
+            case 'uzi':
+                uziCost *= 2;
+                uziPurchased = true;
+                break;
+            case 'huntingRifle':
+                huntingRifleCost *= 2;
+                huntingRiflePurchased = true;
+                break;
             default:
                 console.error("Invalid weapon:", weapon);
         }
@@ -1084,7 +1160,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 2;
                 }
                 if (upgrades.touchGun.thousandFingers.bought) {
-                    valueIncrement += 0.5 * pistolPotencyLevel;
+                    valueIncrement += 0.5 * getTotalPotencyUpgrades();
                 }
                 if (upgrades.touchGun.antirestingCream.bought) {
                     valueIncrement *= 3;
@@ -1093,7 +1169,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 5;
                 }
                 if (upgrades.touchGun.millionFingers.bought) {
-                    valueIncrement += 5 * pistolPotencyLevel;
+                    valueIncrement += 5 * getTotalPotencyUpgrades();
                 }
                 if (upgrades.touchGun.stingingTaps.bought) {
                     valueIncrement *= 4;
@@ -1105,7 +1181,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 4;
                 }
                 if (upgrades.touchGun.billionFingers.bought) {
-                    valueIncrement += 50 * pistolPotencyLevel;
+                    valueIncrement += 50 * getTotalPotencyUpgrades();
                 }
                 touchGunPointsPerClick += valueIncrement;
                 break;
@@ -1119,7 +1195,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 2;
                 }
                 if (upgrades.touchGun.thousandFingers.bought) {
-                    valueIncrement += 50 * pistolPotencyLevel;
+                    valueIncrement += 50 * getTotalPotencyUpgrades();
                 }
                 if (upgrades.touchGun.antirestingCream.bought) {
                     valueIncrement *= 3;
@@ -1128,7 +1204,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 5;
                 }
                 if (upgrades.touchGun.millionFingers.bought) {
-                    valueIncrement += 500 * pistolPotencyLevel;
+                    valueIncrement += 500 * getTotalPotencyUpgrades();
                 }
                 if (upgrades.touchGun.stingingTaps.bought) {
                     valueIncrement *= 4;
@@ -1140,7 +1216,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 4;
                 }
                 if (upgrades.touchGun.billionFingers.bought) {
-                    valueIncrement += 5000 * pistolPotencyLevel;
+                    valueIncrement += 5000 * getTotalPotencyUpgrades();
                 }
                 touchGunPointsPerClick += valueIncrement;
                 break;
@@ -1154,7 +1230,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 2;
                 }
                 if (upgrades.touchGun.thousandFingers.bought) {
-                    valueIncrement += 5000 * pistolPotencyLevel;
+                    valueIncrement += 5000 * getTotalPotencyUpgrades();
                 }
                 if (upgrades.touchGun.antirestingCream.bought) {
                     valueIncrement *= 3;
@@ -1163,7 +1239,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 5;
                 }
                 if (upgrades.touchGun.millionFingers.bought) {
-                    valueIncrement += 50000 * pistolPotencyLevel;
+                    valueIncrement += 50000 * getTotalPotencyUpgrades();
                 }
                 if (upgrades.touchGun.stingingTaps.bought) {
                     valueIncrement *= 4;
@@ -1175,7 +1251,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 4;
                 }
                 if (upgrades.touchGun.billionFingers.bought) {
-                    valueIncrement += 500000 * pistolPotencyLevel;
+                    valueIncrement += 500000 * getTotalPotencyUpgrades();
                 }
                 touchGunPointsPerClick += valueIncrement;
                 break;
@@ -1543,6 +1619,46 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 }
                 doubleBarrelBulletsPerShot += valueIncrement;
                 break;
+            case 'uziFirerate':
+                if (level <= 10) {
+                    uziFirerateUpgradeCost = cost;
+                    uziFirerateLevel = level;
+                    uziFireRate += valueIncrement;
+                } else {
+                    console.log("Maximum level reached for uzi fire rate upgrade.");
+                    alert("Uzi's firing rate has been maxed out!");
+                }
+                break;
+            case 'uziPotency':
+                uziPotencyUpgradeCost = cost;
+                uziPotencyLevel = level;
+                uziPointsPerShot += valueIncrement;
+                break;
+            case 'huntingRifleFirerate':
+                if (level <= 15) {
+                    huntingRifleFirerateUpgradeCost = cost;
+                    huntingRifleFirerateLevel = level;
+                    huntingRifleFireRate += valueIncrement;
+                } else {
+                    console.log("Maximum level reached for hunting rifle fire rate upgrade.");
+                    alert("Hunting Rifle's firing rate has been maxed out!");
+                }
+                break;
+            case 'huntingRiflePotency':
+                huntingRiflePotencyUpgradeCost = cost;
+                huntingRiflePotencyLevel = level;
+                huntingRiflePointsPerShot += valueIncrement;
+                break;
+            case 'huntingRifleCriticalShot':
+                huntingRifleCriticalShotUpgradeCost = cost;
+                huntingRifleCriticalShotLevel = level;
+                huntingRifleCriticalShotChance += valueIncrement;
+                break;
+            case 'huntingRifleCriticalDamage':
+                huntingRifleCriticalDamageUpgradeCost = cost;
+                huntingRifleCriticalDamageLevel = level;
+                huntingRifleCriticalDamageMultiplier += valueIncrement;
+                break;
             default:
                 console.error("Invalid upgradeType:", upgradeType);
         }
@@ -1652,6 +1768,12 @@ function updateCostDisplay() {
     const doubleBarrelFirerateValue = doubleBarrelFireRate;
     const doubleBarrelPotencyValue = doubleBarrelPointsPerShot;
     const doubleBarrelMultiFireValue = doubleBarrelBulletsPerShot;
+    const uziFirerateValue = uziFireRate;
+    const uziPotencyValue = uziPointsPerShot;
+    const huntingRifleFirerateValue = huntingRifleFireRate;
+    const huntingRiflePotencyValue = huntingRiflePointsPerShot;
+    const huntingRifleCriticalChanceValue = huntingRifleCriticalShotChance;
+    const huntingRifleCriticalDamageValue = huntingRifleCriticalDamageMultiplier;
     
     document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
     document.getElementById('touchGun-level').textContent = touchGunLevel;
@@ -1752,6 +1874,14 @@ function updateCostDisplay() {
     document.getElementById('doubleBarrelPotency-value').textContent = formatNumber(doubleBarrelPotencyValue);
     document.getElementById('doubleBarrelMultiFire-value').textContent = doubleBarrelMultiFireValue;
 
+    document.getElementById('uzi-cost').textContent = formatNumber(uziCost);
+    document.getElementById('uziFirerate-cost').textContent = formatNumber(uziFirerateUpgradeCost);
+    document.getElementById('uziPotency-cost').textContent = formatNumber(uziPotencyUpgradeCost);
+    document.getElementById('uziFirerate-level').textContent = uziFirerateLevel;
+    document.getElementById('uziPotency-level').textContent = uziPotencyLevel;
+    document.getElementById('uziFirerate-value').textContent = uziFirerateValue + 'ms';
+    document.getElementById('uziPotency-value').textContent = formatNumber(uziPotencyValue);
+
     // Check if fire rate level is at maximum for each weapon
     if (pistolFirerateLevel === 20) {
         const pistolFirerateLevelDisplay = document.getElementById('pistolFirerate-level');
@@ -1841,6 +1971,16 @@ function updateCostDisplay() {
         const doubleBarrelFirerateCostDisplay = document.getElementById('doubleBarrelFirerate-cost');
         if (doubleBarrelFirerateCostDisplay) {
             doubleBarrelFirerateCostDisplay.textContent = "MAX";
+        }
+    }
+    if (uziFirerateLevel === 10) {
+        const uziFirerateLevelDisplay = document.getElementById('uziFirerate-level');
+        if (uziFirerateLevelDisplay) {
+            uziFirerateLevelDisplay.textContent = "Max";
+        }
+        const uziFirerateCostDisplay = document.getElementById('uziFirerate-cost');
+        if (uziFirerateCostDisplay) {
+            uziFirerateCostDisplay.textContent = "MAX";
         }
     }
     if (upgrades.touchGun.awakenUpgrade.bought) {
@@ -1979,12 +2119,12 @@ function checkAndUpdateAchievements() {
 
 // Function to get total potency upgrades
 function getTotalPotencyUpgrades() {
-    return pistolPotencyLevel + smgPotencyLevel + shotgunPotencyLevel + sniperRiflePotencyLevel + ak47PotencyLevel + rocketLauncherPotencyLevel + tommyGunPotencyLevel + doubleBarrelPotencyLevel;
+    return pistolPotencyLevel + smgPotencyLevel + shotgunPotencyLevel + sniperRiflePotencyLevel + ak47PotencyLevel + rocketLauncherPotencyLevel + tommyGunPotencyLevel + doubleBarrelPotencyLevel + uziPotencyLevel + huntingRiflePotencyLevel;
 }
 
 // Function to get total firerate upgrades
 function getTotalFirerateUpgrades() {
-    return pistolFirerateLevel + smgFirerateLevel + shotgunFirerateLevel + sniperRifleFirerateLevel + ak47FirerateLevel + rocketLauncherFirerateLevel + tommyGunFirerateLevel + doubleBarrelFirerateLevel;
+    return pistolFirerateLevel + smgFirerateLevel + shotgunFirerateLevel + sniperRifleFirerateLevel + ak47FirerateLevel + rocketLauncherFirerateLevel + tommyGunFirerateLevel + doubleBarrelFirerateLevel + uziFirerateLevel + huntingRifleFirerateLevel;
 }
 
 // Function to get total multifire upgrades
@@ -1999,11 +2139,11 @@ function getTotalAccuracyUpgrades() {
 
 // Functions to get total critical shot and damage upgrades
 function getTotalCriticalShotUpgrades() {
-    return sniperRifleCriticalShotLevel;
+    return sniperRifleCriticalShotLevel + huntingRifleCriticalShotLevel;
 }
 
 function getTotalCriticalDamageUpgrades() {
-    return sniperRifleCriticalDamageLevel;
+    return sniperRifleCriticalDamageLevel + huntingRifleCriticalDamageLevel;
 }
 
 // Functions to get total splash radius and damage upgrades
@@ -2076,6 +2216,8 @@ function initializeSoundEffects() {
     weaponSFX.rocketLauncher = new Audio('sfx/bazooka.wav');
     weaponSFX.tommyGun = new Audio('sfx/smg.wav');
     weaponSFX.doubleBarrel = new Audio('sfx/doublebarrel.wav');
+    weaponSFX.uzi = new Audio('sfx/uzi.wav');
+    weaponSFX.huntingRifle = new Audio('sfx/hunting_rifle.wav');
 }
 
 // Function to play sound effect for a specific weapon
@@ -2209,6 +2351,12 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
             break;
         case 'doubleBarrel':
             playWeaponSoundEffect('doubleBarrel');
+            break;
+        case 'uzi':
+            playWeaponSoundEffect('uzi');
+            break;
+        case 'huntingRifle':
+            playWeaponSoundEffect('huntingRifle');
             break;
         default:
             break;

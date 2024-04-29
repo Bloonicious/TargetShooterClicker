@@ -349,6 +349,28 @@ function saveGameState() {
         doubleBarrelPotencyLevel: doubleBarrelPotencyLevel,
         doubleBarrelMultiFireLevel: doubleBarrelMultiFireLevel,
 
+        uziPurchased: uziPurchased,
+        uziPointsPerShot: uziPointsPerShot,
+        uziFireRate: uziFireRate,
+        uziFirerateUpgradeCost: uziFirerateUpgradeCost,
+        uziPotencyUpgradeCost: uziPotencyUpgradeCost,
+        uziFirerateLevel: uziFirerateLevel,
+        uziPotencyLevel: uziPotencyLevel,
+
+        huntingRiflePurchased: huntingRiflePurchased,
+        huntingRiflePointsPerShot: huntingRiflePointsPerShot,
+        huntingRifleFireRate: huntingRifleFireRate,
+        huntingRifleCriticalShotChance: huntingRifleCriticalShotChance,
+        huntingRifleCriticalDamageMultiplier: huntingRifleCriticalDamageMultiplier,
+        huntingRifleFirerateUpgradeCost: huntingRifleFirerateUpgradeCost,
+        huntingRiflePotencyUpgradeCost: huntingRiflePotencyUpgradeCost,
+        huntingRifleCriticalShotUpgradeCost: huntingRifleCriticalShotUpgradeCost,
+        huntingRifleCriticalDamageUpgradeCost: huntingRifleCriticalDamageUpgradeCost,
+        huntingRifleFirerateLevel: huntingRifleFirerateLevel,
+        huntingRiflePotencyLevel: huntingRiflePotencyLevel,
+        huntingRifleCriticalShotLevel: huntingRifleCriticalShotLevel,
+        huntingRifleCriticalDamageLevel: huntingRifleCriticalDamageLevel,
+
         purchasedBigUpgrades: getPurchasedBigUpgrades()
     };
 
@@ -582,6 +604,28 @@ function loadGameState() {
         doubleBarrelPotencyLevel = gameState.doubleBarrelPotencyLevel;
         doubleBarrelMultiFireLevel = gameState.doubleBarrelMultiFireLevel;
 
+        uziPurchased = gameState.uziPurchased;
+        uziPointsPerShot = gameState.uziPointsPerShot;
+        uziFireRate = gameState.uziFireRate;
+        uziFirerateUpgradeCost = gameState.uziFirerateUpgradeCost;
+        uziPotencyUpgradeCost = gameState.uziPotencyUpgradeCost;
+        uziFirerateLevel = Math.min(gameState.uziFirerateLevel, 10);
+        uziPotencyLevel = gameState.uziPotencyLevel;
+
+        huntingRiflePurchased = gameState.huntingRiflePurchased;
+        huntingRiflePointsPerShot = gameState.huntingRiflePointsPerShot;
+        huntingRifleFireRate = gameState.huntingRifleFireRate;
+        huntingRifleCriticalShotChance = gameState.huntingRifleCriticalShotChance;
+        huntingRifleCriticalDamageMultiplier = gameState.huntingRifleCriticalDamageMultiplier;
+        huntingRifleFirerateUpgradeCost = gameState.huntingRifleFirerateUpgradeCost;
+        huntingRiflePotencyUpgradeCost = gameState.huntingRiflePotencyUpgradeCost;
+        huntingRifleCriticalShotUpgradeCost = gameState.huntingRifleCriticalShotUpgradeCost;
+        huntingRifleCriticalDamageUpgradeCost = gameState.huntingRifleCriticalDamageUpgradeCost;
+        huntingRifleFirerateLevel = Math.min(gameState.huntingRifleFirerateLevel, 15);
+        huntingRiflePotencyLevel = gameState.huntingRiflePotencyLevel;
+        huntingRifleCriticalShotLevel = gameState.huntingRifleCriticalShotLevel;
+        huntingRifleCriticalDamageLevel = gameState.huntingRifleCriticalDamageLevel;
+
         // Load the purchased big upgrades interface
         loadPurchasedBigUpgrades(gameState.purchasedBigUpgrades);
 
@@ -695,6 +739,14 @@ function loadGameState() {
         document.getElementById('doubleBarrelPotency-value').textContent = formatNumber(doubleBarrelPointsPerShot);
         document.getElementById('doubleBarrelMultiFire-value').textContent = doubleBarrelBulletsPerShot;
 
+        document.getElementById('uzi-cost').textContent = formatNumber(uziCost);
+        document.getElementById('uziFirerate-cost').textContent = formatNumber(uziFirerateUpgradeCost);
+        document.getElementById('uziPotency-cost').textContent = formatNumber(uziPotencyUpgradeCost);
+        document.getElementById('uziFirerate-level').textContent = uziFirerateLevel;
+        document.getElementById('uziPotency-level').textContent = uziPotencyLevel;
+        document.getElementById('uziFirerate-value').textContent = uziFireRate + 'ms';
+        document.getElementById('uziPotency-value').textContent = formatNumber(uziPointsPerShot);
+
         // Check if pistol fire rate level is at maximum
         if (pistolFirerateLevel === 20) {
             const pistolFirerateLevelDisplay = document.getElementById('pistolFirerate-level');
@@ -786,6 +838,16 @@ function loadGameState() {
                 doubleBarrelFirerateCostDisplay.textContent = "MAX";
             }
         }
+        if (uziFirerateLevel === 10) {
+            const uziFirerateLevelDisplay = document.getElementById('uziFirerate-level');
+            if (uziFirerateLevelDisplay) {
+                uziFirerateLevelDisplay.textContent = "Max";
+            }
+            const uziFirerateCostDisplay = document.getElementById('uziFirerate-cost');
+            if (uziFirerateCostDisplay) {
+                uziFirerateCostDisplay.textContent = "MAX";
+            }
+        }
         if (upgrades.touchGun.awakenUpgrade.bought) {
             document.getElementById('touchGunAwaken-purchase').style.display = 'block';
             document.getElementById('touchGunAwaken-display').style.display = 'block';
@@ -819,6 +881,9 @@ function loadGameState() {
         }
         if (doubleBarrelPurchased) {
             document.getElementById('doubleBarrel-purchase').style.display = 'none';
+        }
+        if (uziPurchased) {
+            document.getElementById('uzi-purchase').style.display = 'none';
         }
     }
 }
@@ -1075,6 +1140,28 @@ function resetProgress() {
         doubleBarrelPotencyLevel = 0;
         doubleBarrelMultiFireLevel = 0;
 
+        uziCost = 175000000;
+        uziPointsPerShot = 3000;
+        uziFireRate = 75;
+        uziFirerateUpgradeCost = 2500000000;
+        uziPotencyUpgradeCost = 2000000000;
+        uziFirerateLevel = 0;
+        uziPotencyLevel = 0;
+
+        huntingRifleCost = 1250000000000;
+        huntingRiflePointsPerShot = 90000;
+        huntingRifleFireRate = 3000;
+        huntingRifleFirerateUpgradeCost = 15000000000;
+        huntingRiflePotencyUpgradeCost = 10000000000;
+        huntingRifleCriticalShotUpgradeCost = 20000000000;
+        huntingRifleCriticalDamageUpgradeCost = 30000000000;
+        huntingRifleCriticalShotChance = 40;
+        huntingRifleCriticalDamageMultiplier = 1.5;
+        huntingRifleFirerateLevel = 0;
+        huntingRiflePotencyLevel = 0;
+        huntingRifleCriticalShotLevel = 0;
+        huntingRifleCriticalDamageLevel = 0;
+
         clearInterval(pistolFireRate);
         clearInterval(smgFireRate);
         clearInterval(shotgunFireRate);
@@ -1083,7 +1170,8 @@ function resetProgress() {
         clearInterval(rocketLauncherFireRate);
         clearInterval(tommyGunFireRate);
         clearInterval(doubleBarrelFireRate);
-
+        clearInterval(uziFireRate);
+        
         // Enable purchase buttons for reset weapons
         if (pistolPurchased === false) {
             document.getElementById('pistol-purchase').style.display = 'block';
@@ -1108,6 +1196,9 @@ function resetProgress() {
         }
         if (doubleBarrelPurchased === false) {
             document.getElementById('doubleBarrel-purchase').style.display = 'block';
+        }
+        if (uziPurchased === false) {
+            document.getElementById('uzi-purchase').style.display = 'block';
         }
         if (upgrades.touchGun.awakenUpgrade.bought === false) {
             document.getElementById('touchGunAwaken-purchase').style.display = 'none';

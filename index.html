@@ -37,29 +37,41 @@
             <h2>Points: <span id="score-value-main">0</span></h2>
         </div>
         <!-- Button for earning points manually -->
-        <button id="earn-points-button" onclick="earnPoints()">Earn Points</button>
+        <button id="earn-points-button" onclick="earnPoints()">Fire Touch Gun!</button>
         <!-- Buttons for purchasing weapons and upgrades -->
         <div id="weapon-upgrades">
-            <!-- Touch Gun -->
-            <pre id="touchGun-target">
-               ___
-             //   \\
-            //     \\
-           //       \\
-           \\       //
-            \\_____//
-             \\___//
-               ‾‾‾
-            </pre>
-            <button id="touchGun-purchase" onclick="purchase('touchGun')">Purchase Touch Gun (Cost: <span id="touchGun-cost">100</span>)</button><button id="touchGunAwaken-purchase" onclick="purchase('touchGunAwaken')">Purchase Awoken Touch Gun (Cost: <span id="touchGunAwaken-cost">500000</span>)</button><button id="touchGunSuperAwaken-purchase" onclick="purchase('touchGunSuperAwaken')">Purchase Super Awoken Touch Gun (Cost: <span id="touchGunSuperAwaken-cost">500000000000</span>)</button>
-            <p>Touch Gun Level: <span id="touchGun-level">0</span></p><p id="touchGunAwaken-display">Awoken Touch Gun Level: <span id="touchGunAwaken-level">0</span></p><p id="touchGunSuperAwaken-display">Super Awoken Touch Gun Level: <span id="touchGunSuperAwaken-level">0</span></p>
-            <p>Points Per Click: <span id="touchGun-points-per-click">1</span></p>
             <!-- Container for weapon zones -->
             <div id="weapon-zones">
+                <!-- Touch Gun Weapon Zone -->
+                <div class="weapon-zone" id="touch-gun-zone">
+                    <!-- Touch Gun ASCII representation -->
+                    <pre id="touch-gun">
+                      ___________
+                     |           |
+                     |    __|__  |
+                     |   |_____| |
+                     |___________|
+                    </pre>
+                    <!-- Target for Touch Gun -->
+                    <pre class="target" id="touchGun-target">
+                       ___
+                     //   \\
+                    //     \\
+                   //       \\
+                   \\       //
+                    \\_____//
+                     \\___//
+                       ‾‾‾
+                    </pre>
+                    <!-- Purchase buttons and level displays for Touch Gun -->
+                    <button id="touchGun-purchase" onclick="purchase('touchGun')">Purchase Touch Gun (Cost: <span id="touchGun-cost">100</span>)</button><button id="touchGunAwaken-purchase" onclick="purchase('touchGunAwaken')">Purchase Awoken Touch Gun (Cost: <span id="touchGunAwaken-cost">500000</span>)</button><button id="touchGunSuperAwaken-purchase" onclick="purchase('touchGunSuperAwaken')">Purchase Super Awoken Touch Gun (Cost: <span id="touchGunSuperAwaken-cost">500000000000</span>)</button>
+                    <p>Touch Gun Level: <span id="touchGun-level">0</span></p><p id="touchGunAwaken-display">Awoken Touch Gun Level: <span id="touchGunAwaken-level">0</span></p><p id="touchGunSuperAwaken-display">Super Awoken Touch Gun Level: <span id="touchGunSuperAwaken-level">0</span></p>
+                    <p>Points Per Click: <span id="touchGun-points-per-click">1</span></p>
+                </div>
                 <!-- Pistol Weapon Zone -->
                 <div class="weapon-zone" id="pistol-zone">
                     <!-- Pistol ASCII representation -->
-                    <pre class="weapon">
+                    <pre id="pistol">
                          ___________
                         |            |
                         |   __|__    |

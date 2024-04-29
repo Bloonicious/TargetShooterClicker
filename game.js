@@ -220,7 +220,7 @@ const upgrades = {
         millionFingers: {
             cost: 200000000,
             effect: function() {
-                touchGunPointsPerClick += 5 * getTotalPotencyUpgrades(); // Increases touch gun value based on the current potency levels of those weapons
+                touchGunPointsPerClick += 5 * getTotalPotencyUpgrades();
             }
         },
         stingingTaps: {
@@ -244,12 +244,30 @@ const upgrades = {
         billionFingers: {
             cost: 300000000000,
             effect: function() {
-                touchGunPointsPerClick += 50 * getTotalPotencyUpgrades(); // Increases touch gun value based on the current potency levels of those weapons
+                touchGunPointsPerClick += 50 * getTotalPotencyUpgrades();
+            }
+        },
+        needMore: {
+            cost: 1000000000000,
+            effect: function() {
+                touchGunPointsPerClick *= 5;
+            }
+        },
+        fingerPistols: {
+            cost: 1000000000000,
+            effect: function() {
+                pistolPointsPerShot *= 1.1 * getTotalTouchGunUpgrades(); // Increases pistol points per shot by 10% for each touch gun upgrade level purchased on any type
             }
         },
         superAwakenUpgrade: {
             cost: 100000000000000,
             effect: function() {}
+        },
+        trillionFingers: {
+            cost: 400000000000000,
+            effect: function() {
+                touchGunPointsPerClick += 500 * getTotalPotencyUpgrades();
+            }
         },
         // Add more upgrades for touchGun here
     },
@@ -1236,6 +1254,12 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.touchGun.billionFingers.bought) {
                     valueIncrement += 50 * getTotalPotencyUpgrades();
                 }
+                if (upgrades.touchGun.needMore.bought) {
+                    valueIncrement *= 5;
+                }
+                if (upgrades.touchGun.trillionFingers.bought) {
+                    valueIncrement += 500 * getTotalPotencyUpgrades();
+                }
                 touchGunPointsPerClick += valueIncrement;
                 break;
             case 'touchGunAwaken':
@@ -1271,6 +1295,12 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.touchGun.billionFingers.bought) {
                     valueIncrement += 5000 * getTotalPotencyUpgrades();
                 }
+                if (upgrades.touchGun.needMore.bought) {
+                    valueIncrement *= 5;
+                }
+                if (upgrades.touchGun.trillionFingers.bought) {
+                    valueIncrement += 50000 * getTotalPotencyUpgrades();
+                }
                 touchGunPointsPerClick += valueIncrement;
                 break;
             case 'touchGunSuperAwaken':
@@ -1305,6 +1335,12 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 }
                 if (upgrades.touchGun.billionFingers.bought) {
                     valueIncrement += 500000 * getTotalPotencyUpgrades();
+                }
+                if (upgrades.touchGun.needMore.bought) {
+                    valueIncrement *= 5;
+                }
+                if (upgrades.touchGun.trillionFingers.bought) {
+                    valueIncrement += 5000000 * getTotalPotencyUpgrades();
                 }
                 touchGunPointsPerClick += valueIncrement;
                 break;
@@ -1344,6 +1380,9 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 }
                 if (upgrades.pistol.oneHitBullets.bought) {
                     valueIncrement *= 6; // Multiplies valueIncrement by 6 if the oneHitBullets upgrade is purchased
+                }
+                if (upgrades.touchGun.fingerPistols.bought) {
+                    valueIncrement *= 1.1 * getTotalTouchGunUpgrades();
                 }
                 pistolPointsPerShot += valueIncrement;
                 break;
@@ -2265,6 +2304,11 @@ function getTotalSplashRadiusUpgrades() {
 
 function getTotalSplashDamageUpgrades() {
     return rocketLauncherSplashDamageLevel;
+}
+
+// Function to get total touch gun upgrades
+function getTotalTouchGunUpgrades() {
+    return touchGunLevel + awokenTouchGunLevel + superAwokenTouchGunLevel;
 }
 
 

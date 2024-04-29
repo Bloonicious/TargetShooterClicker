@@ -264,5 +264,5 @@ body {
 .weapon-zone button,
 .upgrade-option button {
     width: 200px; /* Adjust width as needed */
-    height: 40px; /* Adjust height as needed */
+    height: 50px; /* Adjust height as needed */
 }

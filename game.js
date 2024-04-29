@@ -943,6 +943,26 @@ function automaticPointsGeneration() {
             }
         }, 100); // Check every 100 milliseconds for points generation
     }
+    if (huntingRiflePurchased) {
+        setInterval(function() {
+            const currentTime = Date.now();
+            if (currentTime - lastHuntingRiflePointsTime >= huntingRifleFireRate) {
+                // Calculate points per shot
+                let pointsPerShot = huntingRiflePointsPerShot;
+                let critical = false;
+
+                // For sniper rifle, check for critical hit
+                const criticalChance = Math.min(100, 40 + huntingRifleCriticalShotLevel * 2);
+                if (criticalChance >= Math.random() * 100) {
+                    // Critical shot
+                    pointsPerShot *= huntingRifleCriticalDamageMultiplier;
+                    critical = true;
+                }
+                shoot('huntingRifle', pointsPerShot, critical, false);
+                lastHuntingRiflePointsTime = currentTime;
+            }
+        }, 100); // Check every 100 milliseconds for points generation
+    }
 }
 
 // Function to handle purchasing weapons and upgrades

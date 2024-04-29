@@ -94,6 +94,7 @@
                     <!-- Level displays for Pistol Firerate and Potency -->
                     <p id="pistol-firerate-display">Pistol Firerate Level: <span id="pistolFirerate-level">0</span> (<span id="pistolFirerate-value">1,000</span>)</p>
                     <p id="pistol-potency-display">Pistol Potency Level: <span id="pistolPotency-level">0</span> (<span id="pistolPotency-value">1</span> points)</p>
+                    <p id="pistol-pps-display">Pistol Points Per Second: <span id="pistolPPS-value">1</span></p>
                 </div>
                 <div class="weapon-zone" id="smg-zone">
                     <!-- SMG ASCII representation -->
@@ -122,6 +123,7 @@
                     <!-- Level displays for SMG Firerate and Potency -->
                     <p id="smg-firerate-display">SMG Firerate Level: <span id="smgFirerate-level">0</span> (<span id="smgFirerate-value">200</span>)</p>
                     <p id="smg-potency-display">SMG Potency Level: <span id="smgPotency-level">0</span> (<span id="smgPotency-value">1</span> points)</p>
+                    <p id="smg-pps-display">SMG Points Per Second: <span id="smgPPS-value">5</span></p>
                 </div>
                 <div class="weapon-zone" id="shotgun-zone">
                     <!-- Shotgun ASCII representation -->
@@ -149,6 +151,7 @@
                     <p id="shotgun-firerate-display">Shotgun Firerate Level: <span id="shotgunFirerate-level">0</span> (<span id="shotgunFirerate-value">1,500</span>)</p>
                     <p id="shotgun-potency-display">Shotgun Potency Level: <span id="shotgunPotency-level">0</span> (<span id="shotgunPotency-value">4</span> points)</p>
                     <p id="shotgun-multifire-display">Shotgun Multi-Fire Level: <span id="shotgunMultiFire-level">0</span> (<span id="shotgunMultiFire-value">3</span> shots)</p>
+                    <p id="shotgun-pps-display">Shotgun Points Per Second: <span id="shotgunPPS-value">8</span></p>
                 </div>
                 <div class="weapon-zone" id="sniper-rifle-zone">
                     <!-- Sniper Rifle ASCII representation -->
@@ -178,6 +181,7 @@
                     <p id="sniper-rifle-potency-display">Sniper Rifle Potency Level: <span id="sniperRiflePotency-level">0</span> (<span id="sniperRiflePotency-value">80</span> points)</p>
                     <p id="sniper-rifle-criticalshot-display">Sniper Rifle Critical Shot Level: <span id="sniperRifleCriticalShot-level">0</span> (<span id="sniperRifleCriticalChance-value">25</span>%)</p>
                     <p id="sniper-rifle-criticaldamage-display">Sniper Rifle Critical Damage Level: <span id="sniperRifleCriticalDamage-level">0</span> (<span id="sniperRifleCriticalDamage-value">2</span>x)</p>
+                    <p id="sniper-rifle-pps-display">Sniper Rifle Points Per Second: <span id="sniperRiflePPS-value">20</span></p>
                 </div>
                 <div class="weapon-zone" id="ak47-zone">
                     <!-- AK-47 ASCII representation -->
@@ -206,6 +210,7 @@
                     <!-- Level displays for AK-47 Firerate and Potency -->
                     <p id="ak47-firerate-display">AK-47 Firerate Level: <span id="ak47Firerate-level">0</span> (<span id="ak47Firerate-value">500</span>)</p>
                     <p id="ak47-potency-display">AK-47 Potency Level: <span id="ak47Potency-level">0</span> (<span id="ak47Potency-value">150</span> points)</p>
+                    <p id="ak47-pps-display">AK-47 Points Per Second: <span id="ak47PPS-value">300</span></p>
                 </div>
                 <div class="weapon-zone" id="rocketLauncher-zone">
                     <!-- Rocket Launcher ASCII representation -->
@@ -241,6 +246,7 @@
                     <p id="rocketLauncher-potency-display">Rocket Launcher Potency Level: <span id="rocketLauncherPotency-level">0</span> (<span id="rocketLauncherPotency-value">1500</span> points per shot)</p>
                     <p id="rocketLauncher-splash-radius-display">Rocket Launcher Splash Radius Level: <span id="rocketLauncherSplashRadius-level">0</span> (<span id="rocketLauncherSplashRadius-value">30</span>)</p>
                     <p id="rocketLauncher-splash-damage-display">Rocket Launcher Splash Damage Level: <span id="rocketLauncherSplashDamage-level">0</span> (<span id="rocketLauncherSplashDamage-value">0.4</span>x)</p>
+                    <p id="rocketLauncher-pps-display">Rocket Launcher Points Per Second: <span id="rocketLauncherPPS-value">300</span></p>
                 </div>
                 <div class="weapon-zone" id="tommyGun-zone">
                     <!-- Tommy Gun ASCII representation -->
@@ -275,6 +281,7 @@
                     <p id="tommyGun-firerate-display">Tommy Gun Firerate Level: <span id="tommyGunFirerate-level">0</span> (<span id="tommyGunFirerate-value">150</span>)</p>
                     <p id="tommyGun-potency-display">Tommy Gun Potency Level: <span id="tommyGunPotency-level">0</span> (<span id="tommyGunPotency-value">600</span> points per shot)</p>
                     <p id="tommyGun-accuracy-display">Tommy Gun Accuracy Level: <span id="tommyGunAccuracy-level">0</span> (<span id="tommyGunAccuracy-value">50</span>%)</p>
+                    <p id="tommyGun-pps-display">Tommy Gun Points Per Second: <span id="tommyGunPPS-value">3000</span></p>
                 </div>
                 <div class="weapon-zone" id="doubleBarrel-zone">
                     <!-- Double-Barrel ASCII representation -->
@@ -302,6 +309,7 @@
                     <p id="doubleBarrel-firerate-display">Double-Barrel Firerate Level: <span id="doubleBarrelFirerate-level">0</span> (<span id="doubleBarrelFirerate-value">2000</span>)</p>
                     <p id="doubleBarrel-potency-display">Double-Barrel Potency Level: <span id="doubleBarrelPotency-level">0</span> (<span id="doubleBarrelPotency-value">4000</span> points)</p>
                     <p id="doubleBarrel-multifire-display">Double-Barrel Multi-Fire Level: <span id="doubleBarrelMultiFire-level">0</span> (<span id="doubleBarrelMultiFire-value">2</span> shots)</p>
+                    <p id="doubleBarrel-pps-display">Double-Barrel Points Per Second: <span id="doubleBarrelPPS-value">4000</span></p>
                 </div>
                 <div class="weapon-zone" id="uzi-zone">
                     <!-- Uzi ASCII representation -->
@@ -327,6 +335,7 @@
                     <!-- Level displays for Uzi Firerate and Potency -->
                     <p id="uzi-firerate-display">Uzi Firerate Level: <span id="uziFirerate-level">0</span> (<span id="uziFirerate-value">75</span>)</p>
                     <p id="uzi-potency-display">Uzi Potency Level: <span id="uziPotency-level">0</span> (<span id="uziPotency-value">3000</span> points)</p>
+                    <p id="uzi-pps-display">Uzi Points Per Second: <span id="uziPPS-value">39900</span></p>
                 </div>
                 <div class="weapon-zone" id="hunting-rifle-zone">
                     <!-- Hunting Rifle ASCII representation -->
@@ -357,6 +366,7 @@
                     <p id="hunting-rifle-potency-display">Hunting Rifle Potency Level: <span id="huntingRiflePotency-level">0</span> (<span id="huntingRiflePotency-value">90000</span> points)</p>
                     <p id="hunting-rifle-criticalshot-display">Hunting Rifle Critical Shot Level: <span id="huntingRifleCriticalShot-level">0</span> (<span id="huntingRifleCriticalChance-value">40</span>%)</p>
                     <p id="hunting-rifle-criticaldamage-display">Hunting Rifle Critical Damage Level: <span id="huntingRifleCriticalDamage-level">0</span> (<span id="huntingRifleCriticalDamage-value">1.5</span>x)</p>
+                    <p id="hunting-rifle-pps-display">Hunting Rifle Points Per Second: <span id="huntingRiflePPS-value">30000</span></p>
                 </div>
             </div>
         </div>

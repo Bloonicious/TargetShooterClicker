@@ -254,7 +254,7 @@ const upgrades = {
             }
         },
         fingerPistols: {
-            cost: 1000000000000,
+            cost: 10000000000000,
             effect: function() {
                 pistolPointsPerShot *= 1.1 * getTotalTouchGunUpgrades(); // Increases pistol points per shot by 10% for each touch gun upgrade level purchased on any type
             }

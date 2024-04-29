@@ -1215,6 +1215,7 @@ function resetProgress() {
         doubleBarrelPotencyLevel = 0;
         doubleBarrelMultiFireLevel = 0;
 
+        uziPurchased = false;
         uziCost = 175000000;
         uziPointsPerShot = 3000;
         uziFireRate = 75;
@@ -1223,6 +1224,7 @@ function resetProgress() {
         uziFirerateLevel = 0;
         uziPotencyLevel = 0;
 
+        huntingRiflePurchased = false;
         huntingRifleCost = 1250000000;
         huntingRiflePointsPerShot = 90000;
         huntingRifleFireRate = 3000;

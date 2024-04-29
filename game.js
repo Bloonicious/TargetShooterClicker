@@ -819,9 +819,8 @@ function updatePointsDisplay() {
 
 // Function to handle clicking the earn points button
 function earnPoints() {
-    let pointsPerShot = touchGunPointsPerClick;
     points += touchGunPointsPerClick; // Increment points based on Touch Gun
-    shoot('touchGun', pointsPerShot, false, false);
+    shoot('touchGun', touchGunPointsPerClick, false, false);
     updatePointsDisplay();
 }
 

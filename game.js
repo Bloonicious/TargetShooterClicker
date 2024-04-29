@@ -174,7 +174,7 @@ const upgrades = {
         thousandFingers: {
             cost: 100000,
             effect: function() {
-                touchGunPointsPerClick += 0.5 * totalPotencyLevel; // Increases touch gun value based on the current potency levels of those weapons
+                touchGunPointsPerClick += 0.5 * pistolPotencyLevel; // Increases touch gun value based on the current potency levels of those weapons
             }
         },
         antirestingCream: {
@@ -196,7 +196,7 @@ const upgrades = {
         millionFingers: {
             cost: 200000000,
             effect: function() {
-                touchGunPointsPerClick += 5 * totalPotencyLevel; // Increases touch gun value based on the current potency levels of those weapons
+                touchGunPointsPerClick += 5 * pistolPotencyLevel; // Increases touch gun value based on the current potency levels of those weapons
             }
         },
         stingingTaps: {
@@ -220,7 +220,7 @@ const upgrades = {
         billionFingers: {
             cost: 300000000000,
             effect: function() {
-                touchGunPointsPerClick += 50 * totalPotencyLevel; // Increases touch gun value based on the current potency levels of those weapons
+                touchGunPointsPerClick += 50 * pistolPotencyLevel; // Increases touch gun value based on the current potency levels of those weapons
             }
         },
         superAwakenUpgrade: {
@@ -1084,7 +1084,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 2;
                 }
                 if (upgrades.touchGun.thousandFingers.bought) {
-                    valueIncrement += 0.5 * totalPotencyLevel;
+                    valueIncrement += 0.5 * pistolPotencyLevel;
                 }
                 if (upgrades.touchGun.antirestingCream.bought) {
                     valueIncrement *= 3;
@@ -1093,7 +1093,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 5;
                 }
                 if (upgrades.touchGun.millionFingers.bought) {
-                    valueIncrement += 5 * totalPotencyLevel;
+                    valueIncrement += 5 * pistolPotencyLevel;
                 }
                 if (upgrades.touchGun.stingingTaps.bought) {
                     valueIncrement *= 4;
@@ -1105,7 +1105,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 4;
                 }
                 if (upgrades.touchGun.billionFingers.bought) {
-                    valueIncrement += 50 * totalPotencyLevel;
+                    valueIncrement += 50 * pistolPotencyLevel;
                 }
                 touchGunPointsPerClick += valueIncrement;
                 break;
@@ -1119,7 +1119,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 2;
                 }
                 if (upgrades.touchGun.thousandFingers.bought) {
-                    valueIncrement += 50 * totalPotencyLevel;
+                    valueIncrement += 50 * pistolPotencyLevel;
                 }
                 if (upgrades.touchGun.antirestingCream.bought) {
                     valueIncrement *= 3;
@@ -1128,7 +1128,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 5;
                 }
                 if (upgrades.touchGun.millionFingers.bought) {
-                    valueIncrement += 500 * totalPotencyLevel;
+                    valueIncrement += 500 * pistolPotencyLevel;
                 }
                 if (upgrades.touchGun.stingingTaps.bought) {
                     valueIncrement *= 4;
@@ -1140,7 +1140,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 4;
                 }
                 if (upgrades.touchGun.billionFingers.bought) {
-                    valueIncrement += 5000 * totalPotencyLevel;
+                    valueIncrement += 5000 * pistolPotencyLevel;
                 }
                 touchGunPointsPerClick += valueIncrement;
                 break;
@@ -1154,7 +1154,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 2;
                 }
                 if (upgrades.touchGun.thousandFingers.bought) {
-                    valueIncrement += 5000 * totalPotencyLevel;
+                    valueIncrement += 5000 * pistolPotencyLevel;
                 }
                 if (upgrades.touchGun.antirestingCream.bought) {
                     valueIncrement *= 3;
@@ -1163,7 +1163,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 5;
                 }
                 if (upgrades.touchGun.millionFingers.bought) {
-                    valueIncrement += 50000 * totalPotencyLevel;
+                    valueIncrement += 50000 * pistolPotencyLevel;
                 }
                 if (upgrades.touchGun.stingingTaps.bought) {
                     valueIncrement *= 4;
@@ -1175,7 +1175,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 4;
                 }
                 if (upgrades.touchGun.billionFingers.bought) {
-                    valueIncrement += 500000 * totalPotencyLevel;
+                    valueIncrement += 500000 * pistolPotencyLevel;
                 }
                 touchGunPointsPerClick += valueIncrement;
                 break;

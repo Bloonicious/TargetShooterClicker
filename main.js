@@ -540,7 +540,6 @@ function loadGameState() {
         pistolPotencyUpgradeCost = gameState.pistolPotencyUpgradeCost;
         pistolFirerateLevel = Math.min(gameState.pistolFirerateLevel, 20);
         pistolPotencyLevel = gameState.pistolPotencyLevel;
-        pistolPointsPerSecond = gameState.pistolPointsPerSecond;
         
         smgPurchased = gameState.smgPurchased;
         smgPointsPerShot = gameState.smgPointsPerShot;
@@ -549,7 +548,6 @@ function loadGameState() {
         smgPotencyUpgradeCost = gameState.smgPotencyUpgradeCost;
         smgFirerateLevel = Math.min(gameState.smgFirerateLevel, 10);
         smgPotencyLevel = gameState.smgPotencyLevel;
-        smgPointsPerSecond = gameState.smgPointsPerSecond;
         
         shotgunPurchased = gameState.shotgunPurchased;
         shotgunPointsPerShot = gameState.shotgunPointsPerShot;
@@ -561,7 +559,6 @@ function loadGameState() {
         shotgunFirerateLevel = Math.min(gameState.shotgunFirerateLevel, 15);
         shotgunPotencyLevel = gameState.shotgunPotencyLevel;
         shotgunMultiFireLevel = gameState.shotgunMultiFireLevel;
-        shotgunPointsPerSecond = gameState.shotgunPointsPerSecond;
         
         sniperRiflePurchased = gameState.sniperRiflePurchased;
         sniperRiflePointsPerShot = gameState.sniperRiflePointsPerShot;

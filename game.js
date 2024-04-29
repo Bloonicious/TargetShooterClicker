@@ -103,7 +103,7 @@ let uziPotencyUpgradeCost = 2000000000;
 let uziFirerateLevel = 0;
 let uziPotencyLevel = 0;
 
-let huntingRifleCost = 1250000000000;
+let huntingRifleCost = 1250000000;
 let huntingRiflePointsPerShot = 90000;
 let huntingRifleFireRate = 3000; // in milliseconds
 let huntingRifleFirerateUpgradeCost = 15000000000;

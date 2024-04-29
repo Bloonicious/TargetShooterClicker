@@ -2280,7 +2280,7 @@ function setStatistics() {
     // Calculate the total lifetime points
     let totalLifetimePoints = 0;
     
-    totalLifetimePoints += gameData.points || 0;
+    totalLifetimePoints += points;
     statistics.totalLifetimePoints = totalLifetimePoints;
 
     // Calculate and assign the total big upgrades purchased

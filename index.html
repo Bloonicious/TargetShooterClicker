@@ -30,18 +30,6 @@
         <!-- Main game interface content here -->
         <h1>Target Shooter Clicker</h1>
         <div id="game-screen">
-            <!-- ASCII representation of the target -->
-            <pre id="target">
-               ___
-             //   \\
-            //     \\
-           //       \\
-           \\       //
-            \\_____//
-             \\___//
-               ‾‾‾
-            </pre>
-
             <!-- Container for floating point text -->
             <div id="floating-text-container"></div>
         </div>
@@ -53,10 +41,18 @@
         <!-- Buttons for purchasing weapons and upgrades -->
         <div id="weapon-upgrades">
             <!-- Touch Gun -->
+            <pre id="touchGun-target">
+               ___
+             //   \\
+            //     \\
+           //       \\
+           \\       //
+            \\_____//
+             \\___//
+               ‾‾‾
+            </pre>
             <button id="touchGun-purchase" onclick="purchase('touchGun')">Purchase Touch Gun (Cost: <span id="touchGun-cost">100</span>)</button><button id="touchGunAwaken-purchase" onclick="purchase('touchGunAwaken')">Purchase Awoken Touch Gun (Cost: <span id="touchGunAwaken-cost">500000</span>)</button><button id="touchGunSuperAwaken-purchase" onclick="purchase('touchGunSuperAwaken')">Purchase Super Awoken Touch Gun (Cost: <span id="touchGunSuperAwaken-cost">500000000000</span>)</button>
-            <p>Touch Gun Level: <span id="touchGun-level">0</span></p>
-            <p id="touchGunAwaken-display">Awoken Touch Gun Level: <span id="touchGunAwaken-level">0</span></p>
-            <p id="touchGunSuperAwaken-display">Super Awoken Touch Gun Level: <span id="touchGunSuperAwaken-level">0</span></p>
+            <p>Touch Gun Level: <span id="touchGun-level">0</span></p><p id="touchGunAwaken-display">Awoken Touch Gun Level: <span id="touchGunAwaken-level">0</span></p><p id="touchGunSuperAwaken-display">Super Awoken Touch Gun Level: <span id="touchGunSuperAwaken-level">0</span></p>
             <p>Points Per Click: <span id="touchGun-points-per-click">1</span></p>
             <!-- Container for weapon zones -->
             <div id="weapon-zones">
@@ -295,6 +291,61 @@
                     <p id="doubleBarrel-potency-display">Double-Barrel Potency Level: <span id="doubleBarrelPotency-level">0</span> (<span id="doubleBarrelPotency-value">4000</span> points)</p>
                     <p id="doubleBarrel-multifire-display">Double-Barrel Multi-Fire Level: <span id="doubleBarrelMultiFire-level">0</span> (<span id="doubleBarrelMultiFire-value">2</span> shots)</p>
                 </div>
+                <div class="weapon-zone" id="uzi-zone">
+                    <!-- Uzi ASCII representation -->
+                    <pre id="uzi">
+                        <!-- ASCII representation of the Uzi -->
+                           _________
+                          |         |
+                          |_________|
+                    </pre>
+                  <!-- Target for Uzi -->
+                  <pre class="target" id="uzi-target">
+                       ___
+                     //   \\
+                    //     \\
+                   //       \\
+                   \\       //
+                    \\_____//
+                     \\___//
+                       ‾‾‾
+                    </pre>
+                    <!-- Purchase button and upgrades for Uzi -->
+                    <button id="uzi-purchase" onclick="purchase('uzi')">Purchase Uzi (Cost: <span id="uzi-cost">175000000</span>)</button><button onclick="purchase('uziFirerate')">Improve Uzi's Firerate (Cost: <span id="uziFirerate-cost">2500000000</span>)</button><button onclick="purchase('uziPotency')">Improve Uzi's Potency (Cost: <span id="uziPotency-cost">2000000000</span>)</button>
+                    <!-- Level displays for Uzi Firerate and Potency -->
+                    <p id="uzi-firerate-display">Uzi Firerate Level: <span id="uziFirerate-level">0</span> (<span id="uziFirerate-value">75</span>)</p>
+                    <p id="uzi-potency-display">Uzi Potency Level: <span id="uziPotency-level">0</span> (<span id="uziPotency-value">3000</span> points)</p>
+                </div>
+                <div class="weapon-zone" id="hunting-rifle-zone">
+                    <!-- Hunting Rifle ASCII representation -->
+                    <pre id="hunting-rifle">
+                        <!-- ASCII representation of the hunting rifle -->
+                             ____________
+                            |  __   __   |
+                            | |__| |__|  |
+                           |              |
+                           |              |
+                           |______________|
+                    </pre>
+                    <!-- Target for Hunting Rifle -->
+                    <pre class="target" id="huntingRifle-target">
+                       ___
+                     //   \\
+                    //     \\
+                   //       \\
+                   \\       //
+                    \\_____//
+                     \\___//
+                       ‾‾‾
+                    </pre>
+                    <!-- Purchase button and upgrades for Hunting Rifle -->
+                    <button id="huntingRifle-purchase" onclick="purchase('huntingRifle')">Purchase Hunting Rifle (Cost: <span id="huntingRifle-cost">1250000000000</span>)</button><button id="hunting-rifle-firerate-purchase" onclick="purchase('huntingRifleFirerate')">Improve Hunting Rifle's Firerate (Cost: <span id="huntingRifleFirerate-cost">15000000000</span>)</button><button id="hunting-rifle-potency-purchase" onclick="purchase('huntingRiflePotency')">Improve Hunting Rifle's Potency (Cost: <span id="huntingRiflePotency-cost">10000000000</span>)</button><button id="hunting-rifle-critical-shot-purchase" onclick="purchase('huntingRifleCriticalShot')">Upgrade Critical Shot Chance (Cost: <span id="huntingRifleCriticalShot-cost">20000000000</span>)</button><button id="hunting-rifle-critical-damage-purchase" onclick="purchase('huntingRifleCriticalDamage')">Upgrade Critical Damage (Cost: <span id="huntingRifleCriticalDamage-cost">30000000000</span>)</button>
+                    <!-- Level displays for Hunting Rifle Firerate, Potency, Critical Shot Chance, and Critical Damage -->
+                    <p id="hunting-rifle-firerate-display">Hunting Rifle Firerate Level: <span id="huntingRifleFirerate-level">0</span> (<span id="huntingRifleFirerate-value">3000</span>)</p>
+                    <p id="hunting-rifle-potency-display">Hunting Rifle Potency Level: <span id="huntingRiflePotency-level">0</span> (<span id="huntingRiflePotency-value">90000</span> points)</p>
+                    <p id="hunting-rifle-criticalshot-display">Hunting Rifle Critical Shot Level: <span id="huntingRifleCriticalShot-level">0</span> (<span id="huntingRifleCriticalChance-value">40</span>%)</p>
+                    <p id="hunting-rifle-criticaldamage-display">Hunting Rifle Critical Damage Level: <span id="huntingRifleCriticalDamage-level">0</span> (<span id="huntingRifleCriticalDamage-value">1.5</span>x)</p>
+                </div>
             </div>
         </div>
     </div>
@@ -320,6 +371,8 @@
             <button onclick="switchMiniTab('buy', 'rocketLauncher')">Rocket Launcher</button>
             <button onclick="switchMiniTab('buy', 'tommyGun')">Tommy Gun</button>
             <button onclick="switchMiniTab('buy', 'doubleBarrel')">Double-Barrel</button>
+            <button onclick="switchMiniTab('buy', 'uzi')">Uzi</button>
+            <button onclick="switchMiniTab('buy', 'huntingRifle')">Hunting Rifle</button>
         </div>
         <!-- Buy subtab content -->
         <div id="buy-upgrades" class="subtab">
@@ -884,6 +937,37 @@
                     <button onclick="bigUpgrades('doubleBarrel', 'doubleYeah', 875000000000000000)">Double Barrel: Double, yeah!</button>
                     <span class="upgrade-cost">Cost: 875,000,000,000,000,000</span>
                     <p class="upgrade-description">Doubles the amount of projectiles fired each barrel!</p>
+                </div>
+
+                <!-- Uzi Big Upgrades -->
+                <div class="upgrade-option uzi" id="uzi-focussedSpread">
+                    <button onclick="bigUpgrades('uzi', 'focussedSpread', 7500000000)">Uzi: Focussed Spread</button>
+                    <span class="upgrade-cost">Cost: 7,500,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of points yielded from target shots</p>
+                </div>
+
+                <div class="upgrade-option uzi" id="uzi-quickfiringSalvo">
+                    <button onclick="bigUpgrades('uzi', 'quickfiringSalvo', 60000000000)">Uzi: Quick-firing Salvo</button>
+                    <span class="upgrade-cost">Cost: 60,000,000,000</span>
+                    <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
+                </div>
+
+                <div class="upgrade-option uzi" id="uzi-tinyRippers">
+                    <button onclick="bigUpgrades('uzi', 'tinyRippers', 400000000000)">Uzi: Tiny Rippers</button>
+                    <span class="upgrade-cost">Cost: 400,000,000,000</span>
+                    <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
+                </div>
+
+                <div class="upgrade-option uzi" id="uzi-circuitousSpread">
+                    <button onclick="bigUpgrades('uzi', 'circuitousSpread', 4500000000000)">Uzi: Circuitous Spread</button>
+                    <span class="upgrade-cost">Cost: 4,500,000,000,000</span>
+                    <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
+                </div>
+
+                <div class="upgrade-option uzi" id="uzi-bulletOverload">
+                    <button onclick="bigUpgrades('uzi', 'bulletOverload', 50000000000000)">Uzi: Bullet Overload</button>
+                    <span class="upgrade-cost">Cost: 50,000,000,000,000</span>
+                    <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
                 </div>
             </div>
         </div>

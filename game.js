@@ -761,6 +761,39 @@ const upgrades = {
             }
         },
         // Add more upgrades for doubleBarrel here
+    },
+    uzi: {
+        focussedSpread: {
+            cost: 7500000000,
+            effect: function() {
+                uziPointsPerShot *= 2;
+            }
+        },
+        quickfiringSalvo: {
+            cost: 60000000000,
+            effect: function() {
+                uziPointsPerShot *= 3;
+            }
+        },
+        tinyRippers: {
+            cost: 400000000000,
+            effect: function() {
+                uziPointsPerShot *= 3;
+            }
+        },
+        circuitousSpread: {
+            cost: 4500000000000,
+            effect: function() {
+                uziPointsPerShot *= 4;
+            }
+        },
+        bulletOverload: {
+            cost: 50000000000000,
+            effect: function() {
+                uziPointsPerShot *= 4;
+            }
+        },
+        // Add more upgrades for uzi here
     }
     // Add more weapons and upgrades as needed
 };
@@ -1632,6 +1665,21 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'uziPotency':
                 uziPotencyUpgradeCost = cost;
                 uziPotencyLevel = level;
+                if (upgrades.uzi.focussedSpread.bought) {
+                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the focussedSpread upgrade is purchased
+                }
+                if (upgrades.uzi.quickfiringSalvo.bought) {
+                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the quickfiringSalvo upgrade is purchased
+                }
+                if (upgrades.uzi.tinyRippers.bought) {
+                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the tinyRippers upgrade is purchased
+                }
+                if (upgrades.uzi.circuitousSpread.bought) {
+                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the circuitousSpread upgrade is purchased
+                }
+                if (upgrades.uzi.bulletOverload.bought) {
+                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the bulletOverload upgrade is purchased
+                }
                 uziPointsPerShot += valueIncrement;
                 break;
             case 'huntingRifleFirerate':

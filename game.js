@@ -2344,6 +2344,7 @@ setInterval(updateAchievements, 100);
 // Function to update statistics display every second
 function updateStatistics() {
     updateStatisticsDisplay();
+    setStatistics();
     calculateCompletionPercentage(); // Update achievement progress
 }
 setInterval(updateStatistics, 100);

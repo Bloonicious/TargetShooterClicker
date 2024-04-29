@@ -276,7 +276,6 @@ function saveGameState() {
         pistolPotencyUpgradeCost: pistolPotencyUpgradeCost,
         pistolFirerateLevel: pistolFirerateLevel,
         pistolPotencyLevel: pistolPotencyLevel,
-        pistolPointsPerSecond: pistolPointsPerSecond,
         
         smgPurchased: smgPurchased,
         smgPointsPerShot: smgPointsPerShot,
@@ -285,7 +284,6 @@ function saveGameState() {
         smgPotencyUpgradeCost: smgPotencyUpgradeCost,
         smgFirerateLevel: smgFirerateLevel,
         smgPotencyLevel: smgPotencyLevel,
-        smgPointsPerSecond: smgPointsPerSecond,
         
         shotgunPurchased: shotgunPurchased,
         shotgunPointsPerShot: shotgunPointsPerShot,
@@ -297,7 +295,6 @@ function saveGameState() {
         shotgunFirerateLevel: shotgunFirerateLevel,
         shotgunPotencyLevel: shotgunPotencyLevel,
         shotgunMultiFireLevel: shotgunMultiFireLevel,
-        shotgunPointsPerSecond: shotgunPointsPerSecond,
         
         sniperRiflePurchased: sniperRiflePurchased,
         sniperRiflePointsPerShot: sniperRiflePointsPerShot,

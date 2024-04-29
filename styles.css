@@ -266,3 +266,10 @@ body {
     width: 200px; /* Adjust width as needed */
     height: 60px; /* Adjust height as needed */
 }
+
+.upgrade-option {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Five boxes per row */
+    gap: 15px; /* Gap between boxes */
+    list-style: none; /* Remove default list styles */
+}

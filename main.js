@@ -173,7 +173,10 @@ function saveGameState() {
         touchGunGotToTapBought: upgrades.touchGun.gotToTap.bought,
         touchGunFingerSwarmBought: upgrades.touchGun.fingerSwarm.bought,
         touchGunBillionFingersBought: upgrades.touchGun.billionFingers.bought,
+        touchGunNeedMoreBought: upgrades.touchGun.needMore.bought,
+        touchGunFingerPistolsBought: upgrades.touchGun.fingerPistols.bought,
         touchGunSuperAwakenBought: upgrades.touchGun.superAwakenUpgrade.bought,
+        touchGunTrillionFingersBought: upgrades.touchGun.trillionFingers.bought,
         
         pistolBiggerBulletsBought: upgrades.pistol.biggerBullets.bought,
         pistolLargerCalibreBought: upgrades.pistol.largerCalibre.bought,
@@ -434,7 +437,10 @@ function loadGameState() {
         upgrades.touchGun.gotToTap.bought = gameState.touchGunGotToTapBought;
         upgrades.touchGun.fingerSwarm.bought = gameState.touchGunFingerSwarmBought;
         upgrades.touchGun.billionFingers.bought = gameState.touchGunBillionFingersBought;
+        upgrades.touchGun.needMore.bought = gameState.touchGunNeedMoreBought;
+        upgrades.touchGun.fingerPistols.bought = gameState.touchGunFingerPistolsBought;
         upgrades.touchGun.superAwakenUpgrade.bought = gameState.touchGunSuperAwakenBought;
+        upgrades.touchGun.trillionFingers.bought = gameState.touchGunTrillionFingersBought;
         
         upgrades.pistol.biggerBullets.bought = gameState.pistolBiggerBulletsBought;
         upgrades.pistol.largerCalibre.bought = gameState.pistolLargerCalibreBought;
@@ -1016,7 +1022,10 @@ function resetProgress() {
         upgrades.touchGun.gotToTap.bought = false;
         upgrades.touchGun.fingerSwarm.bought = false;
         upgrades.touchGun.billionFingers.bought = false;
+        upgrades.touchGun.needMore.bought = false;
+        upgrades.touchGun.fingerPistols.bought = false;
         upgrades.touchGun.superAwakenUpgrade.bought = false;
+        upgrades.touchGun.trillionFingers.bought = false;
         
         upgrades.pistol.biggerBullets.bought = false;
         upgrades.pistol.largerCalibre.bought = false;

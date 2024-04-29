@@ -2275,33 +2275,33 @@ function updateStatisticsDisplay() {
     }
 }
 
-function initializeStatistics(gameData) {
-    if (gameData) {
-        // Calculate the total lifetime points
-        let totalLifetimePoints = 0;
-        
-        if (gameData.items) {
-            gameData.items.forEach(item => {
-                totalLifetimePoints += item.points || 0;
-            });
-        }
-        
-        totalLifetimePoints += gameData.points || 0;
-        statistics.totalLifetimePoints = totalLifetimePoints;
+// Loads the statistics data
+function setStatistics() {
+    // Calculate the total lifetime points
+    let totalLifetimePoints = 0;
+    
+    totalLifetimePoints += gameData.points || 0;
+    statistics.totalLifetimePoints = totalLifetimePoints;
 
-        // Calculate and assign the total big upgrades purchased
-        statistics.totalBigUpgradesPurchased = getTotalBigUpgradesPurchased();
+    // Calculate and assign the total big upgrades purchased
+    statistics.totalBigUpgradesPurchased = getTotalBigUpgradesPurchased();
 
-        // Calculate and assign other statistics based on game data
-        statistics.totalPotencyUpgrades = getTotalPotencyUpgrades();
-        statistics.totalFirerateUpgrades = getTotalFirerateUpgrades();
-        statistics.totalMultiFireUpgrades = getTotalMultiFireUpgrades();
-        statistics.totalAccuracyUpgrades = getTotalAccuracyUpgrades();
-        statistics.totalCriticalShotUpgrades = getTotalCriticalShotUpgrades();
-        statistics.totalCriticalDamageUpgrades = getTotalCriticalDamageUpgrades();
-        statistics.totalSplashRadiusUpgrades = getTotalSplashRadiusUpgrades();
-        statistics.totalSplashDamageUpgrades = getTotalSplashDamageUpgrades();
-    }
+    // Calculate and assign other statistics based on game data
+    statistics.totalPotencyUpgrades = getTotalPotencyUpgrades();
+    statistics.totalFirerateUpgrades = getTotalFirerateUpgrades();
+    statistics.totalMultiFireUpgrades = getTotalMultiFireUpgrades();
+    statistics.totalAccuracyUpgrades = getTotalAccuracyUpgrades();
+    statistics.totalCriticalShotUpgrades = getTotalCriticalShotUpgrades();
+    statistics.totalCriticalDamageUpgrades = getTotalCriticalDamageUpgrades();
+    statistics.totalSplashRadiusUpgrades = getTotalSplashRadiusUpgrades();
+    statistics.totalSplashDamageUpgrades = getTotalSplashDamageUpgrades();
+
+    // Update the statistics display
+    updateStatisticsDisplay();
+}
+
+function initializeStatistics() {
+    setStatistics();
 }
 
 // Function to update lifetime points statistic

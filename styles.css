@@ -234,3 +234,29 @@ body {
     text-align: center;
     font-weight: bold;
 }
+
+/* Adjust the position of the weapon zone if necessary */
+.weapon-zone button,
+.upgrade-option button {
+    font-family: 'Lilita One', cursive;
+    color: black;
+    background-color: #f5dcd3; /* Pale pink */
+    border: none;
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+/* Adjust the position of the weapon zone if necessary */
+.weapon-zone button:hover,
+.upgrade-option button:hover {
+    background-color: #f3c7ba; /* Lighter shade of pink on hover */
+}
+
+/* Adjust the width and height of the buttons */
+.weapon-zone button,
+.upgrade-option button {
+    width: 200px; /* Adjust width as needed */
+    height: 40px; /* Adjust height as needed */
+}

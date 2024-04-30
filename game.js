@@ -2740,9 +2740,7 @@ function selectWeapon(weaponId) {
 
 // Function to check if a weapon is purchased
 function isWeaponPurchased(weaponId) {
-    // Implement your logic to check if the weapon is purchased
-    // For example:
-    // return pistolPurchased && (weaponId === 'pistol');
+    return pistolPurchased && (weaponId === 'pistol');
 }
 
 // Function to update the display of selected weapon stats
@@ -2765,11 +2763,9 @@ function updateSelectedWeaponsDisplay() {
 
 // Function to display weapon stats for the selected weapon
 function displayWeaponStats(weaponId) {
-    // Implement your logic to display weapon stats
-    // For example:
-    // document.getElementById(weaponId + '-hp-display').textContent = 'Pistol HP: ' + pistolHP;
-    // document.getElementById(weaponId + '-damage-display').textContent = 'Pistol Damage: ' + pistolDamage;
-    // Update other stats accordingly
+    document.getElementById(weaponId + '-hp-display').textContent = '${weaponId} HP: ' + ${weaponId}HP;
+    document.getElementById(weaponId + '-damage-display').textContent = '${weaponId} Damage: ' + ${weaponId}Damage;
+    document.getElementById(weaponId + '-range-display').textContent = '${weaponId} Range: ' + ${weaponId}Range;
 }
 
 // Function to clear weapon stats when the weapon is deselected

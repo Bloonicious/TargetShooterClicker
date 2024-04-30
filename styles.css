@@ -129,6 +129,7 @@ body {
     font-weight: bold;
 }
 
+/* Define the base styles for the floating text */
 .floating-text {
     position: absolute;
     font-family: monospace;
@@ -136,6 +137,19 @@ body {
     color: white;
     transition: all 0.5s ease-out; /* Add transition for smooth appearance */
     z-index: 2; /* Ensure the floating text appears above other elements */
+    animation: floatUp 2s ease-out; /* Apply the floatUp animation */
+}
+
+/* Define the keyframes for the floatUp animation */
+@keyframes floatUp {
+    from {
+        transform: translateY(0); /* Start from the original position */
+        opacity: 1; /* Start with full opacity */
+    }
+    to {
+        transform: translateY(-50px); /* Move upwards by 50 pixels */
+        opacity: 0; /* Fade out */
+    }
 }
 
 .floating-text.critical {
@@ -145,6 +159,7 @@ body {
     color: red; /* Color for critical hits */
     transition: all 0.5s ease-out; /* Add transition for smooth appearance */
     z-index: 2; /* Ensure the floating text appears above other elements */
+    animation: floatUp 2s ease-out; /* Apply the floatUp animation */
 }
 
 .floating-text.miss {
@@ -154,6 +169,7 @@ body {
     color: crimson; /* Color for missing hits */
     transition: all 0.5s ease-out; /* Add transition for smooth appearance */
     z-index: 2; /* Ensure the floating text appears above other elements */
+    animation: floatUp 2s ease-out; /* Apply the floatUp animation */
 }
 
 .splashText {
@@ -163,6 +179,7 @@ body {
     color: orange; /* Color for missing hits */
     transition: all 0.5s ease-out; /* Add transition for smooth appearance */
     z-index: 0; /* Ensure the floating text appears above other elements */
+    animation: floatUp 2s ease-out; /* Apply the floatUp animation */
 }
 
 /* Grid layout for achievement list */

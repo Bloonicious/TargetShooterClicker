@@ -2749,20 +2749,6 @@ function updateSelectedWeaponsDisplay() {
     });
 }
 
-// Function to save selected weapons to local storage
-function saveSelectedWeaponsToLocalStorage() {
-    localStorage.setItem('selectedWeapons', JSON.stringify(selectedWeapons));
-}
-
-// Function to load selected weapons from local storage
-function loadSelectedWeaponsFromLocalStorage() {
-    const savedWeapons = JSON.parse(localStorage.getItem('selectedWeapons'));
-    if (savedWeapons) {
-        selectedWeapons = savedWeapons;
-        updateSelectedWeaponsDisplay();
-    }
-}
-
 // Function to get the total number of big upgrades purchased
 function getTotalBigUpgradesPurchased() {
     // Loop through all upgrade data and count the total number of big upgrades purchased

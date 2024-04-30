@@ -2792,11 +2792,22 @@ function updateSelectedWeaponStatsDisplay() {
 
 // Function to clear all weapon stats
 function clearAllWeaponStats() {
+    // Iterate over each weapon box and clear its stats
     document.querySelectorAll('.weapon-box').forEach((box) => {
-        box.querySelector('.hp-display').textContent = '';
-        box.querySelector('.damage-display').textContent = '';
-        box.querySelector('.range-display').textContent = '';
-        box.querySelector('.attack-rate-display').textContent = '';
+        const hpDisplay = box.querySelector('.hp-display');
+        const damageDisplay = box.querySelector('.damage-display');
+        const rangeDisplay = box.querySelector('.range-display');
+
+        // Check if displays exist before setting text content
+        if (hpDisplay) {
+            hpDisplay.textContent = '';
+        }
+        if (damageDisplay) {
+            damageDisplay.textContent = '';
+        }
+        if (rangeDisplay) {
+            rangeDisplay.textContent = '';
+        }
     });
 }
 

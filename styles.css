@@ -43,7 +43,11 @@ body {
 
 .tab#upgrades,
 .tab#tutorial,
-.tab#settings {
+.tab#battle,
+.tab#changelog,
+.tab#settings,
+.tab#achievements,
+.tab#statistics {
     display: block; /* Show the content of non-main tabs */
 }
 

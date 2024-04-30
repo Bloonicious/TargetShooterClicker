@@ -2715,14 +2715,20 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
 
 // Function to select a weapon
 function selectWeapon(weaponId) {
-    // Toggle the selection status of the weapon
+    // Check if the weapon is already selected
     if (selectedWeapons[weaponId]) {
-        // If the weapon is already selected, deselect it
-        delete selectedWeapons[weaponId];
-    } else {
-        // If the weapon is not selected, select it
-        selectedWeapons[weaponId] = true;
+        // If the weapon is already selected, do nothing
+        return;
     }
+
+    // Check if selecting the weapon would result in duplicate selections
+    if (Object.keys(selectedWeapons).length >= 6) {
+        // If all selection slots are filled, do not allow selecting more weapons
+        return;
+    }
+
+    // Add the weapon to the selected weapons
+    selectedWeapons[weaponId] = true;
 
     // Update the display of weapon stats
     updateSelectedWeaponsDisplay();
@@ -2863,20 +2869,25 @@ updateSelectedWeaponsDisplay();
 // Start earning points automatically for purchased weapons
 setInterval(automaticPointsGeneration, 1000); // Check every second for points generation
 
-// Interval timer to update cost display every second
+// Interval timer to update cost display nearly instantly
 setInterval(updateCostDisplay, 100);
 
-// Function to update achievements display every second
+// Function to update achievements display nearly instantly
 function updateAchievements() {
     updateAchievementsDisplay();
     checkAndUpdateAchievements(); // Check and update achievements status
 }
 setInterval(updateAchievements, 100);
 
-// Function to update statistics display every second
+// Function to update statistics display nearly instantly
 function updateStatistics() {
     updateStatisticsDisplay();
     setStatistics();
     calculateCompletionPercentage(); // Update achievement progress
 }
 setInterval(updateStatistics, 100);
+// Function to update the battle display nearly instantly
+function updateBattle() {
+    updateSelectedWeaponsDisplay();
+}
+setInterval(updateBattle, 100);

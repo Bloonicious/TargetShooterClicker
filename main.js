@@ -1133,6 +1133,7 @@ function resetProgress() {
             totalSplashRadiusUpgrades: 0,
             totalSplashDamageUpgrades: 0
         };
+        selectedWeapons = {};
         touchGunCost = 100;
         touchGunPointsPerClick = 1;
         touchGunLevel = 0;

@@ -2747,22 +2747,20 @@ function isWeaponPurchased(weaponId) {
 
 // Function to update the display of selected weapon stats
 function updateSelectedWeaponsDisplay() {
-    // Iterate over each weapon box
-    document.querySelectorAll('.weapon-box').forEach((box) => {
-        const weaponId = box.id.replace('-box', '');
+    // Iterate over each weapon selection box
+    for (let i = 1; i <= 6; i++) {
+        const weaponId = document.getElementById(`weapon-selection-${i}`).value;
         const selected = selectedWeapons[weaponId];
 
         // Update the display based on selection status
         if (selected) {
             // If the weapon is selected, display its stats
-            box.classList.add('selected');
             displayWeaponStats(weaponId);
         } else {
-            // If the weapon is not selected, remove its stats from display
-            box.classList.remove('selected');
+            // If the weapon is not selected, clear its stats from display
             clearWeaponStats(weaponId);
         }
-    });
+    }
 }
 
 // Function to display weapon stats for the selected weapon

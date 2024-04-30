@@ -2087,6 +2087,9 @@ function updateCostDisplay() {
     document.getElementById('rocketLauncherSplashRadius-value').textContent = rocketLauncherSplashRadiusValue;
     document.getElementById('rocketLauncherSplashDamage-value').textContent = rocketLauncherSplashDamageValue;
     document.getElementById('rocketLauncherPPS-value').textContent = formatNumber(rocketLauncherPointsPerSecond);
+    document.getElementById('rocketLauncherHP-value').textContent = formatNumber(rocketLauncherHP);
+    document.getElementById('rocketLauncherDamage-value').textContent = formatNumber(rocketLauncherDamage);
+    document.getElementById('rocketLauncherRange-value').textContent = formatNumber(rocketLauncherRange);
     document.getElementById('rocketLauncherAttackRate-value').textContent = rocketLauncherFirerateValue + 'ms';
     document.getElementById('rocketLauncherDPS-value').textContent = formatNumber(rocketLauncherDamagePerSecond);
 
@@ -2101,6 +2104,9 @@ function updateCostDisplay() {
     document.getElementById('tommyGunPotency-value').textContent = formatNumber(tommyGunPotencyValue);
     document.getElementById('tommyGunAccuracy-value').textContent = tommyGunInaccuracyChanceValue;
     document.getElementById('tommyGunPPS-value').textContent = formatNumber(tommyGunPointsPerSecond);
+    document.getElementById('tommyGunHP-value').textContent = formatNumber(tommyGunHP);
+    document.getElementById('tommyGunDamage-value').textContent = formatNumber(tommyGunDamage);
+    document.getElementById('tommyGunRange-value').textContent = formatNumber(tommyGunRange);
     document.getElementById('tommyGunAttackRate-value').textContent = tommyGunFirerateValue + 'ms';
     document.getElementById('tommyGunDPS-value').textContent = formatNumber(tommyGunDamagePerSecond);
 
@@ -2115,6 +2121,9 @@ function updateCostDisplay() {
     document.getElementById('doubleBarrelPotency-value').textContent = formatNumber(doubleBarrelPotencyValue);
     document.getElementById('doubleBarrelMultiFire-value').textContent = doubleBarrelMultiFireValue;
     document.getElementById('doubleBarrelPPS-value').textContent = formatNumber(doubleBarrelPointsPerSecond);
+    document.getElementById('doubleBarrelHP-value').textContent = formatNumber(doubleBarrelHP);
+    document.getElementById('doubleBarrelDamage-value').textContent = formatNumber(doubleBarrelDamage);
+    document.getElementById('doubleBarrelRange-value').textContent = formatNumber(doubleBarrelRange);
     document.getElementById('doubleBarrelAttackRate-value').textContent = doubleBarrelFirerateValue + 'ms';
     document.getElementById('doubleBarrelDPS-value').textContent = formatNumber(doubleBarrelDamagePerSecond);
 
@@ -2126,6 +2135,9 @@ function updateCostDisplay() {
     document.getElementById('uziFirerate-value').textContent = uziFirerateValue + 'ms';
     document.getElementById('uziPotency-value').textContent = formatNumber(uziPotencyValue);
     document.getElementById('uziPPS-value').textContent = formatNumber(uziPointsPerSecond);
+    document.getElementById('uziHP-value').textContent = formatNumber(uziHP);
+    document.getElementById('uziDamage-value').textContent = formatNumber(uziDamage);
+    document.getElementById('uziRange-value').textContent = formatNumber(uziRange);
     document.getElementById('uziAttackRate-value').textContent = uziFirerateValue + 'ms';
     document.getElementById('uziDPS-value').textContent = formatNumber(uziDamagePerSecond);
 
@@ -2143,6 +2155,9 @@ function updateCostDisplay() {
     document.getElementById('huntingRifleCriticalChance-value').textContent = huntingRifleCriticalChanceValue;
     document.getElementById('huntingRifleCriticalDamage-value').textContent = huntingRifleCriticalDamageValue;
     document.getElementById('huntingRiflePPS-value').textContent = formatNumber(huntingRiflePointsPerSecond);
+    document.getElementById('huntingRifleHP-value').textContent = formatNumber(huntingRifleHP);
+    document.getElementById('huntingRifleDamage-value').textContent = formatNumber(huntingRifleDamage);
+    document.getElementById('huntingRifleRange-value').textContent = formatNumber(huntingRifleRange);
     document.getElementById('huntingRifleAttackRate-value').textContent = huntingRifleFirerateValue + 'ms';
     document.getElementById('huntingRifleDPS-value').textContent = formatNumber(huntingRifleDamagePerSecond);
 

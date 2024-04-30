@@ -1991,8 +1991,8 @@ function bigUpgrades(weapon, upgrade, cost) {
 }
 
 // Function to check if a weapon is purchased
-function isWeaponPurchased(weaponId) {
-    return weaponPurchased[weaponId];
+function isWeaponPurchased(weapon) {
+    return weaponPurchased[weapon];
 }
 
 // Function to update the display of selected weapon stats
@@ -2037,9 +2037,9 @@ function updateSelectedWeaponsDisplay() {
 }
 
 // Function to select a weapon
-function selectWeapon(weaponId) {
+function selectWeapon(weapon) {
     // Check if the weapon is purchased and not already selected
-    if (!isWeaponPurchased(weaponId) || Object.values(selectedWeapons).includes(weaponId)) {
+    if (!isWeaponPurchased(weapon) || Object.values(selectedWeapons).includes(weapon)) {
         // If the weapon is not purchased or already selected, do nothing
         return;
     }
@@ -2052,10 +2052,10 @@ function selectWeapon(weaponId) {
 
     // Add the weapon to the selected weapons
     const selectedBoxId = Object.keys(selectedWeapons).find(boxId => !selectedWeapons[boxId]);
-    selectedWeapons[selectedBoxId] = weaponId;
+    selectedWeapons[selectedBoxId] = weapon;
 
     // Update the display of weapon stats for the selected weapon
-    displayWeaponStats(selectedBoxId, weaponId);
+    displayWeaponStats(selectedBoxId, weapon);
 }
 
 // Function to update the display of selected weapon stats
@@ -2070,9 +2070,9 @@ function updateSelectedWeaponStatsDisplay() {
 }
 
 // Function to display weapon stats for the selected weapon
-function displayWeaponStats(boxId, weaponId) {
+function displayWeaponStats(boxId, weapon) {
     // Get the corresponding weapon box element
-    const box = document.getElementById(`${weaponId}-box`);
+    const box = document.getElementById(`${weapon}-box`);
 
     // Check if box exists and it's not already populated
     if (!box || box.innerHTML !== '') {
@@ -2080,9 +2080,9 @@ function displayWeaponStats(boxId, weaponId) {
     }
 
     // Get the weapon stats from the HTML elements
-    const weaponHP = document.getElementById(`${weaponId}HP-value`).textContent;
-    const weaponDamage = document.getElementById(`${weaponId}Damage-value`).textContent;
-    const weaponRange = document.getElementById(`${weaponId}Range-value`).textContent;
+    const weaponHP = document.getElementById(`${weapon}HP-value`).textContent;
+    const weaponDamage = document.getElementById(`${weapon}Damage-value`).textContent;
+    const weaponRange = document.getElementById(`${weapon}Range-value`).textContent;
     // Add other weapon stats if needed...
 
     // Create paragraphs to display the weapon stats

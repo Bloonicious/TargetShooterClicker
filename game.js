@@ -2735,6 +2735,9 @@ function updateSelectedWeaponsDisplay() {
     // Iterate over each weapon selection box
     const selectionBoxes = document.querySelectorAll('.weapon-slot');
     selectionBoxes.forEach((selectionBox) => {
+        // Get the ID of the selection box
+        const boxId = selectionBox.id.replace('weapon-selection-', '');
+
         // Clear the options
         selectionBox.innerHTML = '';
 
@@ -2758,7 +2761,7 @@ function updateSelectedWeaponsDisplay() {
         }
 
         // Select the currently selected weapon if any
-        const selectedWeapon = Object.keys(selectedWeapons).find(weapon => selectedWeapons[weapon]);
+        const selectedWeapon = selectedWeapons[boxId];
         if (selectedWeapon) {
             selectionBox.value = selectedWeapon;
         }
@@ -2783,7 +2786,8 @@ function selectWeapon(weaponId) {
     }
 
     // Add the weapon to the selected weapons
-    selectedWeapons[weaponId] = true;
+    const selectedBoxId = Object.keys(selectedWeapons).find(boxId => !selectedWeapons[boxId]);
+    selectedWeapons[selectedBoxId] = weaponId;
 
     // Update the display of weapon stats
     updateSelectedWeaponsDisplay();
@@ -2791,12 +2795,43 @@ function selectWeapon(weaponId) {
 
 // Function to update the display of selected weapon stats
 function updateSelectedWeaponStatsDisplay() {
-    // Clear all weapon stats
-    clearAllWeaponStats();
+    // Iterate over each weapon box and display weapon stats
+    for (const boxId in selectedWeapons) {
+        displayWeaponStats(boxId, selectedWeapons[boxId]);
+    }
+}
 
-    // Display stats for selected weapons
-    for (const weaponId in selectedWeapons) {
-        displayWeaponStats(weaponId);
+// Function to display weapon stats for the selected weapon
+function displayWeaponStats(boxId, weaponId) {
+    const box = document.getElementById(`${weaponId}-box`);
+
+    // Check if box exists
+    if (!box) {
+        return;
+    }
+
+    // Set inner HTML of the box with weapon stats
+    const hpDisplay = box.querySelector('.hp-display');
+    const damageDisplay = box.querySelector('.damage-display');
+    const rangeDisplay = box.querySelector('.range-display');
+    const attackRateDisplay = box.querySelector('.attack-rate-display');
+    const dpsDisplay = box.querySelector('.dps-display');
+
+    // Update the weapon stats if displays exist
+    if (hpDisplay) {
+        hpDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} HP: ${window[weaponId + 'HP']}`;
+    }
+    if (damageDisplay) {
+        damageDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Damage: ${window[weaponId + 'Damage']}`;
+    }
+    if (rangeDisplay) {
+        rangeDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Range: ${window[weaponId + 'Range']}`;
+    }
+    if (attackRateDisplay) {
+        attackRateDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Firerate: ${window[weaponId + 'FireRate']}`;
+    }
+    if (dpsDisplay) {
+        dpsDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} DPS: ${window[weaponId + 'DPS']}`;
     }
 }
 
@@ -2806,25 +2841,6 @@ function clearAllWeaponStats() {
     document.querySelectorAll('.weapon-box').forEach((box) => {
         box.innerHTML = ''; // Clear the box content
     });
-}
-
-// Function to display weapon stats for the selected weapon
-function displayWeaponStats(weaponId) {
-    const box = document.getElementById(`${weaponId}-box`);
-
-    // Check if box exists
-    if (!box) {
-        return;
-    }
-
-    // Set inner HTML of the box with weapon stats
-    box.innerHTML = `
-        <div class="hp-display">${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} HP: ${window[weaponId + 'HP']}</div>
-        <div class="damage-display">${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Damage: ${window[weaponId + 'Damage']}</div>
-        <div class="range-display">${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Range: ${window[weaponId + 'Range']}</div>
-        <div class="attack-rate-display">${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Firerate: ${window[weaponId + 'FireRate']}</div>
-        <div class="dps-display">${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} DPS: ${window[weaponId + 'DPS']}</div>
-    `;
 }
 
 // Function to get the total number of big upgrades purchased

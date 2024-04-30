@@ -176,7 +176,17 @@ body {
     animation: floatUp 2s ease-out; /* Apply the floatUp animation */
 }
 
-.floating-text.splashText {
+.splashText {
+    position: absolute;
+    font-family: monospace;
+    font-size: 16px;
+    color: orange; /* Color for missing hits */
+    transition: all 0.5s ease-out; /* Add transition for smooth appearance */
+    z-index: 0; /* Ensure the floating text appears above other elements */
+    animation: floatUp 2s ease-out; /* Apply the floatUp animation */
+}
+
+.splashText.floating-text {
     position: absolute;
     font-family: monospace;
     font-size: 16px;

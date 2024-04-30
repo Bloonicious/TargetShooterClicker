@@ -776,7 +776,7 @@ function loadGameState() {
         document.getElementById('pistolHP-value').textContent = formatNumber(pistolHP);
         document.getElementById('pistolDamage-value').textContent = formatNumber(pistolDamage);
         document.getElementById('pistolRange-value').textContent = formatNumber(pistolRange);
-        document.getElementById('pistolAttackRate-value').textContent = pistolFirerateValue + 'ms';
+        document.getElementById('pistolAttackRate-value').textContent = pistolFireRate + 'ms';
         document.getElementById('pistolDPS-value').textContent = formatNumber(pistolDamagePerSecond);
 
         document.getElementById('smg-cost').textContent = formatNumber(smgCost);
@@ -790,7 +790,7 @@ function loadGameState() {
         document.getElementById('smgHP-value').textContent = formatNumber(smgHP);
         document.getElementById('smgDamage-value').textContent = formatNumber(smgDamage);
         document.getElementById('smgRange-value').textContent = formatNumber(smgRange);
-        document.getElementById('smgAttackRate-value').textContent = smgFirerateValue + 'ms';
+        document.getElementById('smgAttackRate-value').textContent = smgFireRate + 'ms';
         document.getElementById('smgDPS-value').textContent = formatNumber(smgDamagePerSecond);
 
         document.getElementById('shotgun-cost').textContent = formatNumber(shotgunCost);
@@ -808,7 +808,7 @@ function loadGameState() {
         document.getElementById('shotgunDamage-value').textContent = formatNumber(shotgunDamage);
         document.getElementById('shotgunRange-value').textContent = formatNumber(shotgunRange);
         document.getElementById('shotgunMultiShot-value').textContent = shotgunBulletsPerShot;
-        document.getElementById('shotgunAttackRate-value').textContent = shotgunFirerateValue + 'ms';
+        document.getElementById('shotgunAttackRate-value').textContent = shotgunFireRate + 'ms';
         document.getElementById('shotgunDPS-value').textContent = formatNumber(shotgunDamagePerSecond);
 
         document.getElementById('sniperRifle-cost').textContent = formatNumber(sniperRifleCost);
@@ -830,7 +830,7 @@ function loadGameState() {
         document.getElementById('sniperRifleRange-value').textContent = formatNumber(sniperRifleRange);
         document.getElementById('sniperRifleCriticalChance-value-battle').textContent = sniperRifleCriticalShotChance;
         document.getElementById('sniperRifleCriticalDamage-value-battle').textContent = sniperRifleCriticalDamageMultiplier;
-        document.getElementById('sniperRifleAttackRate-value').textContent = sniperRifleFirerateValue + 'ms';
+        document.getElementById('sniperRifleAttackRate-value').textContent = sniperRifleFireRate + 'ms';
         document.getElementById('sniperRifleDPS-value').textContent = formatNumber(sniperRifleDamagePerSecond);
 
         document.getElementById('ak47-cost').textContent = formatNumber(ak47Cost);
@@ -844,7 +844,7 @@ function loadGameState() {
         document.getElementById('ak47HP-value').textContent = formatNumber(ak47HP);
         document.getElementById('ak47Damage-value').textContent = formatNumber(ak47Damage);
         document.getElementById('ak47Range-value').textContent = formatNumber(ak47Range);
-        document.getElementById('ak47AttackRate-value').textContent = ak47FirerateValue + 'ms';
+        document.getElementById('ak47AttackRate-value').textContent = ak47FireRate + 'ms';
         document.getElementById('ak47DPS-value').textContent = formatNumber(ak47DamagePerSecond);
 
         document.getElementById('rocketLauncher-cost').textContent = formatNumber(rocketLauncherCost);
@@ -864,7 +864,7 @@ function loadGameState() {
         document.getElementById('rocketLauncherHP-value').textContent = formatNumber(rocketLauncherHP);
         document.getElementById('rocketLauncherDamage-value').textContent = formatNumber(rocketLauncherDamage);
         document.getElementById('rocketLauncherRange-value').textContent = formatNumber(rocketLauncherRange);
-        document.getElementById('rocketLauncherAttackRate-value').textContent = rocketLauncherFirerateValue + 'ms';
+        document.getElementById('rocketLauncherAttackRate-value').textContent = rocketLauncherFireRate + 'ms';
         document.getElementById('rocketLauncherDPS-value').textContent = formatNumber(rocketLauncherDamagePerSecond);
 
         document.getElementById('tommyGun-cost').textContent = formatNumber(tommyGunCost);
@@ -881,7 +881,7 @@ function loadGameState() {
         document.getElementById('tommyGunHP-value').textContent = formatNumber(tommyGunHP);
         document.getElementById('tommyGunDamage-value').textContent = formatNumber(tommyGunDamage);
         document.getElementById('tommyGunRange-value').textContent = formatNumber(tommyGunRange);
-        document.getElementById('tommyGunAttackRate-value').textContent = tommyGunFirerateValue + 'ms';
+        document.getElementById('tommyGunAttackRate-value').textContent = tommyGunFireRate + 'ms';
         document.getElementById('tommyGunDPS-value').textContent = formatNumber(tommyGunDamagePerSecond);
 
         document.getElementById('doubleBarrel-cost').textContent = formatNumber(doubleBarrelCost);
@@ -898,7 +898,7 @@ function loadGameState() {
         document.getElementById('doubleBarrelHP-value').textContent = formatNumber(doubleBarrelHP);
         document.getElementById('doubleBarrelDamage-value').textContent = formatNumber(doubleBarrelDamage);
         document.getElementById('doubleBarrelRange-value').textContent = formatNumber(doubleBarrelRange);
-        document.getElementById('doubleBarrelAttackRate-value').textContent = doubleBarrelFirerateValue + 'ms';
+        document.getElementById('doubleBarrelAttackRate-value').textContent = doubleBarrelFireRate + 'ms';
         document.getElementById('doubleBarrelDPS-value').textContent = formatNumber(doubleBarrelDamagePerSecond);
 
         document.getElementById('uzi-cost').textContent = formatNumber(uziCost);
@@ -912,7 +912,7 @@ function loadGameState() {
         document.getElementById('uziHP-value').textContent = formatNumber(uziHP);
         document.getElementById('uziDamage-value').textContent = formatNumber(uziDamage);
         document.getElementById('uziRange-value').textContent = formatNumber(uziRange);
-        document.getElementById('uziAttackRate-value').textContent = uziFirerateValue + 'ms';
+        document.getElementById('uziAttackRate-value').textContent = uziFireRate + 'ms';
         document.getElementById('uziDPS-value').textContent = formatNumber(uziDamagePerSecond);
 
         document.getElementById('huntingRifle-cost').textContent = formatNumber(huntingRifleCost);
@@ -932,7 +932,7 @@ function loadGameState() {
         document.getElementById('huntingRifleHP-value').textContent = formatNumber(huntingRifleHP);
         document.getElementById('huntingRifleDamage-value').textContent = formatNumber(huntingRifleDamage);
         document.getElementById('huntingRifleRange-value').textContent = formatNumber(huntingRifleRange);
-        document.getElementById('huntingRifleAttackRate-value').textContent = huntingRifleFirerateValue + 'ms';
+        document.getElementById('huntingRifleAttackRate-value').textContent = huntingRifleFireRate + 'ms';
         document.getElementById('huntingRifleDPS-value').textContent = formatNumber(huntingRifleDamagePerSecond);
 
         // Check if pistol fire rate level is at maximum

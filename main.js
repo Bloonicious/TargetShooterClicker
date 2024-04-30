@@ -345,6 +345,9 @@ function saveGameState() {
         rocketLauncherPurchased: rocketLauncherPurchased,
         rocketLauncherPointsPerShot: rocketLauncherPointsPerShot,
         rocketLauncherFireRate: rocketLauncherFireRate,
+        rocketLauncherHP: rocketLauncherHP,
+        rocketLauncherDamage: rocketLauncherDamage,
+        rocketLauncherRange: rocketLauncherRange,
         rocketLauncherSplashRadius: rocketLauncherSplashRadius,
         rocketLauncherSplashDamage: rocketLauncherSplashDamage,
         rocketLauncherFirerateUpgradeCost: rocketLauncherFirerateUpgradeCost,
@@ -359,6 +362,9 @@ function saveGameState() {
         tommyGunPurchased: tommyGunPurchased,
         tommyGunPointsPerShot: tommyGunPointsPerShot,
         tommyGunFireRate: tommyGunFireRate,
+        tommyGunHP: tommyGunHP,
+        tommyGunDamage: tommyGunDamage,
+        tommyGunRange: tommyGunRange,
         tommyGunInaccuracyChance:  tommyGunInaccuracyChance,
         tommyGunAccuracyPenalty: tommyGunAccuracyPenalty,
         tommyGunFirerateUpgradeCost: tommyGunFirerateUpgradeCost,
@@ -371,6 +377,9 @@ function saveGameState() {
         doubleBarrelPurchased: doubleBarrelPurchased,
         doubleBarrelPointsPerShot: doubleBarrelPointsPerShot,
         doubleBarrelFireRate: doubleBarrelFireRate,
+        doubleBarrelHP: doubleBarrelHP,
+        doubleBarrelDamage: doubleBarrelDamage,
+        doubleBarrelRange: doubleBarrelRange,
         doubleBarrelBulletsPerShot: doubleBarrelBulletsPerShot,
         doubleBarrelFirerateUpgradeCost: doubleBarrelFirerateUpgradeCost,
         doubleBarrelPotencyUpgradeCost: doubleBarrelPotencyUpgradeCost,
@@ -382,6 +391,9 @@ function saveGameState() {
         uziPurchased: uziPurchased,
         uziPointsPerShot: uziPointsPerShot,
         uziFireRate: uziFireRate,
+        uziHP: uziHP,
+        uziDamage: uziDamage,
+        uziRange: uziRange,
         uziFirerateUpgradeCost: uziFirerateUpgradeCost,
         uziPotencyUpgradeCost: uziPotencyUpgradeCost,
         uziFirerateLevel: uziFirerateLevel,
@@ -390,6 +402,9 @@ function saveGameState() {
         huntingRiflePurchased: huntingRiflePurchased,
         huntingRiflePointsPerShot: huntingRiflePointsPerShot,
         huntingRifleFireRate: huntingRifleFireRate,
+        huntingRifleHP: huntingRifleHP,
+        huntingRifleDamage: huntingRifleDamage,
+        huntingRifleRange: huntingRifleRange,
         huntingRifleCriticalShotChance: huntingRifleCriticalShotChance,
         huntingRifleCriticalDamageMultiplier: huntingRifleCriticalDamageMultiplier,
         huntingRifleFirerateUpgradeCost: huntingRifleFirerateUpgradeCost,
@@ -630,6 +645,9 @@ function loadGameState() {
         rocketLauncherPurchased = gameState.rocketLauncherPurchased;
         rocketLauncherPointsPerShot = gameState.rocketLauncherPointsPerShot;
         rocketLauncherFireRate = gameState.rocketLauncherFireRate;
+        rocketLauncherHP = gameState.rocketLauncherHP;
+        rocketLauncherDamage = gameState.rocketLauncherDamage;
+        rocketLauncherRange = gameState.rocketLauncherRange;
         rocketLauncherSplashRadius = gameState.rocketLauncherSplashRadius;
         rocketLauncherSplashDamage = gameState.rocketLauncherSplashDamage;
         rocketLauncherFirerateUpgradeCost = gameState.rocketLauncherFirerateUpgradeCost;
@@ -644,6 +662,9 @@ function loadGameState() {
         tommyGunPurchased = gameState.tommyGunPurchased;
         tommyGunPointsPerShot = gameState.tommyGunPointsPerShot;
         tommyGunFireRate = gameState.tommyGunFireRate;
+        tommyGunHP = gameState.tommyGunHP;
+        tommyGunDamage = gameState.tommyGunDamage;
+        tommyGunRange = gameState.tommyGunRange;
         tommyGunInaccuracyChance = gameState.tommyGunInaccuracyChance;
         tommyGunAccuracyPenalty = gameState.tommyGunAccuracyPenalty;
         tommyGunFirerateUpgradeCost = gameState.tommyGunFirerateUpgradeCost;
@@ -656,6 +677,9 @@ function loadGameState() {
         doubleBarrelPurchased = gameState.doubleBarrelPurchased;
         doubleBarrelPointsPerShot = gameState.doubleBarrelPointsPerShot;
         doubleBarrelFireRate = gameState.doubleBarrelFireRate;
+        doubleBarrelHP = gameState.doubleBarrelHP;
+        doubleBarrelDamage = gameState.doubleBarrelDamage;
+        doubleBarrelRange = gameState.doubleBarrelRange;
         doubleBarrelBulletsPerShot = gameState.doubleBarrelBulletsPerShot,
         doubleBarrelFirerateUpgradeCost = gameState.doubleBarrelFirerateUpgradeCost;
         doubleBarrelPotencyUpgradeCost = gameState.doubleBarrelPotencyUpgradeCost;
@@ -667,6 +691,9 @@ function loadGameState() {
         uziPurchased = gameState.uziPurchased;
         uziPointsPerShot = gameState.uziPointsPerShot;
         uziFireRate = gameState.uziFireRate;
+        uziHP = gameState.uziHP;
+        uziDamage = gameState.uziDamage;
+        uziRange = gameState.uziRange;
         uziFirerateUpgradeCost = gameState.uziFirerateUpgradeCost;
         uziPotencyUpgradeCost = gameState.uziPotencyUpgradeCost;
         uziFirerateLevel = Math.min(gameState.uziFirerateLevel, 10);
@@ -675,6 +702,9 @@ function loadGameState() {
         huntingRiflePurchased = gameState.huntingRiflePurchased;
         huntingRiflePointsPerShot = gameState.huntingRiflePointsPerShot;
         huntingRifleFireRate = gameState.huntingRifleFireRate;
+        huntingRifleHP = gameState.huntingRifleHP;
+        huntingRifleDamage = gameState.huntingRifleDamage;
+        huntingRifleRange = gameState.huntingRifleRange;
         huntingRifleCriticalShotChance = gameState.huntingRifleCriticalShotChance;
         huntingRifleCriticalDamageMultiplier = gameState.huntingRifleCriticalDamageMultiplier;
         huntingRifleFirerateUpgradeCost = gameState.huntingRifleFirerateUpgradeCost;
@@ -700,15 +730,25 @@ function loadGameState() {
         updateStatistics();
 
         const pistolPointsPerSecond = (pistolPointsPerShot / pistolFireRate) * 1000; // Convert fire rate from milliseconds to seconds
+        const pistolDamagePerSecond = (pistolDamage / pistolFireRate) * 1000; // Convert fire rate from milliseconds to seconds
         const smgPointsPerSecond = (smgPointsPerShot / smgFireRate) * 1000;
+        const smgDamagePerSecond = (smgDamage / smgFireRate) * 1000;
         const shotgunPointsPerSecond = (shotgunPointsPerShot * shotgunBulletsPerShot / shotgunFireRate) * 1000;
+        const shotgunDamagePerSecond = (shotgunDamage * shotgunBulletsPerShot / shotgunFireRate) * 1000;
         const sniperRiflePointsPerSecond = (sniperRiflePointsPerShot / sniperRifleFireRate) * 1000;
+        const sniperRifleDamage = (sniperRifleDamage / sniperRifleFireRate) * 1000;
         const ak47PointsPerSecond = (ak47PointsPerShot / ak47FireRate) * 1000;
+        const ak47DamagePerSecond = (ak47Damage / ak47FireRate) * 1000;
         const rocketLauncherPointsPerSecond = (rocketLauncherPointsPerShot / rocketLauncherFireRate) * 1000;
+        const rocketLauncherDamagePerSecond = (rocketLauncherDamage / rocketLauncherFireRate) * 1000;
         const tommyGunPointsPerSecond = (tommyGunPointsPerShot / tommyGunFireRate) * 1000;
+        const tommyGunDamagePerSecond = (tommyGunDamage / tommyGunFireRate) * 1000;
         const doubleBarrelPointsPerSecond = (doubleBarrelPointsPerShot * doubleBarrelBulletsPerShot / doubleBarrelFireRate) * 1000;
+        const doubleBarrelDamagePerSecond = (doubleBarrelDamage * doubleBarrelBulletsPerShot / doubleBarrelFireRate) * 1000;
         const uziPointsPerSecond = (uziPointsPerShot / uziFireRate) * 1000;
+        const uziDamagePerSecond = (uziDamage / uziFireRate) * 1000;
         const huntingRiflePointsPerSecond = (huntingRiflePointsPerShot / huntingRifleFireRate) * 1000;
+        const huntingRifleDamagePerSecond = (huntingRifleDamage / huntingRifleFireRate) * 1000;
 
         // Update firerate and potency display for each weapon
         document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
@@ -736,6 +776,8 @@ function loadGameState() {
         document.getElementById('pistolHP-value').textContent = formatNumber(pistolHP);
         document.getElementById('pistolDamage-value').textContent = formatNumber(pistolDamage);
         document.getElementById('pistolRange-value').textContent = formatNumber(pistolRange);
+        document.getElementById('pistolAttackRate-value').textContent = pistolFirerateValue + 'ms';
+        document.getElementById('pistolDPS-value').textContent = formatNumber(pistolDamagePerSecond);
 
         document.getElementById('smg-cost').textContent = formatNumber(smgCost);
         document.getElementById('smgFirerate-cost').textContent = formatNumber(smgFirerateUpgradeCost);
@@ -748,6 +790,8 @@ function loadGameState() {
         document.getElementById('smgHP-value').textContent = formatNumber(smgHP);
         document.getElementById('smgDamage-value').textContent = formatNumber(smgDamage);
         document.getElementById('smgRange-value').textContent = formatNumber(smgRange);
+        document.getElementById('smgAttackRate-value').textContent = smgFirerateValue + 'ms';
+        document.getElementById('smgDPS-value').textContent = formatNumber(smgDamagePerSecond);
 
         document.getElementById('shotgun-cost').textContent = formatNumber(shotgunCost);
         document.getElementById('shotgunFirerate-cost').textContent = formatNumber(shotgunFirerateUpgradeCost);
@@ -764,6 +808,8 @@ function loadGameState() {
         document.getElementById('shotgunDamage-value').textContent = formatNumber(shotgunDamage);
         document.getElementById('shotgunRange-value').textContent = formatNumber(shotgunRange);
         document.getElementById('shotgunMultiShot-value').textContent = shotgunBulletsPerShot;
+        document.getElementById('shotgunAttackRate-value').textContent = shotgunFirerateValue + 'ms';
+        document.getElementById('shotgunDPS-value').textContent = formatNumber(shotgunDamagePerSecond);
 
         document.getElementById('sniperRifle-cost').textContent = formatNumber(sniperRifleCost);
         document.getElementById('sniperRifleFirerate-cost').textContent = formatNumber(sniperRifleFirerateUpgradeCost);
@@ -784,6 +830,8 @@ function loadGameState() {
         document.getElementById('sniperRifleRange-value').textContent = formatNumber(sniperRifleRange);
         document.getElementById('sniperRifleCriticalChance-value-battle').textContent = sniperRifleCriticalShotChance;
         document.getElementById('sniperRifleCriticalDamage-value-battle').textContent = sniperRifleCriticalDamageMultiplier;
+        document.getElementById('sniperRifleAttackRate-value').textContent = sniperRifleFirerateValue + 'ms';
+        document.getElementById('sniperRifleDPS-value').textContent = formatNumber(sniperRifleDamagePerSecond);
 
         document.getElementById('ak47-cost').textContent = formatNumber(ak47Cost);
         document.getElementById('ak47Firerate-cost').textContent = formatNumber(ak47FirerateUpgradeCost);
@@ -796,6 +844,8 @@ function loadGameState() {
         document.getElementById('ak47HP-value').textContent = formatNumber(ak47HP);
         document.getElementById('ak47Damage-value').textContent = formatNumber(ak47Damage);
         document.getElementById('ak47Range-value').textContent = formatNumber(ak47Range);
+        document.getElementById('ak47AttackRate-value').textContent = ak47FirerateValue + 'ms';
+        document.getElementById('ak47DPS-value').textContent = formatNumber(ak47DamagePerSecond);
 
         document.getElementById('rocketLauncher-cost').textContent = formatNumber(rocketLauncherCost);
         document.getElementById('rocketLauncherFirerate-cost').textContent = formatNumber(rocketLauncherFirerateUpgradeCost);
@@ -811,6 +861,11 @@ function loadGameState() {
         document.getElementById('rocketLauncherSplashRadius-value').textContent = rocketLauncherSplashRadius;
         document.getElementById('rocketLauncherSplashDamage-value').textContent = rocketLauncherSplashDamage;
         document.getElementById('rocketLauncherPPS-value').textContent = formatNumber(rocketLauncherPointsPerSecond);
+        document.getElementById('rocketLauncherHP-value').textContent = formatNumber(rocketLauncherHP);
+        document.getElementById('rocketLauncherDamage-value').textContent = formatNumber(rocketLauncherDamage);
+        document.getElementById('rocketLauncherRange-value').textContent = formatNumber(rocketLauncherRange);
+        document.getElementById('rocketLauncherAttackRate-value').textContent = rocketLauncherFirerateValue + 'ms';
+        document.getElementById('rocketLauncherDPS-value').textContent = formatNumber(rocketLauncherDamagePerSecond);
 
         document.getElementById('tommyGun-cost').textContent = formatNumber(tommyGunCost);
         document.getElementById('tommyGunFirerate-cost').textContent = formatNumber(tommyGunFirerateUpgradeCost);
@@ -823,6 +878,11 @@ function loadGameState() {
         document.getElementById('tommyGunPotency-value').textContent = formatNumber(tommyGunPointsPerShot);
         document.getElementById('tommyGunAccuracy-value').textContent = -0 + tommyGunInaccuracyChance;
         document.getElementById('tommyGunPPS-value').textContent = formatNumber(tommyGunPointsPerSecond);
+        document.getElementById('tommyGunHP-value').textContent = formatNumber(tommyGunHP);
+        document.getElementById('tommyGunDamage-value').textContent = formatNumber(tommyGunDamage);
+        document.getElementById('tommyGunRange-value').textContent = formatNumber(tommyGunRange);
+        document.getElementById('tommyGunAttackRate-value').textContent = tommyGunFirerateValue + 'ms';
+        document.getElementById('tommyGunDPS-value').textContent = formatNumber(tommyGunDamagePerSecond);
 
         document.getElementById('doubleBarrel-cost').textContent = formatNumber(doubleBarrelCost);
         document.getElementById('doubleBarrelFirerate-cost').textContent = formatNumber(doubleBarrelFirerateUpgradeCost);
@@ -835,6 +895,11 @@ function loadGameState() {
         document.getElementById('doubleBarrelPotency-value').textContent = formatNumber(doubleBarrelPointsPerShot);
         document.getElementById('doubleBarrelMultiFire-value').textContent = doubleBarrelBulletsPerShot;
         document.getElementById('doubleBarrelPPS-value').textContent = formatNumber(doubleBarrelPointsPerSecond);
+        document.getElementById('doubleBarrelHP-value').textContent = formatNumber(doubleBarrelHP);
+        document.getElementById('doubleBarrelDamage-value').textContent = formatNumber(doubleBarrelDamage);
+        document.getElementById('doubleBarrelRange-value').textContent = formatNumber(doubleBarrelRange);
+        document.getElementById('doubleBarrelAttackRate-value').textContent = doubleBarrelFirerateValue + 'ms';
+        document.getElementById('doubleBarrelDPS-value').textContent = formatNumber(doubleBarrelDamagePerSecond);
 
         document.getElementById('uzi-cost').textContent = formatNumber(uziCost);
         document.getElementById('uziFirerate-cost').textContent = formatNumber(uziFirerateUpgradeCost);
@@ -844,6 +909,11 @@ function loadGameState() {
         document.getElementById('uziFirerate-value').textContent = uziFireRate + 'ms';
         document.getElementById('uziPotency-value').textContent = formatNumber(uziPointsPerShot);
         document.getElementById('uziPPS-value').textContent = formatNumber(uziPointsPerSecond);
+        document.getElementById('uziHP-value').textContent = formatNumber(uziHP);
+        document.getElementById('uziDamage-value').textContent = formatNumber(uziDamage);
+        document.getElementById('uziRange-value').textContent = formatNumber(uziRange);
+        document.getElementById('uziAttackRate-value').textContent = uziFirerateValue + 'ms';
+        document.getElementById('uziDPS-value').textContent = formatNumber(uziDamagePerSecond);
 
         document.getElementById('huntingRifle-cost').textContent = formatNumber(huntingRifleCost);
         document.getElementById('huntingRifleFirerate-cost').textContent = formatNumber(huntingRifleFirerateUpgradeCost);
@@ -859,6 +929,11 @@ function loadGameState() {
         document.getElementById('huntingRifleCriticalChance-value').textContent = huntingRifleCriticalShotChance;
         document.getElementById('huntingRifleCriticalDamage-value').textContent = huntingRifleCriticalDamageMultiplier;
         document.getElementById('huntingRiflePPS-value').textContent = formatNumber(huntingRiflePointsPerSecond);
+        document.getElementById('huntingRifleHP-value').textContent = formatNumber(huntingRifleHP);
+        document.getElementById('huntingRifleDamage-value').textContent = formatNumber(huntingRifleDamage);
+        document.getElementById('huntingRifleRange-value').textContent = formatNumber(huntingRifleRange);
+        document.getElementById('huntingRifleAttackRate-value').textContent = huntingRifleFirerateValue + 'ms';
+        document.getElementById('huntingRifleDPS-value').textContent = formatNumber(huntingRifleDamagePerSecond);
 
         // Check if pistol fire rate level is at maximum
         if (pistolFirerateLevel === 20) {
@@ -1216,7 +1291,7 @@ function resetProgress() {
         shotgunPointsPerShot = 4;
         shotgunFireRate = 1500;
         shotgunHP = 50;
-        shotgunDamage = 2;
+        shotgunDamage = 4;
         shotgunRange = 3;
         shotgunBulletsPerShot = 3,
         shotgunFirerateUpgradeCost = 5000;
@@ -1260,6 +1335,9 @@ function resetProgress() {
         rocketLauncherCost = 400000;
         rocketLauncherPointsPerShot = 1000;
         rocketLauncherFireRate = 5000;
+        rocketLauncherHP = 60;
+        rocketLauncherDamage = 500;
+        rocketLauncherRange = 9;
         rocketLauncherSplashRadius = 300;
         rocketLauncherSplashDamage = 0.4;
         rocketLauncherFirerateUpgradeCost = 1000000;
@@ -1275,6 +1353,9 @@ function resetProgress() {
         tommyGunCost = 2500000;
         tommyGunPointsPerShot = 600;
         tommyGunFireRate = 150;
+        tommyGunHP = 120;
+        tommyGunDamage = 300;
+        tommyGunRange = 7;
         tommyGunInaccuracyChance = 50;
         tommyGunAccuracyPenalty = 0.5;
         tommyGunFirerateUpgradeCost = 15000000;
@@ -1288,6 +1369,9 @@ function resetProgress() {
         doubleBarrelCost = 30000000;
         doubleBarrelPointsPerShot = 4000;
         doubleBarrelFireRate = 2000;
+        doubleBarrelHP = 250;
+        doubleBarrelDamage = 2000;
+        doubleBarrelRange = 4;
         doubleBarrelMultiFireUpgradeCost = 150000000;
         doubleBarrelFirerateUpgradeCost = 80000000;
         doubleBarrelPotencyUpgradeCost = 60000000;
@@ -1300,6 +1384,9 @@ function resetProgress() {
         uziCost = 175000000;
         uziPointsPerShot = 3000;
         uziFireRate = 75;
+        uziHP = 300;
+        uziDamage = 1500;
+        uziRange = 4;
         uziFirerateUpgradeCost = 2500000000;
         uziPotencyUpgradeCost = 2000000000;
         uziFirerateLevel = 0;
@@ -1309,6 +1396,9 @@ function resetProgress() {
         huntingRifleCost = 1250000000;
         huntingRiflePointsPerShot = 90000;
         huntingRifleFireRate = 3000;
+        huntingRifleHP = 200;
+        huntingRifleDamage = 45000;
+        huntingRifleRange = 10;
         huntingRifleFirerateUpgradeCost = 15000000000;
         huntingRiflePotencyUpgradeCost = 10000000000;
         huntingRifleCriticalShotUpgradeCost = 20000000000;

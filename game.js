@@ -2806,6 +2806,7 @@ function updateSelectedWeaponStatsDisplay() {
 
 // Function to display weapon stats for the selected weapon
 function displayWeaponStats(boxId, weaponId) {
+    // Get the corresponding weapon box element
     const box = document.getElementById(`${weaponId}-box`);
 
     // Check if box exists
@@ -2814,23 +2815,24 @@ function displayWeaponStats(boxId, weaponId) {
     }
 
     // Update the text content of existing HTML elements with weapon stats
-    const hpDisplay = document.getElementById(`${weaponId}-hp-display`);
+    const hpDisplay = box.querySelector(`#${weaponId}-hp-display span`);
     if (hpDisplay) {
-        hpDisplay.querySelector('span').textContent = window[`${weaponId}HP`];
+        hpDisplay.textContent = window[`${weaponId}HP`];
     }
     
-    const damageDisplay = document.getElementById(`${weaponId}-damage-display`);
+    const damageDisplay = box.querySelector(`#${weaponId}-damage-display span`);
     if (damageDisplay) {
-        damageDisplay.querySelector('span').textContent = window[`${weaponId}Damage`];
+        damageDisplay.textContent = window[`${weaponId}Damage`];
     }
     
-    const rangeDisplay = document.getElementById(`${weaponId}-range-display`);
+    const rangeDisplay = box.querySelector(`#${weaponId}-range-display span`);
     if (rangeDisplay) {
-        rangeDisplay.querySelector('span').textContent = window[`${weaponId}Range`];
+        rangeDisplay.textContent = window[`${weaponId}Range`];
     }
 
     // Add other weapon stats if needed...
 }
+
 // Function to clear all weapon stats
 function clearAllWeaponStats() {
     // Iterate over each weapon box and clear its stats

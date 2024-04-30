@@ -1052,6 +1052,86 @@
 
     <div id="battle" class="tab">
         <h1>Battle</h1>
+        <div class="weapon-selection-grid">
+            <select id="weapon-selection-1" onchange="selectWeapon(this.value)">
+                <option value="" disabled selected>Select Weapon</option>
+                <option value="pistol">Pistol</option>
+                <option value="smg">SMG</option>
+                <option value="shotgun">Shotgun</option>
+                <option value="sniperRifle">Sniper Rifle</option>
+                <option value="ak47">AK-47</option>
+                <option value="rocketLauncher">Rocket Launcher</option>
+                <option value="tommyGun">Tommy Gun</option>
+                <option value="doubleBarrel">Double Barrel</option>
+                <option value="uzi">Uzi</option>
+                <option value="huntingRifle">Hunting Rifle</option>
+            </select>
+            <select id="weapon-selection-2" onchange="selectWeapon(this.value)">
+                <option value="" disabled selected>Select Weapon</option>
+                <option value="pistol">Pistol</option>
+                <option value="smg">SMG</option>
+                <option value="shotgun">Shotgun</option>
+                <option value="sniperRifle">Sniper Rifle</option>
+                <option value="ak47">AK-47</option>
+                <option value="rocketLauncher">Rocket Launcher</option>
+                <option value="tommyGun">Tommy Gun</option>
+                <option value="doubleBarrel">Double Barrel</option>
+                <option value="uzi">Uzi</option>
+                <option value="huntingRifle">Hunting Rifle</option>
+            </select>
+            <select id="weapon-selection-3" onchange="selectWeapon(this.value)">
+                <option value="" disabled selected>Select Weapon</option>
+                <option value="pistol">Pistol</option>
+                <option value="smg">SMG</option>
+                <option value="shotgun">Shotgun</option>
+                <option value="sniperRifle">Sniper Rifle</option>
+                <option value="ak47">AK-47</option>
+                <option value="rocketLauncher">Rocket Launcher</option>
+                <option value="tommyGun">Tommy Gun</option>
+                <option value="doubleBarrel">Double Barrel</option>
+                <option value="uzi">Uzi</option>
+                <option value="huntingRifle">Hunting Rifle</option>
+            </select>
+            <select id="weapon-selection-4" onchange="selectWeapon(this.value)">
+                <option value="" disabled selected>Select Weapon</option>
+                <option value="pistol">Pistol</option>
+                <option value="smg">SMG</option>
+                <option value="shotgun">Shotgun</option>
+                <option value="sniperRifle">Sniper Rifle</option>
+                <option value="ak47">AK-47</option>
+                <option value="rocketLauncher">Rocket Launcher</option>
+                <option value="tommyGun">Tommy Gun</option>
+                <option value="doubleBarrel">Double Barrel</option>
+                <option value="uzi">Uzi</option>
+                <option value="huntingRifle">Hunting Rifle</option>
+            </select>
+            <select id="weapon-selection-5" onchange="selectWeapon(this.value)">
+                <option value="" disabled selected>Select Weapon</option>
+                <option value="pistol">Pistol</option>
+                <option value="smg">SMG</option>
+                <option value="shotgun">Shotgun</option>
+                <option value="sniperRifle">Sniper Rifle</option>
+                <option value="ak47">AK-47</option>
+                <option value="rocketLauncher">Rocket Launcher</option>
+                <option value="tommyGun">Tommy Gun</option>
+                <option value="doubleBarrel">Double Barrel</option>
+                <option value="uzi">Uzi</option>
+                <option value="huntingRifle">Hunting Rifle</option>
+            </select>
+            <select id="weapon-selection-6" onchange="selectWeapon(this.value)">
+                <option value="" disabled selected>Select Weapon</option>
+                <option value="pistol">Pistol</option>
+                <option value="smg">SMG</option>
+                <option value="shotgun">Shotgun</option>
+                <option value="sniperRifle">Sniper Rifle</option>
+                <option value="ak47">AK-47</option>
+                <option value="rocketLauncher">Rocket Launcher</option>
+                <option value="tommyGun">Tommy Gun</option>
+                <option value="doubleBarrel">Double Barrel</option>
+                <option value="uzi">Uzi</option>
+                <option value="huntingRifle">Hunting Rifle</option>
+            </select>
+        </div>
         <div class="weapon-selection">
             <div class="weapon-box" id="pistol-box">
                 <h2>Pistol</h2>
@@ -1091,7 +1171,23 @@
                 <p id="ak47-range-display">AK-47 Range: <span id="ak47Range-value">7</span></p>
                 <button onclick="selectWeapon('ak47')">Select AK-47</button>
             </div>
-            <!-- Add more weapon boxes as needed -->
+            <div class="weapon-box" id="rocketLauncher-box">
+                <h2>Rocket Launcher</h2>
+                <p id="rocketLauncher-hp-display">Rocket Launcher HP: <span id="rocketLauncherHP-value">60</span></p>
+                <p id="rocketLauncher-damage-display">Rocket Launcher Damage: <span id="rocketLauncherDamage-value">500</span></p>
+                <p id="rocketLauncher-range-display">Rocket Launcher Range: <span id="rocketLauncherRange-value">9</span></p>
+                <p id="rocketLauncher-splash-radius-display">Rocket Launcher Splash Radius: <span id="rocketLauncherSplashRadius-value-battle">300</span></p>
+                <p id="rocketLauncher-splash-damage-display">Rocket Launcher Splash Damage: <span id="rocketLauncherSplashDamage-value-battle">0.4</span>x</p>
+                <button onclick="selectWeapon('rocketLauncher')">Select Rocket Launcher</button>
+            </div>
+            <div class="weapon-box" id="tommyGun-box">
+                <h2>Tommy Gun</h2>
+                <p id="tommyGun-hp-display">Tommy Gun HP: <span id="tommyGunHP-value">120</span></p>
+                <p id="tommyGun-damage-display">Tommy Gun Damage: <span id="tommyGunDamage-value">75</span></p>
+                <p id="tommyGun-range-display">Tommy Gun Range: <span id="tommyGunRange-value">7</span></p>
+                <p id="tommyGun-accuracy-display">Tommy Gun Accuracy: <span id="tommyGunAccuracy-value-battle">50</span>%</p>
+                <button onclick="selectWeapon('tommyGun')">Select Tommy Gun</button>
+            </div>
         </div>
         <!-- For battle and target shooting mechanisms -->
     </div>

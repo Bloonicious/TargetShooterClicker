@@ -2808,8 +2808,13 @@ function updateSelectedWeaponStatsDisplay() {
 function displayWeaponStats(boxId, weaponId) {
     const box = document.getElementById(`${weaponId}-box`);
 
-    // Check if box exists and it's not already populated
-    if (!box || box.innerHTML !== '') {
+    // Check if box exists
+    if (!box) {
+        return;
+    }
+
+    // Check if weapon stats are already displayed
+    if (box.querySelector('.hp-display')) {
         return;
     }
 

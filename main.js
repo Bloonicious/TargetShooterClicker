@@ -1487,6 +1487,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeStatistics();
 });
 
+// Load selected weapons from local storage on page load
+document.addEventListener('DOMContentLoaded', loadSelectedWeaponsFromLocalStorage);
+
 window.addEventListener('DOMContentLoaded', (event) => {
     initializeSoundEffects();
 });

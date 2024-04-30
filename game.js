@@ -2730,33 +2730,11 @@ function isWeaponPurchased(weaponId) {
     return weaponPurchased[weaponId];
 }
 
-// Function to select a weapon
-function selectWeapon(weaponId) {
-    // Check if the weapon is purchased and not already selected
-    if (!isWeaponPurchased(weaponId) || Object.values(selectedWeapons).includes(weaponId)) {
-        // If the weapon is not purchased or already selected, do nothing
-        return;
-    }
-
-    // Check if selecting the weapon would result in duplicate selections
-    if (Object.keys(selectedWeapons).length >= 6) {
-        // If all selection slots are filled, do not allow selecting more weapons
-        return;
-    }
-
-    // Add the weapon to the selected weapons
-    selectedWeapons[weaponId] = true;
-
-    // Update the display of weapon stats
-    updateSelectedWeaponsDisplay();
-}
-
 // Function to update the display of selected weapon stats
 function updateSelectedWeaponsDisplay() {
     // Iterate over each weapon selection box
-    for (let i = 1; i <= 6; i++) {
-        const selectionBox = document.getElementById(`weapon-selection-${i}`);
-        
+    const selectionBoxes = document.querySelectorAll('.weapon-slot');
+    selectionBoxes.forEach((selectionBox) => {
         // Clear the options
         selectionBox.innerHTML = '';
 
@@ -2781,10 +2759,31 @@ function updateSelectedWeaponsDisplay() {
         if (selectedWeapon) {
             selectionBox.value = selectedWeapon;
         }
-    }
+    });
 
     // Update the display of weapon stats
     updateSelectedWeaponStatsDisplay();
+}
+
+// Function to select a weapon
+function selectWeapon(weaponId) {
+    // Check if the weapon is purchased and not already selected
+    if (!isWeaponPurchased(weaponId) || Object.values(selectedWeapons).includes(weaponId)) {
+        // If the weapon is not purchased or already selected, do nothing
+        return;
+    }
+
+    // Check if selecting the weapon would result in duplicate selections
+    if (Object.keys(selectedWeapons).length >= 6) {
+        // If all selection slots are filled, do not allow selecting more weapons
+        return;
+    }
+
+    // Add the weapon to the selected weapons
+    selectedWeapons[weaponId] = true;
+
+    // Update the display of weapon stats
+    updateSelectedWeaponsDisplay();
 }
 
 // Function to update the display of selected weapon stats

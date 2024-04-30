@@ -318,7 +318,6 @@ function saveGameState() {
         sniperRiflePointsPerShot: sniperRiflePointsPerShot,
         sniperRifleFireRate: sniperRifleFireRate,
         sniperRifleHP: sniperRifleHP,
-        sniperRifleDamage: sniperRifleDamage,
         sniperRifleRange: sniperRifleRange,
         sniperRifleCriticalShotChance: sniperRifleCriticalShotChance,
         sniperRifleCriticalDamageMultiplier: sniperRifleCriticalDamageMultiplier,
@@ -618,7 +617,6 @@ function loadGameState() {
         sniperRiflePointsPerShot = gameState.sniperRiflePointsPerShot;
         sniperRifleFireRate = gameState.sniperRifleFireRate;
         sniperRifleHP = gameState.sniperRifleHP;
-        sniperRifleDamage = gameState.sniperRifleDamage;
         sniperRifleRange = gameState.sniperRifleRange;
         sniperRifleCriticalShotChance = gameState.sniperRifleCriticalShotChance;
         sniperRifleCriticalDamageMultiplier = gameState.sniperRifleCriticalDamageMultiplier;

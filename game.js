@@ -2821,22 +2821,35 @@ function clearAllWeaponStats() {
 
 // Function to display weapon stats for the selected weapon
 function displayWeaponStats(weaponId) {
-    const pistolDPS = (pistolDamage / pistolFireRate) * 1000;
-    const smgDPS = (smgDamage / smgFireRate) * 1000;
-    const shotgunDPS = (shotgunDamage * shotgunBulletsPerShot / shotgunFireRate) * 1000;
-    const sniperRifleDPS = (sniperRifleDamage / sniperRifleFireRate) * 1000;
-    const ak47DPS = (ak47Damage / ak47FireRate) * 1000;
-    const rocketLauncherDPS = (rocketLauncherDamage / rocketLauncherFireRate) * 1000;
-    const tommyGunDPS = (tommyGunDamage / tommyGunFireRate) * 1000;
-    const doubleBarrelDPS = (doubleBarrelDamage * doubleBarrelBulletsPerShot / doubleBarrelFireRate) * 1000;
-    const uziDPS = (uziDamage / uziFireRate) * 1000;
-    const huntingRifleDPS = (huntingRifleDamage / huntingRifleFireRate) * 1000;
     const box = document.getElementById(`${weaponId}-box`);
-    box.querySelector('.hp-display').textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} HP: ${window[weaponId + 'HP']}`;
-    box.querySelector('.damage-display').textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Damage: ${window[weaponId + 'Damage']}`;
-    box.querySelector('.range-display').textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Range: ${window[weaponId + 'Range']}`;
-    box.querySelector('.attack-rate-display').textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Firerate: ${window[weaponId + 'FireRate']}`;
-    box.querySelector('.dps-display').textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} DPS: ${window[weaponId + 'DPS']}`;
+
+    // Check if box exists
+    if (!box) {
+        return;
+    }
+
+    const hpDisplay = box.querySelector('.hp-display');
+    const damageDisplay = box.querySelector('.damage-display');
+    const rangeDisplay = box.querySelector('.range-display');
+    const attackRateDisplay = box.querySelector('.attack-rate-display');
+    const dpsDisplay = box.querySelector('.dps-display');
+
+    // Check if displays exist before setting text content
+    if (hpDisplay) {
+        hpDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} HP: ${window[weaponId + 'HP']}`;
+    }
+    if (damageDisplay) {
+        damageDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Damage: ${window[weaponId + 'Damage']}`;
+    }
+    if (rangeDisplay) {
+        rangeDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Range: ${window[weaponId + 'Range']}`;
+    }
+    if (attackRateDisplay) {
+        attackRateDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Firerate: ${window[weaponId + 'FireRate']}`;
+    }
+    if (dpsDisplay) {
+        dpsDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} DPS: ${window[weaponId + 'DPS']}`;
+    }
 }
 
 // Function to get the total number of big upgrades purchased

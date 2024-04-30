@@ -48,6 +48,9 @@ let shotgunMultiFireLevel = 0;
 let sniperRifleCost = 7500;
 let sniperRiflePointsPerShot = 80;
 let sniperRifleFireRate = 4000; // in milliseconds
+let sniperRifleHP = 30;
+let sniperRifleDamage = 40;
+let sniperRifleRange = 10;
 let sniperRifleFirerateUpgradeCost = 37500;
 let sniperRiflePotencyUpgradeCost = 75000;
 let sniperRifleCriticalShotUpgradeCost = 75000;
@@ -61,6 +64,9 @@ let sniperRifleCriticalDamageLevel = 0;
 
 let ak47Cost = 60000;
 let ak47PointsPerShot = 150;
+let ak47HP = 80;
+let ak47Damage = 75;
+let ak47Range = 7;
 let ak47FireRate = 500; // in milliseconds
 let ak47FirerateUpgradeCost = 175000;
 let ak47PotencyUpgradeCost = 250000;
@@ -2014,6 +2020,11 @@ function updateCostDisplay() {
     document.getElementById('sniperRifleCriticalChance-value').textContent = sniperRifleCriticalChanceValue;
     document.getElementById('sniperRifleCriticalDamage-value').textContent = sniperRifleCriticalDamageValue;
     document.getElementById('sniperRiflePPS-value').textContent = formatNumber(sniperRiflePointsPerSecond);
+    document.getElementById('sniperRifleHP-value').textContent = formatNumber(sniperRifleHP);
+    document.getElementById('sniperRifleDamage-value').textContent = formatNumber(sniperRifleDamage);
+    document.getElementById('sniperRifleRange-value').textContent = formatNumber(sniperRifleRange);
+    document.getElementById('sniperRifleCriticalChance-value-battle').textContent = sniperRifleCriticalChanceValue;
+    document.getElementById('sniperRifleCriticalDamage-value-battle').textContent = sniperRifleCriticalDamageValue;
 
     document.getElementById('ak47-cost').textContent = formatNumber(ak47Cost);
     document.getElementById('ak47Firerate-cost').textContent = formatNumber(ak47FirerateUpgradeCost);
@@ -2023,6 +2034,9 @@ function updateCostDisplay() {
     document.getElementById('ak47Firerate-value').textContent = ak47FirerateValue + 'ms';
     document.getElementById('ak47Potency-value').textContent = formatNumber(ak47PotencyValue);
     document.getElementById('ak47PPS-value').textContent = formatNumber(ak47PointsPerSecond);
+    document.getElementById('ak47HP-value').textContent = formatNumber(ak47HP);
+    document.getElementById('ak47Damage-value').textContent = formatNumber(ak47Damage);
+    document.getElementById('ak47Range-value').textContent = formatNumber(ak47Range);
 
     document.getElementById('rocketLauncher-cost').textContent = formatNumber(rocketLauncherCost);
     document.getElementById('rocketLauncherFirerate-cost').textContent = formatNumber(rocketLauncherFirerateUpgradeCost);

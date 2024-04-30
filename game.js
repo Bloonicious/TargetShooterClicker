@@ -2012,7 +2012,7 @@ function updateSelectedWeaponsDisplay() {
         defaultOption.textContent = 'Select Weapon';
         selectionBox.appendChild(defaultOption);
 
-        // Populate options based on purchased weapons and disable those already selected
+        // Populate options based on purchased weapons and select the currently selected weapon
         for (const weaponId in weaponPurchased) {
             if (weaponPurchased[weaponId]) {
                 const option = document.createElement('option');

@@ -2013,12 +2013,12 @@ function updateSelectedWeaponsDisplay() {
         selectionBox.appendChild(defaultOption);
 
         // Populate options based on purchased weapons and select the currently selected weapon
-        for (const weaponId in weaponPurchased) {
-            if (weaponPurchased[weaponId]) {
+        for (const weapon in weaponPurchased) {
+            if (weaponPurchased[weapon]) {
                 const option = document.createElement('option');
-                option.value = weaponId;
-                option.textContent = weaponId.charAt(0).toUpperCase() + weaponId.slice(1); // Capitalize first letter
-                if (Object.values(selectedWeapons).includes(weaponId)) {
+                option.value = weapon;
+                option.textContent = weapon.charAt(0).toUpperCase() + weapon.slice(1); // Capitalize first letter
+                if (Object.values(selectedWeapons).includes(weapon)) {
                     option.disabled = true; // Disable option if already selected
                 }
                 selectionBox.appendChild(option);

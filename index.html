@@ -1051,9 +1051,30 @@
     </div>
 
     <div id="battle" class="tab">
-        <!-- Battle content here -->
         <h1>Battle</h1>
-        <p>Coming Soon!</p>
+        <div class="weapon-selection">
+            <div class="weapon-box" id="pistol-box">
+                <h2>Pistol</h2>
+                <p>HP: 10 | Damage: 1 | Range: 6 tiles</p>
+                <button onclick="selectWeapon('pistol')">Select Pistol</button>
+            </div>
+            <div class="weapon-box" id="smg-box">
+                <h2>SMG</h2>
+                <p>HP: 20 | Damage: 1 | Range: 5 tiles</p>
+                <button onclick="selectWeapon('smg')">Select SMG</button>
+            </div>
+            <div class="weapon-box" id="shotgun-box">
+                <h2>Shotgun</h2>
+                <p>HP: 50 | Damage: 2 | Range: 3 tiles</p>
+                <button onclick="selectWeapon('shotgun')">Select Shotgun</button>
+            </div>
+            <div class="weapon-box" id="sniperRifle-box">
+                <h2>Sniper Rifle</h2>
+                <p>HP: 30 | Damage: 20 | Range: 10 tiles</p>
+                <button onclick="selectWeapon('sniperRifle')">Select Sniper Rifle</button>
+            </div>
+            <!-- Add more weapon boxes as needed -->
+        </div>
         <!-- For battle and target shooting mechanisms -->
     </div>
     

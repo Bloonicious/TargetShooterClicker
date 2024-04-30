@@ -2813,20 +2813,24 @@ function displayWeaponStats(boxId, weaponId) {
         return;
     }
 
-    // Check if weapon stats are already displayed
-    if (box.querySelector('.hp-display')) {
-        return;
+    // Update the text content of existing HTML elements with weapon stats
+    const hpDisplay = document.getElementById(`${weaponId}-hp-display`);
+    if (hpDisplay) {
+        hpDisplay.querySelector('span').textContent = window[`${weaponId}HP`];
     }
-
-    // Set inner HTML of the box with weapon stats
-    const hpDisplay = document.createElement('p');
-    hpDisplay.className = 'hp-display';
-    hpDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} HP: ${window[weaponId + 'HP']}`;
-    box.appendChild(hpDisplay);
+    
+    const damageDisplay = document.getElementById(`${weaponId}-damage-display`);
+    if (damageDisplay) {
+        damageDisplay.querySelector('span').textContent = window[`${weaponId}Damage`];
+    }
+    
+    const rangeDisplay = document.getElementById(`${weaponId}-range-display`);
+    if (rangeDisplay) {
+        rangeDisplay.querySelector('span').textContent = window[`${weaponId}Range`];
+    }
 
     // Add other weapon stats if needed...
 }
-
 // Function to clear all weapon stats
 function clearAllWeaponStats() {
     // Iterate over each weapon box and clear its stats

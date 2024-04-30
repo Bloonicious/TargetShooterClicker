@@ -2814,10 +2814,10 @@ function displayWeaponStats(boxId, weaponId) {
         return;
     }
 
-    // Append the existing HTML elements within the weapon box
-    const weaponStats = document.getElementById(`${weaponId}-stats`);
-    if (weaponStats) {
-        box.appendChild(weaponStats.cloneNode(true));
+    // Append the contents of the corresponding weapon box
+    const weaponBoxContents = document.getElementById(`${weaponId}-box-contents`);
+    if (weaponBoxContents) {
+        box.appendChild(weaponBoxContents.cloneNode(true));
     }
 }
 

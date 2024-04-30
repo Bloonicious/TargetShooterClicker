@@ -2515,7 +2515,7 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
                 // Show splash damage text for each affected target
                 const splashText = document.createElement('div');
                 splashText.textContent = '+' + formatNumber(splashDamage);
-                splashText.classList.add('floating-text');
+                splashText.classList.add('floating-text-splash');
                 splashText.style.left = tCenterX + 'px';
                 splashText.style.top = tCenterY + 'px';
                 splashText.style.animation = 'floatUp 2s ease-out'; // Add animation for floating upwards

@@ -1327,6 +1327,7 @@ function purchaseWeapon(weapon, cost) {
         document.getElementById(`${weapon}-purchase`).style.display = 'none';
         updatePointsDisplay();
         updateCostDisplay();
+        updateSelectedWeaponsDisplay();
     } else {
         alert(`Not enough points to purchase ${weapon}!`);
     }
@@ -2012,7 +2013,7 @@ function updateSelectedWeaponsDisplay() {
         defaultOption.textContent = 'Select Weapon';
         selectionBox.appendChild(defaultOption);
 
-        // Populate options based on purchased weapons and select the currently selected weapon
+        // Populate options based on purchased weapons
         for (const weapon in weaponPurchased) {
             if (weaponPurchased[weapon]) {
                 const option = document.createElement('option');
@@ -2035,26 +2036,16 @@ function updateSelectedWeaponsDisplay() {
     });
 }
 
-// Function to select a weapon
+// Function to handle selecting a weapon
 function selectWeapon(weapon) {
     // Check if the weapon is purchased and not already selected
-    if (!isWeaponPurchased(weapon) || Object.values(selectedWeapons).includes(weapon)) {
-        // If the weapon is not purchased or already selected, do nothing
-        return;
+    if (isWeaponPurchased(weapon) && !Object.values(selectedWeapons).includes(weapon)) {
+        // Add the weapon to the selected weapons
+        const selectedBoxId = Object.keys(selectedWeapons).find(boxId => !selectedWeapons[boxId]);
+        selectedWeapons[selectedBoxId] = weapon;
+        // Update the display of weapon stats for the selected weapon
+        updateWeaponStatsDisplay(selectedBoxId, weapon);
     }
-
-    // Check if selecting the weapon would result in duplicate selections
-    if (Object.keys(selectedWeapons).length >= 6) {
-        // If all selection slots are filled, do not allow selecting more weapons
-        return;
-    }
-
-    // Add the weapon to the selected weapons
-    const selectedBoxId = Object.keys(selectedWeapons).find(boxId => !selectedWeapons[boxId]);
-    selectedWeapons[selectedBoxId] = weapon;
-
-    // Update the display of weapon stats for the selected weapon
-    updateWeaponStatsDisplay(selectedBoxId, weapon);
 }
 
 // Function to update the display of weapon stats for the selected weapon

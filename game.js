@@ -2029,11 +2029,10 @@ function updateSelectedWeaponsDisplay() {
         const selectedWeapon = selectedWeapons[boxId];
         if (selectedWeapon) {
             selectionBox.value = selectedWeapon;
+            // Update the display of weapon stats for the selected weapon
+            updateWeaponStatsDisplay(boxId, selectedWeapon);
         }
     });
-
-    // Update the display of weapon stats for the selected weapons
-    updateSelectedWeaponStatsDisplay();
 }
 
 // Function to select a weapon
@@ -2055,22 +2054,11 @@ function selectWeapon(weapon) {
     selectedWeapons[selectedBoxId] = weapon;
 
     // Update the display of weapon stats for the selected weapon
-    displayWeaponStats(selectedBoxId, weapon);
+    updateWeaponStatsDisplay(selectedBoxId, weapon);
 }
 
-// Function to update the display of selected weapon stats
-function updateSelectedWeaponStatsDisplay() {
-    // Clear all weapon stats
-    clearAllWeaponStats();
-
-    // Display stats for selected weapons
-    for (const boxId in selectedWeapons) {
-        displayWeaponStats(boxId, selectedWeapons[boxId]);
-    }
-}
-
-// Function to display weapon stats for the selected weapon
-function displayWeaponStats(boxId, weapon) {
+// Function to update the display of weapon stats for the selected weapon
+function updateWeaponStatsDisplay(boxId, weapon) {
     // Get the corresponding weapon box element
     const box = document.getElementById(`${weapon}-box`);
 
@@ -2079,38 +2067,23 @@ function displayWeaponStats(boxId, weapon) {
         return;
     }
 
-    // Get the weapon stats container within the box
-    const statsContainer = box.querySelector(`#${weapon}-box-contents`);
-    if (!statsContainer) {
-        return;
-    }
-
-    // Update the weapon stats
+    // Get the weapon stats from the HTML elements
     const weaponHP = document.getElementById(`${weapon}HP-value`);
-    if (weaponHP) {
-        statsContainer.querySelector('#pistolHP-value').textContent = formatNumber(weaponHP.textContent);
-    }
-
     const weaponDamage = document.getElementById(`${weapon}Damage-value`);
-    if (weaponDamage) {
-        statsContainer.querySelector('#pistolDamage-value').textContent = formatNumber(weaponDamage.textContent);
-    }
-
     const weaponRange = document.getElementById(`${weapon}Range-value`);
+
+    // Update the weapon stats display
+    if (weaponHP) {
+        weaponHP.textContent = formatNumber(weaponHP.textContent);
+    }
+    if (weaponDamage) {
+        weaponDamage.textContent = formatNumber(weaponDamage.textContent);
+    }
     if (weaponRange) {
-        statsContainer.querySelector('#pistolRange-value').textContent = formatNumber(weaponRange.textContent);
+        weaponRange.textContent = formatNumber(weaponRange.textContent);
     }
 
     // Update other weapon stats if needed...
-}
-
-
-// Function to clear all weapon stats
-function clearAllWeaponStats() {
-    // Iterate over each weapon box and clear its stats
-    document.querySelectorAll('.weapon-box').forEach((box) => {
-        box.innerHTML = ''; // Clear the box content
-    });
 }
 
 // Function to update weapon and upgrade costs in the HTML

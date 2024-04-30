@@ -935,8 +935,6 @@ const weaponPurchased = {
     huntingRifle: huntingRiflePurchased
 };
 
-const box = document.getElementById(`${weaponId}-box`);
-
 // Function to update points display
 function updatePointsDisplay() {
     const scoreValueMain = document.getElementById('score-value-main');
@@ -2804,6 +2802,7 @@ function clearAllWeaponStats() {
 
 // Function to display weapon stats for the selected weapon
 function displayWeaponStats(weaponId) {
+    const box = document.getElementById(`${weaponId}-box`);
     box.querySelector('.hp-display').textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} HP: ${window[weaponId + 'HP']}`;
     box.querySelector('.damage-display').textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Damage: ${window[weaponId + 'Damage']}`;
     box.querySelector('.range-display').textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Range: ${window[weaponId + 'Range']}`;

@@ -319,3 +319,16 @@ body {
     outline: none;
     border-color: dodgerblue;
 }
+
+.weapon-box {
+    display: none;
+}
+
+.weapon-box h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.weapon-box p {
+    margin: 5px 0;
+}

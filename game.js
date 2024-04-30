@@ -2074,32 +2074,36 @@ function displayWeaponStats(boxId, weapon) {
     // Get the corresponding weapon box element
     const box = document.getElementById(`${weapon}-box`);
 
-    // Check if box exists and it's not already populated
-    if (!box || box.innerHTML !== '') {
+    // Check if box exists
+    if (!box) {
         return;
     }
 
-    // Get the weapon stats from the HTML elements
-    const weaponHP = document.getElementById(`${weapon}HP-value`).textContent;
-    const weaponDamage = document.getElementById(`${weapon}Damage-value`).textContent;
-    const weaponRange = document.getElementById(`${weapon}Range-value`).textContent;
-    // Add other weapon stats if needed...
+    // Get the weapon stats container within the box
+    const statsContainer = box.querySelector(`#${weapon}-box-contents`);
+    if (!statsContainer) {
+        return;
+    }
 
-    // Create paragraphs to display the weapon stats
-    const hpDisplay = document.createElement('p');
-    hpDisplay.textContent = `HP: ${weaponHP}`;
-    box.appendChild(hpDisplay);
+    // Update the weapon stats
+    const weaponHP = document.getElementById(`${weapon}HP-value`);
+    if (weaponHP) {
+        statsContainer.querySelector('#pistolHP-value').textContent = formatNumber(weaponHP.textContent);
+    }
 
-    const damageDisplay = document.createElement('p');
-    damageDisplay.textContent = `Damage: ${weaponDamage}`;
-    box.appendChild(damageDisplay);
+    const weaponDamage = document.getElementById(`${weapon}Damage-value`);
+    if (weaponDamage) {
+        statsContainer.querySelector('#pistolDamage-value').textContent = formatNumber(weaponDamage.textContent);
+    }
 
-    const rangeDisplay = document.createElement('p');
-    rangeDisplay.textContent = `Range: ${weaponRange}`;
-    box.appendChild(rangeDisplay);
+    const weaponRange = document.getElementById(`${weapon}Range-value`);
+    if (weaponRange) {
+        statsContainer.querySelector('#pistolRange-value').textContent = formatNumber(weaponRange.textContent);
+    }
 
-    // Add other weapon stats if needed...
+    // Update other weapon stats if needed...
 }
+
 
 // Function to clear all weapon stats
 function clearAllWeaponStats() {

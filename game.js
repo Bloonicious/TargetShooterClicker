@@ -2767,7 +2767,7 @@ function updateSelectedWeaponsDisplay() {
         }
     });
 
-    // Update the display of weapon stats
+    // Update the display of weapon stats for the selected weapons
     updateSelectedWeaponStatsDisplay();
 }
 
@@ -2809,13 +2809,16 @@ function displayWeaponStats(boxId, weaponId) {
     // Get the corresponding weapon box element
     const box = document.getElementById(`${weaponId}-box`);
 
-    // Check if box exists
-    if (!box) {
+    // Check if box exists and it's not already populated
+    if (!box || box.innerHTML !== '') {
         return;
     }
 
-    // The HTML elements within the weapon box already contain the weapon stats
-    // So there's no need to update text content here
+    // Append the existing HTML elements within the weapon box
+    const weaponStats = document.getElementById(`${weaponId}-stats`);
+    if (weaponStats) {
+        box.appendChild(weaponStats.cloneNode(true));
+    }
 }
 
 // Function to clear all weapon stats

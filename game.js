@@ -12,6 +12,9 @@ let superAwokenTouchGunLevel = 0;
 let pistolCost = 10;
 let pistolPointsPerShot = 1;
 let pistolFireRate = 1000; // in milliseconds
+let pistolHP = 10;
+let pistolDamage = 1;
+let pistolRange = 6;
 let pistolFirerateUpgradeCost = 50;
 let pistolPotencyUpgradeCost = 100;
 let pistolFirerateLevel = 0;
@@ -20,6 +23,9 @@ let pistolPotencyLevel = 0;
 let smgCost = 100;
 let smgPointsPerShot = 1;
 let smgFireRate = 200; // in milliseconds
+let smgHP = 20;
+let smgDamage = 1;
+let smgRange = 5;
 let smgFirerateUpgradeCost = 600;
 let smgPotencyUpgradeCost = 1200;
 let smgFirerateLevel = 0;
@@ -28,6 +34,9 @@ let smgPotencyLevel = 0;
 let shotgunCost = 500;
 let shotgunPointsPerShot = 4;
 let shotgunFireRate = 1500; // in milliseconds
+let shotgunHP = 50;
+let shotgunDamage = 2;
+let shotgunRange = 3;
 let shotgunMultiFireUpgradeCost = 25000;
 let shotgunFirerateUpgradeCost = 5000;
 let shotgunPotencyUpgradeCost = 10000;
@@ -1959,6 +1968,9 @@ function updateCostDisplay() {
     document.getElementById('pistolFirerate-value').textContent = pistolFirerateValue + 'ms';
     document.getElementById('pistolPotency-value').textContent = formatNumber(pistolPotencyValue);
     document.getElementById('pistolPPS-value').textContent = formatNumber(pistolPointsPerSecond);
+    document.getElementById('pistolHP-value').textContent = formatNumber(pistolHP);
+    document.getElementById('pistolDamage-value').textContent = formatNumber(pistolDamage);
+    document.getElementById('pistolRange-value').textContent = formatNumber(pistolRange);
     
     document.getElementById('smg-cost').textContent = formatNumber(smgCost);
     document.getElementById('smgFirerate-cost').textContent = formatNumber(smgFirerateUpgradeCost);
@@ -1968,6 +1980,9 @@ function updateCostDisplay() {
     document.getElementById('smgFirerate-value').textContent = smgFirerateValue + 'ms';
     document.getElementById('smgPotency-value').textContent = formatNumber(smgPotencyValue);
     document.getElementById('smgPPS-value').textContent = formatNumber(smgPointsPerSecond);
+    document.getElementById('smgHP-value').textContent = formatNumber(smgHP);
+    document.getElementById('smgDamage-value').textContent = formatNumber(smgDamage);
+    document.getElementById('smgRange-value').textContent = formatNumber(smgRange);
     
     document.getElementById('shotgun-cost').textContent = formatNumber(shotgunCost);
     document.getElementById('shotgunFirerate-cost').textContent = formatNumber(shotgunFirerateUpgradeCost);
@@ -1980,6 +1995,10 @@ function updateCostDisplay() {
     document.getElementById('shotgunPotency-value').textContent = formatNumber(shotgunPotencyValue);
     document.getElementById('shotgunMultiFire-value').textContent = shotgunMultiFireValue;
     document.getElementById('shotgunPPS-value').textContent = formatNumber(shotgunPointsPerSecond);
+    document.getElementById('shotgunHP-value').textContent = formatNumber(shotgunHP);
+    document.getElementById('shotgunDamage-value').textContent = formatNumber(shotgunDamage);
+    document.getElementById('shotgunRange-value').textContent = formatNumber(shotgunRange);
+    document.getElementById('shotgunMultiShot-value').textContent = shotgunMultiFireValue;
     
     document.getElementById('sniperRifle-cost').textContent = formatNumber(sniperRifleCost);
     document.getElementById('sniperRifleFirerate-cost').textContent = formatNumber(sniperRifleFirerateUpgradeCost);

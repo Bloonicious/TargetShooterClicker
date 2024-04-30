@@ -319,6 +319,7 @@ function saveGameState() {
         sniperRifleFireRate: sniperRifleFireRate,
         sniperRifleHP: sniperRifleHP,
         sniperRifleRange: sniperRifleRange,
+        sniperRifleDamage: sniperRifleDamage,
         sniperRifleCriticalShotChance: sniperRifleCriticalShotChance,
         sniperRifleCriticalDamageMultiplier: sniperRifleCriticalDamageMultiplier,
         sniperRifleFirerateUpgradeCost: sniperRifleFirerateUpgradeCost,
@@ -617,6 +618,7 @@ function loadGameState() {
         sniperRiflePointsPerShot = gameState.sniperRiflePointsPerShot;
         sniperRifleFireRate = gameState.sniperRifleFireRate;
         sniperRifleHP = gameState.sniperRifleHP;
+        sniperRifleDamage = gameState.sniperRifleDamage;
         sniperRifleRange = gameState.sniperRifleRange;
         sniperRifleCriticalShotChance = gameState.sniperRifleCriticalShotChance;
         sniperRifleCriticalDamageMultiplier = gameState.sniperRifleCriticalDamageMultiplier;
@@ -734,7 +736,7 @@ function loadGameState() {
         const shotgunPointsPerSecond = (shotgunPointsPerShot * shotgunBulletsPerShot / shotgunFireRate) * 1000;
         const shotgunDamagePerSecond = (shotgunDamage * shotgunBulletsPerShot / shotgunFireRate) * 1000;
         const sniperRiflePointsPerSecond = (sniperRiflePointsPerShot / sniperRifleFireRate) * 1000;
-        const sniperRifleDamage = (sniperRifleDamage / sniperRifleFireRate) * 1000;
+        const sniperRifleDamagePerSecond = (sniperRifleDamage / sniperRifleFireRate) * 1000;
         const ak47PointsPerSecond = (ak47PointsPerShot / ak47FireRate) * 1000;
         const ak47DamagePerSecond = (ak47Damage / ak47FireRate) * 1000;
         const rocketLauncherPointsPerSecond = (rocketLauncherPointsPerShot / rocketLauncherFireRate) * 1000;

@@ -2789,13 +2789,16 @@ function selectWeapon(weaponId) {
     const selectedBoxId = Object.keys(selectedWeapons).find(boxId => !selectedWeapons[boxId]);
     selectedWeapons[selectedBoxId] = weaponId;
 
-    // Update the display of weapon stats
-    updateSelectedWeaponsDisplay();
+    // Update the display of weapon stats for the selected weapon
+    displayWeaponStats(selectedBoxId, weaponId);
 }
 
 // Function to update the display of selected weapon stats
 function updateSelectedWeaponStatsDisplay() {
-    // Iterate over each weapon box and display weapon stats
+    // Clear all weapon stats
+    clearAllWeaponStats();
+
+    // Display stats for selected weapons
     for (const boxId in selectedWeapons) {
         displayWeaponStats(boxId, selectedWeapons[boxId]);
     }
@@ -2805,34 +2808,18 @@ function updateSelectedWeaponStatsDisplay() {
 function displayWeaponStats(boxId, weaponId) {
     const box = document.getElementById(`${weaponId}-box`);
 
-    // Check if box exists
-    if (!box) {
+    // Check if box exists and it's not already populated
+    if (!box || box.innerHTML !== '') {
         return;
     }
 
     // Set inner HTML of the box with weapon stats
-    const hpDisplay = box.querySelector('.hp-display');
-    const damageDisplay = box.querySelector('.damage-display');
-    const rangeDisplay = box.querySelector('.range-display');
-    const attackRateDisplay = box.querySelector('.attack-rate-display');
-    const dpsDisplay = box.querySelector('.dps-display');
+    const hpDisplay = document.createElement('p');
+    hpDisplay.className = 'hp-display';
+    hpDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} HP: ${window[weaponId + 'HP']}`;
+    box.appendChild(hpDisplay);
 
-    // Update the weapon stats if displays exist
-    if (hpDisplay) {
-        hpDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} HP: ${window[weaponId + 'HP']}`;
-    }
-    if (damageDisplay) {
-        damageDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Damage: ${window[weaponId + 'Damage']}`;
-    }
-    if (rangeDisplay) {
-        rangeDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Range: ${window[weaponId + 'Range']}`;
-    }
-    if (attackRateDisplay) {
-        attackRateDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Firerate: ${window[weaponId + 'FireRate']}`;
-    }
-    if (dpsDisplay) {
-        dpsDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} DPS: ${window[weaponId + 'DPS']}`;
-    }
+    // Add other weapon stats if needed...
 }
 
 // Function to clear all weapon stats
@@ -2995,6 +2982,6 @@ function updateStatistics() {
 setInterval(updateStatistics, 100);
 // Function to update the battle display nearly instantly
 function updateBattle() {
-    updateSelectedWeaponsDisplay();
+    selectWeapon();
 }
 setInterval(updateBattle, 100);

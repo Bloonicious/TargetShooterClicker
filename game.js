@@ -1990,6 +1990,110 @@ function bigUpgrades(weapon, upgrade, cost) {
     }
 }
 
+// Function to check if a weapon is purchased
+function isWeaponPurchased(weaponId) {
+    return weaponPurchased[weaponId];
+}
+
+// Function to update the display of selected weapon stats
+function updateSelectedWeaponsDisplay() {
+    // Iterate over each weapon selection box
+    const selectionBoxes = document.querySelectorAll('.weapon-slot');
+    selectionBoxes.forEach((selectionBox) => {
+        // Get the ID of the selection box
+        const boxId = selectionBox.id.replace('weapon-selection-', '');
+
+        // Clear the options
+        selectionBox.innerHTML = '';
+
+        // Add default option "Select Weapon"
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = 'Select Weapon';
+        selectionBox.appendChild(defaultOption);
+
+        // Populate options based on purchased weapons and disable those already selected
+        for (const weaponId in weaponPurchased) {
+            if (weaponPurchased[weaponId]) {
+                const option = document.createElement('option');
+                option.value = weaponId;
+                option.textContent = weaponId.charAt(0).toUpperCase() + weaponId.slice(1); // Capitalize first letter
+                if (Object.values(selectedWeapons).includes(weaponId)) {
+                    option.disabled = true; // Disable option if already selected
+                }
+                selectionBox.appendChild(option);
+            }
+        }
+
+        // Select the currently selected weapon if any
+        const selectedWeapon = selectedWeapons[boxId];
+        if (selectedWeapon) {
+            selectionBox.value = selectedWeapon;
+        }
+    });
+
+    // Update the display of weapon stats for the selected weapons
+    updateSelectedWeaponStatsDisplay();
+}
+
+// Function to select a weapon
+function selectWeapon(weaponId) {
+    // Check if the weapon is purchased and not already selected
+    if (!isWeaponPurchased(weaponId) || Object.values(selectedWeapons).includes(weaponId)) {
+        // If the weapon is not purchased or already selected, do nothing
+        return;
+    }
+
+    // Check if selecting the weapon would result in duplicate selections
+    if (Object.keys(selectedWeapons).length >= 6) {
+        // If all selection slots are filled, do not allow selecting more weapons
+        return;
+    }
+
+    // Add the weapon to the selected weapons
+    const selectedBoxId = Object.keys(selectedWeapons).find(boxId => !selectedWeapons[boxId]);
+    selectedWeapons[selectedBoxId] = weaponId;
+
+    // Update the display of weapon stats for the selected weapon
+    displayWeaponStats(selectedBoxId, weaponId);
+}
+
+// Function to update the display of selected weapon stats
+function updateSelectedWeaponStatsDisplay() {
+    // Clear all weapon stats
+    clearAllWeaponStats();
+
+    // Display stats for selected weapons
+    for (const boxId in selectedWeapons) {
+        displayWeaponStats(boxId, selectedWeapons[boxId]);
+    }
+}
+
+// Function to display weapon stats for the selected weapon
+function displayWeaponStats(boxId, weaponId) {
+    // Get the corresponding weapon box element
+    const box = document.getElementById(`${weaponId}-box`);
+
+    // Check if box exists and it's not already populated
+    if (!box || box.innerHTML !== '') {
+        return;
+    }
+
+    // Append the contents of the corresponding weapon box
+    const weaponBoxContents = document.getElementById(`${weaponId}-box-contents`);
+    if (weaponBoxContents) {
+        box.appendChild(weaponBoxContents.cloneNode(true));
+    }
+}
+
+// Function to clear all weapon stats
+function clearAllWeaponStats() {
+    // Iterate over each weapon box and clear its stats
+    document.querySelectorAll('.weapon-box').forEach((box) => {
+        box.innerHTML = ''; // Clear the box content
+    });
+}
+
 // Function to update weapon and upgrade costs in the HTML
 function updateCostDisplay() {
     const pistolFirerateValue = pistolFireRate; // Convert fire rate to milliseconds
@@ -2563,6 +2667,22 @@ function initializeAchievements() {
     checkAndUpdateAchievements();
 }
 
+// Function to initialize battle features
+function initializeBattle() {
+    // Initialize selection boxes and weapon stats display
+    updateSelectedWeaponsDisplay();
+
+    // Add event listeners to selection boxes
+    const selectionBoxes = document.querySelectorAll('.weapon-slot');
+    selectionBoxes.forEach((selectionBox) => {
+        selectionBox.addEventListener('change', function() {
+            selectWeapon(this.value);
+        });
+    });
+
+    // Other initialization tasks...
+}
+
 // Function to initialize sound effects
 function initializeSoundEffects() {
     // Load or create SFX IDs for each weapon
@@ -2723,126 +2843,6 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
         default:
             break;
     }
-}
-
-// Function to check if a weapon is purchased
-function isWeaponPurchased(weaponId) {
-    return weaponPurchased[weaponId];
-}
-
-// Function to update the display of selected weapon stats
-function updateSelectedWeaponsDisplay() {
-    // Iterate over each weapon selection box
-    const selectionBoxes = document.querySelectorAll('.weapon-slot');
-    selectionBoxes.forEach((selectionBox) => {
-        // Get the ID of the selection box
-        const boxId = selectionBox.id.replace('weapon-selection-', '');
-
-        // Clear the options
-        selectionBox.innerHTML = '';
-
-        // Add default option "Select Weapon"
-        const defaultOption = document.createElement('option');
-        defaultOption.value = '';
-        defaultOption.textContent = 'Select Weapon';
-        selectionBox.appendChild(defaultOption);
-
-        // Populate options based on purchased weapons and disable those already selected
-        for (const weaponId in weaponPurchased) {
-            if (weaponPurchased[weaponId]) {
-                const option = document.createElement('option');
-                option.value = weaponId;
-                option.textContent = weaponId.charAt(0).toUpperCase() + weaponId.slice(1); // Capitalize first letter
-                if (Object.values(selectedWeapons).includes(weaponId)) {
-                    option.disabled = true; // Disable option if already selected
-                }
-                selectionBox.appendChild(option);
-            }
-        }
-
-        // Select the currently selected weapon if any
-        const selectedWeapon = selectedWeapons[boxId];
-        if (selectedWeapon) {
-            selectionBox.value = selectedWeapon;
-        }
-    });
-
-    // Update the display of weapon stats for the selected weapons
-    updateSelectedWeaponStatsDisplay();
-}
-
-// Function to select a weapon
-function selectWeapon(weaponId) {
-    // Check if the weapon is purchased and not already selected
-    if (!isWeaponPurchased(weaponId) || Object.values(selectedWeapons).includes(weaponId)) {
-        // If the weapon is not purchased or already selected, do nothing
-        return;
-    }
-
-    // Check if selecting the weapon would result in duplicate selections
-    if (Object.keys(selectedWeapons).length >= 6) {
-        // If all selection slots are filled, do not allow selecting more weapons
-        return;
-    }
-
-    // Add the weapon to the selected weapons
-    const selectedBoxId = Object.keys(selectedWeapons).find(boxId => !selectedWeapons[boxId]);
-    selectedWeapons[selectedBoxId] = weaponId;
-
-    // Update the display of weapon stats for the selected weapon
-    displayWeaponStats(selectedBoxId, weaponId);
-}
-
-// Function to update the display of selected weapon stats
-function updateSelectedWeaponStatsDisplay() {
-    // Clear all weapon stats
-    clearAllWeaponStats();
-
-    // Display stats for selected weapons
-    for (const boxId in selectedWeapons) {
-        displayWeaponStats(boxId, selectedWeapons[boxId]);
-    }
-}
-
-// Function to display weapon stats for the selected weapon
-function displayWeaponStats(boxId, weaponId) {
-    // Get the corresponding weapon box element
-    const box = document.getElementById(`${weaponId}-box`);
-
-    // Check if box exists and it's not already populated
-    if (!box || box.innerHTML !== '') {
-        return;
-    }
-
-    // Append the contents of the corresponding weapon box
-    const weaponBoxContents = document.getElementById(`${weaponId}-box-contents`);
-    if (weaponBoxContents) {
-        box.appendChild(weaponBoxContents.cloneNode(true));
-    }
-}
-
-// Function to clear all weapon stats
-function clearAllWeaponStats() {
-    // Iterate over each weapon box and clear its stats
-    document.querySelectorAll('.weapon-box').forEach((box) => {
-        box.innerHTML = ''; // Clear the box content
-    });
-}
-
-// Function to initialize battle features
-function initializeBattle() {
-    // Initialize selection boxes and weapon stats display
-    updateSelectedWeaponsDisplay();
-
-    // Add event listeners to selection boxes
-    const selectionBoxes = document.querySelectorAll('.weapon-slot');
-    selectionBoxes.forEach((selectionBox) => {
-        selectionBox.addEventListener('change', function() {
-            selectWeapon(this.value);
-        });
-    });
-
-    // Other initialization tasks...
 }
 
 // Function to get the total number of big upgrades purchased

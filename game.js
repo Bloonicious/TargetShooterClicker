@@ -2843,6 +2843,22 @@ function clearAllWeaponStats() {
     });
 }
 
+// Function to initialize battle features
+function initializeBattle() {
+    // Initialize selection boxes and weapon stats display
+    updateSelectedWeaponsDisplay();
+
+    // Add event listeners to selection boxes
+    const selectionBoxes = document.querySelectorAll('.weapon-slot');
+    selectionBoxes.forEach((selectionBox) => {
+        selectionBox.addEventListener('change', function() {
+            selectWeapon(this.value);
+        });
+    });
+
+    // Other initialization tasks...
+}
+
 // Function to get the total number of big upgrades purchased
 function getTotalBigUpgradesPurchased() {
     // Loop through all upgrade data and count the total number of big upgrades purchased

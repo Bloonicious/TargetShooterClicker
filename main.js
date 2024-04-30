@@ -1485,14 +1485,9 @@ function resetProgress() {
 // Event listeners to call in initialization of those in-game functions
 document.addEventListener('DOMContentLoaded', function() {
     initializeUpgradeCosts();
-});
-
-document.addEventListener('DOMContentLoaded', function() {
     initializeAchievements();
-});
-
-document.addEventListener('DOMContentLoaded', function() {
     initializeStatistics();
+    initializeBattle();
 });
 
 window.addEventListener('DOMContentLoaded', (event) => {

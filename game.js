@@ -2015,7 +2015,7 @@ function updateSelectedWeaponsDisplay() {
 
         // Populate options based on purchased weapons
         for (const weapon in weaponPurchased) {
-            if (weaponPurchased[weapon]) {
+            if (isWeaponPurchased(weapon)) {
                 const option = document.createElement('option');
                 option.value = weapon;
                 option.textContent = weapon.charAt(0).toUpperCase() + weapon.slice(1); // Capitalize first letter

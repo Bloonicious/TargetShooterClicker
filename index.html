@@ -1055,23 +1055,41 @@
         <div class="weapon-selection">
             <div class="weapon-box" id="pistol-box">
                 <h2>Pistol</h2>
-                <p>HP: 10 | Damage: 1 | Range: 6 tiles</p>
+                <p id="pistol-hp-display">Pistol HP: <span id="pistolHP-value">10</span></p>
+                <p id="pistol-damage-display">Pistol Damage: <span id="pistolDamage-value">1</span></p>
+                <p id="pistol-range-display">Pistol Range: <span id="pistolRange-value">6</span></p>
                 <button onclick="selectWeapon('pistol')">Select Pistol</button>
             </div>
             <div class="weapon-box" id="smg-box">
                 <h2>SMG</h2>
-                <p>HP: 20 | Damage: 1 | Range: 5 tiles</p>
+                <p id="smg-hp-display">SMG HP: <span id="smgHP-value">20</span></p>
+                <p id="smg-damage-display">SMG Damage: <span id="smgDamage-value">1</span></p>
+                <p id="smg-range-display">SMG Range: <span id="smgRange-value">5</span></p>
                 <button onclick="selectWeapon('smg')">Select SMG</button>
             </div>
             <div class="weapon-box" id="shotgun-box">
                 <h2>Shotgun</h2>
-                <p>HP: 50 | Damage: 2 | Range: 3 tiles</p>
+                <p id="shotgun-hp-display">Shotgun HP: <span id="shotgunHP-value">50</span></p>
+                <p id="shotgun-damage-display">Shotgun Damage: <span id="shotgunDamage-value">2</span></p>
+                <p id="shotgun-range-display">Shotgun Range: <span id="shotgunRange-value">3</span></p>
+                <p id="shotgun-multishot-display">Shotgun Multishot: <span id="shotgunMultiShot-value">3</span></p>
                 <button onclick="selectWeapon('shotgun')">Select Shotgun</button>
             </div>
             <div class="weapon-box" id="sniperRifle-box">
                 <h2>Sniper Rifle</h2>
-                <p>HP: 30 | Damage: 20 | Range: 10 tiles</p>
+                <p id="sniperRifle-hp-display">Sniper Rifle HP: <span id="sniperRifleHP-value">30</span></p>
+                <p id="sniperRifle-damage-display">Sniper Rifle Damage: <span id="sniperRifleDamage-value">40</span></p>
+                <p id="sniperRifle-range-display">Sniper Rifle Range: <span id="sniperRifleRange-value">10</span></p>
+                <p id="sniperRifle-critical-chance-display">Shotgun Critical Chance: <span id="sniperRifleCriticalChance-value-battle">25</span>%</p>
+                <p id="sniperRifle-critical-chance-display">Shotgun Critical Damage: <span id="sniperRifleCriticalChance-value-battle">25</span>%</p>
                 <button onclick="selectWeapon('sniperRifle')">Select Sniper Rifle</button>
+            </div>
+            <div class="weapon-box" id="ak47-box">
+                <h2>AK-47</h2>
+                <p id="ak47-hp-display">AK-47 HP: <span id="ak47HP-value">80</span></p>
+                <p id="ak47-damage-display">AK-47 Damage: <span id="ak47Damage-value">75</span></p>
+                <p id="ak47-range-display">AK-47 Range: <span id="ak47Range-value">7</span></p>
+                <button onclick="selectWeapon('ak47')">Select AK-47</button>
             </div>
             <!-- Add more weapon boxes as needed -->
         </div>

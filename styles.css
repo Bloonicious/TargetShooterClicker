@@ -301,13 +301,13 @@ body {
     list-style: none; /* Remove default list styles */
 }
 
-.weapon-selection-grid {
+.weapon-slot-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
-.weapon-selection-grid select {
+.weapon-slot-grid select {
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -315,7 +315,7 @@ body {
     border-radius: 5px;
 }
 
-.weapon-selection-grid select:focus {
+.weapon-slot-grid select:focus {
     outline: none;
     border-color: dodgerblue;
 }

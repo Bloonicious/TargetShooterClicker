@@ -2468,7 +2468,7 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     // Set floating text position
     floatingText.style.left = centerX + 'px';
     floatingText.style.top = centerY + 'px';
-    floatingText.style.animation = 'float-upwards 1s ease-out'; // Add animation for floating upwards
+    floatingText.style.animation = 'floatUp 2s ease-out'; // Add animation for floating upwards
 
     // Append the floating text to the container
     floatingTextContainer.appendChild(floatingText);
@@ -2518,7 +2518,7 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
                 splashText.classList.add('floating-text');
                 splashText.style.left = tCenterX + 'px';
                 splashText.style.top = tCenterY + 'px';
-                splashText.style.animation = 'float-upwards 1s ease-out'; // Add animation for floating upwards
+                splashText.style.animation = 'floatUp 2s ease-out'; // Add animation for floating upwards
                 floatingTextContainer.appendChild(splashText);
                 setTimeout(() => {
                     splashText.remove();

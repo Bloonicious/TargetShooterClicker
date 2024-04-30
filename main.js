@@ -281,6 +281,9 @@ function saveGameState() {
         pistolPurchased: pistolPurchased,
         pistolPointsPerShot: pistolPointsPerShot,
         pistolFireRate: pistolFireRate,
+        pistolHP: pistolHP,
+        pistolDamage: pistolDamage,
+        pistolRange: pistolRange,
         pistolFirerateUpgradeCost: pistolFirerateUpgradeCost,
         pistolPotencyUpgradeCost: pistolPotencyUpgradeCost,
         pistolFirerateLevel: pistolFirerateLevel,
@@ -289,6 +292,9 @@ function saveGameState() {
         smgPurchased: smgPurchased,
         smgPointsPerShot: smgPointsPerShot,
         smgFireRate: smgFireRate,
+        smgHP: smgHP,
+        smgDamage: smgDamage,
+        smgRange: smgRange,
         smgFirerateUpgradeCost: smgFirerateUpgradeCost,
         smgPotencyUpgradeCost: smgPotencyUpgradeCost,
         smgFirerateLevel: smgFirerateLevel,
@@ -297,6 +303,9 @@ function saveGameState() {
         shotgunPurchased: shotgunPurchased,
         shotgunPointsPerShot: shotgunPointsPerShot,
         shotgunFireRate: shotgunFireRate,
+        shotgunHP: shotgunHP,
+        shotgunDamage: shotgunDamage,
+        shotgunRange: shotgunRange,
         shotgunBulletsPerShot: shotgunBulletsPerShot,
         shotgunFirerateUpgradeCost: shotgunFirerateUpgradeCost,
         shotgunPotencyUpgradeCost: shotgunPotencyUpgradeCost,
@@ -308,6 +317,9 @@ function saveGameState() {
         sniperRiflePurchased: sniperRiflePurchased,
         sniperRiflePointsPerShot: sniperRiflePointsPerShot,
         sniperRifleFireRate: sniperRifleFireRate,
+        sniperRifleHP: sniperRifleHP,
+        sniperRifleDamage: sniperRifleDamage,
+        sniperRifleRange: sniperRifleRange,
         sniperRifleCriticalShotChance: sniperRifleCriticalShotChance,
         sniperRifleCriticalDamageMultiplier: sniperRifleCriticalDamageMultiplier,
         sniperRifleFirerateUpgradeCost: sniperRifleFirerateUpgradeCost,
@@ -322,6 +334,9 @@ function saveGameState() {
         ak47Purchased: ak47Purchased,
         ak47PointsPerShot: ak47PointsPerShot,
         ak47FireRate: ak47FireRate,
+        ak47HP: ak47HP,
+        ak47Damage: ak47Damage,
+        ak47Range: ak47Range,
         ak47FirerateUpgradeCost: ak47FirerateUpgradeCost,
         ak47PotencyUpgradeCost: ak47PotencyUpgradeCost,
         ak47FirerateLevel: ak47FirerateLevel,
@@ -551,6 +566,9 @@ function loadGameState() {
         pistolPurchased = gameState.pistolPurchased;
         pistolPointsPerShot = gameState.pistolPointsPerShot;
         pistolFireRate = gameState.pistolFireRate;
+        pistolHP = gameState.pistolHP;
+        pistolDamage = gameState.pistolDamage;
+        pistolRange = gameState.pistolRange;
         pistolFirerateUpgradeCost = gameState.pistolFirerateUpgradeCost;
         pistolPotencyUpgradeCost = gameState.pistolPotencyUpgradeCost;
         pistolFirerateLevel = Math.min(gameState.pistolFirerateLevel, 20);
@@ -559,6 +577,9 @@ function loadGameState() {
         smgPurchased = gameState.smgPurchased;
         smgPointsPerShot = gameState.smgPointsPerShot;
         smgFireRate = gameState.smgFireRate;
+        smgHP = gameState.smgHP;
+        smgDamage = gameState.smgDamage;
+        smgRange = gameState.smgRange;
         smgFirerateUpgradeCost = gameState.smgFirerateUpgradeCost;
         smgPotencyUpgradeCost = gameState.smgPotencyUpgradeCost;
         smgFirerateLevel = Math.min(gameState.smgFirerateLevel, 10);
@@ -567,6 +588,9 @@ function loadGameState() {
         shotgunPurchased = gameState.shotgunPurchased;
         shotgunPointsPerShot = gameState.shotgunPointsPerShot;
         shotgunFireRate = gameState.shotgunFireRate;
+        shotgunHP = gameState.shotgunHP;
+        shotgunDamage = gameState.shotgunDamage;
+        shotgunRange = gameState.shotgunRange;
         shotgunBulletsPerShot = gameState.shotgunBulletsPerShot,
         shotgunFirerateUpgradeCost = gameState.shotgunFirerateUpgradeCost;
         shotgunPotencyUpgradeCost = gameState.shotgunPotencyUpgradeCost;
@@ -578,6 +602,9 @@ function loadGameState() {
         sniperRiflePurchased = gameState.sniperRiflePurchased;
         sniperRiflePointsPerShot = gameState.sniperRiflePointsPerShot;
         sniperRifleFireRate = gameState.sniperRifleFireRate;
+        sniperRifleHP = gameState.sniperRifleHP;
+        sniperRifleDamage = gameState.sniperRifleDamage;
+        sniperRifleRange = gameState.sniperRifleRange;
         sniperRifleCriticalShotChance = gameState.sniperRifleCriticalShotChance;
         sniperRifleCriticalDamageMultiplier = gameState.sniperRifleCriticalDamageMultiplier;
         sniperRifleFirerateUpgradeCost = gameState.sniperRifleFirerateUpgradeCost;
@@ -592,6 +619,9 @@ function loadGameState() {
         ak47Purchased = gameState.ak47Purchased;
         ak47PointsPerShot = gameState.ak47PointsPerShot;
         ak47FireRate = gameState.ak47FireRate;
+        ak47HP = gameState.ak47HP;
+        ak47Damage = gameState.ak47Damage;
+        ak47Range = gameState.ak47Range;
         ak47FirerateUpgradeCost = gameState.ak47FirerateUpgradeCost;
         ak47PotencyUpgradeCost = gameState.ak47PotencyUpgradeCost;
         ak47FirerateLevel = Math.min(gameState.ak47FirerateLevel, 15);
@@ -703,6 +733,9 @@ function loadGameState() {
         document.getElementById('pistolFirerate-value').textContent = pistolFireRate + 'ms';
         document.getElementById('pistolPotency-value').textContent = formatNumber(pistolPointsPerShot);
         document.getElementById('pistolPPS-value').textContent = formatNumber(pistolPointsPerSecond);
+        document.getElementById('pistolHP-value').textContent = formatNumber(pistolHP);
+        document.getElementById('pistolDamage-value').textContent = formatNumber(pistolDamage);
+        document.getElementById('pistolRange-value').textContent = formatNumber(pistolRange);
 
         document.getElementById('smg-cost').textContent = formatNumber(smgCost);
         document.getElementById('smgFirerate-cost').textContent = formatNumber(smgFirerateUpgradeCost);
@@ -712,6 +745,9 @@ function loadGameState() {
         document.getElementById('smgFirerate-value').textContent = smgFireRate + 'ms';
         document.getElementById('smgPotency-value').textContent = formatNumber(smgPointsPerShot);
         document.getElementById('smgPPS-value').textContent = formatNumber(smgPointsPerSecond);
+        document.getElementById('smgHP-value').textContent = formatNumber(smgHP);
+        document.getElementById('smgDamage-value').textContent = formatNumber(smgDamage);
+        document.getElementById('smgRange-value').textContent = formatNumber(smgRange);
 
         document.getElementById('shotgun-cost').textContent = formatNumber(shotgunCost);
         document.getElementById('shotgunFirerate-cost').textContent = formatNumber(shotgunFirerateUpgradeCost);
@@ -724,6 +760,10 @@ function loadGameState() {
         document.getElementById('shotgunPotency-value').textContent = formatNumber(shotgunPointsPerShot);
         document.getElementById('shotgunMultiFire-value').textContent = shotgunBulletsPerShot;
         document.getElementById('shotgunPPS-value').textContent = formatNumber(shotgunPointsPerSecond);
+        document.getElementById('shotgunHP-value').textContent = formatNumber(shotgunHP);
+        document.getElementById('shotgunDamage-value').textContent = formatNumber(shotgunDamage);
+        document.getElementById('shotgunRange-value').textContent = formatNumber(shotgunRange);
+        document.getElementById('shotgunMultiShot-value').textContent = shotgunBulletsPerShot;
 
         document.getElementById('sniperRifle-cost').textContent = formatNumber(sniperRifleCost);
         document.getElementById('sniperRifleFirerate-cost').textContent = formatNumber(sniperRifleFirerateUpgradeCost);
@@ -739,6 +779,11 @@ function loadGameState() {
         document.getElementById('sniperRifleCriticalChance-value').textContent = sniperRifleCriticalShotChance;
         document.getElementById('sniperRifleCriticalDamage-value').textContent = sniperRifleCriticalDamageMultiplier;
         document.getElementById('sniperRiflePPS-value').textContent = formatNumber(sniperRiflePointsPerSecond);
+        document.getElementById('sniperRifleHP-value').textContent = formatNumber(sniperRifleHP);
+        document.getElementById('sniperRifleDamage-value').textContent = formatNumber(sniperRifleDamage);
+        document.getElementById('sniperRifleRange-value').textContent = formatNumber(sniperRifleRange);
+        document.getElementById('sniperRifleCriticalChance-value-battle').textContent = sniperRifleCriticalShotChance;
+        document.getElementById('sniperRifleCriticalDamage-value-battle').textContent = sniperRifleCriticalDamageMultiplier;
 
         document.getElementById('ak47-cost').textContent = formatNumber(ak47Cost);
         document.getElementById('ak47Firerate-cost').textContent = formatNumber(ak47FirerateUpgradeCost);
@@ -748,6 +793,9 @@ function loadGameState() {
         document.getElementById('ak47Firerate-value').textContent = ak47FireRate + 'ms';
         document.getElementById('ak47Potency-value').textContent = formatNumber(ak47PointsPerShot);
         document.getElementById('ak47PPS-value').textContent = formatNumber(ak47PointsPerSecond);
+        document.getElementById('ak47HP-value').textContent = formatNumber(ak47HP);
+        document.getElementById('ak47Damage-value').textContent = formatNumber(ak47Damage);
+        document.getElementById('ak47Range-value').textContent = formatNumber(ak47Range);
 
         document.getElementById('rocketLauncher-cost').textContent = formatNumber(rocketLauncherCost);
         document.getElementById('rocketLauncherFirerate-cost').textContent = formatNumber(rocketLauncherFirerateUpgradeCost);
@@ -1143,6 +1191,9 @@ function resetProgress() {
         pistolCost = 10;
         pistolPointsPerShot = 1;
         pistolFireRate = 1000;
+        pistolHP = 10;
+        pistolDamage = 1;
+        pistolRange = 6;
         pistolFirerateUpgradeCost = 50;
         pistolPotencyUpgradeCost = 100;
         pistolFirerateLevel = 0;
@@ -1152,6 +1203,9 @@ function resetProgress() {
         smgCost = 100;
         smgPointsPerShot = 1;
         smgFireRate = 200;
+        smgHP = 20;
+        smgDamage = 1;
+        smgRange = 5;
         smgFirerateUpgradeCost = 600;
         smgPotencyUpgradeCost = 1200;
         smgFirerateLevel = 0;
@@ -1161,6 +1215,9 @@ function resetProgress() {
         shotgunCost = 500;
         shotgunPointsPerShot = 4;
         shotgunFireRate = 1500;
+        shotgunHP = 50;
+        shotgunDamage = 2;
+        shotgunRange = 3;
         shotgunBulletsPerShot = 3,
         shotgunFirerateUpgradeCost = 5000;
         shotgunPotencyUpgradeCost = 10000;
@@ -1173,6 +1230,9 @@ function resetProgress() {
         sniperRifleCost = 7500;
         sniperRiflePointsPerShot = 80;
         sniperRifleFireRate = 4000;
+        sniperRifleHP = 30;
+        sniperRifleDamage = 40;
+        sniperRifleRange = 10;
         sniperRifleCriticalShotChance = 25;
         sniperRifleCriticalDamageMultiplier = 2.0;
         sniperRifleFirerateUpgradeCost = 37500;
@@ -1188,6 +1248,9 @@ function resetProgress() {
         ak47Cost = 60000;
         ak47PointsPerShot = 150;
         ak47FireRate = 500;
+        ak47HP = 80;
+        ak47Damage = 75;
+        ak47Range = 7;
         ak47FirerateUpgradeCost = 175000;
         ak47PotencyUpgradeCost = 250000;
         ak47FirerateLevel = 0;

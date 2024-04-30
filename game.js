@@ -2019,9 +2019,6 @@ function updateSelectedWeaponsDisplay() {
                 const option = document.createElement('option');
                 option.value = weapon;
                 option.textContent = weapon.charAt(0).toUpperCase() + weapon.slice(1); // Capitalize first letter
-                if (Object.values(selectedWeapons).includes(weapon)) {
-                    option.disabled = true; // Disable option if already selected
-                }
                 selectionBox.appendChild(option);
             }
         }
@@ -2030,6 +2027,14 @@ function updateSelectedWeaponsDisplay() {
         const selectedWeapon = selectedWeapons[boxId];
         if (selectedWeapon) {
             selectionBox.value = selectedWeapon;
+            // Disable options that are already selected
+            selectionBox.querySelectorAll('option').forEach((option) => {
+                if (Object.values(selectedWeapons).includes(option.value) && option.value !== selectedWeapon) {
+                    option.disabled = true;
+                } else {
+                    option.disabled = false;
+                }
+            });
             // Update the display of weapon stats for the selected weapon
             updateWeaponStatsDisplay(boxId, selectedWeapon);
         }

@@ -2715,9 +2715,9 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
 
 // Function to select a weapon
 function selectWeapon(weaponId) {
-    // Check if the weapon is already selected
-    if (selectedWeapons[weaponId]) {
-        // If the weapon is already selected, do nothing
+    // Check if the weapon is purchased
+    if (!isWeaponPurchased(weaponId)) {
+        // If the weapon is not purchased, do nothing
         return;
     }
 
@@ -2727,11 +2727,22 @@ function selectWeapon(weaponId) {
         return;
     }
 
-    // Add the weapon to the selected weapons
-    selectedWeapons[weaponId] = true;
+    // Add or remove the weapon from the selected weapons
+    if (selectedWeapons[weaponId]) {
+        delete selectedWeapons[weaponId];
+    } else {
+        selectedWeapons[weaponId] = true;
+    }
 
     // Update the display of weapon stats
     updateSelectedWeaponsDisplay();
+}
+
+// Function to check if a weapon is purchased
+function isWeaponPurchased(weaponId) {
+    // Implement your logic to check if the weapon is purchased
+    // For example:
+    // return pistolPurchased && (weaponId === 'pistol');
 }
 
 // Function to update the display of selected weapon stats
@@ -2745,11 +2756,31 @@ function updateSelectedWeaponsDisplay() {
         if (selected) {
             // If the weapon is selected, display its stats
             box.classList.add('selected');
+            displayWeaponStats(weaponId);
         } else {
             // If the weapon is not selected, remove its stats from display
             box.classList.remove('selected');
+            clearWeaponStats(weaponId);
         }
     });
+}
+
+// Function to display weapon stats for the selected weapon
+function displayWeaponStats(weaponId) {
+    // Implement your logic to display weapon stats
+    // For example:
+    // document.getElementById(weaponId + '-hp-display').textContent = 'Pistol HP: ' + pistolHP;
+    // document.getElementById(weaponId + '-damage-display').textContent = 'Pistol Damage: ' + pistolDamage;
+    // Update other stats accordingly
+}
+
+// Function to clear weapon stats when the weapon is deselected
+function clearWeaponStats(weaponId) {
+    // Implement your logic to clear weapon stats
+    // For example:
+    // document.getElementById(weaponId + '-hp-display').textContent = '';
+    // document.getElementById(weaponId + '-damage-display').textContent = '';
+    // Clear other stats accordingly
 }
 
 // Function to get the total number of big upgrades purchased

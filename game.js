@@ -812,6 +812,39 @@ const upgrades = {
             }
         },
         // Add more upgrades for uzi here
+    },
+    huntingRifle: {
+        powerfulHunter: {
+            cost: 35000000000,
+            effect: function() {
+                huntingRiflePointsPerShot *= 2;
+            }
+        },
+        headHunter: {
+            cost: 175000000000,
+            effect: function() {
+                huntingRifleCriticalDamageMultiplier += 0.5; // Increases the critical damage multiplier by 0.5
+            }
+        },
+        noEscape: {
+            cost: 500000000000,
+            effect: function() {
+                huntingRiflePointsPerShot *= 3;
+            }
+        },
+        criminalHunter: {
+            cost: 4000000000000,
+            effect: function() {
+                huntingRiflePointsPerShot *= 3;
+            }
+        },
+        targetHunter: {
+            cost: 35000000000000,
+            effect: function() {
+                huntingRiflePointsPerShot *= 4;
+            }
+        },
+        // Add more upgrades for huntingRifle here
     }
     // Add more weapons and upgrades as needed
 };
@@ -1110,7 +1143,7 @@ function purchase(item) {
             purchaseUpgrade('rocketLauncherPotency', rocketLauncherPotencyLevel, rocketLauncherPotencyUpgradeCost, 1.4, 1000, 'potency');
             break;
         case 'rocketLauncherSplashRadius':
-            purchaseUpgrade('rocketLauncherSplashRadius', rocketLauncherSplashRadiusLevel, rocketLauncherSplashRadiusUpgradeCost, 50, 10, 'splashRadius');
+            purchaseUpgrade('rocketLauncherSplashRadius', rocketLauncherSplashRadiusLevel, rocketLauncherSplashRadiusUpgradeCost, 50, 100, 'splashRadius');
             break;
         case 'rocketLauncherSplashDamage':
             purchaseUpgrade('rocketLauncherSplashDamage', rocketLauncherSplashDamageLevel, rocketLauncherSplashDamageUpgradeCost, 7.5, 0.05, 'splashDamage');
@@ -1754,6 +1787,18 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'huntingRiflePotency':
                 huntingRiflePotencyUpgradeCost = cost;
                 huntingRiflePotencyLevel = level;
+                if (upgrades.huntingRifle.powerfulHunter.bought) {
+                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the powerfulHunter upgrade is purchased
+                }
+                if (upgrades.huntingRifle.noEscape.bought) {
+                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the noEscape upgrade is purchased
+                }
+                if (upgrades.huntingRifle.criminalHunter.bought) {
+                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the criminalHunter upgrade is purchased
+                }
+                if (upgrades.huntingRifle.targetHunter.bought) {
+                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the targetHunter upgrade is purchased
+                }
                 huntingRiflePointsPerShot += valueIncrement;
                 break;
             case 'huntingRifleCriticalShot':
@@ -2310,7 +2355,6 @@ function getTotalSplashDamageUpgrades() {
 function getTotalTouchGunUpgrades() {
     return touchGunLevel + awokenTouchGunLevel + superAwokenTouchGunLevel;
 }
-
 
 // Function to calculate the total number of big upgrades purchased
 function getTotalBigUpgrades() {

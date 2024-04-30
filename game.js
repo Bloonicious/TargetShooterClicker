@@ -2744,12 +2744,15 @@ function updateSelectedWeaponsDisplay() {
         defaultOption.textContent = 'Select Weapon';
         selectionBox.appendChild(defaultOption);
 
-        // Populate options based on purchased weapons
+        // Populate options based on purchased weapons and disable those already selected
         for (const weaponId in weaponPurchased) {
             if (weaponPurchased[weaponId]) {
                 const option = document.createElement('option');
                 option.value = weaponId;
                 option.textContent = weaponId.charAt(0).toUpperCase() + weaponId.slice(1); // Capitalize first letter
+                if (Object.values(selectedWeapons).includes(weaponId)) {
+                    option.disabled = true; // Disable option if already selected
+                }
                 selectionBox.appendChild(option);
             }
         }
@@ -2801,28 +2804,7 @@ function updateSelectedWeaponStatsDisplay() {
 function clearAllWeaponStats() {
     // Iterate over each weapon box and clear its stats
     document.querySelectorAll('.weapon-box').forEach((box) => {
-        const hpDisplay = box.querySelector('.hp-display');
-        const damageDisplay = box.querySelector('.damage-display');
-        const rangeDisplay = box.querySelector('.range-display');
-        const attackRateDisplay = box.querySelector('.attack-rate-display');
-        const dpsDisplay = box.querySelector('.dps-display');
-
-        // Check if displays exist before setting text content
-        if (hpDisplay) {
-            hpDisplay.textContent = '';
-        }
-        if (damageDisplay) {
-            damageDisplay.textContent = '';
-        }
-        if (rangeDisplay) {
-            rangeDisplay.textContent = '';
-        }
-        if (attackRateDisplay) {
-            attackRateDisplay.textContent = '';
-        }
-        if (dpsDisplay) {
-            dpsDisplay.textContent = '';
-        }
+        box.innerHTML = ''; // Clear the box content
     });
 }
 
@@ -2835,28 +2817,14 @@ function displayWeaponStats(weaponId) {
         return;
     }
 
-    const hpDisplay = box.querySelector('.hp-display');
-    const damageDisplay = box.querySelector('.damage-display');
-    const rangeDisplay = box.querySelector('.range-display');
-    const attackRateDisplay = box.querySelector('.attack-rate-display');
-    const dpsDisplay = box.querySelector('.dps-display');
-
-    // Check if displays exist before setting text content
-    if (hpDisplay) {
-        hpDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} HP: ${window[weaponId + 'HP']}`;
-    }
-    if (damageDisplay) {
-        damageDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Damage: ${window[weaponId + 'Damage']}`;
-    }
-    if (rangeDisplay) {
-        rangeDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Range: ${window[weaponId + 'Range']}`;
-    }
-    if (attackRateDisplay) {
-        attackRateDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Firerate: ${window[weaponId + 'FireRate']}`;
-    }
-    if (dpsDisplay) {
-        dpsDisplay.textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} DPS: ${window[weaponId + 'DPS']}`;
-    }
+    // Set inner HTML of the box with weapon stats
+    box.innerHTML = `
+        <div class="hp-display">${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} HP: ${window[weaponId + 'HP']}</div>
+        <div class="damage-display">${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Damage: ${window[weaponId + 'Damage']}</div>
+        <div class="range-display">${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Range: ${window[weaponId + 'Range']}</div>
+        <div class="attack-rate-display">${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Firerate: ${window[weaponId + 'FireRate']}</div>
+        <div class="dps-display">${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} DPS: ${window[weaponId + 'DPS']}</div>
+    `;
 }
 
 // Function to get the total number of big upgrades purchased

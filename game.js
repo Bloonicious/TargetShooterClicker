@@ -2761,6 +2761,12 @@ function updateSelectedWeaponsDisplay() {
         // Clear the options
         selectionBox.innerHTML = '';
 
+        // Add default option "Select Weapon"
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = 'Select Weapon';
+        selectionBox.appendChild(defaultOption);
+
         // Populate options based on purchased weapons
         for (const weaponId in weaponPurchased) {
             if (weaponPurchased[weaponId]) {
@@ -2771,8 +2777,11 @@ function updateSelectedWeaponsDisplay() {
             }
         }
 
-        // Select the currently selected weapon
-        selectionBox.value = Object.keys(selectedWeapons).find(weapon => selectedWeapons[weapon]);
+        // Select the currently selected weapon if any
+        const selectedWeapon = Object.keys(selectedWeapons).find(weapon => selectedWeapons[weapon]);
+        if (selectedWeapon) {
+            selectionBox.value = selectedWeapon;
+        }
     }
 
     // Update the display of weapon stats

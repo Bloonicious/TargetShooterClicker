@@ -2981,6 +2981,7 @@ function updateStatistics() {
 setInterval(updateStatistics, 100);
 // Function to update the battle display nearly instantly
 function updateBattle() {
+    updateSelectedWeaponsDisplay();
     selectWeapon();
 }
 setInterval(updateBattle, 100);

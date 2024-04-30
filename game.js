@@ -2726,6 +2726,11 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     }
 }
 
+// Function to check if a weapon is purchased
+function isWeaponPurchased(weaponId) {
+    return weaponPurchased[weaponId];
+}
+
 // Function to select a weapon
 function selectWeapon(weaponId) {
     // Check if the weapon is purchased and not already selected
@@ -2745,11 +2750,6 @@ function selectWeapon(weaponId) {
 
     // Update the display of weapon stats
     updateSelectedWeaponsDisplay();
-}
-
-// Function to check if a weapon is purchased
-function isWeaponPurchased(weaponId) {
-    return weaponPurchased[weaponId];
 }
 
 // Function to update the display of selected weapon stats

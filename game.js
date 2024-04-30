@@ -210,6 +210,8 @@ let statistics = {
     totalSplashDamageUpgrades: 0
 };
 
+let selectedWeapons = {};
+
 const weaponSFX = {};
 const upgrades = {
     touchGun: {
@@ -2711,27 +2713,54 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     }
 }
 
+// Function to select a weapon
 function selectWeapon(weaponId) {
-    // Disable the selected weapon option in other selection boxes
-    const weaponSelections = document.querySelectorAll('.weapon-selection-grid select');
-    weaponSelections.forEach(select => {
-        const options = select.options;
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].value === weaponId) {
-                options[i].disabled = true;
-            }
-        }
-    });
+    // Toggle the selection status of the weapon
+    if (selectedWeapons[weaponId]) {
+        // If the weapon is already selected, deselect it
+        delete selectedWeapons[weaponId];
+    } else {
+        // If the weapon is not selected, select it
+        selectedWeapons[weaponId] = true;
+    }
 
-    // Show the weapon stats corresponding to the selected weapon
-    const weaponStats = document.querySelectorAll('.weapon-box');
-    weaponStats.forEach(stat => {
-        if (stat.id === `${weaponId}-box`) {
-            stat.style.display = 'block';
+    // Update the display of weapon stats
+    updateSelectedWeaponsDisplay();
+
+    // Save the selected weapons to local storage
+    saveSelectedWeaponsToLocalStorage();
+}
+
+// Function to update the display of selected weapon stats
+function updateSelectedWeaponsDisplay() {
+    // Iterate over each weapon box
+    document.querySelectorAll('.weapon-box').forEach((box) => {
+        const weaponId = box.id.replace('-box', '');
+        const selected = selectedWeapons[weaponId];
+
+        // Update the display based on selection status
+        if (selected) {
+            // If the weapon is selected, display its stats
+            box.classList.add('selected');
         } else {
-            stat.style.display = 'none';
+            // If the weapon is not selected, remove its stats from display
+            box.classList.remove('selected');
         }
     });
+}
+
+// Function to save selected weapons to local storage
+function saveSelectedWeaponsToLocalStorage() {
+    localStorage.setItem('selectedWeapons', JSON.stringify(selectedWeapons));
+}
+
+// Function to load selected weapons from local storage
+function loadSelectedWeaponsFromLocalStorage() {
+    const savedWeapons = JSON.parse(localStorage.getItem('selectedWeapons'));
+    if (savedWeapons) {
+        selectedWeapons = savedWeapons;
+        updateSelectedWeaponsDisplay();
+    }
 }
 
 // Function to get the total number of big upgrades purchased

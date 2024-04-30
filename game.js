@@ -922,6 +922,19 @@ const upgrades = {
     // Add more weapons and upgrades as needed
 };
 
+const weaponPurchased = {
+    pistol: pistolPurchased,
+    smg: smgPurchased,
+    shotgun: shotgunPurchased,
+    sniperRifle: sniperRiflePurchased,
+    ak47: ak47Purchased,
+    rocketLauncher: rocketLauncherPurchased,
+    tommyGun: tommyGunPurchased,
+    doubleBarrel: doubleBarrelPurchased,
+    uzi: uziPurchased,
+    huntingRifle: huntingRiflePurchased
+};
+
 // Function to update points display
 function updatePointsDisplay() {
     const scoreValueMain = document.getElementById('score-value-main');
@@ -2740,7 +2753,7 @@ function selectWeapon(weaponId) {
 
 // Function to check if a weapon is purchased
 function isWeaponPurchased(weaponId) {
-    return pistolPurchased && (weaponId === 'pistol');
+    return weaponPurchased[weaponId];
 }
 
 // Function to update the display of selected weapon stats
@@ -2763,18 +2776,16 @@ function updateSelectedWeaponsDisplay() {
 
 // Function to display weapon stats for the selected weapon
 function displayWeaponStats(weaponId) {
-    document.getElementById(weaponId + '-hp-display').textContent = '${weaponId} HP: ' + ${weaponId}HP;
-    document.getElementById(weaponId + '-damage-display').textContent = '${weaponId} Damage: ' + ${weaponId}Damage;
-    document.getElementById(weaponId + '-range-display').textContent = '${weaponId} Range: ' + ${weaponId}Range;
+    document.getElementById(`${weaponId}-hp-display`).textContent = `${weaponId} HP: ${window[weaponId + 'HP']}`;
+    document.getElementById(`${weaponId}-damage-display`).textContent = `${weaponId} Damage: ${window[weaponId + 'Damage']}`;
+    document.getElementById(`${weaponId}-range-display`).textContent = `${weaponId} Range: ${window[weaponId + 'Range']}`;
 }
 
 // Function to clear weapon stats when the weapon is deselected
 function clearWeaponStats(weaponId) {
-    // Implement your logic to clear weapon stats
-    // For example:
-    // document.getElementById(weaponId + '-hp-display').textContent = '';
-    // document.getElementById(weaponId + '-damage-display').textContent = '';
-    // Clear other stats accordingly
+    document.getElementById(`${weaponId}-hp-display`).textContent = '';
+    document.getElementById(`${weaponId}-damage-display`).textContent = '';
+    document.getElementById(`${weaponId}-range-display`).textContent = '';
 }
 
 // Function to get the total number of big upgrades purchased

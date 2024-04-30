@@ -1472,6 +1472,7 @@ function resetProgress() {
         updatePointsDisplay();
         updateAchievements();
         updateStatistics();
+        updateSelectedWeaponsDisplay();
         saveGameState();
         // Add any other interface updates here
     }

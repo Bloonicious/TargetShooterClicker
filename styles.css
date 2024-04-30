@@ -236,6 +236,12 @@ body {
     border-radius: 5px;
 }
 
+.progress-bar:not(.progress) {
+    background-color: #f8cecc; /* Red progress bar color */
+    height: 10px;
+    border-radius: 5px;
+}
+
 /* CSS for the achievements container */
 #achievements-container {
     position: fixed;
@@ -256,7 +262,7 @@ body {
     font-weight: bold;
 }
 
-/* Adjust the position of the weapon zone if necessary */
+/* Adjust the styles of those buttons if necessary */
 #earn-points-button,
 #progress-settings button,
 .weapon-zone button,
@@ -271,7 +277,6 @@ body {
     transition: background-color 0.3s ease; /* Smooth transition */
 }
 
-/* Adjust the position of the weapon zone if necessary */
 #earn-points-button:hover,
 #progress-settings button:hover,
 .weapon-zone button:hover,

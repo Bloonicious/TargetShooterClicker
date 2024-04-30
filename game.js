@@ -2071,6 +2071,8 @@ function updateWeaponStatsDisplay(boxId, weapon) {
     const weaponHP = document.getElementById(`${weapon}HP-value`);
     const weaponDamage = document.getElementById(`${weapon}Damage-value`);
     const weaponRange = document.getElementById(`${weapon}Range-value`);
+    const weaponAttackRate = document.getElementById(`${weapon}AttackRate-value`);
+    const weaponDPS = document.getElementById(`${weapon}DPS-value`);
 
     // Update the weapon stats display
     if (weaponHP) {
@@ -2081,6 +2083,12 @@ function updateWeaponStatsDisplay(boxId, weapon) {
     }
     if (weaponRange) {
         weaponRange.textContent = formatNumber(weaponRange.textContent);
+    }
+    if (weaponAttackRate) {
+        weaponAttackRate.textContent = formatNumber(weaponAttackRate.textContent);
+    }
+    if (weaponDPS) {
+        weaponDPS.textContent = formatNumber(weaponDPS.textContent);
     }
 
     // Update other weapon stats if needed...

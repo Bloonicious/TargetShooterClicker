@@ -176,7 +176,7 @@ body {
     animation: floatUp 2s ease-out; /* Apply the floatUp animation */
 }
 
-.splashText {
+.floating-text.splashText {
     position: absolute;
     font-family: monospace;
     font-size: 16px;

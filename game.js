@@ -935,6 +935,8 @@ const weaponPurchased = {
     huntingRifle: huntingRiflePurchased
 };
 
+const box = document.getElementById(`${weaponId}-box`);
+
 // Function to update points display
 function updatePointsDisplay() {
     const scoreValueMain = document.getElementById('score-value-main');
@@ -2728,9 +2730,9 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
 
 // Function to select a weapon
 function selectWeapon(weaponId) {
-    // Check if the weapon is purchased
-    if (!isWeaponPurchased(weaponId)) {
-        // If the weapon is not purchased, do nothing
+    // Check if the weapon is purchased and not already selected
+    if (!isWeaponPurchased(weaponId) || Object.values(selectedWeapons).includes(weaponId)) {
+        // If the weapon is not purchased or already selected, do nothing
         return;
     }
 
@@ -2740,12 +2742,8 @@ function selectWeapon(weaponId) {
         return;
     }
 
-    // Add or remove the weapon from the selected weapons
-    if (selectedWeapons[weaponId]) {
-        delete selectedWeapons[weaponId];
-    } else {
-        selectedWeapons[weaponId] = true;
-    }
+    // Add the weapon to the selected weapons
+    selectedWeapons[weaponId] = true;
 
     // Update the display of weapon stats
     updateSelectedWeaponsDisplay();
@@ -2760,32 +2758,56 @@ function isWeaponPurchased(weaponId) {
 function updateSelectedWeaponsDisplay() {
     // Iterate over each weapon selection box
     for (let i = 1; i <= 6; i++) {
-        const weaponId = document.getElementById(`weapon-selection-${i}`).value;
-        const selected = selectedWeapons[weaponId];
+        const selectionBox = document.getElementById(`weapon-selection-${i}`);
+        
+        // Clear the options
+        selectionBox.innerHTML = '';
 
-        // Update the display based on selection status
-        if (selected) {
-            // If the weapon is selected, display its stats
-            displayWeaponStats(weaponId);
-        } else {
-            // If the weapon is not selected, clear its stats from display
-            clearWeaponStats(weaponId);
+        // Populate options based on purchased weapons
+        for (const weaponId in weaponPurchased) {
+            if (weaponPurchased[weaponId]) {
+                const option = document.createElement('option');
+                option.value = weaponId;
+                option.textContent = weaponId.charAt(0).toUpperCase() + weaponId.slice(1); // Capitalize first letter
+                selectionBox.appendChild(option);
+            }
         }
+
+        // Select the currently selected weapon
+        selectionBox.value = Object.keys(selectedWeapons).find(weapon => selectedWeapons[weapon]);
     }
+
+    // Update the display of weapon stats
+    updateSelectedWeaponStatsDisplay();
+}
+
+// Function to update the display of selected weapon stats
+function updateSelectedWeaponStatsDisplay() {
+    // Clear all weapon stats
+    clearAllWeaponStats();
+
+    // Display stats for selected weapons
+    for (const weaponId in selectedWeapons) {
+        displayWeaponStats(weaponId);
+    }
+}
+
+// Function to clear all weapon stats
+function clearAllWeaponStats() {
+    document.querySelectorAll('.weapon-box').forEach((box) => {
+        box.querySelector('.hp-display').textContent = '';
+        box.querySelector('.damage-display').textContent = '';
+        box.querySelector('.range-display').textContent = '';
+        box.querySelector('.attack-rate-display').textContent = '';
+    });
 }
 
 // Function to display weapon stats for the selected weapon
 function displayWeaponStats(weaponId) {
-    document.getElementById(`${weaponId}-hp-display`).textContent = `${weaponId} HP: ${window[weaponId + 'HP']}`;
-    document.getElementById(`${weaponId}-damage-display`).textContent = `${weaponId} Damage: ${window[weaponId + 'Damage']}`;
-    document.getElementById(`${weaponId}-range-display`).textContent = `${weaponId} Range: ${window[weaponId + 'Range']}`;
-}
-
-// Function to clear weapon stats when the weapon is deselected
-function clearWeaponStats(weaponId) {
-    document.getElementById(`${weaponId}-hp-display`).textContent = '';
-    document.getElementById(`${weaponId}-damage-display`).textContent = '';
-    document.getElementById(`${weaponId}-range-display`).textContent = '';
+    box.querySelector('.hp-display').textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} HP: ${window[weaponId + 'HP']}`;
+    box.querySelector('.damage-display').textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Damage: ${window[weaponId + 'Damage']}`;
+    box.querySelector('.range-display').textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Range: ${window[weaponId + 'Range']}`;
+    box.querySelector('.attack-rate-display').textContent = `${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)} Range: ${window[weaponId + 'Range']}`;
 }
 
 // Function to get the total number of big upgrades purchased

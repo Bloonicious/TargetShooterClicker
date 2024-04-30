@@ -300,3 +300,22 @@ body {
     gap: 15px; /* Gap between boxes */
     list-style: none; /* Remove default list styles */
 }
+
+.weapon-selection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.weapon-selection-grid select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.weapon-selection-grid select:focus {
+    outline: none;
+    border-color: dodgerblue;
+}

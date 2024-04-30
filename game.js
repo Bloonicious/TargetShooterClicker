@@ -2726,9 +2726,6 @@ function selectWeapon(weaponId) {
 
     // Update the display of weapon stats
     updateSelectedWeaponsDisplay();
-
-    // Save the selected weapons to local storage
-    saveSelectedWeaponsToLocalStorage();
 }
 
 // Function to update the display of selected weapon stats

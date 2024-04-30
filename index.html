@@ -1138,14 +1138,12 @@
                 <p id="pistol-hp-display">Pistol HP: <span id="pistolHP-value">10</span></p>
                 <p id="pistol-damage-display">Pistol Damage: <span id="pistolDamage-value">1</span></p>
                 <p id="pistol-range-display">Pistol Range: <span id="pistolRange-value">6</span></p>
-                <button onclick="selectWeapon('pistol')">Select Pistol</button>
             </div>
             <div class="weapon-box" id="smg-box">
                 <h2>SMG</h2>
                 <p id="smg-hp-display">SMG HP: <span id="smgHP-value">20</span></p>
                 <p id="smg-damage-display">SMG Damage: <span id="smgDamage-value">1</span></p>
                 <p id="smg-range-display">SMG Range: <span id="smgRange-value">5</span></p>
-                <button onclick="selectWeapon('smg')">Select SMG</button>
             </div>
             <div class="weapon-box" id="shotgun-box">
                 <h2>Shotgun</h2>
@@ -1153,7 +1151,6 @@
                 <p id="shotgun-damage-display">Shotgun Damage: <span id="shotgunDamage-value">2</span></p>
                 <p id="shotgun-range-display">Shotgun Range: <span id="shotgunRange-value">3</span></p>
                 <p id="shotgun-multishot-display">Shotgun Multishot: <span id="shotgunMultiShot-value">3</span></p>
-                <button onclick="selectWeapon('shotgun')">Select Shotgun</button>
             </div>
             <div class="weapon-box" id="sniperRifle-box">
                 <h2>Sniper Rifle</h2>
@@ -1162,14 +1159,12 @@
                 <p id="sniperRifle-range-display">Sniper Rifle Range: <span id="sniperRifleRange-value">10</span></p>
                 <p id="sniperRifle-critical-chance-display">Sniper Rifle Critical Chance: <span id="sniperRifleCriticalChance-value-battle">25</span>%</p>
                 <p id="sniperRifle-critical-damage-display">Sniper Rifle Critical Damage: <span id="sniperRifleCriticalDamage-value-battle">2</span>x</p>
-                <button onclick="selectWeapon('sniperRifle')">Select Sniper Rifle</button>
             </div>
             <div class="weapon-box" id="ak47-box">
                 <h2>AK-47</h2>
                 <p id="ak47-hp-display">AK-47 HP: <span id="ak47HP-value">80</span></p>
                 <p id="ak47-damage-display">AK-47 Damage: <span id="ak47Damage-value">75</span></p>
                 <p id="ak47-range-display">AK-47 Range: <span id="ak47Range-value">7</span></p>
-                <button onclick="selectWeapon('ak47')">Select AK-47</button>
             </div>
             <div class="weapon-box" id="rocketLauncher-box">
                 <h2>Rocket Launcher</h2>
@@ -1178,15 +1173,34 @@
                 <p id="rocketLauncher-range-display">Rocket Launcher Range: <span id="rocketLauncherRange-value">9</span></p>
                 <p id="rocketLauncher-splash-radius-display">Rocket Launcher Splash Radius: <span id="rocketLauncherSplashRadius-value-battle">300</span></p>
                 <p id="rocketLauncher-splash-damage-display">Rocket Launcher Splash Damage: <span id="rocketLauncherSplashDamage-value-battle">0.4</span>x</p>
-                <button onclick="selectWeapon('rocketLauncher')">Select Rocket Launcher</button>
             </div>
             <div class="weapon-box" id="tommyGun-box">
                 <h2>Tommy Gun</h2>
                 <p id="tommyGun-hp-display">Tommy Gun HP: <span id="tommyGunHP-value">120</span></p>
-                <p id="tommyGun-damage-display">Tommy Gun Damage: <span id="tommyGunDamage-value">75</span></p>
+                <p id="tommyGun-damage-display">Tommy Gun Damage: <span id="tommyGunDamage-value">300</span></p>
                 <p id="tommyGun-range-display">Tommy Gun Range: <span id="tommyGunRange-value">7</span></p>
                 <p id="tommyGun-accuracy-display">Tommy Gun Accuracy: <span id="tommyGunAccuracy-value-battle">50</span>%</p>
-                <button onclick="selectWeapon('tommyGun')">Select Tommy Gun</button>
+            </div>
+            <div class="weapon-box" id="doubleBarrel-box">
+                <h2>Double Barrel</h2>
+                <p id="doubleBarrel-hp-display">Double Barrel HP: <span id="doubleBarrelHP-value">250</span></p>
+                <p id="doubleBarrel-damage-display">Double Barrel Damage: <span id="doubleBarrelDamage-value">2000</span></p>
+                <p id="doubleBarrel-range-display">Double Barrel Range: <span id="doubleBarrelRange-value">4</span></p>
+                <p id="doubleBarrel-multishot-display">Double Barrel Multishot: <span id="doubleBarrelMultiShot-value">2</span></p>
+            </div>
+            <div class="weapon-box" id="uzi-box">
+                <h2>Uzi</h2>
+                <p id="uzi-hp-display">Uzi HP: <span id="uziHP-value">300</span></p>
+                <p id="uzi-damage-display">Uzi Damage: <span id="uziDamage-value">1500</span></p>
+                <p id="uzi-range-display">Uzi Range: <span id="uziRange-value">4</span></p>
+            </div>
+            <div class="weapon-box" id="huntingRifle-box">
+                <h2>Hunting Rifle</h2>
+                <p id="huntingRifle-hp-display">Hunting Rifle HP: <span id="huntingRifleHP-value">200</span></p>
+                <p id="huntingRifle-damage-display">Hunting Rifle Damage: <span id="huntingRifleDamage-value">45000</span></p>
+                <p id="huntingRifle-range-display">Hunting Rifle Range: <span id="huntingRifleRange-value">10</span></p>
+                <p id="huntingRifle-critical-chance-display">Hunting Rifle Critical Chance: <span id="huntingRifleCriticalChance-value-battle">40</span>%</p>
+                <p id="huntingRifle-critical-damage-display">Hunting Rifle Critical Damage: <span id="huntingRifleCriticalDamage-value-battle">1.5</span>x</p>
             </div>
         </div>
         <!-- For battle and target shooting mechanisms -->

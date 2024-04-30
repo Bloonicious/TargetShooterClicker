@@ -306,12 +306,14 @@ const upgrades = {
             cost: 1000,
             effect: function() {
                 pistolPointsPerShot *= 2; // Doubles the amount of points per shot
+                pistolDamage *= 2; // Doubles the damage per shot
             }
         },
         largerCalibre: {
             cost: 200000,
             effect: function() {
                 pistolPointsPerShot *= 3; // Triples the amount of points per shot
+                pistolDamage *= 3; // Triples the damage per shot
             }
         },
         easierReloading: {
@@ -324,43 +326,50 @@ const upgrades = {
             cost: 5000000,
             effect: function() {
                 pistolPointsPerShot *= 3; // Triples the amount of points per shot
+                pistolDamage *= 3; // Triples the damage per shot
             }
         },
         metalPiercing: {
             cost: 100000000,
             effect: function() {
                 pistolPointsPerShot *= 4; // Quadruples the amount of points per shot
+                pistolDamage *= 4; // Quadruples the damage per shot
             }
         },
         specializedMechanisms: {
             cost: 3000000000,
             effect: function() {
                 pistolPointsPerShot *= 4; // Quadruples the amount of points per shot
+                pistolDamage *= 4; // Quadruples the damage per shot
             }
         },
         fineTuning: {
             cost: 10000000000,
             effect: function() {
                 pistolPointsPerShot *= 1.5;
+                pistolDamage *= 1.5;
                 pistolFireRate -= 100;
             }
         },
         versatileGunshots: {
             cost: 100000000000,
             effect: function() {
-                pistolPointsPerShot *= 5;
+                pistolPointsPerShot *= 5; // Quintuples the amount of points per shot
+                pistolDamage *= 5; // Quintuples the damage per shot
             }
         },
         empowered: {
             cost: 1000000000000,
             effect: function() {
-                pistolPointsPerShot *= 5;
+                pistolPointsPerShot *= 5; // Quintuples the amount of points per shot
+                pistolDamage *= 5; // Quintuples the damage per shot
             }
         },
         oneHitBullets: {
             cost: 25000000000000,
             effect: function() {
-                pistolPointsPerShot *= 6;
+                pistolPointsPerShot *= 6; // Sextuples the amount of points per shot
+                pistolDamage *= 6; // Sextuples the damage per shot
             }
         },
         // Add more upgrades for pistol here
@@ -370,18 +379,21 @@ const upgrades = {
             cost: 10000,
             effect: function() {
                 smgPointsPerShot *= 2;
+                smgDamage *= 2;
             }
         },
         strongHold: {
             cost: 1500000,
             effect: function() {
                 smgPointsPerShot *= 3;
+                smgDamage *= 3;
             }
         },
         pressureBullets: {
             cost: 22500000,
             effect: function() {
                 smgPointsPerShot *= 3;
+                smgDamage *= 3;
             }
         },
         wickedAimer: {
@@ -394,12 +406,14 @@ const upgrades = {
             cost: 1000000000,
             effect: function() {
                 smgPointsPerShot *= 4;
+                smgDamage *= 4;
             }
         },
         autoAimer: {
             cost: 10000000000,
             effect: function() {
                 smgPointsPerShot *= 4;
+                smgDamage *= 4;
             }
         },
         lightweight: {
@@ -412,18 +426,21 @@ const upgrades = {
             cost: 250000000000,
             effect: function() {
                 smgPointsPerShot *= 5;
+                smgDamage *= 5;
             }
         },
         inescapableBarrage: {
             cost: 2500000000000,
             effect: function() {
                 smgPointsPerShot *= 5;
+                smgDamage *= 5;
             }
         },
         neverMissBarrage: {
             cost: 50000000000000,
             effect: function() {
                 smgPointsPerShot *= 6;
+                smgDamage *= 6;
             }
         },
         // Add more upgrades for smg here
@@ -439,18 +456,21 @@ const upgrades = {
             cost: 7500000,
             effect: function() {
                 shotgunPointsPerShot *= 2;
+                shotgunDamage *= 2;
             }
         },
         devastatingBurst: {
             cost: 200000000,
             effect: function() {
                 shotgunPointsPerShot *= 3;
+                shotgunDamage *= 3;
             }
         },
         megaBurst: {
             cost: 2500000000,
             effect: function() {
                 shotgunPointsPerShot *= 3;
+                shotgunDamage *= 3;
             }
         },
         scattershot: {
@@ -463,24 +483,28 @@ const upgrades = {
             cost: 300000000000,
             effect: function() {
                 shotgunPointsPerShot *= 4;
+                shotgunDamage *= 4;
             }
         },
         omegaBurst: {
             cost: 2000000000000,
             effect: function() {
                 shotgunPointsPerShot *= 4;
+                shotgunDamage *= 4;
             }
         },
         teraBurst: {
             cost: 20000000000000,
             effect: function() {
                 shotgunPointsPerShot *= 5;
+                shotgunDamage *= 5;
             }
         },
         ultimatumBurst: {
             cost: 250000000000000,
             effect: function() {
                 shotgunPointsPerShot *= 5;
+                shotgunDamage *= 5;
             }
         },
         buckshot: {
@@ -502,6 +526,7 @@ const upgrades = {
             cost: 37500000,
             effect: function() {
                 sniperRiflePointsPerShot *= 2;
+                sniperRifleDamage *= 2;
             }
         },
         headShot: {
@@ -514,6 +539,7 @@ const upgrades = {
             cost: 3333000000,
             effect: function() {
                 sniperRiflePointsPerShot *= 3;
+                sniperRifleDamage *= 3;
             }
         },
         luckyShot: {
@@ -526,12 +552,14 @@ const upgrades = {
             cost: 150000000000,
             effect: function() {
                 sniperRiflePointsPerShot *= 3;
+                sniperRifleDamage *= 3;
             }
         },
         infraredScope: {
             cost: 750000000000,
             effect: function() {
                 sniperRiflePointsPerShot *= 2;
+                sniperRifleDamage *= 2;
                 sniperRifleCriticalDamageMultiplier *= 1.5;
             }
         },
@@ -539,18 +567,21 @@ const upgrades = {
             cost: 3000000000000,
             effect: function() {
                 sniperRiflePointsPerShot *= 4;
+                sniperRifleDamage *= 4;
             }
         },
         lethalTracers: {
             cost: 30000000000000,
             effect: function() {
                 sniperRiflePointsPerShot *= 4;
+                sniperRifleDamage *= 4;
             }
         },
         heatseekingSensors: {
             cost: 200000000000000,
             effect: function() {
                 sniperRiflePointsPerShot *= 3;
+                sniperRifleDamage *= 3;
                 sniperRifleCriticalShotChance += 5;
             }
         },
@@ -561,60 +592,70 @@ const upgrades = {
             cost: 12000000,
             effect: function() {
                 ak47PointsPerShot *= 2;
+                ak47Damage *= 2;
             }
         },
         staggeringBullets: {
             cost: 800000000,
             effect: function() {
                 ak47PointsPerShot *= 3;
+                ak47Damage *= 3;
             }
         },
         rippingBullets: {
             cost: 17500000000,
             effect: function() {
                 ak47PointsPerShot *= 3;
+                ak47Damage *= 3;
             }
         },
         vehementBullets: {
             cost: 150000000000,
             effect: function() {
                 ak47PointsPerShot *= 4;
+                ak47Damage *= 4;
             }
         },
         overbearingVelocity: {
             cost: 1500000000000,
             effect: function() {
                 ak47PointsPerShot *= 4;
+                ak47Damage *= 4;
             }
         },
         poweredVelocity: {
             cost: 7500000000000,
             effect: function() {
                 ak47PointsPerShot *= 2;
+                ak47Damage *= 2;
             }
         },
         instantaneousVelocity: {
             cost: 75000000000000,
             effect: function() {
                 ak47PointsPerShot *= 5;
+                ak47Damage *= 5;
             }
         },
         spikyBullets: {
             cost: 750000000000000,
             effect: function() {
                 ak47PointsPerShot *= 5;
+                ak47Damage *= 6;
             }
         },
         ferociousBullets: {
             cost: 10000000000000000,
             effect: function() {
                 ak47PointsPerShot *= 6;
+                ak47Damage *= 6;
             }
         },
         unfathomablePressure: {
             cost: 150000000000000000,
             effect: function() {
                 ak47PointsPerShot *= 6;
+                ak47Damage *= 6;
             }
         },
         // Add more upgrades for ak47 here
@@ -1448,6 +1489,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 1.1 * getTotalTouchGunUpgrades();
                 }
                 pistolPointsPerShot += valueIncrement;
+                pistolDamage += valueIncrement * 0.5;
                 break;
             case 'smgFirerate':
                 if (level <= 10) {
@@ -1487,6 +1529,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 6; // Multiplies valueIncrement by 6 if the neverMissBarrage upgrade is purchased
                 }
                 smgPointsPerShot += valueIncrement;
+                smgDamage += valueIncrement * 0.5;
                 break;
             case 'shotgunFirerate':
                 if (level <= 15) {
@@ -1523,6 +1566,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 5; // Multiplies valueIncrement by 5 if the ultimatumBurst upgrade is purchased
                 }
                 shotgunPointsPerShot += valueIncrement;
+                shotgunDamage += valueIncrement * 0.5;
                 break;
             case 'shotgunMultiFire':
                 shotgunMultiFireUpgradeCost = cost;
@@ -1570,6 +1614,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 3; // Multiplies valueIncrement by 3 if the heatseekingSensors upgrade is purchased
                 }
                 sniperRiflePointsPerShot += valueIncrement;
+                sniperRifleDamage += valueIncrement * 0.5;
                 break;
             case 'sniperRifleCriticalShot':
                 sniperRifleCriticalShotUpgradeCost = cost;
@@ -1628,6 +1673,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 6; // Multiplies valueIncrement by 6 if the unfathomablePressure upgrade is purchased
                 }
                 ak47PointsPerShot += valueIncrement;
+                ak47Damage += valueIncrement * 0.5;
                 break;
             case 'rocketLauncherFirerate':
                 if (level <= 15) {
@@ -1664,6 +1710,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 2; // Multiplies valueIncrement by 2 if the kamikaze upgrade is purchased
                 }
                 rocketLauncherPointsPerShot += valueIncrement;
+                rocketLauncherDamage += valueIncrement * 0.5;
                 break;
             case 'rocketLauncherSplashRadius':
                 if (level <= 5) {
@@ -1718,6 +1765,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 3; // Multiplies valueIncrement by 3 if the unavoidable upgrade is purchased
                 }
                 tommyGunPointsPerShot += valueIncrement;
+                tommyGunDamage += valueIncrement * 0.5;
                 break;
             case 'tommyGunAccuracy':
                 tommyGunAccuracyUpgradeCost = cost;
@@ -1759,6 +1807,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 5; // Multiplies valueIncrement by 5 if the unbearableForce upgrade is purchased
                 }
                 doubleBarrelPointsPerShot += valueIncrement;
+                doubleBarrelDamage += valueIncrement * 0.5;
                 break;
             case 'doubleBarrelMultiFire':
                 doubleBarrelMultiFireUpgradeCost = cost;
@@ -1803,6 +1852,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 4; // Multiplies valueIncrement by 4 if the bulletOverload upgrade is purchased
                 }
                 uziPointsPerShot += valueIncrement;
+                uziDamage += valueIncrement * 0.5;
                 break;
             case 'huntingRifleFirerate':
                 if (level <= 15) {
@@ -1830,6 +1880,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 4; // Multiplies valueIncrement by 4 if the targetHunter upgrade is purchased
                 }
                 huntingRiflePointsPerShot += valueIncrement;
+                huntingRifleDamage += valueIncrement * 0.5;
                 break;
             case 'huntingRifleCriticalShot':
                 huntingRifleCriticalShotUpgradeCost = cost;

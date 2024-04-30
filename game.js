@@ -2814,23 +2814,8 @@ function displayWeaponStats(boxId, weaponId) {
         return;
     }
 
-    // Update the text content of existing HTML elements with weapon stats
-    const hpDisplay = box.querySelector(`#${weaponId}-hp-display span`);
-    if (hpDisplay) {
-        hpDisplay.textContent = window[`${weaponId}HP`];
-    }
-    
-    const damageDisplay = box.querySelector(`#${weaponId}-damage-display span`);
-    if (damageDisplay) {
-        damageDisplay.textContent = window[`${weaponId}Damage`];
-    }
-    
-    const rangeDisplay = box.querySelector(`#${weaponId}-range-display span`);
-    if (rangeDisplay) {
-        rangeDisplay.textContent = window[`${weaponId}Range`];
-    }
-
-    // Add other weapon stats if needed...
+    // The HTML elements within the weapon box already contain the weapon stats
+    // So there's no need to update text content here
 }
 
 // Function to clear all weapon stats

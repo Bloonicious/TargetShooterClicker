@@ -210,7 +210,7 @@ let statistics = {
     totalSplashDamageUpgrades: 0
 };
 
-const selectedWeapons = {};
+let selectedWeapons = {};
 const weaponSFX = {};
 const upgrades = {
     touchGun: {

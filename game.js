@@ -2079,11 +2079,26 @@ function displayWeaponStats(boxId, weaponId) {
         return;
     }
 
-    // Append the contents of the corresponding weapon box
-    const weaponBoxContents = document.getElementById(`${weaponId}-box-contents`);
-    if (weaponBoxContents) {
-        box.appendChild(weaponBoxContents.cloneNode(true));
-    }
+    // Get the weapon stats from the HTML elements
+    const weaponHP = document.getElementById(`${weaponId}HP-value`).textContent;
+    const weaponDamage = document.getElementById(`${weaponId}Damage-value`).textContent;
+    const weaponRange = document.getElementById(`${weaponId}Range-value`).textContent;
+    // Add other weapon stats if needed...
+
+    // Create paragraphs to display the weapon stats
+    const hpDisplay = document.createElement('p');
+    hpDisplay.textContent = `HP: ${weaponHP}`;
+    box.appendChild(hpDisplay);
+
+    const damageDisplay = document.createElement('p');
+    damageDisplay.textContent = `Damage: ${weaponDamage}`;
+    box.appendChild(damageDisplay);
+
+    const rangeDisplay = document.createElement('p');
+    rangeDisplay.textContent = `Range: ${weaponRange}`;
+    box.appendChild(rangeDisplay);
+
+    // Add other weapon stats if needed...
 }
 
 // Function to clear all weapon stats

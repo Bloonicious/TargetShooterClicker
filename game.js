@@ -2660,6 +2660,29 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     }
 }
 
+function selectWeapon(weaponId) {
+    // Disable the selected weapon option in other selection boxes
+    const weaponSelections = document.querySelectorAll('.weapon-selection-grid select');
+    weaponSelections.forEach(select => {
+        const options = select.options;
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].value === weaponId) {
+                options[i].disabled = true;
+            }
+        }
+    });
+
+    // Show the weapon stats corresponding to the selected weapon
+    const weaponStats = document.querySelectorAll('.weapon-box');
+    weaponStats.forEach(stat => {
+        if (stat.id === `${weaponId}-box`) {
+            stat.style.display = 'block';
+        } else {
+            stat.style.display = 'none';
+        }
+    });
+}
+
 // Function to get the total number of big upgrades purchased
 function getTotalBigUpgradesPurchased() {
     // Loop through all upgrade data and count the total number of big upgrades purchased

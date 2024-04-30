@@ -422,11 +422,17 @@ function saveGameState() {
     var gameStateJSON = JSON.stringify(gameState);
 
     localStorage.setItem('gameState', gameStateJSON);
+    localStorage.setItem('selectedWeapons', JSON.stringify(selectedWeapons));
 }
 
 // Function to load the game state from local storage
 function loadGameState() {
     const savedState = JSON.parse(localStorage.getItem('gameState'));
+    const savedWeapons = JSON.parse(localStorage.getItem('selectedWeapons'));
+    if (savedWeapons) {
+        selectedWeapons = savedWeapons;
+        updateSelectedWeaponsDisplay();
+    }
     var gameStateJSON = localStorage.getItem('gameState');
     if (gameStateJSON !== null) {
         var gameState = JSON.parse(gameStateJSON);

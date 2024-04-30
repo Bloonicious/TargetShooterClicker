@@ -271,6 +271,12 @@ function saveGameState() {
         uziTinyRippersBought: upgrades.uzi.tinyRippers.bought,
         uziCircuitousSpreadBought: upgrades.uzi.circuitousSpread.bought,
         uziBulletOverloadBought: upgrades.uzi.bulletOverload.bought,
+
+        huntingRiflePowerfulHunterBought: upgrades.huntingRifle.powerfulHunter.bought,
+        huntingRifleHeadHunterBought: upgrades.huntingRifle.headHunter.bought,
+        huntingRifleNoEscapeBought: upgrades.huntingRifle.noEscape.bought,
+        huntingRifleCriminalHunterBought: upgrades.huntingRifle.criminalHunter.bought,
+        huntingRifleTargetHunterBought: upgrades.huntingRifle.targetHunter.bought,
         
         pistolPurchased: pistolPurchased,
         pistolPointsPerShot: pistolPointsPerShot,
@@ -535,6 +541,12 @@ function loadGameState() {
         upgrades.uzi.tinyRippers.bought = gameState.uziTinyRippersBought;
         upgrades.uzi.circuitousSpread.bought = gameState.uziCircuitousSpreadBought;
         upgrades.uzi.bulletOverload.bought = gameState.uziBulletOverloadBought;
+
+        upgrades.huntingRifle.powerfulHunter.bought = gameState.huntingRiflePowerfulHunterBought;
+        upgrades.huntingRifle.headHunter.bought = gameState.huntingRifleHeadHunterBought;
+        upgrades.huntingRifle.noEscape.bought = gameState.huntingRifleNoEscapeBought;
+        upgrades.huntingRifle.criminalHunter.bought = gameState.huntingRifleCriminalHunterBought;
+        upgrades.huntingRifle.targetHunter.bought = gameState.huntingRifleTargetHunterBought;
         
         pistolPurchased = gameState.pistolPurchased;
         pistolPointsPerShot = gameState.pistolPointsPerShot;
@@ -1120,6 +1132,12 @@ function resetProgress() {
         upgrades.uzi.tinyRippers.bought = false;
         upgrades.uzi.circuitousSpread.bought = false;
         upgrades.uzi.bulletOverload.bought = false;
+
+        upgrades.huntingRifle.powerfulHunter.bought = false;
+        upgrades.huntingRifle.headHunter.bought = false;
+        upgrades.huntingRifle.noEscape.bought = false;
+        upgrades.huntingRifle.criminalHunter.bought = false;
+        upgrades.huntingRifle.targetHunter.bought = false;
         
         pistolPurchased = false;
         pistolCost = 10;

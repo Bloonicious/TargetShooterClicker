@@ -271,12 +271,16 @@ function saveGameState() {
         uziTinyRippersBought: upgrades.uzi.tinyRippers.bought,
         uziCircuitousSpreadBought: upgrades.uzi.circuitousSpread.bought,
         uziBulletOverloadBought: upgrades.uzi.bulletOverload.bought,
+        uziBulletDrizzleBought: upgrades.uzi.bulletDrizzle.bought,
+        uziAlwaysHittingBought: upgrades.uzi.alwaysHitting.bought,
 
         huntingRiflePowerfulHunterBought: upgrades.huntingRifle.powerfulHunter.bought,
         huntingRifleHeadHunterBought: upgrades.huntingRifle.headHunter.bought,
         huntingRifleNoEscapeBought: upgrades.huntingRifle.noEscape.bought,
         huntingRifleCriminalHunterBought: upgrades.huntingRifle.criminalHunter.bought,
         huntingRifleTargetHunterBought: upgrades.huntingRifle.targetHunter.bought,
+        huntingRifleLongTracersBought: upgrades.huntingRifle.longTracers.bought,
+        huntingRifleTitanicTracersBought: upgrades.huntingRifle.titanicTracers.bought,
         
         pistolPurchased: pistolPurchased,
         pistolPointsPerShot: pistolPointsPerShot,
@@ -577,12 +581,16 @@ function loadGameState() {
         upgrades.uzi.tinyRippers.bought = gameState.uziTinyRippersBought;
         upgrades.uzi.circuitousSpread.bought = gameState.uziCircuitousSpreadBought;
         upgrades.uzi.bulletOverload.bought = gameState.uziBulletOverloadBought;
+        upgrades.uzi.bulletDrizzle.bought = gameState.uziBulletDrizzleBought;
+        upgrades.uzi.alwaysHitting.bought = gameState.uziAlwaysHittingBought;
 
         upgrades.huntingRifle.powerfulHunter.bought = gameState.huntingRiflePowerfulHunterBought;
         upgrades.huntingRifle.headHunter.bought = gameState.huntingRifleHeadHunterBought;
         upgrades.huntingRifle.noEscape.bought = gameState.huntingRifleNoEscapeBought;
         upgrades.huntingRifle.criminalHunter.bought = gameState.huntingRifleCriminalHunterBought;
         upgrades.huntingRifle.targetHunter.bought = gameState.huntingRifleTargetHunterBought;
+        upgrades.huntingRifle.longTracers.bought = gameState.huntingRifleLongTracersBought;
+        upgrades.huntingRifle.titanicTracers.bought = gameState.huntingRifleTitanicTracersBought;
         
         pistolPurchased = gameState.pistolPurchased;
         pistolPointsPerShot = gameState.pistolPointsPerShot;
@@ -1262,12 +1270,16 @@ function resetProgress() {
         upgrades.uzi.tinyRippers.bought = false;
         upgrades.uzi.circuitousSpread.bought = false;
         upgrades.uzi.bulletOverload.bought = false;
+        upgrades.uzi.bulletDrizzle.bought = false;
+        upgrades.uzi.alwaysHitting.bought = false;
 
         upgrades.huntingRifle.powerfulHunter.bought = false;
         upgrades.huntingRifle.headHunter.bought = false;
         upgrades.huntingRifle.noEscape.bought = false;
         upgrades.huntingRifle.criminalHunter.bought = false;
         upgrades.huntingRifle.targetHunter.bought = false;
+        upgrades.huntingRifle.longTracers.bought = false;
+        upgrades.huntingRifle.titanicTracers.bought = false;
         
         pistolPurchased = false;
         pistolCost = 10;
@@ -1310,7 +1322,7 @@ function resetProgress() {
         
         sniperRiflePurchased = false;
         sniperRifleCost = 7500;
-        sniperRiflePointsPerShot = 80;
+        sniperRiflePointsPerShot = 120;
         sniperRifleFireRate = 4000;
         sniperRifleHP = 30;
         sniperRifleDamage = 40;
@@ -1394,20 +1406,20 @@ function resetProgress() {
         uziHP = 300;
         uziDamage = 1500;
         uziRange = 4;
-        uziFirerateUpgradeCost = 2500000000;
-        uziPotencyUpgradeCost = 2000000000;
+        uziFirerateUpgradeCost = 1500000000;
+        uziPotencyUpgradeCost = 1000000000;
         uziFirerateLevel = 0;
         uziPotencyLevel = 0;
 
         huntingRiflePurchased = false;
         huntingRifleCost = 1250000000;
-        huntingRiflePointsPerShot = 90000;
+        huntingRiflePointsPerShot = 180000;
         huntingRifleFireRate = 3000;
         huntingRifleHP = 200;
         huntingRifleDamage = 45000;
         huntingRifleRange = 10;
-        huntingRifleFirerateUpgradeCost = 15000000000;
-        huntingRiflePotencyUpgradeCost = 10000000000;
+        huntingRifleFirerateUpgradeCost = 8000000000;
+        huntingRiflePotencyUpgradeCost = 6000000000;
         huntingRifleCriticalShotUpgradeCost = 20000000000;
         huntingRifleCriticalDamageUpgradeCost = 30000000000;
         huntingRifleCriticalShotChance = 40;

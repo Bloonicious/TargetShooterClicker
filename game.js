@@ -46,10 +46,10 @@ let shotgunPotencyLevel = 0;
 let shotgunMultiFireLevel = 0;
 
 let sniperRifleCost = 7500;
-let sniperRiflePointsPerShot = 80;
+let sniperRiflePointsPerShot = 120;
 let sniperRifleFireRate = 4000; // in milliseconds
 let sniperRifleHP = 30;
-let sniperRifleDamage = 40;
+let sniperRifleDamage = 60;
 let sniperRifleRange = 10;
 let sniperRifleFirerateUpgradeCost = 37500;
 let sniperRiflePotencyUpgradeCost = 75000;
@@ -125,19 +125,19 @@ let uziFireRate = 75; // in milliseconds
 let uziHP = 300;
 let uziDamage = 1500;
 let uziRange = 4;
-let uziFirerateUpgradeCost = 2500000000;
-let uziPotencyUpgradeCost = 2000000000;
+let uziFirerateUpgradeCost = 1500000000;
+let uziPotencyUpgradeCost = 1000000000;
 let uziFirerateLevel = 0;
 let uziPotencyLevel = 0;
 
 let huntingRifleCost = 1250000000;
-let huntingRiflePointsPerShot = 90000;
+let huntingRiflePointsPerShot = 180000;
 let huntingRifleFireRate = 3000; // in milliseconds
 let huntingRifleHP = 200;
-let huntingRifleDamage = 45000;
+let huntingRifleDamage = 90000;
 let huntingRifleRange = 10;
-let huntingRifleFirerateUpgradeCost = 15000000000;
-let huntingRiflePotencyUpgradeCost = 10000000000;
+let huntingRifleFirerateUpgradeCost = 8000000000;
+let huntingRiflePotencyUpgradeCost = 6000000000;
 let huntingRifleCriticalShotUpgradeCost = 20000000000;
 let huntingRifleCriticalDamageUpgradeCost = 30000000000;
 let huntingRifleCriticalShotChance = 40; // 40% chance for a "Critical Shot" for increased points
@@ -666,6 +666,7 @@ const upgrades = {
             cost: 150000000,
             effect: function() {
                 rocketLauncherPointsPerShot *= 2;
+                rocketLauncherDamage *= 2;
             }
         },
         violentExplosions: {
@@ -678,6 +679,7 @@ const upgrades = {
             cost: 15000000000,
             effect: function() {
                 rocketLauncherPointsPerShot *= 3;
+                rocketLauncherDamage *= 3;
             }
         },
         biggerExplosions: {
@@ -690,18 +692,21 @@ const upgrades = {
             cost: 500000000000,
             effect: function() {
                 rocketLauncherPointsPerShot *= 3;
+                rocketLauncherDamage *= 3;
             }
         },
         shatteringExplosions: {
             cost: 5000000000000,
             effect: function() {
                 rocketLauncherPointsPerShot *= 4;
+                rocketLauncherDamage *= 4;
             }
         },
         napalmRockets: {
             cost: 40000000000000,
             effect: function() {
                 rocketLauncherPointsPerShot *= 4;
+                rocketLauncherDamage *= 4;
             }
         },
         impulsiveExplosions: {
@@ -714,12 +719,14 @@ const upgrades = {
             cost: 1000000000000000,
             effect: function() {
                 rocketLauncherPointsPerShot *= 5;
+                rocketLauncherDamage *= 5;
             }
         },
         kamikaze: {
             cost: 5000000000000000,
             effect: function() {
                 rocketLauncherPointsPerShot *= 2;
+                rocketLauncherDamage *= 2;
                 rocketLauncherSplashRadius += 100;
             }
         },
@@ -736,6 +743,7 @@ const upgrades = {
             cost: 2500000000,
             effect: function() {
                 tommyGunPointsPerShot *= 2;
+                tommyGunDamage *= 2;
             }
         },
         lessPunishing: {
@@ -748,42 +756,49 @@ const upgrades = {
             cost: 62500000000,
             effect: function() {
                 tommyGunPointsPerShot *= 3;
+                tommyGunDamage *= 3;
             }
         },
         vehementBurst: {
             cost: 750000000000,
             effect: function() {
                 tommyGunPointsPerShot *= 3;
+                tommyGunDamage *= 3;
             }
         },
         theVector: {
             cost: 6000000000000,
             effect: function() {
                 tommyGunPointsPerShot *= 4;
+                tommyGunDamage *= 4;
             }
         },
         dangerZone: {
             cost: 45000000000000,
             effect: function() {
                 tommyGunPointsPerShot *= 4;
+                tommyGunDamage *= 4;
             }
         },
         dischargedRippers: {
             cost: 300000000000000,
             effect: function() {
                 tommyGunPointsPerShot *= 5;
+                tommyGunDamage *= 5;
             }
         },
         unstoppableBarrage: {
             cost: 3000000000000000,
             effect: function() {
                 tommyGunPointsPerShot *= 5;
+                tommyGunDamage *= 5;
             }
         },
         unavoidable: {
             cost: 20000000000000000,
             effect: function() {
                 tommyGunPointsPerShot *= 3;
+                tommyGunDamage *= 3;
                 tommyGunInaccuracyChance -= 10;
             }
         },
@@ -794,12 +809,14 @@ const upgrades = {
             cost: 1000000000,
             effect: function() {
                 doubleBarrelPointsPerShot *= 2;
+                doubleBarrelDamage *= 2;
             }
         },
         arcSwitchingBarrels: {
             cost: 10000000000,
             effect: function() {
                 doubleBarrelPointsPerShot *= 3;
+                doubleBarrelDamage *= 3;
             }
         },
         doubleTrouble: {
@@ -812,6 +829,7 @@ const upgrades = {
             cost: 1500000000000,
             effect: function() {
                 doubleBarrelPointsPerShot *= 3;
+                doubleBarrelDamage *= 3;
             }
         },
         doubleSwarm: {
@@ -824,24 +842,28 @@ const upgrades = {
             cost: 200000000000000,
             effect: function() {
                 doubleBarrelPointsPerShot *= 4;
+                doubleBarrelDamage *= 4;
             }
         },
         tightShots: {
             cost: 1500000000000000,
             effect: function() {
                 doubleBarrelPointsPerShot *= 4;
+                doubleBarrelDamage *= 4;
             }
         },
         heavyForce: {
             cost: 15000000000000000,
             effect: function() {
                 doubleBarrelPointsPerShot *= 5;
+                doubleBarrelDamage *= 5;
             }
         },
         unbearableForce: {
             cost: 125000000000000000,
             effect: function() {
                 doubleBarrelPointsPerShot *= 5;
+                doubleBarrelDamage *= 5;
             }
         },
         doubleYeah: {
@@ -857,30 +879,49 @@ const upgrades = {
             cost: 7500000000,
             effect: function() {
                 uziPointsPerShot *= 2;
+                uziDamage *= 2;
             }
         },
         quickfiringSalvo: {
             cost: 60000000000,
             effect: function() {
                 uziPointsPerShot *= 3;
+                uziDamage *= 3;
             }
         },
         tinyRippers: {
             cost: 400000000000,
             effect: function() {
                 uziPointsPerShot *= 3;
+                uziDamage *= 3;
             }
         },
         circuitousSpread: {
             cost: 4500000000000,
             effect: function() {
                 uziPointsPerShot *= 4;
+                uziDamage *= 4;
             }
         },
         bulletOverload: {
             cost: 50000000000000,
             effect: function() {
                 uziPointsPerShot *= 4;
+                uziDamage *= 4;
+            }
+        },
+        bulletDrizzle: {
+            cost: 250000000000000,
+            effect: function() {
+                uziPointsPerShot *= 2;
+                uziDamage *= 2;
+            }
+        },
+        alwaysHitting: {
+            cost: 2500000000000000,
+            effect: function() {
+                uziPointsPerShot *= 5;
+                uziDamage *= 5;
             }
         },
         // Add more upgrades for uzi here
@@ -890,6 +931,7 @@ const upgrades = {
             cost: 35000000000,
             effect: function() {
                 huntingRiflePointsPerShot *= 2;
+                huntingRifleDamage *= 2;
             }
         },
         headHunter: {
@@ -902,18 +944,37 @@ const upgrades = {
             cost: 500000000000,
             effect: function() {
                 huntingRiflePointsPerShot *= 3;
+                huntingRifleDamage *= 3;
             }
         },
         criminalHunter: {
             cost: 4000000000000,
             effect: function() {
                 huntingRiflePointsPerShot *= 3;
+                huntingRifleDamage *= 3;
             }
         },
         targetHunter: {
             cost: 35000000000000,
             effect: function() {
                 huntingRiflePointsPerShot *= 4;
+                huntingRifleDamage *= 4;
+            }
+        },
+        longTracers: {
+            cost: 225000000000000,
+            effect: function() {
+                huntingRiflePointsPerShot *= 4;
+                huntingRifleDamage *= 4;
+            }
+        },
+        titanicTracers: {
+            cost: 1750000000000000,
+            effect: function() {
+                huntingRiflePointsPerShot *= 2;
+                huntingRifleDamage *= 2;
+                huntingRifleCriticalDamageMultiplier *= 2;
+                huntingRifleCriticalShotChance -= 5;
             }
         },
         // Add more upgrades for huntingRifle here
@@ -1207,7 +1268,7 @@ function purchase(item) {
             purchaseUpgrade('sniperRifleFirerate', sniperRifleFirerateLevel, sniperRifleFirerateUpgradeCost, 2, -200, 'firerate');
             break;
         case 'sniperRiflePotency':
-            purchaseUpgrade('sniperRiflePotency', sniperRiflePotencyLevel, sniperRiflePotencyUpgradeCost, 1.4, 80, 'potency');
+            purchaseUpgrade('sniperRiflePotency', sniperRiflePotencyLevel, sniperRiflePotencyUpgradeCost, 1.4, 120, 'potency');
             break;
         case 'sniperRifleCriticalShot':
             purchaseUpgrade('sniperRifleCriticalShot', sniperRifleCriticalShotLevel, sniperRifleCriticalShotUpgradeCost, 3, 2, 'criticalShotChance');
@@ -1261,7 +1322,7 @@ function purchase(item) {
             purchaseUpgrade('huntingRifleFirerate', huntingRifleFirerateLevel, huntingRifleFirerateUpgradeCost, 1.8, -100, 'firerate');
             break;
         case 'huntingRiflePotency':
-            purchaseUpgrade('huntingRiflePotency', huntingRiflePotencyLevel, huntingRiflePotencyUpgradeCost, 1.4, 90000, 'potency');
+            purchaseUpgrade('huntingRiflePotency', huntingRiflePotencyLevel, huntingRiflePotencyUpgradeCost, 1.4, 180000, 'potency');
             break;
         case 'huntingRifleCriticalShot':
             purchaseUpgrade('huntingRifleCriticalShot', huntingRifleCriticalShotLevel, huntingRifleCriticalShotUpgradeCost, 3.5, 2, 'criticalShotChance');
@@ -1866,6 +1927,12 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.uzi.bulletOverload.bought) {
                     valueIncrement *= 4; // Multiplies valueIncrement by 4 if the bulletOverload upgrade is purchased
                 }
+                if (upgrades.uzi.bulletDrizzle.bought) {
+                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the bulletDrizzle upgrade is purchased
+                }
+                if (upgrades.uzi.alwaysHitting.bought) {
+                    valueIncrement *= 5; // Multiplies valueIncrement by 5 if the alwaysHitting upgrade is purchased
+                }
                 uziPointsPerShot += valueIncrement;
                 uziDamage += valueIncrement * 0.5;
                 break;
@@ -1894,6 +1961,12 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.huntingRifle.targetHunter.bought) {
                     valueIncrement *= 4; // Multiplies valueIncrement by 4 if the targetHunter upgrade is purchased
                 }
+                if (upgrades.huntingRifle.longTracers.bought) {
+                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the longTracers upgrade is purchased
+                }
+                if (upgrades.huntingRifle.titanicTracers.bought) {
+                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the titanicTracers upgrade is purchased
+                }
                 huntingRiflePointsPerShot += valueIncrement;
                 huntingRifleDamage += valueIncrement * 0.5;
                 break;
@@ -1905,6 +1978,9 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'huntingRifleCriticalDamage':
                 huntingRifleCriticalDamageUpgradeCost = cost;
                 huntingRifleCriticalDamageLevel = level;
+                if (upgrades.huntingRifle.titanicTracers.bought) {
+                    valueIncrement *= 2;
+                }
                 huntingRifleCriticalDamageMultiplier += valueIncrement;
                 break;
             default:

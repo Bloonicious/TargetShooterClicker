@@ -2081,41 +2081,7 @@ function updateSelectedWeaponsDisplay(weapon) {
     }
 
     // Set the purchased status of the weapon
-    switch (weapon) {
-        case 'pistol':
-            pistolPurchased = true;
-            break;
-        case 'smg':
-            smgPurchased = true;
-            break;
-        case 'shotgun':
-            shotgunPurchased = true;
-            break;
-        case 'sniperRifle':
-            sniperRiflePurchased = true;
-            break;
-        case 'ak47':
-            ak47Purchased = true;
-            break;
-        case 'rocketLauncher':
-            rocketLauncherPurchased = true;
-            break;
-        case 'tommyGun':
-            tommyGunPurchased = true;
-            break;
-        case 'doubleBarrel':
-            doubleBarrelPurchased = true;
-            break;
-        case 'uzi':
-            uziPurchased = true;
-            break;
-        case 'huntingRifle':
-            huntingRiflePurchased = true;
-            break;
-        default:
-            console.error("Invalid weapon:", weapon);
-            return;
-    }
+    weaponPurchased[weapon] = true;
 
     // Iterate over each weapon selection box
     const selectionBoxes = document.querySelectorAll('.weapon-slot');
@@ -2185,29 +2151,25 @@ function updateWeaponStatsDisplay(boxId, weapon) {
         return;
     }
 
-    // Get the weapon stats from the HTML elements
-    const weaponHP = document.getElementById(`${weapon}HP-value`);
-    const weaponDamage = document.getElementById(`${weapon}Damage-value`);
-    const weaponRange = document.getElementById(`${weapon}Range-value`);
-    const weaponAttackRate = document.getElementById(`${weapon}AttackRate-value`);
-    const weaponDPS = document.getElementById(`${weapon}DPS-value`);
+    // Get the weapon stats elements
+    const currentHP = document.getElementById(`${weapon}HP-value`);
+    const currentDamage = document.getElementById(`${weapon}Damage-value`);
+    const currentRange = document.getElementById(`${weapon}Range-value`);
+    const currentAttackRate = document.getElementById(`${weapon}AttackRate-value`);
+    const currentDPS = document.getElementById(`${weapon}DPS-value`);
+
+    // Check if weapon stats elements exist
+    if (!currentHP || !currentDamage || !currentRange || !currentAttackRate || !currentDPS) {
+        console.error(`One or more weapon stats elements for ${weapon} are missing.`);
+        return;
+    }
 
     // Update the weapon stats display
-    if (weaponHP) {
-        weaponHP.textContent = formatNumber(weaponHP.textContent);
-    }
-    if (weaponDamage) {
-        weaponDamage.textContent = formatNumber(weaponDamage.textContent);
-    }
-    if (weaponRange) {
-        weaponRange.textContent = formatNumber(weaponRange.textContent);
-    }
-    if (weaponAttackRate) {
-        weaponAttackRate.textContent = formatNumber(weaponAttackRate.textContent);
-    }
-    if (weaponDPS) {
-        weaponDPS.textContent = formatNumber(weaponDPS.textContent);
-    }
+    currentHP.textContent = formatNumber(parseFloat(currentHP.textContent));
+    currentDamage.textContent = formatNumber(parseFloat(currentDamage.textContent));
+    currentRange.textContent = formatNumber(parseFloat(currentRange.textContent));
+    currentAttackRate.textContent = formatNumber(parseFloat(currentAttackRate.textContent));
+    currentDPS.textContent = formatNumber(parseFloat(currentDPS.textContent));
 
     // Update other weapon stats if needed...
 }

@@ -301,13 +301,13 @@ body {
     list-style: none; /* Remove default list styles */
 }
 
-.weapon-slot-grid {
+.weapon-selection-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
-.weapon-slot-grid select {
+.weapon-selection-grid select {
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -315,20 +315,20 @@ body {
     border-radius: 5px;
 }
 
-.weapon-slot-grid select:focus {
+.weapon-selection-grid select:focus {
     outline: none;
     border-color: dodgerblue;
 }
 
-.weapon-box {
+.weapon-selection {
     display: none;
 }
 
-.weapon-box h2 {
+.weapon-selection h2 {
     font-size: 20px;
     margin-bottom: 10px;
 }
 
-.weapon-box p {
+.weapon-selection p {
     margin: 5px 0;
 }

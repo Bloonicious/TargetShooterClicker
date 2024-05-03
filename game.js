@@ -2073,7 +2073,50 @@ function isWeaponPurchased(weapon) {
 }
 
 // Function to update the display of selected weapon stats
-function updateSelectedWeaponsDisplay() {
+function updateSelectedWeaponsDisplay(weapon) {
+    // Ensure that the weapon is valid
+    if (!weaponPurchased.hasOwnProperty(weapon)) {
+        console.error("Invalid weapon:", weapon);
+        return;
+    }
+
+    // Set the purchased status of the weapon
+    switch (weapon) {
+        case 'pistol':
+            pistolPurchased = true;
+            break;
+        case 'smg':
+            smgPurchased = true;
+            break;
+        case 'shotgun':
+            shotgunPurchased = true;
+            break;
+        case 'sniperRifle':
+            sniperRiflePurchased = true;
+            break;
+        case 'ak47':
+            ak47Purchased = true;
+            break;
+        case 'rocketLauncher':
+            rocketLauncherPurchased = true;
+            break;
+        case 'tommyGun':
+            tommyGunPurchased = true;
+            break;
+        case 'doubleBarrel':
+            doubleBarrelPurchased = true;
+            break;
+        case 'uzi':
+            uziPurchased = true;
+            break;
+        case 'huntingRifle':
+            huntingRiflePurchased = true;
+            break;
+        default:
+            console.error("Invalid weapon:", weapon);
+            return;
+    }
+
     // Iterate over each weapon selection box
     const selectionBoxes = document.querySelectorAll('.weapon-slot');
     selectionBoxes.forEach((selectionBox) => {
@@ -2091,7 +2134,7 @@ function updateSelectedWeaponsDisplay() {
 
         // Populate options based on purchased weapons
         for (const weapon in weaponPurchased) {
-            if (isWeaponPurchased(weapon)) {
+            if (weaponPurchased[weapon]) {
                 const option = document.createElement('option');
                 option.value = weapon;
                 option.textContent = weapon.charAt(0).toUpperCase() + weapon.slice(1); // Capitalize first letter
@@ -2115,6 +2158,9 @@ function updateSelectedWeaponsDisplay() {
             updateWeaponStatsDisplay(boxId, selectedWeapon);
         }
     });
+
+    // Log successful purchase
+    console.log(`${weapon} purchased successfully.`);
 }
 
 // Function to handle selecting a weapon

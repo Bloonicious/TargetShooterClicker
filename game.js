@@ -1,4 +1,22 @@
 // Define variables for weapons, points, and upgrades
+// Load and parse JSON data for weapons
+fetch('config/weapons.json')
+  .then(response => response.json())
+  .then(data => {
+    const weapons = data.weapons;
+    // Use weapons data as needed
+  })
+  .catch(error => console.error('Error loading weapons data:', error));
+
+// Load and parse JSON data for enemies
+fetch('config/enemies.json')
+  .then(response => response.json())
+  .then(data => {
+    const enemies = data.enemies;
+    // Use enemies data as needed
+  })
+  .catch(error => console.error('Error loading enemies data:', error));
+
 let touchGunCost = 100;
 let touchGunPointsPerClick = 1;
 let touchGunLevel = 0;
@@ -1021,144 +1039,48 @@ function earnPoints() {
     updatePointsDisplay();
 }
 
-// Function to handle automatic points generation for purchased weapons
 function automaticPointsGeneration() {
-    if (pistolPurchased) {
-        setInterval(function() {
-            const currentTime = Date.now();
-            if (currentTime - lastPistolPointsTime >= pistolFireRate) {
-                // Calculate points per shot
-                let pointsPerShot = pistolPointsPerShot;
-                shoot('pistol', pointsPerShot, false, false);
-                lastPistolPointsTime = currentTime;
-            }
-        }, 100); // Check every 100 milliseconds for points generation
-    }
-    if (smgPurchased) {
-        setInterval(function() {
-            const currentTime = Date.now();
-            if (currentTime - lastSMGPointsTime >= smgFireRate) {
-                // Calculate points per shot
-                let pointsPerShot = smgPointsPerShot;
-                shoot('smg', pointsPerShot, false, false);
-                lastSMGPointsTime = currentTime;
-            }
-        }, 100); // Check every 100 milliseconds for points generation
-    }
-    if (shotgunPurchased) {
-        setInterval(function() {
-            const currentTime = Date.now();
-            if (currentTime - lastShotgunPointsTime >= shotgunFireRate) {
-                // Calculate points per shot
-                let pointsPerShot = shotgunPointsPerShot * shotgunBulletsPerShot;
-                shoot('shotgun', pointsPerShot, false, false);
-                lastShotgunPointsTime = currentTime;
-            }
-        }, 100); // Check every 100 milliseconds for points generation
-    }
-    if (sniperRiflePurchased) {
-        setInterval(function() {
-            const currentTime = Date.now();
-            if (currentTime - lastSniperRiflePointsTime >= sniperRifleFireRate) {
-                // Calculate points per shot
-                let pointsPerShot = sniperRiflePointsPerShot;
-                let critical = false;
+    weapons.forEach(weapon => {
+        if (weapon.purchased) {
+            setInterval(function() {
+                const currentTime = Date.now();
+                if (currentTime - lastPointsTime[weapon.id] >= weapon.stats.fireRate) {
+                    // Calculate points per shot
+                    let pointsPerShot = weapon.stats.pointsPerShot;
+                    let critical = false;
+                    let miss = false;
 
-                // For sniper rifle, check for critical hit
-                const criticalChance = Math.min(100, 25 + sniperRifleCriticalShotLevel * 2);
-                if (criticalChance >= Math.random() * 100) {
-                    // Critical shot
-                    pointsPerShot *= sniperRifleCriticalDamageMultiplier;
-                    critical = true;
-                }
-                shoot('sniperRifle', pointsPerShot, critical, false);
-                lastSniperRiflePointsTime = currentTime;
-            }
-        }, 100); // Check every 100 milliseconds for points generation
-    }
-    if (ak47Purchased) {
-        setInterval(function() {
-            const currentTime = Date.now();
-            if (currentTime - lastAK47PointsTime >= ak47FireRate) {
-                // Calculate points per shot
-                let pointsPerShot = ak47PointsPerShot;
-                shoot('ak47', pointsPerShot, false, false);
-                lastAK47PointsTime = currentTime;
-            }
-        }, 100); // Check every 100 milliseconds for points generation
-    }
-    if (rocketLauncherPurchased) {
-        setInterval(function() {
-            const currentTime = Date.now();
-            if (currentTime - lastRocketLauncherPointsTime >= rocketLauncherFireRate) {
-                // Calculate points per shot
-                let pointsPerShot = rocketLauncherPointsPerShot;
-                shoot('rocketLauncher', pointsPerShot, false, false);
-                lastRocketLauncherPointsTime = currentTime;
-            }
-        }, 100); // Check every 100 milliseconds for points generation
-    }
-    if (tommyGunPurchased) {
-        setInterval(function() {
-            const currentTime = Date.now();
-            if (currentTime - lastTommyGunPointsTime >= tommyGunFireRate) {
-                // Calculate points per shot
-                let pointsPerShot = tommyGunPointsPerShot;
-                let miss = false;
-                // Check for miss based on inaccuracy chance
-                const inaccuracyChance = Math.min(100, 50 + tommyGunAccuracyLevel * -2);
-                if (inaccuracyChance >= Math.random() * 100) {
-                    // Apply inaccuracy penalty if missed
-                    pointsPerShot *= tommyGunAccuracyPenalty; // 50% less points for inaccurate shots
-                    miss = true;
-                }
-                shoot('tommyGun', pointsPerShot, false, miss); // Pass 'miss' to indicate if the shot missed
-                lastTommyGunPointsTime = currentTime;
-            }
-        }, 100); // Check every 100 milliseconds for points generation
-    }
-    if (doubleBarrelPurchased) {
-        setInterval(function() {
-            const currentTime = Date.now();
-            if (currentTime - lastDoubleBarrelPointsTime >= doubleBarrelFireRate) {
-                // Calculate points per shot
-                let pointsPerShot = doubleBarrelPointsPerShot * doubleBarrelBulletsPerShot;
-                shoot('doubleBarrel', pointsPerShot, false, false);
-                lastDoubleBarrelPointsTime = currentTime;
-            }
-        }, 100); // Check every 100 milliseconds for points generation
-    }
-    if (uziPurchased) {
-        setInterval(function() {
-            const currentTime = Date.now();
-            if (currentTime - lastUziPointsTime >= uziFireRate) {
-                // Calculate points per shot
-                let pointsPerShot = uziPointsPerShot;
-                shoot('uzi', pointsPerShot, false, false);
-                lastUziPointsTime = currentTime;
-            }
-        }, 100); // Check every 100 milliseconds for points generation
-    }
-    if (huntingRiflePurchased) {
-        setInterval(function() {
-            const currentTime = Date.now();
-            if (currentTime - lastHuntingRiflePointsTime >= huntingRifleFireRate) {
-                // Calculate points per shot
-                let pointsPerShot = huntingRiflePointsPerShot;
-                let critical = false;
+                    // For sniper rifles, check for critical hit
+                    if (weapon.id === 'sniperRifle') {
+                        const criticalChance = Math.min(100, 25 + weapons.sniperRifle.stats.criticalChance);
+                        if (criticalChance >= Math.random() * 100) {
+                            // Critical shot
+                            pointsPerShot *= weapons.sniperRifle.stats.criticalDamage;
+                            critical = true;
+                        }
+                    }
 
-                // For sniper rifle, check for critical hit
-                const criticalChance = Math.min(100, 40 + huntingRifleCriticalShotLevel * 2);
-                if (criticalChance >= Math.random() * 100) {
-                    // Critical shot
-                    pointsPerShot *= huntingRifleCriticalDamageMultiplier;
-                    critical = true;
+                    // For shotguns, adjust points per shot based on bullets per shot
+                    if (weapon.id === 'shotgun' || weapon.id === 'doubleBarrel') {
+                        pointsPerShot *= weapon.stats.bulletsPerShot;
+                    }
+
+                    // For tommy gun, check for missed shots
+                    if (weapon.id === 'tommyGun') {
+                        const inaccuracyChance = Math.min(100, 50 + weapons.tommyGun.stats.inaccuracyPenalty);
+                        if (inaccuracyChance >= Math.random() * 100) {
+                            // Missed shot
+                            pointsPerShot *= weapons.tommyGun.stats.inaccuracyPenalty;
+                            miss = true;
+                        }
+                    }
+
+                    shoot(weapon.id, pointsPerShot, critical, miss);
+                    lastPointsTime[weapon.id] = currentTime;
                 }
-                shoot('huntingRifle', pointsPerShot, critical, false);
-                lastHuntingRiflePointsTime = currentTime;
-            }
-        }, 100); // Check every 100 milliseconds for points generation
-    }
+            }, 100); // Check every 100 milliseconds for points generation
+        }
+    });
 }
 
 // Function to handle purchasing weapons and upgrades
@@ -1175,70 +1097,70 @@ function purchase(item) {
             break;
         case 'pistol':
             if (!pistolPurchased) {
-                purchaseWeapon('pistol', pistolCost);
+                purchaseWeapon('pistol', weapons.pistol.cost);
             } else {
                 alert("Pistol has already been purchased!");
             }
             break;
         case 'smg':
             if (!smgPurchased) {
-                purchaseWeapon('smg', smgCost);
+                purchaseWeapon('smg', weapons.smg.cost);
             } else {
                 alert("SMG has already been purchased!");
             }
             break;
         case 'shotgun':
             if (!shotgunPurchased) {
-                purchaseWeapon('shotgun', shotgunCost);
+                purchaseWeapon('shotgun', weapons.shotgun.cost);
             } else {
                 alert("Shotgun has already been purchased!");
             }
             break;
         case 'sniperRifle':
             if (!sniperRiflePurchased) {
-                purchaseWeapon('sniperRifle', sniperRifleCost);
+                purchaseWeapon('sniperRifle', weapons.sniperRifle.cost);
             } else {
                 alert("Sniper Rifle has already been purchased!");
             }
             break;
         case 'ak47':
             if (!ak47Purchased) {
-                purchaseWeapon('ak47', ak47Cost);
+                purchaseWeapon('ak47', weapons.ak47.cost);
             } else {
                 alert("AK-47 has already been purchased!");
             }
             break;
         case 'rocketLauncher':
             if (!rocketLauncherPurchased) {
-                purchaseWeapon('rocketLauncher', rocketLauncherCost);
+                purchaseWeapon('rocketLauncher', weapons.rocketLauncher.cost);
             } else {
                 alert("Rocket Launcher has already been purchased!");
             }
             break;
         case 'tommyGun':
             if (!tommyGunPurchased) {
-                purchaseWeapon('tommyGun', tommyGunCost);
+                purchaseWeapon('tommyGun', weapons.tommyGun.cost);
             } else {
                 alert("Tommy Gun has already been purchased!");
             }
             break;
         case 'doubleBarrel':
             if (!doubleBarrelPurchased) {
-                purchaseWeapon('doubleBarrel', doubleBarrelCost);
+                purchaseWeapon('doubleBarrel', weapons.doubleBarrel.cost);
             } else {
                 alert("Double Barrel has already been purchased!");
             }
             break;
         case 'uzi':
             if (!uziPurchased) {
-                purchaseWeapon('uzi', uziCost);
+                purchaseWeapon('uzi', weapons.uzi.cost);
             } else {
                 alert("Uzi has already been purchased!");
             }
             break;
         case 'huntingRifle':
             if (!huntingRiflePurchased) {
-                purchaseWeapon('huntingRifle', huntingRifleCost);
+                purchaseWeapon('huntingRifle', weapons.huntingRifle.cost);
             } else {
                 alert("Hunting Rifle has already been purchased!");
             }
@@ -1336,61 +1258,30 @@ function purchase(item) {
 }
 
 // Function to purchase a weapon
-function purchaseWeapon(weapon, cost) {
-    if (points >= cost) {
-        points -= cost;
-        switch (weapon) {
-            case 'touchGun':
-                break;
-            case 'pistol':
-                pistolCost *= 2;
-                pistolPurchased = true;
-                break;
-            case 'smg':
-                smgCost *= 2;
-                smgPurchased = true;
-                break;
-            case 'shotgun':
-                shotgunCost *= 2;
-                shotgunPurchased = true;
-                break;
-            case 'sniperRifle':
-                sniperRifleCost *= 2;
-                sniperRiflePurchased = true;
-                break;
-            case 'ak47':
-                ak47Cost *= 2;
-                ak47Purchased = true;
-                break;
-            case 'rocketLauncher':
-                rocketLauncherCost *= 2;
-                rocketLauncherPurchased = true;
-                break;
-            case 'tommyGun':
-                tommyGunCost *= 2;
-                tommyGunPurchased = true;
-                break;
-            case 'doubleBarrel':
-                doubleBarrelCost *= 2;
-                doubleBarrelPurchased = true;
-                break;
-            case 'uzi':
-                uziCost *= 2;
-                uziPurchased = true;
-                break;
-            case 'huntingRifle':
-                huntingRifleCost *= 2;
-                huntingRiflePurchased = true;
-                break;
-            default:
-                console.error("Invalid weapon:", weapon);
-        }
-        document.getElementById(`${weapon}-purchase`).style.display = 'none';
+function purchaseWeapon(weaponId) {
+    // Find the weapon object in the weapons array based on its ID
+    const weapon = weapons.find(w => w.id === weaponId);
+    if (!weapon) {
+        console.error("Invalid weapon:", weaponId);
+        return;
+    }
+    
+    // Check if the weapon is already purchased
+    if (weapon.purchased) {
+        console.log(`${weapon.name} is already purchased.`);
+        return;
+    }
+    
+    // Check if the player has enough points to purchase the weapon
+    if (points >= weapon.cost) {
+        points -= weapon.cost;
+        weapon.purchased = true;
+        document.getElementById(`${weaponId}-purchase`).style.display = 'none';
         updatePointsDisplay();
         updateCostDisplay();
         updateSelectedWeaponsDisplay();
     } else {
-        alert(`Not enough points to purchase ${weapon}!`);
+        alert(`Not enough points to purchase ${weapon.name}!`);
     }
 }
 
@@ -1528,7 +1419,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (level <= 20) {
                     pistolFirerateUpgradeCost = cost;
                     pistolFirerateLevel = level;
-                    pistolFireRate += valueIncrement;
+                    weapons.pistol.stats.fireRate += valueIncrement;
                 } else {
                     console.log("Maximum level reached for pistol fire rate upgrade.");
                     alert("Pistol's firing rate has been maxed out!");
@@ -1564,14 +1455,14 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.touchGun.fingerPistols.bought) {
                     valueIncrement *= 1.1 * getTotalTouchGunUpgrades();
                 }
-                pistolPointsPerShot += valueIncrement;
-                pistolDamage += valueIncrement * 0.5;
+                weapons.pistol.stats.pointsPerShot += valueIncrement;
+                weapons.pistol.stats.damage += valueIncrement * 0.5;
                 break;
             case 'smgFirerate':
                 if (level <= 10) {
                     smgFirerateUpgradeCost = cost;
                     smgFirerateLevel = level;
-                    smgFireRate += valueIncrement;
+                    weapons.smg.stats.fireRate += valueIncrement;
                 } else {
                     console.log("Maximum level reached for smg fire rate upgrade.");
                     alert("SMG's firing rate has been maxed out!");
@@ -1604,14 +1495,14 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.smg.neverMissBarrage.bought) {
                     valueIncrement *= 6; // Multiplies valueIncrement by 6 if the neverMissBarrage upgrade is purchased
                 }
-                smgPointsPerShot += valueIncrement;
-                smgDamage += valueIncrement * 0.5;
+                weapons.smg.stats.pointsPerShot += valueIncrement;
+                weapons.smg.stats.damage += valueIncrement * 0.5;
                 break;
             case 'shotgunFirerate':
                 if (level <= 15) {
                     shotgunFirerateUpgradeCost = cost;
                     shotgunFirerateLevel = level;
-                    shotgunFireRate += valueIncrement;
+                    weapons.shotgun.stats.fireRate += valueIncrement;
                 } else {
                     console.log("Maximum level reached for shotgun fire rate upgrade.");
                     alert("Shotgun's firing rate has been maxed out!");
@@ -1641,8 +1532,8 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.shotgun.ultimatumBurst.bought) {
                     valueIncrement *= 5; // Multiplies valueIncrement by 5 if the ultimatumBurst upgrade is purchased
                 }
-                shotgunPointsPerShot += valueIncrement;
-                shotgunDamage += valueIncrement * 0.5;
+                weapons.shotgun.stats.pointsPerShot += valueIncrement;
+                weapons.shotgun.stats.damage += valueIncrement * 0.5;
                 break;
             case 'shotgunMultiFire':
                 shotgunMultiFireUpgradeCost = cost;
@@ -1653,13 +1544,13 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.shotgun.buckshot.bought) {
                     valueIncrement *= 2; // Multiplies valueIncrement by 2 if the buckshot upgrade is purchased
                 }
-                shotgunBulletsPerShot += valueIncrement;
+                weapons.shotgun.stats.bulletsPerShot += valueIncrement;
                 break;
             case 'sniperRifleFirerate':
                 if (level <= 10) {
                     sniperRifleFirerateUpgradeCost = cost;
                     sniperRifleFirerateLevel = level;
-                    sniperRifleFireRate += valueIncrement;
+                    weapons.sniperRifle.stats.fireRate += valueIncrement;
                 } else {
                     console.log("Maximum level reached for sniper rifle fire rate upgrade.");
                     alert("Sniper Rifle's firing rate has been maxed out!");
@@ -1689,13 +1580,13 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.sniperRifle.heatseekingSensors.bought) {
                     valueIncrement *= 3; // Multiplies valueIncrement by 3 if the heatseekingSensors upgrade is purchased
                 }
-                sniperRiflePointsPerShot += valueIncrement;
-                sniperRifleDamage += valueIncrement * 0.5;
+                weapons.sniperRifle.stats.pointsPerShot += valueIncrement;
+                weapons.sniperRifle.stats.damage += valueIncrement * 0.5;
                 break;
             case 'sniperRifleCriticalShot':
                 sniperRifleCriticalShotUpgradeCost = cost;
                 sniperRifleCriticalShotLevel = level;
-                sniperRifleCriticalShotChance += valueIncrement;
+                weapons.sniperRifle.stats.criticalChance += valueIncrement;
                 break;
             case 'sniperRifleCriticalDamage':
                 sniperRifleCriticalDamageUpgradeCost = cost;
@@ -1703,13 +1594,13 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.sniperRifle.infraredScope.bought) {
                     valueIncrement *= 1.5;
                 }
-                sniperRifleCriticalDamageMultiplier += valueIncrement;
+                weapons.sniperRifle.stats.criticalDamage += valueIncrement;
                 break;
             case 'ak47Firerate':
                 if (level <= 15) {
                     ak47FirerateUpgradeCost = cost;
                     ak47FirerateLevel = level;
-                    ak47FireRate += valueIncrement;
+                    weapons.ak47.stats.fireRate += valueIncrement;
                 } else {
                     console.log("Maximum level reached for ak47 fire rate upgrade.");
                     alert("AK-47's firing rate has been maxed out!");
@@ -1748,14 +1639,14 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.ak47.unfathomablePressure.bought) {
                     valueIncrement *= 6; // Multiplies valueIncrement by 6 if the unfathomablePressure upgrade is purchased
                 }
-                ak47PointsPerShot += valueIncrement;
-                ak47Damage += valueIncrement * 0.5;
+                weapons.ak47.stats.pointsPerShot += valueIncrement;
+                weapons.ak47.stats.damage += valueIncrement * 0.5;
                 break;
             case 'rocketLauncherFirerate':
                 if (level <= 15) {
                     rocketLauncherFirerateUpgradeCost = cost;
                     rocketLauncherFirerateLevel = level;
-                    rocketLauncherFireRate += valueIncrement;
+                    weapons.rocketLauncher.stats.fireRate += valueIncrement;
                 } else {
                     console.log("Maximum level reached for rocket launcher fire rate upgrade.");
                     alert("Rocket Launcher's firing rate has been maxed out!");
@@ -1785,8 +1676,8 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.rocketLauncher.kamikaze.bought) {
                     valueIncrement *= 2; // Multiplies valueIncrement by 2 if the kamikaze upgrade is purchased
                 }
-                rocketLauncherPointsPerShot += valueIncrement;
-                rocketLauncherDamage += valueIncrement * 0.5;
+                weapons.rocketLauncher.stats.pointsPerShot += valueIncrement;
+                weapons.rocketLauncher.stats.damage += valueIncrement * 0.5;
                 break;
             case 'rocketLauncherSplashRadius':
                 if (level <= 5) {
@@ -1807,7 +1698,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (level <= 20) {
                     tommyGunFirerateUpgradeCost = cost;
                     tommyGunFirerateLevel = level;
-                    tommyGunFireRate += valueIncrement;
+                    weapons.tommyGun.stats.fireRate += valueIncrement;
                 } else {
                     console.log("Maximum level reached for tommy gun fire rate upgrade.");
                     alert("Tommy Gun's firing rate has been maxed out!");
@@ -1840,13 +1731,13 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.tommyGun.unavoidable.bought) {
                     valueIncrement *= 3; // Multiplies valueIncrement by 3 if the unavoidable upgrade is purchased
                 }
-                tommyGunPointsPerShot += valueIncrement;
-                tommyGunDamage += valueIncrement * 0.5;
+                weapons.tommyGun.stats.pointsPerShot += valueIncrement;
+                weapons.tommyGun.stats.damage += valueIncrement * 0.5;
                 break;
             case 'tommyGunAccuracy':
                 tommyGunAccuracyUpgradeCost = cost;
                 tommyGunAccuracyLevel = level;
-                tommyGunInaccuracyChance -= valueIncrement;
+                weapons.tommyGun.stats.accuracy += valueIncrement;
                 break;
             case 'doubleBarrelFirerate':
                 if (level <= 25) {

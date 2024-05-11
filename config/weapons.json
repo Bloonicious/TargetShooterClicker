@@ -3,6 +3,7 @@
     {
       "name": "Pistol",
       "id": "pistol",
+      "purchased": false,
       "cost": 10,
       "pointsPerShot": 1,
       "fireRate": 1000,
@@ -15,6 +16,7 @@
     {
       "name": "SMG",
       "id": "smg",
+      "purchased": false,
       "cost": 100,
       "pointsPerShot": 1,
       "fireRate": 200,
@@ -27,6 +29,7 @@
     {
       "name": "Shotgun",
       "id": "shotgun",
+      "purchased": false,
       "cost": 500,
       "pointsPerShot": 4,
       "fireRate": 1500,
@@ -39,6 +42,7 @@
     {
       "name": "Sniper Rifle",
       "id": "sniperRifle",
+      "purchased": false,
       "cost": 7500,
       "pointsPerShot": 120,
       "fireRate": 4000,
@@ -53,6 +57,7 @@
     {
       "name": "AK-47",
       "id": "ak47",
+      "purchased": false,
       "cost": 60000,
       "pointsPerShot": 150,
       "fireRate": 500,
@@ -65,6 +70,7 @@
     {
       "name": "Rocket Launcher",
       "id": "rocketLauncher",
+      "purchased": false,
       "cost": 400000,
       "pointsPerShot": 1000,
       "fireRate": 5000,
@@ -77,6 +83,7 @@
     {
       "name": "Tommy Gun",
       "id": "tommyGun",
+      "purchased": false,
       "cost": 2500000,
       "pointsPerShot": 600,
       "fireRate": 150,
@@ -90,6 +97,7 @@
     {
       "name": "Double Barrel",
       "id": "doubleBarrel",
+      "purchased": false,
       "cost": 30000000,
       "pointsPerShot": 4000,
       "fireRate": 2000,
@@ -102,6 +110,7 @@
     {
       "name": "Uzi",
       "id": "uzi",
+      "purchased": false,
       "cost": 175000000,
       "pointsPerShot": 3000,
       "fireRate": 75,
@@ -114,6 +123,7 @@
     {
       "name": "Hunting Rifle",
       "id": "huntingRifle",
+      "purchased": false,
       "cost": 1250000000,
       "pointsPerShot": 180000,
       "fireRate": 3000,

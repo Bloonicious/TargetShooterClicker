@@ -1,1 +1,129 @@
-
+{
+  "weapons": [
+    {
+      "name": "Pistol",
+      "id": "pistol",
+      "cost": 10,
+      "pointsPerShot": 1,
+      "fireRate": 1000,
+      "hp": 10,
+      "damage": 1,
+      "range": 6,
+      "accuracy": 100,
+      "bulletsPerShot": 1
+    },
+    {
+      "name": "SMG",
+      "id": "smg",
+      "cost": 100,
+      "pointsPerShot": 1,
+      "fireRate": 200,
+      "hp": 20,
+      "damage": 1,
+      "range": 5,
+      "accuracy": 100,
+      "bulletsPerShot": 1
+    },
+    {
+      "name": "Shotgun",
+      "id": "shotgun",
+      "cost": 500,
+      "pointsPerShot": 4,
+      "fireRate": 1500,
+      "hp": 50,
+      "damage": 4,
+      "range": 3,
+      "accuracy": 100,
+      "bulletsPerShot": 3
+    },
+    {
+      "name": "Sniper Rifle",
+      "id": "sniperRifle",
+      "cost": 7500,
+      "pointsPerShot": 120,
+      "fireRate": 4000,
+      "hp": 30,
+      "damage": 4,
+      "range": 10,
+      "accuracy": 100,
+      "bulletsPerShot": 1,
+      "criticalChance": 25,
+      "criticalDamage": 2
+    },
+    {
+      "name": "AK-47",
+      "id": "ak47",
+      "cost": 60000,
+      "pointsPerShot": 150,
+      "fireRate": 500,
+      "hp": 80,
+      "damage": 75,
+      "range": 7,
+      "accuracy": 100,
+      "bulletsPerShot": 1
+    },
+    {
+      "name": "Rocket Launcher",
+      "id": "rocketLauncher",
+      "cost": 400000,
+      "pointsPerShot": 1000,
+      "fireRate": 5000,
+      "hp": 60,
+      "damage": 500,
+      "range": 9,
+      "accuracy": 100,
+      "bulletsPerShot": 1
+    },
+    {
+      "name": "Tommy Gun",
+      "id": "tommyGun",
+      "cost": 2500000,
+      "pointsPerShot": 600,
+      "fireRate": 150,
+      "hp": 120,
+      "damage": 75,
+      "range": 7,
+      "accuracy": 50,
+      "bulletsPerShot": 1,
+      "inaccuracyPenalty": 0.5
+    },
+    {
+      "name": "Double Barrel",
+      "id": "doubleBarrel",
+      "cost": 30000000,
+      "pointsPerShot": 4000,
+      "fireRate": 2000,
+      "hp": 250,
+      "damage": 2000,
+      "range": 4,
+      "accuracy": 100,
+      "bulletsPerShot": 2
+    },
+    {
+      "name": "Uzi",
+      "id": "uzi",
+      "cost": 175000000,
+      "pointsPerShot": 3000,
+      "fireRate": 75,
+      "hp": 300,
+      "damage": 1500,
+      "range": 4,
+      "accuracy": 100,
+      "bulletsPerShot": 1
+    },
+    {
+      "name": "Hunting Rifle",
+      "id": "huntingRifle",
+      "cost": 1250000000,
+      "pointsPerShot": 180000,
+      "fireRate": 3000,
+      "hp": 200,
+      "damage": 90000,
+      "range": 10,
+      "accuracy": 100,
+      "bulletsPerShot": 1,
+      "criticalChance": 40,
+      "criticalDamage": 1.5
+    }
+  ]
+}

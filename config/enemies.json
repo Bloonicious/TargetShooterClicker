@@ -1,1 +1,25 @@
-
+{
+  "enemies": [
+    {
+      "name": "Basic Target",
+      "hp": 10,
+      "damage": 2,
+      "range": 2,
+      "walkingSpeed": 3
+    },
+    {
+      "name": "Fast Enemy",
+      "hp": 5,
+      "damage": 1,
+      "range": 3,
+      "walkingSpeed": 6
+    },
+    {
+      "name": "Tanky Enemy",
+      "hp": 50,
+      "damage": 5,
+      "range": 1,
+      "walkingSpeed": 1
+    }
+  ]
+}

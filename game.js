@@ -1050,7 +1050,7 @@ function automaticPointsGeneration() {
                     let miss = false;
 
                     // For sniper rifles, check for critical hit
-                    if (weapon.name === 'sniperRifle') {
+                    if (weapon === 'sniperRifle') {
                         const criticalChance = Math.min(100, weapon.stats.criticalChance + sniperRifleCriticalShotLevel * 2);
                         if (criticalChance >= Math.random() * 100) {
                             // Critical shot
@@ -1059,7 +1059,7 @@ function automaticPointsGeneration() {
                         }
                     }
 
-                    if (weapon.name === 'huntingRifle') {
+                    if (weapon === 'huntingRifle') {
                         const criticalChance = Math.min(100, weapon.stats.criticalChance + huntingRifleCriticalShotLevel * 2);
                         if (criticalChance >= Math.random() * 100) {
                             // Critical shot
@@ -1069,12 +1069,12 @@ function automaticPointsGeneration() {
                     }
 
                     // For shotguns, adjust points per shot based on bullets per shot
-                    if (weapon.name === 'shotgun' || weapon.name === 'doubleBarrel') {
+                    if (weapon === 'shotgun' || weapon === 'doubleBarrel') {
                         pointsPerShot *= weapon.stats.bulletsPerShot;
                     }
 
                     // For tommy gun, check for missed shots
-                    if (weapon.name === 'tommyGun') {
+                    if (weapon === 'tommyGun') {
                         const inaccuracyChance = Math.min(100, 50 + tommyGunAccuracyLevel * -2);
                         if (inaccuracyChance >= Math.random() * 100) {
                             // missed shot
@@ -1093,7 +1093,7 @@ function automaticPointsGeneration() {
 
 // Function to handle purchasing weapons and upgrades
 function purchase(item) {
-    const weapon = weapons.find(w => w.name === item);
+    const weapon = weapons[item]; // Access weapon directly using item as key
     if (weapon) {
         if (!weapon.purchased) {
             purchaseWeapon(weapon.name, weapon.cost);

@@ -149,6 +149,7 @@ function saveGameState() {
         achievements: achievementsData,
         statistics: statistics,
         points: points,
+        weapons: weapons,
         
         touchGunCost: touchGunCost,
         touchGunPointsPerClick: touchGunPointsPerClick,
@@ -284,35 +285,16 @@ function saveGameState() {
         huntingRifleLongTracersBought: upgrades.huntingRifle.longTracers.bought,
         huntingRifleTitanicTracersBought: upgrades.huntingRifle.titanicTracers.bought,
         
-        pistolPurchased: pistolPurchased,
-        pistolPointsPerShot: pistolPointsPerShot,
-        pistolFireRate: pistolFireRate,
-        pistolHP: pistolHP,
-        pistolDamage: pistolDamage,
-        pistolRange: pistolRange,
         pistolFirerateUpgradeCost: pistolFirerateUpgradeCost,
         pistolPotencyUpgradeCost: pistolPotencyUpgradeCost,
         pistolFirerateLevel: pistolFirerateLevel,
         pistolPotencyLevel: pistolPotencyLevel,
         
-        smgPurchased: smgPurchased,
-        smgPointsPerShot: smgPointsPerShot,
-        smgFireRate: smgFireRate,
-        smgHP: smgHP,
-        smgDamage: smgDamage,
-        smgRange: smgRange,
         smgFirerateUpgradeCost: smgFirerateUpgradeCost,
         smgPotencyUpgradeCost: smgPotencyUpgradeCost,
         smgFirerateLevel: smgFirerateLevel,
         smgPotencyLevel: smgPotencyLevel,
         
-        shotgunPurchased: shotgunPurchased,
-        shotgunPointsPerShot: shotgunPointsPerShot,
-        shotgunFireRate: shotgunFireRate,
-        shotgunHP: shotgunHP,
-        shotgunDamage: shotgunDamage,
-        shotgunRange: shotgunRange,
-        shotgunBulletsPerShot: shotgunBulletsPerShot,
         shotgunFirerateUpgradeCost: shotgunFirerateUpgradeCost,
         shotgunPotencyUpgradeCost: shotgunPotencyUpgradeCost,
         shotgunMultiFireUpgradeCost: shotgunMultiFireUpgradeCost,
@@ -320,14 +302,6 @@ function saveGameState() {
         shotgunPotencyLevel: shotgunPotencyLevel,
         shotgunMultiFireLevel: shotgunMultiFireLevel,
         
-        sniperRiflePurchased: sniperRiflePurchased,
-        sniperRiflePointsPerShot: sniperRiflePointsPerShot,
-        sniperRifleFireRate: sniperRifleFireRate,
-        sniperRifleHP: sniperRifleHP,
-        sniperRifleRange: sniperRifleRange,
-        sniperRifleDamage: sniperRifleDamage,
-        sniperRifleCriticalShotChance: sniperRifleCriticalShotChance,
-        sniperRifleCriticalDamageMultiplier: sniperRifleCriticalDamageMultiplier,
         sniperRifleFirerateUpgradeCost: sniperRifleFirerateUpgradeCost,
         sniperRiflePotencyUpgradeCost: sniperRiflePotencyUpgradeCost,
         sniperRifleCriticalShotUpgradeCost: sniperRifleCriticalShotUpgradeCost,
@@ -337,25 +311,11 @@ function saveGameState() {
         sniperRifleCriticalShotLevel: sniperRifleCriticalShotLevel,
         sniperRifleCriticalDamageLevel: sniperRifleCriticalDamageLevel,
 
-        ak47Purchased: ak47Purchased,
-        ak47PointsPerShot: ak47PointsPerShot,
-        ak47FireRate: ak47FireRate,
-        ak47HP: ak47HP,
-        ak47Damage: ak47Damage,
-        ak47Range: ak47Range,
         ak47FirerateUpgradeCost: ak47FirerateUpgradeCost,
         ak47PotencyUpgradeCost: ak47PotencyUpgradeCost,
         ak47FirerateLevel: ak47FirerateLevel,
         ak47PotencyLevel: ak47PotencyLevel,
 
-        rocketLauncherPurchased: rocketLauncherPurchased,
-        rocketLauncherPointsPerShot: rocketLauncherPointsPerShot,
-        rocketLauncherFireRate: rocketLauncherFireRate,
-        rocketLauncherHP: rocketLauncherHP,
-        rocketLauncherDamage: rocketLauncherDamage,
-        rocketLauncherRange: rocketLauncherRange,
-        rocketLauncherSplashRadius: rocketLauncherSplashRadius,
-        rocketLauncherSplashDamage: rocketLauncherSplashDamage,
         rocketLauncherFirerateUpgradeCost: rocketLauncherFirerateUpgradeCost,
         rocketLauncherPotencyUpgradeCost: rocketLauncherPotencyUpgradeCost,
         rocketLauncherSplashRadiusUpgradeCost: rocketLauncherSplashRadiusUpgradeCost,
@@ -365,14 +325,6 @@ function saveGameState() {
         rocketLauncherSplashRadiusLevel: rocketLauncherSplashRadiusLevel,
         rocketLauncherSplashDamageLevel: rocketLauncherSplashDamageLevel,
 
-        tommyGunPurchased: tommyGunPurchased,
-        tommyGunPointsPerShot: tommyGunPointsPerShot,
-        tommyGunFireRate: tommyGunFireRate,
-        tommyGunHP: tommyGunHP,
-        tommyGunDamage: tommyGunDamage,
-        tommyGunRange: tommyGunRange,
-        tommyGunInaccuracyChance:  tommyGunInaccuracyChance,
-        tommyGunAccuracyPenalty: tommyGunAccuracyPenalty,
         tommyGunFirerateUpgradeCost: tommyGunFirerateUpgradeCost,
         tommyGunPotencyUpgradeCost: tommyGunPotencyUpgradeCost,
         tommyGunAccuracyUpgradeCost: tommyGunAccuracyUpgradeCost,
@@ -380,13 +332,6 @@ function saveGameState() {
         tommyGunPotencyLevel: tommyGunPotencyLevel,
         tommyGunAccuracyLevel: tommyGunPotencyLevel,
 
-        doubleBarrelPurchased: doubleBarrelPurchased,
-        doubleBarrelPointsPerShot: doubleBarrelPointsPerShot,
-        doubleBarrelFireRate: doubleBarrelFireRate,
-        doubleBarrelHP: doubleBarrelHP,
-        doubleBarrelDamage: doubleBarrelDamage,
-        doubleBarrelRange: doubleBarrelRange,
-        doubleBarrelBulletsPerShot: doubleBarrelBulletsPerShot,
         doubleBarrelFirerateUpgradeCost: doubleBarrelFirerateUpgradeCost,
         doubleBarrelPotencyUpgradeCost: doubleBarrelPotencyUpgradeCost,
         doubleBarrelMultiFireUpgradeCost: doubleBarrelMultiFireUpgradeCost,
@@ -394,25 +339,11 @@ function saveGameState() {
         doubleBarrelPotencyLevel: doubleBarrelPotencyLevel,
         doubleBarrelMultiFireLevel: doubleBarrelMultiFireLevel,
 
-        uziPurchased: uziPurchased,
-        uziPointsPerShot: uziPointsPerShot,
-        uziFireRate: uziFireRate,
-        uziHP: uziHP,
-        uziDamage: uziDamage,
-        uziRange: uziRange,
         uziFirerateUpgradeCost: uziFirerateUpgradeCost,
         uziPotencyUpgradeCost: uziPotencyUpgradeCost,
         uziFirerateLevel: uziFirerateLevel,
         uziPotencyLevel: uziPotencyLevel,
 
-        huntingRiflePurchased: huntingRiflePurchased,
-        huntingRiflePointsPerShot: huntingRiflePointsPerShot,
-        huntingRifleFireRate: huntingRifleFireRate,
-        huntingRifleHP: huntingRifleHP,
-        huntingRifleDamage: huntingRifleDamage,
-        huntingRifleRange: huntingRifleRange,
-        huntingRifleCriticalShotChance: huntingRifleCriticalShotChance,
-        huntingRifleCriticalDamageMultiplier: huntingRifleCriticalDamageMultiplier,
         huntingRifleFirerateUpgradeCost: huntingRifleFirerateUpgradeCost,
         huntingRiflePotencyUpgradeCost: huntingRiflePotencyUpgradeCost,
         huntingRifleCriticalShotUpgradeCost: huntingRifleCriticalShotUpgradeCost,
@@ -436,6 +367,7 @@ function loadGameState() {
     const savedState = JSON.parse(localStorage.getItem('gameState'));
     const savedWeapons = JSON.parse(localStorage.getItem('selectedWeapons'));
     if (savedWeapons) {
+        // Update selected weapons from saved data
         selectedWeapons = savedWeapons;
         updateSelectedWeaponsDisplay();
     }
@@ -461,6 +393,13 @@ function loadGameState() {
         }
 
         points = gameState.points;
+        for (const weaponId in savedState.weapons) {
+            if (weapons[weaponId]) {
+                // Update weapon properties from saved data
+                weapons[weaponId].purchased = savedState.weapons[weaponId].purchased;
+                // Include other weapon properties to update as needed
+            }
+        }
         touchGunCost = gameState.touchGunCost,
         touchGunPointsPerClick = gameState.touchGunPointsPerClick;
         touchGunLevel = gameState.touchGunLevel;
@@ -594,35 +533,16 @@ function loadGameState() {
         upgrades.huntingRifle.longTracers.bought = gameState.huntingRifleLongTracersBought;
         upgrades.huntingRifle.titanicTracers.bought = gameState.huntingRifleTitanicTracersBought;
         
-        pistolPurchased = gameState.pistolPurchased;
-        pistolPointsPerShot = gameState.pistolPointsPerShot;
-        pistolFireRate = gameState.pistolFireRate;
-        pistolHP = gameState.pistolHP;
-        pistolDamage = gameState.pistolDamage;
-        pistolRange = gameState.pistolRange;
         pistolFirerateUpgradeCost = gameState.pistolFirerateUpgradeCost;
         pistolPotencyUpgradeCost = gameState.pistolPotencyUpgradeCost;
         pistolFirerateLevel = Math.min(gameState.pistolFirerateLevel, 20);
         pistolPotencyLevel = gameState.pistolPotencyLevel;
         
-        smgPurchased = gameState.smgPurchased;
-        smgPointsPerShot = gameState.smgPointsPerShot;
-        smgFireRate = gameState.smgFireRate;
-        smgHP = gameState.smgHP;
-        smgDamage = gameState.smgDamage;
-        smgRange = gameState.smgRange;
         smgFirerateUpgradeCost = gameState.smgFirerateUpgradeCost;
         smgPotencyUpgradeCost = gameState.smgPotencyUpgradeCost;
         smgFirerateLevel = Math.min(gameState.smgFirerateLevel, 10);
         smgPotencyLevel = gameState.smgPotencyLevel;
         
-        shotgunPurchased = gameState.shotgunPurchased;
-        shotgunPointsPerShot = gameState.shotgunPointsPerShot;
-        shotgunFireRate = gameState.shotgunFireRate;
-        shotgunHP = gameState.shotgunHP;
-        shotgunDamage = gameState.shotgunDamage;
-        shotgunRange = gameState.shotgunRange;
-        shotgunBulletsPerShot = gameState.shotgunBulletsPerShot,
         shotgunFirerateUpgradeCost = gameState.shotgunFirerateUpgradeCost;
         shotgunPotencyUpgradeCost = gameState.shotgunPotencyUpgradeCost;
         shotgunMultiFireUpgradeCost = gameState.shotgunMultiFireUpgradeCost;
@@ -630,14 +550,6 @@ function loadGameState() {
         shotgunPotencyLevel = gameState.shotgunPotencyLevel;
         shotgunMultiFireLevel = gameState.shotgunMultiFireLevel;
         
-        sniperRiflePurchased = gameState.sniperRiflePurchased;
-        sniperRiflePointsPerShot = gameState.sniperRiflePointsPerShot;
-        sniperRifleFireRate = gameState.sniperRifleFireRate;
-        sniperRifleHP = gameState.sniperRifleHP;
-        sniperRifleDamage = gameState.sniperRifleDamage;
-        sniperRifleRange = gameState.sniperRifleRange;
-        sniperRifleCriticalShotChance = gameState.sniperRifleCriticalShotChance;
-        sniperRifleCriticalDamageMultiplier = gameState.sniperRifleCriticalDamageMultiplier;
         sniperRifleFirerateUpgradeCost = gameState.sniperRifleFirerateUpgradeCost;
         sniperRiflePotencyUpgradeCost = gameState.sniperRiflePotencyUpgradeCost;
         sniperRifleCriticalShotUpgradeCost = gameState.sniperRifleCriticalShotUpgradeCost;
@@ -647,25 +559,11 @@ function loadGameState() {
         sniperRifleCriticalShotLevel = gameState.sniperRifleCriticalShotLevel;
         sniperRifleCriticalDamageLevel = gameState.sniperRifleCriticalDamageLevel;
 
-        ak47Purchased = gameState.ak47Purchased;
-        ak47PointsPerShot = gameState.ak47PointsPerShot;
-        ak47FireRate = gameState.ak47FireRate;
-        ak47HP = gameState.ak47HP;
-        ak47Damage = gameState.ak47Damage;
-        ak47Range = gameState.ak47Range;
         ak47FirerateUpgradeCost = gameState.ak47FirerateUpgradeCost;
         ak47PotencyUpgradeCost = gameState.ak47PotencyUpgradeCost;
         ak47FirerateLevel = Math.min(gameState.ak47FirerateLevel, 15);
         ak47PotencyLevel = gameState.ak47PotencyLevel;
 
-        rocketLauncherPurchased = gameState.rocketLauncherPurchased;
-        rocketLauncherPointsPerShot = gameState.rocketLauncherPointsPerShot;
-        rocketLauncherFireRate = gameState.rocketLauncherFireRate;
-        rocketLauncherHP = gameState.rocketLauncherHP;
-        rocketLauncherDamage = gameState.rocketLauncherDamage;
-        rocketLauncherRange = gameState.rocketLauncherRange;
-        rocketLauncherSplashRadius = gameState.rocketLauncherSplashRadius;
-        rocketLauncherSplashDamage = gameState.rocketLauncherSplashDamage;
         rocketLauncherFirerateUpgradeCost = gameState.rocketLauncherFirerateUpgradeCost;
         rocketLauncherPotencyUpgradeCost = gameState.rocketLauncherPotencyUpgradeCost;
         rocketLauncherSplashRadiusUpgradeCost = gameState.rocketLauncherSplashRadiusUpgradeCost;
@@ -675,14 +573,6 @@ function loadGameState() {
         rocketLauncherSplashRadiusLevel = Math.min(gameState.rocketLauncherSplashRadiusLevel, 5);
         rocketLauncherSplashDamageLevel = gameState.rocketLauncherSplashDamageLevel;
 
-        tommyGunPurchased = gameState.tommyGunPurchased;
-        tommyGunPointsPerShot = gameState.tommyGunPointsPerShot;
-        tommyGunFireRate = gameState.tommyGunFireRate;
-        tommyGunHP = gameState.tommyGunHP;
-        tommyGunDamage = gameState.tommyGunDamage;
-        tommyGunRange = gameState.tommyGunRange;
-        tommyGunInaccuracyChance = gameState.tommyGunInaccuracyChance;
-        tommyGunAccuracyPenalty = gameState.tommyGunAccuracyPenalty;
         tommyGunFirerateUpgradeCost = gameState.tommyGunFirerateUpgradeCost;
         tommyGunPotencyUpgradeCost = gameState.tommyGunPotencyUpgradeCost;
         tommyGunAccuracyUpgradeCost = gameState.tommyGunAccuracyUpgradeCost;
@@ -690,13 +580,6 @@ function loadGameState() {
         tommyGunPotencyLevel = gameState.tommyGunPotencyLevel;
         tommyGunAccuracyLevel = gameState.tommyGunAccuracyLevel;
 
-        doubleBarrelPurchased = gameState.doubleBarrelPurchased;
-        doubleBarrelPointsPerShot = gameState.doubleBarrelPointsPerShot;
-        doubleBarrelFireRate = gameState.doubleBarrelFireRate;
-        doubleBarrelHP = gameState.doubleBarrelHP;
-        doubleBarrelDamage = gameState.doubleBarrelDamage;
-        doubleBarrelRange = gameState.doubleBarrelRange;
-        doubleBarrelBulletsPerShot = gameState.doubleBarrelBulletsPerShot,
         doubleBarrelFirerateUpgradeCost = gameState.doubleBarrelFirerateUpgradeCost;
         doubleBarrelPotencyUpgradeCost = gameState.doubleBarrelPotencyUpgradeCost;
         doubleBarrelMultiFireUpgradeCost = gameState.doubleBarrelMultiFireUpgradeCost;
@@ -704,25 +587,11 @@ function loadGameState() {
         doubleBarrelPotencyLevel = gameState.doubleBarrelPotencyLevel;
         doubleBarrelMultiFireLevel = gameState.doubleBarrelMultiFireLevel;
 
-        uziPurchased = gameState.uziPurchased;
-        uziPointsPerShot = gameState.uziPointsPerShot;
-        uziFireRate = gameState.uziFireRate;
-        uziHP = gameState.uziHP;
-        uziDamage = gameState.uziDamage;
-        uziRange = gameState.uziRange;
         uziFirerateUpgradeCost = gameState.uziFirerateUpgradeCost;
         uziPotencyUpgradeCost = gameState.uziPotencyUpgradeCost;
         uziFirerateLevel = Math.min(gameState.uziFirerateLevel, 10);
         uziPotencyLevel = gameState.uziPotencyLevel;
 
-        huntingRiflePurchased = gameState.huntingRiflePurchased;
-        huntingRiflePointsPerShot = gameState.huntingRiflePointsPerShot;
-        huntingRifleFireRate = gameState.huntingRifleFireRate;
-        huntingRifleHP = gameState.huntingRifleHP;
-        huntingRifleDamage = gameState.huntingRifleDamage;
-        huntingRifleRange = gameState.huntingRifleRange;
-        huntingRifleCriticalShotChance = gameState.huntingRifleCriticalShotChance;
-        huntingRifleCriticalDamageMultiplier = gameState.huntingRifleCriticalDamageMultiplier;
         huntingRifleFirerateUpgradeCost = gameState.huntingRifleFirerateUpgradeCost;
         huntingRiflePotencyUpgradeCost = gameState.huntingRiflePotencyUpgradeCost;
         huntingRifleCriticalShotUpgradeCost = gameState.huntingRifleCriticalShotUpgradeCost;
@@ -1071,37 +940,17 @@ function loadGameState() {
             document.getElementById('touchGunSuperAwaken-display').style.display = 'block';
         }
         
-        // Hide purchase buttons for purchased weapons
-        if (pistolPurchased) {
-            document.getElementById('pistol-purchase').style.display = 'none';
-        }
-        if (smgPurchased) {
-            document.getElementById('smg-purchase').style.display = 'none';
-        }
-        if (shotgunPurchased) {
-            document.getElementById('shotgun-purchase').style.display = 'none';
-        }
-        if (sniperRiflePurchased) {
-            document.getElementById('sniperRifle-purchase').style.display = 'none';
-        }
-        if (ak47Purchased) {
-            document.getElementById('ak47-purchase').style.display = 'none';
-        }
-        if (rocketLauncherPurchased) {
-            document.getElementById('rocketLauncher-purchase').style.display = 'none';
-        }
-        if (tommyGunPurchased) {
-            document.getElementById('tommyGun-purchase').style.display = 'none';
-        }
-        if (doubleBarrelPurchased) {
-            document.getElementById('doubleBarrel-purchase').style.display = 'none';
-        }
-        if (uziPurchased) {
-            document.getElementById('uzi-purchase').style.display = 'none';
-        }
-        if (huntingRiflePurchased) {
-            document.getElementById('huntingRifle-purchase').style.display = 'none';
-        }
+        // Array of weapon IDs
+        const weaponIds = ['pistol', 'smg', 'shotgun', 'sniperRifle', 'ak47', 'rocketLauncher', 'tommyGun', 'doubleBarrel', 'uzi', 'huntingRifle'];
+
+        // Iterate over each weapon ID
+        weaponIds.forEach(weaponId => {
+            // Check if the weapon is purchased
+            if (weapons[weaponId] && weapons[weaponId].purchased) {
+                // Hide the purchase button for the corresponding weapon
+                document.getElementById(`${weaponId}-purchase`).style.display = 'none';
+            }
+        });
     }
 }
 
@@ -1283,38 +1132,16 @@ function resetProgress() {
         upgrades.huntingRifle.longTracers.bought = false;
         upgrades.huntingRifle.titanicTracers.bought = false;
         
-        pistolPurchased = false;
-        pistolCost = 10;
-        pistolPointsPerShot = 1;
-        pistolFireRate = 1000;
-        pistolHP = 10;
-        pistolDamage = 1;
-        pistolRange = 6;
         pistolFirerateUpgradeCost = 50;
         pistolPotencyUpgradeCost = 100;
         pistolFirerateLevel = 0;
         pistolPotencyLevel = 0;
         
-        smgPurchased = false;
-        smgCost = 100;
-        smgPointsPerShot = 1;
-        smgFireRate = 200;
-        smgHP = 20;
-        smgDamage = 1;
-        smgRange = 5;
         smgFirerateUpgradeCost = 600;
         smgPotencyUpgradeCost = 1200;
         smgFirerateLevel = 0;
         smgPotencyLevel = 0;
         
-        shotgunPurchased = false;
-        shotgunCost = 500;
-        shotgunPointsPerShot = 4;
-        shotgunFireRate = 1500;
-        shotgunHP = 50;
-        shotgunDamage = 4;
-        shotgunRange = 3;
-        shotgunBulletsPerShot = 3,
         shotgunFirerateUpgradeCost = 5000;
         shotgunPotencyUpgradeCost = 10000;
         shotgunMultiFireUpgradeCost = 25000;
@@ -1322,15 +1149,6 @@ function resetProgress() {
         shotgunPotencyLevel = 0;
         shotgunMultiFireLevel = 0;
         
-        sniperRiflePurchased = false;
-        sniperRifleCost = 7500;
-        sniperRiflePointsPerShot = 120;
-        sniperRifleFireRate = 4000;
-        sniperRifleHP = 30;
-        sniperRifleDamage = 40;
-        sniperRifleRange = 10;
-        sniperRifleCriticalShotChance = 25;
-        sniperRifleCriticalDamageMultiplier = 2.0;
         sniperRifleFirerateUpgradeCost = 37500;
         sniperRiflePotencyUpgradeCost = 75000;
         sniperRifleCriticalShotUpgradeCost = 75000;
@@ -1340,27 +1158,11 @@ function resetProgress() {
         sniperRifleCriticalShotLevel = 0;
         sniperRifleCriticalDamageLevel = 0;
 
-        ak47Purchased = false;
-        ak47Cost = 60000;
-        ak47PointsPerShot = 150;
-        ak47FireRate = 500;
-        ak47HP = 80;
-        ak47Damage = 75;
-        ak47Range = 7;
         ak47FirerateUpgradeCost = 175000;
         ak47PotencyUpgradeCost = 250000;
         ak47FirerateLevel = 0;
         ak47PotencyLevel = 0;
 
-        rocketLauncherPurchased = false;
-        rocketLauncherCost = 400000;
-        rocketLauncherPointsPerShot = 1000;
-        rocketLauncherFireRate = 5000;
-        rocketLauncherHP = 60;
-        rocketLauncherDamage = 500;
-        rocketLauncherRange = 9;
-        rocketLauncherSplashRadius = 300;
-        rocketLauncherSplashDamage = 0.4;
         rocketLauncherFirerateUpgradeCost = 1000000;
         rocketLauncherPotencyUpgradeCost = 750000;
         rocketLauncherSplashRadiusUpgradeCost = 10000000;
@@ -1370,15 +1172,6 @@ function resetProgress() {
         rocketLauncherSplashRadiusLevel = 0;
         rocketLauncherSplashDamageLevel = 0;
 
-        tommyGunPurchased = false;
-        tommyGunCost = 2500000;
-        tommyGunPointsPerShot = 600;
-        tommyGunFireRate = 150;
-        tommyGunHP = 120;
-        tommyGunDamage = 300;
-        tommyGunRange = 7;
-        tommyGunInaccuracyChance = 50;
-        tommyGunAccuracyPenalty = 0.5;
         tommyGunFirerateUpgradeCost = 15000000;
         tommyGunPotencyUpgradeCost = 10000000;
         tommyGunAccuracyUpgradeCost = 20000000;
@@ -1386,46 +1179,22 @@ function resetProgress() {
         tommyGunPotencyLevel = 0;
         tommyGunAccuracyLevel = 0;
 
-        doubleBarrelPurchased = false;
-        doubleBarrelCost = 30000000;
-        doubleBarrelPointsPerShot = 4000;
-        doubleBarrelFireRate = 2000;
-        doubleBarrelHP = 250;
-        doubleBarrelDamage = 2000;
-        doubleBarrelRange = 4;
         doubleBarrelMultiFireUpgradeCost = 150000000;
         doubleBarrelFirerateUpgradeCost = 80000000;
         doubleBarrelPotencyUpgradeCost = 60000000;
-        doubleBarrelBulletsPerShot = 2;
         doubleBarrelFirerateLevel = 0;
         doubleBarrelPotencyLevel = 0;
         doubleBarrelMultiFireLevel = 0;
 
-        uziPurchased = false;
-        uziCost = 175000000;
-        uziPointsPerShot = 3000;
-        uziFireRate = 75;
-        uziHP = 300;
-        uziDamage = 1500;
-        uziRange = 4;
         uziFirerateUpgradeCost = 1500000000;
         uziPotencyUpgradeCost = 1000000000;
         uziFirerateLevel = 0;
         uziPotencyLevel = 0;
 
-        huntingRiflePurchased = false;
-        huntingRifleCost = 1250000000;
-        huntingRiflePointsPerShot = 180000;
-        huntingRifleFireRate = 3000;
-        huntingRifleHP = 200;
-        huntingRifleDamage = 45000;
-        huntingRifleRange = 10;
         huntingRifleFirerateUpgradeCost = 8000000000;
         huntingRiflePotencyUpgradeCost = 6000000000;
         huntingRifleCriticalShotUpgradeCost = 20000000000;
         huntingRifleCriticalDamageUpgradeCost = 30000000000;
-        huntingRifleCriticalShotChance = 40;
-        huntingRifleCriticalDamageMultiplier = 1.5;
         huntingRifleFirerateLevel = 0;
         huntingRiflePotencyLevel = 0;
         huntingRifleCriticalShotLevel = 0;
@@ -1442,45 +1211,14 @@ function resetProgress() {
         clearInterval(uziFireRate);
         clearInterval(huntingRifleFireRate);
         
-        // Enable purchase buttons for reset weapons
-        if (pistolPurchased === false) {
-            document.getElementById('pistol-purchase').style.display = 'block';
-        }
-        if (smgPurchased === false) {
-            document.getElementById('smg-purchase').style.display = 'block';
-        }
-        if (shotgunPurchased === false) {
-            document.getElementById('shotgun-purchase').style.display = 'block';
-        }
-        if (sniperRiflePurchased === false) {
-            document.getElementById('sniperRifle-purchase').style.display = 'block';
-        }
-        if (ak47Purchased === false) {
-            document.getElementById('ak47-purchase').style.display = 'block';
-        }
-        if (rocketLauncherPurchased === false) {
-            document.getElementById('rocketLauncher-purchase').style.display = 'block';
-        }
-        if (tommyGunPurchased === false) {
-            document.getElementById('tommyGun-purchase').style.display = 'block';
-        }
-        if (doubleBarrelPurchased === false) {
-            document.getElementById('doubleBarrel-purchase').style.display = 'block';
-        }
-        if (uziPurchased === false) {
-            document.getElementById('uzi-purchase').style.display = 'block';
-        }
-        if (huntingRiflePurchased === false) {
-            document.getElementById('huntingRifle-purchase').style.display = 'block';
-        }
-        if (upgrades.touchGun.awakenUpgrade.bought === false) {
-            document.getElementById('touchGunAwaken-purchase').style.display = 'none';
-            document.getElementById('touchGunAwaken-display').style.display = 'none';
-        }
-        if (upgrades.touchGun.superAwakenUpgrade.bought === false) {
-            document.getElementById('touchGunSuperAwaken-purchase').style.display = 'none';
-            document.getElementById('touchGunSuperAwaken-display').style.display = 'none';
-        }
+        // Array of weapon IDs
+        const weaponIds = ['pistol', 'smg', 'shotgun', 'sniperRifle', 'ak47', 'rocketLauncher', 'tommyGun', 'doubleBarrel', 'uzi', 'huntingRifle'];
+
+        // Iterate over each weapon ID
+        weaponIds.forEach(weaponId => {
+            // Make the purchase button visible for the corresponding weapon
+            document.getElementById(`${weaponId}-purchase`).style.display = 'block';
+        });
 
         // Update the interfaces
         updatePointsDisplay();

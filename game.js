@@ -989,19 +989,6 @@ const upgrades = {
     // Add more weapons and upgrades as needed
 };
 
-const weaponPurchased = {
-    pistol: pistolPurchased,
-    smg: smgPurchased,
-    shotgun: shotgunPurchased,
-    sniperRifle: sniperRiflePurchased,
-    ak47: ak47Purchased,
-    rocketLauncher: rocketLauncherPurchased,
-    tommyGun: tommyGunPurchased,
-    doubleBarrel: doubleBarrelPurchased,
-    uzi: uziPurchased,
-    huntingRifle: huntingRiflePurchased
-};
-
 // Function to update points display
 function updatePointsDisplay() {
     const scoreValueMain = document.getElementById('score-value-main');

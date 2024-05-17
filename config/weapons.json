@@ -83,7 +83,9 @@
         "damage": 500,
         "range": 9,
         "accuracy": 100,
-        "bulletsPerShot": 1
+        "bulletsPerShot": 1,
+        "splashRadius": 300,
+        "splashDamage": 0.4
       }
     },
     "tommyGun": {

@@ -1668,23 +1668,25 @@ function bigUpgrades(weapon, upgrade, cost) {
 
 // Function to check if a weapon is purchased
 function isWeaponPurchased(weaponId) {
-    // Get the weapon object corresponding to the weapon ID
-    const weapon = weapons[weaponId];
-
-    // Check if the weapon exists and if it's purchased
-    return weapon && weapon.purchased;
+    // Check if the weapon exists in the weapons object and if it's purchased
+    return weapons.hasOwnProperty(weaponId) && weapons[weaponId].purchased;
 }
 
 // Function to update the display of selected weapon stats
-function updateSelectedWeaponsDisplay(weapon) {
+function updateSelectedWeaponsDisplay(weaponId) {
     // Ensure that the weapon is valid
-    if (!weapons.hasOwnProperty(weapon)) {
-        console.error("Invalid weapon:", weapon);
+    if (!weaponIds.includes(weaponId)) {
+        console.error("Invalid weapon:", weaponId);
         return;
     }
 
     // Set the purchased status of the weapon
-    weapons[weapon].purchased = true;
+    if (weapons.hasOwnProperty(weaponId)) {
+        weapons[weaponId].purchased = true;
+    } else {
+        console.error("Invalid weapon:", weaponId);
+        return;
+    }
 
     // Iterate over each weapon selection box
     const selectionBoxes = document.querySelectorAll('.weapon-slot');
@@ -1701,13 +1703,15 @@ function updateSelectedWeaponsDisplay(weapon) {
         defaultOption.textContent = 'Select Weapon';
         selectionBox.appendChild(defaultOption);
 
-        // Populate options based on all weapons
-        for (const weaponId of weaponIds) {
-            const option = document.createElement('option');
-            option.value = weaponId;
-            option.textContent = weaponId.charAt(0).toUpperCase() + weaponId.slice(1); // Capitalize first letter
-            selectionBox.appendChild(option);
-        }
+        // Populate options based on purchased weapons
+        weaponIds.forEach((weaponId) => {
+            if (isWeaponPurchased(weaponId)) {
+                const option = document.createElement('option');
+                option.value = weaponId;
+                option.textContent = weaponId.charAt(0).toUpperCase() + weaponId.slice(1); // Capitalize first letter
+                selectionBox.appendChild(option);
+            }
+        });
 
         // Select the currently selected weapon if any
         const selectedWeapon = selectedWeapons[boxId];
@@ -1727,13 +1731,13 @@ function updateSelectedWeaponsDisplay(weapon) {
     });
 
     // Log successful purchase
-    console.log(`${weapon} purchased successfully.`);
+    console.log(`${weaponId} purchased successfully.`);
 }
 
 // Function to handle selecting a weapon
 function selectWeapon(weaponId) {
     // Check if the weapon is purchased and not already selected
-    if (weapons.hasOwnProperty(weaponId) && weapons[weaponId].purchased && !Object.values(selectedWeapons).includes(weaponId)) {
+    if (weaponIds.includes(weaponId) && weapons[weaponId].purchased && !Object.values(selectedWeapons).includes(weaponId)) {
         // Add the weapon to the selected weapons
         const selectedBoxId = Object.keys(selectedWeapons).find(boxId => !selectedWeapons[boxId]);
         selectedWeapons[selectedBoxId] = weaponId;
@@ -1743,9 +1747,9 @@ function selectWeapon(weaponId) {
 }
 
 // Function to update the display of weapon stats for the selected weapon
-function updateWeaponStatsDisplay(boxId, weapon) {
+function updateWeaponStatsDisplay(boxId, weaponId) {
     // Get the corresponding weapon box element
-    const box = document.getElementById(`${weapon}-box`);
+    const box = document.getElementById(`${weaponId}-box`);
 
     // Check if box exists
     if (!box) {
@@ -1753,15 +1757,15 @@ function updateWeaponStatsDisplay(boxId, weapon) {
     }
 
     // Get the weapon stats elements
-    const currentHP = document.getElementById(`${weapon}HP-value`);
-    const currentDamage = document.getElementById(`${weapon}Damage-value`);
-    const currentRange = document.getElementById(`${weapon}Range-value`);
-    const currentAttackRate = document.getElementById(`${weapon}AttackRate-value`);
-    const currentDPS = document.getElementById(`${weapon}DPS-value`);
+    const currentHP = document.getElementById(`${weaponId}HP-value`);
+    const currentDamage = document.getElementById(`${weaponId}Damage-value`);
+    const currentRange = document.getElementById(`${weaponId}Range-value`);
+    const currentAttackRate = document.getElementById(`${weaponId}AttackRate-value`);
+    const currentDPS = document.getElementById(`${weaponId}DPS-value`);
 
     // Check if weapon stats elements exist
     if (!currentHP || !currentDamage || !currentRange || !currentAttackRate || !currentDPS) {
-        console.error(`One or more weapon stats elements for ${weapon} are missing.`);
+        console.error(`One or more weapon stats elements for ${weaponId} are missing.`);
         return;
     }
 
@@ -1777,64 +1781,67 @@ function updateWeaponStatsDisplay(boxId, weapon) {
 
 // Function to update weapon and upgrade costs in the HTML
 function updateCostDisplay(weaponId) {
-    const weapon = weapons[weaponId];
-    
-    // Ensure the weapon exists
-    if (!weapon) {
-        console.error("Invalid weapon:", weaponId);
-        return;
-    }
+    weaponIds.forEach(weaponId => {
+        const weapon = weapons[weaponId];
 
-    // Update cost display
-    document.getElementById(`${weaponId}-cost`).textContent = formatNumber(weapon.cost);
-    
-    // Update firerate value display
-    if (weapon.stats && weapon.stats.fireRate) {
-        document.getElementById(`${weaponId}Firerate-value`).textContent = weapon.stats.fireRate + 'ms';
-    }
-    
-    // Update potency value display
-    if (weapon.stats && weapon.stats.pointsPerShot) {
-        document.getElementById(`${weaponId}Potency-value`).textContent = formatNumber(weapon.stats.pointsPerShot);
-    }
+        // Ensure the weapon exists
+        if (!weapon) {
+            console.error("Invalid weapon:", weaponId);
+            return;
+        }
 
-    // Update hp value display
-    if (weapon.stats && weapon.stats.hp) {
-        document.getElementById(`${weaponId}HP-value`).textContent = formatNumber(weapon.stats.hp);
-    }
+        // Update cost display
+        document.getElementById(`${weaponId}-cost`).textContent = formatNumber(weapon.cost);
 
-    // Update damage value display
-    if (weapon.stats && weapon.stats.damage) {
-        document.getElementById(`${weaponId}Damage-value`).textContent = formatNumber(weapon.stats.damage);
-    }
+        // Update firerate value display
+        if (weapon.stats && weapon.stats.fireRate) {
+            document.getElementById(`${weaponId}Firerate-value`).textContent = weapon.stats.fireRate + 'ms';
+        }
 
-    // Update range value display
-    if (weapon.stats && weapon.stats.range) {
-        document.getElementById(`${weaponId}Range-value`).textContent = formatNumber(weapon.stats.range);
-    }
+        // Update potency value display
+        if (weapon.stats && weapon.stats.pointsPerShot) {
+            document.getElementById(`${weaponId}Potency-value`).textContent = formatNumber(weapon.stats.pointsPerShot);
+        }
 
-    // Update attack rate display
-    if (weapon.stats && weapon.stats.fireRate) {
-        document.getElementById(`${weaponId}AttackRate-value`).textContent = weapon.stats.fireRate + 'ms';
-    }
+        // Update hp value display
+        if (weapon.stats && weapon.stats.hp) {
+            document.getElementById(`${weaponId}HP-value`).textContent = formatNumber(weapon.stats.hp);
+        }
 
-    // Calculate and update other values
-    const firerateValue = weapon.stats && weapon.stats.fireRate ? weapon.stats.fireRate : 0;
-    const potencyValue = weapon.stats && weapon.stats.pointsPerShot ? weapon.stats.pointsPerShot : 0;
-    const pointsPerSecond = (potencyValue / firerateValue) * 1000;
-    let damagePerSecond = 0;
+        // Update damage value display
+        if (weapon.stats && weapon.stats.damage) {
+            document.getElementById(`${weaponId}Damage-value`).textContent = formatNumber(weapon.stats.damage);
+        }
 
-    if (weapon.stats && weapon.stats.damage) {
-        const bulletsPerShot = weapon.stats.bulletsPerShot || 1;
-        damagePerSecond = (weapon.stats.damage * bulletsPerShot / firerateValue) * 1000;
-    }
+        // Update range value display
+        if (weapon.stats && weapon.stats.range) {
+            document.getElementById(`${weaponId}Range-value`).textContent = formatNumber(weapon.stats.range);
+        }
 
-    // Update display elements
-    document.getElementById(`${weaponId}Firerate-value`).textContent = firerateValue + 'ms';
-    document.getElementById(`${weaponId}Potency-value`).textContent = formatNumber(potencyValue);
-    document.getElementById(`${weaponId}PPS-value`).textContent = formatNumber(pointsPerSecond);
-    document.getElementById(`${weaponId}DPS-value`).textContent = formatNumber(damagePerSecond);
-    
+        // Update attack rate display
+        if (weapon.stats && weapon.stats.fireRate) {
+            document.getElementById(`${weaponId}AttackRate-value`).textContent = weapon.stats.fireRate + 'ms';
+        }
+
+        // Calculate and update other values
+        const firerateValue = weapon.stats && weapon.stats.fireRate ? weapon.stats.fireRate : 0;
+        const potencyValue = weapon.stats && weapon.stats.pointsPerShot ? weapon.stats.pointsPerShot : 0;
+        const pointsPerSecond = (potencyValue / firerateValue) * 1000;
+        let damagePerSecond = 0;
+
+        if (weapon.stats && weapon.stats.damage) {
+            const bulletsPerShot = weapon.stats.bulletsPerShot || 1;
+            damagePerSecond = (weapon.stats.damage * bulletsPerShot / firerateValue) * 1000;
+        }
+
+        // Update display elements
+        document.getElementById(`${weaponId}Firerate-value`).textContent = firerateValue + 'ms';
+        document.getElementById(`${weaponId}Potency-value`).textContent = formatNumber(potencyValue);
+        document.getElementById(`${weaponId}PPS-value`).textContent = formatNumber(pointsPerSecond);
+        document.getElementById(`${weaponId}DPS-value`).textContent = formatNumber(damagePerSecond);
+    });
+
+    // Update other display elements
     document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
     document.getElementById('touchGun-level').textContent = touchGunLevel;
     document.getElementById('touchGun-points-per-click').textContent = formatNumber(touchGunPointsPerClick);

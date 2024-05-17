@@ -1,19 +1,17 @@
-// Define variables for weapons, points, and upgrades
-// Load and parse JSON data for weapons
-fetch('config/weapons.json')
-  .then(response => response.json())
-  .then(data => {
-    const weapons = data.weapons;
-    // Use weapons data as needed
-  })
-  .catch(error => console.error('Error loading weapons data:', error));
+let weapons;
+let enemies;
 
-// Load and parse JSON data for enemies
+fetch('config/weapons.json')
+    .then(response => response.json())
+    .then(data => {
+        weapons = data.weapons;
+    })
+    .catch(error => console.error('Error loading weapons JSON:', error));
+
 fetch('config/enemies.json')
   .then(response => response.json())
   .then(data => {
-    const enemies = data.enemies;
-    // Use enemies data as needed
+       enemies = data.enemies;
   })
   .catch(error => console.error('Error loading enemies data:', error));
 
@@ -1039,12 +1037,13 @@ function earnPoints() {
     updatePointsDisplay();
 }
 
+// Function for automatic points generation based on weapon fire rates
 function automaticPointsGeneration() {
     weapons.forEach(weapon => {
         if (weapon.purchased) {
             setInterval(function() {
                 const currentTime = Date.now();
-                if (currentTime - lastPointsTime[weapon.id] >= weapon.stats.fireRate) {
+                if (currentTime - lastPointsTime[weapon.name] >= weapon.stats.fireRate) {
                     // Calculate points per shot
                     let pointsPerShot = weapon.stats.pointsPerShot;
                     let critical = false;
@@ -1052,10 +1051,19 @@ function automaticPointsGeneration() {
 
                     // For sniper rifles, check for critical hit
                     if (weapon.id === 'sniperRifle') {
-                        const criticalChance = Math.min(100, 25 + weapons.sniperRifle.stats.criticalChance);
+                        const criticalChance = Math.min(100, weapon.stats.criticalChance + sniperRifleCriticalShotLevel * 2);
                         if (criticalChance >= Math.random() * 100) {
                             // Critical shot
-                            pointsPerShot *= weapons.sniperRifle.stats.criticalDamage;
+                            pointsPerShot *= weapon.stats.criticalDamage;
+                            critical = true;
+                        }
+                    }
+
+                  if (weapon.id === 'huntingRifle') {
+                        const criticalChance = Math.min(100, weapon.stats.criticalChance + huntingRifleCriticalShotLevel * 2);
+                        if (criticalChance >= Math.random() * 100) {
+                            // Critical shot
+                            pointsPerShot *= weapon.stats.criticalDamage;
                             critical = true;
                         }
                     }
@@ -1067,16 +1075,16 @@ function automaticPointsGeneration() {
 
                     // For tommy gun, check for missed shots
                     if (weapon.id === 'tommyGun') {
-                        const inaccuracyChance = Math.min(100, 50 + weapons.tommyGun.stats.inaccuracyPenalty);
+                        const inaccuracyChance = Math.min(100, 50 + tommyGunAccuracyLevel * -2);
                         if (inaccuracyChance >= Math.random() * 100) {
-                            // Missed shot
-                            pointsPerShot *= weapons.tommyGun.stats.inaccuracyPenalty;
+                            // missed shot
+                            pointsPerShot *= weapon.stats.inaccuracyPenalty;
                             miss = true;
                         }
                     }
 
-                    shoot(weapon.id, pointsPerShot, critical, miss);
-                    lastPointsTime[weapon.id] = currentTime;
+                    shoot(weapon.name, pointsPerShot, critical, miss);
+                    lastPointsTime[weapon.name] = currentTime;
                 }
             }, 100); // Check every 100 milliseconds for points generation
         }
@@ -1085,6 +1093,13 @@ function automaticPointsGeneration() {
 
 // Function to handle purchasing weapons and upgrades
 function purchase(item) {
+    const weapon = weapons.find(w => w.name === item);
+    if (weapon) {
+        if (!weapon.purchased) {
+            purchaseWeapon(weapon.name, weapon.cost);
+        } else {
+            alert(`${weapon.name} has already been purchased!`);
+        }
     switch (item) {
         case 'touchGun':
             purchaseUpgrade('touchGun', touchGunLevel, touchGunCost, 2, 1, 'touchGun');
@@ -1097,70 +1112,70 @@ function purchase(item) {
             break;
         case 'pistol':
             if (!pistolPurchased) {
-                purchaseWeapon('pistol', weapons.pistol.cost);
+                purchaseWeapon('pistol', weapon.pistol.cost);
             } else {
                 alert("Pistol has already been purchased!");
             }
             break;
         case 'smg':
             if (!smgPurchased) {
-                purchaseWeapon('smg', weapons.smg.cost);
+                purchaseWeapon('smg', weapon.smg.cost);
             } else {
                 alert("SMG has already been purchased!");
             }
             break;
         case 'shotgun':
             if (!shotgunPurchased) {
-                purchaseWeapon('shotgun', weapons.shotgun.cost);
+                purchaseWeapon('shotgun', weapon.shotgun.cost);
             } else {
                 alert("Shotgun has already been purchased!");
             }
             break;
         case 'sniperRifle':
             if (!sniperRiflePurchased) {
-                purchaseWeapon('sniperRifle', weapons.sniperRifle.cost);
+                purchaseWeapon('sniperRifle', weapon.sniperRifle.cost);
             } else {
                 alert("Sniper Rifle has already been purchased!");
             }
             break;
         case 'ak47':
             if (!ak47Purchased) {
-                purchaseWeapon('ak47', weapons.ak47.cost);
+                purchaseWeapon('ak47', weapon.ak47.cost);
             } else {
                 alert("AK-47 has already been purchased!");
             }
             break;
         case 'rocketLauncher':
             if (!rocketLauncherPurchased) {
-                purchaseWeapon('rocketLauncher', weapons.rocketLauncher.cost);
+                purchaseWeapon('rocketLauncher', weapon.rocketLauncher.cost);
             } else {
                 alert("Rocket Launcher has already been purchased!");
             }
             break;
         case 'tommyGun':
             if (!tommyGunPurchased) {
-                purchaseWeapon('tommyGun', weapons.tommyGun.cost);
+                purchaseWeapon('tommyGun', weapon.tommyGun.cost);
             } else {
                 alert("Tommy Gun has already been purchased!");
             }
             break;
         case 'doubleBarrel':
             if (!doubleBarrelPurchased) {
-                purchaseWeapon('doubleBarrel', weapons.doubleBarrel.cost);
+                purchaseWeapon('doubleBarrel', weapon.doubleBarrel.cost);
             } else {
                 alert("Double Barrel has already been purchased!");
             }
             break;
         case 'uzi':
             if (!uziPurchased) {
-                purchaseWeapon('uzi', weapons.uzi.cost);
+                purchaseWeapon('uzi', weapon.uzi.cost);
             } else {
                 alert("Uzi has already been purchased!");
             }
             break;
         case 'huntingRifle':
             if (!huntingRiflePurchased) {
-                purchaseWeapon('huntingRifle', weapons.huntingRifle.cost);
+                purchaseWeapon('huntingRifle', weapon.huntingRifle.cost);
             } else {
                 alert("Hunting Rifle has already been purchased!");
             }
@@ -1415,11 +1430,11 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 }
                 touchGunPointsPerClick += valueIncrement;
                 break;
-            case 'pistolFirerate':
+           case 'pistolFirerate':
                 if (level <= 20) {
                     pistolFirerateUpgradeCost = cost;
                     pistolFirerateLevel = level;
-                    weapons.pistol.stats.fireRate += valueIncrement;
+                    weapons.find(w => w.name === 'pistol').stats.fireRate += valueIncrement;
                 } else {
                     console.log("Maximum level reached for pistol fire rate upgrade.");
                     alert("Pistol's firing rate has been maxed out!");
@@ -1428,41 +1443,24 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'pistolPotency':
                 pistolPotencyUpgradeCost = cost;
                 pistolPotencyLevel = level;
-                if (upgrades.pistol.biggerBullets.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if biggerBullets upgrade is purchased
-                }
-                if (upgrades.pistol.largerCalibre.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the largerCalibre upgrade is purchased
-                }
-                if (upgrades.pistol.louderFiring.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the louderFiring upgrade is purchased
-                }
-                if (upgrades.pistol.metalPiercing.bought) {
-                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the metalPiercing upgrade is purchased
-                }
-                if (upgrades.pistol.fineTuning.bought) {
-                    valueIncrement *= 1.5; // Multiplies valueIncrement by 1.5 if the fineTuning upgrade is purchased
-                }
-                if (upgrades.pistol.versatileGunshots.bought) {
-                    valueIncrement *= 5; // Multiplies valueIncrement by 5 if the versatileGunshots upgrade is purchased
-                }
-                if (upgrades.pistol.empowered.bought) {
-                    valueIncrement *= 5; // Multiplies valueIncrement by 5 if the empowered upgrade is purchased
-                }
-                if (upgrades.pistol.oneHitBullets.bought) {
-                    valueIncrement *= 6; // Multiplies valueIncrement by 6 if the oneHitBullets upgrade is purchased
-                }
-                if (upgrades.touchGun.fingerPistols.bought) {
-                    valueIncrement *= 1.1 * getTotalTouchGunUpgrades();
-                }
-                weapons.pistol.stats.pointsPerShot += valueIncrement;
-                weapons.pistol.stats.damage += valueIncrement * 0.5;
+                if (upgrades.pistol.biggerBullets.bought) valueIncrement *= 2;
+                if (upgrades.pistol.largerCalibre.bought) valueIncrement *= 3;
+                if (upgrades.pistol.louderFiring.bought) valueIncrement *= 3;
+                if (upgrades.pistol.metalPiercing.bought) valueIncrement *= 4;
+                if (upgrades.pistol.fineTuning.bought) valueIncrement *= 1.5;
+                if (upgrades.pistol.versatileGunshots.bought) valueIncrement *= 5;
+                if (upgrades.pistol.empowered.bought) valueIncrement *= 5;
+                if (upgrades.pistol.oneHitBullets.bought) valueIncrement *= 6;
+                if (upgrades.touchGun.fingerPistols.bought) valueIncrement *= 1.1 * getTotalTouchGunUpgrades();
+                const pistol = weapons.find(w => w.name === 'pistol');
+                pistol.stats.pointsPerShot += valueIncrement;
+                pistol.stats.damage += valueIncrement * 0.5;
                 break;
             case 'smgFirerate':
                 if (level <= 10) {
                     smgFirerateUpgradeCost = cost;
                     smgFirerateLevel = level;
-                    weapons.smg.stats.fireRate += valueIncrement;
+                    weapons.find(w => w.name === 'smg').stats.fireRate += valueIncrement;
                 } else {
                     console.log("Maximum level reached for smg fire rate upgrade.");
                     alert("SMG's firing rate has been maxed out!");
@@ -1471,38 +1469,23 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'smgPotency':
                 smgPotencyUpgradeCost = cost;
                 smgPotencyLevel = level;
-                if (upgrades.smg.betterSpread.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the betterSpread upgrade is purchased
-                }
-                if (upgrades.smg.strongHold.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the strongHold upgrade is purchased
-                }
-                if (upgrades.smg.pressureBullets.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the pressureBullets upgrade is purchased
-                }
-                if (upgrades.smg.bashingRounds.bought) {
-                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the bashingRounds upgrade is purchased
-                }
-                if (upgrades.smg.autoAimer.bought) {
-                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the autoAimer upgrade is purchased
-                }
-                if (upgrades.smg.metalPassers.bought) {
-                    valueIncrement *= 5; // Multiplies valueIncrement by 5 if the metalPassers upgrade is purchased
-                }
-                if (upgrades.smg.inescapableBarrage.bought) {
-                    valueIncrement *= 5; // Multiplies valueIncrement by 5 if the inescapableBarrage upgrade is purchased
-                }
-                if (upgrades.smg.neverMissBarrage.bought) {
-                    valueIncrement *= 6; // Multiplies valueIncrement by 6 if the neverMissBarrage upgrade is purchased
-                }
-                weapons.smg.stats.pointsPerShot += valueIncrement;
-                weapons.smg.stats.damage += valueIncrement * 0.5;
+                if (upgrades.smg.betterSpread.bought) valueIncrement *= 2;
+                if (upgrades.smg.strongHold.bought) valueIncrement *= 3;
+                if (upgrades.smg.pressureBullets.bought) valueIncrement *= 3;
+                if (upgrades.smg.bashingRounds.bought) valueIncrement *= 4;
+                if (upgrades.smg.autoAimer.bought) valueIncrement *= 4;
+                if (upgrades.smg.metalPassers.bought) valueIncrement *= 5;
+                if (upgrades.smg.inescapableBarrage.bought) valueIncrement *= 5;
+                if (upgrades.smg.neverMissBarrage.bought) valueIncrement *= 6;
+                const smg = weapons.find(w => w.name === 'smg');
+                smg.stats.pointsPerShot += valueIncrement;
+                smg.stats.damage += valueIncrement * 0.5;
                 break;
             case 'shotgunFirerate':
                 if (level <= 15) {
                     shotgunFirerateUpgradeCost = cost;
                     shotgunFirerateLevel = level;
-                    weapons.shotgun.stats.fireRate += valueIncrement;
+                    weapons.find(w => w.name === 'shotgun').stats.fireRate += valueIncrement;
                 } else {
                     console.log("Maximum level reached for shotgun fire rate upgrade.");
                     alert("Shotgun's firing rate has been maxed out!");
@@ -1511,46 +1494,29 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'shotgunPotency':
                 shotgunPotencyUpgradeCost = cost;
                 shotgunPotencyLevel = level;
-                if (upgrades.shotgun.powerfulBurst.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the powerfulBurst upgrade is purchased
-                }
-                if (upgrades.shotgun.devastatingBurst.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the devastatingBurst upgrade is purchased
-                }
-                if (upgrades.shotgun.megaBurst.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the megaBurst upgrade is purchased
-                }
-                if (upgrades.shotgun.gigaBurst.bought) {
-                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the gigaBurst upgrade is purchased
-                }
-                if (upgrades.shotgun.omegaBurst.bought) {
-                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the omegaBurst upgrade is purchased
-                }
-                if (upgrades.shotgun.teraBurst.bought) {
-                    valueIncrement *= 5; // Multiplies valueIncrement by 5 if the teraBurst upgrade is purchased
-                }
-                if (upgrades.shotgun.ultimatumBurst.bought) {
-                    valueIncrement *= 5; // Multiplies valueIncrement by 5 if the ultimatumBurst upgrade is purchased
-                }
-                weapons.shotgun.stats.pointsPerShot += valueIncrement;
-                weapons.shotgun.stats.damage += valueIncrement * 0.5;
+                if (upgrades.shotgun.powerfulBurst.bought) valueIncrement *= 2;
+                if (upgrades.shotgun.devastatingBurst.bought) valueIncrement *= 3;
+                if (upgrades.shotgun.megaBurst.bought) valueIncrement *= 3;
+                if (upgrades.shotgun.gigaBurst.bought) valueIncrement *= 4;
+                if (upgrades.shotgun.omegaBurst.bought) valueIncrement *= 4;
+                if (upgrades.shotgun.teraBurst.bought) valueIncrement *= 5;
+                if (upgrades.shotgun.ultimatumBurst.bought) valueIncrement *= 5;
+                const shotgun = weapons.find(w => w.name === 'shotgun');
+                shotgun.stats.pointsPerShot += valueIncrement;
+                shotgun.stats.damage += valueIncrement * 0.5;
                 break;
             case 'shotgunMultiFire':
                 shotgunMultiFireUpgradeCost = cost;
                 shotgunMultiFireLevel = level;
-                if (upgrades.shotgun.scattershot.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the scattershot upgrade is purchased
-                }
-                if (upgrades.shotgun.buckshot.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the buckshot upgrade is purchased
-                }
-                weapons.shotgun.stats.bulletsPerShot += valueIncrement;
+                if (upgrades.shotgun.scattershot.bought) valueIncrement *= 2;
+                if (upgrades.shotgun.buckshot.bought) valueIncrement *= 2;
+                weapons.find(w => w.name === 'shotgun').stats.bulletsPerShot += valueIncrement;
                 break;
             case 'sniperRifleFirerate':
                 if (level <= 10) {
                     sniperRifleFirerateUpgradeCost = cost;
                     sniperRifleFirerateLevel = level;
-                    weapons.sniperRifle.stats.fireRate += valueIncrement;
+                    weapons.find(w => w.name === 'sniperRifle').stats.fireRate += valueIncrement;
                 } else {
                     console.log("Maximum level reached for sniper rifle fire rate upgrade.");
                     alert("Sniper Rifle's firing rate has been maxed out!");
@@ -1559,48 +1525,33 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'sniperRiflePotency':
                 sniperRiflePotencyUpgradeCost = cost;
                 sniperRiflePotencyLevel = level;
-                if (upgrades.sniperRifle.cripplingShots.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the cripplingShots upgrade is purchased
-                }
-                if (upgrades.sniperRifle.dangerousRifling.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the dangerousRifling upgrade is purchased
-                }
-                if (upgrades.sniperRifle.enhancedTracers.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the enhancedTracers upgrade is purchased
-                }
-                if (upgrades.sniperRifle.infraredScope.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the infraredScope upgrade is purchased
-                }
-                if (upgrades.sniperRifle.electroshockTracers.bought) {
-                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the electroshockTracers upgrade is purchased
-                }
-                if (upgrades.sniperRifle.lethalTracers.bought) {
-                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the lethalTracers upgrade is purchased
-                }
-                if (upgrades.sniperRifle.heatseekingSensors.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the heatseekingSensors upgrade is purchased
-                }
-                weapons.sniperRifle.stats.pointsPerShot += valueIncrement;
-                weapons.sniperRifle.stats.damage += valueIncrement * 0.5;
+                if (upgrades.sniperRifle.cripplingShots.bought) valueIncrement *= 2;
+                if (upgrades.sniperRifle.dangerousRifling.bought) valueIncrement *= 3;
+                if (upgrades.sniperRifle.enhancedTracers.bought) valueIncrement *= 3;
+                if (upgrades.sniperRifle.infraredScope.bought) valueIncrement *= 2;
+                if (upgrades.sniperRifle.electroshockTracers.bought) valueIncrement *= 4;
+                if (upgrades.sniperRifle.lethalTracers.bought) valueIncrement *= 4;
+                if (upgrades.sniperRifle.heatseekingSensors.bought) valueIncrement *= 3;
+                const sniperRifle = weapons.find(w => w.name === 'sniperRifle');
+                sniperRifle.stats.pointsPerShot += valueIncrement;
+                sniperRifle.stats.damage += valueIncrement * 0.5;
                 break;
             case 'sniperRifleCriticalShot':
                 sniperRifleCriticalShotUpgradeCost = cost;
                 sniperRifleCriticalShotLevel = level;
-                weapons.sniperRifle.stats.criticalChance += valueIncrement;
+                weapons.find(w => w.name === 'sniperRifle').stats.criticalChance += valueIncrement;
                 break;
             case 'sniperRifleCriticalDamage':
                 sniperRifleCriticalDamageUpgradeCost = cost;
                 sniperRifleCriticalDamageLevel = level;
-                if (upgrades.sniperRifle.infraredScope.bought) {
-                    valueIncrement *= 1.5;
-                }
-                weapons.sniperRifle.stats.criticalDamage += valueIncrement;
+                if (upgrades.sniperRifle.infraredScope.bought) valueIncrement *= 1.5;
+                weapons.find(w => w.name === 'sniperRifle').stats.criticalDamage += valueIncrement;
                 break;
             case 'ak47Firerate':
                 if (level <= 15) {
                     ak47FirerateUpgradeCost = cost;
                     ak47FirerateLevel = level;
-                    weapons.ak47.stats.fireRate += valueIncrement;
+                    weapons.find(w => w.name === 'ak47').stats.fireRate += valueIncrement;
                 } else {
                     console.log("Maximum level reached for ak47 fire rate upgrade.");
                     alert("AK-47's firing rate has been maxed out!");
@@ -1609,44 +1560,25 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'ak47Potency':
                 ak47PotencyUpgradeCost = cost;
                 ak47PotencyLevel = level;
-                if (upgrades.ak47.heatTippedBullets.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the heatTippedBullets upgrade is purchased
-                }
-                if (upgrades.ak47.staggeringBullets.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the staggeringBullets upgrade is purchased
-                }
-                if (upgrades.ak47.rippingBullets.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the rippingBullets upgrade is purchased
-                }
-                if (upgrades.ak47.vehementBullets.bought) {
-                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the vehementBullets upgrade is purchased
-                }
-                if (upgrades.ak47.overbearingVelocity.bought) {
-                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the overbearingVelocity upgrade is purchased
-                }
-                if (upgrades.ak47.poweredVelocity.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the poweredVelocity upgrade is purchased
-                }
-                if (upgrades.ak47.instantaneousVelocity.bought) {
-                    valueIncrement *= 5; // Multiplies valueIncrement by 5 if the instantaneousVelocity upgrade is purchased
-                }
-                if (upgrades.ak47.spikyBullets.bought) {
-                    valueIncrement *= 5; // Multiplies valueIncrement by 5 if the spikyBullets upgrade is purchased
-                }
-                if (upgrades.ak47.ferociousBullets.bought) {
-                    valueIncrement *= 6; // Multiplies valueIncrement by 6 if the ferociousBullets upgrade is purchased
-                }
-                if (upgrades.ak47.unfathomablePressure.bought) {
-                    valueIncrement *= 6; // Multiplies valueIncrement by 6 if the unfathomablePressure upgrade is purchased
-                }
-                weapons.ak47.stats.pointsPerShot += valueIncrement;
-                weapons.ak47.stats.damage += valueIncrement * 0.5;
+                if (upgrades.ak47.heatTippedBullets.bought) valueIncrement *= 2;
+                if (upgrades.ak47.staggeringBullets.bought) valueIncrement *= 3;
+                if (upgrades.ak47.rippingBullets.bought) valueIncrement *= 3;
+                if (upgrades.ak47.vehementBullets.bought) valueIncrement *= 4;
+                if (upgrades.ak47.overbearingVelocity.bought) valueIncrement *= 4;
+                if (upgrades.ak47.poweredVelocity.bought) valueIncrement *= 2;
+                if (upgrades.ak47.instantaneousVelocity.bought) valueIncrement *= 5;
+                if (upgrades.ak47.spikyBullets.bought) valueIncrement *= 5;
+                if (upgrades.ak47.ferociousBullets.bought) valueIncrement *= 6;
+                if (upgrades.ak47.unfathomablePressure.bought) valueIncrement *= 6;
+                const ak47 = weapons.find(w => w.name === 'ak47');
+                ak47.stats.pointsPerShot += valueIncrement;
+                ak47.stats.damage += valueIncrement * 0.5;
                 break;
             case 'rocketLauncherFirerate':
                 if (level <= 15) {
                     rocketLauncherFirerateUpgradeCost = cost;
                     rocketLauncherFirerateLevel = level;
-                    weapons.rocketLauncher.stats.fireRate += valueIncrement;
+                    weapons.find(w => w.name === 'rocketLauncher').stats.fireRate += valueIncrement;
                 } else {
                     console.log("Maximum level reached for rocket launcher fire rate upgrade.");
                     alert("Rocket Launcher's firing rate has been maxed out!");
@@ -1655,35 +1587,22 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'rocketLauncherPotency':
                 rocketLauncherPotencyUpgradeCost = cost;
                 rocketLauncherPotencyLevel = level;
-                if (upgrades.rocketLauncher.potentRockets.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the potentRockets upgrade is purchased
-                }
-                if (upgrades.rocketLauncher.repeatedExplosions.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the repeatedExplosions upgrade is purchased
-                }
-                if (upgrades.rocketLauncher.extraGunpowder.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the extraGunpowder upgrade is purchased
-                }
-                if (upgrades.rocketLauncher.shatteringExplosions.bought) {
-                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the shatteringExplosions upgrade is purchased
-                }
-                if (upgrades.rocketLauncher.napalmRockets.bought) {
-                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the napalmRockets upgrade is purchased
-                }
-                if (upgrades.rocketLauncher.rampantTips.bought) {
-                    valueIncrement *= 5; // Multiplies valueIncrement by 5 if the rampantTips upgrade is purchased
-                }
-                if (upgrades.rocketLauncher.kamikaze.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the kamikaze upgrade is purchased
-                }
-                weapons.rocketLauncher.stats.pointsPerShot += valueIncrement;
-                weapons.rocketLauncher.stats.damage += valueIncrement * 0.5;
+                if (upgrades.rocketLauncher.potentRockets.bought) valueIncrement *= 2;
+                if (upgrades.rocketLauncher.repeatedExplosions.bought) valueIncrement *= 3;
+                if (upgrades.rocketLauncher.extraGunpowder.bought) valueIncrement *= 3;
+                if (upgrades.rocketLauncher.shatteringExplosions.bought) valueIncrement *= 4;
+                if (upgrades.rocketLauncher.napalmRockets.bought) valueIncrement *= 4;
+                if (upgrades.rocketLauncher.rampantTips.bought) valueIncrement *= 5;
+                if (upgrades.rocketLauncher.kamikaze.bought) valueIncrement *= 2;
+                const rocketLauncher = weapons.find(w => w.name === 'rocketLauncher');
+                rocketLauncher.stats.pointsPerShot += valueIncrement;
+                rocketLauncher.stats.damage += valueIncrement * 0.5;
                 break;
             case 'rocketLauncherSplashRadius':
                 if (level <= 5) {
                     rocketLauncherSplashRadiusUpgradeCost = cost;
                     rocketLauncherSplashRadiusLevel = level;
-                    rocketLauncherSplashRadius += valueIncrement;
+                    weapons.find(w => w.name === 'rocketLauncher').stats.splashRadius += valueIncrement;
                 } else {
                     console.log("Maximum level reached for rocket launcher splash radius upgrade.");
                     alert("Rocket Launcher's splash radius has been maxed out!");
@@ -1692,13 +1611,13 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'rocketLauncherSplashDamage':
                 rocketLauncherSplashDamageUpgradeCost = cost;
                 rocketLauncherSplashDamageLevel = level;
-                rocketLauncherSplashDamage += valueIncrement;
+                weapons.find(w => w.name === 'rocketLauncher').stats.splashDamage += valueIncrement;
                 break;
             case 'tommyGunFirerate':
                 if (level <= 20) {
                     tommyGunFirerateUpgradeCost = cost;
                     tommyGunFirerateLevel = level;
-                    weapons.tommyGun.stats.fireRate += valueIncrement;
+                    weapons.find(w => w.name === 'tommyGun').stats.fireRate += valueIncrement;
                 } else {
                     console.log("Maximum level reached for tommy gun fire rate upgrade.");
                     alert("Tommy Gun's firing rate has been maxed out!");
@@ -1707,43 +1626,28 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'tommyGunPotency':
                 tommyGunPotencyUpgradeCost = cost;
                 tommyGunPotencyLevel = level;
-                if (upgrades.tommyGun.tightPressure.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the tightPressure upgrade is purchased
-                }
-                if (upgrades.tommyGun.powerfulOutcomes.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the powerfulOutcomes upgrade is purchased
-                }
-                if (upgrades.tommyGun.vehementBurst.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the vehementBurst upgrade is purchased
-                }
-                if (upgrades.tommyGun.theVector.bought) {
-                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the theVector upgrade is purchased
-                }
-                if (upgrades.tommyGun.dangerZone.bought) {
-                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the dangerZone upgrade is purchased
-                }
-                if (upgrades.tommyGun.dischargedRippers.bought) {
-                    valueIncrement *= 5; // Multiplies valueIncrement by 5 if the dischargedRippers upgrade is purchased
-                }
-                if (upgrades.tommyGun.unstoppableBarrage.bought) {
-                    valueIncrement *= 5; // Multiplies valueIncrement by 5 if the unstoppableBarrage upgrade is purchased
-                }
-                if (upgrades.tommyGun.unavoidable.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the unavoidable upgrade is purchased
-                }
-                weapons.tommyGun.stats.pointsPerShot += valueIncrement;
-                weapons.tommyGun.stats.damage += valueIncrement * 0.5;
+                if (upgrades.tommyGun.tightPressure.bought) valueIncrement *= 2;
+                if (upgrades.tommyGun.powerfulOutcomes.bought) valueIncrement *= 3;
+                if (upgrades.tommyGun.vehementBurst.bought) valueIncrement *= 3;
+                if (upgrades.tommyGun.theVector.bought) valueIncrement *= 4;
+                if (upgrades.tommyGun.dangerZone.bought) valueIncrement *= 4;
+                if (upgrades.tommyGun.dischargedRippers.bought) valueIncrement *= 5;
+                if (upgrades.tommyGun.unstoppableBarrage.bought) valueIncrement *= 5;
+                if (upgrades.tommyGun.unavoidable.bought) valueIncrement *= 3;
+                const tommyGun = weapons.find(w => w.name === 'tommyGun');
+                tommyGun.stats.pointsPerShot += valueIncrement;
+                tommyGun.stats.damage += valueIncrement * 0.5;
                 break;
             case 'tommyGunAccuracy':
                 tommyGunAccuracyUpgradeCost = cost;
                 tommyGunAccuracyLevel = level;
-                weapons.tommyGun.stats.accuracy += valueIncrement;
+                weapons.find(w => w.name === 'tommyGun').stats.accuracy += valueIncrement;
                 break;
             case 'doubleBarrelFirerate':
                 if (level <= 25) {
                     doubleBarrelFirerateUpgradeCost = cost;
                     doubleBarrelFirerateLevel = level;
-                    doubleBarrelFireRate += valueIncrement;
+                    weapons.find(w => w.name === 'doubleBarrel').stats.fireRate += valueIncrement;
                 } else {
                     console.log("Maximum level reached for double barrel fire rate upgrade.");
                     alert("Double Barrel's firing rate has been maxed out!");
@@ -1752,49 +1656,30 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'doubleBarrelPotency':
                 doubleBarrelPotencyUpgradeCost = cost;
                 doubleBarrelPotencyLevel = level;
-                if (upgrades.doubleBarrel.lethalShots.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the lethalShots upgrade is purchased
-                }
-                if (upgrades.doubleBarrel.arcSwitchingBarrels.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the arcSwitchingBarrels upgrade is purchased
-                }
-                if (upgrades.doubleBarrel.energized.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the energized upgrade is purchased
-                }
-                if (upgrades.doubleBarrel.clumpedShots.bought) {
-                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the clumpedShots upgrade is purchased
-                }
-                if (upgrades.doubleBarrel.tightShots.bought) {
-                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the tightShots upgrade is purchased
-                }
-                if (upgrades.doubleBarrel.heavyForce.bought) {
-                    valueIncrement *= 5; // Multiplies valueIncrement by 5 if the heavyForce upgrade is purchased
-                }
-                if (upgrades.doubleBarrel.unbearableForce.bought) {
-                    valueIncrement *= 5; // Multiplies valueIncrement by 5 if the unbearableForce upgrade is purchased
-                }
-                doubleBarrelPointsPerShot += valueIncrement;
-                doubleBarrelDamage += valueIncrement * 0.5;
+                if (upgrades.doubleBarrel.lethalShots.bought) valueIncrement *= 2;
+                if (upgrades.doubleBarrel.arcSwitchingBarrels.bought) valueIncrement *= 3;
+                if (upgrades.doubleBarrel.energized.bought) valueIncrement *= 3;
+                if (upgrades.doubleBarrel.clumpedShots.bought) valueIncrement *= 4;
+                if (upgrades.doubleBarrel.tightShots.bought) valueIncrement *= 4;
+                if (upgrades.doubleBarrel.heavyForce.bought) valueIncrement *= 5;
+                if (upgrades.doubleBarrel.unbearableForce.bought) valueIncrement *= 5;
+                const doubleBarrel = weapons.find(w => w.name === 'doubleBarrel');
+                doubleBarrel.stats.pointsPerShot += valueIncrement;
+                doubleBarrel.stats.damage += valueIncrement * 0.5;
                 break;
             case 'doubleBarrelMultiFire':
                 doubleBarrelMultiFireUpgradeCost = cost;
                 doubleBarrelMultiFireLevel = level;
-                if (upgrades.doubleBarrel.doubleTrouble.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the doubleTrouble upgrade is purchased
-                }
-                if (upgrades.doubleBarrel.doubleSwarm.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the doubleSwarm upgrade is purchased
-                }
-                if (upgrades.doubleBarrel.doubleYeah.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the doubleYeah upgrade is purchased
-                }
-                doubleBarrelBulletsPerShot += valueIncrement;
+                if (upgrades.doubleBarrel.doubleTrouble.bought) valueIncrement *= 2;
+                if (upgrades.doubleBarrel.doubleSwarm.bought) valueIncrement *= 2;
+                if (upgrades.doubleBarrel.doubleYeah.bought) valueIncrement *= 2;
+                weapons.find(w => w.name === 'doubleBarrel').stats.bulletsPerShot += valueIncrement;
                 break;
             case 'uziFirerate':
                 if (level <= 10) {
                     uziFirerateUpgradeCost = cost;
                     uziFirerateLevel = level;
-                    uziFireRate += valueIncrement;
+                    weapons.find(w => w.name === 'uzi').stats.fireRate += valueIncrement;
                 } else {
                     console.log("Maximum level reached for uzi fire rate upgrade.");
                     alert("Uzi's firing rate has been maxed out!");
@@ -1803,35 +1688,22 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'uziPotency':
                 uziPotencyUpgradeCost = cost;
                 uziPotencyLevel = level;
-                if (upgrades.uzi.focussedSpread.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the focussedSpread upgrade is purchased
-                }
-                if (upgrades.uzi.quickfiringSalvo.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the quickfiringSalvo upgrade is purchased
-                }
-                if (upgrades.uzi.tinyRippers.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the tinyRippers upgrade is purchased
-                }
-                if (upgrades.uzi.circuitousSpread.bought) {
-                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the circuitousSpread upgrade is purchased
-                }
-                if (upgrades.uzi.bulletOverload.bought) {
-                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the bulletOverload upgrade is purchased
-                }
-                if (upgrades.uzi.bulletDrizzle.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the bulletDrizzle upgrade is purchased
-                }
-                if (upgrades.uzi.alwaysHitting.bought) {
-                    valueIncrement *= 5; // Multiplies valueIncrement by 5 if the alwaysHitting upgrade is purchased
-                }
-                uziPointsPerShot += valueIncrement;
-                uziDamage += valueIncrement * 0.5;
+                if (upgrades.uzi.focussedSpread.bought) valueIncrement *= 2;
+                if (upgrades.uzi.quickfiringSalvo.bought) valueIncrement *= 3;
+                if (upgrades.uzi.tinyRippers.bought) valueIncrement *= 3;
+                if (upgrades.uzi.circuitousSpread.bought) valueIncrement *= 4;
+                if (upgrades.uzi.bulletOverload.bought) valueIncrement *= 4;
+                if (upgrades.uzi.bulletDrizzle.bought) valueIncrement *= 2;
+                if (upgrades.uzi.alwaysHitting.bought) valueIncrement *= 5;
+                const uzi = weapons.find(w => w.name === 'uzi');
+                uzi.stats.pointsPerShot += valueIncrement;
+                uzi.stats.damage += valueIncrement * 0.5;
                 break;
             case 'huntingRifleFirerate':
                 if (level <= 15) {
                     huntingRifleFirerateUpgradeCost = cost;
                     huntingRifleFirerateLevel = level;
-                    huntingRifleFireRate += valueIncrement;
+                    weapons.find(w => w.name === 'huntingRifle').stats.fireRate += valueIncrement;
                 } else {
                     console.log("Maximum level reached for hunting rifle fire rate upgrade.");
                     alert("Hunting Rifle's firing rate has been maxed out!");
@@ -1840,39 +1712,26 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'huntingRiflePotency':
                 huntingRiflePotencyUpgradeCost = cost;
                 huntingRiflePotencyLevel = level;
-                if (upgrades.huntingRifle.powerfulHunter.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the powerfulHunter upgrade is purchased
-                }
-                if (upgrades.huntingRifle.noEscape.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the noEscape upgrade is purchased
-                }
-                if (upgrades.huntingRifle.criminalHunter.bought) {
-                    valueIncrement *= 3; // Multiplies valueIncrement by 3 if the criminalHunter upgrade is purchased
-                }
-                if (upgrades.huntingRifle.targetHunter.bought) {
-                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the targetHunter upgrade is purchased
-                }
-                if (upgrades.huntingRifle.longTracers.bought) {
-                    valueIncrement *= 4; // Multiplies valueIncrement by 4 if the longTracers upgrade is purchased
-                }
-                if (upgrades.huntingRifle.titanicTracers.bought) {
-                    valueIncrement *= 2; // Multiplies valueIncrement by 2 if the titanicTracers upgrade is purchased
-                }
-                huntingRiflePointsPerShot += valueIncrement;
-                huntingRifleDamage += valueIncrement * 0.5;
+                if (upgrades.huntingRifle.powerfulHunter.bought) valueIncrement *= 2;
+                if (upgrades.huntingRifle.noEscape.bought) valueIncrement *= 3;
+                if (upgrades.huntingRifle.criminalHunter.bought) valueIncrement *= 3;
+                if (upgrades.huntingRifle.targetHunter.bought) valueIncrement *= 4;
+                if (upgrades.huntingRifle.longTracers.bought) valueIncrement *= 4;
+                if (upgrades.huntingRifle.titanicTracers.bought) valueIncrement *= 2;
+                const huntingRifle = weapons.find(w => w.name === 'huntingRifle');
+                huntingRifle.stats.pointsPerShot += valueIncrement;
+                huntingRifle.stats.damage += valueIncrement * 0.5;
                 break;
             case 'huntingRifleCriticalShot':
                 huntingRifleCriticalShotUpgradeCost = cost;
                 huntingRifleCriticalShotLevel = level;
-                huntingRifleCriticalShotChance += valueIncrement;
+                weapons.find(w => w.name === 'huntingRifle').stats.criticalChance += valueIncrement;
                 break;
             case 'huntingRifleCriticalDamage':
                 huntingRifleCriticalDamageUpgradeCost = cost;
                 huntingRifleCriticalDamageLevel = level;
-                if (upgrades.huntingRifle.titanicTracers.bought) {
-                    valueIncrement *= 2;
-                }
-                huntingRifleCriticalDamageMultiplier += valueIncrement;
+                if (upgrades.huntingRifle.titanicTracers.bought) valueIncrement *= 2;
+                weapons.find(w => w.name === 'huntingRifle').stats.criticalDamage += valueIncrement;
                 break;
             default:
                 console.error("Invalid upgradeType:", upgradeType);

@@ -1025,7 +1025,7 @@ function purchase(item) {
         case 'uzi':
         case 'huntingRifle':
             if (!weapons[item].purchased) {
-                purchaseWeapon(item);
+                purchaseWeapon(weaponId);
             } else {
                 alert(`${item.charAt(0).toUpperCase() + item.slice(1)} has already been purchased!`);
             }
@@ -1151,7 +1151,7 @@ function purchaseWeapon(weaponId) {
 }
 
 // Function to purchase an upgrade
-function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncrement, upgradeCategory) {
+function purchaseUpgradeOld(upgradeType, level, cost, costMultiplier, valueIncrement, upgradeCategory) {
     if (points >= cost) {
         points -= cost;
         cost *= costMultiplier;
@@ -1591,6 +1591,211 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
     } else {
         alert(`Not enough points to upgrade ${upgradeType}!`);
     }
+}
+
+function handleWeaponUpgrade(weaponId, stat, level, cost, valueIncrement, maxLevel) {
+    const weapon = weapons.find(w => w.name === weaponId);
+    if (level <= maxLevel) {
+        switch (stat) {
+            case 'fireRate':
+                weapon.stats.fireRate += valueIncrement;
+                break;
+            case 'potency':
+                applyWeaponPotencyUpgrades(weaponId, valueIncrement);
+                weapon.stats.pointsPerShot += valueIncrement;
+                weapon.stats.damage += valueIncrement * 0.5;
+                break;
+            case 'multiFire':
+                weapon.stats.bulletsPerShot += valueIncrement;
+                break;
+            case 'criticalShotChance':
+                weapon.stats.criticalChance += valueIncrement;
+                break;
+            case 'criticalShotDamage':
+                weapon.stats.criticalDamage += valueIncrement;
+                break;
+            case 'accuracy':
+                weapon.stats.accuracy += valueIncrement;
+                break;
+            case 'splashRadius':
+                weapon.stats.splashRadius += valueIncrement;
+                break;
+            case 'splashDamage':
+                weapon.stats.splashDamage += valueIncrement
+                break;
+        }
+    } else {
+        console.log(`Maximum level reached for ${weaponId} ${stat} upgrade.`);
+        alert(`${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)}'s ${stat} has been maxed out!`);
+    }
+}
+
+// Function to purchase an upgrade
+function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncrement, upgradeCategory) {
+    if (points >= cost) {
+        points -= cost;
+        cost *= costMultiplier;
+        level++;
+
+        // Ensure `weapons` is an array and contains valid weapon objects
+        if (!Array.isArray(weapons) || weapons.length === 0 || !weapons.every(w => weaponIds.includes(w.name))) {
+            console.error("Invalid or missing data in weapons array.");
+            return;
+        }
+
+        switch (upgradeType) {
+            case 'touchGun':
+            case 'touchGunAwaken':
+            case 'touchGunSuperAwaken':
+                handleTouchGunUpgrade(upgradeType, level, cost, valueIncrement);
+                break;
+            case 'pistolFirerate':
+            case 'smgFirerate':
+            case 'shotgunFirerate':
+            case 'sniperRifleFirerate':
+            case 'ak47Firerate':
+            case 'rocketLauncherFirerate':
+            case 'tommyGunFirerate':
+            case 'doubleBarrelFirerate':
+            case 'uziFirerate':
+            case 'huntingRifleFirerate':
+                handleWeaponFirerateUpgrade(upgradeType, level, cost, valueIncrement);
+                break;
+            case 'pistolPotency':
+            case 'smgPotency':
+            case 'shotgunPotency':
+            case 'sniperRiflePotency':
+            case 'ak47Potency':
+            case 'rocketLauncherPotency':
+            case 'tommyGunPotency':
+            case 'doubleBarrelPotency':
+            case 'uziPotency':
+            case 'huntingRiflePotency':
+                handleWeaponPotencyUpgrade(upgradeType, level, cost, valueIncrement);
+                break;
+            // Add cases for other weapon upgrades here
+            default:
+                console.error("Invalid upgrade type:", upgradeType);
+        }
+    }
+}
+
+// Function to handle firerate stat upgrades
+function handleWeaponFirerateUpgrade(upgradeType, level, cost, valueIncrement) {
+    const weaponId = upgradeType.replace('Firerate', '').toLowerCase();
+    const weapon = weapons.find(w => w.name === weaponId);
+    
+    let maxLevel;
+    switch (weaponId) {
+        case 'pistol':
+            maxLevel = 20;
+            break;
+        case 'smg':
+        case 'sniperRifle':
+            maxLevel = 10;
+            break;
+        case 'shotgun':
+            maxLevel = 15;
+            break;
+        // Add other weapons and their max levels here
+        default:
+            console.error("Invalid weapon id:", weaponId);
+            return;
+    }
+
+    if (level <= maxLevel) {
+        weapon.stats.fireRate += valueIncrement;
+    } else {
+        console.log(`Maximum level reached for ${weaponId} fire rate upgrade.`);
+        alert(`${weaponId.charAt(0).toUpperCase() + weaponId.slice(1)}'s fire rate has been maxed out!`);
+    }
+}
+
+// Function to handle potency stat upgrades
+function handleWeaponPotencyUpgrade(upgradeType, level, cost, valueIncrement) {
+    const weapon = weapons.find(w => w.name === weaponId);
+    switch (upgradeType) {
+        case 'pistol':
+            applyPistolPotencyUpgrades(valueIncrement);
+            weapon.stats.pointsPerShot += valueIncrement;
+            weapon.stats.damage += valueIncrement * 0.5;
+            break;
+        // Handle other weapon potencies here
+    }
+}
+
+// Function to handle touch gun upgrades
+function handleTouchGunUpgrade(upgradeType, level, cost, valueIncrement) {
+    switch (upgradeType) {
+        case 'touchGun':
+            touchGunCost = cost;
+            touchGunLevel = level;
+            touchGunPointsPerClick += valueIncrement;
+            break;
+        case 'touchGunAwaken':
+            awokenTouchGunCost = cost;
+            awokenTouchGunLevel = level;
+            touchGunPointsPerClick += valueIncrement;
+            break;
+        case 'touchGunSuperAwaken':
+            superAwokenTouchGunCost = cost;
+            superAwokenTouchGunLevel = level;
+            touchGunPointsPerClick += valueIncrement;
+            break;
+        // Add cases for other touchGun upgrades here...
+        default:
+            console.error("Invalid upgradeType for touchGun:", upgradeType);
+    }
+}
+
+// Determine the maximum level an weapon stat upgrade can have
+function getMaxLevel(upgradeType) {
+    switch (upgradeType) {
+        case 'pistolFirerate':
+        case 'tommyGunFirerate':
+            return 20;
+        case 'smgFirerate':
+        case 'sniperRifleFirerate':
+        case 'uziFirerate':
+            return 10;
+        case 'shotgunFirerate':
+        case 'ak47Firerate':
+        case 'rocketLauncherFirerate':
+        case 'huntingRifleFirerate':
+            return 15;
+        case 'doubleBarrelFirerate':
+            return 25;
+        default:
+            console.error("Invalid upgrade type:", upgradeType);
+            return 0;
+    }
+}
+
+function applyTouchGunUpgrades(valueIncrement) {
+    if (upgrades.touchGun.pointyFingers.bought) valueIncrement *= 2;
+    if (upgrades.touchGun.ambidextrous.bought) valueIncrement *= 2;
+    if (upgrades.touchGun.thousandFingers.bought) valueIncrement += 0.5 * getTotalPotencyUpgrades();
+    if (upgrades.touchGun.antirestingCream.bought) valueIncrement *= 3;
+    if (upgrades.touchGun.powerfulHands.bought) valueIncrement *= 5;
+    if (upgrades.touchGun.millionFingers.bought) valueIncrement += 5 * getTotalPotencyUpgrades();
+    if (upgrades.touchGun.stingingTaps.bought) valueIncrement *= 4;
+    if (upgrades.touchGun.gotToTap.bought) valueIncrement *= 3;
+    if (upgrades.touchGun.fingerSwarm.bought) valueIncrement *= 4;
+    if (upgrades.touchGun.billionFingers.bought) valueIncrement += 50 * getTotalPotencyUpgrades();
+    if (upgrades.touchGun.needMore.bought) valueIncrement *= 5;
+    if (upgrades.touchGun.trillionFingers.bought) valueIncrement += 500 * getTotalPotencyUpgrades();
+}
+
+function applyPistolPotencyUpgrades(valueIncrement) {
+    if (upgrades.pistol.biggerBullets.bought) valueIncrement *= 2;
+    if (upgrades.pistol.largerCalibre.bought) valueIncrement *= 3;
+    if (upgrades.pistol.louderFiring.bought) valueIncrement *= 3;
+    if (upgrades.pistol.metalPiercing.bought) valueIncrement *= 4;
+    if (upgrades.pistol.fineTuning.bought) valueIncrement *= 1.5;
+    if (upgrades.pistol.versatileGunshots.bought) valueIncrement *= 5;
+    if (upgrades.pistol.empowered.bought) valueIncrement *= 5;
+    if (upgrades.pistol.oneHitBullets.bought) valueIncrement *= 6;
+    if (upgrades.touchGun.fingerPistols.bought) valueIncrement *= 1.1 * getTotalTouchGunUpgrades();
 }
 
 function bigUpgrades(weapon, upgrade, cost) {

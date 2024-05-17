@@ -1092,11 +1092,11 @@ function automaticPointsGeneration() {
 }
 
 // Function to handle purchasing weapons and upgrades
-function purchase(item) {
-    const weapon = weapons[item]; // Access weapon directly using item as key
+function purchase(weaponId, item) {
+    const weapon = weapons[weaponId]; // Access weapon directly using item as key
     if (weapon) {
         if (!weapon.purchased) {
-            purchaseWeapon(weapon.name, weapon.cost);
+            purchaseWeapon(weaponId);
         } else {
             alert(`${weapon.name} has already been purchased!`);
         }
@@ -1275,8 +1275,8 @@ function purchase(item) {
 
 // Function to purchase a weapon
 function purchaseWeapon(weaponId) {
-    // Find the weapon object in the weapons array based on its ID
-    const weapon = weapons.find(w => w.id === weaponId);
+    // Access the weapon directly from the weapons object using its ID
+    const weapon = weapons[weaponId];
     if (!weapon) {
         console.error("Invalid weapon:", weaponId);
         return;

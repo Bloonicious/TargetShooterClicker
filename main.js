@@ -615,6 +615,7 @@ function loadGameState() {
         updateStatistics();
 
         // Array of weapon IDs
+        const weapon = weapons[weaponId];
         const weaponIds = ['pistol', 'smg', 'shotgun', 'sniperRifle', 'ak47', 'rocketLauncher', 'tommyGun', 'doubleBarrel', 'uzi', 'huntingRifle'];
 
         // Iterate over each weapon ID

@@ -1041,18 +1041,18 @@ function earnPoints() {
 
 // Function for automatic points generation based on weapon fire rates
 function automaticPointsGeneration() {
-    Object.values(weapons).forEach(weapon => {
+    Object.entries(weapons).forEach(([weaponId, weapon]) => {
         if (weapon.purchased) {
             setInterval(function() {
                 const currentTime = Date.now();
-                if (currentTime - lastPointsTime[weapon.name] >= weapon.stats.fireRate) {
+                if (currentTime - lastPointsTime[weaponId] >= weapon.stats.fireRate) {
                     // Calculate points per shot
                     let pointsPerShot = weapon.stats.pointsPerShot;
                     let critical = false;
                     let miss = false;
 
                     // For sniper rifles, check for critical hit
-                    if (weapon === 'sniperRifle') {
+                    if (weaponId === 'sniperRifle') {
                         const criticalChance = Math.min(100, weapon.stats.criticalChance + sniperRifleCriticalShotLevel * 2);
                         if (criticalChance >= Math.random() * 100) {
                             // Critical shot
@@ -1061,7 +1061,8 @@ function automaticPointsGeneration() {
                         }
                     }
 
-                    if (weapon === 'huntingRifle') {
+                    // For hunting rifles, check for critical hit
+                    if (weaponId === 'huntingRifle') {
                         const criticalChance = Math.min(100, weapon.stats.criticalChance + huntingRifleCriticalShotLevel * 2);
                         if (criticalChance >= Math.random() * 100) {
                             // Critical shot
@@ -1070,13 +1071,13 @@ function automaticPointsGeneration() {
                         }
                     }
 
-                    // For shotguns, adjust points per shot based on bullets per shot
-                    if (weapon === 'shotgun' || weapon === 'doubleBarrel') {
+                    // For shotguns and double barrels, adjust points per shot based on bullets per shot
+                    if (weaponId === 'shotgun' || weaponId === 'doubleBarrel') {
                         pointsPerShot *= weapon.stats.bulletsPerShot;
                     }
 
-                    // For tommy gun, check for missed shots
-                    if (weapon === 'tommyGun') {
+                    // For tommy guns, check for missed shots
+                    if (weaponId === 'tommyGun') {
                         const inaccuracyChance = Math.min(100, 50 + tommyGunAccuracyLevel * -2);
                         if (inaccuracyChance >= Math.random() * 100) {
                             // missed shot
@@ -1085,10 +1086,10 @@ function automaticPointsGeneration() {
                         }
                     }
 
-                    shoot(weapon.name, pointsPerShot, critical, miss);
-                    lastPointsTime[weapon.name] = currentTime;
+                    shoot(weaponId, pointsPerShot, critical, miss);
+                    lastPointsTime[weaponId] = currentTime;
                 }
-            }, 100); // Check every 100 milliseconds for points generation
+            }, weapon.stats.fireRate); // Check according to each weapon's fire rate
         }
     });
 }

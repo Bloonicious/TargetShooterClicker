@@ -948,8 +948,9 @@ function earnPoints() {
 
 // Function for automatic points generation based on weapon fire rates
 function automaticPointsGeneration() {
-    Object.entries(weapons).forEach(([weaponId, weapon]) => {
-        if (weapon.purchased) {
+    weaponIds.forEach(weaponId => {
+        const weapon = weapons[weaponId];
+        if (weapon && weapon.purchased) {
             setInterval(function() {
                 const currentTime = Date.now();
                 if (currentTime - lastPointsTime[weaponId] >= weapon.stats.fireRate) {

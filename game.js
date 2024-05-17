@@ -179,16 +179,18 @@ let doubleBarrelPurchased = false;
 let uziPurchased = false;
 let huntingRiflePurchased = false;
 
-let lastPistolPointsTime = 0;
-let lastSMGPointsTime = 0;
-let lastShotgunPointsTime = 0;
-let lastSniperRiflePointsTime = 0;
-let lastAK47PointsTime = 0;
-let lastRocketLauncherPointsTime = 0;
-let lastTommyGunPointsTime = 0;
-let lastDoubleBarrelPointsTime = 0;
-let lastUziPointsTime = 0;
-let lastHuntingRiflePointsTime = 0;
+let lastPointsTime = {
+    pistol: 0,
+    smg: 0,
+    shotgun: 0,
+    sniperRifle: 0,
+    ak47: 0,
+    rocketLauncher: 0,
+    tommyGun: 0,
+    doubleBarrel: 0,
+    uzi: 0,
+    huntingRifle: 0
+};
 
 let achievements = [
     { name: "Target Practicer", description: "Start your target-shooting practice by earning your first point from the touch gun.", condition: () => points > 0, achieved: false },

@@ -1,5 +1,5 @@
 {
-  "weapons": [
+  "weapons": {
     "pistol": {
       "name": "Pistol",
       "purchased": false,
@@ -147,5 +147,5 @@
         "criticalDamage": 1.5
       }
     }
-  ]
+  }
 }

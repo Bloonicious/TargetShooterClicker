@@ -1025,7 +1025,7 @@ function purchase(item) {
         case 'uzi':
         case 'huntingRifle':
             if (!weapons[item].purchased) {
-                purchaseWeapon(weaponId);
+                purchaseWeapon(item);
             } else {
                 alert(`${item.charAt(0).toUpperCase() + item.slice(1)} has already been purchased!`);
             }

@@ -1039,7 +1039,7 @@ function earnPoints() {
 
 // Function for automatic points generation based on weapon fire rates
 function automaticPointsGeneration() {
-    weapons.forEach(weapon => {
+    Object.values(weapons).forEach(weapon => {
         if (weapon.purchased) {
             setInterval(function() {
                 const currentTime = Date.now();
@@ -1050,7 +1050,7 @@ function automaticPointsGeneration() {
                     let miss = false;
 
                     // For sniper rifles, check for critical hit
-                    if (weapon.id === 'sniperRifle') {
+                    if (weapon.name === 'sniperRifle') {
                         const criticalChance = Math.min(100, weapon.stats.criticalChance + sniperRifleCriticalShotLevel * 2);
                         if (criticalChance >= Math.random() * 100) {
                             // Critical shot
@@ -1059,7 +1059,7 @@ function automaticPointsGeneration() {
                         }
                     }
 
-                  if (weapon.id === 'huntingRifle') {
+                    if (weapon.name === 'huntingRifle') {
                         const criticalChance = Math.min(100, weapon.stats.criticalChance + huntingRifleCriticalShotLevel * 2);
                         if (criticalChance >= Math.random() * 100) {
                             // Critical shot
@@ -1069,12 +1069,12 @@ function automaticPointsGeneration() {
                     }
 
                     // For shotguns, adjust points per shot based on bullets per shot
-                    if (weapon.id === 'shotgun' || weapon.id === 'doubleBarrel') {
+                    if (weapon.name === 'shotgun' || weapon.name === 'doubleBarrel') {
                         pointsPerShot *= weapon.stats.bulletsPerShot;
                     }
 
                     // For tommy gun, check for missed shots
-                    if (weapon.id === 'tommyGun') {
+                    if (weapon.name === 'tommyGun') {
                         const inaccuracyChance = Math.min(100, 50 + tommyGunAccuracyLevel * -2);
                         if (inaccuracyChance >= Math.random() * 100) {
                             // missed shot

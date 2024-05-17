@@ -620,14 +620,13 @@ function loadGameState() {
         // Iterate over each weapon ID
         weaponIds.forEach(weaponId => {
             // Check if the weapon is purchased
-            if (weapons[weaponId] && weapons[weaponId].purchased) {
+            if (weapons.hasOwnProperty(weaponId) && weapons[weaponId].purchased) {
                 // Hide the purchase button for the corresponding weapon
                 document.getElementById(`${weaponId}-purchase`).style.display = 'none';
+                // Update cost display
+                document.getElementById(`${weaponId}-cost`).textContent = formatNumber(weapons[weaponId].cost);
             }
         });
-
-        // Update cost display
-        document.getElementById(`${weaponId}-cost`).textContent = formatNumber(weapon.cost);
     
         // Update firerate value display
         if (weapon.stats && weapon.stats.fireRate) {

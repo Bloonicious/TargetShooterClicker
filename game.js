@@ -1725,8 +1725,12 @@ function bigUpgrades(weapon, upgrade, cost) {
 }
 
 // Function to check if a weapon is purchased
-function isWeaponPurchased(weapon) {
-    return weaponPurchased[weapon];
+function isWeaponPurchased(weaponId) {
+    // Get the weapon object corresponding to the weapon ID
+    const weapon = weapons[weaponId];
+
+    // Check if the weapon exists and if it's purchased
+    return weapon && weapon.purchased;
 }
 
 // Function to update the display of selected weapon stats

@@ -1100,6 +1100,7 @@ function purchase(item) {
         } else {
             alert(`${weapon.name} has already been purchased!`);
         }
+    }
     switch (item) {
         case 'touchGun':
             purchaseUpgrade('touchGun', touchGunLevel, touchGunCost, 2, 1, 'touchGun');

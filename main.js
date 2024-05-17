@@ -614,6 +614,18 @@ function loadGameState() {
         updateAchievements();
         updateStatistics();
 
+        // Array of weapon IDs
+        const weaponIds = ['pistol', 'smg', 'shotgun', 'sniperRifle', 'ak47', 'rocketLauncher', 'tommyGun', 'doubleBarrel', 'uzi', 'huntingRifle'];
+
+        // Iterate over each weapon ID
+        weaponIds.forEach(weaponId => {
+            // Check if the weapon is purchased
+            if (weapons[weaponId] && weapons[weaponId].purchased) {
+                // Hide the purchase button for the corresponding weapon
+                document.getElementById(`${weaponId}-purchase`).style.display = 'none';
+            }
+        });
+
         Object.keys(weapons).forEach(weaponId => {
             const weapon = weapons[weaponId];
     
@@ -873,18 +885,6 @@ function loadGameState() {
             document.getElementById('touchGunSuperAwaken-purchase').style.display = 'block';
             document.getElementById('touchGunSuperAwaken-display').style.display = 'block';
         }
-        
-        // Array of weapon IDs
-        const weaponIds = ['pistol', 'smg', 'shotgun', 'sniperRifle', 'ak47', 'rocketLauncher', 'tommyGun', 'doubleBarrel', 'uzi', 'huntingRifle'];
-
-        // Iterate over each weapon ID
-        weaponIds.forEach(weaponId => {
-            // Check if the weapon is purchased
-            if (weapons[weaponId] && weapons[weaponId].purchased) {
-                // Hide the purchase button for the corresponding weapon
-                document.getElementById(`${weaponId}-purchase`).style.display = 'none';
-            }
-        });
     }
 }
 
@@ -933,6 +933,17 @@ function resetProgress() {
             totalSplashDamageUpgrades: 0
         };
         selectedWeapons = {};
+        for (const weaponId in savedState.weapons) {
+            if (weapons[weaponId]) {
+                // Update weapon properties from saved data
+                weapons[weaponId].purchased = savedState.weapons[weaponId].purchased;
+
+                // Mark the weapon as unpurchased
+                weapons[weaponId].purchased = false;
+
+                // Include other weapon properties to update as needed
+            }
+        }
         touchGunCost = 100;
         touchGunPointsPerClick = 1;
         touchGunLevel = 0;
@@ -944,6 +955,15 @@ function resetProgress() {
         superAwokenTouchGunLevel = 0;
 
         numberFormat = 'standard';
+
+        // Array of weapon IDs
+        const weaponIds = ['pistol', 'smg', 'shotgun', 'sniperRifle', 'ak47', 'rocketLauncher', 'tommyGun', 'doubleBarrel', 'uzi', 'huntingRifle'];
+
+        // Iterate over each weapon ID
+        weaponIds.forEach(weaponId => {
+            // Make the purchase button visible for the corresponding weapon
+            document.getElementById(`${weaponId}-purchase`).style.display = 'block';
+        });
 
         // Reset big upgrades
         upgrades.touchGun.pointyFingers.bought = false;
@@ -1144,15 +1164,6 @@ function resetProgress() {
         clearInterval(doubleBarrelFireRate);
         clearInterval(uziFireRate);
         clearInterval(huntingRifleFireRate);
-        
-        // Array of weapon IDs
-        const weaponIds = ['pistol', 'smg', 'shotgun', 'sniperRifle', 'ak47', 'rocketLauncher', 'tommyGun', 'doubleBarrel', 'uzi', 'huntingRifle'];
-
-        // Iterate over each weapon ID
-        weaponIds.forEach(weaponId => {
-            // Make the purchase button visible for the corresponding weapon
-            document.getElementById(`${weaponId}-purchase`).style.display = 'block';
-        });
 
         // Update the interfaces
         updatePointsDisplay();

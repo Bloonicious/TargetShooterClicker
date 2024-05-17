@@ -615,7 +615,6 @@ function loadGameState() {
         updateStatistics();
 
         // Array of weapon IDs
-        const weapon = weapons[weaponId];
         const weaponIds = ['pistol', 'smg', 'shotgun', 'sniperRifle', 'ak47', 'rocketLauncher', 'tommyGun', 'doubleBarrel', 'uzi', 'huntingRifle'];
 
         // Iterate over each weapon ID
@@ -626,12 +625,6 @@ function loadGameState() {
                 document.getElementById(`${weaponId}-purchase`).style.display = 'none';
             }
         });
-
-        // Ensure the weapon exists
-        if (!weapon) {
-            console.error("Invalid weapon:", weaponId);
-            return;
-        }
 
         // Update cost display
         document.getElementById(`${weaponId}-cost`).textContent = formatNumber(weapon.cost);

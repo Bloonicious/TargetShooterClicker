@@ -1097,12 +1097,9 @@ function automaticPointsGeneration() {
 // Function to handle purchasing weapons and upgrades
 function purchase(weaponId, item) {
     const weapon = weapons[weaponId]; // Access weapon directly using item as key
-    if (weapon) {
-        if (!weapon.purchased) {
-            purchaseWeapon(weaponId);
-        } else {
-            alert(`${weapon.name} has already been purchased!`);
-        }
+    if (!weapon) {
+        console.error("Invalid weapon:", weaponId);
+        return;
     }
     switch (item) {
         case 'touchGun':
@@ -1115,71 +1112,71 @@ function purchase(weaponId, item) {
             purchaseUpgrade('touchGunSuperAwaken', superAwokenTouchGunLevel, superAwokenTouchGunCost, 8, 10000, 'touchGun');
             break;
         case 'pistol':
-            if (!pistolPurchased) {
-                purchaseWeapon('pistol', weapon.pistol.cost);
+            if (!weapon.purchased) {
+                purchaseWeapon(weaponId);
             } else {
                 alert("Pistol has already been purchased!");
             }
             break;
         case 'smg':
-            if (!smgPurchased) {
-                purchaseWeapon('smg', weapon.smg.cost);
+            if (!weapon.purchased) {
+                purchaseWeapon(weaponId);
             } else {
                 alert("SMG has already been purchased!");
             }
             break;
         case 'shotgun':
-            if (!shotgunPurchased) {
-                purchaseWeapon('shotgun', weapon.shotgun.cost);
+            if (!weapon.purchased) {
+                purchaseWeapon(weaponId);
             } else {
                 alert("Shotgun has already been purchased!");
             }
             break;
         case 'sniperRifle':
-            if (!sniperRiflePurchased) {
-                purchaseWeapon('sniperRifle', weapon.sniperRifle.cost);
+            if (!weapon.purchased) {
+                purchaseWeapon(weaponId);
             } else {
                 alert("Sniper Rifle has already been purchased!");
             }
             break;
         case 'ak47':
-            if (!ak47Purchased) {
-                purchaseWeapon('ak47', weapon.ak47.cost);
+            if (!weapon.purchased) {
+                purchaseWeapon(weaponId);
             } else {
                 alert("AK-47 has already been purchased!");
             }
             break;
         case 'rocketLauncher':
-            if (!rocketLauncherPurchased) {
-                purchaseWeapon('rocketLauncher', weapon.rocketLauncher.cost);
+            if (!weapon.purchased) {
+                purchaseWeapon(weaponId);
             } else {
                 alert("Rocket Launcher has already been purchased!");
             }
             break;
         case 'tommyGun':
-            if (!tommyGunPurchased) {
-                purchaseWeapon('tommyGun', weapon.tommyGun.cost);
+            if (!weapon.purchased) {
+                purchaseWeapon(weaponId);
             } else {
                 alert("Tommy Gun has already been purchased!");
             }
             break;
         case 'doubleBarrel':
-            if (!doubleBarrelPurchased) {
-                purchaseWeapon('doubleBarrel', weapon.doubleBarrel.cost);
+            if (!weapon.purchased) {
+                purchaseWeapon(weaponId);
             } else {
                 alert("Double Barrel has already been purchased!");
             }
             break;
         case 'uzi':
-            if (!uziPurchased) {
-                purchaseWeapon('uzi', weapon.uzi.cost);
+            if (!weapon.purchased) {
+                purchaseWeapon(weaponId);
             } else {
                 alert("Uzi has already been purchased!");
             }
             break;
         case 'huntingRifle':
-            if (!huntingRiflePurchased) {
-                purchaseWeapon('huntingRifle', weapon.huntingRifle.cost);
+            if (!weapon.purchased) {
+                purchaseWeapon(weaponId);
             } else {
                 alert("Hunting Rifle has already been purchased!");
             }

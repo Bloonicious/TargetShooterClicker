@@ -168,17 +168,6 @@ let gameplayPoints = 0;
 
 let numberFormat = 'standard'; // Default number format
 
-let pistolPurchased = false;
-let smgPurchased = false;
-let shotgunPurchased = false;
-let sniperRiflePurchased = false;
-let ak47Purchased = false;
-let rocketLauncherPurchased = false;
-let tommyGunPurchased = false;
-let doubleBarrelPurchased = false;
-let uziPurchased = false;
-let huntingRiflePurchased = false;
-
 let lastPointsTime = {
     pistol: 0,
     smg: 0,

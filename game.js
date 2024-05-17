@@ -1002,12 +1002,7 @@ function automaticPointsGeneration() {
 }
 
 // Function to handle purchasing weapons and upgrades
-function purchase(weaponId, item) {
-    const weapon = weapons[weaponId]; // Access weapon directly using item as key
-    if (!weapon) {
-        console.error("Invalid weapon:", weaponId);
-        return;
-    }
+function purchase(item) {
     switch (item) {
         case 'touchGun':
             purchaseUpgrade('touchGun', touchGunLevel, touchGunCost, 2, 1, 'touchGun');
@@ -1019,73 +1014,19 @@ function purchase(weaponId, item) {
             purchaseUpgrade('touchGunSuperAwaken', superAwokenTouchGunLevel, superAwokenTouchGunCost, 8, 10000, 'touchGun');
             break;
         case 'pistol':
-            if (!weapon.purchased) {
-                purchaseWeapon(weaponId);
-            } else {
-                alert("Pistol has already been purchased!");
-            }
-            break;
         case 'smg':
-            if (!weapon.purchased) {
-                purchaseWeapon(weaponId);
-            } else {
-                alert("SMG has already been purchased!");
-            }
-            break;
         case 'shotgun':
-            if (!weapon.purchased) {
-                purchaseWeapon(weaponId);
-            } else {
-                alert("Shotgun has already been purchased!");
-            }
-            break;
         case 'sniperRifle':
-            if (!weapon.purchased) {
-                purchaseWeapon(weaponId);
-            } else {
-                alert("Sniper Rifle has already been purchased!");
-            }
-            break;
         case 'ak47':
-            if (!weapon.purchased) {
-                purchaseWeapon(weaponId);
-            } else {
-                alert("AK-47 has already been purchased!");
-            }
-            break;
         case 'rocketLauncher':
-            if (!weapon.purchased) {
-                purchaseWeapon(weaponId);
-            } else {
-                alert("Rocket Launcher has already been purchased!");
-            }
-            break;
         case 'tommyGun':
-            if (!weapon.purchased) {
-                purchaseWeapon(weaponId);
-            } else {
-                alert("Tommy Gun has already been purchased!");
-            }
-            break;
         case 'doubleBarrel':
-            if (!weapon.purchased) {
-                purchaseWeapon(weaponId);
-            } else {
-                alert("Double Barrel has already been purchased!");
-            }
-            break;
         case 'uzi':
-            if (!weapon.purchased) {
-                purchaseWeapon(weaponId);
-            } else {
-                alert("Uzi has already been purchased!");
-            }
-            break;
         case 'huntingRifle':
-            if (!weapon.purchased) {
-                purchaseWeapon(weaponId);
+            if (!weapons[item].purchased) {
+                purchaseWeapon(item);
             } else {
-                alert("Hunting Rifle has already been purchased!");
+                alert(`${item.charAt(0).toUpperCase() + item.slice(1)} has already been purchased!`);
             }
             break;
         case 'pistolFirerate':
@@ -1760,14 +1701,12 @@ function updateSelectedWeaponsDisplay(weapon) {
         defaultOption.textContent = 'Select Weapon';
         selectionBox.appendChild(defaultOption);
 
-        // Populate options based on purchased weapons
-        for (const weaponId in weapons) {
-            if (weapons[weaponId].purchased) {
-                const option = document.createElement('option');
-                option.value = weaponId;
-                option.textContent = weaponId.charAt(0).toUpperCase() + weaponId.slice(1); // Capitalize first letter
-                selectionBox.appendChild(option);
-            }
+        // Populate options based on all weapons
+        for (const weaponId of weaponIds) {
+            const option = document.createElement('option');
+            option.value = weaponId;
+            option.textContent = weaponId.charAt(0).toUpperCase() + weaponId.slice(1); // Capitalize first letter
+            selectionBox.appendChild(option);
         }
 
         // Select the currently selected weapon if any

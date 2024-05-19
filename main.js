@@ -1,5 +1,3 @@
-const weaponIds = ['pistol', 'smg', 'shotgun', 'sniperRifle', 'rocketLauncher', 'tommyGun', 'doubleBarrel', 'huntingRifle', 'ak47', 'uzi'];
-
 // Define function to switch tabs
 function switchTab(tabName) {
     // Hide all tabs

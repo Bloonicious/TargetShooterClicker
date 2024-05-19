@@ -938,7 +938,7 @@ function initializeWeapons() {
     return fetch('config/weapons.json')
         .then(response => response.json())
         .then(data => {
-            weapons = data; // Assign fetched data to weapons variable
+            weapons = data.weapons; // Assign fetched data to weapons variable
             // Call functions that depend on weapons data here
             // Call other functions or update other variables as needed
         })
@@ -950,7 +950,7 @@ function initializeEnemies() {
     return fetch('config/enemies.json')
         .then(response => response.json())
         .then(data => {
-            enemies = data; // Assign fetched data to enemies variable
+            enemies = data.enemies; // Assign fetched data to enemies variable
             // Call functions that depend on enemies data here
             // Call other functions or update other variables as needed
         })

@@ -2612,12 +2612,20 @@ function updateLifetimePoints() {
     }
 }
 
+// Call initializeWeapons before other functions that depend on weapons data
+initializeWeapons()
+    .then(() => {
+        // Call other functions after weapons are initialized
+        updateCostDisplay();
+        selectWeapon();
+    })
+    .catch(error => console.error('Error initializing weapons:', error));
+
 // Initial setup
 updatePointsDisplay();
 updateCostDisplay();
 updateAchievementsDisplay();
 updateStatisticsDisplay();
-selectWeapon();
 
 // Start earning points automatically for purchased weapons
 setInterval(automaticPointsGeneration, 1000); // Check every second for points generation

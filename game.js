@@ -1,5 +1,5 @@
-let weapons;
-let enemies;
+let weapons = {};
+let enemies = {};
 
 const weaponIds = ['pistol', 'smg', 'shotgun', 'sniperRifle', 'ak47', 'rocketLauncher', 'tommyGun', 'doubleBarrel', 'uzi', 'huntingRifle'];
 

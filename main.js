@@ -386,29 +386,19 @@ function saveGameState() {
 // Function to load the game state from local storage
 function loadGameState() {
     const savedState = JSON.parse(localStorage.getItem('gameState'));
-    const savedWeapons = JSON.parse(localStorage.getItem('selectedWeapons'));
-    if (savedWeapons) {
-        // Update selected weapons from saved data
-        selectedWeapons = savedWeapons;
-        updateSelectedWeaponsDisplay();
-    }
-    var gameStateJSON = localStorage.getItem('gameState');
-    if (gameStateJSON !== null) {
-        var gameState = JSON.parse(gameStateJSON);
         if (savedState) {
             // Update statistics from loaded game state
             const savedAchievements = savedState.achievements;
             if (savedAchievements) {
                 savedAchievements.forEach((savedAchievement, index) => {
-                    // Check if the index exists in the achievements array
                     if (achievements[index]) {
-                        // Update the achieved property
                         achievements[index].achieved = savedAchievement.achieved;
                     }
                 });
             }
-            if (gameState.statistics) {
-                statistics = gameState.statistics;
+
+            if (savedState.statistics) {
+                statistics = savedState.statistics;
                 updateStatisticsDisplay();
             }
 
@@ -419,8 +409,6 @@ function loadGameState() {
                     const weapon = weapons.find(w => w.id.toLowerCase() === weaponId.toLowerCase());
                     if (weapon) {
                         Object.assign(weapon, savedWeapon);
-
-                        // Update DOM elements with weapon stats
                         updateWeaponStatsDisplay(weaponId, weapon);
                     }
                 }

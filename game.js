@@ -151,7 +151,6 @@ let statistics = {
 
 let selectedWeapons = {};
 const weaponSFX = {};
-const weaponIds = ['pistol', 'smg', 'shotgun', 'sniperRifle', 'ak47', 'rocketLauncher', 'tommyGun', 'doubleBarrel', 'uzi', 'huntingRifle'];
 const upgrades = {
     touchGun: {
         pointyFingers: {

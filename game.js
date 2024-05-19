@@ -3,6 +3,9 @@ let enemies = {};
 
 const weaponIds = ['pistol', 'smg', 'shotgun', 'sniperRifle', 'ak47', 'rocketLauncher', 'tommyGun', 'doubleBarrel', 'uzi', 'huntingRifle'];
 
+let weaponData;
+let enemyData;
+
 let touchGunCost = 100;
 let touchGunPointsPerClick = 1;
 let touchGunLevel = 0;

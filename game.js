@@ -1163,7 +1163,14 @@ function purchaseWeapon(weaponId) {
 
 // Detect weapon stats from the weapons.json
 function getWeaponStats(weaponName) {
-    return weapons.find(w => w.name.toLowerCase() === weaponName.toLowerCase()).stats;
+    // Find the weapon object with the matching name
+    for (let i = 0; i < weapons.length; i++) {
+        if (weapons[i].name.toLowerCase() === weaponName.toLowerCase()) {
+            return weapons[i].stats;
+        }
+    }
+    // If the weapon is not found, return null or handle the error accordingly
+    return null;
 }
 
 // Function to purchase an upgrade
@@ -1816,20 +1823,19 @@ function selectWeapon(weaponId) {
 }
 
 // Function to update the display of weapon stats for the selected weapon
-function updateWeaponStatsDisplay(boxId, weaponId) {
-    const weapon = weapons.find(w => w.id.toLowerCase() === weaponId.toLowerCase());
+function updateWeaponStatsDisplay(boxId, weapon) {
     if (!weapon) {
         return;
     }
 
-    const currentHP = document.getElementById(`${weaponId}HP-value`);
-    const currentDamage = document.getElementById(`${weaponId}Damage-value`);
-    const currentRange = document.getElementById(`${weaponId}Range-value`);
-    const currentAttackRate = document.getElementById(`${weaponId}AttackRate-value`);
-    const currentDPS = document.getElementById(`${weaponId}DPS-value`);
+    const currentHP = document.getElementById(`${weapon.id}HP-value`);
+    const currentDamage = document.getElementById(`${weapon.id}Damage-value`);
+    const currentRange = document.getElementById(`${weapon.id}Range-value`);
+    const currentAttackRate = document.getElementById(`${weapon.id}AttackRate-value`);
+    const currentDPS = document.getElementById(`${weapon.id}DPS-value`);
 
     if (!currentHP || !currentDamage || !currentRange || !currentAttackRate || !currentDPS) {
-        console.error(`One or more weapon stats elements for ${weaponId} are missing.`);
+        console.error(`One or more weapon stats elements for ${weapon.id} are missing.`);
         return;
     }
 

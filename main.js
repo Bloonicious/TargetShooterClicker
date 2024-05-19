@@ -145,11 +145,17 @@ function saveGameState() {
         description: achievement.description,
         achieved: achievement.achieved
     }));
+    const weaponData = weapons.map(weapon => ({
+        id: weapon.id,
+        purchased: weapon.purchased,
+        cost: weapon.cost,
+        stats: weapon.stats
+    }));
     var gameState = {
         achievements: achievementsData,
         statistics: statistics,
         points: points,
-        weapons: {},
+        weapons: weaponData,
         
         touchGunCost: touchGunCost,
         touchGunPointsPerClick: touchGunPointsPerClick,
@@ -356,18 +362,6 @@ function saveGameState() {
         purchasedBigUpgrades: getPurchasedBigUpgrades()
     };
 
-    // Save each weapon's state
-    weaponIds.forEach(weaponId => {
-        const weapon = weapons.find(w => w.id.toLowerCase() === weaponId.toLowerCase());
-        if (weapon) {
-            state.weapons[weaponId] = {
-                purchased: weapon.purchased,
-                cost: weapon.cost,
-                stats: weapon.stats
-            };
-        }
-    });
-
     var gameStateJSON = JSON.stringify(gameState);
 
     localStorage.setItem('gameState', gameStateJSON);
@@ -396,10 +390,11 @@ async function loadGameState() {
         }
 
         // Load weapons
-        weaponIds.forEach(weaponId => {
-            const savedWeapon = savedState.weapons[weaponId];
-            if (savedWeapon) {
-                const weapon = weapons[weaponId]; // Access directly from initialized weapons
+        weaponData.forEach(savedWeapon => {
+            const weaponId = savedWeapon.id;
+            const weaponIndex = weapons.findIndex(w => w.id === weaponId);
+            if (weaponIndex !== -1) {
+                const weapon = weapons[weaponIndex];
                 if (weapon) {
                     Object.assign(weapon, savedWeapon);
                     updateWeaponStatsDisplay(weaponId, weapon);
@@ -408,19 +403,44 @@ async function loadGameState() {
         });
 
         // Update weapon properties from saved data
-        weaponIds.forEach(weaponId => {
-            if (savedState.weapons[weaponId] && weapons[weaponId]) {
-                weapons[weaponId].purchased = savedState.weapons[weaponId].purchased;
-                // Include other weapon properties to update as needed
+        weaponData.forEach(savedWeapon => {
+            const weaponId = savedWeapon.id;
+            const weaponIndex = weapons.findIndex(w => w.id === weaponId);
+            if (weaponIndex !== -1) {
+                const weapon = weapons[weaponIndex];
+                if (weapon) {
+                    weapon.purchased = savedWeapon.purchased;
+                    // Include other weapon properties to update as needed
+                }
             }
         });
 
         points = savedState.points;
+        // Loop through each weapon in the saved state
         for (const weaponId in savedState.weapons) {
-            if (weapons[weaponId]) {
-                // Update weapon properties from saved data
-                weapons[weaponId].purchased = savedState.weapons[weaponId].purchased;
-                // Include other weapon properties to update as needed
+            if (savedState.weapons.hasOwnProperty(weaponId)) {
+                const savedWeapon = savedState.weapons[weaponId];
+                const weapon = weapons.find(w => w.id === weaponId);
+
+                if (weapon) {
+                    // Update basic properties
+                    weapon.purchased = savedWeapon.purchased;
+                    // Update other properties as needed
+
+                    // Update upgrades
+                    const upgrades = savedWeapon.upgrades || {};
+                    for (const upgradeName in upgrades) {
+                        if (upgrades.hasOwnProperty(upgradeName)) {
+                            weapon.upgrades[upgradeName].bought = upgrades[upgradeName].bought;
+                            // Update other upgrade properties as needed
+                        }
+                    }
+
+                    // Update display
+                    updateWeaponStatsDisplay(weaponId, weapon);
+                } else {
+                    console.error(`Weapon ${weaponId} not found in the initialized weapons.`);
+                }
             }
         }
         weapons = JSON.parse(localStorage.getItem('weapons')) || getDefaultWeapons();

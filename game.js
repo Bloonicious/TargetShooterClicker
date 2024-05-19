@@ -1850,47 +1850,47 @@ function calculateDPS(weapon) {
 }
 
 // Function to update weapon and upgrade costs in the HTML
-function updateCostDisplay(weaponId) {
-    weaponIds.forEach(weaponId => {
-        const weapon = weapons[weaponId];
+function updateCostDisplay() {
+    weaponIds.forEach(id => {
+        const weapon = weapons[id];
 
         // Ensure the weapon exists
         if (!weapon) {
-            console.error("Invalid weapon:", weaponId);
+            console.error("Invalid weapon:", id);
             return;
         }
 
         // Update cost display
-        document.getElementById(`${weaponId}-cost`).textContent = formatNumber(weapon.cost);
+        document.getElementById(`${id}-cost`).textContent = formatNumber(weapon.cost);
 
         // Update firerate value display
         if (weapon.stats && weapon.stats.fireRate) {
-            document.getElementById(`${weaponId}Firerate-value`).textContent = weapon.stats.fireRate + 'ms';
+            document.getElementById(`${id}Firerate-value`).textContent = weapon.stats.fireRate + 'ms';
         }
 
         // Update potency value display
         if (weapon.stats && weapon.stats.pointsPerShot) {
-            document.getElementById(`${weaponId}Potency-value`).textContent = formatNumber(weapon.stats.pointsPerShot);
+            document.getElementById(`${id}Potency-value`).textContent = formatNumber(weapon.stats.pointsPerShot);
         }
 
         // Update hp value display
         if (weapon.stats && weapon.stats.hp) {
-            document.getElementById(`${weaponId}HP-value`).textContent = formatNumber(weapon.stats.hp);
+            document.getElementById(`${id}HP-value`).textContent = formatNumber(weapon.stats.hp);
         }
 
         // Update damage value display
         if (weapon.stats && weapon.stats.damage) {
-            document.getElementById(`${weaponId}Damage-value`).textContent = formatNumber(weapon.stats.damage);
+            document.getElementById(`${id}Damage-value`).textContent = formatNumber(weapon.stats.damage);
         }
 
         // Update range value display
         if (weapon.stats && weapon.stats.range) {
-            document.getElementById(`${weaponId}Range-value`).textContent = formatNumber(weapon.stats.range);
+            document.getElementById(`${id}Range-value`).textContent = formatNumber(weapon.stats.range);
         }
 
         // Update attack rate display
         if (weapon.stats && weapon.stats.fireRate) {
-            document.getElementById(`${weaponId}AttackRate-value`).textContent = weapon.stats.fireRate + 'ms';
+            document.getElementById(`${id}AttackRate-value`).textContent = weapon.stats.fireRate + 'ms';
         }
 
         // Calculate and update other values
@@ -1905,10 +1905,10 @@ function updateCostDisplay(weaponId) {
         }
 
         // Update display elements
-        document.getElementById(`${weaponId}Firerate-value`).textContent = firerateValue + 'ms';
-        document.getElementById(`${weaponId}Potency-value`).textContent = formatNumber(potencyValue);
-        document.getElementById(`${weaponId}PPS-value`).textContent = formatNumber(pointsPerSecond);
-        document.getElementById(`${weaponId}DPS-value`).textContent = formatNumber(damagePerSecond);
+        document.getElementById(`${id}Firerate-value`).textContent = firerateValue + 'ms';
+        document.getElementById(`${id}Potency-value`).textContent = formatNumber(potencyValue);
+        document.getElementById(`${id}PPS-value`).textContent = formatNumber(pointsPerSecond);
+        document.getElementById(`${id}DPS-value`).textContent = formatNumber(damagePerSecond);
     });
 
     // Update other display elements

@@ -1156,21 +1156,85 @@ function getWeaponStats(weaponName) {
     return weapons.find(w => w.name.toLowerCase() === weaponName.toLowerCase()).stats;
 }
 
-// Pre-rework upgrade purchasing system
-function purchaseUpgradeOld(upgradeType, level, cost, costMultiplier, valueIncrement, upgradeCategory) {
+// Function to purchase an upgrade
+function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncrement, upgradeCategory) {
     if (points >= cost) {
         points -= cost;
         cost *= costMultiplier;
         level++;
+        
+        let weapon;
+        let stats;
 
-        // Fetch weapon object from the weapons array
-        function getWeapon(weaponName) {
-            if (!weaponIds.includes(weaponName)) {
-                console.error("Invalid weapon ID:", weaponName);
-                return null;
-            }
-            return weapons.find(w => w.name.toLowerCase() === weaponName.toLowerCase());
+        switch (upgradeType) {
+            case 'touchGun':
+            case 'touchGunAwaken':
+            case 'touchGunSuperAwaken':
+                handleTouchGunUpgrades(upgradeType, level, cost, valueIncrement);
+                break;
+
+            default:
+                if (weaponIds.includes(upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalChance|CriticalDamage|Accuracy/, '').toLowerCase())) {
+                    weapon = upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalChance|CriticalDamage|Accuracy/, '').toLowerCase();
+                    stats = getWeaponStats(weapon);
+                    
+                    switch (true) {
+                        case upgradeType.endsWith('Firerate'):
+                            if (level <= getMaxLevel(weapon, 'firerate')) {
+                                updateFirerate(stats, valueIncrement);
+                            } else {
+                                alert(`${capitalize(weapon)}'s firing rate has been maxed out!`);
+                            }
+                            break;
+                        
+                        case upgradeType.endsWith('Potency'):
+                            updatePotency(stats, valueIncrement, upgrades[weapon], weapon);
+                            break;
+
+                        case upgradeType.endsWith('MultiFire'):
+                            updateMultiFire(stats, valueIncrement, upgrades[weapon], weapon);
+                            break;
+
+                        case upgradeType.endsWith('SplashRadius'):
+                            updateSplashRadius(stats, valueIncrement, upgrades[weapon], weapon);
+                            break;
+
+                        case upgradeType.endsWith('SplashDamage'):
+                            updateSplashDamage(stats, valueIncrement, upgrades[weapon], weapon);
+                            break;
+
+                        case upgradeType.endsWith('CriticalChance'):
+                            updateCriticalChance(stats, valueIncrement, upgrades[weapon], weapon);
+                            break;
+
+                        case upgradeType.endsWith('CriticalDamage'):
+                            updateCriticalDamage(stats, valueIncrement, upgrades[weapon], weapon);
+                            break;
+
+                        case upgradeType.endsWith('Accuracy'):
+                            updateAccuracy(stats, valueIncrement, upgrades[weapon], weapon);
+                            break;
+
+                        default:
+                            console.error("Invalid upgradeType:", upgradeType);
+                            return;
+                    }
+                }
         }
+
+        updatePointsDisplay();
+        updateCostDisplay();
+    } else {
+        alert(`Not enough points to upgrade ${upgradeType}!`);
+    }
+}
+
+// Handles touch gun upgrades
+function handleTouchGunUpgrades(upgradeType, level, cost, valueIncrement) {
+    if (points >= cost) {
+        points -= cost;
+        cost *= costMultiplier;
+        level++;
         
         switch (upgradeType) {
             case 'touchGun':
@@ -1296,321 +1360,6 @@ function purchaseUpgradeOld(upgradeType, level, cost, costMultiplier, valueIncre
                 }
                 touchGunPointsPerClick += valueIncrement;
                 break;
-           case 'pistolFirerate':
-                if (level <= 20) {
-                    pistolFirerateUpgradeCost = cost;
-                    pistolFirerateLevel = level;
-                    const pistolFirerate = getWeapon('pistol');
-                    if (pistolFirerate) pistol.stats.fireRate += valueIncrement;
-                } else {
-                    console.log("Maximum level reached for pistol fire rate upgrade.");
-                    alert("Pistol's firing rate has been maxed out!");
-                }
-                break;
-            case 'pistolPotency':
-                pistolPotencyUpgradeCost = cost;
-                pistolPotencyLevel = level;
-                if (upgrades.pistol.biggerBullets.bought) valueIncrement *= 2;
-                if (upgrades.pistol.largerCalibre.bought) valueIncrement *= 3;
-                if (upgrades.pistol.louderFiring.bought) valueIncrement *= 3;
-                if (upgrades.pistol.metalPiercing.bought) valueIncrement *= 4;
-                if (upgrades.pistol.fineTuning.bought) valueIncrement *= 1.5;
-                if (upgrades.pistol.versatileGunshots.bought) valueIncrement *= 5;
-                if (upgrades.pistol.empowered.bought) valueIncrement *= 5;
-                if (upgrades.pistol.oneHitBullets.bought) valueIncrement *= 6;
-                if (upgrades.touchGun.fingerPistols.bought) valueIncrement *= 1.1 * getTotalTouchGunUpgrades();
-                const pistolPotency = getWeapon('pistol');
-                if (pistolPotency) {
-                    pistolPotency.stats.pointsPerShot += valueIncrement;
-                    pistolPotency.stats.damage += valueIncrement * 0.5;
-                }
-                break;
-            case 'smgFirerate':
-                if (level <= 10) {
-                    smgFirerateUpgradeCost = cost;
-                    smgFirerateLevel = level;
-                    const smgFirerate = getWeapon('smg');
-                    if (smgFirerate) smg.stats.fireRate += valueIncrement;
-                } else {
-                    console.log("Maximum level reached for smg fire rate upgrade.");
-                    alert("SMG's firing rate has been maxed out!");
-                }
-                break;
-            case 'smgPotency':
-                smgPotencyUpgradeCost = cost;
-                smgPotencyLevel = level;
-                if (upgrades.smg.betterSpread.bought) valueIncrement *= 2;
-                if (upgrades.smg.strongHold.bought) valueIncrement *= 3;
-                if (upgrades.smg.pressureBullets.bought) valueIncrement *= 3;
-                if (upgrades.smg.bashingRounds.bought) valueIncrement *= 4;
-                if (upgrades.smg.autoAimer.bought) valueIncrement *= 4;
-                if (upgrades.smg.metalPassers.bought) valueIncrement *= 5;
-                if (upgrades.smg.inescapableBarrage.bought) valueIncrement *= 5;
-                if (upgrades.smg.neverMissBarrage.bought) valueIncrement *= 6;
-                const smgPotency = getWeapon('smg');
-                if (smgPotency) {
-                    smg.stats.pointsPerShot += valueIncrement;
-                    smg.stats.damage += valueIncrement * 0.5;
-                }
-                break;
-            case 'shotgunFirerate':
-                if (level <= 15) {
-                    shotgunFirerateUpgradeCost = cost;
-                    shotgunFirerateLevel = level;
-                    const shotgunFirerate = getWeapon('shotgun');
-                    if (shotgunFirerate) shotgun.stats.fireRate += valueIncrement;
-                } else {
-                    console.log("Maximum level reached for shotgun fire rate upgrade.");
-                    alert("Shotgun's firing rate has been maxed out!");
-                }
-                break;
-            case 'shotgunPotency':
-                shotgunPotencyUpgradeCost = cost;
-                shotgunPotencyLevel = level;
-                if (upgrades.shotgun.powerfulBurst.bought) valueIncrement *= 2;
-                if (upgrades.shotgun.devastatingBurst.bought) valueIncrement *= 3;
-                if (upgrades.shotgun.megaBurst.bought) valueIncrement *= 3;
-                if (upgrades.shotgun.gigaBurst.bought) valueIncrement *= 4;
-                if (upgrades.shotgun.omegaBurst.bought) valueIncrement *= 4;
-                if (upgrades.shotgun.teraBurst.bought) valueIncrement *= 5;
-                if (upgrades.shotgun.ultimatumBurst.bought) valueIncrement *= 5;
-                const shotgunPotency = getWeapon('shotgun');
-                if (shotgunPotency) {
-                    shotgun.stats.pointsPerShot += valueIncrement;
-                    shotgun.stats.damage += valueIncrement * 0.5;
-                }
-                break;
-            case 'shotgunMultiFire':
-                shotgunMultiFireUpgradeCost = cost;
-                shotgunMultiFireLevel = level;
-                if (upgrades.shotgun.scattershot.bought) valueIncrement *= 2;
-                if (upgrades.shotgun.buckshot.bought) valueIncrement *= 2;
-                const shotgunMultiFire = getWeapon('shotgun');
-                if (shotgunMultiFire) {
-                    shotgun.stats.bulletsPerShot += valueIncrement;
-                }
-                break;
-            case 'sniperRifleFirerate':
-                if (level <= 10) {
-                    sniperRifleFirerateUpgradeCost = cost;
-                    sniperRifleFirerateLevel = level;
-                    weapons.find(w => w.name === 'sniperRifle').stats.fireRate += valueIncrement;
-                } else {
-                    console.log("Maximum level reached for sniper rifle fire rate upgrade.");
-                    alert("Sniper Rifle's firing rate has been maxed out!");
-                }
-                break;
-            case 'sniperRiflePotency':
-                sniperRiflePotencyUpgradeCost = cost;
-                sniperRiflePotencyLevel = level;
-                if (upgrades.sniperRifle.cripplingShots.bought) valueIncrement *= 2;
-                if (upgrades.sniperRifle.dangerousRifling.bought) valueIncrement *= 3;
-                if (upgrades.sniperRifle.enhancedTracers.bought) valueIncrement *= 3;
-                if (upgrades.sniperRifle.infraredScope.bought) valueIncrement *= 2;
-                if (upgrades.sniperRifle.electroshockTracers.bought) valueIncrement *= 4;
-                if (upgrades.sniperRifle.lethalTracers.bought) valueIncrement *= 4;
-                if (upgrades.sniperRifle.heatseekingSensors.bought) valueIncrement *= 3;
-                const sniperRifle = weapons.find(w => w.name === 'sniperRifle');
-                sniperRifle.stats.pointsPerShot += valueIncrement;
-                sniperRifle.stats.damage += valueIncrement * 0.5;
-                break;
-            case 'sniperRifleCriticalShot':
-                sniperRifleCriticalShotUpgradeCost = cost;
-                sniperRifleCriticalShotLevel = level;
-                weapons.find(w => w.name === 'sniperRifle').stats.criticalChance += valueIncrement;
-                break;
-            case 'sniperRifleCriticalDamage':
-                sniperRifleCriticalDamageUpgradeCost = cost;
-                sniperRifleCriticalDamageLevel = level;
-                if (upgrades.sniperRifle.infraredScope.bought) valueIncrement *= 1.5;
-                weapons.find(w => w.name === 'sniperRifle').stats.criticalDamage += valueIncrement;
-                break;
-            case 'ak47Firerate':
-                if (level <= 15) {
-                    ak47FirerateUpgradeCost = cost;
-                    ak47FirerateLevel = level;
-                    weapons.find(w => w.name === 'ak47').stats.fireRate += valueIncrement;
-                } else {
-                    console.log("Maximum level reached for ak47 fire rate upgrade.");
-                    alert("AK-47's firing rate has been maxed out!");
-                }
-                break;
-            case 'ak47Potency':
-                ak47PotencyUpgradeCost = cost;
-                ak47PotencyLevel = level;
-                if (upgrades.ak47.heatTippedBullets.bought) valueIncrement *= 2;
-                if (upgrades.ak47.staggeringBullets.bought) valueIncrement *= 3;
-                if (upgrades.ak47.rippingBullets.bought) valueIncrement *= 3;
-                if (upgrades.ak47.vehementBullets.bought) valueIncrement *= 4;
-                if (upgrades.ak47.overbearingVelocity.bought) valueIncrement *= 4;
-                if (upgrades.ak47.poweredVelocity.bought) valueIncrement *= 2;
-                if (upgrades.ak47.instantaneousVelocity.bought) valueIncrement *= 5;
-                if (upgrades.ak47.spikyBullets.bought) valueIncrement *= 5;
-                if (upgrades.ak47.ferociousBullets.bought) valueIncrement *= 6;
-                if (upgrades.ak47.unfathomablePressure.bought) valueIncrement *= 6;
-                const ak47 = weapons.find(w => w.name === 'ak47');
-                ak47.stats.pointsPerShot += valueIncrement;
-                ak47.stats.damage += valueIncrement * 0.5;
-                break;
-            case 'rocketLauncherFirerate':
-                if (level <= 15) {
-                    rocketLauncherFirerateUpgradeCost = cost;
-                    rocketLauncherFirerateLevel = level;
-                    weapons.find(w => w.name === 'rocketLauncher').stats.fireRate += valueIncrement;
-                } else {
-                    console.log("Maximum level reached for rocket launcher fire rate upgrade.");
-                    alert("Rocket Launcher's firing rate has been maxed out!");
-                }
-                break;
-            case 'rocketLauncherPotency':
-                rocketLauncherPotencyUpgradeCost = cost;
-                rocketLauncherPotencyLevel = level;
-                if (upgrades.rocketLauncher.potentRockets.bought) valueIncrement *= 2;
-                if (upgrades.rocketLauncher.repeatedExplosions.bought) valueIncrement *= 3;
-                if (upgrades.rocketLauncher.extraGunpowder.bought) valueIncrement *= 3;
-                if (upgrades.rocketLauncher.shatteringExplosions.bought) valueIncrement *= 4;
-                if (upgrades.rocketLauncher.napalmRockets.bought) valueIncrement *= 4;
-                if (upgrades.rocketLauncher.rampantTips.bought) valueIncrement *= 5;
-                if (upgrades.rocketLauncher.kamikaze.bought) valueIncrement *= 2;
-                const rocketLauncher = weapons.find(w => w.name === 'rocketLauncher');
-                rocketLauncher.stats.pointsPerShot += valueIncrement;
-                rocketLauncher.stats.damage += valueIncrement * 0.5;
-                break;
-            case 'rocketLauncherSplashRadius':
-                if (level <= 5) {
-                    rocketLauncherSplashRadiusUpgradeCost = cost;
-                    rocketLauncherSplashRadiusLevel = level;
-                    weapons.find(w => w.name === 'rocketLauncher').stats.splashRadius += valueIncrement;
-                } else {
-                    console.log("Maximum level reached for rocket launcher splash radius upgrade.");
-                    alert("Rocket Launcher's splash radius has been maxed out!");
-                }
-                break;
-            case 'rocketLauncherSplashDamage':
-                rocketLauncherSplashDamageUpgradeCost = cost;
-                rocketLauncherSplashDamageLevel = level;
-                weapons.find(w => w.name === 'rocketLauncher').stats.splashDamage += valueIncrement;
-                break;
-            case 'tommyGunFirerate':
-                if (level <= 20) {
-                    tommyGunFirerateUpgradeCost = cost;
-                    tommyGunFirerateLevel = level;
-                    weapons.find(w => w.name === 'tommyGun').stats.fireRate += valueIncrement;
-                } else {
-                    console.log("Maximum level reached for tommy gun fire rate upgrade.");
-                    alert("Tommy Gun's firing rate has been maxed out!");
-                }
-                break;
-            case 'tommyGunPotency':
-                tommyGunPotencyUpgradeCost = cost;
-                tommyGunPotencyLevel = level;
-                if (upgrades.tommyGun.tightPressure.bought) valueIncrement *= 2;
-                if (upgrades.tommyGun.powerfulOutcomes.bought) valueIncrement *= 3;
-                if (upgrades.tommyGun.vehementBurst.bought) valueIncrement *= 3;
-                if (upgrades.tommyGun.theVector.bought) valueIncrement *= 4;
-                if (upgrades.tommyGun.dangerZone.bought) valueIncrement *= 4;
-                if (upgrades.tommyGun.dischargedRippers.bought) valueIncrement *= 5;
-                if (upgrades.tommyGun.unstoppableBarrage.bought) valueIncrement *= 5;
-                if (upgrades.tommyGun.unavoidable.bought) valueIncrement *= 3;
-                const tommyGun = weapons.find(w => w.name === 'tommyGun');
-                tommyGun.stats.pointsPerShot += valueIncrement;
-                tommyGun.stats.damage += valueIncrement * 0.5;
-                break;
-            case 'tommyGunAccuracy':
-                tommyGunAccuracyUpgradeCost = cost;
-                tommyGunAccuracyLevel = level;
-                weapons.find(w => w.name === 'tommyGun').stats.accuracy += valueIncrement;
-                break;
-            case 'doubleBarrelFirerate':
-                if (level <= 25) {
-                    doubleBarrelFirerateUpgradeCost = cost;
-                    doubleBarrelFirerateLevel = level;
-                    weapons.find(w => w.name === 'doubleBarrel').stats.fireRate += valueIncrement;
-                } else {
-                    console.log("Maximum level reached for double barrel fire rate upgrade.");
-                    alert("Double Barrel's firing rate has been maxed out!");
-                }
-                break;
-            case 'doubleBarrelPotency':
-                doubleBarrelPotencyUpgradeCost = cost;
-                doubleBarrelPotencyLevel = level;
-                if (upgrades.doubleBarrel.lethalShots.bought) valueIncrement *= 2;
-                if (upgrades.doubleBarrel.arcSwitchingBarrels.bought) valueIncrement *= 3;
-                if (upgrades.doubleBarrel.energized.bought) valueIncrement *= 3;
-                if (upgrades.doubleBarrel.clumpedShots.bought) valueIncrement *= 4;
-                if (upgrades.doubleBarrel.tightShots.bought) valueIncrement *= 4;
-                if (upgrades.doubleBarrel.heavyForce.bought) valueIncrement *= 5;
-                if (upgrades.doubleBarrel.unbearableForce.bought) valueIncrement *= 5;
-                const doubleBarrel = weapons.find(w => w.name === 'doubleBarrel');
-                doubleBarrel.stats.pointsPerShot += valueIncrement;
-                doubleBarrel.stats.damage += valueIncrement * 0.5;
-                break;
-            case 'doubleBarrelMultiFire':
-                doubleBarrelMultiFireUpgradeCost = cost;
-                doubleBarrelMultiFireLevel = level;
-                if (upgrades.doubleBarrel.doubleTrouble.bought) valueIncrement *= 2;
-                if (upgrades.doubleBarrel.doubleSwarm.bought) valueIncrement *= 2;
-                if (upgrades.doubleBarrel.doubleYeah.bought) valueIncrement *= 2;
-                weapons.find(w => w.name === 'doubleBarrel').stats.bulletsPerShot += valueIncrement;
-                break;
-            case 'uziFirerate':
-                if (level <= 10) {
-                    uziFirerateUpgradeCost = cost;
-                    uziFirerateLevel = level;
-                    weapons.find(w => w.name === 'uzi').stats.fireRate += valueIncrement;
-                } else {
-                    console.log("Maximum level reached for uzi fire rate upgrade.");
-                    alert("Uzi's firing rate has been maxed out!");
-                }
-                break;
-            case 'uziPotency':
-                uziPotencyUpgradeCost = cost;
-                uziPotencyLevel = level;
-                if (upgrades.uzi.focussedSpread.bought) valueIncrement *= 2;
-                if (upgrades.uzi.quickfiringSalvo.bought) valueIncrement *= 3;
-                if (upgrades.uzi.tinyRippers.bought) valueIncrement *= 3;
-                if (upgrades.uzi.circuitousSpread.bought) valueIncrement *= 4;
-                if (upgrades.uzi.bulletOverload.bought) valueIncrement *= 4;
-                if (upgrades.uzi.bulletDrizzle.bought) valueIncrement *= 2;
-                if (upgrades.uzi.alwaysHitting.bought) valueIncrement *= 5;
-                const uzi = weapons.find(w => w.name === 'uzi');
-                uzi.stats.pointsPerShot += valueIncrement;
-                uzi.stats.damage += valueIncrement * 0.5;
-                break;
-            case 'huntingRifleFirerate':
-                if (level <= 15) {
-                    huntingRifleFirerateUpgradeCost = cost;
-                    huntingRifleFirerateLevel = level;
-                    weapons.find(w => w.name === 'huntingRifle').stats.fireRate += valueIncrement;
-                } else {
-                    console.log("Maximum level reached for hunting rifle fire rate upgrade.");
-                    alert("Hunting Rifle's firing rate has been maxed out!");
-                }
-                break;
-            case 'huntingRiflePotency':
-                huntingRiflePotencyUpgradeCost = cost;
-                huntingRiflePotencyLevel = level;
-                if (upgrades.huntingRifle.powerfulHunter.bought) valueIncrement *= 2;
-                if (upgrades.huntingRifle.noEscape.bought) valueIncrement *= 3;
-                if (upgrades.huntingRifle.criminalHunter.bought) valueIncrement *= 3;
-                if (upgrades.huntingRifle.targetHunter.bought) valueIncrement *= 4;
-                if (upgrades.huntingRifle.longTracers.bought) valueIncrement *= 4;
-                if (upgrades.huntingRifle.titanicTracers.bought) valueIncrement *= 2;
-                const huntingRifle = weapons.find(w => w.name === 'huntingRifle');
-                huntingRifle.stats.pointsPerShot += valueIncrement;
-                huntingRifle.stats.damage += valueIncrement * 0.5;
-                break;
-            case 'huntingRifleCriticalShot':
-                huntingRifleCriticalShotUpgradeCost = cost;
-                huntingRifleCriticalShotLevel = level;
-                weapons.find(w => w.name === 'huntingRifle').stats.criticalChance += valueIncrement;
-                break;
-            case 'huntingRifleCriticalDamage':
-                huntingRifleCriticalDamageUpgradeCost = cost;
-                huntingRifleCriticalDamageLevel = level;
-                if (upgrades.huntingRifle.titanicTracers.bought) valueIncrement *= 2;
-                weapons.find(w => w.name === 'huntingRifle').stats.criticalDamage += valueIncrement;
-                break;
             default:
                 console.error("Invalid upgradeType:", upgradeType);
         }
@@ -1619,84 +1368,6 @@ function purchaseUpgradeOld(upgradeType, level, cost, costMultiplier, valueIncre
     } else {
         alert(`Not enough points to upgrade ${upgradeType}!`);
     }
-}
-
-// Function to purchase an upgrade
-function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncrement, upgradeCategory) {
-    if (points >= cost) {
-        points -= cost;
-        cost *= costMultiplier;
-        level++;
-        
-        let weapon;
-        let stats;
-
-        switch (upgradeType) {
-            case 'touchGun':
-            case 'touchGunAwaken':
-            case 'touchGunSuperAwaken':
-                handleTouchGunUpgrades(upgradeType, level, cost, valueIncrement);
-                break;
-
-            default:
-                if (weaponIds.includes(upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalChance|CriticalDamage|Accuracy/, '').toLowerCase())) {
-                    weapon = upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalChance|CriticalDamage|Accuracy/, '').toLowerCase();
-                    stats = getWeaponStats(weapon);
-                    
-                    switch (true) {
-                        case upgradeType.endsWith('Firerate'):
-                            if (level <= getMaxLevel(weapon, 'firerate')) {
-                                updateFirerate(stats, valueIncrement);
-                            } else {
-                                alert(`${capitalize(weapon)}'s firing rate has been maxed out!`);
-                            }
-                            break;
-                        
-                        case upgradeType.endsWith('Potency'):
-                            updatePotency(stats, valueIncrement, upgrades[weapon], weapon);
-                            break;
-
-                        case upgradeType.endsWith('MultiFire'):
-                            updateMultiFire(stats, valueIncrement, upgrades[weapon], weapon);
-                            break;
-
-                        case upgradeType.endsWith('SplashRadius'):
-                            updateSplashRadius(stats, valueIncrement, upgrades[weapon], weapon);
-                            break;
-
-                        case upgradeType.endsWith('SplashDamage'):
-                            updateSplashDamage(stats, valueIncrement, upgrades[weapon], weapon);
-                            break;
-
-                        case upgradeType.endsWith('CriticalChance'):
-                            updateCriticalChance(stats, valueIncrement, upgrades[weapon], weapon);
-                            break;
-
-                        case upgradeType.endsWith('CriticalDamage'):
-                            updateCriticalDamage(stats, valueIncrement, upgrades[weapon], weapon);
-                            break;
-
-                        case upgradeType.endsWith('Accuracy'):
-                            updateAccuracy(stats, valueIncrement, upgrades[weapon], weapon);
-                            break;
-
-                        default:
-                            console.error("Invalid upgradeType:", upgradeType);
-                            return;
-                    }
-                }
-        }
-
-        updatePointsDisplay();
-        updateCostDisplay();
-    } else {
-        alert(`Not enough points to upgrade ${upgradeType}!`);
-    }
-}
-
-// Handles touch gun upgrades
-function handleTouchGunUpgrades(upgradeType, level, cost, valueIncrement) {
-    // Existing code for touchGun upgrades goes here...
 }
 
 // Determine the maximum level of the weapon's upgradeType can get to

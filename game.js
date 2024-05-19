@@ -934,33 +934,27 @@ function earnPoints() {
 }
 
 // Function to fetch and initialize weapons data
-async function initializeWeapons() {
-    try {
-        const response = await fetch('config/weapons.json');
-        const data = await response.json();
-        weapons = data; // Assign fetched data to weapons variable
-        // Once weapons are initialized, you can call other functions or update variables
-        updateCostDisplay(); // For example, updateCostDisplay can be called here
-        selectWeapon();
-        // Call other functions or update other variables as needed
-    } catch (error) {
-        console.error('Error fetching weapons data:', error);
-        throw error; // Propagate the error if needed
-    }
+function initializeWeapons() {
+    return fetch('config/weapons.json')
+        .then(response => response.json())
+        .then(data => {
+            weapons = data; // Assign fetched data to weapons variable
+            // Call functions that depend on weapons data here
+            // Call other functions or update other variables as needed
+        })
+        .catch(error => console.error('Error fetching weapons data:', error));
 }
 
 // Function to fetch and initialize enemies data
-async function initializeEnemies() {
-    try {
-        const response = await fetch('config/enemies.json');
-        const data = await response.json();
-        enemies = data; // Assign fetched data to weapons variable
-        // Once enemies are initialized, you can call other functions or update variables
-        // Call other functions or update other variables as needed
-    } catch (error) {
-        console.error('Error fetching enemies data:', error);
-        throw error; // Propagate the error if needed
-    }
+function initializeEnemies() {
+    return fetch('config/enemies.json')
+        .then(response => response.json())
+        .then(data => {
+            enemies = data; // Assign fetched data to enemies variable
+            // Call functions that depend on enemies data here
+            // Call other functions or update other variables as needed
+        })
+        .catch(error => console.error('Error fetching enemies data:', error));
 }
 
 // Function for automatic points generation based on weapon fire rates
@@ -2622,20 +2616,12 @@ function updateLifetimePoints() {
     }
 }
 
-// Call initializeWeapons before other functions that depend on weapons data
-initializeWeapons()
-    .then(() => {
-        // Call other functions after weapons are initialized
-        updateCostDisplay();
-        selectWeapon();
-    })
-    .catch(error => console.error('Error initializing weapons:', error));
-
 // Initial setup
 updatePointsDisplay();
 updateCostDisplay();
 updateAchievementsDisplay();
 updateStatisticsDisplay();
+selectWeapon();
 
 // Start earning points automatically for purchased weapons
 setInterval(automaticPointsGeneration, 1000); // Check every second for points generation

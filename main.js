@@ -145,12 +145,14 @@ function saveGameState() {
         description: achievement.description,
         achieved: achievement.achieved
     }));
-    weaponData = weapons.map(weapon => ({
-        id: weapon.id,
-        purchased: weapon.purchased,
-        cost: weapon.cost,
-        stats: weapon.stats
-    }));
+    if (Array.isArray(weapons)) {
+        weaponData = weapons.map(weapon => ({
+            id: weapon.id,
+            purchased: weapon.purchased,
+            cost: weapon.cost,
+            stats: weapon.stats
+        }));
+    }
     var gameState = {
         achievements: achievementsData,
         statistics: statistics,
@@ -443,7 +445,9 @@ async function loadGameState() {
                 }
             }
         }
-        weapons = JSON.parse(localStorage.getItem('weapons')) || getDefaultWeapons();
+        if (!Array.isArray(weapons)) {
+            weapons = [];
+        }
         
         touchGunCost = gameState.touchGunCost,
         touchGunPointsPerClick = gameState.touchGunPointsPerClick;

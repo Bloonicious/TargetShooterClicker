@@ -50,7 +50,7 @@
         "pointsPerShot": 120,
         "fireRate": 4000,
         "hp": 30,
-        "damage": 4,
+        "damage": 60,
         "range": 10,
         "accuracy": 100,
         "bulletsPerShot": 1,

@@ -1895,9 +1895,9 @@ function updateCostDisplay() {
             }
 
             // Update derived stat displays
-            document.getElementById(`${id}-AttackRate-value`).textContent = firerateValue + 'ms';
-            document.getElementById(`${id}-PPS-value`).textContent = formatNumber(pointsPerSecond);
-            document.getElementById(`${id}-DPS-value`).textContent = formatNumber(damagePerSecond);
+            document.getElementById(`${id}AttackRate-value`).textContent = firerateValue + 'ms';
+            document.getElementById(`${id}PPS-value`).textContent = formatNumber(pointsPerSecond);
+            document.getElementById(`${id}DPS-value`).textContent = formatNumber(damagePerSecond);
         }
     });
 

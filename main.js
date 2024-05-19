@@ -376,8 +376,7 @@ function saveGameState() {
 
 // Function to load the game state from local storage
 async function loadGameState() {
-    await initializeWeapons();
-    await initializeEnemies();
+    await Promise.all([initializeWeapons(), initializeEnemies()]);
     const savedState = JSON.parse(localStorage.getItem('gameState'));
     if (savedState) {
         // Update statistics from loaded game state
@@ -399,11 +398,19 @@ async function loadGameState() {
         weaponIds.forEach(weaponId => {
             const savedWeapon = savedState.weapons[weaponId];
             if (savedWeapon) {
-                const weapon = weapons.find(w => w.id.toLowerCase() === weaponId.toLowerCase());
+                const weapon = weapons[weaponId]; // Access directly from initialized weapons
                 if (weapon) {
                     Object.assign(weapon, savedWeapon);
                     updateWeaponStatsDisplay(weaponId, weapon);
                 }
+            }
+        });
+
+        // Update weapon properties from saved data
+        weaponIds.forEach(weaponId => {
+            if (savedState.weapons[weaponId] && weapons[weaponId]) {
+                weapons[weaponId].purchased = savedState.weapons[weaponId].purchased;
+                // Include other weapon properties to update as needed
             }
         });
 

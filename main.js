@@ -663,27 +663,6 @@ async function loadGameState() {
         updateAchievements();
         updateStatistics();
 
-        // Iterate over each weapon object
-        Object.entries(weapons).forEach(([weaponId, weapon]) => {
-            // Check if the weapon is purchased
-            if (weapon.purchased) {
-                // Hide the purchase button for the corresponding weapon
-                const purchaseButton = document.getElementById(`${weaponId}-purchase`);
-                if (purchaseButton) {
-                    purchaseButton.style.display = 'none';
-                }
-
-                // Update cost display
-                const costElement = document.getElementById(`${weaponId}-cost`);
-                if (costElement) {
-                    costElement.textContent = formatNumber(weapon.cost);
-                }
-
-                // Update the weapon stats display
-                updateWeaponStatsDisplay(weaponId, weapon);
-            }
-        });
-
         // Update firerate and potency display for each weapon
         document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
         document.getElementById('touchGun-level').textContent = touchGunLevel;
@@ -886,6 +865,27 @@ async function loadGameState() {
             document.getElementById('touchGunSuperAwaken-purchase').style.display = 'block';
             document.getElementById('touchGunSuperAwaken-display').style.display = 'block';
         }
+
+        // Iterate over each weapon object
+        Object.entries(weapons).forEach(([weaponId, weapon]) => {
+            // Check if the weapon is purchased
+            if (weapon.purchased) {
+                // Hide the purchase button for the corresponding weapon
+                const purchaseButton = document.getElementById(`${weaponId}-purchase`);
+                if (purchaseButton) {
+                    purchaseButton.style.display = 'none';
+                }
+
+                // Update cost display
+                const costElement = document.getElementById(`${weaponId}-cost`);
+                if (costElement) {
+                    costElement.textContent = formatNumber(weapon.cost);
+                }
+
+                // Update the weapon stats display
+                updateWeaponStatsDisplay(weaponId, weapon);
+            }
+        });
     }
 }
 

@@ -371,6 +371,7 @@ function saveGameState() {
     var gameStateJSON = JSON.stringify(gameState);
 
     localStorage.setItem('gameState', gameStateJSON);
+    localStorage.setItem('weapons', JSON.stringify(weapons));
     localStorage.setItem('selectedWeapons', JSON.stringify(selectedWeapons));
 }
 
@@ -422,6 +423,8 @@ async function loadGameState() {
                 // Include other weapon properties to update as needed
             }
         }
+        weapons = JSON.parse(localStorage.getItem('weapons')) || getDefaultWeapons();
+        
         touchGunCost = gameState.touchGunCost,
         touchGunPointsPerClick = gameState.touchGunPointsPerClick;
         touchGunLevel = gameState.touchGunLevel;
@@ -850,6 +853,73 @@ async function loadGameState() {
             document.getElementById('touchGunSuperAwaken-display').style.display = 'block';
         }
     }
+}
+
+// Function to initialize default weapons data
+function getDefaultWeapons() {
+    return [
+        {
+            id: 'pistol',
+            purchased: false,
+            cost: 10,
+            stats: { pointsPerShot: 1, fireRate: 1000, hp: 10, damage: 1, range: 6, accuracy: 100, bulletsPerShot: 1 }
+        },
+        {
+            id: 'smg',
+            purchased: false,
+            cost: 100,
+            stats: { pointsPerShot: 1, fireRate: 200, hp: 20, damage: 1, range: 5, accuracy: 100, bulletsPerShot: 1 }
+        },
+        {
+            id: 'shotgun',
+            purchased: false,
+            cost: 500,
+            stats: { pointsPerShot: 4, fireRate: 1500, hp: 50, damage: 4, range: 3, accuracy: 100, bulletsPerShot: 3 }
+        },
+        {
+            id: 'sniperRifle',
+            purchased: false,
+            cost: 7500,
+            stats: { pointsPerShot: 120, fireRate: 4000, hp: 30, damage: 60, range: 10, accuracy: 100, bulletsPerShot: 1, criticalChance: 25, criticalDamage: 2 }
+        },
+        {
+            id: 'ak47',
+            purchased: false,
+            cost: 60000,
+            stats: { pointsPerShot: 150, fireRate: 500, hp: 80, damage: 75, range: 7, accuracy: 100, bulletsPerShot: 1 }
+        },
+        {
+            id: 'rocketLauncher',
+            purchased: false,
+            cost: 400000,
+            stats: { pointsPerShot: 1000, fireRate: 5000, hp: 60, damage: 500, range: 9, accuracy: 100, bulletsPerShot: 1, splashRadius: 300, splashDamage: 0.4 }
+        },
+        {
+            id: 'tommyGun',
+            purchased: false,
+            cost: 2500000,
+            stats: { pointsPerShot: 600, fireRate: 150, hp: 120, damage: 300, range: 7, accuracy: 50, bulletsPerShot: 1, inaccuracyPenalty: 0.5 }
+        },
+        {
+            id: 'doubleBarrel',
+            purchased: false,
+            cost: 30000000,
+            stats: { pointsPerShot: 4000, fireRate: 2000, hp: 250, damage: 2000, range: 4, accuracy: 100, bulletsPerShot: 2 }
+        },
+        {
+            id: 'uzi',
+            purchased: false,
+            cost: 175000000,
+            stats: { pointsPerShot: 3000, fireRate: 75, hp: 300, damage: 1500, range: 4, accuracy: 100, bulletsPerShot: 1 }
+        },
+        {
+            id: 'huntingRifle',
+            purchased: false,
+            cost: 1250000000,
+            stats: { pointsPerShot: 180000, fireRate: 3000, hp: 200, damage: 90000, range: 10, accuracy: 100, bulletsPerShot: 1, criticalChance: 40, criticalDamage: 1.5 }
+        },
+        // Add other weapons here
+    ];
 }
 
 // Properly load the weapon stats on save

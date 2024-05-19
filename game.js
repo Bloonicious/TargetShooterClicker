@@ -1874,54 +1874,7 @@ function calculatePPS(weapon) {
 
 // Function to update weapon and upgrade costs in the HTML
 function updateCostDisplay() {
-    // Update display for each weapon
-    Object.values(weapons).forEach(weapon => {
-        // Get weapon ID
-        const id = weapon.id;
-
-        // Update cost display if the element exists
-        const costElement = document.getElementById(`${id}-cost`);
-        if (costElement) {
-            costElement.textContent = formatNumber(weapon.cost);
-        }
-
-        // Update other stats display if available
-        const stats = weapon.stats;
-        if (stats) {
-            // Update individual stat displays
-            const statIds = ['Firerate', 'Potency', 'HP', 'Damage', 'Range'];
-            statIds.forEach(statId => {
-                const statElement = document.getElementById(`${id}-${statId}-value`);
-                if (statElement && stats[statId]) {
-                    statElement.textContent = formatNumber(stats[statId]);
-                }
-            });
-
-            // Update derived stats display
-            const firerateValue = stats.fireRate ? stats.fireRate : 0;
-            const potencyValue = stats.pointsPerShot ? stats.pointsPerShot : 0;
-            const bulletsPerShot = stats.bulletsPerShot ? stats.bulletsPerShot : 1;
-            
-            const pointsPerSecond = (potencyValue * bulletsPerShot / firerateValue) * 1000;
-            let damagePerSecond = 0;
-
-            if (stats.damage) {
-                damagePerSecond = (stats.damage * bulletsPerShot / firerateValue) * 1000;
-            }
-
-            // Update derived stat displays if the elements exist
-            const attackRateElement = document.getElementById(`${id}AttackRate-value`);
-            const ppsElement = document.getElementById(`${id}PPS-value`);
-            const dpsElement = document.getElementById(`${id}DPS-value`);
-            if (attackRateElement && ppsElement && dpsElement) {
-                attackRateElement.textContent = firerateValue + 'ms';
-                ppsElement.textContent = formatNumber(pointsPerSecond);
-                dpsElement.textContent = formatNumber(damagePerSecond);
-            }
-        }
-    });
-
-    // Update other display elements
+    // Update display elements
     document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
     document.getElementById('touchGun-level').textContent = touchGunLevel;
     document.getElementById('touchGun-points-per-click').textContent = formatNumber(touchGunPointsPerClick);
@@ -2123,6 +2076,53 @@ function updateCostDisplay() {
         document.getElementById('touchGunSuperAwaken-purchase').style.display = 'block';
         document.getElementById('touchGunSuperAwaken-display').style.display = 'block';
     }
+
+    // Update display for each weapon
+    Object.values(weapons).forEach(weapon => {
+        // Get weapon ID
+        const id = weapon.id;
+
+        // Update cost display if the element exists
+        const costElement = document.getElementById(`${id}-cost`);
+        if (costElement) {
+            costElement.textContent = formatNumber(weapon.cost);
+        }
+
+        // Update other stats display if available
+        const stats = weapon.stats;
+        if (stats) {
+            // Update individual stat displays
+            const statIds = ['Firerate', 'Potency', 'HP', 'Damage', 'Range'];
+            statIds.forEach(statId => {
+                const statElement = document.getElementById(`${id}-${statId}-value`);
+                if (statElement && stats[statId]) {
+                    statElement.textContent = formatNumber(stats[statId]);
+                }
+            });
+
+            // Update derived stats display
+            const firerateValue = stats.fireRate ? stats.fireRate : 0;
+            const potencyValue = stats.pointsPerShot ? stats.pointsPerShot : 0;
+            const bulletsPerShot = stats.bulletsPerShot ? stats.bulletsPerShot : 1;
+            
+            const pointsPerSecond = (potencyValue * bulletsPerShot / firerateValue) * 1000;
+            let damagePerSecond = 0;
+
+            if (stats.damage) {
+                damagePerSecond = (stats.damage * bulletsPerShot / firerateValue) * 1000;
+            }
+
+            // Update derived stat displays if the elements exist
+            const attackRateElement = document.getElementById(`${id}AttackRate-value`);
+            const ppsElement = document.getElementById(`${id}PPS-value`);
+            const dpsElement = document.getElementById(`${id}DPS-value`);
+            if (attackRateElement && ppsElement && dpsElement) {
+                attackRateElement.textContent = firerateValue + 'ms';
+                ppsElement.textContent = formatNumber(pointsPerSecond);
+                dpsElement.textContent = formatNumber(damagePerSecond);
+            }
+        }
+    });
 }
 
 // Function to format numbers into units

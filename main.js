@@ -154,21 +154,11 @@ function saveGameState() {
         description: achievement.description,
         achieved: achievement.achieved
     }));
-    weaponIds.forEach(id => {
-        const weapon = weapons.find(w => w.name.toLowerCase() === id.toLowerCase());
-        if (weapon) {
-            state.weapons[id] = {
-                purchased: weapon.purchased,
-                cost: weapon.cost,
-                stats: weapon.stats
-            };
-        }
-    });
     var gameState = {
         achievements: achievementsData,
         statistics: statistics,
         points: points,
-        weapons: weapons,
+        weapons: {},
         
         touchGunCost: touchGunCost,
         touchGunPointsPerClick: touchGunPointsPerClick,
@@ -375,6 +365,18 @@ function saveGameState() {
         purchasedBigUpgrades: getPurchasedBigUpgrades()
     };
 
+    // Save each weapon's state
+    weaponIds.forEach(weaponId => {
+        const weapon = weapons.find(w => w.id.toLowerCase() === weaponId.toLowerCase());
+        if (weapon) {
+            state.weapons[weaponId] = {
+                purchased: weapon.purchased,
+                cost: weapon.cost,
+                stats: weapon.stats
+            };
+        }
+    });
+
     var gameStateJSON = JSON.stringify(gameState);
 
     localStorage.setItem('gameState', gameStateJSON);
@@ -414,7 +416,7 @@ function loadGameState() {
             weaponIds.forEach(weaponId => {
                 const savedWeapon = savedState.weapons[weaponId];
                 if (savedWeapon) {
-                    const weapon = weapons.find(w => w.name.toLowerCase() === weaponId.toLowerCase());
+                    const weapon = weapons.find(w => w.id.toLowerCase() === weaponId.toLowerCase());
                     if (weapon) {
                         Object.assign(weapon, savedWeapon);
 

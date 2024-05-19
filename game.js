@@ -933,6 +933,36 @@ function earnPoints() {
     updatePointsDisplay();
 }
 
+// Function to fetch and initialize weapons data
+async function initializeWeapons() {
+    try {
+        const response = await fetch('config/weapons.json');
+        const data = await response.json();
+        weapons = data; // Assign fetched data to weapons variable
+        // Once weapons are initialized, you can call other functions or update variables
+        updateCostDisplay(); // For example, updateCostDisplay can be called here
+        selectWeapon();
+        // Call other functions or update other variables as needed
+    } catch (error) {
+        console.error('Error fetching weapons data:', error);
+        throw error; // Propagate the error if needed
+    }
+}
+
+// Function to fetch and initialize enemies data
+async function initializeEnemies() {
+    try {
+        const response = await fetch('config/enemies.json');
+        const data = await response.json();
+        enemies = data; // Assign fetched data to weapons variable
+        // Once enemies are initialized, you can call other functions or update variables
+        // Call other functions or update other variables as needed
+    } catch (error) {
+        console.error('Error fetching enemies data:', error);
+        throw error; // Propagate the error if needed
+    }
+}
+
 // Function for automatic points generation based on weapon fire rates
 function automaticPointsGeneration() {
     weaponIds.forEach(weaponId => {
@@ -2277,36 +2307,6 @@ function getTotalBigUpgrades() {
     }
 
     return totalBigUpgrades;
-}
-
-// Function to fetch and initialize weapons data
-async function initializeWeapons() {
-    try {
-        const response = await fetch('config/weapons.json');
-        const data = await response.json();
-        weapons = data; // Assign fetched data to weapons variable
-        // Once weapons are initialized, you can call other functions or update variables
-        updateCostDisplay(); // For example, updateCostDisplay can be called here
-        selectWeapon();
-        // Call other functions or update other variables as needed
-    } catch (error) {
-        console.error('Error fetching weapons data:', error);
-        throw error; // Propagate the error if needed
-    }
-}
-
-// Function to fetch and initialize enemies data
-async function initializeEnemies() {
-    try {
-        const response = await fetch('config/enemies.json');
-        const data = await response.json();
-        enemies = data; // Assign fetched data to weapons variable
-        // Once enemies are initialized, you can call other functions or update variables
-        // Call other functions or update other variables as needed
-    } catch (error) {
-        console.error('Error fetching enemies data:', error);
-        throw error; // Propagate the error if needed
-    }
 }
 
 // Function to initialize upgrade costs with proper formatting

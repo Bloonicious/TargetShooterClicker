@@ -1860,21 +1860,13 @@ function calculateDPS(weapon) {
 function updateCostDisplay() {
     // Update display for each weapon
     Object.values(weapons).forEach(weapon => {
-        // Ensure the weapon exists
-        if (!weapon) {
-            console.error("Invalid weapon:", weapon);
-            return;
-        }
-
         // Get weapon ID
-        const id = weapon.id.toLowerCase().replace(/\s+/g, ''); // Normalize ID and remove spaces
+        const id = weapon.id;
 
         // Update cost display if the element exists
         const costElement = document.getElementById(`${id}-cost`);
         if (costElement) {
             costElement.textContent = formatNumber(weapon.cost);
-        } else {
-            console.error(`Cost element not found for weapon: ${id}`);
         }
 
         // Update other stats display if available
@@ -1886,8 +1878,6 @@ function updateCostDisplay() {
                 const statElement = document.getElementById(`${id}-${statId}-value`);
                 if (statElement && stats[statId]) {
                     statElement.textContent = formatNumber(stats[statId]);
-                } else if (statElement) {
-                    console.warn(`Stat ${statId} not found for weapon: ${id}`);
                 }
             });
 
@@ -1904,15 +1894,13 @@ function updateCostDisplay() {
             }
 
             // Update derived stat displays if the elements exist
-            const attackRateElement = document.getElementById(`${id}AttackRate-value`); // Corrected ID here
-            const ppsElement = document.getElementById(`${id}PPS-value`); // Corrected ID here
-            const dpsElement = document.getElementById(`${id}DPS-value`); // Corrected ID here
+            const attackRateElement = document.getElementById(`${id}AttackRate-value`);
+            const ppsElement = document.getElementById(`${id}PPS-value`);
+            const dpsElement = document.getElementById(`${id}DPS-value`);
             if (attackRateElement && ppsElement && dpsElement) {
                 attackRateElement.textContent = firerateValue + 'ms';
                 ppsElement.textContent = formatNumber(pointsPerSecond);
                 dpsElement.textContent = formatNumber(damagePerSecond);
-            } else {
-                console.error(`One or more derived stat elements not found for weapon: ${id}`);
             }
         }
     });

@@ -1867,7 +1867,7 @@ function updateCostDisplay() {
         }
 
         // Get weapon ID
-        const id = weapon.name.toLowerCase();
+        const id = weapon.id; // Use the weapon's id instead of its name
 
         // Update cost display if the element exists
         const costElement = document.getElementById(`${id}-cost`);

@@ -1858,64 +1858,47 @@ function calculateDPS(weapon) {
 
 // Function to update weapon and upgrade costs in the HTML
 function updateCostDisplay() {
-    weaponIds.forEach(id => {
-        const weapon = weapons[id];
-
+    // Update display for each weapon
+    Object.values(weapons).forEach(weapon => {
         // Ensure the weapon exists
         if (!weapon) {
-            console.error("Invalid weapon:", id);
+            console.error("Invalid weapon:", weapon);
             return;
         }
+
+        // Get weapon ID
+        const id = weapon.name.toLowerCase();
 
         // Update cost display
         document.getElementById(`${id}-cost`).textContent = formatNumber(weapon.cost);
 
-        // Update firerate value display
-        if (weapon.stats && weapon.stats.fireRate) {
-            document.getElementById(`${id}Firerate-value`).textContent = weapon.stats.fireRate + 'ms';
+        // Update other stats display if available
+        const stats = weapon.stats;
+        if (stats) {
+            // Update individual stat displays
+            const statIds = ['Firerate', 'Potency', 'HP', 'Damage', 'Range'];
+            statIds.forEach(statId => {
+                if (stats[statId]) {
+                    document.getElementById(`${id}-${statId}-value`).textContent = formatNumber(stats[statId]);
+                }
+            });
+
+            // Update derived stats display
+            const firerateValue = stats.fireRate ? stats.fireRate : 0;
+            const potencyValue = stats.pointsPerShot ? stats.pointsPerShot : 0;
+            const pointsPerSecond = (potencyValue / firerateValue) * 1000;
+            let damagePerSecond = 0;
+
+            if (stats.damage) {
+                const bulletsPerShot = stats.bulletsPerShot || 1;
+                damagePerSecond = (stats.damage * bulletsPerShot / firerateValue) * 1000;
+            }
+
+            // Update derived stat displays
+            document.getElementById(`${id}-AttackRate-value`).textContent = firerateValue + 'ms';
+            document.getElementById(`${id}-PPS-value`).textContent = formatNumber(pointsPerSecond);
+            document.getElementById(`${id}-DPS-value`).textContent = formatNumber(damagePerSecond);
         }
-
-        // Update potency value display
-        if (weapon.stats && weapon.stats.pointsPerShot) {
-            document.getElementById(`${id}Potency-value`).textContent = formatNumber(weapon.stats.pointsPerShot);
-        }
-
-        // Update hp value display
-        if (weapon.stats && weapon.stats.hp) {
-            document.getElementById(`${id}HP-value`).textContent = formatNumber(weapon.stats.hp);
-        }
-
-        // Update damage value display
-        if (weapon.stats && weapon.stats.damage) {
-            document.getElementById(`${id}Damage-value`).textContent = formatNumber(weapon.stats.damage);
-        }
-
-        // Update range value display
-        if (weapon.stats && weapon.stats.range) {
-            document.getElementById(`${id}Range-value`).textContent = formatNumber(weapon.stats.range);
-        }
-
-        // Update attack rate display
-        if (weapon.stats && weapon.stats.fireRate) {
-            document.getElementById(`${id}AttackRate-value`).textContent = weapon.stats.fireRate + 'ms';
-        }
-
-        // Calculate and update other values
-        const firerateValue = weapon.stats && weapon.stats.fireRate ? weapon.stats.fireRate : 0;
-        const potencyValue = weapon.stats && weapon.stats.pointsPerShot ? weapon.stats.pointsPerShot : 0;
-        const pointsPerSecond = (potencyValue / firerateValue) * 1000;
-        let damagePerSecond = 0;
-
-        if (weapon.stats && weapon.stats.damage) {
-            const bulletsPerShot = weapon.stats.bulletsPerShot || 1;
-            damagePerSecond = (weapon.stats.damage * bulletsPerShot / firerateValue) * 1000;
-        }
-
-        // Update display elements
-        document.getElementById(`${id}Firerate-value`).textContent = firerateValue + 'ms';
-        document.getElementById(`${id}Potency-value`).textContent = formatNumber(potencyValue);
-        document.getElementById(`${id}PPS-value`).textContent = formatNumber(pointsPerSecond);
-        document.getElementById(`${id}DPS-value`).textContent = formatNumber(damagePerSecond);
     });
 
     // Update other display elements

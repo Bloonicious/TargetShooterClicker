@@ -663,14 +663,24 @@ async function loadGameState() {
         updateAchievements();
         updateStatistics();
 
-        // Iterate over each weapon ID
-        weaponIds.forEach(weaponId => {
+        // Iterate over each weapon object
+        Object.entries(weapons).forEach(([weaponId, weapon]) => {
             // Check if the weapon is purchased
-            if (weapons.hasOwnProperty(weaponId) && weapons[weaponId].purchased) {
+            if (weapon.purchased) {
                 // Hide the purchase button for the corresponding weapon
-                document.getElementById(`${weaponId}-purchase`).style.display = 'none';
+                const purchaseButton = document.getElementById(`${weaponId}-purchase`);
+                if (purchaseButton) {
+                    purchaseButton.style.display = 'none';
+                }
+
                 // Update cost display
-                document.getElementById(`${weaponId}-cost`).textContent = formatNumber(weapons[weaponId].cost);
+                const costElement = document.getElementById(`${weaponId}-cost`);
+                if (costElement) {
+                    costElement.textContent = formatNumber(weapon.cost);
+                }
+
+                // Update the weapon stats display
+                updateWeaponStatsDisplay(weaponId, weapon);
             }
         });
 
@@ -948,52 +958,70 @@ function getDefaultWeapons() {
 
 // Properly load the weapon stats on save
 function updateWeaponStatsDisplay(weaponId, weapon) {
+    if (!weapon.stats) {
+        console.error(`No stats found for weapon: ${weaponId}`);
+        return;
+    }
+
     // Update fire rate value display
-    if (weapon.stats && weapon.stats.fireRate !== undefined) {
-        document.getElementById(`${weaponId}Firerate-value`).textContent = weapon.stats.fireRate + 'ms';
+    if (weapon.stats.fireRate !== undefined) {
+        const fireRateElement = document.getElementById(`${weaponId}Firerate-value`);
+        if (fireRateElement) {
+            fireRateElement.textContent = weapon.stats.fireRate + 'ms';
+        }
     }
 
     // Update potency value display
-    if (weapon.stats && weapon.stats.pointsPerShot !== undefined) {
-        document.getElementById(`${weaponId}Potency-value`).textContent = formatNumber(weapon.stats.pointsPerShot);
+    if (weapon.stats.pointsPerShot !== undefined) {
+        const potencyElement = document.getElementById(`${weaponId}Potency-value`);
+        if (potencyElement) {
+            potencyElement.textContent = formatNumber(weapon.stats.pointsPerShot);
+        }
     }
 
     // Update HP value display
-    if (weapon.stats && weapon.stats.hp !== undefined) {
-        document.getElementById(`${weaponId}HP-value`).textContent = formatNumber(weapon.stats.hp);
+    if (weapon.stats.hp !== undefined) {
+        const hpElement = document.getElementById(`${weaponId}HP-value`);
+        if (hpElement) {
+            hpElement.textContent = formatNumber(weapon.stats.hp);
+        }
     }
 
     // Update damage value display
-    if (weapon.stats && weapon.stats.damage !== undefined) {
-        document.getElementById(`${weaponId}Damage-value`).textContent = formatNumber(weapon.stats.damage);
+    if (weapon.stats.damage !== undefined) {
+        const damageElement = document.getElementById(`${weaponId}Damage-value`);
+        if (damageElement) {
+            damageElement.textContent = formatNumber(weapon.stats.damage);
+        }
     }
 
     // Update range value display
-    if (weapon.stats && weapon.stats.range !== undefined) {
-        document.getElementById(`${weaponId}Range-value`).textContent = formatNumber(weapon.stats.range);
+    if (weapon.stats.range !== undefined) {
+        const rangeElement = document.getElementById(`${weaponId}Range-value`);
+        if (rangeElement) {
+            rangeElement.textContent = formatNumber(weapon.stats.range);
+        }
     }
 
-    // Update attack rate display
-    if (weapon.stats && weapon.stats.fireRate !== undefined) {
-        document.getElementById(`${weaponId}AttackRate-value`).textContent = weapon.stats.fireRate + 'ms';
-    }
-
-    // Calculate and update other values
+    // Calculate and update derived values
     const firerateValue = weapon.stats.fireRate !== undefined ? weapon.stats.fireRate : 0;
     const potencyValue = weapon.stats.pointsPerShot !== undefined ? weapon.stats.pointsPerShot : 0;
-    const pointsPerSecond = firerateValue > 0 ? (potencyValue / firerateValue) * 1000 : 0;
-    let damagePerSecond = 0;
+    const bulletsPerShot = weapon.stats.bulletsPerShot !== undefined ? weapon.stats.bulletsPerShot : 1;
 
-    if (weapon.stats && weapon.stats.damage !== undefined) {
-        const bulletsPerShot = weapon.stats.bulletsPerShot !== undefined ? weapon.stats.bulletsPerShot : 1;
-        damagePerSecond = firerateValue > 0 ? (weapon.stats.damage * bulletsPerShot / firerateValue) * 1000 : 0;
-    }
+    const pointsPerSecond = firerateValue > 0 ? (potencyValue / firerateValue) * 1000 : 0;
+    const damagePerSecond = firerateValue > 0 ? (weapon.stats.damage * bulletsPerShot / firerateValue) * 1000 : 0;
 
     // Update points per second display
-    document.getElementById(`${weaponId}PointsPerSecond-value`).textContent = formatNumber(pointsPerSecond);
+    const ppsElement = document.getElementById(`${weaponId}PPS-value`);
+    if (ppsElement) {
+        ppsElement.textContent = formatNumber(pointsPerSecond);
+    }
 
     // Update damage per second display
-    document.getElementById(`${weaponId}DamagePerSecond-value`).textContent = formatNumber(damagePerSecond);
+    const dpsElement = document.getElementById(`${weaponId}DPS-value`);
+    if (dpsElement) {
+        dpsElement.textContent = formatNumber(damagePerSecond);
+    }
 }
 
 // Function to auto-save the game state every 60 seconds

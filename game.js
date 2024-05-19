@@ -245,71 +245,71 @@ const upgrades = {
         biggerBullets: {
             cost: 1000,
             effect: function() {
-                pistolPointsPerShot *= 2; // Doubles the amount of points per shot
-                pistolDamage *= 2; // Doubles the damage per shot
+                weapons.pistol.stats.pointsPerShot *= 2; // Doubles the amount of points per shot
+                weapons.pistol.stats.damage *= 2; // Doubles the damage per shot
             }
         },
         largerCalibre: {
             cost: 200000,
             effect: function() {
-                pistolPointsPerShot *= 3; // Triples the amount of points per shot
-                pistolDamage *= 3; // Triples the damage per shot
+                weapons.pistol.stats.pointsPerShot *= 3; // Triples the amount of points per shot
+                weapons.pistol.stats.damage *= 3; // Triples the damage per shot
             }
         },
         easierReloading: {
             cost: 875000,
             effect: function() {
-                pistolFireRate -= 150; // Reduces the fire rate speed (in milliseconds) for the pistol
+                weapons.pistol.stats.fireRate -= 150; // Reduces the fire rate speed (in milliseconds) for the pistol
             }
         },
         louderFiring: {
             cost: 5000000,
             effect: function() {
-                pistolPointsPerShot *= 3; // Triples the amount of points per shot
-                pistolDamage *= 3; // Triples the damage per shot
+                weapons.pistol.stats.pointsPerShot *= 3; // Triples the amount of points per shot
+                weapons.pistol.stats.damage *= 3; // Triples the damage per shot
             }
         },
         metalPiercing: {
             cost: 100000000,
             effect: function() {
-                pistolPointsPerShot *= 4; // Quadruples the amount of points per shot
-                pistolDamage *= 4; // Quadruples the damage per shot
+                weapons.pistol.stats.pointsPerShot *= 4; // Quadruples the amount of points per shot
+                weapons.pistol.stats.damage *= 4; // Quadruples the damage per shot
             }
         },
         specializedMechanisms: {
             cost: 3000000000,
             effect: function() {
-                pistolPointsPerShot *= 4; // Quadruples the amount of points per shot
-                pistolDamage *= 4; // Quadruples the damage per shot
+                weapons.pistol.stats.pointsPerShot *= 4; // Quadruples the amount of points per shot
+                weapons.pistol.stats.damage *= 4; // Quadruples the damage per shot
             }
         },
         fineTuning: {
             cost: 10000000000,
             effect: function() {
-                pistolPointsPerShot *= 1.5;
-                pistolDamage *= 1.5;
-                pistolFireRate -= 100;
+                weapons.pistol.stats.pointsPerShot *= 1.5;
+                weapons.pistol.stats.damage *= 1.5;
+                weapons.pistol.stats.fireRate -= 100;
             }
         },
         versatileGunshots: {
             cost: 100000000000,
             effect: function() {
-                pistolPointsPerShot *= 5; // Quintuples the amount of points per shot
-                pistolDamage *= 5; // Quintuples the damage per shot
+                weapons.pistol.stats.pointsPerShot *= 5; // Quintuples the amount of points per shot
+                weapons.pistol.stats.damage *= 5; // Quintuples the damage per shot
             }
         },
         empowered: {
             cost: 1000000000000,
             effect: function() {
-                pistolPointsPerShot *= 5; // Quintuples the amount of points per shot
-                pistolDamage *= 5; // Quintuples the damage per shot
+                weapons.pistol.stats.pointsPerShot *= 5; // Quintuples the amount of points per shot
+                weapons.pistol.stats.damage *= 5; // Quintuples the damage per shot
             }
         },
         oneHitBullets: {
             cost: 25000000000000,
             effect: function() {
-                pistolPointsPerShot *= 6; // Sextuples the amount of points per shot
-                pistolDamage *= 6; // Sextuples the damage per shot
+                weapons.pistol.stats.pointsPerShot *= 6; // Sextuples the amount of points per shot
+                weapons.pistol.stats.damage *= 6; // Sextuples the damage per shot
             }
         },
         // Add more upgrades for pistol here
@@ -318,69 +318,69 @@ const upgrades = {
         betterSpread: {
             cost: 10000,
             effect: function() {
-                smgPointsPerShot *= 2;
-                smgDamage *= 2;
+                weapons.smg.stats.pointsPerShot *= 2;
+                weapons.smg.stats.damage *= 2;
             }
         },
         strongHold: {
             cost: 1500000,
             effect: function() {
-                smgPointsPerShot *= 3;
-                smgDamage *= 3;
+                weapons.smg.stats.pointsPerShot *= 3;
+                weapons.smg.stats.damage *= 3;
             }
         },
         pressureBullets: {
             cost: 22500000,
             effect: function() {
-                smgPointsPerShot *= 3;
-                smgDamage *= 3;
+                weapons.smg.stats.pointsPerShot *= 3;
+                weapons.smg.stats.damage *= 3;
             }
         },
         wickedAimer: {
             cost: 125000000,
             effect: function() {
-                smgFireRate *= 0.8;
+                weapons.smg.stats.fireRate *= 0.8;
             }
         },
         bashingRounds: {
             cost: 1000000000,
             effect: function() {
-                smgPointsPerShot *= 4;
-                smgDamage *= 4;
+                weapons.smg.stats.pointsPerShot *= 4;
+                weapons.smg.stats.damage *= 4;
             }
         },
         autoAimer: {
             cost: 10000000000,
             effect: function() {
-                smgPointsPerShot *= 4;
-                smgDamage *= 4;
+                weapons.smg.stats.pointsPerShot *= 4;
+                weapons.smg.stats.damage *= 4;
             }
         },
         lightweight: {
             cost: 50000000000,
             effect: function() {
-                smgFireRate *= 0.85;
+                weapons.smg.stats.fireRate *= 0.85;
             }
         },
         metalPassers: {
             cost: 250000000000,
             effect: function() {
-                smgPointsPerShot *= 5;
-                smgDamage *= 5;
+                weapons.smg.stats.pointsPerShot *= 5;
+                weapons.smg.stats.damage *= 5;
             }
         },
         inescapableBarrage: {
             cost: 2500000000000,
             effect: function() {
-                smgPointsPerShot *= 5;
-                smgDamage *= 5;
+                weapons.smg.stats.pointsPerShot *= 5;
+                weapons.smg.stats.damage *= 5;
             }
         },
         neverMissBarrage: {
             cost: 50000000000000,
             effect: function() {
-                smgPointsPerShot *= 6;
-                smgDamage *= 6;
+                weapons.smg.stats.pointsPerShot *= 6;
+                weapons.smg.stats.damage *= 6;
             }
         },
         // Add more upgrades for smg here
@@ -389,68 +389,68 @@ const upgrades = {
         moreBarrels: {
             cost: 100000,
             effect: function() {
-                shotgunBulletsPerShot += 2; // Increases the number of barrels by 2
+                weapons.shotgun.stats.bulletsPerShot += 2; // Increases the number of barrels by 2
             }
         },
         powerfulBurst: {
             cost: 7500000,
             effect: function() {
-                shotgunPointsPerShot *= 2;
-                shotgunDamage *= 2;
+                weapons.shotgun.stats.pointsPerShot *= 2;
+                weapons.shotgun.stats.damage *= 2;
             }
         },
         devastatingBurst: {
             cost: 200000000,
             effect: function() {
-                shotgunPointsPerShot *= 3;
-                shotgunDamage *= 3;
+                weapons.shotgun.stats.pointsPerShot *= 3;
+                weapons.shotgun.stats.damage *= 3;
             }
         },
         megaBurst: {
             cost: 2500000000,
             effect: function() {
-                shotgunPointsPerShot *= 3;
-                shotgunDamage *= 3;
+                weapons.shotgun.stats.pointsPerShot *= 3;
+                weapons.shotgun.stats.damage *= 3;
             }
         },
         scattershot: {
             cost: 50000000000,
             effect: function() {
-                shotgunBulletsPerShot *= 2; // Multiplies the number of barrels by 2
+                weapons.shotgun.stats.bulletsPerShot *= 2; // Multiplies the number of barrels by 2
             }
         },
         gigaBurst: {
             cost: 300000000000,
             effect: function() {
-                shotgunPointsPerShot *= 4;
-                shotgunDamage *= 4;
+                weapons.shotgun.stats.pointsPerShot *= 4;
+                weapons.shotgun.stats.damage *= 4;
             }
         },
         omegaBurst: {
             cost: 2000000000000,
             effect: function() {
-                shotgunPointsPerShot *= 4;
-                shotgunDamage *= 4;
+                weapons.shotgun.stats.pointsPerShot *= 4;
+                weapons.shotgun.stats.damage *= 4;
             }
         },
         teraBurst: {
             cost: 20000000000000,
             effect: function() {
-                shotgunPointsPerShot *= 5;
-                shotgunDamage *= 5;
+                weapons.shotgun.stats.pointsPerShot *= 5;
+                weapons.shotgun.stats.damage *= 5;
             }
         },
         ultimatumBurst: {
             cost: 250000000000000,
             effect: function() {
-                shotgunPointsPerShot *= 5;
-                shotgunDamage *= 5;
+                weapons.shotgun.stats.pointsPerShot *= 5;
+                weapons.shotgun.stats.damage *= 5;
             }
         },
         buckshot: {
             cost: 750000000000000,
             effect: function() {
-                shotgunBulletsPerShot *= 2;
+                weapons.shotgun.stats.bulletsPerShot *= 2;
             }
         },
         // Add more upgrades for shotgun here
@@ -459,70 +459,70 @@ const upgrades = {
         deadlyPrecision: {
             cost: 2000000,
             effect: function() {
-                sniperRifleCriticalDamageMultiplier += 1; // Increases the critical damage multiplier by 1
+                weapons.sniperRifle.stats.criticalDamage += 1; // Increases the critical damage multiplier by 1
             }
         },
         cripplingShots: {
             cost: 37500000,
             effect: function() {
-                sniperRiflePointsPerShot *= 2;
-                sniperRifleDamage *= 2;
+                weapons.sniperRifle.stats.pointsPerShot *= 2;
+                weapons.sniperRifle.stats.damage *= 2;
             }
         },
         headShot: {
             cost: 750000000,
             effect: function() {
-                sniperRifleCriticalDamageMultiplier += 2;
+                weapons.sniperRifle.stats.criticalDamage += 2;
             }
         },
         dangerousRifling: {
             cost: 3333000000,
             effect: function() {
-                sniperRiflePointsPerShot *= 3;
-                sniperRifleDamage *= 3;
+                weapons.sniperRifle.stats.pointsPerShot *= 3;
+                weapons.sniperRifle.stats.damage *= 3;
             }
         },
         luckyShot: {
             cost: 77777000000,
             effect: function() {
-                sniperRifleCriticalShotChance += 10; // Increases the critical chance by an additional 10%
+                weapons.sniperRifle.stats.criticalChance += 10; // Increases the critical chance by an additional 10%
             }
         },
         enhancedTracers: {
             cost: 150000000000,
             effect: function() {
-                sniperRiflePointsPerShot *= 3;
-                sniperRifleDamage *= 3;
+                weapons.sniperRifle.stats.pointsPerShot *= 3;
+                weapons.sniperRifle.stats.damage *= 3;
             }
         },
         infraredScope: {
             cost: 750000000000,
             effect: function() {
-                sniperRiflePointsPerShot *= 2;
-                sniperRifleDamage *= 2;
-                sniperRifleCriticalDamageMultiplier *= 1.5;
+                weapons.sniperRifle.stats.pointsPerShot *= 2;
+                weapons.sniperRifle.stats.damage *= 2;
+                weapons.sniperRifle.stats.criticalDamage *= 1.5;
             }
         },
         electroshockTracers: {
             cost: 3000000000000,
             effect: function() {
-                sniperRiflePointsPerShot *= 4;
-                sniperRifleDamage *= 4;
+                weapons.sniperRifle.stats.pointsPerShot *= 4;
+                weapons.sniperRifle.stats.damage *= 4;
             }
         },
         lethalTracers: {
             cost: 30000000000000,
             effect: function() {
-                sniperRiflePointsPerShot *= 4;
-                sniperRifleDamage *= 4;
+                weapons.sniperRifle.stats.pointsPerShot *= 4;
+                weapons.sniperRifle.stats.damage *= 4;
             }
         },
         heatseekingSensors: {
             cost: 200000000000000,
             effect: function() {
-                sniperRiflePointsPerShot *= 3;
-                sniperRifleDamage *= 3;
-                sniperRifleCriticalShotChance += 5;
+                weapons.sniperRifle.stats.pointsPerShot *= 3;
+                weapons.sniperRifle.stats.damage *= 3;
+                weapons.sniperRifle.stats.criticalChance += 5;
             }
         },
         // Add more upgrades for sniperRifle here
@@ -531,71 +531,71 @@ const upgrades = {
         heatTippedBullets: {
             cost: 12000000,
             effect: function() {
-                ak47PointsPerShot *= 2;
-                ak47Damage *= 2;
+                weapons.ak47.stats.pointsPerShot *= 2;
+                weapons.ak47.stats.damage *= 2;
             }
         },
         staggeringBullets: {
             cost: 800000000,
             effect: function() {
-                ak47PointsPerShot *= 3;
-                ak47Damage *= 3;
+                weapons.ak47.stats.pointsPerShot *= 3;
+                weapons.ak47.stats.damage *= 3;
             }
         },
         rippingBullets: {
             cost: 17500000000,
             effect: function() {
-                ak47PointsPerShot *= 3;
-                ak47Damage *= 3;
+                weapons.ak47.stats.pointsPerShot *= 3;
+                weapons.ak47.stats.damage *= 3;
             }
         },
         vehementBullets: {
             cost: 150000000000,
             effect: function() {
-                ak47PointsPerShot *= 4;
-                ak47Damage *= 4;
+                weapons.ak47.stats.pointsPerShot *= 4;
+                weapons.ak47.stats.damage *= 4;
             }
         },
         overbearingVelocity: {
             cost: 1500000000000,
             effect: function() {
-                ak47PointsPerShot *= 4;
-                ak47Damage *= 4;
+                weapons.ak47.stats.pointsPerShot *= 4;
+                weapons.ak47.stats.damage *= 4;
             }
         },
         poweredVelocity: {
             cost: 7500000000000,
             effect: function() {
-                ak47PointsPerShot *= 2;
-                ak47Damage *= 2;
+                weapons.ak47.stats.pointsPerShot *= 2;
+                weapons.ak47.stats.damage *= 2;
             }
         },
         instantaneousVelocity: {
             cost: 75000000000000,
             effect: function() {
-                ak47PointsPerShot *= 5;
-                ak47Damage *= 5;
+                weapons.ak47.stats.pointsPerShot *= 5;
+                weapons.ak47.stats.damage *= 5;
             }
         },
         spikyBullets: {
             cost: 750000000000000,
             effect: function() {
-                ak47PointsPerShot *= 5;
-                ak47Damage *= 6;
+                weapons.ak47.stats.pointsPerShot *= 5;
+                weapons.ak47.stats.damage *= 5;
             }
         },
         ferociousBullets: {
             cost: 10000000000000000,
             effect: function() {
-                ak47PointsPerShot *= 6;
-                ak47Damage *= 6;
+                weapons.ak47.stats.pointsPerShot *= 6;
+                weapons.ak47.stats.damage *= 6;
             }
         },
         unfathomablePressure: {
             cost: 150000000000000000,
             effect: function() {
-                ak47PointsPerShot *= 6;
-                ak47Damage *= 6;
+                weapons.ak47.stats.pointsPerShot *= 6;
+                weapons.ak47.stats.damage *= 6;
             }
         },
         // Add more upgrades for ak47 here
@@ -1151,8 +1151,13 @@ function purchaseWeapon(weaponId) {
     }
 }
 
-// Function to purchase an upgrade
-function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncrement, upgradeCategory) {
+// Detect weapon stats from the weapons.json
+function getWeaponStats(weaponName) {
+    return weapons.find(w => w.name.toLowerCase() === weaponName.toLowerCase()).stats;
+}
+
+// Pre-rework upgrade purchasing system
+function purchaseUpgradeOld(upgradeType, level, cost, costMultiplier, valueIncrement, upgradeCategory) {
     if (points >= cost) {
         points -= cost;
         cost *= costMultiplier;
@@ -1614,6 +1619,379 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
     } else {
         alert(`Not enough points to upgrade ${upgradeType}!`);
     }
+}
+
+// Function to purchase an upgrade
+function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncrement, upgradeCategory) {
+    if (points >= cost) {
+        points -= cost;
+        cost *= costMultiplier;
+        level++;
+        
+        let weapon;
+        let stats;
+
+        switch (upgradeType) {
+            case 'touchGun':
+            case 'touchGunAwaken':
+            case 'touchGunSuperAwaken':
+                handleTouchGunUpgrades(upgradeType, level, cost, valueIncrement);
+                break;
+
+            default:
+                if (weaponIds.includes(upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalChance|CriticalDamage|Accuracy/, '').toLowerCase())) {
+                    weapon = upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalChance|CriticalDamage|Accuracy/, '').toLowerCase();
+                    stats = getWeaponStats(weapon);
+                    
+                    switch (true) {
+                        case upgradeType.endsWith('Firerate'):
+                            if (level <= getMaxLevel(weapon, 'firerate')) {
+                                updateFirerate(stats, valueIncrement);
+                            } else {
+                                alert(`${capitalize(weapon)}'s firing rate has been maxed out!`);
+                            }
+                            break;
+                        
+                        case upgradeType.endsWith('Potency'):
+                            updatePotency(stats, valueIncrement, upgrades[weapon], weapon);
+                            break;
+
+                        case upgradeType.endsWith('MultiFire'):
+                            updateMultiFire(stats, valueIncrement, upgrades[weapon], weapon);
+                            break;
+
+                        case upgradeType.endsWith('SplashRadius'):
+                            updateSplashRadius(stats, valueIncrement, upgrades[weapon], weapon);
+                            break;
+
+                        case upgradeType.endsWith('SplashDamage'):
+                            updateSplashDamage(stats, valueIncrement, upgrades[weapon], weapon);
+                            break;
+
+                        case upgradeType.endsWith('CriticalChance'):
+                            updateCriticalChance(stats, valueIncrement, upgrades[weapon], weapon);
+                            break;
+
+                        case upgradeType.endsWith('CriticalDamage'):
+                            updateCriticalDamage(stats, valueIncrement, upgrades[weapon], weapon);
+                            break;
+
+                        case upgradeType.endsWith('Accuracy'):
+                            updateAccuracy(stats, valueIncrement, upgrades[weapon], weapon);
+                            break;
+
+                        default:
+                            console.error("Invalid upgradeType:", upgradeType);
+                            return;
+                    }
+                }
+        }
+
+        updatePointsDisplay();
+        updateCostDisplay();
+    } else {
+        alert(`Not enough points to upgrade ${upgradeType}!`);
+    }
+}
+
+// Handles touch gun upgrades
+function handleTouchGunUpgrades(upgradeType, level, cost, valueIncrement) {
+    // Existing code for touchGun upgrades goes here...
+}
+
+// Determine the maximum level of the weapon's upgradeType can get to
+function getMaxLevel(weapon, upgradeType) {
+    switch (weapon) {
+        case 'pistol':
+            return upgradeType === 'firerate' ? 20 : 25;
+        case 'smg':
+        case 'sniperRifle':
+        case 'uzi':
+            return upgradeType === 'firerate' ? 10 : 25;
+        case 'shotgun':
+        case 'rocketLauncher':
+        case 'huntingRifle':
+            return upgradeType === 'firerate' ? 15 : 25;
+        case 'tommyGun':
+        case 'ak47':
+            return upgradeType === 'firerate' ? 20 : 25;
+        case 'doubleBarrel':
+            return 25;
+        default:
+            return 25;
+    }
+}
+
+// Updates firerate from the upgradeType 'firerate'
+function updateFirerate(stats, valueIncrement, weaponUpgrades, weapon) {
+    switch (weapon) {
+        case 'pistol':
+            break;
+        case 'smg':
+            if (weaponUpgrades.wickedAimer?.bought) valueIncrement *= 0.8;
+            if (weaponUpgrades.lightweight?.bought) valueIncrement *= 0.85;
+            break;
+        case 'shotgun':
+        case 'sniperRifle':
+        case 'ak47':
+        case 'rocketLauncher':
+        case 'tommyGun':
+        case 'doubleBarrel':
+        case 'uzi':
+        case 'huntingRifle':
+            break;
+        default:
+            break;
+    }
+
+    stats.fireRate += valueIncrement;
+}
+
+// Updates potency from the upgradeType 'potency'
+function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
+    switch (weapon) {
+        case 'pistol':
+            if (weaponUpgrades.biggerBullets?.bought) valueIncrement *= 2;
+            if (weaponUpgrades.largerCalibre?.bought) valueIncrement *= 3;
+            if (weaponUpgrades.louderFiring?.bought) valueIncrement *= 3;
+            if (weaponUpgrades.metalPiercing?.bought) valueIncrement *= 4;
+            if (weaponUpgrades.fineTuning?.bought) valueIncrement *= 1.5;
+            if (weaponUpgrades.versatileGunshots?.bought) valueIncrement *= 5;
+            if (weaponUpgrades.empowered?.bought) valueIncrement *= 5;
+            if (weaponUpgrades.oneHitBullets?.bought) valueIncrement *= 6;
+            if (upgrades.touchGun?.fingerPistols?.bought) valueIncrement *= 1.1 * getTotalTouchGunUpgrades();
+            break;
+        case 'smg':
+            if (weaponUpgrades.betterSpread?.bought) valueIncrement *= 2;
+            if (weaponUpgrades.strongHold?.bought) valueIncrement *= 3;
+            if (weaponUpgrades.pressureBullets?.bought) valueIncrement *= 3;
+            if (weaponUpgrades.bashingRounds?.bought) valueIncrement *= 4;
+            if (weaponUpgrades.autoAimer?.bought) valueIncrement *= 4;
+            if (weaponUpgrades.metalPassers?.bought) valueIncrement *= 5;
+            if (weaponUpgrades.inescapableBarrage?.bought) valueIncrement *= 5;
+            if (weaponUpgrades.neverMissBarrage?.bought) valueIncrement *= 6;
+            break;
+        case 'shotgun':
+            if (weaponUpgrades.powerfulBurst?.bought) valueIncrement *= 2;
+            if (weaponUpgrades.devastatingBurst?.bought) valueIncrement *= 3;
+            if (weaponUpgrades.megaBurst?.bought) valueIncrement *= 3;
+            if (weaponUpgrades.gigaBurst?.bought) valueIncrement *= 4;
+            if (weaponUpgrades.omegaBurst?.bought) valueIncrement *= 4;
+            if (weaponUpgrades.teraBurst?.bought) valueIncrement *= 5;
+            if (weaponUpgrades.ultimatumBurst?.bought) valueIncrement *= 5;
+            break;
+        case 'sniperRifle':
+            if (weaponUpgrades.cripplingShots?.bought) valueIncrement *= 2;
+            if (weaponUpgrades.dangerousRifling?.bought) valueIncrement *= 3;
+            if (weaponUpgrades.enhancedTracers?.bought) valueIncrement *= 3;
+            if (weaponUpgrades.infraredScope?.bought) valueIncrement *= 2;
+            if (weaponUpgrades.electroshockTracers?.bought) valueIncrement *= 4;
+            if (weaponUpgrades.lethalTracers?.bought) valueIncrement *= 4;
+            if (weaponUpgrades.heatseekingSensors?.bought) valueIncrement *= 3;
+            break;
+        case 'ak47':
+            if (weaponUpgrades.heatTippedBullets?.bought) valueIncrement *= 2;
+            if (weaponUpgrades.staggeringBullets?.bought) valueIncrement *= 3;
+            if (weaponUpgrades.rippingBullets?.bought) valueIncrement *= 3;
+            if (weaponUpgrades.vehementBullets?.bought) valueIncrement *= 4;
+            if (weaponUpgrades.overbearingVelocity?.bought) valueIncrement *= 4;
+            if (weaponUpgrades.poweredVelocity?.bought) valueIncrement *= 2;
+            if (weaponUpgrades.instantaneousVelocity?.bought) valueIncrement *= 5;
+            if (weaponUpgrades.spikyBullets?.bought) valueIncrement *= 5;
+            if (weaponUpgrades.ferociousBullets?.bought) valueIncrement *= 6;
+            if (weaponUpgrades.unfathomablePressure?.bought) valueIncrement *= 6;
+            break;
+        case 'rocketLauncher':
+            if (weaponUpgrades.potentRockets?.bought) valueIncrement *= 2;
+            if (weaponUpgrades.repeatedExplosions?.bought) valueIncrement *= 3;
+            if (weaponUpgrades.extraGunpowder?.bought) valueIncrement *= 3;
+            if (weaponUpgrades.shatteringExplosions?.bought) valueIncrement *= 4;
+            if (weaponUpgrades.napalmRockets?.bought) valueIncrement *= 4;
+            if (weaponUpgrades.rampantTips?.bought) valueIncrement *= 5;
+            if (weaponUpgrades.kamikaze?.bought) valueIncrement *= 2;
+            break;
+        case 'tommyGun':
+            if (weaponUpgrades.tightPressure?.bought) valueIncrement *= 2;
+            if (weaponUpgrades.powerfulOutcomes?.bought) valueIncrement *= 3;
+            if (weaponUpgrades.vehementBurst?.bought) valueIncrement *= 3;
+            if (weaponUpgrades.theVector?.bought) valueIncrement *= 4;
+            if (weaponUpgrades.dangerZone?.bought) valueIncrement *= 4;
+            if (weaponUpgrades.dischargedRippers?.bought) valueIncrement *= 5;
+            if (weaponUpgrades.unstoppableBarrage?.bought) valueIncrement *= 5;
+            if (weaponUpgrades.unavoidable?.bought) valueIncrement *= 3;
+            break;
+        case 'doubleBarrel':
+            if (weaponUpgrades.lethalShots?.bought) valueIncrement *= 2;
+            if (weaponUpgrades.arcSwitchingBarrels?.bought) valueIncrement *= 3;
+            if (weaponUpgrades.energized?.bought) valueIncrement *= 3;
+            if (weaponUpgrades.clumpedShots?.bought) valueIncrement *= 4;
+            if (weaponUpgrades.tightShots?.bought) valueIncrement *= 4;
+            if (weaponUpgrades.heavyForce?.bought) valueIncrement *= 5;
+            if (weaponUpgrades.unbearableForce?.bought) valueIncrement *= 5;
+            break;
+        case 'uzi':
+            if (weaponUpgrades.focussedSpread?.bought) valueIncrement *= 2;
+            if (weaponUpgrades.quickfiringSalvo?.bought) valueIncrement *= 3;
+            if (weaponUpgrades.tinyRippers?.bought) valueIncrement *= 3;
+            if (weaponUpgrades.circuitousSpread?.bought) valueIncrement *= 4;
+            if (weaponUpgrades.bulletOverload?.bought) valueIncrement *= 4;
+            if (weaponUpgrades.bulletDrizzle?.bought) valueIncrement *= 2;
+            if (weaponUpgrades.alwaysHitting?.bought) valueIncrement *= 5;
+            break;
+        case 'huntingRifle':
+            if (weaponUpgrades.powerfulHunter?.bought) valueIncrement *= 2;
+            if (weaponUpgrades.noEscape?.bought) valueIncrement *= 3;
+            if (weaponUpgrades.criminalHunter?.bought) valueIncrement *= 3;
+            if (weaponUpgrades.targetHunter?.bought) valueIncrement *= 4;
+            if (weaponUpgrades.longTracers?.bought) valueIncrement *= 4;
+            if (weaponUpgrades.titanicTracers?.bought) valueIncrement *= 2;
+            break;
+        default:
+            break;
+    }
+
+    stats.pointsPerShot += valueIncrement;
+    stats.damage += valueIncrement * 0.5;
+}
+
+// Updates multifire from the upgradeType 'multiFire'
+function updateMultiFire(stats, valueIncrement, weaponUpgrades, weapon) {
+    switch (weapon) {
+        case 'pistol':
+        case 'smg':
+            break;
+        case 'shotgun':
+            if (weaponUpgrades.scattershot?.bought) valueIncrement *= 2;
+            if (weaponUpgrades.buckshot?.bought) valueIncrement *= 2;
+            break;
+        case 'sniperRifle':
+        case 'ak47':
+        case 'rocketLauncher':
+        case 'tommyGun':
+            break;
+        case 'doubleBarrel':
+            if (weaponUpgrades.doubleTrouble?.bought) valueIncrement *= 2;
+            if (weaponUpgrades.doubleSwarm?.bought) valueIncrement *= 2;
+            if (weaponUpgrades.doubleYeah?.bought) valueIncrement *= 2;
+            break;
+        case 'uzi':
+        case 'huntingRifle':
+            break;
+        default:
+            break;
+    }
+
+    stats.bulletsPerShot += valueIncrement;
+}
+
+// Updates other special upgrade stats for weapons (splash radius/damage, critical chance/damage, etc.)
+function updateSplashRadius(stats, valueIncrement, weaponUpgrades, weapon) {
+    switch (weapon) {
+        case 'pistol':
+        case 'smg':
+        case 'shotgun':
+        case 'sniperRifle':
+        case 'ak47':
+        case 'rocketLauncher':
+        case 'tommyGun':
+        case 'doubleBarrel':
+        case 'uzi':
+        case 'huntingRifle':
+            break;
+        default:
+            break;
+    }
+
+    stats.splashRadius += valueIncrement;
+}
+
+function updateSplashDamage(stats, valueIncrement, weaponUpgrades, weapon) {
+    switch (weapon) {
+        case 'pistol':
+        case 'smg':
+        case 'shotgun':
+        case 'sniperRifle':
+        case 'ak47':
+        case 'rocketLauncher':
+        case 'tommyGun':
+        case 'doubleBarrel':
+        case 'uzi':
+        case 'huntingRifle':
+            break;
+        default:
+            break;
+    }
+
+    stats.splashDamage += valueIncrement;
+}
+
+function updateCriticalChance(stats, valueIncrement, weaponUpgrades, weapon) {
+    switch (weapon) {
+        case 'pistol':
+        case 'smg':
+        case 'shotgun':
+        case 'sniperRifle':
+        case 'ak47':
+        case 'rocketLauncher':
+        case 'tommyGun':
+        case 'doubleBarrel':
+        case 'uzi':
+        case 'huntingRifle':
+            break;
+        default:
+            break;
+    }
+
+    stats.criticalChance += valueIncrement;
+}
+
+function updateCriticalDamage(stats, valueIncrement, weaponUpgrades, weapon) {
+    switch (weapon) {
+        case 'pistol':
+        case 'smg':
+        case 'shotgun':
+            break;
+        case 'sniperRifle':
+            if (weaponUpgrades.infraredScope?.bought) valueIncrement *= 1.5;
+            break;
+        case 'ak47':
+        case 'rocketLauncher':
+        case 'tommyGun':
+        case 'doubleBarrel':
+        case 'uzi':
+            break;
+        case 'huntingRifle':
+            if (weaponUpgrades.titanicTracers?.bought) valueIncrement *= 2;
+            break;
+        default:
+            break;
+    }
+
+    stats.criticalDamage += valueIncrement;
+}
+
+function updateAccuracy(stats, valueIncrement, weaponUpgrades, weapon) {
+    switch (weapon) {
+        case 'pistol':
+        case 'smg':
+        case 'shotgun':
+        case 'sniperRifle':
+        case 'ak47':
+        case 'rocketLauncher':
+        case 'tommyGun':
+        case 'doubleBarrel':
+        case 'uzi':
+        case 'huntingRifle':
+            break;
+        default:
+            break;
+    }
+
+    stats.accuracy += valueIncrement;
+}
+
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function bigUpgrades(weapon, upgrade, cost) {

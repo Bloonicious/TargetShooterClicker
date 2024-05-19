@@ -1,5 +1,3 @@
-const weaponIds = ['pistol', 'smg', 'shotgun', 'sniperRifle', 'rocketLauncher', 'tommyGun', 'doubleBarrel', 'huntingRifle'];
-
 // Ensure the weapons array is initialized properly
 let weapons = {};
 fetch('config/weapons.json')
@@ -16,6 +14,8 @@ fetch('config/enemies.json')
        enemies = data.enemies;
   })
   .catch(error => console.error('Error loading enemies data:', error));
+
+const weaponIds = ['pistol', 'smg', 'shotgun', 'sniperRifle', 'rocketLauncher', 'tommyGun', 'doubleBarrel', 'huntingRifle'];
 
 let touchGunCost = 100;
 let touchGunPointsPerClick = 1;
@@ -604,69 +604,69 @@ const upgrades = {
         potentRockets: {
             cost: 150000000,
             effect: function() {
-                rocketLauncherPointsPerShot *= 2;
-                rocketLauncherDamage *= 2;
+                weapons.rocketLauncher.stats.pointsPerShot *= 2;
+                weapons.rocketLauncher.stats.damage *= 2;
             }
         },
         violentExplosions: {
             cost: 3000000000,
             effect: function() {
-                rocketLauncherSplashDamage += 0.2;
+                weapons.rocketLauncher.stats.splashDamage += 0.2;
             }
         },
         repeatedExplosions: {
             cost: 15000000000,
             effect: function() {
-                rocketLauncherPointsPerShot *= 3;
-                rocketLauncherDamage *= 3;
+                weapons.rocketLauncher.stats.pointsPerShot *= 3;
+                weapons.rocketLauncher.stats.damage *= 3;
             }
         },
         biggerExplosions: {
             cost: 250000000000,
             effect: function() {
-                rocketLauncherSplashRadius += 100;
+                weapons.rocketLauncher.stats.splashRadius += 100;
             }
         },
         extraGunpowder: {
             cost: 500000000000,
             effect: function() {
-                rocketLauncherPointsPerShot *= 3;
-                rocketLauncherDamage *= 3;
+                weapons.rocketLauncher.stats.pointsPerShot *= 3;
+                weapons.rocketLauncher.stats.damage *= 3;
             }
         },
         shatteringExplosions: {
             cost: 5000000000000,
             effect: function() {
-                rocketLauncherPointsPerShot *= 4;
-                rocketLauncherDamage *= 4;
+                weapons.rocketLauncher.stats.pointsPerShot *= 4;
+                weapons.rocketLauncher.stats.damage *= 4;
             }
         },
         napalmRockets: {
             cost: 40000000000000,
             effect: function() {
-                rocketLauncherPointsPerShot *= 4;
-                rocketLauncherDamage *= 4;
+                weapons.rocketLauncher.stats.pointsPerShot *= 4;
+                weapons.rocketLauncher.stats.damage *= 4;
             }
         },
         impulsiveExplosions: {
             cost: 300000000000000,
             effect: function() {
-                rocketLauncherSplashDamage += 0.2;
+                weapons.rocketLauncher.stats.splashDamage += 0.2;
             }
         },
         rampantTips: {
             cost: 1000000000000000,
             effect: function() {
-                rocketLauncherPointsPerShot *= 5;
-                rocketLauncherDamage *= 5;
+                weapons.rocketLauncher.stats.pointsPerShot *= 5;
+                weapons.rocketLauncher.stats.damage *= 5;
             }
         },
         kamikaze: {
             cost: 5000000000000000,
             effect: function() {
-                rocketLauncherPointsPerShot *= 2;
-                rocketLauncherDamage *= 2;
-                rocketLauncherSplashRadius += 100;
+                weapons.rocketLauncher.stats.pointsPerShot *= 2;
+                weapons.rocketLauncher.stats.damage *= 2;
+                weapons.rocketLauncher.stats.splashRadius += 100;
             }
         },
         // Add more upgrades for rocketLauncher here
@@ -675,70 +675,70 @@ const upgrades = {
         preciseAccuracy: {
             cost: 750000000,
             effect: function() {
-                tommyGunInaccuracyChance -= 10; // Reduces the inaccuracy chance of the tommy gun
+                weapons.tommyGun.stats.accuracy += 10; // Reduces the inaccuracy chance of the tommy gun
             }
         },
         tightPressure: {
             cost: 2500000000,
             effect: function() {
-                tommyGunPointsPerShot *= 2;
-                tommyGunDamage *= 2;
+                weapons.tommyGun.stats.pointsPerShot *= 2;
+                weapons.tommyGun.stats.damage *= 2;
             }
         },
         lessPunishing: {
             cost: 10000000000,
             effect: function() {
-                tommyGunAccuracyPenalty += 0.17; // Reduces the accuracy penalty of the tommy gun
+                 weapons.tommyGun.stats.inaccuracyPenalty -= 0.17; // Reduces the accuracy penalty of the tommy gun
             }
         },
         powerfulOutcomes: {
             cost: 62500000000,
             effect: function() {
-                tommyGunPointsPerShot *= 3;
-                tommyGunDamage *= 3;
+                weapons.tommyGun.stats.pointsPerShot *= 3;
+                weapons.tommyGun.stats.damage *= 3;
             }
         },
         vehementBurst: {
             cost: 750000000000,
             effect: function() {
-                tommyGunPointsPerShot *= 3;
-                tommyGunDamage *= 3;
+                weapons.tommyGun.stats.pointsPerShot *= 3;
+                weapons.tommyGun.stats.damage *= 3;
             }
         },
         theVector: {
             cost: 6000000000000,
             effect: function() {
-                tommyGunPointsPerShot *= 4;
-                tommyGunDamage *= 4;
+                weapons.tommyGun.stats.pointsPerShot *= 4;
+                weapons.tommyGun.stats.damage *= 4;
             }
         },
         dangerZone: {
             cost: 45000000000000,
             effect: function() {
-                tommyGunPointsPerShot *= 4;
-                tommyGunDamage *= 4;
+                weapons.tommyGun.stats.pointsPerShot *= 4;
+                weapons.tommyGun.stats.damage *= 4;
             }
         },
         dischargedRippers: {
             cost: 300000000000000,
             effect: function() {
-                tommyGunPointsPerShot *= 5;
-                tommyGunDamage *= 5;
+                weapons.tommyGun.stats.pointsPerShot *= 5;
+                weapons.tommyGun.stats.damage *= 5;
             }
         },
         unstoppableBarrage: {
             cost: 3000000000000000,
             effect: function() {
-                tommyGunPointsPerShot *= 5;
-                tommyGunDamage *= 5;
+                weapons.tommyGun.stats.pointsPerShot *= 5;
+                weapons.tommyGun.stats.damage *= 5;
             }
         },
         unavoidable: {
             cost: 20000000000000000,
             effect: function() {
-                tommyGunPointsPerShot *= 3;
-                tommyGunDamage *= 3;
-                tommyGunInaccuracyChance -= 10;
+                weapons.tommyGun.stats.pointsPerShot *= 3;
+                weapons.tommyGun.stats.damage *= 3;
+                weapons.tommyGun.stats.accuracy += 10;
             }
         },
         // Add more upgrades for tommyGun here
@@ -747,68 +747,68 @@ const upgrades = {
         lethalShots: {
             cost: 1000000000,
             effect: function() {
-                doubleBarrelPointsPerShot *= 2;
-                doubleBarrelDamage *= 2;
+                weapons.doubleBarrel.stats.pointsPerShot *= 2;
+                weapons.doubleBarrel.stats.damage *= 2;
             }
         },
         arcSwitchingBarrels: {
             cost: 10000000000,
             effect: function() {
-                doubleBarrelPointsPerShot *= 3;
-                doubleBarrelDamage *= 3;
+                weapons.doubleBarrel.stats.pointsPerShot *= 3;
+                weapons.doubleBarrel.stats.damage *= 3;
             }
         },
         doubleTrouble: {
             cost: 250000000000,
             effect: function() {
-                doubleBarrelBulletsPerShot *= 2;
+                weapons.doubleBarrel.stats.bulletsPerShot *= 2;
             }
         },
         energized: {
             cost: 1500000000000,
             effect: function() {
-                doubleBarrelPointsPerShot *= 3;
-                doubleBarrelDamage *= 3;
+                weapons.doubleBarrel.stats.pointsPerShot *= 3;
+                weapons.doubleBarrel.stats.damage *= 3;
             }
         },
         doubleSwarm: {
             cost: 75000000000000,
             effect: function() {
-                doubleBarrelBulletsPerShot *= 2;
+                weapons.doubleBarrel.stats.bulletsPerShot *= 2;
             }
         },
         clumpedShots: {
             cost: 200000000000000,
             effect: function() {
-                doubleBarrelPointsPerShot *= 4;
-                doubleBarrelDamage *= 4;
+                weapons.doubleBarrel.stats.pointsPerShot *= 4;
+                weapons.doubleBarrel.stats.damage *= 4;
             }
         },
         tightShots: {
             cost: 1500000000000000,
             effect: function() {
-                doubleBarrelPointsPerShot *= 4;
-                doubleBarrelDamage *= 4;
+                weapons.doubleBarrel.stats.pointsPerShot *= 4;
+                weapons.doubleBarrel.stats.damage *= 4;
             }
         },
         heavyForce: {
             cost: 15000000000000000,
             effect: function() {
-                doubleBarrelPointsPerShot *= 5;
-                doubleBarrelDamage *= 5;
+                weapons.doubleBarrel.stats.pointsPerShot *= 5;
+                weapons.doubleBarrel.stats.damage *= 5;
             }
         },
         unbearableForce: {
             cost: 125000000000000000,
             effect: function() {
-                doubleBarrelPointsPerShot *= 5;
-                doubleBarrelDamage *= 5;
+                weapons.doubleBarrel.stats.pointsPerShot *= 5;
+                weapons.doubleBarrel.stats.damage *= 5;
             }
         },
         doubleYeah: {
             cost: 875000000000000000,
             effect: function() {
-                doubleBarrelBulletsPerShot *= 2;
+                weapons.doubleBarrel.stats.bulletsPerShot *= 2;
             }
         },
         // Add more upgrades for doubleBarrel here
@@ -817,50 +817,50 @@ const upgrades = {
         focussedSpread: {
             cost: 7500000000,
             effect: function() {
-                uziPointsPerShot *= 2;
-                uziDamage *= 2;
+                weapons.uzi.stats.pointsPerShot *= 2;
+                weapons.uzi.stats.damage *= 2;
             }
         },
         quickfiringSalvo: {
             cost: 60000000000,
             effect: function() {
-                uziPointsPerShot *= 3;
-                uziDamage *= 3;
+                weapons.uzi.stats.pointsPerShot *= 3;
+                weapons.uzi.stats.damage *= 3;
             }
         },
         tinyRippers: {
             cost: 400000000000,
             effect: function() {
-                uziPointsPerShot *= 3;
-                uziDamage *= 3;
+                weapons.uzi.stats.pointsPerShot *= 3;
+                weapons.uzi.stats.damage *= 3;
             }
         },
         circuitousSpread: {
             cost: 4500000000000,
             effect: function() {
-                uziPointsPerShot *= 4;
-                uziDamage *= 4;
+                weapons.uzi.stats.pointsPerShot *= 4;
+                weapons.uzi.stats.damage *= 4;
             }
         },
         bulletOverload: {
             cost: 50000000000000,
             effect: function() {
-                uziPointsPerShot *= 4;
-                uziDamage *= 4;
+                weapons.uzi.stats.pointsPerShot *= 4;
+                weapons.uzi.stats.damage *= 4;
             }
         },
         bulletDrizzle: {
             cost: 250000000000000,
             effect: function() {
-                uziPointsPerShot *= 2;
-                uziDamage *= 2;
+                weapons.uzi.stats.pointsPerShot *= 2;
+                weapons.uzi.stats.damage *= 2;
             }
         },
         alwaysHitting: {
             cost: 2500000000000000,
             effect: function() {
-                uziPointsPerShot *= 5;
-                uziDamage *= 5;
+                weapons.uzi.stats.pointsPerShot *= 5;
+                weapons.uzi.stats.damage *= 5;
             }
         },
         // Add more upgrades for uzi here
@@ -869,51 +869,51 @@ const upgrades = {
         powerfulHunter: {
             cost: 35000000000,
             effect: function() {
-                huntingRiflePointsPerShot *= 2;
-                huntingRifleDamage *= 2;
+                weapons.huntingRifle.stats.pointsPerShot *= 2;
+                weapons.huntingRifle.stats.damage *= 2;
             }
         },
         headHunter: {
             cost: 175000000000,
             effect: function() {
-                huntingRifleCriticalDamageMultiplier += 0.5; // Increases the critical damage multiplier by 0.5
+                weapons.huntingRifle.stats.criticalDamage += 0.5; // Increases the critical damage multiplier by 0.5
             }
         },
         noEscape: {
             cost: 500000000000,
             effect: function() {
-                huntingRiflePointsPerShot *= 3;
-                huntingRifleDamage *= 3;
+                weapons.huntingRifle.stats.pointsPerShot *= 3;
+                weapons.huntingRifle.stats.damage *= 3;
             }
         },
         criminalHunter: {
             cost: 4000000000000,
             effect: function() {
-                huntingRiflePointsPerShot *= 3;
-                huntingRifleDamage *= 3;
+                weapons.huntingRifle.stats.pointsPerShot *= 3;
+                weapons.huntingRifle.stats.damage *= 3;
             }
         },
         targetHunter: {
             cost: 35000000000000,
             effect: function() {
-                huntingRiflePointsPerShot *= 4;
-                huntingRifleDamage *= 4;
+                weapons.huntingRifle.stats.pointsPerShot *= 4;
+                weapons.huntingRifle.stats.damage *= 4;
             }
         },
         longTracers: {
             cost: 225000000000000,
             effect: function() {
-                huntingRiflePointsPerShot *= 4;
-                huntingRifleDamage *= 4;
+                weapons.huntingRifle.stats.pointsPerShot *= 4;
+                weapons.huntingRifle.stats.damage *= 4;
             }
         },
         titanicTracers: {
             cost: 1750000000000000,
             effect: function() {
-                huntingRiflePointsPerShot *= 2;
-                huntingRifleDamage *= 2;
-                huntingRifleCriticalDamageMultiplier *= 2;
-                huntingRifleCriticalShotChance -= 5;
+                weapons.huntingRifle.stats.pointsPerShot *= 2;
+                weapons.huntingRifle.stats.damage *= 2;
+                weapons.huntingRifle.stats.criticalDamage *= 2;
+                weapons.huntingRifle.stats.criticalChance -= 5;
             }
         },
         // Add more upgrades for huntingRifle here
@@ -1739,58 +1739,49 @@ function bigUpgrades(weapon, upgrade, cost) {
     }
 }
 
-// Function to check if a weapon is purchased
+// Check if a weapon was purchased
 function isWeaponPurchased(weaponId) {
-    // Check if the weapon exists in the weapons object and if it's purchased
-    return weapons.hasOwnProperty(weaponId) && weapons[weaponId].purchased;
+    const weapon = weapons.find(w => w.id.toLowerCase() === weaponId.toLowerCase());
+    return weapon ? weapon.purchased : false;
 }
 
 // Function to update the display of selected weapon stats
 function updateSelectedWeaponsDisplay(weaponId) {
-    // Ensure that the weapon is valid
     if (!weaponIds.includes(weaponId)) {
         console.error("Invalid weapon:", weaponId);
         return;
     }
 
-    // Set the purchased status of the weapon
-    if (weapons.hasOwnProperty(weaponId)) {
-        weapons[weaponId].purchased = true;
-    } else {
+    const weapon = weapons.find(w => w.id.toLowerCase() === weaponId.toLowerCase());
+    if (!weapon) {
         console.error("Invalid weapon:", weaponId);
         return;
     }
 
-    // Iterate over each weapon selection box
+    weapon.purchased = true;
+
     const selectionBoxes = document.querySelectorAll('.weapon-slot');
     selectionBoxes.forEach((selectionBox) => {
-        // Get the ID of the selection box
         const boxId = selectionBox.id.replace('weapon-selection-', '');
-
-        // Clear the options
         selectionBox.innerHTML = '';
 
-        // Add default option "Select Weapon"
         const defaultOption = document.createElement('option');
         defaultOption.value = '';
         defaultOption.textContent = 'Select Weapon';
         selectionBox.appendChild(defaultOption);
 
-        // Populate options based on purchased weapons
-        weaponIds.forEach((weaponId) => {
-            if (isWeaponPurchased(weaponId)) {
+        weaponIds.forEach((id) => {
+            if (isWeaponPurchased(id)) {
                 const option = document.createElement('option');
-                option.value = weaponId;
-                option.textContent = weaponId.charAt(0).toUpperCase() + weaponId.slice(1); // Capitalize first letter
+                option.value = id;
+                option.textContent = id.charAt(0).toUpperCase() + id.slice(1);
                 selectionBox.appendChild(option);
             }
         });
 
-        // Select the currently selected weapon if any
         const selectedWeapon = selectedWeapons[boxId];
         if (selectedWeapon) {
             selectionBox.value = selectedWeapon;
-            // Disable options that are already selected
             selectionBox.querySelectorAll('option').forEach((option) => {
                 if (Object.values(selectedWeapons).includes(option.value) && option.value !== selectedWeapon) {
                     option.disabled = true;
@@ -1798,58 +1789,54 @@ function updateSelectedWeaponsDisplay(weaponId) {
                     option.disabled = false;
                 }
             });
-            // Update the display of weapon stats for the selected weapon
             updateWeaponStatsDisplay(boxId, selectedWeapon);
         }
     });
 
-    // Log successful purchase
     console.log(`${weaponId} purchased successfully.`);
 }
 
 // Function to handle selecting a weapon
 function selectWeapon(weaponId) {
-    // Check if the weapon is purchased and not already selected
-    if (weaponIds.includes(weaponId) && weapons[weaponId].purchased && !Object.values(selectedWeapons).includes(weaponId)) {
-        // Add the weapon to the selected weapons
+    if (weaponIds.includes(weaponId) && isWeaponPurchased(weaponId) && !Object.values(selectedWeapons).includes(weaponId)) {
         const selectedBoxId = Object.keys(selectedWeapons).find(boxId => !selectedWeapons[boxId]);
         selectedWeapons[selectedBoxId] = weaponId;
-        // Update the display of weapon stats for the selected weapon
         updateWeaponStatsDisplay(selectedBoxId, weaponId);
     }
 }
 
 // Function to update the display of weapon stats for the selected weapon
 function updateWeaponStatsDisplay(boxId, weaponId) {
-    // Get the corresponding weapon box element
-    const box = document.getElementById(`${weaponId}-box`);
-
-    // Check if box exists
-    if (!box) {
+    const weapon = weapons.find(w => w.id.toLowerCase() === weaponId.toLowerCase());
+    if (!weapon) {
         return;
     }
 
-    // Get the weapon stats elements
     const currentHP = document.getElementById(`${weaponId}HP-value`);
     const currentDamage = document.getElementById(`${weaponId}Damage-value`);
     const currentRange = document.getElementById(`${weaponId}Range-value`);
     const currentAttackRate = document.getElementById(`${weaponId}AttackRate-value`);
     const currentDPS = document.getElementById(`${weaponId}DPS-value`);
 
-    // Check if weapon stats elements exist
     if (!currentHP || !currentDamage || !currentRange || !currentAttackRate || !currentDPS) {
         console.error(`One or more weapon stats elements for ${weaponId} are missing.`);
         return;
     }
 
-    // Update the weapon stats display
-    currentHP.textContent = formatNumber(parseFloat(currentHP.textContent));
-    currentDamage.textContent = formatNumber(parseFloat(currentDamage.textContent));
-    currentRange.textContent = formatNumber(parseFloat(currentRange.textContent));
-    currentAttackRate.textContent = formatNumber(parseFloat(currentAttackRate.textContent));
-    currentDPS.textContent = formatNumber(parseFloat(currentDPS.textContent));
+    currentHP.textContent = formatNumber(weapon.stats.hp);
+    currentDamage.textContent = formatNumber(weapon.stats.damage);
+    currentRange.textContent = formatNumber(weapon.stats.range);
+    currentAttackRate.textContent = formatNumber(weapon.stats.fireRate);
+    currentDPS.textContent = formatNumber(calculateDPS(weapon));
 
     // Update other weapon stats if needed...
+}
+
+// Calculates the total amount of DPS in battle mode
+function calculateDPS(weapon) {
+    const firerateValue = weapon.stats.fireRate;
+    const damageValue = weapon.stats.damage;
+    return firerateValue > 0 ? (damageValue / firerateValue) * 1000 : 0;
 }
 
 // Function to update weapon and upgrade costs in the HTML

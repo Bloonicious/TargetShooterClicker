@@ -1867,7 +1867,7 @@ function updateCostDisplay() {
         }
 
         // Get weapon ID
-        const id = weapon.id; // Use the weapon's id instead of its name
+        const id = weapon.id.toLowerCase().replace(/\s+/g, ''); // Normalize ID and remove spaces
 
         // Update cost display if the element exists
         const costElement = document.getElementById(`${id}-cost`);
@@ -1904,9 +1904,9 @@ function updateCostDisplay() {
             }
 
             // Update derived stat displays if the elements exist
-            const attackRateElement = document.getElementById(`${id}AttackRate-value`);
-            const ppsElement = document.getElementById(`${id}PPS-value`);
-            const dpsElement = document.getElementById(`${id}DPS-value`);
+            const attackRateElement = document.getElementById(`${id}AttackRate-value`); // Corrected ID here
+            const ppsElement = document.getElementById(`${id}PPS-value`); // Corrected ID here
+            const dpsElement = document.getElementById(`${id}DPS-value`); // Corrected ID here
             if (attackRateElement && ppsElement && dpsElement) {
                 attackRateElement.textContent = firerateValue + 'ms';
                 ppsElement.textContent = formatNumber(pointsPerSecond);

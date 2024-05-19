@@ -386,36 +386,35 @@ function saveGameState() {
 // Function to load the game state from local storage
 function loadGameState() {
     const savedState = JSON.parse(localStorage.getItem('gameState'));
-        if (savedState) {
-            // Update statistics from loaded game state
-            const savedAchievements = savedState.achievements;
-            if (savedAchievements) {
-                savedAchievements.forEach((savedAchievement, index) => {
-                    if (achievements[index]) {
-                        achievements[index].achieved = savedAchievement.achieved;
-                    }
-                });
-            }
-
-            if (savedState.statistics) {
-                statistics = savedState.statistics;
-                updateStatisticsDisplay();
-            }
-
-            // Load weapons
-            weaponIds.forEach(weaponId => {
-                const savedWeapon = savedState.weapons[weaponId];
-                if (savedWeapon) {
-                    const weapon = weapons.find(w => w.id.toLowerCase() === weaponId.toLowerCase());
-                    if (weapon) {
-                        Object.assign(weapon, savedWeapon);
-                        updateWeaponStatsDisplay(weaponId, weapon);
-                    }
+    if (savedState) {
+        // Update statistics from loaded game state
+        const savedAchievements = savedState.achievements;
+        if (savedAchievements) {
+            savedAchievements.forEach((savedAchievement, index) => {
+                if (achievements[index]) {
+                    achievements[index].achieved = savedAchievement.achieved;
                 }
             });
         }
 
-        points = gameState.points;
+        if (savedState.statistics) {
+            statistics = savedState.statistics;
+            updateStatisticsDisplay();
+        }
+
+        // Load weapons
+        weaponIds.forEach(weaponId => {
+            const savedWeapon = savedState.weapons[weaponId];
+            if (savedWeapon) {
+                const weapon = weapons.find(w => w.id.toLowerCase() === weaponId.toLowerCase());
+                if (weapon) {
+                    Object.assign(weapon, savedWeapon);
+                    updateWeaponStatsDisplay(weaponId, weapon);
+                }
+            }
+        });
+
+        points = savedState.points;
         for (const weaponId in savedState.weapons) {
             if (weapons[weaponId]) {
                 // Update weapon properties from saved data

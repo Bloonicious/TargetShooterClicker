@@ -1166,14 +1166,8 @@ function purchaseWeapon(weaponId) {
 
 // Detect weapon stats from the weapons.json
 function getWeaponStats(weaponName) {
-    // Find the weapon object with the matching name
-    for (let i = 0; i < weapons.length; i++) {
-        if (weapons[i].name.toLowerCase() === weaponName.toLowerCase()) {
-            return weapons[i].stats;
-        }
-    }
-    // If the weapon is not found, return null or handle the error accordingly
-    return null;
+    const weapon = weapons[weaponName];
+    return weapon ? weapon.stats : null;
 }
 
 // Function to purchase an upgrade
@@ -1183,8 +1177,13 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
         cost *= costMultiplier;
         level++;
         
-        let weapon;
-        let stats;
+        let weaponName = upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalChance|CriticalDamage|Accuracy/, '').toLowerCase();
+        let stats = getWeaponStats(weaponName);
+
+        if (!stats) {
+            console.error("Invalid weapon:", weaponName);
+            return;
+        }
 
         switch (upgradeType) {
             case 'touchGun':
@@ -1196,7 +1195,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             default:
                 if (weaponIds.includes(upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalChance|CriticalDamage|Accuracy/, '').toLowerCase())) {
                     weapon = upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalChance|CriticalDamage|Accuracy/, '').toLowerCase();
-                    stats = getWeaponStats(weapon);
+                    stats = getWeaponStats(weaponName);
                     
                     switch (true) {
                         case upgradeType.endsWith('Firerate'):

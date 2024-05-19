@@ -145,7 +145,7 @@ function saveGameState() {
         description: achievement.description,
         achieved: achievement.achieved
     }));
-    const weaponData = weapons.map(weapon => ({
+    weaponData = weapons.map(weapon => ({
         id: weapon.id,
         purchased: weapon.purchased,
         cost: weapon.cost,

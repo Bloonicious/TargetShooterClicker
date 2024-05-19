@@ -1,7 +1,7 @@
 const weaponIds = ['pistol', 'smg', 'shotgun', 'sniperRifle', 'rocketLauncher', 'tommyGun', 'doubleBarrel', 'huntingRifle'];
 
 // Ensure the weapons array is initialized properly
-let weapons = [];
+let weapons = {};
 fetch('config/weapons.json')
     .then(response => response.json())
     .then(data => {

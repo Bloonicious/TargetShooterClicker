@@ -1160,6 +1160,10 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
 
         // Fetch weapon object from the weapons array
         function getWeapon(weaponName) {
+            if (!weaponIds.includes(weaponName)) {
+                console.error("Invalid weapon ID:", weaponName);
+                return null;
+            }
             return weapons.find(w => w.name.toLowerCase() === weaponName.toLowerCase());
         }
         
@@ -1291,8 +1295,8 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (level <= 20) {
                     pistolFirerateUpgradeCost = cost;
                     pistolFirerateLevel = level;
-                    const pistol = getWeapon('pistol');
-                    pistol.stats.fireRate += valueIncrement;
+                    const pistolFirerate = getWeapon('pistol');
+                    if (pistolFirerate) pistol.stats.fireRate += valueIncrement;
                 } else {
                     console.log("Maximum level reached for pistol fire rate upgrade.");
                     alert("Pistol's firing rate has been maxed out!");
@@ -1310,16 +1314,18 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.pistol.empowered.bought) valueIncrement *= 5;
                 if (upgrades.pistol.oneHitBullets.bought) valueIncrement *= 6;
                 if (upgrades.touchGun.fingerPistols.bought) valueIncrement *= 1.1 * getTotalTouchGunUpgrades();
-                const pistol = getWeapon('pistol');
-                pistol.stats.pointsPerShot += valueIncrement;
-                pistol.stats.damage += valueIncrement * 0.5;
+                const pistolPotency = getWeapon('pistol');
+                if (pistolPotency) {
+                    pistolPotency.stats.pointsPerShot += valueIncrement;
+                    pistolPotency.stats.damage += valueIncrement * 0.5;
+                }
                 break;
             case 'smgFirerate':
                 if (level <= 10) {
                     smgFirerateUpgradeCost = cost;
                     smgFirerateLevel = level;
-                    const smg = getWeapon('smg');
-                    smg.stats.fireRate += valueIncrement;
+                    const smgFirerate = getWeapon('smg');
+                    if (smgFirerate) smg.stats.fireRate += valueIncrement;
                 } else {
                     console.log("Maximum level reached for smg fire rate upgrade.");
                     alert("SMG's firing rate has been maxed out!");
@@ -1336,16 +1342,18 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.smg.metalPassers.bought) valueIncrement *= 5;
                 if (upgrades.smg.inescapableBarrage.bought) valueIncrement *= 5;
                 if (upgrades.smg.neverMissBarrage.bought) valueIncrement *= 6;
-                const smg = getWeapon('smg');
-                smg.stats.pointsPerShot += valueIncrement;
-                smg.stats.damage += valueIncrement * 0.5;
+                const smgPotency = getWeapon('smg');
+                if (smgPotency) {
+                    smg.stats.pointsPerShot += valueIncrement;
+                    smg.stats.damage += valueIncrement * 0.5;
+                }
                 break;
             case 'shotgunFirerate':
                 if (level <= 15) {
                     shotgunFirerateUpgradeCost = cost;
                     shotgunFirerateLevel = level;
-                    const shotgun = getWeapon('shotgun');
-                    shotgun.stats.fireRate += valueIncrement;
+                    const shotgunFirerate = getWeapon('shotgun');
+                    if (shotgunFirerate) shotgun.stats.fireRate += valueIncrement;
                 } else {
                     console.log("Maximum level reached for shotgun fire rate upgrade.");
                     alert("Shotgun's firing rate has been maxed out!");
@@ -1361,17 +1369,21 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (upgrades.shotgun.omegaBurst.bought) valueIncrement *= 4;
                 if (upgrades.shotgun.teraBurst.bought) valueIncrement *= 5;
                 if (upgrades.shotgun.ultimatumBurst.bought) valueIncrement *= 5;
-                const shotgun = getWeapon('shotgun');
-                shotgun.stats.pointsPerShot += valueIncrement;
-                shotgun.stats.damage += valueIncrement * 0.5;
+                const shotgunPotency = getWeapon('shotgun');
+                if (shotgunPotency) {
+                    shotgun.stats.pointsPerShot += valueIncrement;
+                    shotgun.stats.damage += valueIncrement * 0.5;
+                }
                 break;
             case 'shotgunMultiFire':
                 shotgunMultiFireUpgradeCost = cost;
                 shotgunMultiFireLevel = level;
                 if (upgrades.shotgun.scattershot.bought) valueIncrement *= 2;
                 if (upgrades.shotgun.buckshot.bought) valueIncrement *= 2;
-                const shotgun = getWeapon('shotgun');
-                shotgun.stats.fireRate += valueIncrement;
+                const shotgunMultiFire = getWeapon('shotgun');
+                if (shotgunMultiFire) {
+                    shotgun.stats.bulletsPerShot += valueIncrement;
+                }
                 break;
             case 'sniperRifleFirerate':
                 if (level <= 10) {

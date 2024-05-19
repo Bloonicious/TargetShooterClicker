@@ -1177,14 +1177,6 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
         cost *= costMultiplier;
         level++;
         
-        let weaponName = upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalChance|CriticalDamage|Accuracy/, '').toLowerCase();
-        let stats = getWeaponStats(weaponName);
-
-        if (!stats) {
-            console.error("Invalid weapon:", weaponName);
-            return;
-        }
-
         switch (upgradeType) {
             case 'touchGun':
             case 'touchGunAwaken':
@@ -1193,51 +1185,58 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 break;
 
             default:
-                if (weaponIds.includes(upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalChance|CriticalDamage|Accuracy/, '').toLowerCase())) {
-                    weapon = upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalChance|CriticalDamage|Accuracy/, '').toLowerCase();
-                    stats = getWeaponStats(weaponName);
-                    
+                let weaponName = upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalChance|CriticalDamage|Accuracy/, '').toLowerCase();
+                let stats = getWeaponStats(weaponName);
+
+                if (!stats) {
+                    console.error("Invalid weapon:", weaponName);
+                    return;
+                }
+
+                if (weaponIds.includes(weaponName)) {
                     switch (true) {
                         case upgradeType.endsWith('Firerate'):
-                            if (level <= getMaxLevel(weapon, 'firerate')) {
-                                updateFirerate(stats, valueIncrement);
+                            if (level <= getMaxLevel(weaponName, 'firerate')) {
+                                updateFirerate(stats, valueIncrement, weaponName);
                             } else {
-                                alert(`${capitalize(weapon)}'s firing rate has been maxed out!`);
+                                alert(`${capitalize(weaponName)}'s firing rate has been maxed out!`);
                             }
                             break;
                         
                         case upgradeType.endsWith('Potency'):
-                            updatePotency(stats, valueIncrement, upgrades[weapon], weapon);
+                            updatePotency(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         case upgradeType.endsWith('MultiFire'):
-                            updateMultiFire(stats, valueIncrement, upgrades[weapon], weapon);
+                            updateMultiFire(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         case upgradeType.endsWith('SplashRadius'):
-                            updateSplashRadius(stats, valueIncrement, upgrades[weapon], weapon);
+                            updateSplashRadius(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         case upgradeType.endsWith('SplashDamage'):
-                            updateSplashDamage(stats, valueIncrement, upgrades[weapon], weapon);
+                            updateSplashDamage(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         case upgradeType.endsWith('CriticalChance'):
-                            updateCriticalChance(stats, valueIncrement, upgrades[weapon], weapon);
+                            updateCriticalChance(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         case upgradeType.endsWith('CriticalDamage'):
-                            updateCriticalDamage(stats, valueIncrement, upgrades[weapon], weapon);
+                            updateCriticalDamage(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         case upgradeType.endsWith('Accuracy'):
-                            updateAccuracy(stats, valueIncrement, upgrades[weapon], weapon);
+                            updateAccuracy(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         default:
                             console.error("Invalid upgradeType:", upgradeType);
                             return;
                     }
+                } else {
+                    console.error("Invalid upgradeType:", upgradeType);
                 }
         }
 

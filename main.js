@@ -658,6 +658,7 @@ async function loadGameState() {
 
         // Update the interface
         updatePointsDisplay();
+        updateCostDisplay();
 
         // Update achievements and statistics display
         updateAchievements();
@@ -1303,6 +1304,7 @@ function resetProgress() {
 
         // Update the interfaces
         updatePointsDisplay();
+        updateCostDisplay();
         updateAchievements();
         updateStatistics();
         updateSelectedWeaponsDisplay();

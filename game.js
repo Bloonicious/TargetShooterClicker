@@ -1,19 +1,5 @@
-// Ensure the weapons array is initialized properly
-let weapons = {};
-fetch('config/weapons.json')
-    .then(response => response.json())
-    .then(data => {
-        weapons = data.weapons;
-    })
-    .catch(error => console.error('Error loading weapons data:', error));
-
-let enemies = [];
-fetch('config/enemies.json')
-  .then(response => response.json())
-  .then(data => {
-       enemies = data.enemies;
-  })
-  .catch(error => console.error('Error loading enemies data:', error));
+let weapons;
+let enemies;
 
 const weaponIds = ['pistol', 'smg', 'shotgun', 'sniperRifle', 'ak47', 'rocketLauncher', 'tommyGun', 'doubleBarrel', 'uzi', 'huntingRifle'];
 
@@ -2291,6 +2277,26 @@ function getTotalBigUpgrades() {
     }
 
     return totalBigUpgrades;
+}
+
+// Function to fetch and initialize weapons data
+function initializeWeapons() {
+    return fetch('config/weapons.json')
+        .then(response => response.json())
+        .then(data => {
+            weapons = data; // Assign fetched data to weapons variable
+        })
+        .catch(error => console.error('Error fetching weapons data:', error));
+}
+
+// Function to fetch and initialize enemies data
+function initializeEnemies() {
+    return fetch('config/enemies.json')
+        .then(response => response.json())
+        .then(data => {
+            enemies = data; // Assign fetched data to enemies variable
+        })
+        .catch(error => console.error('Error fetching enemies data:', error));
 }
 
 // Function to initialize upgrade costs with proper formatting

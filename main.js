@@ -1,3 +1,12 @@
+fetch('config/weapons.json')
+    .then(response => response.json())
+    .then(data => {
+        weapons = data;
+        // Initialize the game state after loading weapons data
+        loadGameState();
+    })
+    .catch(error => console.error('Error loading weapons data:', error));
+
 // Define function to switch tabs
 function switchTab(tabName) {
     // Hide all tabs

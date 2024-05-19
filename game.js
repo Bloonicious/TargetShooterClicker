@@ -15,7 +15,7 @@ fetch('config/enemies.json')
   })
   .catch(error => console.error('Error loading enemies data:', error));
 
-const weaponIds = ['pistol', 'smg', 'shotgun', 'sniperRifle', 'rocketLauncher', 'tommyGun', 'doubleBarrel', 'huntingRifle'];
+const weaponIds = ['pistol', 'smg', 'shotgun', 'sniperRifle', 'ak47', 'rocketLauncher', 'tommyGun', 'doubleBarrel', 'uzi', 'huntingRifle'];
 
 let touchGunCost = 100;
 let touchGunPointsPerClick = 1;

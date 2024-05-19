@@ -1181,11 +1181,11 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
             case 'touchGun':
             case 'touchGunAwaken':
             case 'touchGunSuperAwaken':
-                handleTouchGunUpgrades(upgradeType, level, cost, valueIncrement);
+                handleTouchGunUpgrades(upgradeType, level, cost, costMultiplier, valueIncrement, upgradeCategory);
                 break;
 
             default:
-                let weaponName = upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalChance|CriticalDamage|Accuracy/, '').toLowerCase();
+                let weaponName = upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalShotChance|CriticalDamage|Accuracy/, '').toLowerCase();
                 let stats = getWeaponStats(weaponName);
 
                 if (!stats) {
@@ -1219,7 +1219,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                             updateSplashDamage(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
-                        case upgradeType.endsWith('CriticalChance'):
+                        case upgradeType.endsWith('CriticalShotChance'):
                             updateCriticalChance(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
@@ -1248,7 +1248,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
 }
 
 // Handles touch gun upgrades
-function handleTouchGunUpgrades(upgradeType, level, cost, valueIncrement) {
+function handleTouchGunUpgrades(upgradeType, level, cost, costMultiplier, valueIncrement, upgradeCategory) {
     if (points >= cost) {
         points -= cost;
         cost *= costMultiplier;

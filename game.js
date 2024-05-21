@@ -1199,7 +1199,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     return;
                 }
 
-                if (weaponIds.includes(weaponName)) {
+                if (weapons[weaponName]) {
                     switch (true) {
                         case upgradeType.endsWith('Firerate'):
                             if (level <= getMaxLevel(weaponName, 'firerate')) {
@@ -1790,6 +1790,8 @@ function updateSelectedWeaponsDisplay(weaponId) {
 
         weapon.purchased = true;
         console.log(`${weaponId} purchased successfully.`);
+    } else {
+        console.warn("No weaponId provided to updateSelectedWeaponsDisplay.");
     }
 
     const selectionBoxes = document.querySelectorAll('.weapon-slot');

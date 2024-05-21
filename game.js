@@ -935,27 +935,31 @@ function earnPoints() {
 }
 
 // Function to fetch and initialize weapons data
-function initializeWeapons() {
-    return fetch('config/weapons.json')
-        .then(response => response.json())
-        .then(data => {
-            weapons = data.weapons; // Assign fetched data to weapons variable
-            // Call functions that depend on weapons data here
-            // Call other functions or update other variables as needed
-        })
-        .catch(error => console.error('Error fetching weapons data:', error));
+async function initializeWeapons() {
+    try {
+        const response = await fetch('config/weapons.json');
+        const data = await response.json();
+        weapons = data.weapons;
+        console.log('Weapons data initialized:', weapons);
+        // Initialize other components that depend on weapons data here
+        initializeUI();
+    } catch (error) {
+        console.error('Error fetching weapons data:', error);
+    }
 }
 
 // Function to fetch and initialize enemies data
-function initializeEnemies() {
-    return fetch('config/enemies.json')
-        .then(response => response.json())
-        .then(data => {
-            enemies = data.enemies; // Assign fetched data to enemies variable
-            // Call functions that depend on enemies data here
-            // Call other functions or update other variables as needed
-        })
-        .catch(error => console.error('Error fetching enemies data:', error));
+async function initializeEnemies() {
+    try {
+        const response = await fetch('config/enemies.json');
+        const data = await response.json();
+        enemies = data.enemies;
+        console.log('Enemies data initialized:', enemies);
+        // Initialize other components that depend on enemies data here
+        initializeUI();
+    } catch (error) {
+        console.error('Error fetching enemies data:', error);
+    }
 }
 
 // Function for automatic points generation based on weapon fire rates
@@ -2691,7 +2695,6 @@ updatePointsDisplay();
 updateCostDisplay();
 updateAchievementsDisplay();
 updateStatisticsDisplay();
-selectWeapon();
 
 // Start earning points automatically for purchased weapons
 setInterval(automaticPointsGeneration, 1000); // Check every second for points generation

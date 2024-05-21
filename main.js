@@ -1086,17 +1086,6 @@ function resetProgress() {
         huntingRifleCriticalShotLevel = 0;
         huntingRifleCriticalDamageLevel = 0;
 
-        clearInterval(pistolFireRate);
-        clearInterval(smgFireRate);
-        clearInterval(shotgunFireRate);
-        clearInterval(sniperRifleFireRate);
-        clearInterval(ak47FireRate);
-        clearInterval(rocketLauncherFireRate);
-        clearInterval(tommyGunFireRate);
-        clearInterval(doubleBarrelFireRate);
-        clearInterval(uziFireRate);
-        clearInterval(huntingRifleFireRate);
-
         // Update the interfaces
         updatePointsDisplay();
         updateAchievements();

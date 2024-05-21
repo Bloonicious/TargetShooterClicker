@@ -1776,18 +1776,22 @@ function formatNumber(number) {
 
 // Function to check if a weapon is purchased
 function isWeaponPurchased(weaponId) {
-    return weapons[weaponId] && weapons[weaponId].purchased;
+    const weapon = weapons[weaponId.toLowerCase()];
+    return weapon && weapon.purchased;
 }
 
 // Function to update the display of selected weapon stats
 function updateSelectedWeaponsDisplay(weaponId) {
-    const weapon = weapons[weaponId.toLowerCase()];
-    if (!weapon) {
-        console.error("Invalid weapon:", weaponId);
-        return;
-    }
+    if (weaponId) {
+        const weapon = weapons[weaponId.toLowerCase()];
+        if (!weapon) {
+            console.error("Invalid weapon:", weaponId);
+            return;
+        }
 
-    weapon.purchased = true;
+        weapon.purchased = true;
+        console.log(`${weaponId} purchased successfully.`);
+    }
 
     const selectionBoxes = document.querySelectorAll('.weapon-slot');
     selectionBoxes.forEach((selectionBox) => {
@@ -1821,8 +1825,6 @@ function updateSelectedWeaponsDisplay(weaponId) {
             updateWeaponStatsDisplay(boxId, weapons[selectedWeaponId.toLowerCase()]);
         }
     });
-
-    console.log(`${weaponId} purchased successfully.`);
 }
 
 // Function to handle selecting a weapon

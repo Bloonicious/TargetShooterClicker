@@ -2668,10 +2668,6 @@ function setStatistics() {
     updateStatisticsDisplay();
 }
 
-function initializeStatistics() {
-    setStatistics();
-}
-
 // Function to update lifetime points statistic
 function updateLifetimePoints() {
     // Calculate the difference in points earned from gameplay since the last update
@@ -2690,17 +2686,27 @@ function updateLifetimePoints() {
     }
 }
 
+// Function to initialize statistics data
+function initializeStatistics() {
+    setStatistics();
+}
+
+// Function to initialize the game's UI
+function initializeUI() {
+    updatePointsDisplay();
+    updateCostDisplay();
+    selectedWeapon();
+
+    // Start earning points automatically for purchased weapons
+    setInterval(automaticPointsGeneration, 1000); // Check every second for points generation
+    
+    // Interval timer to update cost display nearly instantly
+    setInterval(updateCostDisplay, 100);
+}
+
 // Initial setup
-updatePointsDisplay();
-updateCostDisplay();
 updateAchievementsDisplay();
 updateStatisticsDisplay();
-
-// Start earning points automatically for purchased weapons
-setInterval(automaticPointsGeneration, 1000); // Check every second for points generation
-
-// Interval timer to update cost display nearly instantly
-setInterval(updateCostDisplay, 100);
 
 // Function to update achievements display nearly instantly
 function updateAchievements() {
@@ -2716,8 +2722,3 @@ function updateStatistics() {
     calculateCompletionPercentage(); // Update achievement progress
 }
 setInterval(updateStatistics, 100);
-// Function to update the battle display nearly instantly
-function updateBattle() {
-    selectWeapon();
-}
-setInterval(updateBattle, 100);

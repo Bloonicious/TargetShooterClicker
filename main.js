@@ -372,8 +372,7 @@ function saveGameState() {
 }
 
 // Function to load the game state from local storage
-async function loadGameState() {
-    await Promise.all([initializeWeapons(), initializeEnemies()]);
+function loadGameState() {
     const savedState = JSON.parse(localStorage.getItem('gameState'));
     if (savedState) {
         // Update statistics from loaded game state

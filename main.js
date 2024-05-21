@@ -657,7 +657,6 @@ function loadGameState() {
 
         // Update the interface
         updatePointsDisplay();
-        updateCostDisplay();
 
         // Update achievements and statistics display
         updateAchievements();

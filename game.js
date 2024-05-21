@@ -1210,10 +1210,24 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                             break;
                         
                         case upgradeType.endsWith('Potency'):
+                            if (weaponName === 'pistol') {
+                                updatePotency(stats, valueIncrement, upgrades[weaponName], weaponName);
+                                cost = pistolPotencyUpgradeCost;
+                                level = pistolPotencyLevel;
+                            } else if (weaponName === 'smg') {
+                                updatePotency(stats, valueIncrement, upgrades[weaponName], weaponName);
+                                cost = smgPotencyUpgradeCost;
+                                level = smgPotencyLevel;
+                            }
                             updatePotency(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         case upgradeType.endsWith('MultiFire'):
+                            if (weaponName === 'shotgun') {
+                                updatePotency(stats, valueIncrement, upgrades[weaponName], weaponName);
+                                cost = shotgunMultiFireUpgradeCost;
+                                level = shotgunMultiFireLevel;
+                            }
                             updateMultiFire(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
@@ -1257,136 +1271,69 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
 function handleTouchGunUpgrades(upgradeType, level, cost, costMultiplier, valueIncrement, upgradeCategory) {
     if (points >= cost) {
         points -= cost;
-        cost *= costMultiplier;
-        level++;
-        
+        cost *= costMultiplier; // Update the cost multiplier
+
+        // Update level based on upgrade type
         switch (upgradeType) {
             case 'touchGun':
                 touchGunCost = cost;
                 touchGunLevel = level;
-                if (upgrades.touchGun.pointyFingers.bought) {
-                    valueIncrement *= 2;
-                }
-                if (upgrades.touchGun.ambidextrous.bought) {
-                    valueIncrement *= 2;
-                }
-                if (upgrades.touchGun.thousandFingers.bought) {
-                    valueIncrement += 0.5 * getTotalPotencyUpgrades();
-                }
-                if (upgrades.touchGun.antirestingCream.bought) {
-                    valueIncrement *= 3;
-                }
-                if (upgrades.touchGun.powerfulHands.bought) {
-                    valueIncrement *= 5;
-                }
-                if (upgrades.touchGun.millionFingers.bought) {
-                    valueIncrement += 5 * getTotalPotencyUpgrades();
-                }
-                if (upgrades.touchGun.stingingTaps.bought) {
-                    valueIncrement *= 4;
-                }
-                if (upgrades.touchGun.gotToTap.bought) {
-                    valueIncrement *= 3;
-                }
-                if (upgrades.touchGun.fingerSwarm.bought) {
-                    valueIncrement *= 4;
-                }
-                if (upgrades.touchGun.billionFingers.bought) {
-                    valueIncrement += 50 * getTotalPotencyUpgrades();
-                }
-                if (upgrades.touchGun.needMore.bought) {
-                    valueIncrement *= 5;
-                }
-                if (upgrades.touchGun.trillionFingers.bought) {
-                    valueIncrement += 500 * getTotalPotencyUpgrades();
-                }
-                touchGunPointsPerClick += valueIncrement;
                 break;
             case 'touchGunAwaken':
                 awokenTouchGunCost = cost;
                 awokenTouchGunLevel = level;
-                if (upgrades.touchGun.pointyFingers.bought) {
-                    valueIncrement *= 2;
-                }
-                if (upgrades.touchGun.ambidextrous.bought) {
-                    valueIncrement *= 2;
-                }
-                if (upgrades.touchGun.thousandFingers.bought) {
-                    valueIncrement += 50 * getTotalPotencyUpgrades();
-                }
-                if (upgrades.touchGun.antirestingCream.bought) {
-                    valueIncrement *= 3;
-                }
-                if (upgrades.touchGun.powerfulHands.bought) {
-                    valueIncrement *= 5;
-                }
-                if (upgrades.touchGun.millionFingers.bought) {
-                    valueIncrement += 500 * getTotalPotencyUpgrades();
-                }
-                if (upgrades.touchGun.stingingTaps.bought) {
-                    valueIncrement *= 4;
-                }
-                if (upgrades.touchGun.gotToTap.bought) {
-                    valueIncrement *= 3;
-                }
-                if (upgrades.touchGun.fingerSwarm.bought) {
-                    valueIncrement *= 4;
-                }
-                if (upgrades.touchGun.billionFingers.bought) {
-                    valueIncrement += 5000 * getTotalPotencyUpgrades();
-                }
-                if (upgrades.touchGun.needMore.bought) {
-                    valueIncrement *= 5;
-                }
-                if (upgrades.touchGun.trillionFingers.bought) {
-                    valueIncrement += 50000 * getTotalPotencyUpgrades();
-                }
-                touchGunPointsPerClick += valueIncrement;
                 break;
             case 'touchGunSuperAwaken':
                 superAwokenTouchGunCost = cost;
                 superAwokenTouchGunLevel = level;
-                if (upgrades.touchGun.pointyFingers.bought) {
-                    valueIncrement *= 2;
-                }
-                if (upgrades.touchGun.ambidextrous.bought) {
-                    valueIncrement *= 2;
-                }
-                if (upgrades.touchGun.thousandFingers.bought) {
-                    valueIncrement += 5000 * getTotalPotencyUpgrades();
-                }
-                if (upgrades.touchGun.antirestingCream.bought) {
-                    valueIncrement *= 3;
-                }
-                if (upgrades.touchGun.powerfulHands.bought) {
-                    valueIncrement *= 5;
-                }
-                if (upgrades.touchGun.millionFingers.bought) {
-                    valueIncrement += 50000 * getTotalPotencyUpgrades();
-                }
-                if (upgrades.touchGun.stingingTaps.bought) {
-                    valueIncrement *= 4;
-                }
-                if (upgrades.touchGun.gotToTap.bought) {
-                    valueIncrement *= 3;
-                }
-                if (upgrades.touchGun.fingerSwarm.bought) {
-                    valueIncrement *= 4;
-                }
-                if (upgrades.touchGun.billionFingers.bought) {
-                    valueIncrement += 500000 * getTotalPotencyUpgrades();
-                }
-                if (upgrades.touchGun.needMore.bought) {
-                    valueIncrement *= 5;
-                }
-                if (upgrades.touchGun.trillionFingers.bought) {
-                    valueIncrement += 5000000 * getTotalPotencyUpgrades();
-                }
-                touchGunPointsPerClick += valueIncrement;
                 break;
             default:
                 console.error("Invalid upgradeType:", upgradeType);
+                return;
         }
+
+        // Update value increment based on purchased upgrades
+        if (upgrades.touchGun.pointyFingers.bought) {
+            valueIncrement *= 2;
+        }
+        if (upgrades.touchGun.ambidextrous.bought) {
+            valueIncrement *= 2;
+        }
+        if (upgrades.touchGun.thousandFingers.bought) {
+            valueIncrement += 50 * getTotalPotencyUpgrades();
+        }
+        if (upgrades.touchGun.antirestingCream.bought) {
+            valueIncrement *= 3;
+        }
+        if (upgrades.touchGun.powerfulHands.bought) {
+            valueIncrement *= 5;
+        }
+        if (upgrades.touchGun.millionFingers.bought) {
+            valueIncrement += 50000 * getTotalPotencyUpgrades();
+        }
+        if (upgrades.touchGun.stingingTaps.bought) {
+            valueIncrement *= 4;
+        }
+        if (upgrades.touchGun.gotToTap.bought) {
+            valueIncrement *= 3;
+        }
+        if (upgrades.touchGun.fingerSwarm.bought) {
+            valueIncrement *= 4;
+        }
+        if (upgrades.touchGun.billionFingers.bought) {
+            valueIncrement += 500000 * getTotalPotencyUpgrades();
+        }
+        if (upgrades.touchGun.needMore.bought) {
+            valueIncrement *= 5;
+        }
+        if (upgrades.touchGun.trillionFingers.bought) {
+            valueIncrement += 5000000 * getTotalPotencyUpgrades();
+        }
+
+        // Update points per click
+        touchGunPointsPerClick += valueIncrement;
+
+        // Update displays
         updatePointsDisplay();
         updateCostDisplay();
     } else {

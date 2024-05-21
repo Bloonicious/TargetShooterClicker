@@ -964,9 +964,14 @@ async function initializeEnemies() {
 
 // Function for automatic points generation based on weapon fire rates
 function automaticPointsGeneration() {
-    weaponIds.forEach(weaponId => {
+    Object.keys(weapons).forEach(weaponId => {
         const weapon = weapons[weaponId];
         if (weapon && weapon.purchased) {
+            // Initialize the lastPointsTime for the weapon if not already initialized
+            if (!lastPointsTime[weaponId]) {
+                lastPointsTime[weaponId] = Date.now();
+            }
+
             setInterval(function() {
                 const currentTime = Date.now();
                 if (currentTime - lastPointsTime[weaponId] >= weapon.stats.fireRate) {
@@ -1004,7 +1009,7 @@ function automaticPointsGeneration() {
                     if (weaponId === 'tommyGun') {
                         const inaccuracyChance = Math.min(100, 50 + tommyGunAccuracyLevel * -2);
                         if (inaccuracyChance >= Math.random() * 100) {
-                            // missed shot
+                            // Missed shot
                             pointsPerShot *= weapon.stats.inaccuracyPenalty;
                             miss = true;
                         }

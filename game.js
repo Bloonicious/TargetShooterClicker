@@ -1715,32 +1715,17 @@ function calculateDPS(weapon) {
     return (weapon.stats.damage / weapon.stats.fireRate) * 1000;
 }
 
-// Function to format numbers (if needed)
-function formatNumber(number) {
-    return new Intl.NumberFormat().format(number);
-}
-
-// Function to check if a weapon is purchased
 function isWeaponPurchased(weaponId) {
+    if (!weaponId) {
+        console.error("Invalid weaponId:", weaponId);
+        return false;
+    }
+
     const weapon = weapons[weaponId.toLowerCase()];
     return weapon && weapon.purchased;
 }
 
-// Function to update the display of selected weapon stats
-function updateSelectedWeaponsDisplay(weaponId) {
-    if (weaponId) {
-        const weapon = weapons[weaponId.toLowerCase()];
-        if (!weapon) {
-            console.error("Invalid weapon:", weaponId);
-            return;
-        }
-
-        weapon.purchased = true;
-        console.log(`${weaponId} purchased successfully.`);
-    } else {
-        console.warn("No weaponId provided to updateSelectedWeaponsDisplay.");
-    }
-
+function updateSelectedWeaponsDisplay() {
     const selectionBoxes = document.querySelectorAll('.weapon-slot');
     selectionBoxes.forEach((selectionBox) => {
         const boxId = selectionBox.id.replace('weapon-selection-', '');
@@ -1764,18 +1749,13 @@ function updateSelectedWeaponsDisplay(weaponId) {
         if (selectedWeaponId) {
             selectionBox.value = selectedWeaponId;
             selectionBox.querySelectorAll('option').forEach((option) => {
-                if (Object.values(selectedWeapons).includes(option.value) && option.value !== selectedWeaponId) {
-                    option.disabled = true;
-                } else {
-                    option.disabled = false;
-                }
+                option.disabled = Object.values(selectedWeapons).includes(option.value) && option.value !== selectedWeaponId;
             });
             updateWeaponStatsDisplay(boxId, weapons[selectedWeaponId.toLowerCase()]);
         }
     });
 }
 
-// Function to handle selecting a weapon
 function selectWeapon(weaponId) {
     if (isWeaponPurchased(weaponId) && !Object.values(selectedWeapons).includes(weaponId)) {
         const selectedBoxId = Object.keys(selectedWeapons).find(boxId => !selectedWeapons[boxId]);
@@ -1786,9 +1766,9 @@ function selectWeapon(weaponId) {
     }
 }
 
-// Function to update the display of weapon stats for the selected weapon
 function updateWeaponStatsDisplay(boxId, weapon) {
     if (!weapon || !weapon.stats) {
+        console.error("Invalid weapon stats:", weapon);
         return;
     }
 

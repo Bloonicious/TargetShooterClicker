@@ -1185,9 +1185,127 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
         
         switch (upgradeType) {
             case 'touchGun':
+                touchGunCost = cost;
+                touchGunLevel = level;
+                if (upgrades.touchGun.pointyFingers.bought) {
+                    valueIncrement *= 2;
+                }
+                if (upgrades.touchGun.ambidextrous.bought) {
+                    valueIncrement *= 2;
+                }
+                if (upgrades.touchGun.thousandFingers.bought) {
+                    valueIncrement += 0.5 * getTotalPotencyUpgrades();
+                }
+                if (upgrades.touchGun.antirestingCream.bought) {
+                    valueIncrement *= 3;
+                }
+                if (upgrades.touchGun.powerfulHands.bought) {
+                    valueIncrement *= 5;
+                }
+                if (upgrades.touchGun.millionFingers.bought) {
+                    valueIncrement += 5 * getTotalPotencyUpgrades();
+                }
+                if (upgrades.touchGun.stingingTaps.bought) {
+                    valueIncrement *= 4;
+                }
+                if (upgrades.touchGun.gotToTap.bought) {
+                    valueIncrement *= 3;
+                }
+                if (upgrades.touchGun.fingerSwarm.bought) {
+                    valueIncrement *= 4;
+                }
+                if (upgrades.touchGun.billionFingers.bought) {
+                    valueIncrement += 50 * getTotalPotencyUpgrades();
+                }
+                if (upgrades.touchGun.needMore.bought) {
+                    valueIncrement *= 5;
+                }
+                if (upgrades.touchGun.trillionFingers.bought) {
+                    valueIncrement += 500 * getTotalPotencyUpgrades();
+                }
+                touchGunPointsPerClick += valueIncrement;
+                break;
             case 'touchGunAwaken':
+                awokenTouchGunCost = cost;
+                awokenTouchGunLevel = level;
+                if (upgrades.touchGun.pointyFingers.bought) {
+                    valueIncrement *= 2;
+                }
+                if (upgrades.touchGun.ambidextrous.bought) {
+                    valueIncrement *= 2;
+                }
+                if (upgrades.touchGun.thousandFingers.bought) {
+                    valueIncrement += 50 * getTotalPotencyUpgrades();
+                }
+                if (upgrades.touchGun.antirestingCream.bought) {
+                    valueIncrement *= 3;
+                }
+                if (upgrades.touchGun.powerfulHands.bought) {
+                    valueIncrement *= 5;
+                }
+                if (upgrades.touchGun.millionFingers.bought) {
+                    valueIncrement += 500 * getTotalPotencyUpgrades();
+                }
+                if (upgrades.touchGun.stingingTaps.bought) {
+                    valueIncrement *= 4;
+                }
+                if (upgrades.touchGun.gotToTap.bought) {
+                    valueIncrement *= 3;
+                }
+                if (upgrades.touchGun.fingerSwarm.bought) {
+                    valueIncrement *= 4;
+                }
+                if (upgrades.touchGun.billionFingers.bought) {
+                    valueIncrement += 5000 * getTotalPotencyUpgrades();
+                }
+                if (upgrades.touchGun.needMore.bought) {
+                    valueIncrement *= 5;
+                }
+                if (upgrades.touchGun.trillionFingers.bought) {
+                    valueIncrement += 50000 * getTotalPotencyUpgrades();
+                }
+                touchGunPointsPerClick += valueIncrement;
+                break;
             case 'touchGunSuperAwaken':
-                handleTouchGunUpgrades(upgradeType, level, cost, costMultiplier, valueIncrement, upgradeCategory);
+                superAwokenTouchGunCost = cost;
+                superAwokenTouchGunLevel = level;
+                if (upgrades.touchGun.pointyFingers.bought) {
+                    valueIncrement *= 2;
+                }
+                if (upgrades.touchGun.ambidextrous.bought) {
+                    valueIncrement *= 2;
+                }
+                if (upgrades.touchGun.thousandFingers.bought) {
+                    valueIncrement += 5000 * getTotalPotencyUpgrades();
+                }
+                if (upgrades.touchGun.antirestingCream.bought) {
+                    valueIncrement *= 3;
+                }
+                if (upgrades.touchGun.powerfulHands.bought) {
+                    valueIncrement *= 5;
+                }
+                if (upgrades.touchGun.millionFingers.bought) {
+                    valueIncrement += 50000 * getTotalPotencyUpgrades();
+                }
+                if (upgrades.touchGun.stingingTaps.bought) {
+                    valueIncrement *= 4;
+                }
+                if (upgrades.touchGun.gotToTap.bought) {
+                    valueIncrement *= 3;
+                }
+                if (upgrades.touchGun.fingerSwarm.bought) {
+                    valueIncrement *= 4;
+                }
+                if (upgrades.touchGun.billionFingers.bought) {
+                    valueIncrement += 500000 * getTotalPotencyUpgrades();
+                }
+                if (upgrades.touchGun.needMore.bought) {
+                    valueIncrement *= 5;
+                }
+                if (upgrades.touchGun.trillionFingers.bought) {
+                    valueIncrement += 5000000 * getTotalPotencyUpgrades();
+                }
+                touchGunPointsPerClick += valueIncrement;
                 break;
 
             default:
@@ -1202,52 +1320,110 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 if (weapons[weaponName]) {
                     switch (true) {
                         case upgradeType.endsWith('Firerate'):
-                            if (level <= getMaxLevel(weaponName, 'firerate')) {
-                                updateFirerate(stats, valueIncrement, weaponName);
-                            } else {
-                                alert(`${capitalize(weaponName)}'s firing rate has been maxed out!`);
+                            if (weaponName === 'pistol') {
+                                pistolFirerateUpgradeCost = cost;
+                                pistolFirerateLevel = level;
+                                updateFirerate(stats, valueIncrement, upgrades[weaponName], weaponName);
+                            } else if (weaponName === 'smg') {
+                                smgFirerateUpgradeCost = cost;
+                                smgFirerateLevel = level;
+                                updateFirerate(stats, valueIncrement, upgrades[weaponName], weaponName);
+                            } else if (weaponName === 'shotgun') {
+                                shotgunFirerateUpgradeCost = cost;
+                                shotgunFirerateLevel = level;
+                                updateFirerate(stats, valueIncrement, upgrades[weaponName], weaponName);
+                            } else if (weaponName === 'sniperRifle') {
+                                sniperRifleFirerateUpgradeCost = cost;
+                                sniperRifleFirerateLevel = level;
+                                updateFirerate(stats, valueIncrement, upgrades[weaponName], weaponName);
                             }
+                            updateFirerate(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
                         
                         case upgradeType.endsWith('Potency'):
                             if (weaponName === 'pistol') {
+                                pistolPotencyUpgradeCost = cost;
+                                pistolPotencyLevel = level;
                                 updatePotency(stats, valueIncrement, upgrades[weaponName], weaponName);
-                                cost = pistolPotencyUpgradeCost;
-                                level = pistolPotencyLevel;
                             } else if (weaponName === 'smg') {
+                                smgPotencyUpgradeCost = cost;
+                                smgPotencyLevel = level;
                                 updatePotency(stats, valueIncrement, upgrades[weaponName], weaponName);
-                                cost = smgPotencyUpgradeCost;
-                                level = smgPotencyLevel;
+                            } else if (weaponName === 'shotgun') {
+                                shotgunPotencyUpgradeCost = cost;
+                                shotgunPotencyLevel = level;
+                                updatePotency(stats, valueIncrement, upgrades[weaponName], weaponName);
+                            } else if (weaponName === 'sniperRifle') {
+                                sniperRiflePotencyUpgradeCost = cost;
+                                sniperRiflePotencyLevel = level;
+                                updatePotency(stats, valueIncrement, upgrades[weaponName], weaponName);
                             }
                             updatePotency(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         case upgradeType.endsWith('MultiFire'):
                             if (weaponName === 'shotgun') {
-                                updatePotency(stats, valueIncrement, upgrades[weaponName], weaponName);
-                                cost = shotgunMultiFireUpgradeCost;
-                                level = shotgunMultiFireLevel;
+                                shotgunMultiFireUpgradeCost = cost;
+                                shotgunMultiFireLevel = level;
+                                updateMultiFire(stats, valueIncrement, upgrades[weaponName], weaponName);
+                            } else if (weaponName === 'doubleBarrel') {
+                                doubleBarrelMultiFireUpgradeCost = cost;
+                                doubleBarrelMultiFireLevel = level;
+                                updateMultiFire(stats, valueIncrement, upgrades[weaponName], weaponName);
                             }
                             updateMultiFire(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         case upgradeType.endsWith('SplashRadius'):
+                            if (weaponName === 'rocketLauncher') {
+                                rocketLauncherSplashRadiusUpgradeCost = cost;
+                                rocketLauncherSplashRadiusLevel = level;
+                                updateSplashRadius(stats, valueIncrement, upgrades[weaponName], weaponName);
+                            }
                             updateSplashRadius(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         case upgradeType.endsWith('SplashDamage'):
+                            if (weaponName === 'rocketLauncher') {
+                                rocketLauncherSplashDamageUpgradeCost = cost;
+                                rocketLauncherSplashDamageLevel = level;
+                                updateSplashDamage(stats, valueIncrement, upgrades[weaponName], weaponName);
+                            }
                             updateSplashDamage(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         case upgradeType.endsWith('CriticalShotChance'):
+                            if (weaponName === 'sniperRifle') {
+                                sniperRifleCriticalShotUpgradeCost = cost;
+                                sniperRifleCriticalShotLevel = level;
+                                updateCriticalChance(stats, valueIncrement, upgrades[weaponName], weaponName);
+                            } else if (weaponName === 'huntingRifle') {
+                                huntingRifleCriticalShotUpgradeCost = cost;
+                                huntingRifleCriticalShotLevel = level;
+                                updateCriticalChance(stats, valueIncrement, upgrades[weaponName], weaponName);
+                            }
                             updateCriticalChance(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         case upgradeType.endsWith('CriticalDamage'):
+                            if (weaponName === 'sniperRifle') {
+                                sniperRifleCriticalDamageUpgradeCost = cost;
+                                sniperRifleCriticalDamageLevel = level;
+                                updateCriticalDamage(stats, valueIncrement, upgrades[weaponName], weaponName);
+                            } else if (weaponName === 'huntingRifle') {
+                                huntingRifleCriticalDamageUpgradeCost = cost;
+                                huntingRifleCriticalDamageLevel = level;
+                                updateCriticalDamage(stats, valueIncrement, upgrades[weaponName], weaponName);
+                            }
                             updateCriticalDamage(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         case upgradeType.endsWith('Accuracy'):
+                            if (weaponName === 'tommyGun') {
+                                tommyGunAccuracyUpgradeCost = cost;
+                                tommyGunAccuracyLevel = level;
+                                updateAccuracy(stats, valueIncrement, upgrades[weaponName], weaponName);
+                            }
                             updateAccuracy(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
@@ -1260,80 +1436,6 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 }
         }
 
-        updatePointsDisplay();
-        updateCostDisplay();
-    } else {
-        alert(`Not enough points to upgrade ${upgradeType}!`);
-    }
-}
-
-// Handles touch gun upgrades
-function handleTouchGunUpgrades(upgradeType, level, cost, costMultiplier, valueIncrement, upgradeCategory) {
-    if (points >= cost) {
-        points -= cost;
-        cost *= costMultiplier; // Update the cost multiplier
-
-        // Update level based on upgrade type
-        switch (upgradeType) {
-            case 'touchGun':
-                touchGunCost = cost;
-                touchGunLevel = level;
-                break;
-            case 'touchGunAwaken':
-                awokenTouchGunCost = cost;
-                awokenTouchGunLevel = level;
-                break;
-            case 'touchGunSuperAwaken':
-                superAwokenTouchGunCost = cost;
-                superAwokenTouchGunLevel = level;
-                break;
-            default:
-                console.error("Invalid upgradeType:", upgradeType);
-                return;
-        }
-
-        // Update value increment based on purchased upgrades
-        if (upgrades.touchGun.pointyFingers.bought) {
-            valueIncrement *= 2;
-        }
-        if (upgrades.touchGun.ambidextrous.bought) {
-            valueIncrement *= 2;
-        }
-        if (upgrades.touchGun.thousandFingers.bought) {
-            valueIncrement += 50 * getTotalPotencyUpgrades();
-        }
-        if (upgrades.touchGun.antirestingCream.bought) {
-            valueIncrement *= 3;
-        }
-        if (upgrades.touchGun.powerfulHands.bought) {
-            valueIncrement *= 5;
-        }
-        if (upgrades.touchGun.millionFingers.bought) {
-            valueIncrement += 50000 * getTotalPotencyUpgrades();
-        }
-        if (upgrades.touchGun.stingingTaps.bought) {
-            valueIncrement *= 4;
-        }
-        if (upgrades.touchGun.gotToTap.bought) {
-            valueIncrement *= 3;
-        }
-        if (upgrades.touchGun.fingerSwarm.bought) {
-            valueIncrement *= 4;
-        }
-        if (upgrades.touchGun.billionFingers.bought) {
-            valueIncrement += 500000 * getTotalPotencyUpgrades();
-        }
-        if (upgrades.touchGun.needMore.bought) {
-            valueIncrement *= 5;
-        }
-        if (upgrades.touchGun.trillionFingers.bought) {
-            valueIncrement += 5000000 * getTotalPotencyUpgrades();
-        }
-
-        // Update points per click
-        touchGunPointsPerClick += valueIncrement;
-
-        // Update displays
         updatePointsDisplay();
         updateCostDisplay();
     } else {

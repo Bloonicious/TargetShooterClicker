@@ -2695,7 +2695,7 @@ function initializeStatistics() {
 function initializeUI() {
     updatePointsDisplay();
     updateCostDisplay();
-    selectedWeapon();
+    selectWeapon();
 
     // Start earning points automatically for purchased weapons
     setInterval(automaticPointsGeneration, 1000); // Check every second for points generation

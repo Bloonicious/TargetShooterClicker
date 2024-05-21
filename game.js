@@ -26,7 +26,6 @@ async function initializeEnemies() {
         enemies = data.enemies;
         console.log('Enemies data initialized:', enemies);
         // Initialize other components that depend on enemies data here
-        initializeUI();
     } catch (error) {
         console.error('Error fetching enemies data:', error);
     }

@@ -1,9 +1,6 @@
 let weapons = {};
 let enemies = {};
 
-let weaponData = [];
-let enemyData = [];
-
 // Function to fetch and initialize weapons data
 async function initializeWeapons() {
     try {

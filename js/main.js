@@ -399,6 +399,7 @@ function loadGameState() {
                 const weaponId = savedWeapon.id;
                 if (weapons[weaponId]) {
                     weapons[weaponId] = savedWeapon;
+                    updateWeaponDisplay(weaponId, savedWeapon);
                 }
             });
         }
@@ -641,6 +642,143 @@ function loadGameState() {
         // Update achievements and statistics display
         updateAchievements();
         updateStatistics();
+    }
+}
+
+function updateWeaponDisplays() {
+    Object.entries(weapons).forEach(([weaponId, weapon]) => {
+        const weaponElement = document.getElementById(weaponId);
+        if (weaponElement) {
+            if (weapon.purchased) {
+                weaponElement.classList.add('purchased');
+                const purchaseButton = document.getElementById(`${weaponId}-purchase`);
+                if (purchaseButton) {
+                    purchaseButton.style.display = 'none';
+                }
+            } else {
+                weaponElement.classList.remove('purchased');
+                const purchaseButton = document.getElementById(`${weaponId}-purchase`);
+                if (purchaseButton) {
+                    purchaseButton.style.display = 'block';
+                }
+            }
+        }
+    });
+}
+
+function loadGameState() {
+    const savedState = JSON.parse(localStorage.getItem('gameState'));
+    if (savedState) {
+        // Load achievements
+        if (Array.isArray(savedState.achievements)) {
+            savedState.achievements.forEach((savedAchievement, index) => {
+                if (achievements[index]) {
+                    achievements[index].achieved = savedAchievement.achieved;
+                }
+            });
+        }
+
+        // Load statistics
+        if (savedState.statistics) {
+            statistics = savedState.statistics;
+            updateStatisticsDisplay();
+        }
+
+        // Load weapon data
+        if (Array.isArray(savedState.weaponData)) {
+            savedState.weaponData.forEach(savedWeapon => {
+                const weaponId = savedWeapon.id;
+                if (weapons[weaponId]) {
+                    weapons[weaponId] = savedWeapon;
+                    updateWeaponDisplay(weaponId, savedWeapon);
+                }
+            });
+        }
+
+        // Load other game state properties
+        points = savedState.points;
+        touchGunCost = savedState.touchGunCost;
+        touchGunPointsPerClick = savedState.touchGunPointsPerClick;
+        touchGunLevel = savedState.touchGunLevel;
+        awokenTouchGunCost = savedState.awokenTouchGunCost;
+        awokenTouchGunLevel = savedState.awokenTouchGunLevel;
+        superAwokenTouchGunCost = savedState.superAwokenTouchGunCost;
+        superAwokenTouchGunLevel = savedState.superAwokenTouchGunLevel;
+        numberFormat = savedState.numberFormat;
+
+        // Update the display with the loaded state
+        updateStatisticsDisplay();
+    }
+}
+
+// Function to save the game state to local storage
+function saveGameState() {
+    const weaponData = Object.entries(weapons).map(([weaponId, weapon]) => ({
+        id: weaponId,
+        name: weapon.name,
+        purchased: weapon.purchased,
+        cost: weapon.cost,
+        stats: weapon.stats
+    }));
+
+    var gameState = {
+        weaponData: weaponData,
+        achievements: achievementsData,
+        statistics: statistics,
+        points: points,
+        touchGunCost: touchGunCost,
+        touchGunPointsPerClick: touchGunPointsPerClick,
+        touchGunLevel: touchGunLevel,
+        awokenTouchGunCost: awokenTouchGunCost,
+        awokenTouchGunLevel: awokenTouchGunLevel,
+        superAwokenTouchGunCost: superAwokenTouchGunCost,
+        superAwokenTouchGunLevel: superAwokenTouchGunLevel,
+        numberFormat: numberFormat
+    };
+
+    localStorage.setItem('gameState', JSON.stringify(gameState));
+}
+
+// Function to load the game state from local storage
+function loadGameState() {
+    const savedState = JSON.parse(localStorage.getItem('gameState'));
+    if (savedState) {
+        // Load achievements
+        if (Array.isArray(savedState.achievements)) {
+            savedState.achievements.forEach((savedAchievement, index) => {
+                if (achievements[index]) {
+                    achievements[index].achieved = savedAchievement.achieved;
+                }
+            });
+        }
+
+        // Load statistics
+        if (savedState.statistics) {
+            statistics = savedState.statistics;
+            updateStatisticsDisplay();
+        }
+
+        // Load weapon data
+        if (Array.isArray(savedState.weaponData)) {
+            savedState.weaponData.forEach(savedWeapon => {
+                const weaponId = savedWeapon.id;
+                if (weapons[weaponId]) {
+                    weapons[weaponId] = savedWeapon;
+                    updateWeaponDisplay(weaponId, savedWeapon);
+                }
+            });
+        }
+
+        // Load other game state properties
+        points = savedState.points;
+        touchGunCost = savedState.touchGunCost;
+        touchGunPointsPerClick = savedState.touchGunPointsPerClick;
+        touchGunLevel = savedState.touchGunLevel;
+        awokenTouchGunCost = savedState.awokenTouchGunCost;
+        awokenTouchGunLevel = savedState.awokenTouchGunLevel;
+        superAwokenTouchGunCost = savedState.superAwokenTouchGunCost;
+        superAwokenTouchGunLevel = savedState.superAwokenTouchGunLevel;
+        numberFormat = savedState.numberFormat;
     }
 }
 

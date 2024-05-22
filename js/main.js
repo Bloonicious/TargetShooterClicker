@@ -145,14 +145,15 @@ function saveGameState() {
         description: achievement.description,
         achieved: achievement.achieved
     }));
-    // Convert weapons object to array format for saving
-    const weaponData = Object.entries(weapons).map(([weaponId, weapon]) => ({
-        id: weaponId,
-        name: weapon.name,
-        purchased: weapon.purchased,
-        cost: weapon.cost,
-        stats: weapon.stats
-    }));
+    // Save weapon data
+    const weaponData = Object.entries(weapons).reduce((acc, [weaponId, weapon]) => {
+        acc[weaponId] = {
+            purchased: weapon.purchased,
+            cost: weapon.cost,
+            stats: weapon.stats
+        };
+        return acc;
+    }, {});
     var gameState = {
         weaponData: weaponData,
         achievements: achievementsData,
@@ -395,24 +396,17 @@ function loadGameState() {
         }
 
         // Load weapon data
-        if (Array.isArray(savedState.weaponData)) {
-            savedState.weaponData.forEach(savedWeapon => {
-                const weaponId = savedWeapon.id;
-                if (weapons[weaponId]) {
-                    // Update weapon stats and purchased status
-                    weapons[weaponId].purchased = savedWeapon.purchased;
-                    weapons[weaponId].stats = savedWeapon.stats;
-                    updateWeaponDisplay(weaponId, weapons[weaponId]);
-
-                    // Update weapon properties based on saved stats
-                    const savedStats = savedWeapon.stats;
-                    const weaponStats = weapons[weaponId].stats;
-                    Object.keys(savedStats).forEach(stat => {
-                        weaponStats[stat] = savedStats[stat];
-                    });
-                }
-            });
-        }
+        const savedWeaponData = savedState.weaponData || {};
+        Object.entries(savedWeaponData).forEach(([weaponId, savedWeapon]) => {
+            if (weapons[weaponId]) {
+                // Update weapon properties
+                const weapon = weapons[weaponId];
+                weapon.purchased = savedWeapon.purchased;
+                weapon.cost = savedWeapon.cost;
+                weapon.stats = savedWeapon.stats;
+                updateWeaponDisplay(weaponId, weapon);
+            }
+        });
 
         // Iterate over each weapon object to update the display and properties
         Object.entries(weapons).forEach(([weaponId, weapon]) => {

@@ -23,6 +23,7 @@
         <button class="tab-button" data-tab="settings">Settings</button>
         <button class="tab-button" data-tab="achievements">Achievements</button>
         <button class="tab-button" data-tab="statistics">Statistics</button>
+        <button class="tab-button" data-tab="prestige">Prestige</button>
     </div>
 
     <!-- Content for each tab -->
@@ -1024,6 +1025,24 @@
                     <p class="upgrade-description">Quintuples the amount of points yielded from target shots</p>
                 </div>
 
+                <div class="upgrade-option uzi" id="uzi-cantDodgeThis">
+                    <button onclick="bigUpgrades('uzi', 'cantDodgeThis', 25000000000000000)">Uzi: Can't Dodge This!</button>
+                    <span class="upgrade-cost">Cost: 25,000,000,000,000,000</span>
+                    <p class="upgrade-description">Quintuples the amount of points yielded from target shots</p>
+                </div>
+
+                <div class="upgrade-option uzi" id="uzi-bulletFletcher">
+                    <button onclick="bigUpgrades('uzi', 'bulletFletcher', 300000000000000000)">Uzi: Bullet Fletcher</button>
+                    <span class="upgrade-cost">Cost: 300,000,000,000,000,000</span>
+                    <p class="upgrade-description">Sextuples the amount of points yielded from target shots</p>
+                </div>
+
+                <div class="upgrade-option uzi" id="uzi-easyToUse">
+                    <button onclick="bigUpgrades('uzi', 'easyToUse', 4000000000000000000)">Uzi: Easy-To-Use</button>
+                    <span class="upgrade-cost">Cost: 4,000,000,000,000,000,000</span>
+                    <p class="upgrade-description">Sextuples the amount of points yielded from target shots</p>
+                </div>
+
                 <!-- Hunting Rifle Big Upgrades -->
                 <div class="upgrade-option huntingRifle" id="huntingRifle-powerfulHunter">
                     <button onclick="bigUpgrades('huntingRifle', 'powerfulHunter', 35000000000)">Hunting Rifle: Powerful Hunter</button>
@@ -1065,6 +1084,24 @@
                     <button onclick="bigUpgrades('huntingRifle', 'titanicTracers', 1750000000000000)">Hunting Rifle: Titanic Tracers</button>
                     <span class="upgrade-cost">Cost: 1,750,000,000,000,000</span>
                     <p class="upgrade-description">Doubles the points from targets and doubles the critical damage factor effectiveness. However its critical chance is slightly reduced by 5%.</p>
+                </div>
+
+                <div class="upgrade-option huntingRifle" id="huntingRifle-beastHunter">
+                    <button onclick="bigUpgrades('huntingRifle', 'beastHunter', 10000000000000000)">Hunting Rifle: Beast Hunter</button>
+                    <span class="upgrade-cost">Cost: 10,000,000,000,000,000</span>
+                    <p class="upgrade-description">Quintuples the amount of points yielded from target shots</p>
+                </div>
+
+                <div class="upgrade-option huntingRifle" id="huntingRifle-markedTracers">
+                    <button onclick="bigUpgrades('huntingRifle', 'markedTracers', 90000000000000000)">Hunting Rifle: Marked Tracers</button>
+                    <span class="upgrade-cost">Cost: 90,000,000,000,000,000</span>
+                    <p class="upgrade-description">Quintuples the amount of points yielded from target shots</p>
+                </div>
+
+                <div class="upgrade-option huntingRifle" id="huntingRifle-masterHunting">
+                    <button onclick="bigUpgrades('huntingRifle', 'masterHunting', 600000000000000000)">Hunting Rifle: Master Hunting</button>
+                    <span class="upgrade-cost">Cost: 600,000,000,000,000,000</span>
+                    <p class="upgrade-description">Triples the points from targets and increases the critical damage factor effectiveness by 50%!</p>
                 </div>
             </div>
         </div>
@@ -1296,6 +1333,23 @@
     <div id="changelog" class="tab">
         <!-- Changelog content here -->
         <h1>Changelog</h1>
+        <h3>22nd May 2024:</h3>
+        <h5>Update 1.4:</h5>
+        <p>
+        - We've reworked the entire codebase relating to weapons - making it easier to implement new weapons for future updates!
+        <br>
+        - Added a new "Prestige" tab, which will be properly implemented in future updates
+        <br>
+        - Added 3 more big upgrades for Uzi and Hunting Rifle
+        <br>
+        - Added a "Total Weapons Purchased" statistic to track total process of in-game weapons purchased
+        <br>
+        - Balance changes: 
+        -- Rocket Launcher buffed: Points Per Shot from 1,000 -> 1,250 per rocket!
+        -- Double Barrel buffed: Points Per Shot from 4,000 -> 6,000 per bullet!
+        -- Uzi buffed: Points Per Shot from 3,000 -> 4,500 per bullet!
+        -- Hunting Rifle buffed: Points Per Shot from 180,000 -> 250,000 per tracer!
+        </p>
         <h3>3rd May 2024:</h3>
         <h5>Update 1.3.1:</h5>
         <p>
@@ -1401,6 +1455,7 @@
         <h1>Statistics</h1>
         <div id="statistics-content">
             <p>Total Lifetime Points: <span id="lifetime-points">0</span></p>
+            <p>Total Weapons Purchased: <span id="total-weapons-upgrades">0</span></p>
             <p>Total Big Upgrades Purchased: <span id="total-big-upgrades">0</span></p>
             <h2>Weapon Upgrade Levels</h2>
             <div id="total-weapon-upgrades">
@@ -1408,6 +1463,12 @@
             </div>
         </div>
     </div>
+
+    <div id="prestige" class="tab">
+        <h1>Prestige</h1>
+        <h3><p>Coming Soon!</p></h3>
+    </div>
+    
     <!-- JavaScript files -->
     <script src="main.js"></script>
     <script src="game.js"></script>

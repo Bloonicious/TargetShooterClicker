@@ -2552,17 +2552,17 @@ function initializeBattle() {
 // Function to initialize sound effects
 function initializeSoundEffects() {
     // Load or create SFX IDs for each weapon
-    weaponSFX.touchGun = new Audio('sfx/touchgun.wav');
-    weaponSFX.pistol = new Audio('sfx/pistol.wav');
-    weaponSFX.smg = new Audio('sfx/smg.wav');
-    weaponSFX.shotgun = new Audio('sfx/shotgun.wav');
-    weaponSFX.sniperRifle = new Audio('sfx/sniper.wav');
-    weaponSFX.ak47 = new Audio('sfx/ak47.wav');
-    weaponSFX.rocketLauncher = new Audio('sfx/bazooka.wav');
-    weaponSFX.tommyGun = new Audio('sfx/smg.wav');
-    weaponSFX.doubleBarrel = new Audio('sfx/doublebarrel.wav');
-    weaponSFX.uzi = new Audio('sfx/uzi.wav');
-    weaponSFX.huntingRifle = new Audio('sfx/hunting_rifle.wav');
+    weaponSFX.touchGun = new Audio('assets/sfx/touchgun.wav');
+    weaponSFX.pistol = new Audio('assets/sfx/pistol.wav');
+    weaponSFX.smg = new Audio('assets/sfx/smg.wav');
+    weaponSFX.shotgun = new Audio('assets/sfx/shotgun.wav');
+    weaponSFX.sniperRifle = new Audio('assets/sfx/sniper.wav');
+    weaponSFX.ak47 = new Audio('assets/sfx/ak47.wav');
+    weaponSFX.rocketLauncher = new Audio('assets/sfx/bazooka.wav');
+    weaponSFX.tommyGun = new Audio('assets/sfx/smg.wav');
+    weaponSFX.doubleBarrel = new Audio('assets/sfx/doublebarrel.wav');
+    weaponSFX.uzi = new Audio('assets/sfx/uzi.wav');
+    weaponSFX.huntingRifle = new Audio('assets/sfx/hunting_rifle.wav');
 }
 
 // Function to play sound effect for a specific weapon

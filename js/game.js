@@ -1364,45 +1364,95 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     switch (true) {
                         case upgradeType.endsWith('Firerate'):
                             if (weaponId === 'pistol') {
-                                pistolFirerateUpgradeCost = cost;
-                                pistolFirerateLevel = level;
-                                updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                if (level <= 20) {
+                                    pistolFirerateUpgradeCost = cost;
+                                    pistolFirerateLevel = level;
+                                    updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                } else {
+                                    console.log("Maximum level reached for pistol fire rate.");
+                                    alert("Pistol's firing rate has been maxed out!");
+                                }
                             } else if (weaponId === 'smg') {
-                                smgFirerateUpgradeCost = cost;
-                                smgFirerateLevel = level;
-                                updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                if (level <= 10) {
+                                    smgFirerateUpgradeCost = cost;
+                                    smgFirerateLevel = level;
+                                    updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                } else {
+                                    console.log("Maximum level reached for smg fire rate.");
+                                    alert("SMG's firing rate has been maxed out!");
+                                }
                             } else if (weaponId === 'shotgun') {
-                                shotgunFirerateUpgradeCost = cost;
-                                shotgunFirerateLevel = level;
-                                updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                if (level <= 15) {
+                                    shotgunFirerateUpgradeCost = cost;
+                                    shotgunFirerateLevel = level;
+                                    updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                } else {
+                                    console.log("Maximum level reached for shotgun fire rate.");
+                                    alert("Shotgun's firing rate has been maxed out!");
+                                }
                             } else if (weaponId === 'sniperRifle') {
-                                sniperRifleFirerateUpgradeCost = cost;
-                                sniperRifleFirerateLevel = level;
-                                updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                if (level <= 10) {
+                                    sniperRifleFirerateUpgradeCost = cost;
+                                    sniperRifleFirerateLevel = level;
+                                    updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                } else {
+                                    console.log("Maximum level reached for sniper rifle fire rate.");
+                                    alert("Sniper Rifle's firing rate has been maxed out!");
+                                }
                             } else if (weaponId === 'ak47') {
-                                ak47FirerateUpgradeCost = cost;
-                                ak47FirerateLevel = level;
-                                updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                if (level <= 15) {
+                                    ak47FirerateUpgradeCost = cost;
+                                    ak47FirerateLevel = level;
+                                    updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                } else {
+                                    console.log("Maximum level reached for ak-47 fire rate.");
+                                    alert("AK-47's firing rate has been maxed out!");
+                                }
                             } else if (weaponId === 'rocketLauncher') {
-                                rocketLauncherFirerateUpgradeCost = cost;
-                                rocketLauncherFirerateLevel = level;
-                                updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                if (level <= 15) {
+                                    rocketLauncherFirerateUpgradeCost = cost;
+                                    rocketLauncherFirerateLevel = level;
+                                    updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                } else {
+                                    console.log("Maximum level reached for rocket launcher fire rate.");
+                                    alert("Rocket Launcher's firing rate has been maxed out!");
+                                }
                             } else if (weaponId === 'tommyGun') {
-                                tommyGunFirerateUpgradeCost = cost;
-                                tommyGunFirerateLevel = level;
-                                updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                if (level <= 20) {
+                                    tommyGunFirerateUpgradeCost = cost;
+                                    tommyGunFirerateLevel = level;
+                                    updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                } else {
+                                    console.log("Maximum level reached for tommy gun fire rate.");
+                                    alert("Tommy Gun's firing rate has been maxed out!");
+                                }
                             } else if (weaponId === 'doubleBarrel') {
-                                doubleBarrelFirerateUpgradeCost = cost;
-                                doubleBarrelFirerateLevel = level;
-                                updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                if (level <= 25) {
+                                    doubleBarrelFirerateUpgradeCost = cost;
+                                    doubleBarrelFirerateLevel = level;
+                                    updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                } else {
+                                    console.log("Maximum level reached for double barrel fire rate.");
+                                    alert("Double Barrel's firing rate has been maxed out!");
+                                }
                             } else if (weaponId === 'uzi') {
-                                uziFirerateUpgradeCost = cost;
-                                uziFirerateLevel = level;
-                                updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                if (level <= 10) {
+                                    uziFirerateUpgradeCost = cost;
+                                    uziFirerateLevel = level;
+                                    updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                } else {
+                                    console.log("Maximum level reached for uzi fire rate.");
+                                    alert("Uzi's firing rate has been maxed out!");
+                                }
                             } else if (weaponId === 'huntingRifle') {
-                                huntingRifleFirerateUpgradeCost = cost;
-                                huntingRifleFirerateLevel = level;
-                                updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                if (level <= 15) {
+                                    huntingRifleFirerateUpgradeCost = cost;
+                                    huntingRifleFirerateLevel = level;
+                                    updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                } else {
+                                    console.log("Maximum level reached for hunting rifle fire rate.");
+                                    alert("Hunting Rifle's firing rate has been maxed out!");
+                                }
                             }
                             break;
                         

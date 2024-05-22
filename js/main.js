@@ -145,6 +145,7 @@ function saveGameState() {
         description: achievement.description,
         achieved: achievement.achieved
     }));
+    // Convert weapons object to array format for saving
     const weaponData = Object.entries(weapons).map(([weaponId, weapon]) => ({
         id: weaponId,
         name: weapon.name,
@@ -398,8 +399,10 @@ function loadGameState() {
             savedState.weaponData.forEach(savedWeapon => {
                 const weaponId = savedWeapon.id;
                 if (weapons[weaponId]) {
-                    weapons[weaponId] = savedWeapon;
-                    updateWeaponDisplay(weaponId, savedWeapon);
+                    // Update weapon stats and purchased status
+                    weapons[weaponId].purchased = savedWeapon.purchased;
+                    weapons[weaponId].stats = savedWeapon.stats;
+                    updateWeaponDisplay(weaponId, weapons[weaponId]);
                 }
             });
         }
@@ -420,7 +423,7 @@ function loadGameState() {
                 }
             }
         });
-
+        
         points = savedState.points;
         
         touchGunCost = savedState.touchGunCost,

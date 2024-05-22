@@ -148,7 +148,7 @@ function saveGameState() {
     // Save weapon data
     const weaponData = weapons;
     var gameState = {
-        weaponData: weaponData,
+        weapons: weapons,
         achievements: achievementsData,
         statistics: statistics,
         points: points,
@@ -389,8 +389,8 @@ function loadGameState() {
         }
 
         // Load weapon data
-        const savedWeaponData = savedState.weaponData || {};
-        Object.entries(savedWeaponData).forEach(([weaponId, savedWeapon]) => {
+        const savedWeapons = savedState.weapons || {};
+        Object.entries(savedWeapons).forEach(([weaponId, savedWeapon]) => {
             if (weapons[weaponId]) {
                 // Update weapon properties
                 const weapon = weapons[weaponId];
@@ -414,7 +414,7 @@ function loadGameState() {
                 }
 
                 // Update the weapon stats display
-                updateWeaponStatsDisplay(weaponId, weapon);
+                updateWeaponDisplays(weaponId, weapon);
             }
         });
         

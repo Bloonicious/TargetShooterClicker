@@ -397,15 +397,18 @@ function loadGameState() {
         const savedWeaponData = savedState.weaponData;
         if (Array.isArray(savedWeaponData)) {
             savedWeaponData.forEach(savedWeapon => {
-                const weaponId = savedWeapon.id;
-                if (weapons[weaponId]) {
+                const weaponIndex = savedWeapon.index;
+                const savedWeaponStats = savedWeapon.stats;
+
+                // Find the corresponding weapon in the weapons array
+                if (weapons[weaponIndex]) {
                     // Update the weapons object with saved data
-                    weapons[weaponId].purchased = savedWeapon.purchased;
-                    weapons[weaponId].cost = savedWeapon.cost;
-                    weapons[weaponId].stats = savedWeapon.stats;
+                    weapons[weaponIndex].purchased = savedWeapon.purchased;
+                    weapons[weaponIndex].cost = savedWeapon.cost;
+                    weapons[weaponIndex].stats = savedWeaponStats;
 
                     // Update the display for the corresponding weapon
-                    const purchaseButton = document.getElementById(`${weaponId}-purchase`);
+                    const purchaseButton = document.getElementById(`${weaponIndex}-purchase`);
                     if (purchaseButton && savedWeapon.purchased) {
                         purchaseButton.style.display = 'none';
                     }

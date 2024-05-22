@@ -145,13 +145,14 @@ function saveGameState() {
         description: achievement.description,
         achieved: achievement.achieved
     }));
+    const weaponData = Object.entries(weapons).map(([weaponId, weapon]) => ({
+        id: weaponId,
+        purchased: weapon.purchased,
+        cost: weapon.cost,
+        stats: weapon.stats
+    }));
     var gameState = {
-        weaponData: weapons.map(weapon => ({
-            id: weapon.id,
-            purchased: weapon.purchased,
-            cost: weapon.cost,
-            stats: weapon.stats
-        })),
+        weaponData: weaponData,
         achievements: achievementsData,
         statistics: statistics,
         points: points,
@@ -391,20 +392,12 @@ function loadGameState() {
             updateStatisticsDisplay();
         }
 
-        if (!Array.isArray(weapons)) {
-            weapons = [];
-        }
-
         // Load weapon data if it exists
         if (Array.isArray(savedState.weaponData)) {
             savedState.weaponData.forEach(savedWeapon => {
                 const weaponId = savedWeapon.id;
-                const weaponIndex = weapons.findIndex(w => w.id === weaponId);
-                if (weaponIndex !== -1) {
-                    const weapon = weapons[weaponIndex];
-                    if (weapon) {
-                        Object.assign(weapon, savedWeapon);
-                    }
+                if (weapons[weaponId]) {
+                    Object.assign(weapons[weaponId], savedWeapon);
                 }
             });
         }
@@ -413,13 +406,13 @@ function loadGameState() {
         Object.entries(weapons).forEach(([weaponId, weapon]) => {
             if (weapon.purchased) {
                 // Hide the purchase button for the corresponding weapon
-                const purchaseButton = document.getElementById(`${weapon.id}-purchase`);
+                const purchaseButton = document.getElementById(`${weaponId}-purchase`);
                 if (purchaseButton) {
                     purchaseButton.style.display = 'none';
                 }
 
                 // Update cost display
-                const costElement = document.getElementById(`${weapon.id}-cost`);
+                const costElement = document.getElementById(`${weaponId}-cost`);
                 if (costElement) {
                     costElement.textContent = formatNumber(weapon.cost);
                 }

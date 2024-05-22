@@ -321,7 +321,7 @@ body {
 }
 
 .weapon-selection {
-    display: none;
+    display: block;
 }
 
 .weapon-selection h2 {

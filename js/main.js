@@ -403,6 +403,13 @@ function loadGameState() {
                     weapons[weaponId].purchased = savedWeapon.purchased;
                     weapons[weaponId].stats = savedWeapon.stats;
                     updateWeaponDisplay(weaponId, weapons[weaponId]);
+
+                    // Update weapon properties based on saved stats
+                    const savedStats = savedWeapon.stats;
+                    const weaponStats = weapons[weaponId].stats;
+                    Object.keys(savedStats).forEach(stat => {
+                        weaponStats[stat] = savedStats[stat];
+                    });
                 }
             });
         }

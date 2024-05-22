@@ -147,6 +147,7 @@ function saveGameState() {
     }));
     const weaponData = Object.entries(weapons).map(([weaponId, weapon]) => ({
         id: weaponId,
+        name: weapon.name,
         purchased: weapon.purchased,
         cost: weapon.cost,
         stats: weapon.stats

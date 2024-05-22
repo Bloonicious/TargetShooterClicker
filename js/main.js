@@ -398,7 +398,7 @@ function loadGameState() {
             savedState.weaponData.forEach(savedWeapon => {
                 const weaponId = savedWeapon.id;
                 if (weapons[weaponId]) {
-                    Object.assign(weapons[weaponId], savedWeapon);
+                    weapons[weaponId] = savedWeapon;
                 }
             });
         }

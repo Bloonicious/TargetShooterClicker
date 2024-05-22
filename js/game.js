@@ -1208,7 +1208,6 @@ function purchaseWeapon(weaponId) {
         document.getElementById(`${weaponId}-purchase`).style.display = 'none';
         updatePointsDisplay();
         updateCostDisplay();
-        updateSelectedWeaponsDisplay();
     } else {
         alert(`Not enough points to purchase ${weapon.name}!`);
     }

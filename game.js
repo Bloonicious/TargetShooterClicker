@@ -877,6 +877,27 @@ const upgrades = {
                 weapons.uzi.stats.damage *= 5;
             }
         },
+        cantDodgeThis: {
+            cost: 25000000000000000,
+            effect: function() {
+                weapons.uzi.stats.pointsPerShot *= 5;
+                weapons.uzi.stats.damage *= 5;
+            }
+        },
+        bulletFletcher: {
+            cost: 300000000000000000,
+            effect: function() {
+                weapons.uzi.stats.pointsPerShot *= 6;
+                weapons.uzi.stats.damage *= 6;
+            }
+        },
+        easyToUse: {
+            cost: 4000000000000000000,
+            effect: function() {
+                weapons.uzi.stats.pointsPerShot *= 6;
+                weapons.uzi.stats.damage *= 6;
+            }
+        },
         // Add more upgrades for uzi here
     },
     huntingRifle: {
@@ -928,6 +949,28 @@ const upgrades = {
                 weapons.huntingRifle.stats.damage *= 2;
                 weapons.huntingRifle.stats.criticalDamage *= 2;
                 weapons.huntingRifle.stats.criticalChance -= 5;
+            }
+        },
+        beastHunter: {
+            cost: 10000000000000000,
+            effect: function() {
+                weapons.huntingRifle.stats.pointsPerShot *= 5;
+                weapons.huntingRifle.stats.damage *= 5;
+            }
+        },
+        markedTracers: {
+            cost: 90000000000000000,
+            effect: function() {
+                weapons.huntingRifle.stats.pointsPerShot *= 5;
+                weapons.huntingRifle.stats.damage *= 5;
+            }
+        },
+        masterHunting: {
+            cost: 600000000000000000,
+            effect: function() {
+                weapons.huntingRifle.stats.pointsPerShot *= 3;
+                weapons.huntingRifle.stats.damage *= 3;
+                weapons.huntingRifle.stats.criticalDamage *= 1.5;
             }
         },
         // Add more upgrades for huntingRifle here
@@ -1309,122 +1352,162 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 break;
 
             default:
-                let weaponName = upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalShotChance|CriticalDamage|Accuracy/, '').toLowerCase();
-                let stats = getWeaponStats(weaponName);
+                let weaponId = upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalShotChance|CriticalDamage|Accuracy/, '').toLowerCase();
+                let stats = getWeaponStats(weaponId);
 
                 if (!stats) {
-                    console.error("Invalid weapon:", weaponName);
+                    console.error("Invalid weapon:", weaponId);
                     return;
                 }
 
-                if (weapons[weaponName]) {
+                if (weapons[weaponId]) {
                     switch (true) {
                         case upgradeType.endsWith('Firerate'):
-                            if (weaponName === 'pistol') {
+                            if (weaponId === 'pistol') {
                                 pistolFirerateUpgradeCost = cost;
                                 pistolFirerateLevel = level;
-                                updateFirerate(stats, valueIncrement, upgrades[weaponName], weaponName);
-                            } else if (weaponName === 'smg') {
+                                updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'smg') {
                                 smgFirerateUpgradeCost = cost;
                                 smgFirerateLevel = level;
-                                updateFirerate(stats, valueIncrement, upgrades[weaponName], weaponName);
-                            } else if (weaponName === 'shotgun') {
+                                updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'shotgun') {
                                 shotgunFirerateUpgradeCost = cost;
                                 shotgunFirerateLevel = level;
-                                updateFirerate(stats, valueIncrement, upgrades[weaponName], weaponName);
-                            } else if (weaponName === 'sniperRifle') {
+                                updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'sniperRifle') {
                                 sniperRifleFirerateUpgradeCost = cost;
                                 sniperRifleFirerateLevel = level;
-                                updateFirerate(stats, valueIncrement, upgrades[weaponName], weaponName);
+                                updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'ak47') {
+                                ak47FirerateUpgradeCost = cost;
+                                ak47FirerateLevel = level;
+                                updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'rocketLauncher') {
+                                rocketLauncherFirerateUpgradeCost = cost;
+                                rocketLauncherFirerateLevel = level;
+                                updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'tommyGun') {
+                                tommyGunFirerateUpgradeCost = cost;
+                                tommyGunFirerateLevel = level;
+                                updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'doubleBarrel') {
+                                doubleBarrelFirerateUpgradeCost = cost;
+                                doubleBarrelFirerateLevel = level;
+                                updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'uzi') {
+                                uziFirerateUpgradeCost = cost;
+                                uziFirerateLevel = level;
+                                updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'huntingRifle') {
+                                huntingRifleFirerateUpgradeCost = cost;
+                                huntingRifleFirerateLevel = level;
+                                updateFirerate(stats, valueIncrement, upgrades[weaponId], weaponId);
                             }
-                            updateFirerate(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
                         
                         case upgradeType.endsWith('Potency'):
-                            if (weaponName === 'pistol') {
+                            if (weaponId === 'pistol') {
                                 pistolPotencyUpgradeCost = cost;
                                 pistolPotencyLevel = level;
-                                updatePotency(stats, valueIncrement, upgrades[weaponName], weaponName);
-                            } else if (weaponName === 'smg') {
+                                updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'smg') {
                                 smgPotencyUpgradeCost = cost;
                                 smgPotencyLevel = level;
-                                updatePotency(stats, valueIncrement, upgrades[weaponName], weaponName);
-                            } else if (weaponName === 'shotgun') {
+                                updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'shotgun') {
                                 shotgunPotencyUpgradeCost = cost;
                                 shotgunPotencyLevel = level;
-                                updatePotency(stats, valueIncrement, upgrades[weaponName], weaponName);
-                            } else if (weaponName === 'sniperRifle') {
+                                updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'sniperRifle') {
                                 sniperRiflePotencyUpgradeCost = cost;
                                 sniperRiflePotencyLevel = level;
-                                updatePotency(stats, valueIncrement, upgrades[weaponName], weaponName);
+                                updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'ak47') {
+                                ak47PotencyUpgradeCost = cost;
+                                ak47PotencyLevel = level;
+                                updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'rocketLauncher') {
+                                rocketLauncherPotencyUpgradeCost = cost;
+                                rocketLauncherPotencyLevel = level;
+                                updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'tommyGun') {
+                                tommyGunPotencyUpgradeCost = cost;
+                                tommyGunPotencyLevel = level;
+                                updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'doubleBarrel') {
+                                doubleBarrelPotencyUpgradeCost = cost;
+                                doubleBarrelPotencyLevel = level;
+                                updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'uzi') {
+                                uziPotencyUpgradeCost = cost;
+                                uziPotencyLevel = level;
+                                updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'huntingRifle') {
+                                huntingRiflePotencyUpgradeCost = cost;
+                                huntingRiflePotencyLevel = level;
+                                updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
                             }
-                            updatePotency(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         case upgradeType.endsWith('MultiFire'):
-                            if (weaponName === 'shotgun') {
+                            if (weaponId === 'shotgun') {
                                 shotgunMultiFireUpgradeCost = cost;
                                 shotgunMultiFireLevel = level;
-                                updateMultiFire(stats, valueIncrement, upgrades[weaponName], weaponName);
-                            } else if (weaponName === 'doubleBarrel') {
+                                updateMultiFire(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'doubleBarrel') {
                                 doubleBarrelMultiFireUpgradeCost = cost;
                                 doubleBarrelMultiFireLevel = level;
-                                updateMultiFire(stats, valueIncrement, upgrades[weaponName], weaponName);
+                                updateMultiFire(stats, valueIncrement, upgrades[weaponId], weaponId);
                             }
-                            updateMultiFire(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         case upgradeType.endsWith('SplashRadius'):
-                            if (weaponName === 'rocketLauncher') {
+                            if (weaponId === 'rocketLauncher') {
                                 rocketLauncherSplashRadiusUpgradeCost = cost;
                                 rocketLauncherSplashRadiusLevel = level;
-                                updateSplashRadius(stats, valueIncrement, upgrades[weaponName], weaponName);
+                                updateSplashRadius(stats, valueIncrement, upgrades[weaponId], weaponId);
                             }
-                            updateSplashRadius(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         case upgradeType.endsWith('SplashDamage'):
-                            if (weaponName === 'rocketLauncher') {
+                            if (weaponId === 'rocketLauncher') {
                                 rocketLauncherSplashDamageUpgradeCost = cost;
                                 rocketLauncherSplashDamageLevel = level;
-                                updateSplashDamage(stats, valueIncrement, upgrades[weaponName], weaponName);
+                                updateSplashDamage(stats, valueIncrement, upgrades[weaponId], weaponId);
                             }
-                            updateSplashDamage(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         case upgradeType.endsWith('CriticalShotChance'):
-                            if (weaponName === 'sniperRifle') {
+                            if (weaponId === 'sniperRifle') {
                                 sniperRifleCriticalShotUpgradeCost = cost;
                                 sniperRifleCriticalShotLevel = level;
-                                updateCriticalChance(stats, valueIncrement, upgrades[weaponName], weaponName);
-                            } else if (weaponName === 'huntingRifle') {
+                                updateCriticalChance(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'huntingRifle') {
                                 huntingRifleCriticalShotUpgradeCost = cost;
                                 huntingRifleCriticalShotLevel = level;
-                                updateCriticalChance(stats, valueIncrement, upgrades[weaponName], weaponName);
+                                updateCriticalChance(stats, valueIncrement, upgrades[weaponId], weaponId);
                             }
-                            updateCriticalChance(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         case upgradeType.endsWith('CriticalDamage'):
-                            if (weaponName === 'sniperRifle') {
+                            if (weaponId === 'sniperRifle') {
                                 sniperRifleCriticalDamageUpgradeCost = cost;
                                 sniperRifleCriticalDamageLevel = level;
-                                updateCriticalDamage(stats, valueIncrement, upgrades[weaponName], weaponName);
-                            } else if (weaponName === 'huntingRifle') {
+                                updateCriticalDamage(stats, valueIncrement, upgrades[weaponId], weaponId);
+                            } else if (weaponId === 'huntingRifle') {
                                 huntingRifleCriticalDamageUpgradeCost = cost;
                                 huntingRifleCriticalDamageLevel = level;
-                                updateCriticalDamage(stats, valueIncrement, upgrades[weaponName], weaponName);
+                                updateCriticalDamage(stats, valueIncrement, upgrades[weaponId], weaponId);
                             }
-                            updateCriticalDamage(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         case upgradeType.endsWith('Accuracy'):
-                            if (weaponName === 'tommyGun') {
+                            if (weaponId === 'tommyGun') {
                                 tommyGunAccuracyUpgradeCost = cost;
                                 tommyGunAccuracyLevel = level;
-                                updateAccuracy(stats, valueIncrement, upgrades[weaponName], weaponName);
+                                updateAccuracy(stats, valueIncrement, upgrades[weaponId], weaponId);
                             }
-                            updateAccuracy(stats, valueIncrement, upgrades[weaponName], weaponName);
                             break;
 
                         default:
@@ -1581,6 +1664,9 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.bulletOverload?.bought) valueIncrement *= 4;
             if (weaponUpgrades.bulletDrizzle?.bought) valueIncrement *= 2;
             if (weaponUpgrades.alwaysHitting?.bought) valueIncrement *= 5;
+            if (weaponUpgrades.cantDodgeThis?.bought) valueIncrement *= 5;
+            if (weaponUpgrades.bulletFletcher?.bought) valueIncrement *= 6;
+            if (weaponUpgrades.easyToUse?.bought) valueIncrement *= 6;
             break;
         case 'huntingRifle':
             if (weaponUpgrades.powerfulHunter?.bought) valueIncrement *= 2;
@@ -1589,6 +1675,9 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.targetHunter?.bought) valueIncrement *= 4;
             if (weaponUpgrades.longTracers?.bought) valueIncrement *= 4;
             if (weaponUpgrades.titanicTracers?.bought) valueIncrement *= 2;
+            if (weaponUpgrades.beastHunter?.bought) valueIncrement *= 5;
+            if (weaponUpgrades.markedTracers?.bought) valueIncrement *= 5;
+            if (weaponUpgrades.masterHunting?.bought) valueIncrement *= 3;
             break;
         default:
             break;
@@ -1706,6 +1795,7 @@ function updateCriticalDamage(stats, valueIncrement, weaponUpgrades, weapon) {
             break;
         case 'huntingRifle':
             if (weaponUpgrades.titanicTracers?.bought) valueIncrement *= 2;
+            if (weaponUpgrades.masterHunting?.bought) valueIncrement *= 1.5;
             break;
         default:
             break;

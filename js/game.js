@@ -2122,7 +2122,7 @@ function updateCostDisplay() {
     document.getElementById('rocketLauncherSplashRadius-value').textContent = weapons.rocketLauncher.stats.splashRadius;
     document.getElementById('rocketLauncherSplashDamage-value').textContent = weapons.rocketLauncher.stats.splashDamage;
     document.getElementById('rocketLauncherPPS-value').textContent = formatNumber(rocketLauncherPointsPerSecond);
-    document.getElementById('rocketLauncherHP-value').textContent = formatNumber(weapons.rocketLauncher.stats.hpt);
+    document.getElementById('rocketLauncherHP-value').textContent = formatNumber(weapons.rocketLauncher.stats.hp);
     document.getElementById('rocketLauncherDamage-value').textContent = formatNumber(weapons.rocketLauncher.stats.damage);
     document.getElementById('rocketLauncherRange-value').textContent = formatNumber(weapons.rocketLauncher.stats.range);
     document.getElementById('rocketLauncherAttackRate-value').textContent = weapons.rocketLauncher.stats.fireRate + 'ms';

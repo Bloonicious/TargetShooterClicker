@@ -152,6 +152,7 @@ let achievements = [
 
 let statistics = {
     totalLifetimePoints: 0,
+    totalWeaponsPurchased: 0,
     totalBigUpgradesPurchased: 0,
     totalPotencyUpgrades: 0,
     totalFirerateUpgrades: 0,
@@ -2710,6 +2711,22 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     }
 }
 
+// Function to get the total number of weapons purchased
+function getTotalWeaponsPurchased() {
+    if (!weapons || typeof weapons !== 'object') {
+        return 0;
+    }
+
+    let totalWeaponsPurchased = 0;
+    for (let weaponId in weapons) {
+        if (weapons[weaponId].purchased) {
+            totalWeaponsPurchased++;
+        }
+    }
+
+    return totalWeaponsPurchased;
+}
+
 // Function to get the total number of big upgrades purchased
 function getTotalBigUpgradesPurchased() {
     // Loop through all upgrade data and count the total number of big upgrades purchased
@@ -2736,6 +2753,11 @@ function updateStatisticsDisplay() {
     const lifetimePointsElement = document.getElementById('lifetime-points');
     if (lifetimePointsElement) {
         lifetimePointsElement.textContent = formatNumber(statistics.totalLifetimePoints);
+    }
+
+    const totalWeaponsPurchasedElement = document.getElementById('total-weapons-purchased');
+    if (totalWeaponsPurchasedElement) {
+        totalWeaponsPurchasedElement.textContent = statistics.totalWeaponsPurchased;
     }
 
     const totalBigUpgradesElement = document.getElementById('total-big-upgrades');
@@ -2777,6 +2799,9 @@ function setStatistics() {
     
     totalLifetimePoints += points;
     statistics.totalLifetimePoints = totalLifetimePoints;
+
+    // Calculate and assign the total weapons purchased
+    statistics.totalWeaponsPurchased = getTotalWeaponsPurchased();
 
     // Calculate and assign the total big upgrades purchased
     statistics.totalBigUpgradesPurchased = getTotalBigUpgradesPurchased();

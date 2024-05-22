@@ -1903,92 +1903,6 @@ function bigUpgrades(weapon, upgrade, cost) {
     }
 }
 
-// Function to calculate Damage Per Second (DPS)
-function calculateDPS(weapon) {
-    return (weapon.stats.damage / weapon.stats.fireRate) * 1000;
-}
-
-function isWeaponPurchased(weaponId) {
-    if (!weaponId) {
-        console.error("Invalid weaponId:", weaponId);
-        return false;
-    }
-
-    const weapon = weapons[weaponId.toLowerCase()];
-    return weapon && weapon.purchased;
-}
-
-function updateSelectedWeaponsDisplay() {
-    const selectionBoxes = document.querySelectorAll('.weapon-slot');
-    selectionBoxes.forEach((selectionBox) => {
-        const boxId = selectionBox.id.replace('weapon-selection-', '');
-        selectionBox.innerHTML = '';
-
-        const defaultOption = document.createElement('option');
-        defaultOption.value = '';
-        defaultOption.textContent = 'Select Weapon';
-        selectionBox.appendChild(defaultOption);
-
-        Object.keys(weapons).forEach((id) => {
-            if (isWeaponPurchased(id)) {
-                const option = document.createElement('option');
-                option.value = id;
-                option.textContent = weapons[id].name;
-                selectionBox.appendChild(option);
-            }
-        });
-
-        const selectedWeaponId = selectedWeapons[boxId];
-        if (selectedWeaponId) {
-            selectionBox.value = selectedWeaponId;
-            selectionBox.querySelectorAll('option').forEach((option) => {
-                option.disabled = Object.values(selectedWeapons).includes(option.value) && option.value !== selectedWeaponId;
-            });
-            updateWeaponStatsDisplay(boxId, weapons[selectedWeaponId.toLowerCase()]);
-        }
-    });
-}
-
-function selectWeapon(weaponId) {
-    if (isWeaponPurchased(weaponId) && !Object.values(selectedWeapons).includes(weaponId)) {
-        const selectedBoxId = Object.keys(selectedWeapons).find(boxId => !selectedWeapons[boxId]);
-        if (selectedBoxId) {
-            selectedWeapons[selectedBoxId] = weaponId;
-            updateWeaponStatsDisplay(selectedBoxId, weapons[weaponId.toLowerCase()]);
-        }
-    }
-}
-
-function updateWeaponStatsDisplay(boxId, weapon) {
-    if (!weapon || !weapon.stats) {
-        console.error("Invalid weapon stats:", weapon);
-        return;
-    }
-
-    const statsElements = {
-        currentHP: document.getElementById(`${boxId}HP-value`),
-        currentDamage: document.getElementById(`${boxId}Damage-value`),
-        currentRange: document.getElementById(`${boxId}Range-value`),
-        currentAttackRate: document.getElementById(`${boxId}AttackRate-value`),
-        currentDPS: document.getElementById(`${boxId}DPS-value`)
-    };
-
-    for (const key in statsElements) {
-        if (!statsElements[key]) {
-            console.error(`Element for ${key} of weapon ${weapon.id} is missing.`);
-            return;
-        }
-    }
-
-    statsElements.currentHP.textContent = formatNumber(weapon.stats.hp);
-    statsElements.currentDamage.textContent = formatNumber(weapon.stats.damage);
-    statsElements.currentRange.textContent = formatNumber(weapon.stats.range);
-    statsElements.currentAttackRate.textContent = formatNumber(weapon.stats.fireRate) + 'ms';
-    
-    const damagePerSecond = calculateDPS(weapon);
-    statsElements.currentDPS.textContent = formatNumber(damagePerSecond);
-}
-
 // Function to update weapon and upgrade costs in the HTML
 function updateCostDisplay() {
     const pistolPointsPerSecond = (weapons.pistol.stats.pointsPerShot / weapons.pistol.stats.fireRate) * 1000; // Convert fire rate from milliseconds to seconds
@@ -2847,7 +2761,6 @@ function initializeStatistics() {
 function initializeUI() {
     updatePointsDisplay();
     updateCostDisplay();
-    selectWeapon();
 
     // Start earning points automatically for purchased weapons
     setInterval(automaticPointsGeneration, 1000); // Check every second for points generation

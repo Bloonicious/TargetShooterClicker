@@ -404,23 +404,20 @@ function loadGameState() {
                 weapon.purchased = savedWeapon.purchased;
                 weapon.cost = savedWeapon.cost;
                 weapon.stats = savedWeapon.stats;
-                updateWeaponDisplay(weaponId, weapon);
-            }
-        });
 
-        // Iterate over each weapon object to update the display and properties
-        Object.entries(weapons).forEach(([weaponId, weapon]) => {
-            if (weapon.purchased) {
-                // Hide the purchase button for the corresponding weapon
-                const purchaseButton = document.getElementById(`${weaponId}-purchase`);
-                if (purchaseButton) {
-                    purchaseButton.style.display = 'none';
-                }
+                // If the weapon is purchased, update the display
+                if (weapon.purchased) {
+                    // Hide the purchase button for the corresponding weapon
+                    const purchaseButton = document.getElementById(`${weaponId}-purchase`);
+                    if (purchaseButton) {
+                        purchaseButton.style.display = 'none';
+                    }
 
-                // Update cost display
-                const costElement = document.getElementById(`${weaponId}-cost`);
-                if (costElement) {
-                    costElement.textContent = formatNumber(weapon.cost);
+                    // Update cost display
+                    const costElement = document.getElementById(`${weaponId}-cost`);
+                    if (costElement) {
+                        costElement.textContent = formatNumber(weapon.cost);
+                    }
                 }
             }
         });

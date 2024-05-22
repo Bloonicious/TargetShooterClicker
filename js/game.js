@@ -2449,18 +2449,7 @@ function initializeAchievements() {
 
 // Function to initialize battle features
 function initializeBattle() {
-    // Initialize selection boxes and weapon stats display
-    updateSelectedWeaponsDisplay();
-
-    // Add event listeners to selection boxes
-    const selectionBoxes = document.querySelectorAll('.weapon-slot');
-    selectionBoxes.forEach((selectionBox) => {
-        selectionBox.addEventListener('change', function() {
-            selectWeapon(this.value);
-        });
-    });
-
-    // Other initialization tasks...
+    return;
 }
 
 // Function to initialize sound effects

@@ -146,14 +146,14 @@ function saveGameState() {
         achieved: achievement.achieved
     }));
     // Save weapon data
-    const savedWeapons = {};
-    Object.entries(weapons).forEach(([weaponId, weapon]) => {
-        savedWeapons[weaponId] = {
-            purchased: weapon.purchased
-        };
-    });
+    const weaponData = Object.entries(weapons).map(([weaponId, weapon]) => ({
+        id: weaponId,
+        purchased: weapon.purchased,
+        cost: weapon.cost,
+        stats: weapon.stats
+    }));
     var gameState = {
-        weapons: savedWeapons,
+        weaponData: weaponData,
         achievements: achievementsData,
         statistics: statistics,
         points: points,
@@ -394,22 +394,24 @@ function loadGameState() {
         }
 
         // Load weapon data
-        const savedWeapons = savedState.weapons || {};
-        Object.entries(savedWeapons).forEach(([weaponId, savedWeapon]) => {
-            if (weapons[weaponId]) {
-                // Update purchase status
-                weapons[weaponId].purchased = savedWeapon.purchased;
+        const savedWeaponData = savedState.weaponData;
+        if (Array.isArray(savedWeaponData)) {
+            savedWeaponData.forEach(savedWeapon => {
+                const weaponId = savedWeapon.id;
+                if (weapons[weaponId]) {
+                    // Update the weapons object with saved data
+                    weapons[weaponId].purchased = savedWeapon.purchased;
+                    weapons[weaponId].cost = savedWeapon.cost;
+                    weapons[weaponId].stats = savedWeapon.stats;
 
-                // If the weapon is purchased, update the display
-                if (weapons[weaponId].purchased) {
-                    // Hide the purchase button for the corresponding weapon
+                    // Update the display for the corresponding weapon
                     const purchaseButton = document.getElementById(`${weaponId}-purchase`);
-                    if (purchaseButton) {
+                    if (purchaseButton && savedWeapon.purchased) {
                         purchaseButton.style.display = 'none';
                     }
                 }
-            }
-        });
+            });
+        }
         
         points = savedState.points;
         

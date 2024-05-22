@@ -146,14 +146,7 @@ function saveGameState() {
         achieved: achievement.achieved
     }));
     // Save weapon data
-    const weaponData = {};
-    Object.entries(weapons).forEach(([weaponId, weapon]) => {
-        weaponData[weaponId] = {
-            purchased: weapon.purchased,
-            cost: weapon.cost,
-            stats: weapon.stats
-        };
-    });
+    const weaponData = weapons;
     var gameState = {
         weaponData: weaponData,
         achievements: achievementsData,

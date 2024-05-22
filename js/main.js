@@ -392,7 +392,7 @@ function loadGameState() {
             updateStatisticsDisplay();
         }
 
-        // Load weapon data if it exists
+        // Load weapon data
         if (Array.isArray(savedState.weaponData)) {
             savedState.weaponData.forEach(savedWeapon => {
                 const weaponId = savedWeapon.id;

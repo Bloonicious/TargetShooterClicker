@@ -416,9 +416,6 @@ function loadGameState() {
                 if (costElement) {
                     costElement.textContent = formatNumber(weapon.cost);
                 }
-
-                // Update the weapon stats display
-                updateWeaponStatsDisplay(weaponId, weapon);
             }
         });
 
@@ -713,74 +710,6 @@ function getDefaultWeapons() {
     ];
 }
 
-// Properly load the weapon stats on save
-function updateWeaponStatsDisplay(weaponId, weapon) {
-    if (!weapon.stats) {
-        console.error(`No stats found for weapon: ${weaponId}`);
-        return;
-    }
-
-    // Update fire rate value display
-    if (weapon.stats.fireRate !== undefined) {
-        const fireRateElement = document.getElementById(`${weaponId}Firerate-value`);
-        if (fireRateElement) {
-            fireRateElement.textContent = weapon.stats.fireRate + 'ms';
-        }
-    }
-
-    // Update potency value display
-    if (weapon.stats.pointsPerShot !== undefined) {
-        const potencyElement = document.getElementById(`${weaponId}Potency-value`);
-        if (potencyElement) {
-            potencyElement.textContent = formatNumber(weapon.stats.pointsPerShot);
-        }
-    }
-
-    // Update HP value display
-    if (weapon.stats.hp !== undefined) {
-        const hpElement = document.getElementById(`${weaponId}HP-value`);
-        if (hpElement) {
-            hpElement.textContent = formatNumber(weapon.stats.hp);
-        }
-    }
-
-    // Update damage value display
-    if (weapon.stats.damage !== undefined) {
-        const damageElement = document.getElementById(`${weaponId}Damage-value`);
-        if (damageElement) {
-            damageElement.textContent = formatNumber(weapon.stats.damage);
-        }
-    }
-
-    // Update range value display
-    if (weapon.stats.range !== undefined) {
-        const rangeElement = document.getElementById(`${weaponId}Range-value`);
-        if (rangeElement) {
-            rangeElement.textContent = formatNumber(weapon.stats.range);
-        }
-    }
-
-    // Calculate and update derived values
-    const firerateValue = weapon.stats.fireRate !== undefined ? weapon.stats.fireRate : 0;
-    const potencyValue = weapon.stats.pointsPerShot !== undefined ? weapon.stats.pointsPerShot : 0;
-    const bulletsPerShot = weapon.stats.bulletsPerShot !== undefined ? weapon.stats.bulletsPerShot : 1;
-
-    const pointsPerSecond = firerateValue > 0 ? (potencyValue / firerateValue) * 1000 : 0;
-    const damagePerSecond = firerateValue > 0 ? (weapon.stats.damage * bulletsPerShot / firerateValue) * 1000 : 0;
-
-    // Update points per second display
-    const ppsElement = document.getElementById(`${weaponId}PPS-value`);
-    if (ppsElement) {
-        ppsElement.textContent = formatNumber(pointsPerSecond);
-    }
-
-    // Update damage per second display
-    const dpsElement = document.getElementById(`${weaponId}DPS-value`);
-    if (dpsElement) {
-        dpsElement.textContent = formatNumber(damagePerSecond);
-    }
-}
-
 // Function to auto-save the game state every 60 seconds
 function autoSave() {
     setInterval(function() {
@@ -1057,7 +986,6 @@ function resetProgress() {
         updatePointsDisplay();
         updateAchievements();
         updateStatistics();
-        updateSelectedWeaponsDisplay();
         saveGameState();
         // Add any other interface updates here
     }

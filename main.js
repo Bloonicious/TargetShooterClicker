@@ -146,15 +146,15 @@ function saveGameState() {
         achieved: achievement.achieved
     }));
     var gameState = {
-        achievements: achievementsData,
-        statistics: statistics,
-        points: points,
         weaponData: weapons.map(weapon => ({
             id: weapon.id,
             purchased: weapon.purchased,
             cost: weapon.cost,
             stats: weapon.stats
         })),
+        achievements: achievementsData,
+        statistics: statistics,
+        points: points,
         
         touchGunCost: touchGunCost,
         touchGunPointsPerClick: touchGunPointsPerClick,
@@ -370,8 +370,6 @@ function saveGameState() {
     var gameStateJSON = JSON.stringify(gameState);
 
     localStorage.setItem('gameState', gameStateJSON);
-    localStorage.setItem('weapons', JSON.stringify(weapons));
-    localStorage.setItem('selectedWeapons', JSON.stringify(selectedWeapons));
 }
 
 // Function to load the game state from local storage
@@ -397,17 +395,19 @@ function loadGameState() {
             weapons = [];
         }
 
-        // Load weapon data
-        savedState.weaponData.forEach(savedWeapon => {
-            const weaponId = savedWeapon.id;
-            const weaponIndex = weapons.findIndex(w => w.id === weaponId);
-            if (weaponIndex !== -1) {
-                const weapon = weapons[weaponIndex];
-                if (weapon) {
-                    Object.assign(weapon, savedWeapon);
+        // Load weapon data if it exists
+        if (Array.isArray(savedState.weaponData)) {
+            savedState.weaponData.forEach(savedWeapon => {
+                const weaponId = savedWeapon.id;
+                const weaponIndex = weapons.findIndex(w => w.id === weaponId);
+                if (weaponIndex !== -1) {
+                    const weapon = weapons[weaponIndex];
+                    if (weapon) {
+                        Object.assign(weapon, savedWeapon);
+                    }
                 }
-            }
-        });
+            });
+        }
 
         // Iterate over each weapon object to update the display and properties
         Object.entries(weapons).forEach(([weaponId, weapon]) => {

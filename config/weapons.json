@@ -77,10 +77,10 @@
       "purchased": false,
       "cost": 400000,
       "stats": {
-        "pointsPerShot": 1000,
+        "pointsPerShot": 1250,
         "fireRate": 5000,
         "hp": 60,
-        "damage": 500,
+        "damage": 625,
         "range": 9,
         "accuracy": 100,
         "bulletsPerShot": 1,
@@ -108,10 +108,10 @@
       "purchased": false,
       "cost": 30000000,
       "stats": {
-        "pointsPerShot": 4000,
+        "pointsPerShot": 6000,
         "fireRate": 2000,
         "hp": 250,
-        "damage": 2000,
+        "damage": 3000,
         "range": 4,
         "accuracy": 100,
         "bulletsPerShot": 2
@@ -122,10 +122,10 @@
       "purchased": false,
       "cost": 175000000,
       "stats": {
-        "pointsPerShot": 3000,
+        "pointsPerShot": 4500,
         "fireRate": 75,
         "hp": 300,
-        "damage": 1500,
+        "damage": 2250,
         "range": 4,
         "accuracy": 100,
         "bulletsPerShot": 1
@@ -136,10 +136,10 @@
       "purchased": false,
       "cost": 1250000000,
       "stats": {
-        "pointsPerShot": 180000,
+        "pointsPerShot": 250000,
         "fireRate": 3000,
         "hp": 200,
-        "damage": 90000,
+        "damage": 125000,
         "range": 10,
         "accuracy": 100,
         "bulletsPerShot": 1,

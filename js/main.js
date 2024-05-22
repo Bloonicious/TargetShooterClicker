@@ -146,9 +146,16 @@ function saveGameState() {
         achieved: achievement.achieved
     }));
     // Save weapon data
-    const weaponData = weapons;
+    const savedWeapons = {};
+    Object.entries(weapons).forEach(([weaponId, weapon]) => {
+        savedWeapons[weaponId] = {
+            purchased: weapon.purchased,
+            cost: weapon.cost,
+            stats: weapon.stats
+        };
+    });
     var gameState = {
-        weapons: weapons,
+        weapons: savedWeapons,
         achievements: achievementsData,
         statistics: statistics,
         points: points,
@@ -414,7 +421,7 @@ function loadGameState() {
                 }
 
                 // Update the weapon stats display
-                updateWeaponDisplays(weaponId, weapon);
+                updateWeaponStatsDisplay(weaponId, weapon);
             }
         });
         

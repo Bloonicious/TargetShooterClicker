@@ -757,6 +757,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Function to reset game progress
 function resetProgress() {
+    const savedState = JSON.parse(localStorage.getItem('gameState'));
     // Prompt confirmation before resetting progress
     var confirmation = confirm("Are you sure you want to clear your whole progression? NOTE: this cannot be reversed!");
     
@@ -782,7 +783,7 @@ function resetProgress() {
             totalSplashDamageUpgrades: 0
         };
         selectedWeapons = {};
-        for (const weaponId in weapons) {
+        for (const weaponId in savedState.weapons) {
             if (weapons[weaponId]) {
                 // Update weapon properties from saved data
                 weapons[weaponId].purchased = savedState.weapons[weaponId].purchased;

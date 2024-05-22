@@ -145,19 +145,16 @@ function saveGameState() {
         description: achievement.description,
         achieved: achievement.achieved
     }));
-    if (Array.isArray(weapons)) {
-        weaponData = weapons.map(weapon => ({
-            id: weapon.id,
-            purchased: weapon.purchased,
-            cost: weapon.cost,
-            stats: weapon.stats
-        }));
-    }
     var gameState = {
         achievements: achievementsData,
         statistics: statistics,
         points: points,
-        weapons: weaponData,
+        weaponData: weapons.map(weapon => ({
+            id: weapon.id,
+            purchased: weapon.purchased,
+            cost: weapon.cost,
+            stats: weapon.stats
+        })),
         
         touchGunCost: touchGunCost,
         touchGunPointsPerClick: touchGunPointsPerClick,
@@ -284,6 +281,9 @@ function saveGameState() {
         uziBulletOverloadBought: upgrades.uzi.bulletOverload.bought,
         uziBulletDrizzleBought: upgrades.uzi.bulletDrizzle.bought,
         uziAlwaysHittingBought: upgrades.uzi.alwaysHitting.bought,
+        uziCantDodgeThisBought: upgrades.uzi.cantDodgeThis.bought,
+        uziBulletFletcherBought: upgrades.uzi.bulletFletcher.bought,
+        uziEasyToUseBought: upgrades.uzi.easyToUse.bought,
 
         huntingRiflePowerfulHunterBought: upgrades.huntingRifle.powerfulHunter.bought,
         huntingRifleHeadHunterBought: upgrades.huntingRifle.headHunter.bought,
@@ -292,6 +292,9 @@ function saveGameState() {
         huntingRifleTargetHunterBought: upgrades.huntingRifle.targetHunter.bought,
         huntingRifleLongTracersBought: upgrades.huntingRifle.longTracers.bought,
         huntingRifleTitanicTracersBought: upgrades.huntingRifle.titanicTracers.bought,
+        huntingRifleBeastHunterBought: upgrades.huntingRifle.beastHunter.bought,
+        huntingRifleMarkedTracersBought: upgrades.huntingRifle.markedTracers.bought,
+        huntingRifleMasterHuntingBought: upgrades.huntingRifle.masterHunting.bought,
         
         pistolFirerateUpgradeCost: pistolFirerateUpgradeCost,
         pistolPotencyUpgradeCost: pistolPotencyUpgradeCost,
@@ -390,63 +393,43 @@ function loadGameState() {
             updateStatisticsDisplay();
         }
 
-        // Load weapons
-        weaponData.forEach(savedWeapon => {
+        if (!Array.isArray(weapons)) {
+            weapons = [];
+        }
+
+        // Load weapon data
+        savedState.weaponData.forEach(savedWeapon => {
             const weaponId = savedWeapon.id;
             const weaponIndex = weapons.findIndex(w => w.id === weaponId);
             if (weaponIndex !== -1) {
                 const weapon = weapons[weaponIndex];
                 if (weapon) {
                     Object.assign(weapon, savedWeapon);
-                    updateWeaponStatsDisplay(weaponId, weapon);
                 }
             }
         });
 
-        // Update weapon properties from saved data
-        weaponData.forEach(savedWeapon => {
-            const weaponId = savedWeapon.id;
-            const weaponIndex = weapons.findIndex(w => w.id === weaponId);
-            if (weaponIndex !== -1) {
-                const weapon = weapons[weaponIndex];
-                if (weapon) {
-                    weapon.purchased = savedWeapon.purchased;
-                    // Include other weapon properties to update as needed
+        // Iterate over each weapon object to update the display and properties
+        Object.entries(weapons).forEach(([weaponId, weapon]) => {
+            if (weapon.purchased) {
+                // Hide the purchase button for the corresponding weapon
+                const purchaseButton = document.getElementById(`${weapon.id}-purchase`);
+                if (purchaseButton) {
+                    purchaseButton.style.display = 'none';
                 }
+
+                // Update cost display
+                const costElement = document.getElementById(`${weapon.id}-cost`);
+                if (costElement) {
+                    costElement.textContent = formatNumber(weapon.cost);
+                }
+
+                // Update the weapon stats display
+                updateWeaponStatsDisplay(weaponId, weapon);
             }
         });
 
         points = savedState.points;
-        // Loop through each weapon in the saved state
-        for (const weaponId in savedState.weapons) {
-            if (savedState.weapons.hasOwnProperty(weaponId)) {
-                const savedWeapon = savedState.weapons[weaponId];
-                const weapon = weapons.find(w => w.id === weaponId);
-
-                if (weapon) {
-                    // Update basic properties
-                    weapon.purchased = savedWeapon.purchased;
-                    // Update other properties as needed
-
-                    // Update upgrades
-                    const upgrades = savedWeapon.upgrades || {};
-                    for (const upgradeName in upgrades) {
-                        if (upgrades.hasOwnProperty(upgradeName)) {
-                            weapon.upgrades[upgradeName].bought = upgrades[upgradeName].bought;
-                            // Update other upgrade properties as needed
-                        }
-                    }
-
-                    // Update display
-                    updateWeaponStatsDisplay(weaponId, weapon);
-                } else {
-                    console.error(`Weapon ${weaponId} not found in the initialized weapons.`);
-                }
-            }
-        }
-        if (!Array.isArray(weapons)) {
-            weapons = [];
-        }
         
         touchGunCost = savedState.touchGunCost,
         touchGunPointsPerClick = savedState.touchGunPointsPerClick;
@@ -572,6 +555,9 @@ function loadGameState() {
         upgrades.uzi.bulletOverload.bought = savedState.uziBulletOverloadBought;
         upgrades.uzi.bulletDrizzle.bought = savedState.uziBulletDrizzleBought;
         upgrades.uzi.alwaysHitting.bought = savedState.uziAlwaysHittingBought;
+        upgrades.uzi.cantDodgeThis.bought = savedState.uziCantDodgeThisBought;
+        upgrades.uzi.bulletFletcher.bought = savedState.uziBulletFletcherBought;
+        upgrades.uzi.easyToUse.bought = savedState.uziEasyToUseBought;
 
         upgrades.huntingRifle.powerfulHunter.bought = savedState.huntingRiflePowerfulHunterBought;
         upgrades.huntingRifle.headHunter.bought = savedState.huntingRifleHeadHunterBought;
@@ -580,6 +566,9 @@ function loadGameState() {
         upgrades.huntingRifle.targetHunter.bought = savedState.huntingRifleTargetHunterBought;
         upgrades.huntingRifle.longTracers.bought = savedState.huntingRifleLongTracersBought;
         upgrades.huntingRifle.titanicTracers.bought = savedState.huntingRifleTitanicTracersBought;
+        upgrades.huntingRifle.beastHunter.bought = savedState.huntingRifleBeastHunterBought;
+        upgrades.huntingRifle.markedTracers.bought = savedState.huntingRifleMarkedTracersBought;
+        upgrades.huntingRifle.masterHunting.bought = savedState.huntingRifleMasterHuntingBought;
         
         pistolFirerateUpgradeCost = savedState.pistolFirerateUpgradeCost;
         pistolPotencyUpgradeCost = savedState.pistolPotencyUpgradeCost;
@@ -661,27 +650,6 @@ function loadGameState() {
         // Update achievements and statistics display
         updateAchievements();
         updateStatistics();
-
-        // Iterate over each weapon object
-        Object.entries(weapons).forEach(([weaponId, weapon]) => {
-            // Check if the weapon is purchased
-            if (weapon.purchased) {
-                // Hide the purchase button for the corresponding weapon
-                const purchaseButton = document.getElementById(`${weaponId}-purchase`);
-                if (purchaseButton) {
-                    purchaseButton.style.display = 'none';
-                }
-
-                // Update cost display
-                const costElement = document.getElementById(`${weaponId}-cost`);
-                if (costElement) {
-                    costElement.textContent = formatNumber(weapon.cost);
-                }
-
-                // Update the weapon stats display
-                updateWeaponStatsDisplay(weaponId, weapon);
-            }
-        });
     }
 }
 
@@ -1009,6 +977,9 @@ function resetProgress() {
         upgrades.uzi.bulletOverload.bought = false;
         upgrades.uzi.bulletDrizzle.bought = false;
         upgrades.uzi.alwaysHitting.bought = false;
+        upgrades.uzi.cantDodgeThis.bought = false;
+        upgrades.uzi.bulletFletcher.bought = false;
+        upgrades.uzi.easyToUse.bought = false;
 
         upgrades.huntingRifle.powerfulHunter.bought = false;
         upgrades.huntingRifle.headHunter.bought = false;
@@ -1017,6 +988,9 @@ function resetProgress() {
         upgrades.huntingRifle.targetHunter.bought = false;
         upgrades.huntingRifle.longTracers.bought = false;
         upgrades.huntingRifle.titanicTracers.bought = false;
+        upgrades.huntingRifle.beastHunter.bought = false;
+        upgrades.huntingRifle.markedTracers.bought = false;
+        upgrades.huntingRifle.masterHunting.bought = false;
         
         pistolFirerateUpgradeCost = 50;
         pistolPotencyUpgradeCost = 100;

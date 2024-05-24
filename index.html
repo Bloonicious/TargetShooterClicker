@@ -91,7 +91,11 @@
                        ‾‾‾
                     </pre>
                     <!-- Purchase buttons and level displays for Pistol -->
-                    <button id="pistol-purchase" onclick="purchase('pistol')">Purchase Pistol (Cost: <span id="pistol-cost">10</span>)</button><button onclick="purchase('pistolFirerate')">Improve Pistol's Firerate (Cost: <span id="pistolFirerate-cost">50</span>)</button><button onclick="purchase('pistolPotency')">Improve Pistol's Potency (Cost: <span id="pistolPotency-cost">100</span>)</button>
+                    <div class="button-row">
+                        <button id="pistol-purchase" onclick="purchase('pistol')">Purchase Pistol (Cost: <span id="pistol-cost">10</span>)</button>
+                        <button onclick="purchase('pistolFirerate')">Improve Pistol's Firerate (Cost: <span id="pistolFirerate-cost">50</span>)</button>
+                        <button onclick="purchase('pistolPotency')">Improve Pistol's Potency (Cost: <span id="pistolPotency-cost">100</span>)</button>
+                    </div>
                     <!-- Level displays for Pistol Firerate and Potency -->
                     <p id="pistol-firerate-display">Pistol Firerate Level: <span id="pistolFirerate-level">0</span> (<span id="pistolFirerate-value">1,000</span>)</p>
                     <p id="pistol-potency-display">Pistol Potency Level: <span id="pistolPotency-level">0</span> (<span id="pistolPotency-value">1</span> points)</p>
@@ -120,7 +124,11 @@
                        ‾‾‾
                     </pre>
                     <!-- Purchase button and upgrades for SMG -->
-                    <button id="smg-purchase" onclick="purchase('smg')">Purchase SMG (Cost: <span id="smg-cost">100</span>)</button><button onclick="purchase('smgFirerate')">Improve SMG's Firerate (Cost: <span id="smgFirerate-cost">600</span>)</button><button onclick="purchase('smgPotency')">Improve SMG's Potency (Cost: <span id="smgPotency-cost">1200</span>)</button>
+                    <div class="button-row">
+                        <button id="smg-purchase" onclick="purchase('smg')">Purchase SMG (Cost: <span id="smg-cost">100</span>)</button>
+                        <button onclick="purchase('smgFirerate')">Improve SMG's Firerate (Cost: <span id="smgFirerate-cost">600</span>)</button>
+                        <button onclick="purchase('smgPotency')">Improve SMG's Potency (Cost: <span id="smgPotency-cost">1200</span>)</button>
+                    </div>
                     <!-- Level displays for SMG Firerate and Potency -->
                     <p id="smg-firerate-display">SMG Firerate Level: <span id="smgFirerate-level">0</span> (<span id="smgFirerate-value">200</span>)</p>
                     <p id="smg-potency-display">SMG Potency Level: <span id="smgPotency-level">0</span> (<span id="smgPotency-value">1</span> points)</p>
@@ -147,7 +155,12 @@
                        ‾‾‾
                     </pre>
                     <!-- Purchase button and upgrades for Shotgun -->
-                    <button id="shotgun-purchase" onclick="purchase('shotgun')">Purchase Shotgun (Cost: <span id="shotgun-cost">500</span>)</button><button onclick="purchase('shotgunFirerate')">Improve Shotgun's Firerate (Cost: <span id="shotgunFirerate-cost">5000</span>)</button><button onclick="purchase('shotgunPotency')">Improve Shotgun's Potency (Cost: <span id="shotgunPotency-cost">10000</span>)</button><button onclick="purchase('shotgunMultiFire')">Improve Shotgun's Multi-Fire (Cost: <span id="shotgunMultiFire-cost">25000</span>)</button>
+                    <div class="button-row">
+                        <button id="shotgun-purchase" onclick="purchase('shotgun')">Purchase Shotgun (Cost: <span id="shotgun-cost">500</span>)</button>
+                        <button onclick="purchase('shotgunFirerate')">Improve Shotgun's Firerate (Cost: <span id="shotgunFirerate-cost">5000</span>)</button>
+                        <button onclick="purchase('shotgunPotency')">Improve Shotgun's Potency (Cost: <span id="shotgunPotency-cost">10000</span>)</button>
+                        <button onclick="purchase('shotgunMultiFire')">Improve Shotgun's Multi-Fire (Cost: <span id="shotgunMultiFire-cost">25000</span>)</button>
+                    </div>
                     <!-- Level displays for Shotgun Firerate, Potency, and Multi-Fire -->
                     <p id="shotgun-firerate-display">Shotgun Firerate Level: <span id="shotgunFirerate-level">0</span> (<span id="shotgunFirerate-value">1,500</span>)</p>
                     <p id="shotgun-potency-display">Shotgun Potency Level: <span id="shotgunPotency-level">0</span> (<span id="shotgunPotency-value">4</span> points)</p>
@@ -176,7 +189,13 @@
                        ‾‾‾
                     </pre>
                     <!-- Purchase button and upgrades for Sniper Rifle -->
-                    <button id="sniperRifle-purchase" onclick="purchase('sniperRifle')">Purchase Sniper Rifle (Cost: <span id="sniperRifle-cost">7500</span>)</button><button id="sniper-firerate-purchase" onclick="purchase('sniperRifleFirerate')">Improve Sniper Rifle's Firerate (Cost: <span id="sniperRifleFirerate-cost">37500</span>)</button><button id="sniper-potency-purchase" onclick="purchase('sniperRiflePotency')">Improve Sniper Rifle's Potency (Cost: <span id="sniperRiflePotency-cost">75000</span>)</button><button id="critical-shot-purchase" onclick="purchase('sniperRifleCriticalShot')">Upgrade Critical Shot Chance (Cost: <span id="sniperRifleCriticalShot-cost">75000</span>)</button><button id="critical-damage-purchase" onclick="purchase('sniperRifleCriticalDamage')">Upgrade Critical Damage (Cost: <span id="sniperRifleCriticalDamage-cost">250000</span>)</button>
+                    <div class="button-row">
+                        <button id="sniperRifle-purchase" onclick="purchase('sniperRifle')">Purchase Sniper Rifle (Cost: <span id="sniperRifle-cost">7500</span>)</button>
+                        <button id="sniper-firerate-purchase" onclick="purchase('sniperRifleFirerate')">Improve Sniper Rifle's Firerate (Cost: <span id="sniperRifleFirerate-cost">37500</span>)</button>
+                        <button id="sniper-potency-purchase" onclick="purchase('sniperRiflePotency')">Improve Sniper Rifle's Potency (Cost: <span id="sniperRiflePotency-cost">75000</span>)</button>
+                        <button id="critical-shot-purchase" onclick="purchase('sniperRifleCriticalShot')">Upgrade Critical Shot Chance (Cost: <span id="sniperRifleCriticalShot-cost">75000</span>)</button>
+                        <button id="critical-damage-purchase" onclick="purchase('sniperRifleCriticalDamage')">Upgrade Critical Damage (Cost: <span id="sniperRifleCriticalDamage-cost">250000</span>)</button>
+                    </div>
                     <!-- Level displays for Sniper Rifle Firerate, Potency, Critical Shot Chance, and Critical Damage -->
                     <p id="sniper-rifle-firerate-display">Sniper Rifle Firerate Level: <span id="sniperRifleFirerate-level">0</span> (<span id="sniperRifleFirerate-value">4,000</span>)</p>
                     <p id="sniper-rifle-potency-display">Sniper Rifle Potency Level: <span id="sniperRiflePotency-level">0</span> (<span id="sniperRiflePotency-value">120</span> points)</p>
@@ -207,7 +226,11 @@
                        ‾‾‾
                     </pre>
                     <!-- Purchase button and upgrades for AK-47 -->
-                    <button id="ak47-purchase" onclick="purchase('ak47')">Purchase AK-47 (Cost: <span id="ak47-cost">60000</span>)</button><button onclick="purchase('ak47Firerate')">Improve AK-47's Firerate (Cost: <span id="ak47Firerate-cost">175000</span>)</button><button onclick="purchase('ak47Potency')">Improve AK-47's Potency (Cost: <span id="ak47Potency-cost">250000</span>)</button>
+                    <div class="button-row">
+                        <button id="ak47-purchase" onclick="purchase('ak47')">Purchase AK-47 (Cost: <span id="ak47-cost">60000</span>)</button>
+                        <button onclick="purchase('ak47Firerate')">Improve AK-47's Firerate (Cost: <span id="ak47Firerate-cost">175000</span>)</button>
+                        <button onclick="purchase('ak47Potency')">Improve AK-47's Potency (Cost: <span id="ak47Potency-cost">250000</span>)</button>
+                    </div>
                     <!-- Level displays for AK-47 Firerate and Potency -->
                     <p id="ak47-firerate-display">AK-47 Firerate Level: <span id="ak47Firerate-level">0</span> (<span id="ak47Firerate-value">500</span>)</p>
                     <p id="ak47-potency-display">AK-47 Potency Level: <span id="ak47Potency-level">0</span> (<span id="ak47Potency-value">150</span> points)</p>
@@ -241,7 +264,13 @@
                        ‾‾‾
                    </pre>
                     <!-- Purchase button and upgrades for Rocket Launcher -->
-                    <button id="rocketLauncher-purchase" onclick="purchase('rocketLauncher')">Purchase Rocket Launcher (Cost: <span id="rocketLauncher-cost">400000</span>)</button><button onclick="purchase('rocketLauncherFirerate')">Improve Rocket Launcher's Firerate (Cost: <span id="rocketLauncherFirerate-cost">1000000</span>)</button><button onclick="purchase('rocketLauncherPotency')">Improve Rocket Launcher's Potency (Cost: <span id="rocketLauncherPotency-cost">750000</span>)</button><button onclick="purchase('rocketLauncherSplashRadius')">Increase Rocket Launcher's Splash Radius (Cost: <span id="rocketLauncherSplashRadius-cost">10000000</span>)</button><button onclick="purchase('rocketLauncherSplashDamage')">Increase Rocket Launcher's Splash Damage (Cost: <span id="rocketLauncherSplashDamage-cost">5000000</span>)</button>
+                    <div class="button-row">
+                        <button id="rocketLauncher-purchase" onclick="purchase('rocketLauncher')">Purchase Rocket Launcher (Cost: <span id="rocketLauncher-cost">400000</span>)</button>
+                        <button onclick="purchase('rocketLauncherFirerate')">Improve Rocket Launcher's Firerate (Cost: <span id="rocketLauncherFirerate-cost">1000000</span>)</button>
+                        <button onclick="purchase('rocketLauncherPotency')">Improve Rocket Launcher's Potency (Cost: <span id="rocketLauncherPotency-cost">750000</span>)</button>
+                        <button onclick="purchase('rocketLauncherSplashRadius')">Increase Rocket Launcher's Splash Radius (Cost: <span id="rocketLauncherSplashRadius-cost">10000000</span>)</button>
+                        <button onclick="purchase('rocketLauncherSplashDamage')">Increase Rocket Launcher's Splash Damage (Cost: <span id="rocketLauncherSplashDamage-cost">5000000</span>)</button>
+                    </div>
                     <!-- Level displays for Rocket Launcher upgrades -->
                     <p id="rocketLauncher-firerate-display">Rocket Launcher Firerate Level: <span id="rocketLauncherFirerate-level">0</span> (<span id="rocketLauncherFirerate-value">5000</span>)</p>
                     <p id="rocketLauncher-potency-display">Rocket Launcher Potency Level: <span id="rocketLauncherPotency-level">0</span> (<span id="rocketLauncherPotency-value">1500</span> points)</p>
@@ -277,7 +306,12 @@
                        ‾‾‾
                     </pre>
                     <!-- Purchase button and upgrades for Tommy Gun -->
-                    <button id="tommyGun-purchase" onclick="purchase('tommyGun')">Purchase Tommy Gun (Cost: <span id="tommyGun-cost">2500000</span>)</button><button onclick="purchase('tommyGunFirerate')">Improve Tommy Gun's Firerate (Cost: <span id="tommyGunFirerate-cost">15000000</span>)</button><button onclick="purchase('tommyGunPotency')">Improve Tommy Gun's Potency (Cost: <span id="tommyGunPotency-cost">10000000</span>)</button><button onclick="purchase('tommyGunAccuracy')">Improve Tommy Gun's Accuracy (Cost: <span id="tommyGunAccuracy-cost">20000000</span>)</button>
+                    <div class="button-row">
+                        <button id="tommyGun-purchase" onclick="purchase('tommyGun')">Purchase Tommy Gun (Cost: <span id="tommyGun-cost">2500000</span>)</button>
+                        <button onclick="purchase('tommyGunFirerate')">Improve Tommy Gun's Firerate (Cost: <span id="tommyGunFirerate-cost">15000000</span>)</button>
+                        <button onclick="purchase('tommyGunPotency')">Improve Tommy Gun's Potency (Cost: <span id="tommyGunPotency-cost">10000000</span>)</button>
+                        <button onclick="purchase('tommyGunAccuracy')">Improve Tommy Gun's Accuracy (Cost: <span id="tommyGunAccuracy-cost">20000000</span>)</button>
+                    </div>
                     <!-- Level displays for Tommy Gun upgrades -->
                     <p id="tommyGun-firerate-display">Tommy Gun Firerate Level: <span id="tommyGunFirerate-level">0</span> (<span id="tommyGunFirerate-value">150</span>)</p>
                     <p id="tommyGun-potency-display">Tommy Gun Potency Level: <span id="tommyGunPotency-level">0</span> (<span id="tommyGunPotency-value">600</span> points)</p>
@@ -305,7 +339,12 @@
                        ‾‾‾
                     </pre>
                     <!-- Purchase button and upgrades for Double-Barrel -->
-                    <button id="doubleBarrel-purchase" onclick="purchase('doubleBarrel')">Purchase Double-Barrel (Cost: <span id="doubleBarrel-cost">30000000</span>)</button><button onclick="purchase('doubleBarrelFirerate')">Improve Double-Barrel's Firerate (Cost: <span id="doubleBarrelFirerate-cost">80000000</span>)</button><button onclick="purchase('doubleBarrelPotency')">Improve Double-Barrel's Potency (Cost: <span id="doubleBarrelPotency-cost">60000000</span>)</button><button onclick="purchase('doubleBarrelMultiFire')">Improve Double-Barrel's Multi-Fire (Cost: <span id="doubleBarrelMultiFire-cost">150000000</span>)</button>
+                    <div class="button-row">
+                        <button id="doubleBarrel-purchase" onclick="purchase('doubleBarrel')">Purchase Double-Barrel (Cost: <span id="doubleBarrel-cost">30000000</span>)</button>
+                        <button onclick="purchase('doubleBarrelFirerate')">Improve Double-Barrel's Firerate (Cost: <span id="doubleBarrelFirerate-cost">80000000</span>)</button>
+                        <button onclick="purchase('doubleBarrelPotency')">Improve Double-Barrel's Potency (Cost: <span id="doubleBarrelPotency-cost">60000000</span>)</button>
+                        <button onclick="purchase('doubleBarrelMultiFire')">Improve Double-Barrel's Multi-Fire (Cost: <span id="doubleBarrelMultiFire-cost">150000000</span>)</button>
+                    </div>
                     <!-- Level displays for Double-Barrel Firerate, Potency, and Multi-Fire -->
                     <p id="doubleBarrel-firerate-display">Double-Barrel Firerate Level: <span id="doubleBarrelFirerate-level">0</span> (<span id="doubleBarrelFirerate-value">2000</span>)</p>
                     <p id="doubleBarrel-potency-display">Double-Barrel Potency Level: <span id="doubleBarrelPotency-level">0</span> (<span id="doubleBarrelPotency-value">4000</span> points)</p>
@@ -332,7 +371,11 @@
                        ‾‾‾
                     </pre>
                     <!-- Purchase button and upgrades for Uzi -->
-                    <button id="uzi-purchase" onclick="purchase('uzi')">Purchase Uzi (Cost: <span id="uzi-cost">175000000</span>)</button><button onclick="purchase('uziFirerate')">Improve Uzi's Firerate (Cost: <span id="uziFirerate-cost">1500000000</span>)</button><button onclick="purchase('uziPotency')">Improve Uzi's Potency (Cost: <span id="uziPotency-cost">1000000000</span>)</button>
+                    <div class="button-row">
+                        <button id="uzi-purchase" onclick="purchase('uzi')">Purchase Uzi (Cost: <span id="uzi-cost">175000000</span>)</button>
+                        <button onclick="purchase('uziFirerate')">Improve Uzi's Firerate (Cost: <span id="uziFirerate-cost">1500000000</span>)</button>
+                        <button onclick="purchase('uziPotency')">Improve Uzi's Potency (Cost: <span id="uziPotency-cost">1000000000</span>)</button>
+                    </div>
                     <!-- Level displays for Uzi Firerate and Potency -->
                     <p id="uzi-firerate-display">Uzi Firerate Level: <span id="uziFirerate-level">0</span> (<span id="uziFirerate-value">75</span>)</p>
                     <p id="uzi-potency-display">Uzi Potency Level: <span id="uziPotency-level">0</span> (<span id="uziPotency-value">3000</span> points)</p>
@@ -361,7 +404,13 @@
                        ‾‾‾
                     </pre>
                     <!-- Purchase button and upgrades for Hunting Rifle -->
-                    <button id="huntingRifle-purchase" onclick="purchase('huntingRifle')">Purchase Hunting Rifle (Cost: <span id="huntingRifle-cost">1250000000000</span>)</button><button id="hunting-rifle-firerate-purchase" onclick="purchase('huntingRifleFirerate')">Improve Hunting Rifle's Firerate (Cost: <span id="huntingRifleFirerate-cost">8000000000</span>)</button><button id="hunting-rifle-potency-purchase" onclick="purchase('huntingRiflePotency')">Improve Hunting Rifle's Potency (Cost: <span id="huntingRiflePotency-cost">6000000000</span>)</button><button id="hunting-rifle-critical-shot-purchase" onclick="purchase('huntingRifleCriticalShot')">Upgrade Critical Shot Chance (Cost: <span id="huntingRifleCriticalShot-cost">20000000000</span>)</button><button id="hunting-rifle-critical-damage-purchase" onclick="purchase('huntingRifleCriticalDamage')">Upgrade Critical Damage (Cost: <span id="huntingRifleCriticalDamage-cost">30000000000</span>)</button>
+                    <div class="button-row">
+                        <button id="huntingRifle-purchase" onclick="purchase('huntingRifle')">Purchase Hunting Rifle (Cost: <span id="huntingRifle-cost">1250000000000</span>)</button>
+                        <button id="hunting-rifle-firerate-purchase" onclick="purchase('huntingRifleFirerate')">Improve Hunting Rifle's Firerate (Cost: <span id="huntingRifleFirerate-cost">8000000000</span>)</button>
+                        <button id="hunting-rifle-potency-purchase" onclick="purchase('huntingRiflePotency')">Improve Hunting Rifle's Potency (Cost: <span id="huntingRiflePotency-cost">6000000000</span>)</button>
+                        <button id="hunting-rifle-critical-shot-purchase" onclick="purchase('huntingRifleCriticalShot')">Upgrade Critical Shot Chance (Cost: <span id="huntingRifleCriticalShot-cost">20000000000</span>)</button>
+                        <button id="hunting-rifle-critical-damage-purchase" onclick="purchase('huntingRifleCriticalDamage')">Upgrade Critical Damage (Cost: <span id="huntingRifleCriticalDamage-cost">30000000000</span>)</button>
+                    </div>
                     <!-- Level displays for Hunting Rifle Firerate, Potency, Critical Shot Chance, and Critical Damage -->
                     <p id="hunting-rifle-firerate-display">Hunting Rifle Firerate Level: <span id="huntingRifleFirerate-level">0</span> (<span id="huntingRifleFirerate-value">3000</span>)</p>
                     <p id="hunting-rifle-potency-display">Hunting Rifle Potency Level: <span id="huntingRiflePotency-level">0</span> (<span id="huntingRiflePotency-value">180000</span> points)</p>

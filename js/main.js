@@ -831,16 +831,12 @@ function resetProgress() {
         // Reset weapon variables and upgrades
         for (const weaponId in weapons) {
             weapons[weaponId].purchased = false;
-            weapons[weaponId].stats = {
-                pointsPerShot: weapons[weaponId].defaultStats.pointsPerShot,
-                fireRate: weapons[weaponId].defaultStats.fireRate,
-                hp: weapons[weaponId].defaultStats.hp,
-                damage: weapons[weaponId].defaultStats.damage,
-                range: weapons[weaponId].defaultStats.range,
-                accuracy: weapons[weaponId].defaultStats.accuracy,
-                bulletsPerShot: weapons[weaponId].defaultStats.bulletsPerShot
-            };
-            // Reset upgrades for each weapon
+            if (weaponInitialStats[weaponId]) {
+                weapons[weaponId].stats = { ...weaponInitialStats[weaponId] };
+            } else {
+                console.warn(`Initial stats for ${weaponId} are undefined.`);
+            }
+
             for (const upgrade in upgrades[weaponId]) {
                 upgrades[weaponId][upgrade].bought = false;
             }
@@ -857,135 +853,6 @@ function resetProgress() {
         superAwokenTouchGunLevel = 0;
 
         numberFormat = 'standard';
-
-        // Reset big upgrades
-        upgrades.touchGun.pointyFingers.bought = false;
-        upgrades.touchGun.ambidextrous.bought = false;
-        upgrades.touchGun.thousandFingers.bought = false;
-        upgrades.touchGun.antirestingCream.bought = false;
-        upgrades.touchGun.powerfulHands.bought = false;
-        upgrades.touchGun.awakenUpgrade.bought = false;
-        upgrades.touchGun.millionFingers.bought = false;
-        upgrades.touchGun.stingingTaps.bought = false;
-        upgrades.touchGun.gotToTap.bought = false;
-        upgrades.touchGun.fingerSwarm.bought = false;
-        upgrades.touchGun.billionFingers.bought = false;
-        upgrades.touchGun.needMore.bought = false;
-        upgrades.touchGun.fingerPistols.bought = false;
-        upgrades.touchGun.superAwakenUpgrade.bought = false;
-        upgrades.touchGun.trillionFingers.bought = false;
-        upgrades.touchGun.heavyFingers.bought = false;
-        upgrades.touchGun.magicHands.bought = false;
-        
-        upgrades.pistol.biggerBullets.bought = false;
-        upgrades.pistol.largerCalibre.bought = false;
-        upgrades.pistol.easierReloading.bought = false;
-        upgrades.pistol.louderFiring.bought = false;
-        upgrades.pistol.metalPiercing.bought = false;
-        upgrades.pistol.specializedMechanisms.bought = false;
-        upgrades.pistol.fineTuning.bought = false;
-        upgrades.pistol.versatileGunshots.bought = false;
-        upgrades.pistol.empowered.bought = false;
-        upgrades.pistol.oneHitBullets.bought = false;
-        
-        upgrades.smg.betterSpread.bought = false;
-        upgrades.smg.strongHold.bought = false;
-        upgrades.smg.pressureBullets.bought = false;
-        upgrades.smg.wickedAimer.bought = false;
-        upgrades.smg.bashingRounds.bought = false;
-        upgrades.smg.autoAimer.bought = false;
-        upgrades.smg.lightweight.bought = false;
-        upgrades.smg.metalPassers.bought = false;
-        upgrades.smg.inescapableBarrage.bought = false;
-        upgrades.smg.neverMissBarrage.bought = false;
-        
-        upgrades.shotgun.moreBarrels.bought = false;
-        upgrades.shotgun.powerfulBurst.bought = false;
-        upgrades.shotgun.devastatingBurst.bought = false;
-        upgrades.shotgun.megaBurst.bought = false;
-        upgrades.shotgun.scattershot.bought = false;
-        upgrades.shotgun.gigaBurst.bought = false;
-        upgrades.shotgun.omegaBurst.bought = false;
-        upgrades.shotgun.teraBurst.bought = false;
-        upgrades.shotgun.ultimatumBurst.bought = false;
-        upgrades.shotgun.buckshot.bought = false;
-        
-        upgrades.sniperRifle.deadlyPrecision.bought = false;
-        upgrades.sniperRifle.cripplingShots.bought = false;
-        upgrades.sniperRifle.headShot.bought = false;
-        upgrades.sniperRifle.dangerousRifling.bought = false;
-        upgrades.sniperRifle.luckyShot.bought = false;
-        upgrades.sniperRifle.enhancedTracers.bought = false;
-        upgrades.sniperRifle.infraredScope.bought = false;
-        upgrades.sniperRifle.electroshockTracers.bought = false;
-        upgrades.sniperRifle.lethalTracers.bought = false;
-        upgrades.sniperRifle.heatseekingSensors.bought = false;
-        
-        upgrades.ak47.heatTippedBullets.bought = false;
-        upgrades.ak47.staggeringBullets.bought = false;
-        upgrades.ak47.rippingBullets.bought = false;
-        upgrades.ak47.vehementBullets.bought = false;
-        upgrades.ak47.overbearingVelocity.bought = false;
-        upgrades.ak47.poweredVelocity.bought = false;
-        upgrades.ak47.instantaneousVelocity.bought = false;
-        upgrades.ak47.spikyBullets.bought = false;
-        upgrades.ak47.ferociousBullets.bought = false;
-        upgrades.ak47.unfathomablePressure.bought = false;
-
-        upgrades.rocketLauncher.potentRockets.bought = false;
-        upgrades.rocketLauncher.violentExplosions.bought = false;
-        upgrades.rocketLauncher.repeatedExplosions.bought = false;
-        upgrades.rocketLauncher.biggerExplosions.bought = false;
-        upgrades.rocketLauncher.extraGunpowder.bought = false;
-        upgrades.rocketLauncher.shatteringExplosions.bought = false;
-        upgrades.rocketLauncher.napalmRockets.bought = false;
-        upgrades.rocketLauncher.impulsiveExplosions.bought = false;
-        upgrades.rocketLauncher.rampantTips.bought = false;
-        upgrades.rocketLauncher.kamikaze.bought = false;
-
-        upgrades.tommyGun.preciseAccuracy.bought = false;
-        upgrades.tommyGun.tightPressure.bought = false;
-        upgrades.tommyGun.lessPunishing.bought = false;
-        upgrades.tommyGun.powerfulOutcomes.bought = false;
-        upgrades.tommyGun.vehementBurst.bought = false;
-        upgrades.tommyGun.theVector.bought = false;
-        upgrades.tommyGun.dangerZone.bought = false;
-        upgrades.tommyGun.dischargedRippers.bought = false;
-        upgrades.tommyGun.unstoppableBarrage.bought = false;
-        upgrades.tommyGun.unavoidable.bought = false;
-
-        upgrades.doubleBarrel.lethalShots.bought = false;
-        upgrades.doubleBarrel.arcSwitchingBarrels.bought = false;
-        upgrades.doubleBarrel.doubleTrouble.bought = false;
-        upgrades.doubleBarrel.energized.bought = false;
-        upgrades.doubleBarrel.doubleSwarm.bought = false;
-        upgrades.doubleBarrel.clumpedShots.bought = false;
-        upgrades.doubleBarrel.tightShots.bought = false;
-        upgrades.doubleBarrel.heavyForce.bought = false;
-        upgrades.doubleBarrel.unbearableForce.bought = false;
-        upgrades.doubleBarrel.doubleYeah.bought = false;
-
-        upgrades.uzi.focussedSpread.bought = false;
-        upgrades.uzi.quickfiringSalvo.bought = false;
-        upgrades.uzi.tinyRippers.bought = false;
-        upgrades.uzi.circuitousSpread.bought = false;
-        upgrades.uzi.bulletOverload.bought = false;
-        upgrades.uzi.bulletDrizzle.bought = false;
-        upgrades.uzi.alwaysHitting.bought = false;
-        upgrades.uzi.cantDodgeThis.bought = false;
-        upgrades.uzi.bulletFletcher.bought = false;
-        upgrades.uzi.easyToUse.bought = false;
-
-        upgrades.huntingRifle.powerfulHunter.bought = false;
-        upgrades.huntingRifle.headHunter.bought = false;
-        upgrades.huntingRifle.noEscape.bought = false;
-        upgrades.huntingRifle.criminalHunter.bought = false;
-        upgrades.huntingRifle.targetHunter.bought = false;
-        upgrades.huntingRifle.longTracers.bought = false;
-        upgrades.huntingRifle.titanicTracers.bought = false;
-        upgrades.huntingRifle.beastHunter.bought = false;
-        upgrades.huntingRifle.markedTracers.bought = false;
-        upgrades.huntingRifle.masterHunting.bought = false;
         
         pistolFirerateUpgradeCost = 50;
         pistolPotencyUpgradeCost = 100;
@@ -1055,13 +922,13 @@ function resetProgress() {
         huntingRifleCriticalShotLevel = 0;
         huntingRifleCriticalDamageLevel = 0;
 
-        // Update UI
+        resetPrestigeLevel();
+
         document.getElementById('prestige-level').textContent = prestigeLevels[0].name;
         document.getElementById('multiplier').textContent = 'x' + prestigeLevels[0].multiplier;
         document.getElementById('next-prestige-cost').textContent = formatNumber(prestigeLevels[1].cost);
         document.getElementById('prestige-button').textContent = "Prestige to " + prestigeLevels[1].name;
 
-        // Update points display
         document.getElementById('score-value-main').textContent = formatNumber(points);
         document.getElementById('score-value-upgrades').textContent = formatNumber(points);
 
@@ -1072,6 +939,10 @@ function resetProgress() {
         saveGameState();
         // Add any other interface updates here
     }
+}
+
+function resetPrestigeLevel() {
+    localStorage.setItem('prestigeLevel', 0);
 }
 
 // Call the saveGameState function whenever the game state changes

@@ -313,6 +313,7 @@ let statistics = {
 };
 
 let prestigeLevels = [
+    { name: "None", cost: 0, multiplier: 1 },
     { name: "Bronze", cost: 1e9, multiplier: 2 },
     { name: "Silver", cost: 1e11, multiplier: 4 },
     { name: "Gold", cost: 1e13, multiplier: 8 },

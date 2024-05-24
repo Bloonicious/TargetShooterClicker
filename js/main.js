@@ -311,6 +311,8 @@ function saveGameState() {
         touchGunFingerPistolsBought: upgrades.touchGun.fingerPistols.bought,
         touchGunSuperAwakenBought: upgrades.touchGun.superAwakenUpgrade.bought,
         touchGunTrillionFingersBought: upgrades.touchGun.trillionFingers.bought,
+        touchGunHeavyFingersBought: upgrades.touchGun.heavyFingers.bought,
+        touchGunMagicHandsBought: upgrades.touchGun.magicHands.bought,
         
         pistolBiggerBulletsBought: upgrades.pistol.biggerBullets.bought,
         pistolLargerCalibreBought: upgrades.pistol.largerCalibre.bought,
@@ -562,6 +564,8 @@ function loadGameState() {
         upgrades.touchGun.fingerPistols.bought = savedState.touchGunFingerPistolsBought;
         upgrades.touchGun.superAwakenUpgrade.bought = savedState.touchGunSuperAwakenBought;
         upgrades.touchGun.trillionFingers.bought = savedState.touchGunTrillionFingersBought;
+        upgrades.touchGun.heavyFingers.bought = savedState.touchGunHeavyFingersBought;
+        upgrades.touchGun.magicHands.bought = savedState.touchGunMagicHandsBought;
         
         upgrades.pistol.biggerBullets.bought = savedState.pistolBiggerBulletsBought;
         upgrades.pistol.largerCalibre.bought = savedState.pistolLargerCalibreBought;
@@ -870,6 +874,8 @@ function resetProgress() {
         upgrades.touchGun.fingerPistols.bought = false;
         upgrades.touchGun.superAwakenUpgrade.bought = false;
         upgrades.touchGun.trillionFingers.bought = false;
+        upgrades.touchGun.heavyFingers.bought = false;
+        upgrades.touchGun.magicHands.bought = false;
         
         upgrades.pistol.biggerBullets.bought = false;
         upgrades.pistol.largerCalibre.bought = false;

@@ -1390,8 +1390,8 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 touchGunCost = cost;
                 touchGunLevel = level;
                 // Get the current prestige level
-                let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
-                let prestigeMultiplier = prestigeLevels[currentPrestigeLevel].multiplier;
+                const currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
+                const prestigeMultiplier = prestigeLevels[currentPrestigeLevel].multiplier;
 
                 // Adjust valueIncrement based on prestige multiplier
                 valueIncrement *= prestigeMultiplier;
@@ -1437,8 +1437,8 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 awokenTouchGunCost = cost;
                 awokenTouchGunLevel = level;
                 // Get the current prestige level
-                let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
-                let prestigeMultiplier = prestigeLevels[currentPrestigeLevel].multiplier;
+                const currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
+                const prestigeMultiplier = prestigeLevels[currentPrestigeLevel].multiplier;
 
                 // Adjust valueIncrement based on prestige multiplier
                 valueIncrement *= prestigeMultiplier;
@@ -1484,8 +1484,8 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 superAwokenTouchGunCost = cost;
                 superAwokenTouchGunLevel = level;
                 // Get the current prestige level
-                let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
-                let prestigeMultiplier = prestigeLevels[currentPrestigeLevel].multiplier;
+                const currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
+                const prestigeMultiplier = prestigeLevels[currentPrestigeLevel].multiplier;
 
                 // Adjust valueIncrement based on prestige multiplier
                 valueIncrement *= prestigeMultiplier;
@@ -3053,7 +3053,7 @@ function initializeUpgradeCosts() {
     }
 
     // Initialize prestige level and multiplier
-    let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
+    const currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
     if (currentPrestigeLevel < prestigeLevels.length) {
         document.getElementById('prestige-level').textContent = prestigeLevels[currentPrestigeLevel].name;
         document.getElementById('multiplier').textContent = 'x' + prestigeLevels[currentPrestigeLevel].multiplier;

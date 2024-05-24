@@ -668,6 +668,8 @@ function resetProgress() {
     
     if (confirmation) {
         localStorage.removeItem('gameState');
+        localStorage.removeItem('weapons');
+        localStorage.removeItem('enemies');
         // Reset all variables to their default values
         points = 0;
         gameplayPoints = 0;
@@ -711,11 +713,8 @@ function resetProgress() {
 
         numberFormat = 'standard';
 
-        // Array of weapon IDs
-        const weaponIds = ['pistol', 'smg', 'shotgun', 'sniperRifle', 'ak47', 'rocketLauncher', 'tommyGun', 'doubleBarrel', 'uzi', 'huntingRifle'];
-
         // Iterate over each weapon ID
-        weaponIds.forEach(weaponId => {
+        weapons.forEach(weaponId => {
             // Make the purchase button visible for the corresponding weapon
             document.getElementById(`${weaponId}-purchase`).style.display = 'block';
         });

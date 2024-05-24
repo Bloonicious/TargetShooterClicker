@@ -258,8 +258,7 @@ let huntingRifleCriticalShotLevel = 0;
 let huntingRifleCriticalDamageLevel = 0;
 
 let points = 0;
-let gameplayPoints = 0;
-let earnedPoints = 0;
+let totalPointsEarned = 0;
 
 let numberFormat = 'standard'; // Default number format
 
@@ -1179,6 +1178,7 @@ function earnPoints() {
     let pointsPerShot = touchGunPointsPerClick;
     shoot('touchGun', pointsPerShot, false, false);
     updatePointsDisplay();
+    updateLifetimePointsDisplay();
 }
 
 // Function for automatic points generation based on weapon fire rates
@@ -1383,7 +1383,6 @@ function purchaseWeapon(weaponId) {
         points -= weapon.cost;
         weapon.purchased = true;
         document.getElementById(`${weaponId}-purchase`).style.display = 'none';
-        updateLifetimePoints();
         updatePointsDisplay();
         updateCostDisplay();
     } else {
@@ -1689,8 +1688,6 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     console.error("Invalid upgradeType:", upgradeType);
                 }
         }
-
-        updateLifetimePoints();
         updatePointsDisplay();
         updateCostDisplay();
     } else {
@@ -2042,7 +2039,6 @@ function bigUpgrades(weapon, upgrade, cost) {
         upgradeData.effect();
 
         // Update points display after purchasing the upgrade
-        updateLifetimePoints();
         updatePointsDisplay();
 
         // Mark the upgrade as bought to prevent re-purchasing
@@ -2707,9 +2703,9 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
             const distanceY = Math.abs(rocketTargetY - tCenterY);
 
             // Check if target is within splash radius
-            if (distanceX <= rocketLauncherSplashRadius && distanceY <= rocketLauncherSplashRadius && !(distanceX === 0 && distanceY === 0)) {
+            if (distanceX <= weapons.rocketLauncher.stats.splashRadius && distanceY <= weapons.rocketLauncher.stats.splashRadius && !(distanceX === 0 && distanceY === 0)) {
                 // Apply splash damage
-                const splashDamage = rocketLauncherPointsPerShot * rocketLauncherSplashDamage; // 40% of points per shot
+                const splashDamage = weapons.rocketLauncher.stats.splashRadius * weapons.rocketLauncher.stats.splashDamage; // 40% of points per shot
                 points += splashDamage;
                 updatePointsDisplay();
 
@@ -2943,11 +2939,8 @@ function updateStatisticsDisplay() {
 
 // Loads the statistics data
 function setStatistics() {
-    // Calculate the total lifetime points
-    let totalLifetimePoints = 0;
-    
-    totalLifetimePoints += points;
-    statistics.totalLifetimePoints = totalLifetimePoints;
+    // Calculate and assign the total lifetime points display
+    statistics.totalLifetimePoints = updateLifetimePointsDisplay();
 
     // Calculate and assign the total weapons purchased
     statistics.totalWeaponsPurchased = getTotalWeaponsPurchased();
@@ -2969,21 +2962,8 @@ function setStatistics() {
     updateStatisticsDisplay();
 }
 
-// Function to update lifetime points statistic
-function updateLifetimePoints() {
-    // Calculate the difference in earned points since the last update
-    const pointsDifference = points - gameplayPoints;
-
-    // Update the earned points only if points have increased
-    if (pointsDifference > 0) {
-        earnedPoints += pointsDifference;
-        statistics.totalLifetimePoints += pointsDifference;
-    }
-
-    // Update the gameplayPoints variable for the next update
-    gameplayPoints = points;
-
-    // Display the updated lifetime points
+// Function to update lifetime points display
+function updateLifetimePointsDisplay() {
     const lifetimePointsElement = document.getElementById('lifetime-points');
     if (lifetimePointsElement) {
         lifetimePointsElement.textContent = formatNumber(statistics.totalLifetimePoints);

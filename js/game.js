@@ -1469,7 +1469,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 break;
 
             default:
-                let weaponId = upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalShotChance|CriticalDamage|Accuracy/, '').toLowerCase();
+                let weaponId = upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalShotChance|CriticalDamage|Accuracy/, '');
                 let stats = getWeaponStats(weaponId);
 
                 if (!stats) {

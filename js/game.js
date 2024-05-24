@@ -2626,6 +2626,7 @@ function playWeaponSoundEffect(weaponId) {
     }
 }
 
+// Function to handle shooting
 function shoot(weaponId, pointsPerShot, critical, miss) {
     // Define floatingTextContainer variable
     const floatingTextContainer = document.getElementById('floating-text-container');
@@ -2675,6 +2676,7 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     // Increment the total points if it's not a rocket launcher or a rocket launcher's splash damage
     if (weaponId !== 'rocketLauncher' || (weaponId === 'rocketLauncher' && !miss)) {
         points += pointsPerShot;
+        statistics.totalLifetimePoints += pointsPerShot; // Update total lifetime points
         updatePointsDisplay();
         updateLifetimePointsDisplay();
     }
@@ -2705,7 +2707,9 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
                 // Apply splash damage
                 const splashDamage = weapons.rocketLauncher.stats.splashRadius * weapons.rocketLauncher.stats.splashDamage; // 40% of points per shot
                 points += splashDamage;
+                statistics.totalLifetimePoints += splashDamage; // Update total lifetime points with splash damage
                 updatePointsDisplay();
+                updateLifetimePointsDisplay();
 
                 // Show splash damage text for each affected target
                 const splashText = document.createElement('div');

@@ -832,12 +832,6 @@ function resetProgress() {
 
         numberFormat = 'standard';
 
-        // Iterate over each weapon ID
-        weapons.forEach(weaponId => {
-            // Make the purchase button visible for the corresponding weapon
-            document.getElementById(`${weaponId}-purchase`).style.display = 'block';
-        });
-
         // Reset big upgrades
         upgrades.touchGun.pointyFingers.bought = false;
         upgrades.touchGun.ambidextrous.bought = false;

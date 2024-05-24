@@ -2879,6 +2879,12 @@ function prestige() {
     // Get the current prestige level
     let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
 
+    // Check if the player has reached the maximum prestige level
+    if (currentPrestigeLevel >= prestigeLevels.length) {
+        alert("You have reached the maximum prestige level!");
+        return;
+    }
+
     // Get the details of the next prestige level
     let nextPrestigeLevel = prestigeLevels[currentPrestigeLevel];
 
@@ -2911,11 +2917,14 @@ function prestige() {
         weapons[weaponId].stats.damage *= nextPrestigeLevel.multiplier;
     });
 
-    // Reset all upgrades
+    // Reset all weapons and upgrades
     resetGameProgress();
 
-    // Update the HTML to display the new prestige level
+    // Update the HTML to display the new prestige level and cost
     document.getElementById('prestige-level').textContent = nextPrestigeLevel.name;
+    document.getElementById('multiplier').textContent = 'x' + nextPrestigeLevel.multiplier;
+    let nextPrestigeCostFormatted = formatNumber(nextPrestigeLevel.cost);
+    document.getElementById('next-prestige-cost').textContent = nextPrestigeCostFormatted;
 
     // Update the prestige button text if not at the maximum prestige level
     if (currentPrestigeLevel < prestigeLevels.length) {

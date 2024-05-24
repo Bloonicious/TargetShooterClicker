@@ -142,16 +142,17 @@ function setLocalization() {
     var language = document.getElementById("language-select").value;
 
     // Translations for points
-    var pointsElement = document.getElementById("score-value-main");
-    var scoreValueUpgrades = document.getElementById('score-value-upgrades');
+    var pointsHeaders = document.querySelectorAll("#score h2");
     var pointsTranslations = {
         english: "Points: ",
         spanish: "Puntos: ",
         french: "Points: ",
         polish: "Punkty: "
     };
-    pointsElement.textContent = pointsTranslations[language] + pointsElement.textContent;
-    scoreValueUpgrades.textContent = pointsTranslations[language] + scoreValueUpgrades.textContent;
+
+    pointsHeaders.forEach(function(pointsHeader) {
+        pointsHeader.textContent = pointsTranslations[language] + pointsHeader.querySelector("span").textContent;
+    });
 
     // Translations for weapon names
     var weapons = {

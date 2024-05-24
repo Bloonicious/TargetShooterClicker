@@ -104,6 +104,20 @@ body {
     z-index: 1; /* Ensure the target appears above other elements */
 }
 
+/* Styling for button rows */
+.button-row {
+    display: flex;
+    gap: 10px; /* Adjust the gap between buttons as needed */
+    flex-wrap: wrap; /* Allows buttons to wrap if there's not enough space */
+}
+
+.button-row button {
+    flex: 1; /* Distribute space equally among buttons */
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
 /* Adjust the position of the weapon zone if necessary */
 .weapon-zone {
     font-family: monospace;

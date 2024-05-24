@@ -1,4 +1,3 @@
-// Initialize weapon data directly
 let weapons = {
     "pistol": {
         "name": "Pistol",
@@ -179,33 +178,6 @@ let enemies = {
     }
     // Add other enemies here
 };
-
-// Function to fetch and initialize weapons data
-async function initializeWeapons() {
-    try {
-        const response = await fetch('config/weapons.json');
-        const data = await response.json();
-        weapons = data.weapons;
-        console.log('Weapons data initialized:', weapons);
-        // Initialize other components that depend on weapons data here
-        initializeUI();
-    } catch (error) {
-        console.error('Error fetching weapons data:', error);
-    }
-}
-
-// Function to fetch and initialize enemies data
-async function initializeEnemies() {
-    try {
-        const response = await fetch('config/enemies.json');
-        const data = await response.json();
-        enemies = data.enemies;
-        console.log('Enemies data initialized:', enemies);
-        // Initialize other components that depend on enemies data here
-    } catch (error) {
-        console.error('Error fetching enemies data:', error);
-    }
-}
 
 let touchGunCost = 100;
 let touchGunPointsPerClick = 1;

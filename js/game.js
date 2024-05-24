@@ -2792,14 +2792,14 @@ function prestige() {
     // Get the current prestige level
     let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
 
-    // Get the details of the next prestige level
-    let nextPrestigeLevel = prestigeLevels[currentPrestigeLevel + 1]; // Increment by 1 for next level
-
     // Check if the player has reached the maximum prestige level
-    if (!nextPrestigeLevel) {
+    if (currentPrestigeLevel >= prestigeLevels.length - 1) {
         alert("You have reached the maximum prestige level!");
         return;
     }
+
+    // Get the details of the next prestige level
+    let nextPrestigeLevel = prestigeLevels[currentPrestigeLevel + 1]; // Increment by 1 for next level
 
     // Check if the player has enough points to prestige
     let currentPoints = points;
@@ -2854,18 +2854,18 @@ function prestige() {
 // Call the prestige function when the page loads to update the button text and prestige level display
 window.onload = function() {
     let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
-    if (currentPrestigeLevel < prestigeLevels.length) {
+    if (currentPrestigeLevel < prestigeLevels.length - 1) {
         document.getElementById('prestige-button').textContent = "Prestige to " + prestigeLevels[currentPrestigeLevel + 1].name; // Display next prestige level
     } else {
-        document.getElementById('prestige-button').textContent = "MAX PRESTIGE";
+        document.getElementById('prestige-button').textContent = "Coming Soon!";
     }
     document.getElementById('prestige-level').textContent = prestigeLevels[currentPrestigeLevel].name;
 
     // Update the next prestige cost display
     let nextPrestigeCostElement = document.getElementById('next-prestige-cost');
     if (nextPrestigeCostElement) {
-        let nextPrestigeCost = prestigeLevels[currentPrestigeLevel + 1] ? prestigeLevels[currentPrestigeLevel + 1].cost : 0;
-        nextPrestigeCostElement.textContent = formatNumber(nextPrestigeCost);
+        let nextPrestigeCost = prestigeLevels[currentPrestigeLevel + 1] ? prestigeLevels[currentPrestigeLevel + 1].cost : 'MAX';
+        nextPrestigeCostElement.textContent = nextPrestigeCost === 'MAX' ? nextPrestigeCost : formatNumber(nextPrestigeCost);
     }
 
     // Format and update points display

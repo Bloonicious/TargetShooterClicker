@@ -1785,6 +1785,13 @@ function updateFirerate(stats, valueIncrement, weaponUpgrades, weapon) {
 
 // Updates potency from the upgradeType 'potency'
 function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
+    // Get the current prestige level
+    let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
+    let prestigeMultiplier = prestigeLevels[currentPrestigeLevel].multiplier;
+
+    // Adjust valueIncrement based on prestige multiplier
+    valueIncrement *= prestigeMultiplier;
+    
     switch (weapon) {
         case 'pistol':
             if (weaponUpgrades.biggerBullets?.bought) valueIncrement *= 2;

@@ -2602,6 +2602,22 @@ function getTotalBigUpgrades() {
     return totalBigUpgrades;
 }
 
+// Function to initialize sound effects
+function initializeSoundEffects() {
+    // Load or create SFX IDs for each weapon
+    weaponSFX.touchGun = new Audio('assets/sfx/touchgun.wav');
+    weaponSFX.pistol = new Audio('assets/sfx/pistol.wav');
+    weaponSFX.smg = new Audio('assets/sfx/smg.wav');
+    weaponSFX.shotgun = new Audio('assets/sfx/shotgun.wav');
+    weaponSFX.sniperRifle = new Audio('assets/sfx/sniper.wav');
+    weaponSFX.ak47 = new Audio('assets/sfx/ak47.wav');
+    weaponSFX.rocketLauncher = new Audio('assets/sfx/bazooka.wav');
+    weaponSFX.tommyGun = new Audio('assets/sfx/smg.wav');
+    weaponSFX.doubleBarrel = new Audio('assets/sfx/doublebarrel.wav');
+    weaponSFX.uzi = new Audio('assets/sfx/uzi.wav');
+    weaponSFX.huntingRifle = new Audio('assets/sfx/hunting_rifle.wav');
+}
+
 // Function to play sound effect for a specific weapon
 function playWeaponSoundEffect(weaponId) {
     try {
@@ -3014,22 +3030,6 @@ function initializeAchievements() {
 // Function to initialize battle features
 function initializeBattle() {
     return;
-}
-
-// Function to initialize sound effects
-function initializeSoundEffects() {
-    // Load or create SFX IDs for each weapon
-    weaponSFX.touchGun = new Audio('assets/sfx/touchgun.wav');
-    weaponSFX.pistol = new Audio('assets/sfx/pistol.wav');
-    weaponSFX.smg = new Audio('assets/sfx/smg.wav');
-    weaponSFX.shotgun = new Audio('assets/sfx/shotgun.wav');
-    weaponSFX.sniperRifle = new Audio('assets/sfx/sniper.wav');
-    weaponSFX.ak47 = new Audio('assets/sfx/ak47.wav');
-    weaponSFX.rocketLauncher = new Audio('assets/sfx/bazooka.wav');
-    weaponSFX.tommyGun = new Audio('assets/sfx/smg.wav');
-    weaponSFX.doubleBarrel = new Audio('assets/sfx/doublebarrel.wav');
-    weaponSFX.uzi = new Audio('assets/sfx/uzi.wav');
-    weaponSFX.huntingRifle = new Audio('assets/sfx/hunting_rifle.wav');
 }
 
 // Function to initialize statistics data

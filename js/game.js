@@ -2894,7 +2894,7 @@ function prestige() {
 window.onload = function() {
     let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
     if (currentPrestigeLevel < prestigeLevels.length) {
-        document.getElementById('prestige-button').textContent = "Prestige to " + prestigeLevels[currentPrestigeLevel].name;
+        document.getElementById('prestige-button').textContent = "Prestige to " + prestigeLevels[currentPrestigeLevel + 1].name; // Display next prestige level
     } else {
         document.getElementById('prestige-button').textContent = "MAX PRESTIGE";
     }

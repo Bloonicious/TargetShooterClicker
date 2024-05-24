@@ -259,6 +259,7 @@ let huntingRifleCriticalDamageLevel = 0;
 
 let points = 0;
 let gameplayPoints = 0;
+let earnedPoints = 0;
 
 let numberFormat = 'standard'; // Default number format
 
@@ -1382,6 +1383,7 @@ function purchaseWeapon(weaponId) {
         points -= weapon.cost;
         weapon.purchased = true;
         document.getElementById(`${weaponId}-purchase`).style.display = 'none';
+        updateLifetimePoints();
         updatePointsDisplay();
         updateCostDisplay();
     } else {
@@ -1688,6 +1690,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 }
         }
 
+        updateLifetimePoints();
         updatePointsDisplay();
         updateCostDisplay();
     } else {
@@ -2039,6 +2042,7 @@ function bigUpgrades(weapon, upgrade, cost) {
         upgradeData.effect();
 
         // Update points display after purchasing the upgrade
+        updateLifetimePoints();
         updatePointsDisplay();
 
         // Mark the upgrade as bought to prevent re-purchasing
@@ -2967,11 +2971,14 @@ function setStatistics() {
 
 // Function to update lifetime points statistic
 function updateLifetimePoints() {
-    // Calculate the difference in points earned from gameplay since the last update
+    // Calculate the difference in earned points since the last update
     const pointsDifference = points - gameplayPoints;
 
-    // Update the totalLifetimePoints with the points earned from gameplay
-    statistics.totalLifetimePoints += pointsDifference;
+    // Update the earned points only if points have increased
+    if (pointsDifference > 0) {
+        earnedPoints += pointsDifference;
+        statistics.totalLifetimePoints += pointsDifference;
+    }
 
     // Update the gameplayPoints variable for the next update
     gameplayPoints = points;

@@ -143,6 +143,7 @@ function setLocalization() {
 
     // Translations for points
     var pointsElement = document.getElementById("score-value-main");
+    var scoreValueUpgrades = document.getElementById('score-value-upgrades');
     var pointsTranslations = {
         english: "Points: ",
         spanish: "Puntos: ",
@@ -150,6 +151,7 @@ function setLocalization() {
         polish: "Punkty: "
     };
     pointsElement.textContent = pointsTranslations[language] + pointsElement.textContent;
+    scoreValueUpgrades.textContent = pointsTranslations[language] + scoreValueUpgrades.textContent;
 
     // Translations for weapon names
     var weaponTranslations = {
@@ -173,8 +175,30 @@ function setLocalization() {
         }
     });
 
+    // Translations for tab buttons
+    var tabButtons = document.querySelectorAll(".tab-button");
+    var tabTranslations = {
+        main: { english: "Main", spanish: "Principal", french: "Principal", polish: "Główny" },
+        upgrades: { english: "Upgrades", spanish: "Mejoras", french: "Améliorations", polish: "Ulepszenia" },
+        battle: { english: "Battle", spanish: "Batalla", french: "Bataille", polish: "Bitwa" },
+        tutorial: { english: "Tutorial", spanish: "Tutorial", french: "Tutoriel", polish: "Samouczek" },
+        changelog: { english: "Changelog", spanish: "Registro de cambios", french: "Journal des modifications", polish: "Dziennik zmian" },
+        settings: { english: "Settings", spanish: "Ajustes", french: "Paramètres", polish: "Ustawienia" },
+        achievements: { english: "Achievements", spanish: "Logros", french: "Réalisations", polish: "Osiągnięcia" },
+        statistics: { english: "Statistics", spanish: "Estadísticas", french: "Statistiques", polish: "Statystyki" },
+        prestige: { english: "Prestige", spanish: "Prestigio", french: "Prestige", polish: "Prestiż" }
+    };
+
+    tabButtons.forEach(function(tabButton) {
+        var tab = tabButton.dataset.tab;
+        if (tabTranslations[tab] && tabTranslations[tab][language]) {
+            tabButton.textContent = tabTranslations[tab][language];
+        }
+    });
+
     // Add more translations for other elements as needed
 }
+
 // Function to save the game state to local storage
 function saveGameState() {
     // Save achievements data

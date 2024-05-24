@@ -3031,6 +3031,7 @@ function initializeUI() {
     updateCostDisplay();
     updateAchievementsDisplay();
     updateStatisticsDisplay();
+    updateLifetimePointsDisplay();
 
     // Start earning points automatically for purchased weapons
     setInterval(automaticPointsGeneration, 1000); // Check every second for points generation

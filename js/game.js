@@ -321,6 +321,12 @@ let prestigeLevels = [
     { name: "Diamond", cost: 1e17, multiplier: 32 }
 ];
 
+const weaponInitialStats = {};
+
+for (const weaponId in weapons) {
+    weaponInitialStats[weaponId] = { ...weapons[weaponId].stats };
+}
+
 let selectedWeapons = {};
 const weaponSFX = {};
 const upgrades = {

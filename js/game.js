@@ -1239,6 +1239,7 @@ function purchase(item) {
             if (!weapons[item].purchased) {
                 purchaseWeapon(item);
             } else {
+                console.log(`${item.charAt(0).toUpperCase() + item.slice(1)} has already been purchased!`);
                 alert(`${item.charAt(0).toUpperCase() + item.slice(1)} has already been purchased!`);
             }
             break;
@@ -1357,6 +1358,7 @@ function purchaseWeapon(weaponId) {
         updatePointsDisplay();
         updateCostDisplay();
     } else {
+        console.log(`Not enough points to purchase ${weapon.name}!`);
         alert(`Not enough points to purchase ${weapon.name}!`);
     }
 }

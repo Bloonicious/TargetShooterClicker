@@ -2870,6 +2870,11 @@ function getTotalBigUpgradesPurchased() {
 
 // Function to handle prestige
 function prestige() {
+    // Alert to notify the player about prestige
+    if (!confirm("Are you sure you want to prestige your progress? This will reset all your weapons and upgrades.")) {
+        return;
+    }
+
     // Get the current prestige level
     let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
 
@@ -2904,6 +2909,15 @@ function prestige() {
     globalDamageMultiplier *= nextPrestigeLevel.multiplier;
     localStorage.setItem('globalPointsPerShot', globalPointsPerShot);
     localStorage.setItem('globalDamageMultiplier', globalDamageMultiplier);
+
+    // Update weapon stats based on prestige multiplier
+    Object.keys(weapons).forEach(function(weaponId) {
+        weapons[weaponId].stats.pointsPerShot *= nextPrestigeLevel.multiplier;
+        weapons[weaponId].stats.damage *= nextPrestigeLevel.multiplier;
+    });
+
+    // Reset all weapons and upgrades
+    resetProgress();
 
     // Update the HTML to display the new prestige level
     document.getElementById('prestige-level').textContent = nextPrestigeLevel.name;

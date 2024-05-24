@@ -151,7 +151,7 @@ function setLocalization() {
     };
 
     pointsHeaders.forEach(function(pointsHeader) {
-        pointsHeader.textContent = pointsTranslations[language] + pointsHeader.querySelector("span").textContent;
+        pointsHeader.textContent = pointsTranslations[language] + pointsHeader.textContent.trim();
     });
 
     // Translations for touch gun button

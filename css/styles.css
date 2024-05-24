@@ -47,7 +47,8 @@ body {
 .tab#changelog,
 .tab#settings,
 .tab#achievements,
-.tab#statistics {
+.tab#statistics,
+.tab#prestige {
     display: block; /* Show the content of non-main tabs */
 }
 
@@ -280,6 +281,7 @@ body {
 /* Adjust the styles of those buttons if necessary */
 #earn-points-button,
 #progress-settings button,
+#language-settings select,
 .weapon-zone button,
 .upgrade-option button {
     font-family: 'Lilita One', cursive;
@@ -294,6 +296,7 @@ body {
 
 #earn-points-button:hover,
 #progress-settings button:hover,
+#language-settings select:hover,
 .weapon-zone button:hover,
 .upgrade-option button:hover {
     background-color: #f3c7ba; /* Lighter shade of pink on hover */

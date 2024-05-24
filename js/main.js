@@ -154,7 +154,7 @@ function setLocalization() {
     scoreValueUpgrades.textContent = pointsTranslations[language] + scoreValueUpgrades.textContent;
 
     // Translations for weapon names
-    var weaponTranslations = {
+    var weapons = {
         pistol: { name: { english: "Pistol", spanish: "Pistola", french: "Pistolet", polish: "Pistolet" } },
         smg: { name: { english: "SMG", spanish: "Subfusil", french: "Mitraillette", polish: "PM" } },
         shotgun: { name: { english: "Shotgun", spanish: "Escopeta", french: "Fusil à pompe", polish: "Strzelba" } },
@@ -170,10 +170,20 @@ function setLocalization() {
     var weaponElements = document.querySelectorAll(".weapon-name");
     weaponElements.forEach(function(weaponElement) {
         var weaponId = weaponElement.dataset.weaponId;
-        if (weaponTranslations[weaponId] && weaponTranslations[weaponId].name[language]) {
-            weaponElement.textContent = weaponTranslations[weaponId].name[language];
+        if (weapons[weaponId] && weapons[weaponId].name[language]) {
+            weaponElement.textContent = weapons[weaponId].name[language];
         }
     });
+
+    // Translations for touch gun button
+    var touchGunButton = document.getElementById("earn-points-button");
+    var touchGunTranslations = {
+        english: "Fire Touch Gun!",
+        spanish: "¡Dispara la pistola táctil!",
+        french: "Tirez avec le pistolet tactile !",
+        polish: "Ogień Touch Gun!"
+    };
+    touchGunButton.textContent = touchGunTranslations[language];
 
     // Translations for tab buttons
     var tabButtons = document.querySelectorAll(".tab-button");

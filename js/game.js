@@ -2889,7 +2889,7 @@ function prestige() {
     let nextPrestigeLevel = prestigeLevels[currentPrestigeLevel];
 
     // Check if the player has enough points to prestige
-    let currentPoints = parseInt(localStorage.getItem('points')) || 0;
+    let currentPoints = points;
     if (currentPoints < nextPrestigeLevel.cost) {
         alert("You don't have enough points to prestige!");
         return;
@@ -2897,7 +2897,7 @@ function prestige() {
 
     // Deduct the cost of prestige from the points
     currentPoints -= nextPrestigeLevel.cost;
-    localStorage.setItem('points', currentPoints);
+    points = currentPoints;
 
     // Update the prestige level
     currentPrestigeLevel++;
@@ -2917,8 +2917,11 @@ function prestige() {
         weapons[weaponId].stats.damage *= nextPrestigeLevel.multiplier;
     });
 
-    // Reset all weapons and upgrades
-    resetGameProgress();
+    // Update touch gun points per click
+    touchGunPointsPerClick *= nextPrestigeLevel.multiplier;
+
+    // Reset progress
+    resetProgress();
 
     // Update the HTML to display the new prestige level and cost
     document.getElementById('prestige-level').textContent = nextPrestigeLevel.name;

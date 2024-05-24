@@ -396,29 +396,6 @@ function loadGameState() {
             statistics = savedState.statistics;
             updateStatisticsDisplay();
         }
-
-        // Load weapon data
-        const savedWeaponData = savedState.weaponData;
-        if (Array.isArray(savedWeaponData)) {
-            savedWeaponData.forEach(savedWeapon => {
-                const weaponIndex = savedWeapon.index;
-                const savedWeaponStats = savedWeapon.stats;
-
-                // Find the corresponding weapon in the weapons array
-                if (weapons[weaponIndex]) {
-                    // Update the weapons object with saved data
-                    weapons[weaponIndex].purchased = savedWeapon.purchased;
-                    weapons[weaponIndex].cost = savedWeapon.cost;
-                    weapons[weaponIndex].stats = savedWeaponStats;
-
-                    // Update the display for the corresponding weapon
-                    const purchaseButton = document.getElementById(`${weaponIndex}-purchase`);
-                    if (purchaseButton && savedWeapon.purchased) {
-                        purchaseButton.style.display = 'none';
-                    }
-                }
-            });
-        }
         
         points = savedState.points;
         

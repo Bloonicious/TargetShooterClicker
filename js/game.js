@@ -312,6 +312,14 @@ let statistics = {
     totalSplashDamageUpgrades: 0
 };
 
+let prestigeLevels = [
+    { name: "Bronze", cost: 1e9, multiplier: 2 },
+    { name: "Silver", cost: 1e11, multiplier: 4 },
+    { name: "Gold", cost: 1e13, multiplier: 8 },
+    { name: "Iron", cost: 1e15, multiplier: 16 },
+    { name: "Diamond", cost: 1e17, multiplier: 32 }
+];
+
 let selectedWeapons = {};
 const weaponSFX = {};
 const upgrades = {
@@ -2858,6 +2866,72 @@ function getTotalBigUpgradesPurchased() {
 
     return totalBigUpgrades;
 }
+
+// Function to handle prestige
+function prestige() {
+    // Get the current prestige level
+    let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
+
+    // Check if the player has reached the maximum prestige level
+    if (currentPrestigeLevel >= prestigeLevels.length) {
+        alert("You have reached the maximum prestige level!");
+        return;
+    }
+
+    // Get the details of the next prestige level
+    let nextPrestigeLevel = prestigeLevels[currentPrestigeLevel];
+
+    // Check if the player has enough points to prestige
+    let currentPoints = parseInt(localStorage.getItem('points')) || 0;
+    if (currentPoints < nextPrestigeLevel.cost) {
+        alert("You don't have enough points to prestige!");
+        return;
+    }
+
+    // Deduct the cost of prestige from the points
+    currentPoints -= nextPrestigeLevel.cost;
+    localStorage.setItem('points', currentPoints);
+
+    // Update the prestige level
+    currentPrestigeLevel++;
+    localStorage.setItem('prestigeLevel', currentPrestigeLevel);
+
+    // Update the global points per shot and damage
+    let globalPointsPerShot = parseFloat(localStorage.getItem('globalPointsPerShot')) || 1;
+    let globalDamageMultiplier = parseFloat(localStorage.getItem('globalDamageMultiplier')) || 1;
+    globalPointsPerShot *= nextPrestigeLevel.multiplier;
+    globalDamageMultiplier *= nextPrestigeLevel.multiplier;
+    localStorage.setItem('globalPointsPerShot', globalPointsPerShot);
+    localStorage.setItem('globalDamageMultiplier', globalDamageMultiplier);
+
+    // Update the HTML to display the new prestige level
+    document.getElementById('prestige-level').textContent = nextPrestigeLevel.name;
+
+    // Update the prestige button text if not at the maximum prestige level
+    if (currentPrestigeLevel < prestigeLevels.length) {
+        document.getElementById('prestige-button').textContent = "Prestige to " + prestigeLevels[currentPrestigeLevel].name;
+    } else {
+        document.getElementById('prestige-button').textContent = "MAX PRESTIGE";
+    }
+
+    // Format and update points display
+    document.getElementById('points-display').textContent = formatNumber(currentPoints);
+}
+
+// Call the prestige function when the page loads to update the button text and prestige level display
+window.onload = function() {
+    let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
+    if (currentPrestigeLevel < prestigeLevels.length) {
+        document.getElementById('prestige-button').textContent = "Prestige to " + prestigeLevels[currentPrestigeLevel].name;
+    } else {
+        document.getElementById('prestige-button').textContent = "MAX PRESTIGE";
+    }
+    document.getElementById('prestige-level').textContent = prestigeLevels[currentPrestigeLevel].name;
+
+    // Format and update points display
+    let currentPoints = parseInt(localStorage.getItem('points')) || 0;
+    document.getElementById('points-display').textContent = formatNumber(currentPoints);
+};
 
 function updateStatisticsDisplay() {
     const lifetimePointsElement = document.getElementById('lifetime-points');

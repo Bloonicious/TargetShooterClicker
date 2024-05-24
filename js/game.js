@@ -1,5 +1,184 @@
-let weapons = {};
-let enemies = {};
+// Initialize weapon data directly
+let weapons = {
+    "pistol": {
+        "name": "Pistol",
+        "purchased": false,
+        "cost": 10,
+        "stats": {
+            "pointsPerShot": 1,
+            "fireRate": 1000,
+            "hp": 10,
+            "damage": 1,
+            "range": 6,
+            "accuracy": 100,
+            "bulletsPerShot": 1
+        }
+    },
+    "smg": {
+        "name": "SMG",
+        "purchased": false,
+        "cost": 100,
+        "stats": {
+            "pointsPerShot": 1,
+            "fireRate": 200,
+            "hp": 20,
+            "damage": 1,
+            "range": 5,
+            "accuracy": 100,
+            "bulletsPerShot": 1
+        }
+    },
+    "shotgun": {
+        "name": "Shotgun",
+        "purchased": false,
+        "cost": 500,
+        "stats": {
+            "pointsPerShot": 4,
+            "fireRate": 1500,
+            "hp": 50,
+            "damage": 4,
+            "range": 3,
+            "accuracy": 100,
+            "bulletsPerShot": 3
+          }
+    },
+    "sniperRifle": {
+        "name": "Sniper Rifle",
+        "purchased": false,
+        "cost": 7500,
+        "stats": {
+            "pointsPerShot": 120,
+            "fireRate": 4000,
+            "hp": 30,
+            "damage": 60,
+            "range": 10,
+            "accuracy": 100,
+            "bulletsPerShot": 1,
+            "criticalChance": 25,
+            "criticalDamage": 2
+          }
+    },
+    "ak47": {
+        "name": "AK-47",
+        "purchased": false,
+        "cost": 60000,
+        "stats": {
+            "pointsPerShot": 150,
+            "fireRate": 500,
+            "hp": 80,
+            "damage": 75,
+            "range": 7,
+            "accuracy": 100,
+            "bulletsPerShot": 1
+          }
+    },
+    "rocketLauncher": {
+        "name": "Rocket Launcher",
+        "purchased": false,
+        "cost": 400000,
+        "stats": {
+            "pointsPerShot": 1250,
+            "fireRate": 5000,
+            "hp": 60,
+            "damage": 625,
+            "range": 9,
+            "accuracy": 100,
+            "bulletsPerShot": 1,
+            "splashRadius": 300,
+            "splashDamage": 0.4
+          }
+    },
+    "tommyGun": {
+        "name": "Tommy Gun",
+        "purchased": false,
+        "cost": 2500000,
+        "stats": {
+            "pointsPerShot": 600,
+            "fireRate": 150,
+            "hp": 120,
+            "damage": 300,
+            "range": 7,
+            "accuracy": 50,
+            "bulletsPerShot": 1,
+            "inaccuracyPenalty": 0.5
+          }
+    },
+    "doubleBarrel": {
+        "name": "Double Barrel",
+        "purchased": false,
+        "cost": 30000000,
+        "stats": {
+            "pointsPerShot": 6000,
+            "fireRate": 2000,
+            "hp": 250,
+            "damage": 3000,
+            "range": 4,
+            "accuracy": 100,
+            "bulletsPerShot": 2
+          }
+    },
+    "uzi": {
+        "name": "Uzi",
+        "purchased": false,
+        "cost": 175000000,
+        "stats": {
+            "pointsPerShot": 4500,
+            "fireRate": 75,
+            "hp": 300,
+            "damage": 2250,
+            "range": 4,
+            "accuracy": 100,
+            "bulletsPerShot": 1
+          }
+    },
+    "huntingRifle": {
+        "name": "Hunting Rifle",
+        "purchased": false,
+        "cost": 1250000000,
+        "stats": {
+            "pointsPerShot": 250000,
+            "fireRate": 3000,
+            "hp": 200,
+            "damage": 125000,
+            "range": 10,
+            "accuracy": 100,
+            "bulletsPerShot": 1,
+            "criticalChance": 40,
+            "criticalDamage": 1.5
+          }
+    }
+    // Add other weapons here
+};
+let enemies = {
+    "basic": {
+        "name": "Basic Target",
+        "stats": {
+            "hp": 10,
+            "damage": 2,
+            "range": 2,
+            "walkingSpeed": 3
+        }
+    },
+    "fast": {
+        "name": "Fast Enemy",
+        "stats": {
+            "hp": 5,
+            "damage": 1,
+            "range": 3,
+            "walkingSpeed": 6
+        }
+    },
+    "tank": {
+        "name": "Tanky Enemy",
+        "stats": {
+            "hp": 50,
+            "damage": 5,
+            "range": 1,
+            "walkingSpeed": 1
+        }
+    }
+    // Add other enemies here
+};
 
 // Function to fetch and initialize weapons data
 async function initializeWeapons() {

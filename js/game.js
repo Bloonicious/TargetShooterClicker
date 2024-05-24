@@ -313,7 +313,6 @@ let statistics = {
 };
 
 let prestigeLevels = [
-    { name: "None", cost: 0, multiplier: 1 },
     { name: "Bronze", cost: 1e9, multiplier: 2 },
     { name: "Silver", cost: 1e11, multiplier: 4 },
     { name: "Gold", cost: 1e13, multiplier: 8 },
@@ -2870,19 +2869,15 @@ function getTotalBigUpgradesPurchased() {
 
 // Function to handle prestige
 function prestige() {
-    // Alert to notify the player about prestige
-    if (!confirm("Are you sure you want to prestige your progress? This will reset all your weapons and upgrades.")) {
+    // Prompt confirmation before prestige
+    var confirmation = confirm("Are you sure you want to prestige your progress? This will reset all your weapons and upgrades.");
+
+    if (!confirmation) {
         return;
     }
 
     // Get the current prestige level
     let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
-
-    // Check if the player has reached the maximum prestige level
-    if (currentPrestigeLevel >= prestigeLevels.length) {
-        alert("You have reached the maximum prestige level!");
-        return;
-    }
 
     // Get the details of the next prestige level
     let nextPrestigeLevel = prestigeLevels[currentPrestigeLevel];
@@ -2916,8 +2911,8 @@ function prestige() {
         weapons[weaponId].stats.damage *= nextPrestigeLevel.multiplier;
     });
 
-    // Reset all weapons and upgrades
-    resetProgress();
+    // Reset all upgrades
+    resetGameProgress();
 
     // Update the HTML to display the new prestige level
     document.getElementById('prestige-level').textContent = nextPrestigeLevel.name;
@@ -2930,7 +2925,8 @@ function prestige() {
     }
 
     // Format and update points display
-    document.getElementById('points-display').textContent = formatNumber(currentPoints);
+    document.getElementById('score-value-main').textContent = formatNumber(currentPoints);
+    document.getElementById('score-value-upgrades').textContent = formatNumber(currentPoints);
 }
 
 // Call the prestige function when the page loads to update the button text and prestige level display
@@ -2945,7 +2941,8 @@ window.onload = function() {
 
     // Format and update points display
     let currentPoints = parseInt(localStorage.getItem('points')) || 0;
-    document.getElementById('points-display').textContent = formatNumber(currentPoints);
+    document.getElementById('score-value-main').textContent = formatNumber(currentPoints);
+    document.getElementById('score-value-upgrades').textContent = formatNumber(currentPoints);
 };
 
 function updateStatisticsDisplay() {

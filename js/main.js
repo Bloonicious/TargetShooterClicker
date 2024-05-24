@@ -142,7 +142,7 @@ function setLocalization() {
     var language = document.getElementById("language-select").value;
 
     // Translations for points
-    var pointsHeader = document.querySelector("#score h2");
+    var pointsHeaders = document.querySelectorAll("#score h2");
     var pointsTranslations = {
         english: "Points: ",
         spanish: "Puntos: ",
@@ -150,28 +150,8 @@ function setLocalization() {
         polish: "Punkty: "
     };
 
-    pointsHeader.textContent = pointsTranslations[language] + pointsHeader.querySelector("span").textContent;
-
-    // Translations for weapon names
-    var weapons = {
-        pistol: { name: { english: "Pistol", spanish: "Pistola", french: "Pistolet", polish: "Pistolet" } },
-        smg: { name: { english: "SMG", spanish: "Subfusil", french: "Mitraillette", polish: "PM" } },
-        shotgun: { name: { english: "Shotgun", spanish: "Escopeta", french: "Fusil à pompe", polish: "Strzelba" } },
-        sniperRifle: { name: { english: "Sniper Rifle", spanish: "Rifle de francotirador", french: "Fusil de précision", polish: "Karabin snajperski" } },
-        ak47: { name: { english: "AK-47", spanish: "AK-47", french: "AK-47", polish: "AK-47" } },
-        rocketLauncher: { name: { english: "Rocket Launcher", spanish: "Lanzacohetes", french: "Lance-roquettes", polish: "Wyrzutnia rakiet" } },
-        tommyGun: { name: { english: "Tommy Gun", spanish: "Tommy Gun", french: "Fusil-mitrailleur Thompson", polish: "Tommy Gun" } },
-        doubleBarrel: { name: { english: "Double Barrel", spanish: "Doble cañón", french: "Fusil à double canon", polish: "Podwójna lufa" } },
-        uzi: { name: { english: "Uzi", spanish: "Uzi", french: "Uzi", polish: "Uzi" } },
-        huntingRifle: { name: { english: "Hunting Rifle", spanish: "Rifle de caza", french: "Fusil de chasse", polish: "Karabin myśliwski" } }
-    };
-
-    var weaponElements = document.querySelectorAll(".weapon-name");
-    weaponElements.forEach(function(weaponElement) {
-        var weaponId = weaponElement.dataset.weaponId;
-        if (weapons[weaponId] && weapons[weaponId].name[language]) {
-            weaponElement.textContent = weapons[weaponId].name[language];
-        }
+    pointsHeaders.forEach(function(pointsHeader) {
+        pointsHeader.textContent = pointsTranslations[language] + pointsHeader.querySelector("span").textContent;
     });
 
     // Translations for touch gun button
@@ -197,6 +177,10 @@ function setLocalization() {
         statistics: { english: "Statistics", spanish: "Estadísticas", french: "Statistiques", polish: "Statystyki" },
         prestige: { english: "Prestige", spanish: "Prestigio", french: "Prestige", polish: "Prestiż" }
     };
+
+    // Usage example:
+    var weaponName = translateWeaponName("pistol", language);
+    console.log(weaponName); // Output: Pistol
 
     tabButtons.forEach(function(tabButton) {
         var tab = tabButton.dataset.tab;
@@ -224,7 +208,8 @@ function setLocalization() {
         polish: "Ulepszenie"
     };
 
-    var levelDisplayTranslations = {
+    // Translation for stat names based on language and weaponId
+    var statTranslations = {
         firerate: { english: "Firerate Level:", spanish: "Nivel de Cadencia:", french: "Niveau de Cadence:", polish: "Poziom szybkostrzelności:" },
         potency: { english: "Potency Level:", spanish: "Nivel de Potencia:", french: "Niveau de Puissance:", polish: "Poziom potencji:" },
         pps: { english: "Points Per Second:", spanish: "Puntos Por Segundo:", french: "Points Par Seconde:", polish: "Punkty na sekundę:" }
@@ -239,11 +224,36 @@ function setLocalization() {
     });
 
     levelDisplays.forEach(function(display) {
+        var weaponId = display.id.split("-")[0];
         var upgradeType = display.dataset.upgradeType;
-        display.textContent = levelDisplayTranslations[upgradeType][language] + " " + display.querySelector("span").textContent;
+        display.textContent = statTranslations[upgradeType][language] + " " + display.querySelector("span").textContent;
     });
 
     // Add more translations for other elements as needed
+}
+
+// Function to translate weapon names
+function translateWeaponName(weaponId, language) {
+    var weapons = {
+        "pistol": { name: { english: "Pistol", spanish: "Pistola", french: "Pistolet", polish: "Pistolet" } },
+        "smg": { name: { english: "SMG", spanish: "Subfusil", french: "Mitraillette", polish: "PM" } },
+        "shotgun": { name: { english: "Shotgun", spanish: "Escopeta", french: "Fusil à pompe", polish: "Strzelba" } },
+        "sniperRifle": { name: { english: "Sniper Rifle", spanish: "Rifle de francotirador", french: "Fusil de précision", polish: "Karabin snajperski" } },
+        "ak47": { name: { english: "AK-47", spanish: "AK-47", french: "AK-47", polish: "AK-47" } },
+        "rocketLauncher": { name: { english: "Rocket Launcher", spanish: "Lanzacohetes", french: "Lance-roquettes", polish: "Wyrzutnia rakiet" } },
+        "tommyGun": { name: { english: "Tommy Gun", spanish: "Tommy Gun", french: "Fusil-mitrailleur Thompson", polish: "Tommy Gun" } },
+        "doubleBarrel": { name: { english: "Double Barrel", spanish: "Doble cañón", french: "Fusil à double canon", polish: "Podwójna lufa" } },
+        "uzi": { name: { english: "Uzi", spanish: "Uzi", french: "Uzi", polish: "Uzi" } },
+        "huntingRifle": { name: { english: "Hunting Rifle", spanish: "Rifle de caza", french: "Fusil de chasse", polish: "Karabin myśliwski" } }
+    };
+
+    // Check if the weaponId exists and has a translation for the given language
+    if (weapons[weaponId] && weapons[weaponId].name[language]) {
+        return weapons[weaponId].name[language];
+    } else {
+        // If translation doesn't exist, return the default English name
+        return weapons[weaponId].name.english;
+    }
 }
 
 // Function to save the game state to local storage

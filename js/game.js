@@ -411,6 +411,18 @@ const upgrades = {
                 touchGunPointsPerClick += 500 * getTotalPotencyUpgrades();
             }
         },
+        heavyFingers: {
+            cost: 1000000000000000,
+            effect: function() {
+                touchGunPointsPerClick *= 4;
+            }
+        },
+        magicHands: {
+            cost: 20000000000000000,
+            effect: function() {
+                touchGunPointsPerClick *= 6;
+            }
+        },
         // Add more upgrades for touchGun here
     },
     pistol: {
@@ -422,41 +434,41 @@ const upgrades = {
             }
         },
         largerCalibre: {
-            cost: 200000,
+            cost: 50000,
             effect: function() {
                 weapons.pistol.stats.pointsPerShot *= 3; // Triples the amount of points per shot
                 weapons.pistol.stats.damage *= 3; // Triples the damage per shot
             }
         },
         easierReloading: {
-            cost: 875000,
+            cost: 325000,
             effect: function() {
                 weapons.pistol.stats.fireRate -= 150; // Reduces the fire rate speed (in milliseconds) for the pistol
             }
         },
         louderFiring: {
-            cost: 5000000,
+            cost: 2000000,
             effect: function() {
                 weapons.pistol.stats.pointsPerShot *= 3; // Triples the amount of points per shot
                 weapons.pistol.stats.damage *= 3; // Triples the damage per shot
             }
         },
         metalPiercing: {
-            cost: 100000000,
+            cost: 50000000,
             effect: function() {
                 weapons.pistol.stats.pointsPerShot *= 4; // Quadruples the amount of points per shot
                 weapons.pistol.stats.damage *= 4; // Quadruples the damage per shot
             }
         },
         specializedMechanisms: {
-            cost: 3000000000,
+            cost: 1500000000,
             effect: function() {
                 weapons.pistol.stats.pointsPerShot *= 4; // Quadruples the amount of points per shot
                 weapons.pistol.stats.damage *= 4; // Quadruples the damage per shot
             }
         },
         fineTuning: {
-            cost: 10000000000,
+            cost: 5000000000,
             effect: function() {
                 weapons.pistol.stats.pointsPerShot *= 1.5;
                 weapons.pistol.stats.damage *= 1.5;
@@ -464,21 +476,21 @@ const upgrades = {
             }
         },
         versatileGunshots: {
-            cost: 100000000000,
+            cost: 50000000000,
             effect: function() {
                 weapons.pistol.stats.pointsPerShot *= 5; // Quintuples the amount of points per shot
                 weapons.pistol.stats.damage *= 5; // Quintuples the damage per shot
             }
         },
         empowered: {
-            cost: 1000000000000,
+            cost: 500000000000,
             effect: function() {
                 weapons.pistol.stats.pointsPerShot *= 5; // Quintuples the amount of points per shot
                 weapons.pistol.stats.damage *= 5; // Quintuples the damage per shot
             }
         },
         oneHitBullets: {
-            cost: 25000000000000,
+            cost: 12500000000000,
             effect: function() {
                 weapons.pistol.stats.pointsPerShot *= 6; // Sextuples the amount of points per shot
                 weapons.pistol.stats.damage *= 6; // Sextuples the damage per shot
@@ -1430,6 +1442,12 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 }
                 if (upgrades.touchGun.trillionFingers.bought) {
                     valueIncrement += (upgradeType === 'touchGun') ? 500 : (upgradeType === 'touchGunAwaken') ? 50000 : 5000000;
+                }
+                if (upgrades.touchGun.heavyFingers.bought) {
+                    valueIncrement *= 4;
+                }
+                if (upgrades.touchGun.magicHands.bought) {
+                    valueIncrement *= 6;
                 }
                 touchGunPointsPerClick += valueIncrement;
 

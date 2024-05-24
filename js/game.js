@@ -1432,6 +1432,18 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement += (upgradeType === 'touchGun') ? 500 : (upgradeType === 'touchGunAwaken') ? 50000 : 5000000;
                 }
                 touchGunPointsPerClick += valueIncrement;
+
+                // Update touch gun level and cost variables
+                if (upgradeType === 'touchGun') {
+                    touchGunLevel = level;
+                    touchGunCost = cost;
+                } else if (upgradeType === 'touchGunAwaken') {
+                    awokenTouchGunLevel = level;
+                    awokenTouchGunCost = cost;
+                } else if (upgradeType === 'touchGunSuperAwaken') {
+                    superAwokenTouchGunLevel = level;
+                    superAwokenTouchGunCost = cost;
+                }
                 break;
 
             default:

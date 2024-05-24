@@ -142,7 +142,6 @@ function setLocalization() {
     var language = document.getElementById("language-select").value;
 
     // Translations for points
-    var pointsHeaders = document.querySelectorAll("#score h2");
     var pointsTranslations = {
         english: "Points: ",
         spanish: "Puntos: ",
@@ -150,10 +149,24 @@ function setLocalization() {
         polish: "Punkty: "
     };
 
-    pointsHeaders.forEach(function(pointsHeader) {
-        pointsHeader.textContent = pointsTranslations[language] + pointsHeader.textContent.trim();
+    // Update the points header texts
+    var pointsHeaders = document.querySelectorAll("#score h2");
+        pointsHeaders.forEach(function(pointsHeader) {
+        pointsHeader.textContent = pointsTranslations[language];
     });
 
+    // Update the points counter values
+    var mainPointsCounter = document.getElementById("score-value-main");
+    var upgradesPointsCounter = document.getElementById("score-value-upgrades");
+
+    // Get the current points values
+    var mainPointsValue = parseInt(mainPointsCounter.textContent);
+    var upgradesPointsValue = parseInt(upgradesPointsCounter.textContent);
+
+    // Set the updated points counter values
+    mainPointsCounter.textContent = mainPointsValue.toString();
+    upgradesPointsCounter.textContent = upgradesPointsValue.toString();
+    
     // Translations for touch gun button
     var touchGunButton = document.getElementById("earn-points-button");
     var touchGunTranslations = {

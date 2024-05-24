@@ -2679,6 +2679,7 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     if (weaponId !== 'rocketLauncher' || (weaponId === 'rocketLauncher' && !miss)) {
         points += pointsPerShot;
         updatePointsDisplay();
+        updateLifetimePointsDisplay();
     }
 
     // Handle rocket launcher's splash radius and damage

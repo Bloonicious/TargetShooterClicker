@@ -1055,6 +1055,16 @@ function resetProgress() {
         huntingRifleCriticalShotLevel = 0;
         huntingRifleCriticalDamageLevel = 0;
 
+        // Update UI
+        document.getElementById('prestige-level').textContent = prestigeLevels[0].name;
+        document.getElementById('multiplier').textContent = 'x' + prestigeLevels[0].multiplier;
+        document.getElementById('next-prestige-cost').textContent = formatNumber(prestigeLevels[1].cost);
+        document.getElementById('prestige-button').textContent = "Prestige to " + prestigeLevels[1].name;
+
+        // Update points display
+        document.getElementById('score-value-main').textContent = formatNumber(points);
+        document.getElementById('score-value-upgrades').textContent = formatNumber(points);
+
         // Update the interfaces
         updatePointsDisplay();
         updateAchievements();

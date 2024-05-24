@@ -2138,7 +2138,7 @@ function updateCostDisplay() {
             if (weapon.purchased) {
                 purchaseElement.style.display = 'none';
             } else {
-                purchaseElement.style.display = 'block';
+                purchaseElement.style.display = 'inline-block';
             }
         }
     }

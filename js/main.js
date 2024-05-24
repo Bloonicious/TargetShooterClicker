@@ -142,7 +142,7 @@ function setLocalization() {
     var language = document.getElementById("language-select").value;
 
     // Translations for points
-    var pointsHeaders = document.querySelectorAll("#score h2");
+    var pointsHeader = document.querySelector("#score h2");
     var pointsTranslations = {
         english: "Points: ",
         spanish: "Puntos: ",
@@ -150,9 +150,7 @@ function setLocalization() {
         polish: "Punkty: "
     };
 
-    pointsHeaders.forEach(function(pointsHeader) {
-        pointsHeader.textContent = pointsTranslations[language] + pointsHeader.querySelector("span").textContent;
-    });
+    pointsHeader.textContent = pointsTranslations[language] + pointsHeader.querySelector("span").textContent;
 
     // Translations for weapon names
     var weapons = {
@@ -205,6 +203,44 @@ function setLocalization() {
         if (tabTranslations[tab] && tabTranslations[tab][language]) {
             tabButton.textContent = tabTranslations[tab][language];
         }
+    });
+
+    // Translations for purchase buttons, upgrade buttons, and level displays
+    var purchaseButtons = document.querySelectorAll(".purchase-button");
+    var upgradeButtons = document.querySelectorAll(".upgrade-button");
+    var levelDisplays = document.querySelectorAll(".level-display");
+
+    var purchaseButtonTranslations = {
+        english: "Purchase",
+        spanish: "Comprar",
+        french: "Acheter",
+        polish: "Zakupić"
+    };
+
+    var upgradeButtonTranslations = {
+        english: "Upgrade",
+        spanish: "Mejorar",
+        french: "Améliorer",
+        polish: "Ulepszenie"
+    };
+
+    var levelDisplayTranslations = {
+        firerate: { english: "Firerate Level:", spanish: "Nivel de Cadencia:", french: "Niveau de Cadence:", polish: "Poziom szybkostrzelności:" },
+        potency: { english: "Potency Level:", spanish: "Nivel de Potencia:", french: "Niveau de Puissance:", polish: "Poziom potencji:" },
+        pps: { english: "Points Per Second:", spanish: "Puntos Por Segundo:", french: "Points Par Seconde:", polish: "Punkty na sekundę:" }
+    };
+
+    purchaseButtons.forEach(function(button) {
+        button.textContent = purchaseButtonTranslations[language] + " " + button.dataset.weapon;
+    });
+
+    upgradeButtons.forEach(function(button) {
+        button.textContent = upgradeButtonTranslations[language] + " " + button.dataset.upgrade;
+    });
+
+    levelDisplays.forEach(function(display) {
+        var upgradeType = display.dataset.upgradeType;
+        display.textContent = levelDisplayTranslations[upgradeType][language] + " " + display.querySelector("span").textContent;
     });
 
     // Add more translations for other elements as needed

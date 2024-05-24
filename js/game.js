@@ -2831,14 +2831,14 @@ function prestige() {
     // Get the current prestige level
     let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
 
+    // Get the details of the next prestige level
+    let nextPrestigeLevel = prestigeLevels[currentPrestigeLevel + 1]; // Increment by 1 for next level
+
     // Check if the player has reached the maximum prestige level
-    if (currentPrestigeLevel >= prestigeLevels.length - 1) {
+    if (!nextPrestigeLevel) {
         alert("You have reached the maximum prestige level!");
         return;
     }
-
-    // Get the details of the next prestige level
-    let nextPrestigeLevel = prestigeLevels[currentPrestigeLevel + 1]; // Increment by 1 for next level
 
     // Check if the player has enough points to prestige
     let currentPoints = points;
@@ -2856,21 +2856,21 @@ function prestige() {
     localStorage.setItem('prestigeLevel', currentPrestigeLevel);
 
     // Update the global points per shot and damage
-    let globalPointsPerShot = parseFloat(localStorage.getItem('globalPointsPerShot')) || 1;
-    let globalDamageMultiplier = parseFloat(localStorage.getItem('globalDamageMultiplier')) || 1;
-    globalPointsPerShot *= nextPrestigeLevel.multiplier;
-    globalDamageMultiplier *= nextPrestigeLevel.multiplier;
-    localStorage.setItem('globalPointsPerShot', globalPointsPerShot);
-    localStorage.setItem('globalDamageMultiplier', globalDamageMultiplier);
+    let globalPointsPerShot = touchGunPointsPerClick;
+    let globalDamageMultiplier = 1; // Assuming 1 is the default value
+    for (let i = 1; i <= currentPrestigeLevel; i++) {
+        globalPointsPerShot *= prestigeLevels[i].multiplier;
+        globalDamageMultiplier *= prestigeLevels[i].multiplier;
+    }
 
     // Update weapon stats based on prestige multiplier
     Object.keys(weapons).forEach(function(weaponId) {
-        weapons[weaponId].stats.pointsPerShot *= nextPrestigeLevel.multiplier;
-        weapons[weaponId].stats.damage *= nextPrestigeLevel.multiplier;
+        weapons[weaponId].stats.pointsPerShot = globalPointsPerShot;
+        weapons[weaponId].stats.damage *= globalDamageMultiplier;
     });
 
     // Update touch gun points per click
-    touchGunPointsPerClick *= nextPrestigeLevel.multiplier;
+    touchGunPointsPerClick = globalPointsPerShot;
 
     // Update the HTML to display the new prestige level and cost
     document.getElementById('prestige-level').textContent = nextPrestigeLevel.name;
@@ -2900,8 +2900,15 @@ window.onload = function() {
     }
     document.getElementById('prestige-level').textContent = prestigeLevels[currentPrestigeLevel].name;
 
+    // Update the next prestige cost display
+    let nextPrestigeCostElement = document.getElementById('next-prestige-cost');
+    if (nextPrestigeCostElement) {
+        let nextPrestigeCost = prestigeLevels[currentPrestigeLevel + 1] ? prestigeLevels[currentPrestigeLevel + 1].cost : 0;
+        nextPrestigeCostElement.textContent = formatNumber(nextPrestigeCost);
+    }
+
     // Format and update points display
-    let currentPoints = parseInt(localStorage.getItem('points')) || 0;
+    let currentPoints = points;
     document.getElementById('score-value-main').textContent = formatNumber(currentPoints);
     document.getElementById('score-value-upgrades').textContent = formatNumber(currentPoints);
 };

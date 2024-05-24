@@ -313,6 +313,7 @@ let statistics = {
 };
 
 let prestigeLevels = [
+    { name: "None", cost: 0, multiplier: 1 },
     { name: "Bronze", cost: 1e9, multiplier: 2 },
     { name: "Silver", cost: 1e11, multiplier: 4 },
     { name: "Gold", cost: 1e13, multiplier: 8 },
@@ -2634,55 +2635,6 @@ function getTotalBigUpgrades() {
     return totalBigUpgrades;
 }
 
-// Function to initialize upgrade costs with proper formatting
-function initializeUpgradeCosts() {
-    const upgradeOptions = document.querySelectorAll('.upgrade-option');
-    upgradeOptions.forEach(upgradeOption => {
-        const costElement = upgradeOption.querySelector('.upgrade-cost');
-        if (costElement) {
-            const costText = costElement.textContent.trim(); // Trim any leading/trailing whitespace
-            const isBought = costText === "Bought!"; // Check if upgrade is already bought
-            if (!isBought) {
-                const cost = parseInt(costText.replace(/\D/g, ''), 10); // Extract cost as integer
-                const formattedCost = formatNumber(cost); // Format the cost using your formatNumber function
-                costElement.textContent = `Cost: ${formattedCost}`; // Update the cost display
-            }
-        }
-    });
-}
-
-// Function to initialize achievements
-function initializeAchievements() {
-    // Set default values for achievements if not already set
-    achievements.forEach(achievement => {
-        achievement.notified = false;
-    });
-
-    // Update achievements based on current game state
-    checkAndUpdateAchievements();
-}
-
-// Function to initialize battle features
-function initializeBattle() {
-    return;
-}
-
-// Function to initialize sound effects
-function initializeSoundEffects() {
-    // Load or create SFX IDs for each weapon
-    weaponSFX.touchGun = new Audio('assets/sfx/touchgun.wav');
-    weaponSFX.pistol = new Audio('assets/sfx/pistol.wav');
-    weaponSFX.smg = new Audio('assets/sfx/smg.wav');
-    weaponSFX.shotgun = new Audio('assets/sfx/shotgun.wav');
-    weaponSFX.sniperRifle = new Audio('assets/sfx/sniper.wav');
-    weaponSFX.ak47 = new Audio('assets/sfx/ak47.wav');
-    weaponSFX.rocketLauncher = new Audio('assets/sfx/bazooka.wav');
-    weaponSFX.tommyGun = new Audio('assets/sfx/smg.wav');
-    weaponSFX.doubleBarrel = new Audio('assets/sfx/doublebarrel.wav');
-    weaponSFX.uzi = new Audio('assets/sfx/uzi.wav');
-    weaponSFX.huntingRifle = new Audio('assets/sfx/hunting_rifle.wav');
-}
-
 // Function to play sound effect for a specific weapon
 function playWeaponSoundEffect(weaponId) {
     try {
@@ -2880,13 +2832,13 @@ function prestige() {
     let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
 
     // Check if the player has reached the maximum prestige level
-    if (currentPrestigeLevel >= prestigeLevels.length) {
+    if (currentPrestigeLevel >= prestigeLevels.length - 1) {
         alert("You have reached the maximum prestige level!");
         return;
     }
 
     // Get the details of the next prestige level
-    let nextPrestigeLevel = prestigeLevels[currentPrestigeLevel];
+    let nextPrestigeLevel = prestigeLevels[currentPrestigeLevel + 1]; // Increment by 1 for next level
 
     // Check if the player has enough points to prestige
     let currentPoints = points;
@@ -2920,9 +2872,6 @@ function prestige() {
     // Update touch gun points per click
     touchGunPointsPerClick *= nextPrestigeLevel.multiplier;
 
-    // Reset progress
-    resetProgress();
-
     // Update the HTML to display the new prestige level and cost
     document.getElementById('prestige-level').textContent = nextPrestigeLevel.name;
     document.getElementById('multiplier').textContent = 'x' + nextPrestigeLevel.multiplier;
@@ -2930,8 +2879,8 @@ function prestige() {
     document.getElementById('next-prestige-cost').textContent = nextPrestigeCostFormatted;
 
     // Update the prestige button text if not at the maximum prestige level
-    if (currentPrestigeLevel < prestigeLevels.length) {
-        document.getElementById('prestige-button').textContent = "Prestige to " + prestigeLevels[currentPrestigeLevel].name;
+    if (currentPrestigeLevel < prestigeLevels.length - 1) {
+        document.getElementById('prestige-button').textContent = "Prestige to " + prestigeLevels[currentPrestigeLevel + 1].name;
     } else {
         document.getElementById('prestige-button').textContent = "MAX PRESTIGE";
     }
@@ -3044,6 +2993,64 @@ function updateLifetimePoints() {
     if (lifetimePointsElement) {
         lifetimePointsElement.textContent = formatNumber(statistics.totalLifetimePoints);
     }
+}
+
+// Function to initialize upgrade costs with proper formatting
+function initializeUpgradeCosts() {
+    const upgradeOptions = document.querySelectorAll('.upgrade-option');
+    upgradeOptions.forEach(upgradeOption => {
+        const costElement = upgradeOption.querySelector('.upgrade-cost');
+        if (costElement) {
+            const costText = costElement.textContent.trim(); // Trim any leading/trailing whitespace
+            const isBought = costText === "Bought!"; // Check if upgrade is already bought
+            if (!isBought) {
+                const cost = parseInt(costText.replace(/\D/g, ''), 10); // Extract cost as integer
+                const formattedCost = formatNumber(cost); // Format the cost using your formatNumber function
+                costElement.textContent = `Cost: ${formattedCost}`; // Update the cost display
+            }
+        }
+    });
+
+    // Initialize the next prestige cost
+    const nextPrestigeCostElement = document.getElementById('next-prestige-cost');
+    if (nextPrestigeCostElement) {
+        const nextPrestigeCostText = nextPrestigeCostElement.textContent.trim();
+        const nextPrestigeCost = parseInt(nextPrestigeCostText.replace(/\D/g, ''), 10);
+        const formattedNextPrestigeCost = formatNumber(nextPrestigeCost);
+        nextPrestigeCostElement.textContent = formattedNextPrestigeCost;
+    }
+}
+
+// Function to initialize achievements
+function initializeAchievements() {
+    // Set default values for achievements if not already set
+    achievements.forEach(achievement => {
+        achievement.notified = false;
+    });
+
+    // Update achievements based on current game state
+    checkAndUpdateAchievements();
+}
+
+// Function to initialize battle features
+function initializeBattle() {
+    return;
+}
+
+// Function to initialize sound effects
+function initializeSoundEffects() {
+    // Load or create SFX IDs for each weapon
+    weaponSFX.touchGun = new Audio('assets/sfx/touchgun.wav');
+    weaponSFX.pistol = new Audio('assets/sfx/pistol.wav');
+    weaponSFX.smg = new Audio('assets/sfx/smg.wav');
+    weaponSFX.shotgun = new Audio('assets/sfx/shotgun.wav');
+    weaponSFX.sniperRifle = new Audio('assets/sfx/sniper.wav');
+    weaponSFX.ak47 = new Audio('assets/sfx/ak47.wav');
+    weaponSFX.rocketLauncher = new Audio('assets/sfx/bazooka.wav');
+    weaponSFX.tommyGun = new Audio('assets/sfx/smg.wav');
+    weaponSFX.doubleBarrel = new Audio('assets/sfx/doublebarrel.wav');
+    weaponSFX.uzi = new Audio('assets/sfx/uzi.wav');
+    weaponSFX.huntingRifle = new Audio('assets/sfx/hunting_rifle.wav');
 }
 
 // Function to initialize statistics data

@@ -292,8 +292,8 @@ function saveGameState() {
         superAwokenTouchGunCost: superAwokenTouchGunCost,
         superAwokenTouchGunLevel: superAwokenTouchGunLevel,
 
-        
         numberFormat: numberFormat, // Add the selected number format to the game state
+        prestigeLevel: parseInt(localStorage.getItem('prestigeLevel')) || 0,
 
         // Add big upgrade data for each weapon
         touchGunPointyFingersBought: upgrades.touchGun.pointyFingers.bought,
@@ -523,6 +523,9 @@ function loadGameState() {
                 }
             });
         }
+        // Update prestige from loaded game state
+        const currentPrestigeLevel = savedState.prestigeLevel || 0;
+        localStorage.setItem('prestigeLevel', currentPrestigeLevel);
 
         if (savedState.statistics) {
             statistics = savedState.statistics;

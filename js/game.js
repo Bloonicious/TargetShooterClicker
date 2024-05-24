@@ -1171,7 +1171,7 @@ function updatePointsDisplay() {
 }
 
 // Function to handle clicking the earn points button
-function earnPoints() {
+function earnPoints(amount) {
     let pointsPerShot = touchGunPointsPerClick;
     shoot('touchGun', pointsPerShot, false, false);
     updatePointsDisplay();
@@ -2938,7 +2938,7 @@ function updateStatisticsDisplay() {
 // Loads the statistics data
 function setStatistics() {
     // Calculate and assign the total lifetime points display
-    statistics.totalLifetimePoints = updateLifetimePointsDisplay();
+    statistics.totalLifetimePoints = totalPointsEarned;
 
     // Calculate and assign the total weapons purchased
     statistics.totalWeaponsPurchased = getTotalWeaponsPurchased();

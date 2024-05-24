@@ -1171,10 +1171,11 @@ function updatePointsDisplay() {
 }
 
 // Function to handle clicking the earn points button
-function earnPoints(amount) {
+function earnPoints() {
     let pointsPerShot = touchGunPointsPerClick;
     shoot('touchGun', pointsPerShot, false, false);
     updatePointsDisplay();
+    totalPointsEarned += pointsPerShot;
     updateLifetimePointsDisplay();
 }
 
@@ -1233,6 +1234,10 @@ function automaticPointsGeneration() {
 
                     shoot(weaponId, pointsPerShot, critical, miss);
                     lastPointsTime[weaponId] = currentTime;
+
+                    // Increment lifetime points
+                    totalPointsEarned += pointsPerShot;
+                    updateLifetimePointsDisplay(); // Update lifetime points display
                 }
             }, weapon.stats.fireRate); // Check according to each weapon's fire rate
         }

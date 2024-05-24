@@ -2855,20 +2855,18 @@ function prestige() {
 window.onload = function() {
     let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
     if (currentPrestigeLevel < prestigeLevels.length - 1) {
-        document.getElementById('prestige-button').textContent = "Prestige to " + prestigeLevels[currentPrestigeLevel + 1].name; // Display next prestige level
+        document.getElementById('prestige-button').textContent = "Prestige to " + prestigeLevels[currentPrestigeLevel + 1].name;
     } else {
         document.getElementById('prestige-button').textContent = "Coming Soon!";
     }
     document.getElementById('prestige-level').textContent = prestigeLevels[currentPrestigeLevel].name;
 
-    // Update the next prestige cost display
     let nextPrestigeCostElement = document.getElementById('next-prestige-cost');
     if (nextPrestigeCostElement) {
         let nextPrestigeCost = prestigeLevels[currentPrestigeLevel + 1] ? prestigeLevels[currentPrestigeLevel + 1].cost : 'MAX';
         nextPrestigeCostElement.textContent = nextPrestigeCost === 'MAX' ? nextPrestigeCost : formatNumber(nextPrestigeCost);
     }
 
-    // Format and update points display
     let currentPoints = points;
     document.getElementById('score-value-main').textContent = formatNumber(currentPoints);
     document.getElementById('score-value-upgrades').textContent = formatNumber(currentPoints);

@@ -282,7 +282,7 @@ body {
 #earn-points-button,
 #progress-settings button,
 #language-settings select,
-#prestige-button button,
+#prestige-button,
 .weapon-zone button,
 .upgrade-option button {
     font-family: 'Lilita One', cursive;
@@ -298,7 +298,7 @@ body {
 #earn-points-button:hover,
 #progress-settings button:hover,
 #language-settings select:hover,
-#prestige-button button:hover,
+#prestige-button:hover,
 .weapon-zone button:hover,
 .upgrade-option button:hover {
     background-color: #f3c7ba; /* Lighter shade of pink on hover */

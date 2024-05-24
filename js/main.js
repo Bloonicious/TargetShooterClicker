@@ -281,6 +281,7 @@ function saveGameState() {
         achievements: achievementsData,
         statistics: statistics,
         points: points,
+        totalPointsEarned: totalPointsEarned,
         
         touchGunCost: touchGunCost,
         touchGunPointsPerClick: touchGunPointsPerClick,
@@ -811,7 +812,7 @@ function resetProgress() {
         localStorage.removeItem('enemies');
         // Reset all variables to their default values
         points = 0;
-        gameplayPoints = 0;
+        totalPointsEarned = 0;
         // Reset achievements
         achievements.forEach(achievement => {
             achievement.achieved = false;

@@ -2955,20 +2955,19 @@ function initializeUI() {
     
     // Interval timer to update cost display nearly instantly
     setInterval(updateCostDisplay, 100);
-
-    // Function to update achievements display nearly instantly
-    function updateAchievements() {
-        updateAchievementsDisplay();
-        checkAndUpdateAchievements(); // Check and update achievements status
-    }
-    setInterval(updateAchievements, 100);
-
-    // Function to update statistics display nearly instantly
-    function updateStatistics() {
-        updateStatisticsDisplay();
-        setStatistics();
-        calculateCompletionPercentage(); // Update achievement progress
-    }
-    setInterval(updateStatistics, 100);
 }
 
+// Function to update achievements display nearly instantly
+function updateAchievements() {
+    updateAchievementsDisplay();
+    checkAndUpdateAchievements(); // Check and update achievements status
+}
+setInterval(updateAchievements, 100);
+
+// Function to update statistics display nearly instantly
+function updateStatistics() {
+    updateStatisticsDisplay();
+    setStatistics();
+    calculateCompletionPercentage(); // Update achievement progress
+}
+setInterval(updateStatistics, 100);

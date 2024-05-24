@@ -111,10 +111,10 @@ body {
 }
 
 .button-row button {
-    flex: 1 0 15%; /* Distribute space equally among buttons, limit width to 15% */
-    max-width: calc(15% - 4px); /* Maximum width of each button */
+    flex: 1 0 12.5%; /* Distribute space equally among buttons, limit width to 12.5% */
+    max-width: calc(12.5% - 4px); /* Maximum width of each button */
     padding: 2px 5px; /* Reduced padding for a more compact look */
-    font-size: 12px; /* Reduced font size for a less bulky appearance */
+    font-size: 16px; /* Reduced font size for a less bulky appearance */
     cursor: pointer;
 }
 

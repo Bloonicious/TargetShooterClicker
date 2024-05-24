@@ -145,15 +145,7 @@ function saveGameState() {
         description: achievement.description,
         achieved: achievement.achieved
     }));
-    // Save weapon data
-    const weaponData = Object.entries(weapons).map(([weaponId, weapon]) => ({
-        id: weaponId,
-        purchased: weapon.purchased,
-        cost: weapon.cost,
-        stats: weapon.stats
-    }));
     var gameState = {
-        weaponData: weaponData,
         achievements: achievementsData,
         statistics: statistics,
         points: points,
@@ -371,6 +363,8 @@ function saveGameState() {
 
     var gameStateJSON = JSON.stringify(gameState);
 
+    localStorage.setItem('weapons', JSON.stringify(weapons));
+    localStorage.setItem('enemies', JSON.stringify(enemies));
     localStorage.setItem('gameState', gameStateJSON);
 }
 
@@ -378,6 +372,16 @@ function saveGameState() {
 function loadGameState() {
     const savedState = JSON.parse(localStorage.getItem('gameState'));
     if (savedState) {
+        let storedWeapons = localStorage.getItem('weapons');
+        let storedEnemies = localStorage.getItem('enemies');
+
+        if (storedWeapons) {
+            weapons = JSON.parse(storedWeapons);
+        }
+
+        if (storedEnemies) {
+            enemies = JSON.parse(storedEnemies);
+        }
         // Update statistics from loaded game state
         const savedAchievements = savedState.achievements;
         if (savedAchievements) {
@@ -659,73 +663,6 @@ function updateWeaponDisplays() {
             }
         }
     });
-}
-
-// Function to initialize default weapons data
-function getDefaultWeapons() {
-    return [
-        {
-            id: 'pistol',
-            purchased: false,
-            cost: 10,
-            stats: { pointsPerShot: 1, fireRate: 1000, hp: 10, damage: 1, range: 6, accuracy: 100, bulletsPerShot: 1 }
-        },
-        {
-            id: 'smg',
-            purchased: false,
-            cost: 100,
-            stats: { pointsPerShot: 1, fireRate: 200, hp: 20, damage: 1, range: 5, accuracy: 100, bulletsPerShot: 1 }
-        },
-        {
-            id: 'shotgun',
-            purchased: false,
-            cost: 500,
-            stats: { pointsPerShot: 4, fireRate: 1500, hp: 50, damage: 4, range: 3, accuracy: 100, bulletsPerShot: 3 }
-        },
-        {
-            id: 'sniperRifle',
-            purchased: false,
-            cost: 7500,
-            stats: { pointsPerShot: 120, fireRate: 4000, hp: 30, damage: 60, range: 10, accuracy: 100, bulletsPerShot: 1, criticalChance: 25, criticalDamage: 2 }
-        },
-        {
-            id: 'ak47',
-            purchased: false,
-            cost: 60000,
-            stats: { pointsPerShot: 150, fireRate: 500, hp: 80, damage: 75, range: 7, accuracy: 100, bulletsPerShot: 1 }
-        },
-        {
-            id: 'rocketLauncher',
-            purchased: false,
-            cost: 400000,
-            stats: { pointsPerShot: 1000, fireRate: 5000, hp: 60, damage: 500, range: 9, accuracy: 100, bulletsPerShot: 1, splashRadius: 300, splashDamage: 0.4 }
-        },
-        {
-            id: 'tommyGun',
-            purchased: false,
-            cost: 2500000,
-            stats: { pointsPerShot: 600, fireRate: 150, hp: 120, damage: 300, range: 7, accuracy: 50, bulletsPerShot: 1, inaccuracyPenalty: 0.5 }
-        },
-        {
-            id: 'doubleBarrel',
-            purchased: false,
-            cost: 30000000,
-            stats: { pointsPerShot: 4000, fireRate: 2000, hp: 250, damage: 2000, range: 4, accuracy: 100, bulletsPerShot: 2 }
-        },
-        {
-            id: 'uzi',
-            purchased: false,
-            cost: 175000000,
-            stats: { pointsPerShot: 3000, fireRate: 75, hp: 300, damage: 1500, range: 4, accuracy: 100, bulletsPerShot: 1 }
-        },
-        {
-            id: 'huntingRifle',
-            purchased: false,
-            cost: 1250000000,
-            stats: { pointsPerShot: 180000, fireRate: 3000, hp: 200, damage: 90000, range: 10, accuracy: 100, bulletsPerShot: 1, criticalChance: 40, criticalDamage: 1.5 }
-        },
-        // Add other weapons here
-    ];
 }
 
 // Function to auto-save the game state every 60 seconds
@@ -1016,8 +953,7 @@ function resetProgress() {
 
 // Event listeners to call in initialization of those in-game functions
 document.addEventListener('DOMContentLoaded', function() {
-    initializeWeapons();
-    initializeEnemies();
+    initializeUI();
     initializeUpgradeCosts();
     initializeAchievements();
     initializeStatistics();

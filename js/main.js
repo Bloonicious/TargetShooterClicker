@@ -821,18 +821,24 @@ function resetProgress() {
             totalSplashRadiusUpgrades: 0,
             totalSplashDamageUpgrades: 0
         };
-        selectedWeapons = {};
-        for (const weaponId in savedState.weapons) {
-            if (weapons[weaponId]) {
-                // Update weapon properties from saved data
-                weapons[weaponId].purchased = savedState.weapons[weaponId].purchased;
-
-                // Mark the weapon as unpurchased
-                weapons[weaponId].purchased = false;
-
-                // Include other weapon properties to update as needed
+        // Reset weapon variables and upgrades
+        for (const weaponId in weapons) {
+            weapons[weaponId].purchased = false;
+            weapons[weaponId].stats = {
+                pointsPerShot: weapons[weaponId].defaultStats.pointsPerShot,
+                fireRate: weapons[weaponId].defaultStats.fireRate,
+                hp: weapons[weaponId].defaultStats.hp,
+                damage: weapons[weaponId].defaultStats.damage,
+                range: weapons[weaponId].defaultStats.range,
+                accuracy: weapons[weaponId].defaultStats.accuracy,
+                bulletsPerShot: weapons[weaponId].defaultStats.bulletsPerShot
+            };
+            // Reset upgrades for each weapon
+            for (const upgrade in upgrades[weaponId]) {
+                upgrades[weaponId][upgrade].bought = false;
             }
         }
+        
         touchGunCost = 100;
         touchGunPointsPerClick = 1;
         touchGunLevel = 0;

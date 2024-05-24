@@ -137,6 +137,44 @@ function loadPurchasedBigUpgrades(purchasedBigUpgradeIds) {
     });
 }
 
+// Function to set localization based on the language settings
+function setLocalization() {
+    var language = document.getElementById("language-select").value;
+
+    // Translations for points
+    var pointsElement = document.getElementById("score-value-main");
+    var pointsTranslations = {
+        english: "Points: ",
+        spanish: "Puntos: ",
+        french: "Points: ",
+        polish: "Punkty: "
+    };
+    pointsElement.textContent = pointsTranslations[language] + pointsElement.textContent;
+
+    // Translations for weapon names
+    var weaponTranslations = {
+        pistol: { name: { english: "Pistol", spanish: "Pistola", french: "Pistolet", polish: "Pistolet" } },
+        smg: { name: { english: "SMG", spanish: "Subfusil", french: "Mitraillette", polish: "PM" } },
+        shotgun: { name: { english: "Shotgun", spanish: "Escopeta", french: "Fusil à pompe", polish: "Strzelba" } },
+        sniperRifle: { name: { english: "Sniper Rifle", spanish: "Rifle de francotirador", french: "Fusil de précision", polish: "Karabin snajperski" } },
+        ak47: { name: { english: "AK-47", spanish: "AK-47", french: "AK-47", polish: "AK-47" } },
+        rocketLauncher: { name: { english: "Rocket Launcher", spanish: "Lanzacohetes", french: "Lance-roquettes", polish: "Wyrzutnia rakiet" } },
+        tommyGun: { name: { english: "Tommy Gun", spanish: "Tommy Gun", french: "Fusil-mitrailleur Thompson", polish: "Tommy Gun" } },
+        doubleBarrel: { name: { english: "Double Barrel", spanish: "Doble cañón", french: "Fusil à double canon", polish: "Podwójna lufa" } },
+        uzi: { name: { english: "Uzi", spanish: "Uzi", french: "Uzi", polish: "Uzi" } },
+        huntingRifle: { name: { english: "Hunting Rifle", spanish: "Rifle de caza", french: "Fusil de chasse", polish: "Karabin myśliwski" } }
+    };
+
+    var weaponElements = document.querySelectorAll(".weapon-name");
+    weaponElements.forEach(function(weaponElement) {
+        var weaponId = weaponElement.dataset.weaponId;
+        if (weaponTranslations[weaponId] && weaponTranslations[weaponId].name[language]) {
+            weaponElement.textContent = weaponTranslations[weaponId].name[language];
+        }
+    });
+
+    // Add more translations for other elements as needed
+}
 // Function to save the game state to local storage
 function saveGameState() {
     // Save achievements data

@@ -1168,9 +1168,6 @@ function updatePointsDisplay() {
     if (scoreValueUpgrades) {
         scoreValueUpgrades.textContent = formatNumber(points);
     }
-    
-    // Update lifetime points statistic
-    updateLifetimePoints();
 }
 
 // Function to handle clicking the earn points button

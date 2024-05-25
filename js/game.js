@@ -2404,6 +2404,25 @@ function updateCostDisplay() {
         document.getElementById('touchGunSuperAwaken-purchase').style.display = 'block';
         document.getElementById('touchGunSuperAwaken-display').style.display = 'block';
     }
+
+    let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
+
+    // Determine the next prestige cost
+    let nextPrestigeLevel = prestigeLevels[currentPrestigeLevel + 1];
+    let nextPrestigeCost = nextPrestigeLevel ? nextPrestigeLevel.cost : 'MAX';
+
+    // Update the display with the formatted next prestige cost
+    let nextPrestigeCostElement = document.getElementById('next-prestige-cost');
+    if (nextPrestigeCostElement) {
+        nextPrestigeCostElement.textContent = nextPrestigeCost === 'MAX' ? nextPrestigeCost : formatNumber(nextPrestigeCost);
+    }
+
+    // Update the prestige button text if not at the maximum prestige level
+    if (currentPrestigeLevel < prestigeLevels.length - 1) {
+        document.getElementById('prestige-button').textContent = "Prestige to " + prestigeLevels[currentPrestigeLevel + 1].name;
+    } else {
+        document.getElementById('prestige-button').textContent = "MAX PRESTIGE";
+    }
 }
 
 // Function to format numbers into units

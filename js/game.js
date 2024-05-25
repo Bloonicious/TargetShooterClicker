@@ -1313,7 +1313,7 @@ function purchase(item) {
             purchaseUpgrade('rocketLauncherFirerate', rocketLauncherFirerateLevel, rocketLauncherFirerateUpgradeCost, 2, -200, 'firerate');
             break;
         case 'rocketLauncherPotency':
-            purchaseUpgrade('rocketLauncherPotency', rocketLauncherPotencyLevel, rocketLauncherPotencyUpgradeCost, 1.4, 1000, 'potency');
+            purchaseUpgrade('rocketLauncherPotency', rocketLauncherPotencyLevel, rocketLauncherPotencyUpgradeCost, 1.4, 1250, 'potency');
             break;
         case 'rocketLauncherSplashRadius':
             purchaseUpgrade('rocketLauncherSplashRadius', rocketLauncherSplashRadiusLevel, rocketLauncherSplashRadiusUpgradeCost, 50, 150, 'splashRadius');
@@ -1334,7 +1334,7 @@ function purchase(item) {
             purchaseUpgrade('doubleBarrelFirerate', doubleBarrelFirerateLevel, doubleBarrelFirerateUpgradeCost, 1.8, -50, 'firerate');
             break;
         case 'doubleBarrelPotency':
-            purchaseUpgrade('doubleBarrelPotency', doubleBarrelPotencyLevel, doubleBarrelPotencyUpgradeCost, 1.4, 4000, 'potency');
+            purchaseUpgrade('doubleBarrelPotency', doubleBarrelPotencyLevel, doubleBarrelPotencyUpgradeCost, 1.4, 6000, 'potency');
             break;
         case 'doubleBarrelMultiFire':
             purchaseUpgrade('doubleBarrelMultiFire', doubleBarrelMultiFireLevel, doubleBarrelMultiFireUpgradeCost, 10, 2, 'multiFire');
@@ -1343,13 +1343,13 @@ function purchase(item) {
             purchaseUpgrade('uziFirerate', uziFirerateLevel, uziFirerateUpgradeCost, 2.6, -2.5, 'firerate');
             break;
         case 'uziPotency':
-            purchaseUpgrade('uziPotency', uziPotencyLevel, uziPotencyUpgradeCost, 1.4, 3000, 'potency');
+            purchaseUpgrade('uziPotency', uziPotencyLevel, uziPotencyUpgradeCost, 1.4, 4500, 'potency');
             break;
         case 'huntingRifleFirerate':
             purchaseUpgrade('huntingRifleFirerate', huntingRifleFirerateLevel, huntingRifleFirerateUpgradeCost, 1.8, -100, 'firerate');
             break;
         case 'huntingRiflePotency':
-            purchaseUpgrade('huntingRiflePotency', huntingRiflePotencyLevel, huntingRiflePotencyUpgradeCost, 1.4, 180000, 'potency');
+            purchaseUpgrade('huntingRiflePotency', huntingRiflePotencyLevel, huntingRiflePotencyUpgradeCost, 1.4, 250000, 'potency');
             break;
         case 'huntingRifleCriticalShot':
             purchaseUpgrade('huntingRifleCriticalShot', huntingRifleCriticalShotLevel, huntingRifleCriticalShotUpgradeCost, 3.5, 2, 'criticalShotChance');
@@ -1691,29 +1691,6 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
         updateCostDisplay();
     } else {
         alert(`Not enough points to upgrade ${upgradeType}!`);
-    }
-}
-
-// Determine the maximum level of the weapon's upgradeType can get to
-function getMaxLevel(weapon, upgradeType) {
-    switch (weapon) {
-        case 'pistol':
-            return upgradeType === 'firerate' ? 20 : 25;
-        case 'smg':
-        case 'sniperRifle':
-        case 'uzi':
-            return upgradeType === 'firerate' ? 10 : 25;
-        case 'shotgun':
-        case 'rocketLauncher':
-        case 'huntingRifle':
-            return upgradeType === 'firerate' ? 15 : 25;
-        case 'tommyGun':
-        case 'ak47':
-            return upgradeType === 'firerate' ? 20 : 25;
-        case 'doubleBarrel':
-            return 25;
-        default:
-            return 25;
     }
 }
 
@@ -2809,17 +2786,28 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
 // Function to get the total number of weapons purchased
 function getTotalWeaponsPurchased() {
     if (!weapons || typeof weapons !== 'object') {
-        return 0;
+        return { purchased: 0, total: 0 };
     }
 
     let totalWeaponsPurchased = 0;
+    let totalWeapons = Object.keys(weapons).length;
+
     for (let weaponId in weapons) {
         if (weapons[weaponId].purchased) {
             totalWeaponsPurchased++;
         }
     }
 
-    return totalWeaponsPurchased;
+    return { purchased: totalWeaponsPurchased, total: totalWeapons };
+}
+
+// Function to update the total weapons purchased display
+function updateTotalWeaponsPurchasedDisplay() {
+    const totalWeaponsData = getTotalWeaponsPurchased();
+    const totalWeaponsPurchasedElement = document.getElementById('total-weapons-purchased');
+    if (totalWeaponsPurchasedElement) {
+        totalWeaponsPurchasedElement.textContent = `${totalWeaponsData.purchased}/${totalWeaponsData.total}`;
+    }
 }
 
 // Function to get the total number of big upgrades purchased
@@ -3098,7 +3086,7 @@ function setStatistics() {
     statistics.totalLifetimePoints = totalPointsEarned;
 
     // Calculate and assign the total weapons purchased
-    statistics.totalWeaponsPurchased = getTotalWeaponsPurchased();
+    statistics.totalWeaponsPurchased = updateTotalWeaponsPurchasedDisplay();
 
     // Calculate and assign the total big upgrades purchased
     statistics.totalBigUpgradesPurchased = getTotalBigUpgradesPurchased();

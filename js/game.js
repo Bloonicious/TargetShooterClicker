@@ -262,19 +262,6 @@ let totalPointsEarned = 0;
 
 let numberFormat = 'standard'; // Default number format
 
-let lastPointsTime = {
-    pistol: 0,
-    smg: 0,
-    shotgun: 0,
-    sniperRifle: 0,
-    ak47: 0,
-    rocketLauncher: 0,
-    tommyGun: 0,
-    doubleBarrel: 0,
-    uzi: 0,
-    huntingRifle: 0
-};
-
 let achievements = [
     { name: "Target Practicer", description: "Start your target-shooting practice by earning your first point from the touch gun.", condition: () => points > 0, achieved: false },
     { name: "You're Doing Great!", description: "Reach 1,000 points.", condition: () => points >= 1000, achieved: false },
@@ -320,6 +307,19 @@ let prestigeLevels = [
     { name: "Iron", cost: 1e15, multiplier: 16 },
     { name: "Diamond", cost: 1e17, multiplier: 32 }
 ];
+
+let lastPointsTime = {
+    pistol: 0,
+    smg: 0,
+    shotgun: 0,
+    sniperRifle: 0,
+    ak47: 0,
+    rocketLauncher: 0,
+    tommyGun: 0,
+    doubleBarrel: 0,
+    uzi: 0,
+    huntingRifle: 0
+};
 
 let weaponTimers = {};
 
@@ -2901,8 +2901,8 @@ function prestige() {
             upgrades[weaponId][upgrade].bought = false;
         }
     }
-
-    // Clear existing weapon timers
+	
+	// Clear existing weapon timers
     for (const weaponId in weaponTimers) {
         clearInterval(weaponTimers[weaponId]);
     }

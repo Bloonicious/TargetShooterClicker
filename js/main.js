@@ -946,6 +946,7 @@ function resetProgress() {
 
         // Update the interfaces
         updatePointsDisplay();
+        updateCostDisplay();
         updateAchievements();
         updateStatistics();
         initializeUpgradeCosts();

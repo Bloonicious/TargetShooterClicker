@@ -2408,15 +2408,14 @@ function updateCostDisplay() {
     // Properly update the big upgrade cost values on format
     const upgradeOptions = document.querySelectorAll('.upgrade-option');
     upgradeOptions.forEach(upgradeOption => {
+        const weapon = upgradeOption.classList[1]; // Get the weapon type from the class
+        const upgradeId = upgradeOption.id.split('-')[1]; // Get the upgrade ID from the element ID
+        const upgradeData = upgrades[weapon][upgradeId]; // Get the upgrade data from the upgrades object
         const costElement = upgradeOption.querySelector('.upgrade-cost');
-        if (costElement) {
-            const costText = costElement.textContent.trim(); // Trim any leading/trailing whitespace
-            const isBought = costText === "Bought!"; // Check if upgrade is already bought
-            if (!isBought) {
-                const cost = parseInt(costText.replace(/\D/g, ''), 10); // Extract cost as integer
-                const formattedCost = formatNumber(cost); // Format the cost using the formatNumber function
-                costElement.textContent = `Cost: ${formattedCost}`; // Update the cost display
-            }
+        
+        if (costElement && upgradeData) {
+            const formattedCost = formatNumber(upgradeData.cost); // Format the cost using the formatNumber function
+            costElement.textContent = `Cost: ${formattedCost}`; // Update the cost display
         }
     });
 

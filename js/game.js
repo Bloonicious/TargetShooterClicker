@@ -2851,16 +2851,6 @@ function prestige() {
         totalMultiplier *= prestigeLevels[i].multiplier;
     }
 
-    // Update weapon stats based on the total multiplier
-    Object.keys(weapons).forEach(function(weaponId) {
-        let weapon = weapons[weaponId];
-        weapon.stats.pointsPerShot *= totalMultiplier;
-        weapon.stats.damage *= totalMultiplier;
-    });
-
-    // Update touch gun points per click based on the total multiplier
-    touchGunPointsPerClick *= totalMultiplier;
-
     // Perform the soft reset; resets everything but prestige
     points = 0;
 
@@ -2869,6 +2859,9 @@ function prestige() {
         weapons[weaponId].purchased = false;
         if (weaponInitialStats[weaponId]) {
             weapons[weaponId].stats = { ...weaponInitialStats[weaponId] };
+            // Apply the prestige multiplier to the weapon stats
+            weapons[weaponId].stats.pointsPerShot *= totalMultiplier;
+            weapons[weaponId].stats.damage *= totalMultiplier;
         } else {
             console.warn(`Initial stats for ${weaponId} are undefined.`);
         }
@@ -2890,7 +2883,7 @@ function prestige() {
     });
 
     touchGunCost = 100;
-    touchGunPointsPerClick = 1;
+    touchGunPointsPerClick = 1 * totalMultiplier; // Apply the prestige multiplier
     touchGunLevel = 0;
 
     awokenTouchGunCost = 500000;
@@ -2899,6 +2892,7 @@ function prestige() {
     superAwokenTouchGunCost = 500000000000;
     superAwokenTouchGunLevel = 0;
 
+    // Reset other weapon upgrade costs and levels
     pistolFirerateUpgradeCost = 50;
     pistolPotencyUpgradeCost = 100;
     pistolFirerateLevel = 0;

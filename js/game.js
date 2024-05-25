@@ -2880,11 +2880,8 @@ function prestige() {
     currentPrestigeLevel++;
     localStorage.setItem('prestigeLevel', currentPrestigeLevel);
 
-    // Calculate the total multiplier based on the current prestige level
-    let totalMultiplier = 1;
-    for (let i = 1; i <= currentPrestigeLevel; i++) {
-        totalMultiplier *= prestigeLevels[i].multiplier;
-    }
+    // Get the total multiplier based on the current prestige level
+    let totalMultiplier = prestigeLevels[currentPrestigeLevel].multiplier;
 
     // Perform the soft reset; resets everything but prestige
     points = 0;
@@ -2905,7 +2902,7 @@ function prestige() {
             upgrades[weaponId][upgrade].bought = false;
         }
     }
-	
+    
     // Clear existing weapon timers
     for (const weaponId in weaponTimers) {
         clearInterval(weaponTimers[weaponId]);

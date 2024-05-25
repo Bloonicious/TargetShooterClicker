@@ -2421,8 +2421,12 @@ function updateCostDisplay() {
         const costElement = upgradeOption.querySelector('.upgrade-cost');
         
         if (costElement && upgradeData) {
-            const formattedCost = formatNumber(upgradeData.cost); // Format the cost using the formatNumber function
-            costElement.textContent = `Cost: ${formattedCost}`; // Update the cost display
+            if (upgradeData.bought) {
+                costElement.textContent = "Bought!"; // Update the cost display to indicate "Bought!"
+            } else {
+                const formattedCost = formatNumber(upgradeData.cost); // Format the cost using the formatNumber function
+                costElement.textContent = `Cost: ${formattedCost}`; // Update the cost display
+            }
         }
     });
 

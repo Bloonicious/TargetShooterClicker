@@ -1640,7 +1640,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                             }
                             break;
 
-                        case upgradeType.endsWith('CriticalShotChance'):
+                        case upgradeType.endsWith('CriticalShot'):
                             if (weaponId === 'sniperRifle') {
                                 sniperRifleCriticalShotUpgradeCost = cost;
                                 sniperRifleCriticalShotLevel = level;

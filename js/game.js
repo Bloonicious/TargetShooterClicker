@@ -1198,18 +1198,8 @@ function automaticPointsGeneration() {
                     let miss = false;
 
                     // For sniper rifles, check for critical hit
-                    if (weaponId === 'sniperRifle') {
-                        const criticalChance = Math.min(100, weapon.stats.criticalChance + sniperRifleCriticalShotLevel * 2);
-                        if (criticalChance >= Math.random() * 100) {
-                            // Critical shot
-                            pointsPerShot *= weapon.stats.criticalDamage;
-                            critical = true;
-                        }
-                    }
-
-                    // For hunting rifles, check for critical hit
-                    if (weaponId === 'huntingRifle') {
-                        const criticalChance = Math.min(100, weapon.stats.criticalChance + huntingRifleCriticalShotLevel * 2);
+                    if (weaponId === 'sniperRifle' || weaponId === 'huntingRifle') {
+                        const criticalChance = Math.min(100, weapon.stats.criticalChance);
                         if (criticalChance >= Math.random() * 100) {
                             // Critical shot
                             pointsPerShot *= weapon.stats.criticalDamage;
@@ -1224,7 +1214,7 @@ function automaticPointsGeneration() {
 
                     // For tommy guns, check for missed shots
                     if (weaponId === 'tommyGun') {
-                        const inaccuracyChance = Math.min(100, 50 + tommyGunAccuracyLevel * -2);
+                        const inaccuracyChance = Math.min(100, 100 - weapon.stats.accuracy);
                         if (inaccuracyChance >= Math.random() * 100) {
                             // Missed shot
                             pointsPerShot *= weapon.stats.inaccuracyPenalty;
@@ -1474,7 +1464,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 break;
 
             default:
-                let weaponId = upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalShotChance|CriticalDamage|Accuracy/, '');
+                let weaponId = upgradeType.replace(/Firerate|Potency|MultiFire|SplashRadius|SplashDamage|CriticalShot|CriticalDamage|Accuracy/, '');
                 let stats = getWeaponStats(weaponId);
 
                 if (!stats) {

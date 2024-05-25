@@ -844,23 +844,15 @@ function resetProgress() {
         }
 
         // Reset touch gun big upgrades
-        upgrades.touchGun.pointyFingers.bought = false;
-        upgrades.touchGun.ambidextrous.bought = false;
-        upgrades.touchGun.thousandFingers.bought = false;
-        upgrades.touchGun.antirestingCream.bought = false;
-        upgrades.touchGun.powerfulHands.bought = false;
-        upgrades.touchGun.awakenUpgrade.bought = false;
-        upgrades.touchGun.millionFingers.bought = false;
-        upgrades.touchGun.stingingTaps.bought = false;
-        upgrades.touchGun.gotToTap.bought = false;
-        upgrades.touchGun.fingerSwarm.bought = false;
-        upgrades.touchGun.billionFingers.bought = false;
-        upgrades.touchGun.needMore.bought = false;
-        upgrades.touchGun.fingerPistols.bought = false;
-        upgrades.touchGun.superAwakenUpgrade.bought = false;
-        upgrades.touchGun.trillionFingers.bought = false;
-        upgrades.touchGun.heavyFingers.bought = false;
-        upgrades.touchGun.magicHands.bought = false;
+        const touchGunUpgrades = [
+            'pointyFingers', 'ambidextrous', 'thousandFingers', 'antirestingCream',
+            'powerfulHands', 'awakenUpgrade', 'millionFingers', 'stingingTaps',
+            'gotToTap', 'fingerSwarm', 'billionFingers', 'needMore', 'fingerPistols',
+            'superAwakenUpgrade', 'trillionFingers', 'heavyFingers', 'magicHands'
+        ];
+        touchGunUpgrades.forEach(upgrade => {
+            upgrades.touchGun[upgrade].bought = false;
+        });
         
         touchGunCost = 100;
         touchGunPointsPerClick = 1;

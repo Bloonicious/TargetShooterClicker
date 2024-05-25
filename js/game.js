@@ -3086,8 +3086,8 @@ function setStatistics() {
     statistics.totalLifetimePoints = totalPointsEarned;
 
     // Calculate and assign the total weapons purchased
-    statistics.totalWeaponsPurchased = updateTotalWeaponsPurchasedDisplay();
-
+    statistics.totalWeaponsPurchased = getTotalWeaponsPurchased();
+    
     // Calculate and assign the total big upgrades purchased
     statistics.totalBigUpgradesPurchased = getTotalBigUpgradesPurchased();
 
@@ -3193,6 +3193,7 @@ setInterval(updateAchievements, 100);
 function updateStatistics() {
     updateStatisticsDisplay();
     setStatistics();
+    updateTotalWeaponsPurchasedDisplay();
     calculateCompletionPercentage(); // Update achievement progress
 }
 setInterval(updateStatistics, 100);

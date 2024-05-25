@@ -2902,11 +2902,14 @@ function prestige() {
         }
     }
 	
-	// Clear existing weapon timers
+    // Clear existing weapon timers
     for (const weaponId in weaponTimers) {
         clearInterval(weaponTimers[weaponId]);
     }
     weaponTimers = {}; // Reset the weapon timers object
+
+    // Reset lastPointsTime for all weapons
+    lastPointsTime = {};
 
     // Reset touch gun big upgrades
     const touchGunUpgrades = [

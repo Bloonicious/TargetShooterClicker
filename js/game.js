@@ -2812,11 +2812,125 @@ function getTotalBigUpgradesPurchased() {
 // Function to handle prestige
 function prestige() {
     // Prompt confirmation before prestige
-    var confirmation = confirm("Are you sure you want to prestige your progress? This will reset all your weapons and upgrades.");
+    var confirmation = confirm("Are you sure you want to prestige your progress? This will reset all your weapons and upgrades as well as your points.");
 
     if (!confirmation) {
         return;
     }
+
+    // Soft reset; resets everything but prestige
+    points = 0;
+
+    // Reset weapon variables and upgrades
+    for (const weaponId in weapons) {
+        weapons[weaponId].purchased = false;
+        if (weaponInitialStats[weaponId]) {
+            weapons[weaponId].stats = { ...weaponInitialStats[weaponId] };
+        } else {
+            console.warn(`Initial stats for ${weaponId} are undefined.`);
+        }
+
+        for (const upgrade in upgrades[weaponId]) {
+            upgrades[weaponId][upgrade].bought = false;
+        }
+    }
+
+    // Reset touch gun big upgrades
+    upgrades.touchGun.pointyFingers.bought = false;
+    upgrades.touchGun.ambidextrous.bought = false;
+    upgrades.touchGun.thousandFingers.bought = false;
+    upgrades.touchGun.antirestingCream.bought = false;
+    upgrades.touchGun.powerfulHands.bought = false;
+    upgrades.touchGun.awakenUpgrade.bought = false;
+    upgrades.touchGun.millionFingers.bought = false;
+    upgrades.touchGun.stingingTaps.bought = false;
+    upgrades.touchGun.gotToTap.bought = false;
+    upgrades.touchGun.fingerSwarm.bought = false;
+    upgrades.touchGun.billionFingers.bought = false;
+    upgrades.touchGun.needMore.bought = false;
+    upgrades.touchGun.fingerPistols.bought = false;
+    upgrades.touchGun.superAwakenUpgrade.bought = false;
+    upgrades.touchGun.trillionFingers.bought = false;
+    upgrades.touchGun.heavyFingers.bought = false;
+    upgrades.touchGun.magicHands.bought = false;
+
+    touchGunCost = 100;
+    touchGunPointsPerClick = 1;
+    touchGunLevel = 0;
+
+    awokenTouchGunCost = 500000;
+    awokenTouchGunLevel = 0;
+
+    superAwokenTouchGunCost = 500000000000;
+    superAwokenTouchGunLevel = 0;
+        
+    pistolFirerateUpgradeCost = 50;
+    pistolPotencyUpgradeCost = 100;
+    pistolFirerateLevel = 0;
+    pistolPotencyLevel = 0;
+        
+    smgFirerateUpgradeCost = 600;
+    smgPotencyUpgradeCost = 1200;
+    smgFirerateLevel = 0;
+    smgPotencyLevel = 0;
+        
+    shotgunFirerateUpgradeCost = 5000;
+    shotgunPotencyUpgradeCost = 10000;
+    shotgunMultiFireUpgradeCost = 25000;
+    shotgunFirerateLevel = 0;
+    shotgunPotencyLevel = 0;
+    shotgunMultiFireLevel = 0;
+        
+    sniperRifleFirerateUpgradeCost = 37500;
+    sniperRiflePotencyUpgradeCost = 75000;
+    sniperRifleCriticalShotUpgradeCost = 75000;
+    sniperRifleCriticalDamageUpgradeCost = 250000;
+    sniperRifleFirerateLevel = 0;
+    sniperRiflePotencyLevel = 0;
+    sniperRifleCriticalShotLevel = 0;
+    sniperRifleCriticalDamageLevel = 0;
+
+    ak47FirerateUpgradeCost = 175000;
+    ak47PotencyUpgradeCost = 250000;
+    ak47FirerateLevel = 0;
+    ak47PotencyLevel = 0;
+
+    rocketLauncherFirerateUpgradeCost = 1000000;
+    rocketLauncherPotencyUpgradeCost = 750000;
+    rocketLauncherSplashRadiusUpgradeCost = 10000000;
+    rocketLauncherSplashDamageUpgradeCost = 5000000;
+    rocketLauncherFirerateLevel = 0;
+    rocketLauncherPotencyLevel = 0;
+    rocketLauncherSplashRadiusLevel = 0;
+    rocketLauncherSplashDamageLevel = 0;
+
+    tommyGunFirerateUpgradeCost = 15000000;
+    tommyGunPotencyUpgradeCost = 10000000;
+    tommyGunAccuracyUpgradeCost = 20000000;
+    tommyGunFirerateLevel = 0;
+    tommyGunPotencyLevel = 0;
+    tommyGunAccuracyLevel = 0;
+
+    doubleBarrelMultiFireUpgradeCost = 150000000;
+    doubleBarrelFirerateUpgradeCost = 80000000;
+    doubleBarrelPotencyUpgradeCost = 60000000;
+    doubleBarrelFirerateLevel = 0;
+    doubleBarrelPotencyLevel = 0;
+    doubleBarrelMultiFireLevel = 0;
+
+    uziFirerateUpgradeCost = 1500000000;
+    uziPotencyUpgradeCost = 1000000000;
+    uziFirerateLevel = 0;
+    uziPotencyLevel = 0;
+
+    huntingRifleFirerateUpgradeCost = 8000000000;
+    huntingRiflePotencyUpgradeCost = 6000000000;
+    huntingRifleCriticalShotUpgradeCost = 20000000000;
+    huntingRifleCriticalDamageUpgradeCost = 30000000000;
+    huntingRifleFirerateLevel = 0;
+    huntingRiflePotencyLevel = 0;
+    huntingRifleCriticalShotLevel = 0;
+    huntingRifleCriticalDamageLevel = 0;
 
     // Get the current prestige level
     let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
@@ -2845,22 +2959,21 @@ function prestige() {
     currentPrestigeLevel++;
     localStorage.setItem('prestigeLevel', currentPrestigeLevel);
 
-    // Update the global points per shot and damage
-    let globalPointsPerShot = touchGunPointsPerClick;
-    let globalDamageMultiplier = 1; // Assuming 1 is the default value
+    // Calculate the total multiplier based on the current prestige level
+    let totalMultiplier = 1;
     for (let i = 1; i <= currentPrestigeLevel; i++) {
-        globalPointsPerShot *= prestigeLevels[i].multiplier;
-        globalDamageMultiplier *= prestigeLevels[i].multiplier;
+        totalMultiplier *= prestigeLevels[i].multiplier;
     }
 
-    // Update weapon stats based on prestige multiplier
+    // Update weapon stats based on the total multiplier
     Object.keys(weapons).forEach(function(weaponId) {
-        weapons[weaponId].stats.pointsPerShot = globalPointsPerShot;
-        weapons[weaponId].stats.damage *= globalDamageMultiplier;
+        let weapon = weapons[weaponId];
+        weapon.stats.pointsPerShot *= totalMultiplier;
+        weapon.stats.damage *= totalMultiplier;
     });
 
-    // Update touch gun points per click
-    touchGunPointsPerClick = globalPointsPerShot;
+    // Update touch gun points per click based on the total multiplier
+    touchGunPointsPerClick *= totalMultiplier;
 
     // Update the HTML to display the new prestige level and cost
     document.getElementById('prestige-level').textContent = nextPrestigeLevel.name;

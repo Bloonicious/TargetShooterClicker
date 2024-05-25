@@ -2970,6 +2970,7 @@ function prestige() {
 
     // Update and reinitialize the interfaces
     updatePointsDisplay();
+    updateCostDisplay();
     updateAchievements();
     updateStatistics();
     initializeUpgradeCosts();

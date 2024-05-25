@@ -2811,6 +2811,25 @@ function getTotalBigUpgradesPurchased() {
 
 // Function to handle prestige
 function prestige() {
+    // Get the current prestige level
+    let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
+
+    // Check if the player has reached the maximum prestige level
+    if (currentPrestigeLevel >= prestigeLevels.length - 1) {
+        alert("You have reached the maximum prestige level!");
+        return;
+    }
+
+    // Get the details of the next prestige level
+    let nextPrestigeLevel = prestigeLevels[currentPrestigeLevel + 1]; // Increment by 1 for next level
+
+    // Check if the player has enough points to prestige
+    let currentPoints = points;
+    if (currentPoints < nextPrestigeLevel.cost) {
+        alert("You don't have enough points to prestige!");
+        return;
+    }
+
     // Prompt confirmation before prestige
     var confirmation = confirm("Are you sure you want to prestige your progress? This will reset all your weapons and upgrades as well as your points.");
 
@@ -2818,7 +2837,31 @@ function prestige() {
         return;
     }
 
-    // Soft reset; resets everything but prestige
+    // Deduct the cost of prestige from the points
+    currentPoints -= nextPrestigeLevel.cost;
+    points = currentPoints;
+
+    // Update the prestige level
+    currentPrestigeLevel++;
+    localStorage.setItem('prestigeLevel', currentPrestigeLevel);
+
+    // Calculate the total multiplier based on the current prestige level
+    let totalMultiplier = 1;
+    for (let i = 1; i <= currentPrestigeLevel; i++) {
+        totalMultiplier *= prestigeLevels[i].multiplier;
+    }
+
+    // Update weapon stats based on the total multiplier
+    Object.keys(weapons).forEach(function(weaponId) {
+        let weapon = weapons[weaponId];
+        weapon.stats.pointsPerShot *= totalMultiplier;
+        weapon.stats.damage *= totalMultiplier;
+    });
+
+    // Update touch gun points per click based on the total multiplier
+    touchGunPointsPerClick *= totalMultiplier;
+
+    // Perform the soft reset; resets everything but prestige
     points = 0;
 
     // Reset weapon variables and upgrades
@@ -2836,23 +2879,15 @@ function prestige() {
     }
 
     // Reset touch gun big upgrades
-    upgrades.touchGun.pointyFingers.bought = false;
-    upgrades.touchGun.ambidextrous.bought = false;
-    upgrades.touchGun.thousandFingers.bought = false;
-    upgrades.touchGun.antirestingCream.bought = false;
-    upgrades.touchGun.powerfulHands.bought = false;
-    upgrades.touchGun.awakenUpgrade.bought = false;
-    upgrades.touchGun.millionFingers.bought = false;
-    upgrades.touchGun.stingingTaps.bought = false;
-    upgrades.touchGun.gotToTap.bought = false;
-    upgrades.touchGun.fingerSwarm.bought = false;
-    upgrades.touchGun.billionFingers.bought = false;
-    upgrades.touchGun.needMore.bought = false;
-    upgrades.touchGun.fingerPistols.bought = false;
-    upgrades.touchGun.superAwakenUpgrade.bought = false;
-    upgrades.touchGun.trillionFingers.bought = false;
-    upgrades.touchGun.heavyFingers.bought = false;
-    upgrades.touchGun.magicHands.bought = false;
+    const touchGunUpgrades = [
+        'pointyFingers', 'ambidextrous', 'thousandFingers', 'antirestingCream',
+        'powerfulHands', 'awakenUpgrade', 'millionFingers', 'stingingTaps',
+        'gotToTap', 'fingerSwarm', 'billionFingers', 'needMore', 'fingerPistols',
+        'superAwakenUpgrade', 'trillionFingers', 'heavyFingers', 'magicHands'
+    ];
+    touchGunUpgrades.forEach(upgrade => {
+        upgrades.touchGun[upgrade].bought = false;
+    });
 
     touchGunCost = 100;
     touchGunPointsPerClick = 1;
@@ -2863,24 +2898,24 @@ function prestige() {
 
     superAwokenTouchGunCost = 500000000000;
     superAwokenTouchGunLevel = 0;
-        
+
     pistolFirerateUpgradeCost = 50;
     pistolPotencyUpgradeCost = 100;
     pistolFirerateLevel = 0;
     pistolPotencyLevel = 0;
-        
+
     smgFirerateUpgradeCost = 600;
     smgPotencyUpgradeCost = 1200;
     smgFirerateLevel = 0;
     smgPotencyLevel = 0;
-        
+
     shotgunFirerateUpgradeCost = 5000;
     shotgunPotencyUpgradeCost = 10000;
     shotgunMultiFireUpgradeCost = 25000;
     shotgunFirerateLevel = 0;
     shotgunPotencyLevel = 0;
     shotgunMultiFireLevel = 0;
-        
+
     sniperRifleFirerateUpgradeCost = 37500;
     sniperRiflePotencyUpgradeCost = 75000;
     sniperRifleCriticalShotUpgradeCost = 75000;
@@ -2931,49 +2966,6 @@ function prestige() {
     huntingRiflePotencyLevel = 0;
     huntingRifleCriticalShotLevel = 0;
     huntingRifleCriticalDamageLevel = 0;
-
-    // Get the current prestige level
-    let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
-
-    // Check if the player has reached the maximum prestige level
-    if (currentPrestigeLevel >= prestigeLevels.length - 1) {
-        alert("You have reached the maximum prestige level!");
-        return;
-    }
-
-    // Get the details of the next prestige level
-    let nextPrestigeLevel = prestigeLevels[currentPrestigeLevel + 1]; // Increment by 1 for next level
-
-    // Check if the player has enough points to prestige
-    let currentPoints = points;
-    if (currentPoints < nextPrestigeLevel.cost) {
-        alert("You don't have enough points to prestige!");
-        return;
-    }
-
-    // Deduct the cost of prestige from the points
-    currentPoints -= nextPrestigeLevel.cost;
-    points = currentPoints;
-
-    // Update the prestige level
-    currentPrestigeLevel++;
-    localStorage.setItem('prestigeLevel', currentPrestigeLevel);
-
-    // Calculate the total multiplier based on the current prestige level
-    let totalMultiplier = 1;
-    for (let i = 1; i <= currentPrestigeLevel; i++) {
-        totalMultiplier *= prestigeLevels[i].multiplier;
-    }
-
-    // Update weapon stats based on the total multiplier
-    Object.keys(weapons).forEach(function(weaponId) {
-        let weapon = weapons[weaponId];
-        weapon.stats.pointsPerShot *= totalMultiplier;
-        weapon.stats.damage *= totalMultiplier;
-    });
-
-    // Update touch gun points per click based on the total multiplier
-    touchGunPointsPerClick *= totalMultiplier;
 
     // Update the HTML to display the new prestige level and cost
     document.getElementById('prestige-level').textContent = nextPrestigeLevel.name;

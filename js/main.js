@@ -844,6 +844,12 @@ function resetProgress() {
             }
         }
 
+        // Clear existing weapon timers
+        for (const weaponId in weaponTimers) {
+            clearInterval(weaponTimers[weaponId]);
+        }
+        weaponTimers = {}; // Reset the weapon timers object
+
         // Reset touch gun big upgrades
         const touchGunUpgrades = [
             'pointyFingers', 'ambidextrous', 'thousandFingers', 'antirestingCream',

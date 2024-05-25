@@ -321,6 +321,8 @@ let prestigeLevels = [
     { name: "Diamond", cost: 1e17, multiplier: 32 }
 ];
 
+let weaponTimers = {};
+
 const weaponInitialStats = {};
 
 for (const weaponId in weapons) {
@@ -1181,6 +1183,9 @@ function earnPoints() {
 
 // Function for automatic points generation based on weapon fire rates
 function automaticPointsGeneration() {
+    // Object to store weapon timers
+    weaponTimers = {};
+
     Object.keys(weapons).forEach(weaponId => {
         const weapon = weapons[weaponId];
         if (weapon && weapon.purchased) {
@@ -1189,7 +1194,8 @@ function automaticPointsGeneration() {
                 lastPointsTime[weaponId] = Date.now();
             }
 
-            setInterval(function() {
+            // Create a new setInterval timer for the weapon
+            weaponTimers[weaponId] = setInterval(function() {
                 const currentTime = Date.now();
                 if (currentTime - lastPointsTime[weaponId] >= weapon.stats.fireRate) {
                     // Calculate points per shot
@@ -1222,6 +1228,7 @@ function automaticPointsGeneration() {
                         }
                     }
 
+                    // Trigger the shoot function with appropriate parameters
                     shoot(weaponId, pointsPerShot, critical, miss);
                     lastPointsTime[weaponId] = currentTime;
 
@@ -2894,6 +2901,12 @@ function prestige() {
             upgrades[weaponId][upgrade].bought = false;
         }
     }
+
+    // Clear existing weapon timers
+    for (const weaponId in weaponTimers) {
+        clearInterval(weaponTimers[weaponId]);
+    }
+    weaponTimers = {}; // Reset the weapon timers object
 
     // Reset touch gun big upgrades
     const touchGunUpgrades = [

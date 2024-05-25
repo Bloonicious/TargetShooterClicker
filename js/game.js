@@ -2414,7 +2414,7 @@ function updateCostDisplay() {
             const isBought = costText === "Bought!"; // Check if upgrade is already bought
             if (!isBought) {
                 const cost = parseInt(costText.replace(/\D/g, ''), 10); // Extract cost as integer
-                const formattedCost = formatNumber(cost); // Format the cost with a limit of 3
+                const formattedCost = formatNumber(cost); // Format the cost using the formatNumber function
                 costElement.textContent = `Cost: ${formattedCost}`; // Update the cost display
             }
         }
@@ -3111,6 +3111,7 @@ function updateLifetimePointsDisplay() {
 
 // Function to initialize upgrade costs with proper formatting
 function initializeUpgradeCosts() {
+    // Iterate over all upgrade options
     const upgradeOptions = document.querySelectorAll('.upgrade-option');
     upgradeOptions.forEach(upgradeOption => {
         const costElement = upgradeOption.querySelector('.upgrade-cost');
@@ -3119,7 +3120,7 @@ function initializeUpgradeCosts() {
             const isBought = costText === "Bought!"; // Check if upgrade is already bought
             if (!isBought) {
                 const cost = parseInt(costText.replace(/\D/g, ''), 10); // Extract cost as integer
-                const formattedCost = formatNumber(cost); // Format the cost using your formatNumber function
+                const formattedCost = formatNumber(cost); // Format the cost using the formatNumber function
                 costElement.textContent = `Cost: ${formattedCost}`; // Update the cost display
             }
         }

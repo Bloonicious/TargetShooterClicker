@@ -83,7 +83,7 @@ let weapons = {
             "range": 9,
             "accuracy": 100,
             "bulletsPerShot": 1,
-            "splashRadius": 300,
+            "splashRadius": 500,
             "splashDamage": 0.4
           }
     },
@@ -1309,7 +1309,7 @@ function purchase(item) {
             purchaseUpgrade('rocketLauncherPotency', rocketLauncherPotencyLevel, rocketLauncherPotencyUpgradeCost, 1.4, 1000, 'potency');
             break;
         case 'rocketLauncherSplashRadius':
-            purchaseUpgrade('rocketLauncherSplashRadius', rocketLauncherSplashRadiusLevel, rocketLauncherSplashRadiusUpgradeCost, 50, 100, 'splashRadius');
+            purchaseUpgrade('rocketLauncherSplashRadius', rocketLauncherSplashRadiusLevel, rocketLauncherSplashRadiusUpgradeCost, 50, 150, 'splashRadius');
             break;
         case 'rocketLauncherSplashDamage':
             purchaseUpgrade('rocketLauncherSplashDamage', rocketLauncherSplashDamageLevel, rocketLauncherSplashDamageUpgradeCost, 7.5, 0.05, 'splashDamage');

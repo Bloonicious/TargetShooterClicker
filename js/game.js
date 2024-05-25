@@ -2414,6 +2414,22 @@ function updateCostDisplay() {
         document.getElementById('touchGunSuperAwaken-purchase').style.display = 'block';
         document.getElementById('touchGunSuperAwaken-display').style.display = 'block';
     }
+
+    // Update the next prestige cost
+    const nextPrestigeCostElement = document.getElementById('next-prestige-cost');
+    if (nextPrestigeCostElement) {
+        const nextPrestigeCostText = nextPrestigeCostElement.textContent.trim();
+        const nextPrestigeCost = parseInt(nextPrestigeCostText.replace(/\D/g, ''), 10);
+        const formattedNextPrestigeCost = formatNumber(nextPrestigeCost);
+        nextPrestigeCostElement.textContent = formattedNextPrestigeCost;
+    }
+
+    // Update prestige level and multiplier
+    const currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
+    if (currentPrestigeLevel < prestigeLevels.length) {
+        document.getElementById('prestige-level').textContent = prestigeLevels[currentPrestigeLevel].name;
+        document.getElementById('multiplier').textContent = 'x' + prestigeLevels[currentPrestigeLevel].multiplier;
+    }
 }
 
 // Function to format numbers into units
@@ -3091,22 +3107,6 @@ function initializeUpgradeCosts() {
             }
         }
     });
-
-    // Initialize the next prestige cost
-    const nextPrestigeCostElement = document.getElementById('next-prestige-cost');
-    if (nextPrestigeCostElement) {
-        const nextPrestigeCostText = nextPrestigeCostElement.textContent.trim();
-        const nextPrestigeCost = parseInt(nextPrestigeCostText.replace(/\D/g, ''), 10);
-        const formattedNextPrestigeCost = formatNumber(nextPrestigeCost);
-        nextPrestigeCostElement.textContent = formattedNextPrestigeCost;
-    }
-
-    // Initialize prestige level and multiplier
-    const currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
-    if (currentPrestigeLevel < prestigeLevels.length) {
-        document.getElementById('prestige-level').textContent = prestigeLevels[currentPrestigeLevel].name;
-        document.getElementById('multiplier').textContent = 'x' + prestigeLevels[currentPrestigeLevel].multiplier;
-    }
 }
 
 // Function to initialize achievements

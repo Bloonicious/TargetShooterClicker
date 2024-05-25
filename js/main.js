@@ -948,6 +948,7 @@ function resetProgress() {
         updatePointsDisplay();
         updateAchievements();
         updateStatistics();
+        initializeUpgradeCosts();
         saveGameState();
         // Add any other interface updates here
     }

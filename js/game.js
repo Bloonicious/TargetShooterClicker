@@ -2405,6 +2405,22 @@ function updateCostDisplay() {
         document.getElementById('touchGunSuperAwaken-display').style.display = 'block';
     }
 
+    // Properly update the upgrade cost values on format
+    const upgradeOptions = document.querySelectorAll('.upgrade-option');
+    upgradeOptions.forEach(upgradeOption => {
+        const costElement = upgradeOption.querySelector('.upgrade-cost');
+        if (costElement) {
+            const costText = costElement.textContent.trim(); // Trim any leading/trailing whitespace
+            const isBought = costText === "Bought!"; // Check if upgrade is already bought
+            if (!isBought) {
+                const cost = parseInt(costText.replace(/\D/g, ''), 10); // Extract cost as integer
+                const formattedCost = formatNumber(cost); // Format the cost using your formatNumber function
+                costElement.textContent = `Cost: ${formattedCost}`; // Update the cost display
+            }
+        }
+    });
+
+    // Properly update the prestige cost values on format
     let currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
 
     // Determine the next prestige cost

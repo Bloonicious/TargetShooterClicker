@@ -536,6 +536,7 @@ function loadGameState() {
         }
         
         points = savedState.points;
+        totalPointsEarned = savedState.totalPointsEarned;
         
         touchGunCost = savedState.touchGunCost,
         touchGunPointsPerClick = savedState.touchGunPointsPerClick;

@@ -73,6 +73,45 @@ document.addEventListener('DOMContentLoaded', function() {
     switchMiniTab('buy', 'touchGun');
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Function to open a subtab
+    function openSubTab(subTabName) {
+        // Hide all subtab content
+        const subtabContent = document.querySelectorAll('.subtab-content');
+        subtabContent.forEach(tab => {
+            tab.style.display = 'none';
+        });
+
+        // Remove the active class from all subtab buttons
+        const subtabButtons = document.querySelectorAll('.subtab-button');
+        subtabButtons.forEach(button => {
+            button.classList.remove('active');
+        });
+
+        // Show the current subtab and add an active class to the button
+        document.getElementById(subTabName).style.display = 'block';
+        document.querySelector(`.subtab-button[data-target="${subTabName}"]`).classList.add('active');
+    }
+
+    // Ensure the default subtab is displayed (battle subtab)
+    openSubTab('battle-subtab');
+
+    // Handle click events on subtab buttons
+    const subtabButtons = document.querySelectorAll('.subtab-button');
+    subtabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const subTabName = this.getAttribute('data-target');
+            openSubTab(subTabName);
+        });
+    });
+
+    // Export the function to be used in HTML onclick attribute
+    window.openSubTab = openSubTab;
+
+    // Update loadout selection based on purchased weapons
+    updateLoadoutSelection();
+});
+
 let soundEnabled = true; // Ensure sound is enabled by default
 
 function toggleSound() {
@@ -424,37 +463,58 @@ function saveGameState() {
         huntingRifleBeastHunterBought: upgrades.huntingRifle.beastHunter.bought,
         huntingRifleMarkedTracersBought: upgrades.huntingRifle.markedTracers.bought,
         huntingRifleMasterHuntingBought: upgrades.huntingRifle.masterHunting.bought,
+		
+		musketHarderSlugsBought: upgrades.musket.harderSlugs.bought,
+        musketMetalSlugsBought: upgrades.musket.metalSlugs.bought,
+        musketIronSlugsBought: upgrades.musket.ironSlugs.bought,
+        musketBlowShotBought: upgrades.musket.blowShot.bought,
+        musketExceededReachBought: upgrades.musket.exceededReach.bought,
+        musketMiniCannonballsBought: upgrades.musket.miniCannonballs.bought,
+        musketLeadPoisoningBought: upgrades.musket.leadPoisoning.bought,
+        musketAcidicSlugsBought: upgrades.musket.acidicSlugs.bought,
+		musketPenetrativeSlugsBought: upgrades.musket.penetrativeSlugs.bought,
+		musketRobustMechanismsBought: upgrades.musket.robustMechanisms.bought,
         
         pistolFirerateUpgradeCost: pistolFirerateUpgradeCost,
         pistolPotencyUpgradeCost: pistolPotencyUpgradeCost,
+		pistolHPUpgradeCost: pistolHPUpgradeCost,
         pistolFirerateLevel: pistolFirerateLevel,
         pistolPotencyLevel: pistolPotencyLevel,
+		pistolHPLevel: pistolPotencyLevel,
         
         smgFirerateUpgradeCost: smgFirerateUpgradeCost,
         smgPotencyUpgradeCost: smgPotencyUpgradeCost,
+		smgHPUpgradeCost: smgHPUpgradeCost,
         smgFirerateLevel: smgFirerateLevel,
         smgPotencyLevel: smgPotencyLevel,
+		smgHPLevel: smgHPLevel,
         
         shotgunFirerateUpgradeCost: shotgunFirerateUpgradeCost,
         shotgunPotencyUpgradeCost: shotgunPotencyUpgradeCost,
         shotgunMultiFireUpgradeCost: shotgunMultiFireUpgradeCost,
+		shotgunHPUpgradeCost: shotgunHPUpgradeCost,
         shotgunFirerateLevel: shotgunFirerateLevel,
         shotgunPotencyLevel: shotgunPotencyLevel,
         shotgunMultiFireLevel: shotgunMultiFireLevel,
+		shotgunHPLevel: shotgunHPLevel,
         
         sniperRifleFirerateUpgradeCost: sniperRifleFirerateUpgradeCost,
         sniperRiflePotencyUpgradeCost: sniperRiflePotencyUpgradeCost,
         sniperRifleCriticalShotUpgradeCost: sniperRifleCriticalShotUpgradeCost,
         sniperRifleCriticalDamageUpgradeCost: sniperRifleCriticalDamageUpgradeCost,
+		sniperRifleHPUpgradeCost: sniperRifleHPUpgradeCost,
         sniperRifleFirerateLevel: sniperRifleFirerateLevel,
         sniperRiflePotencyLevel: sniperRiflePotencyLevel,
         sniperRifleCriticalShotLevel: sniperRifleCriticalShotLevel,
         sniperRifleCriticalDamageLevel: sniperRifleCriticalDamageLevel,
+		sniperRifleHPLevel: sniperRifleHPLevel,
 
         ak47FirerateUpgradeCost: ak47FirerateUpgradeCost,
         ak47PotencyUpgradeCost: ak47PotencyUpgradeCost,
+		ak47HPUpgradeCost: ak47HPUpgradeCost,
         ak47FirerateLevel: ak47FirerateLevel,
         ak47PotencyLevel: ak47PotencyLevel,
+		ak47HPLevel: ak47HPLevel,
 
         rocketLauncherFirerateUpgradeCost: rocketLauncherFirerateUpgradeCost,
         rocketLauncherPotencyUpgradeCost: rocketLauncherPotencyUpgradeCost,
@@ -492,6 +552,30 @@ function saveGameState() {
         huntingRiflePotencyLevel: huntingRiflePotencyLevel,
         huntingRifleCriticalShotLevel: huntingRifleCriticalShotLevel,
         huntingRifleCriticalDamageLevel: huntingRifleCriticalDamageLevel,
+		
+		musketFirerateUpgradeCost: musketFirerateUpgradeCost,
+        musketPotencyUpgradeCost: musketPotencyUpgradeCost,
+        musketRangeUpgradeCost: musketRangeUpgradeCost,
+        musketFirerateLevel: musketFirerateLevel,
+        musketPotencyLevel: musketPotencyLevel,
+        musketRangeLevel: musketRangeLevel,
+		
+		fingerPistolsMultiplier: fingerPistolsMultiplier,
+		
+		currentWave: currentWave,
+        activeEnemies: activeEnemies.map(enemy => ({
+            id: enemy.id,
+            type: enemy.type,
+            name: enemy.name,
+            stats: enemy.stats,
+            image: enemy.image,
+            pointsPerKill: enemy.pointsPerKill
+        })),
+        currentWeapons: currentWeapons.map(weapon => ({
+            id: weapon.id,
+            stats: weapon.stats,
+			image: weapon.image
+        })),
 
         purchasedBigUpgrades: getPurchasedBigUpgrades()
     };
@@ -515,7 +599,14 @@ function loadGameState() {
         }
 
         if (storedEnemies) {
-            enemies = JSON.parse(storedEnemies);
+            try {
+                enemies = JSON.parse(storedEnemies);
+            } catch (e) {
+                console.error('Failed to parse enemies from local storage:', e);
+                enemies = JSON.parse(JSON.stringify(defaultEnemies));
+            }
+        } else {
+            enemies = JSON.parse(JSON.stringify(defaultEnemies));
         }
         // Update statistics from loaded game state
         const savedAchievements = savedState.achievements;
@@ -678,37 +769,58 @@ function loadGameState() {
         upgrades.huntingRifle.beastHunter.bought = savedState.huntingRifleBeastHunterBought;
         upgrades.huntingRifle.markedTracers.bought = savedState.huntingRifleMarkedTracersBought;
         upgrades.huntingRifle.masterHunting.bought = savedState.huntingRifleMasterHuntingBought;
+		
+		upgrades.musket.harderSlugs.bought = savedState.musketHarderSlugsBought;
+        upgrades.musket.metalSlugs.bought = savedState.musketMetalSlugsBought;
+        upgrades.musket.ironSlugs.bought = savedState.musketIronSlugsBought;
+        upgrades.musket.blowShot.bought = savedState.musketBlowShotBought;
+        upgrades.musket.exceededReach.bought = savedState.musketExceededReachBought;
+        upgrades.musket.miniCannonballs.bought = savedState.musketMiniCannonballsBought;
+        upgrades.musket.leadPoisoning.bought = savedState.musketLeadPoisoningBought;
+        upgrades.musket.acidicSlugs.bought = savedState.musketAcidicSlugsBought;
+		upgrades.musket.penetrativeSlugs.bought = savedState.musketPenetrativeSlugsBought;
+        upgrades.musket.robustMechanisms.bought = savedState.musketRobustMechanismsBought;
         
         pistolFirerateUpgradeCost = savedState.pistolFirerateUpgradeCost;
         pistolPotencyUpgradeCost = savedState.pistolPotencyUpgradeCost;
+		pistolHPUpgradeCost = savedState.pistolHPUpgradeCost;
         pistolFirerateLevel = Math.min(savedState.pistolFirerateLevel, 20);
         pistolPotencyLevel = savedState.pistolPotencyLevel;
+		pistolHPLevel = savedState.pistolHPLevel;
         
         smgFirerateUpgradeCost = savedState.smgFirerateUpgradeCost;
         smgPotencyUpgradeCost = savedState.smgPotencyUpgradeCost;
+		smgHPUpgradeCost = savedState.smgHPUpgradeCost;
         smgFirerateLevel = Math.min(savedState.smgFirerateLevel, 10);
         smgPotencyLevel = savedState.smgPotencyLevel;
+		smgHPLevel = savedState.smgHPLevel;
         
         shotgunFirerateUpgradeCost = savedState.shotgunFirerateUpgradeCost;
         shotgunPotencyUpgradeCost = savedState.shotgunPotencyUpgradeCost;
         shotgunMultiFireUpgradeCost = savedState.shotgunMultiFireUpgradeCost;
+		shotgunHPUpgradeCost = savedState.shotgunHPUpgradeCost;
         shotgunFirerateLevel = Math.min(savedState.shotgunFirerateLevel, 15);
         shotgunPotencyLevel = savedState.shotgunPotencyLevel;
         shotgunMultiFireLevel = savedState.shotgunMultiFireLevel;
+		shotgunHPLevel = savedState.shotgunHPLevel;
         
         sniperRifleFirerateUpgradeCost = savedState.sniperRifleFirerateUpgradeCost;
         sniperRiflePotencyUpgradeCost = savedState.sniperRiflePotencyUpgradeCost;
         sniperRifleCriticalShotUpgradeCost = savedState.sniperRifleCriticalShotUpgradeCost;
         sniperRifleCriticalDamageUpgradeCost = savedState.sniperRifleCriticalDamageUpgradeCost;
+		sniperRifleHPUpgradeCost = savedState.sniperRifleHPUpgradeCost;
         sniperRifleFirerateLevel = Math.min(savedState.sniperRifleFirerateLevel, 10);
         sniperRiflePotencyLevel = savedState.sniperRiflePotencyLevel;
         sniperRifleCriticalShotLevel = savedState.sniperRifleCriticalShotLevel;
         sniperRifleCriticalDamageLevel = savedState.sniperRifleCriticalDamageLevel;
+		sniperRifleHPLevel = savedState.sniperRifleHPLevel;
 
         ak47FirerateUpgradeCost = savedState.ak47FirerateUpgradeCost;
         ak47PotencyUpgradeCost = savedState.ak47PotencyUpgradeCost;
+		ak47HPUpgradeCost = savedState.ak47HPUpgradeCost;
         ak47FirerateLevel = Math.min(savedState.ak47FirerateLevel, 15);
         ak47PotencyLevel = savedState.ak47PotencyLevel;
+		ak47HPLevel = savedState.ak47HPLevel;
 
         rocketLauncherFirerateUpgradeCost = savedState.rocketLauncherFirerateUpgradeCost;
         rocketLauncherPotencyUpgradeCost = savedState.rocketLauncherPotencyUpgradeCost;
@@ -746,6 +858,38 @@ function loadGameState() {
         huntingRiflePotencyLevel = savedState.huntingRiflePotencyLevel;
         huntingRifleCriticalShotLevel = savedState.huntingRifleCriticalShotLevel;
         huntingRifleCriticalDamageLevel = savedState.huntingRifleCriticalDamageLevel;
+		
+		musketFirerateUpgradeCost = savedState.musketFirerateUpgradeCost;
+        musketPotencyUpgradeCost = savedState.musketPotencyUpgradeCost;
+        musketRangeUpgradeCost = savedState.musketRangeUpgradeCost;
+        musketFirerateLevel = Math.min(savedState.musketFirerateLevel, 15);
+        musketPotencyLevel = savedState.musketPotencyLevel;
+        musketRangeLevel = savedState.musketRangeLevel;
+		
+		fingerPistolsMultiplier = savedState.fingerPistolsMultiplier;
+		
+		currentWave = savedState.currentWave;
+		
+		// Initialize battle state
+        try {
+            let storedBattleState = localStorage.getItem('battleState');
+            if (storedBattleState) {
+                battleState = JSON.parse(storedBattleState);
+            }
+        } catch (e) {
+            console.error("Error parsing battleState from local storage:", e);
+            battleState = null; // Reset to null or default state if parsing fails
+        }
+
+        document.getElementById('wave-counter').innerText = `${currentWave}`;
+        document.getElementById('game-status').innerText = 'Game Status: Loaded';
+        document.getElementById('surrender-btn').style.display = battleInProgress ? 'block' : 'none';
+
+        updateBattlefield();
+        if (battleInProgress) {
+            battleLoop();
+        }
+		console.log('Battle state loaded.');
 
         // Load the purchased big upgrades interface
         loadPurchasedBigUpgrades(savedState.purchasedBigUpgrades);
@@ -810,10 +954,14 @@ function resetProgress() {
     if (confirmation) {
         localStorage.removeItem('gameState');
         localStorage.removeItem('weapons');
-        localStorage.removeItem('enemies');
-        // Reset all variables to their default values
+		localStorage.removeItem('battleState');
+		enemies = JSON.parse(JSON.stringify(defaultEnemies));
+        localStorage.setItem('enemies', JSON.stringify(defaultEnemies));
+		
+		// Reset all variables to their default values
         points = 0;
         totalPointsEarned = 0;
+		
         // Reset achievements
         achievements.forEach(achievement => {
             achievement.achieved = false;
@@ -830,6 +978,7 @@ function resetProgress() {
             totalSplashRadiusUpgrades: 0,
             totalSplashDamageUpgrades: 0
         };
+		
         // Reset weapon variables and upgrades
         for (const weaponId in weapons) {
             weapons[weaponId].purchased = false;
@@ -878,71 +1027,115 @@ function resetProgress() {
         
         pistolFirerateUpgradeCost = 50;
         pistolPotencyUpgradeCost = 100;
+		pistolHPUpgradeCost = 100;
         pistolFirerateLevel = 0;
         pistolPotencyLevel = 0;
+		pistolHPLevel = 0;
         
         smgFirerateUpgradeCost = 600;
         smgPotencyUpgradeCost = 1200;
+		smgHPUpgradeCost = 1000;
         smgFirerateLevel = 0;
         smgPotencyLevel = 0;
+		smgHPLevel = 0;
         
-        shotgunFirerateUpgradeCost = 5000;
-        shotgunPotencyUpgradeCost = 10000;
+        shotgunFirerateUpgradeCost = 3750;
+        shotgunPotencyUpgradeCost = 7500;
         shotgunMultiFireUpgradeCost = 25000;
+		shotgunHPUpgradeCost = 5000;
         shotgunFirerateLevel = 0;
         shotgunPotencyLevel = 0;
         shotgunMultiFireLevel = 0;
+		shotgunHPLevel = 0;
         
-        sniperRifleFirerateUpgradeCost = 37500;
-        sniperRiflePotencyUpgradeCost = 75000;
+        sniperRifleFirerateUpgradeCost = 32500;
+        sniperRiflePotencyUpgradeCost = 65000;
         sniperRifleCriticalShotUpgradeCost = 75000;
         sniperRifleCriticalDamageUpgradeCost = 250000;
+		sniperRifleHPUpgradeCost = 75000;
         sniperRifleFirerateLevel = 0;
         sniperRiflePotencyLevel = 0;
         sniperRifleCriticalShotLevel = 0;
         sniperRifleCriticalDamageLevel = 0;
+		sniperRifleHPLevel = 0;
 
         ak47FirerateUpgradeCost = 175000;
         ak47PotencyUpgradeCost = 250000;
+		ak47HPUpgradeCost = 600000;
         ak47FirerateLevel = 0;
         ak47PotencyLevel = 0;
+		ak47HPLevel = 0;
 
         rocketLauncherFirerateUpgradeCost = 1000000;
         rocketLauncherPotencyUpgradeCost = 750000;
         rocketLauncherSplashRadiusUpgradeCost = 10000000;
         rocketLauncherSplashDamageUpgradeCost = 5000000;
+		rocketLauncherHPUpgradeCost = 4000000;
         rocketLauncherFirerateLevel = 0;
         rocketLauncherPotencyLevel = 0;
         rocketLauncherSplashRadiusLevel = 0;
         rocketLauncherSplashDamageLevel = 0;
+		rocketLauncherHPLevel = 0;
 
         tommyGunFirerateUpgradeCost = 15000000;
         tommyGunPotencyUpgradeCost = 10000000;
         tommyGunAccuracyUpgradeCost = 20000000;
+		tommyGunHPUpgradeCost = 25000000;
         tommyGunFirerateLevel = 0;
         tommyGunPotencyLevel = 0;
         tommyGunAccuracyLevel = 0;
+		tommyGunHPLevel = 0;
 
         doubleBarrelMultiFireUpgradeCost = 150000000;
         doubleBarrelFirerateUpgradeCost = 80000000;
         doubleBarrelPotencyUpgradeCost = 60000000;
+		doubleBarrelHPUpgradeCost = 300000000;
         doubleBarrelFirerateLevel = 0;
         doubleBarrelPotencyLevel = 0;
         doubleBarrelMultiFireLevel = 0;
+		doubleBarrelHPLevel = 0;
 
         uziFirerateUpgradeCost = 1500000000;
         uziPotencyUpgradeCost = 1000000000;
+		uziHPUpgradeCost = 1750000000;
         uziFirerateLevel = 0;
         uziPotencyLevel = 0;
+		uziHPLevel = 0;
 
         huntingRifleFirerateUpgradeCost = 8000000000;
         huntingRiflePotencyUpgradeCost = 6000000000;
         huntingRifleCriticalShotUpgradeCost = 20000000000;
         huntingRifleCriticalDamageUpgradeCost = 30000000000;
+		huntingRifleHPUpgradeCost = 12500000000;
         huntingRifleFirerateLevel = 0;
         huntingRiflePotencyLevel = 0;
         huntingRifleCriticalShotLevel = 0;
         huntingRifleCriticalDamageLevel = 0;
+		huntingRifleHPLevel = 0;
+		
+		musketFirerateUpgradeCost = 40000000000;
+        musketPotencyUpgradeCost = 30000000000;
+        musketRangeUpgradeCost = 150000000000;
+		musketHPUpgradeCost = 85000000000;
+        musketFirerateLevel = 0;
+        musketPotencyLevel = 0;
+        musketRangeLevel = 0;
+		musketHPLevel = 0;
+		
+		fingerPistolsMultiplier = 1;
+
+        localStorage.setItem('enemies', JSON.stringify(defaultEnemies));
+		
+		currentWave = 0;
+        activeEnemies = [];
+        currentWeapons = [];
+		battleInProgress = false;
+		
+		document.getElementById('wave-counter').innerText = `${currentWave}`;
+        document.getElementById('game-status').innerText = 'Game Status: Reset';
+        document.getElementById('surrender-btn').style.display = 'none';
+        clearBattlefield();
+        console.log('Battle state reset.');
 
         resetPrestigeLevel();
 
@@ -959,6 +1152,7 @@ function resetProgress() {
         updateCostDisplay();
         updateAchievements();
         updateStatistics();
+		setNumberFormat();
         initializeUpgradeCosts();
         saveGameState();
         // Add any other interface updates here

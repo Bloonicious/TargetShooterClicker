@@ -13,7 +13,7 @@ let weapons = {
             "range": 60,
             "accuracy": 100,
             "bulletsPerShot": 1,
-			"walkingSpeed": 30
+			"walkingSpeed": 50
         }
     },
     "smg": {
@@ -30,7 +30,7 @@ let weapons = {
             "range": 50,
             "accuracy": 100,
             "bulletsPerShot": 1,
-			"walkingSpeed": 45
+			"walkingSpeed": 60
         },
     },
     "shotgun": {
@@ -47,7 +47,7 @@ let weapons = {
             "range": 30,
             "accuracy": 100,
             "bulletsPerShot": 3,
-			"walkingSpeed": 60
+			"walkingSpeed": 75
           }
     },
     "sniperRifle": {
@@ -64,7 +64,7 @@ let weapons = {
             "range": 100,
             "accuracy": 100,
             "bulletsPerShot": 1,
-			"walkingSpeed": 15,
+			"walkingSpeed": 30,
             "criticalChance": 25,
             "criticalDamage": 2,
           }
@@ -83,7 +83,7 @@ let weapons = {
             "range": 70,
             "accuracy": 100,
             "bulletsPerShot": 1,
-			"walkingSpeed": 30
+			"walkingSpeed": 55
           }
     },
     "rocketLauncher": {
@@ -100,7 +100,7 @@ let weapons = {
             "range": 90,
             "accuracy": 100,
             "bulletsPerShot": 1,
-			"walkingSpeed": 10,
+			"walkingSpeed": 25,
             "splashRadius": 500,
             "splashDamage": 0.4
           }
@@ -119,7 +119,7 @@ let weapons = {
             "range": 70,
             "accuracy": 50,
             "bulletsPerShot": 1,
-			"walkingSpeed": 35,
+			"walkingSpeed": 65,
             "inaccuracyPenalty": 0.5,
           }
     },
@@ -137,7 +137,7 @@ let weapons = {
             "range": 40,
             "accuracy": 100,
             "bulletsPerShot": 2,
-			"walkingSpeed": 55
+			"walkingSpeed": 70
           }
     },
     "uzi": {
@@ -154,7 +154,7 @@ let weapons = {
             "range": 40,
             "accuracy": 100,
             "bulletsPerShot": 1,
-			"walkingSpeed": 75
+			"walkingSpeed": 90
           }
     },
     "huntingRifle": {
@@ -171,7 +171,7 @@ let weapons = {
             "range": 100,
             "accuracy": 100,
             "bulletsPerShot": 1,
-			"walkingSpeed": 20,
+			"walkingSpeed": 35,
             "criticalChance": 40,
             "criticalDamage": 1.5
           }
@@ -190,7 +190,7 @@ let weapons = {
             "range": 90,
             "accuracy": 100,
             "bulletsPerShot": 1,
-			"walkingSpeed": 30
+			"walkingSpeed": 50
           }
     }
     // Add other weapons here
@@ -204,7 +204,7 @@ let enemies = {
             "hp": 10,
             "damage": 2,
             "range": 6,
-            "walkingSpeed": 15,
+            "walkingSpeed": 30,
             "attackRate": 750
         },
     },
@@ -216,7 +216,7 @@ let enemies = {
             "hp": 5,
             "damage": 1,
             "range": 5,
-            "walkingSpeed": 30,
+            "walkingSpeed": 60,
             "attackRate": 500
         },
     },
@@ -228,7 +228,7 @@ let enemies = {
             "hp": 50,
             "damage": 3,
             "range": 8,
-            "walkingSpeed": 5,
+            "walkingSpeed": 10,
             "attackRate": 1000
         },
     },
@@ -240,7 +240,7 @@ let enemies = {
             "hp": 20,
             "damage": 0.5,
             "range": 10,
-            "walkingSpeed": 10,
+            "walkingSpeed": 20,
             "attackRate": 1500,
 			"healRate": 5000,
             "healAmount": 0.2
@@ -254,7 +254,7 @@ let enemies = {
             "hp": 1000,
             "damage": 30,
             "range": 10,
-            "walkingSpeed": 5,
+            "walkingSpeed": 10,
             "attackRate": 1000
         },
     }
@@ -1360,7 +1360,6 @@ let battleInProgress = false;
 const lastFiredTimes = {};
 const lastAttackedTimes = {};
 const lastHealedTimes = {};
-let lastFrameTime = 0;
 
 const defaultEnemies = {
     "basic": {
@@ -1371,7 +1370,7 @@ const defaultEnemies = {
             "hp": 10,
             "damage": 2,
             "range": 6,
-            "walkingSpeed": 15,
+            "walkingSpeed": 30,
             "attackRate": 750
         },
     },
@@ -1383,7 +1382,7 @@ const defaultEnemies = {
             "hp": 5,
             "damage": 1,
             "range": 5,
-            "walkingSpeed": 30,
+            "walkingSpeed": 60,
             "attackRate": 500
         },
     },
@@ -1395,7 +1394,7 @@ const defaultEnemies = {
             "hp": 50,
             "damage": 3,
             "range": 8,
-            "walkingSpeed": 5,
+            "walkingSpeed": 10,
             "attackRate": 1000
         },
     },
@@ -1407,7 +1406,7 @@ const defaultEnemies = {
             "hp": 20,
             "damage": 0.5,
             "range": 10,
-            "walkingSpeed": 10,
+            "walkingSpeed": 20,
             "attackRate": 1500,
 			"healRate": 5000,
             "healAmount": 0.2
@@ -1421,7 +1420,7 @@ const defaultEnemies = {
             "hp": 1000,
             "damage": 30,
             "range": 10,
-            "walkingSpeed": 5,
+            "walkingSpeed": 10,
             "attackRate": 1000
         }
     }
@@ -2945,8 +2944,6 @@ function updateCostDisplay() {
         document.getElementById('prestige-button').textContent = "MAX PRESTIGE";
     }
 	
-	document.getElementById('wave-counter').innerText = `${currentWave}`;
-	
 	updateFingerPistols();
 }
 
@@ -3883,9 +3880,6 @@ function startBattle() {
 
     updateBattlefield();
     battleLoop();
-	
-	// Start the battle loop by requesting the first animation frame
-    requestAnimationFrame(battleLoop);
 }
 
 function surrenderBattle() {
@@ -3897,14 +3891,9 @@ function surrenderBattle() {
     clearBattlefield();
 }
 
-function scaleHP(stat, wave) {
-    const scaledHP = stat * Math.pow(1.4, wave - 1);
-    return isNaN(scaledHP) || !isFinite(scaledHP) ? 0 : Math.max(scaledHP, 0);
-}
-
-function scaleDamage(stat, wave) {
-    const scaledDamage = stat * Math.pow(1.2, wave - 1);
-    return isNaN(scaledDamage) || !isFinite(scaledDamage) ? 0 : Math.max(scaledDamage, 0);
+function scaleStat(stat, wave) {
+    const scaledStat = stat * Math.pow(1.4, wave - 1);
+    return isNaN(scaledStat) || !isFinite(scaledStat) ? 0 : Math.max(scaledStat, 0);
 }
 
 function generateEnemies(wave) {
@@ -3919,12 +3908,12 @@ function generateEnemies(wave) {
             type: "boss",
             name: enemies["boss"].name,
             stats: {
-                hp: scaleHP(bossStats.hp, wave),
-                damage: scaleDamage(bossStats.damage, wave),
+                hp: scaleStat(bossStats.hp, wave),
+                damage: scaleStat(bossStats.damage, wave),
                 range: bossStats.range,
                 walkingSpeed: bossStats.walkingSpeed,
                 attackRate: bossStats.attackRate,
-                hpMax: scaleHP(bossStats.hp, wave)
+                hpMax: scaleStat(bossStats.hp, wave)
             },
             image: enemies["boss"].image,
             pointsPerKill: enemies["boss"].pointsPerKill,
@@ -3939,49 +3928,52 @@ function generateEnemies(wave) {
                 type: enemyType,
                 name: enemies[enemyType].name,
                 stats: {
-                    hp: scaleHP(enemyStats.hp, wave),
-                    damage: scaleDamage(enemyStats.damage, wave),
+                    hp: scaleStat(enemyStats.hp, wave),
+                    damage: scaleStat(enemyStats.damage, wave),
                     range: enemyStats.range,
                     walkingSpeed: enemyStats.walkingSpeed,
                     attackRate: enemyStats.attackRate,
-                    hpMax: scaleHP(enemyStats.hp, wave)
+                    hpMax: scaleStat(enemyStats.hp, wave)
                 },
                 image: enemies[enemyType].image,
                 pointsPerKill: enemies[enemyType].pointsPerKill,
             });
         }
-        if (wave >= 6 && Math.random() < 0) {
-            const healerStats = enemies["healer"].stats;
-            enemiesList.push({
-                id: `healer-${wave}`,
-                type: "healer",
-                name: enemies["healer"].name,
-                stats: {
-                    hp: scaleHP(healerStats.hp, wave),
-                    damage: scaleDamage(healerStats.damage, wave),
-                    range: healerStats.range,
-                    walkingSpeed: healerStats.walkingSpeed,
-                    attackRate: healerStats.attackRate,
-                    healRate: healerStats.healRate,
-                    healAmount: healerStats.healAmount,
-                    hpMax: scaleHP(healerStats.hp, wave)
-                },
-                image: enemies["healer"].image,
-                pointsPerKill: enemies["healer"].pointsPerKill,
-            });
-        }
+    }
+
+    // Always add a healer from wave 6 onwards
+    if (wave >= 6) {
+        const healerStats = enemies["healer"].stats;
+        enemiesList.push({
+            id: `healer-${wave}`,
+            type: "healer",
+            name: enemies["healer"].name,
+            stats: {
+                hp: scaleStat(healerStats.hp, wave),
+                damage: scaleStat(healerStats.damage, wave),
+                range: healerStats.range,
+                walkingSpeed: healerStats.walkingSpeed,
+                attackRate: healerStats.attackRate,
+                healRate: healerStats.healRate,
+                healAmount: healerStats.healAmount,
+                hpMax: scaleStat(healerStats.hp, wave)
+            },
+            image: enemies["healer"].image,
+            pointsPerKill: enemies["healer"].pointsPerKill,
+        });
     }
 
     return enemiesList;
 }
 
 function getRandomEnemyType(wave) {
-    const enemyTypes = Object.keys(enemies).filter(type => type !== "boss" && type !== "healer");
-    if (wave >= 6) {
-        enemyTypes.push("healer");
+    if (wave < 10) {
+        const basicTypes = wave >= 6 ? ["basic", "fast", "tank", "healer"] : ["basic", "fast", "tank"];
+        return basicTypes[Math.floor(Math.random() * basicTypes.length)];
+    } else {
+        const enemyTypes = Object.keys(enemies).filter(type => type !== "boss");
+        return enemyTypes[Math.floor(Math.random() * enemyTypes.length)];
     }
-    const randomIndex = Math.floor(Math.random() * enemyTypes.length);
-    return enemyTypes[randomIndex];
 }
 
 function updateBattlefield() {
@@ -4231,12 +4223,10 @@ function applySplashDamage(weapon, targetEnemyDiv) {
     });
 }
 
-function battleLoop(timestamp) {
+function battleLoop() {
     if (!battleInProgress) return;
 
-    // Calculate the delta time (time elapsed since the last frame)
-    const deltaTime = (timestamp - lastFrameTime) / 1000; // Convert to seconds
-    lastFrameTime = timestamp;
+    const deltaTime = 0.1; // Time step in seconds
 
     // Handle weapon movements and attacks
     currentWeapons.forEach((weapon, weaponIndex) => {
@@ -4264,7 +4254,7 @@ function battleLoop(timestamp) {
                 let enemyLeft = parseInt(enemyDiv.style.left);
                 let weaponLeft = parseInt(weaponDiv.style.left);
 
-                const movementSpeed = weapon.stats.walkingSpeed * deltaTime * 10; // Adjust speed multiplier as necessary
+                const movementSpeed = weapon.stats.walkingSpeed * deltaTime;
 
                 if (weaponLeft < enemyLeft - weapon.stats.range * 10) {
                     weaponDiv.style.left = `${weaponLeft + movementSpeed}px`;
@@ -4309,7 +4299,7 @@ function battleLoop(timestamp) {
                 let weaponLeft = parseInt(weaponDiv.style.left);
                 let enemyLeft = parseInt(enemyDiv.style.left);
 
-                const movementSpeed = enemy.stats.walkingSpeed * deltaTime * 10; // Adjust speed multiplier as necessary
+                const movementSpeed = enemy.stats.walkingSpeed * deltaTime;
 
                 if (enemyLeft > weaponLeft + enemy.stats.range * 10) {
                     enemyDiv.style.left = `${enemyLeft - movementSpeed}px`;
@@ -4387,14 +4377,13 @@ function battleLoop(timestamp) {
     // Check if all weapons are defeated
     if (currentWeapons.length === 0) {
         battleInProgress = false;
-        currentWave = Math.max(1, currentWave - 1); // Decrease wave but not below 1
         document.getElementById('game-status').innerText = 'Game Status: Defeat!';
         document.getElementById('surrender-btn').style.display = 'none';
         return;
     }
 
-    // Request the next animation frame
-    requestAnimationFrame(battleLoop);
+    // Repeat the loop
+    setTimeout(battleLoop, deltaTime * 1000); // Adjust the interval as needed
 }
 
 function updateHpBar(entityDiv, stats) {

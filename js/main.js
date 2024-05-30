@@ -355,8 +355,10 @@ function saveGameState() {
         touchGunMagicHandsBought: upgrades.touchGun.magicHands.bought,
         
         pistolBiggerBulletsBought: upgrades.pistol.biggerBullets.bought,
+		pistolMoreResistantBought: upgrades.pistol.moreResistant.bought,
         pistolLargerCalibreBought: upgrades.pistol.largerCalibre.bought,
         pistolEasierReloadingBought: upgrades.pistol.easierReloading.bought,
+		pistolArmouredBodyBought: upgrades.pistol.armouredBody.bought,
         pistolLouderFiringBought: upgrades.pistol.louderFiring.bought,
         pistolMetalPiercingBought: upgrades.pistol.metalPiercing.bought,
         pistolSpecializedMechanismsBought: upgrades.pistol.specializedMechanisms.bought,
@@ -366,8 +368,10 @@ function saveGameState() {
         pistolOneHitBulletsBought: upgrades.pistol.oneHitBullets.bought,
         
         smgBetterSpreadBought: upgrades.smg.betterSpread.bought,
+		smgMoreResistantBought: upgrades.smg.moreResistant.bought,
         smgStrongHoldBought: upgrades.smg.strongHold.bought,
         smgPressureBulletsBought: upgrades.smg.pressureBullets.bought,
+		smgArmouredBodyBought: upgrades.smg.armouredBody.bought,
         smgWickedAimerBought: upgrades.smg.wickedAimer.bought,
         smgBashingRoundsBought: upgrades.smg.bashingRounds.bought,
         smgAutoAimerBought: upgrades.smg.autoAimer.bought,
@@ -377,8 +381,10 @@ function saveGameState() {
         smgNeverMissBarrageBought: upgrades.smg.neverMissBarrage.bought,
         
         shotgunMoreBarrelsBought: upgrades.shotgun.moreBarrels.bought,
+		shotgunMoreResistantBought: upgrades.shotgun.moreResistant.bought,
         shotgunPowerfulBurstBought: upgrades.shotgun.powerfulBurst.bought,
         shotgunDevastatingBurstBought: upgrades.shotgun.devastatingBurst.bought,
+		shotgunArmouredBodyBought: upgrades.shotgun.armouredBody.bought,
         shotgunMegaBurstBought: upgrades.shotgun.megaBurst.bought,
         shotgunScattershotBought: upgrades.shotgun.scattershot.bought,
         shotgunGigaBurstBought: upgrades.shotgun.gigaBurst.bought,
@@ -388,8 +394,10 @@ function saveGameState() {
         shotgunBuckshotBought: upgrades.shotgun.buckshot.bought,
         
         sniperRifleDeadlyPrecisionBought: upgrades.sniperRifle.deadlyPrecision.bought,
+		sniperRifleMoreResistantBought: upgrades.sniperRifle.moreResistant.bought,
         sniperRifleCripplingShotsBought: upgrades.sniperRifle.cripplingShots.bought,
         sniperRifleHeadShotBought: upgrades.sniperRifle.headShot.bought,
+		sniperRifleArmouredBodyBought: upgrades.sniperRifle.armouredBody.bought,
         sniperRifleDangerousRiflingBought: upgrades.sniperRifle.dangerousRifling.bought,
         sniperRifleLuckyShotBought: upgrades.sniperRifle.luckyShot.bought,
         sniperRifleEnhancedTracersBought: upgrades.sniperRifle.enhancedTracers.bought,
@@ -399,8 +407,10 @@ function saveGameState() {
         sniperRifleHeatseekingSensorsBought: upgrades.sniperRifle.heatseekingSensors.bought,
         
         ak47HeatTippedBulletsBought: upgrades.ak47.heatTippedBullets.bought,
+		ak47MoreResistantBought: upgrades.ak47.moreResistant.bought,
         ak47StaggeringBulletsBought: upgrades.ak47.staggeringBullets.bought,
         ak47RippingBulletsBought: upgrades.ak47.rippingBullets.bought,
+		ak47ArmouredBodyBought: upgrades.ak47.armouredBody.bought,
         ak47VehementBulletsBought: upgrades.ak47.vehementBullets.bought,
         ak47OverbearingVelocityBought: upgrades.ak47.overbearingVelocity.bought,
         ak47PoweredVelocityBought: upgrades.ak47.poweredVelocity.bought,
@@ -410,8 +420,10 @@ function saveGameState() {
         ak47UnfathomablePressureBought: upgrades.ak47.unfathomablePressure.bought,
         
         rocketLauncherPotentRocketsBought: upgrades.rocketLauncher.potentRockets.bought,
+		rocketLauncherMoreResistantBought: upgrades.rocketLauncher.moreResistant.bought,
         rocketLauncherViolentExplosionsBought: upgrades.rocketLauncher.violentExplosions.bought,
         rocketLauncherRepeatedExplosionsBought: upgrades.rocketLauncher.repeatedExplosions.bought,
+		rocketLauncherArmouredBodyBought: upgrades.rocketLauncher.armouredBody.bought,
         rocketLauncherBiggerExplosionsBought: upgrades.rocketLauncher.biggerExplosions.bought,
         rocketLauncherExtraGunpowderBought: upgrades.rocketLauncher.extraGunpowder.bought,
         rocketLauncherShatteringExplosionsBought: upgrades.rocketLauncher.shatteringExplosions.bought,
@@ -421,8 +433,10 @@ function saveGameState() {
         rocketLauncherKamikazeBought: upgrades.rocketLauncher.kamikaze.bought,
         
         tommyGunPreciseAccuracyBought: upgrades.tommyGun.preciseAccuracy.bought,
+		tommyGunMoreResistantBought: upgrades.tommyGun.moreResistant.bought,
         tommyGunTightPressureBought: upgrades.tommyGun.tightPressure.bought,
         tommyGunLessPunishingBought: upgrades.tommyGun.lessPunishing.bought,
+		tommyGunArmouredBodyBought: upgrades.tommyGun.armouredBody.bought,
         tommyGunPowerfulOutcomesBought: upgrades.tommyGun.powerfulOutcomes.bought,
         tommyGunVehementBurstBought: upgrades.tommyGun.vehementBurst.bought,
         tommyGunTheVectorBought: upgrades.tommyGun.theVector.bought,
@@ -432,8 +446,10 @@ function saveGameState() {
         tommyGunUnavoidableBought: upgrades.tommyGun.unavoidable.bought,
 
         doubleBarrelLethalShotsBought: upgrades.doubleBarrel.lethalShots.bought,
+		doubleBarrelMoreResistantBought: upgrades.doubleBarrel.moreResistant.bought,
         doubleBarrelArcSwitchingBarrelsBought: upgrades.doubleBarrel.arcSwitchingBarrels.bought,
         doubleBarrelDoubleTroubleBought: upgrades.doubleBarrel.doubleTrouble.bought,
+		doubleBarrelArmouredBodyBought: upgrades.doubleBarrel.armouredBody.bought,
         doubleBarrelEnergizedBought: upgrades.doubleBarrel.energized.bought,
         doubleBarrelDoubleSwarmBought: upgrades.doubleBarrel.doubleSwarm.bought,
         doubleBarrelClumpedShotsBought: upgrades.doubleBarrel.clumpedShots.bought,
@@ -443,8 +459,10 @@ function saveGameState() {
         doubleBarrelDoubleYeahBought: upgrades.doubleBarrel.doubleYeah.bought,
 
         uziFocussedSpreadBought: upgrades.uzi.focussedSpread.bought,
+		uziMoreResistantBought: upgrades.uzi.moreResistant.bought,
         uziQuickfiringSalvoBought: upgrades.uzi.quickfiringSalvo.bought,
         uziTinyRippersBought: upgrades.uzi.tinyRippers.bought,
+		uziArmouredBodyBought: upgrades.uzi.armouredBody.bought,
         uziCircuitousSpreadBought: upgrades.uzi.circuitousSpread.bought,
         uziBulletOverloadBought: upgrades.uzi.bulletOverload.bought,
         uziBulletDrizzleBought: upgrades.uzi.bulletDrizzle.bought,
@@ -454,8 +472,10 @@ function saveGameState() {
         uziEasyToUseBought: upgrades.uzi.easyToUse.bought,
 
         huntingRiflePowerfulHunterBought: upgrades.huntingRifle.powerfulHunter.bought,
+		huntingRifleMoreResistantBought: upgrades.huntingRifle.moreResistant.bought,
         huntingRifleHeadHunterBought: upgrades.huntingRifle.headHunter.bought,
         huntingRifleNoEscapeBought: upgrades.huntingRifle.noEscape.bought,
+		huntingRifleArmouredBodyBought: upgrades.huntingRifle.armouredBody.bought,
         huntingRifleCriminalHunterBought: upgrades.huntingRifle.criminalHunter.bought,
         huntingRifleTargetHunterBought: upgrades.huntingRifle.targetHunter.bought,
         huntingRifleLongTracersBought: upgrades.huntingRifle.longTracers.bought,
@@ -465,8 +485,10 @@ function saveGameState() {
         huntingRifleMasterHuntingBought: upgrades.huntingRifle.masterHunting.bought,
 		
 		musketHarderSlugsBought: upgrades.musket.harderSlugs.bought,
+		musketMoreResistantBought: upgrades.musket.moreResistant.bought,
         musketMetalSlugsBought: upgrades.musket.metalSlugs.bought,
         musketIronSlugsBought: upgrades.musket.ironSlugs.bought,
+		musketArmouredBodyBought: upgrades.musket.armouredBody.bought,
         musketBlowShotBought: upgrades.musket.blowShot.bought,
         musketExceededReachBought: upgrades.musket.exceededReach.bought,
         musketMiniCannonballsBought: upgrades.musket.miniCannonballs.bought,
@@ -661,8 +683,10 @@ function loadGameState() {
         upgrades.touchGun.magicHands.bought = savedState.touchGunMagicHandsBought;
         
         upgrades.pistol.biggerBullets.bought = savedState.pistolBiggerBulletsBought;
+		upgrades.pistol.moreResistant.bought = savedState.pistolMoreResistantBought;
         upgrades.pistol.largerCalibre.bought = savedState.pistolLargerCalibreBought;
         upgrades.pistol.easierReloading.bought = savedState.pistolEasierReloadingBought;
+		upgrades.pistol.armouredBody.bought = savedState.pistolArmouredBodyBought;
         upgrades.pistol.louderFiring.bought = savedState.pistolLouderFiringBought;
         upgrades.pistol.metalPiercing.bought = savedState.pistolMetalPiercingBought;
         upgrades.pistol.specializedMechanisms.bought = savedState.pistolSpecializedMechanismsBought;
@@ -672,8 +696,10 @@ function loadGameState() {
         upgrades.pistol.oneHitBullets.bought = savedState.pistolOneHitBulletsBought;
         
         upgrades.smg.betterSpread.bought = savedState.smgBetterSpreadBought;
+		upgrades.smg.moreResistant.bought = savedState.smgMoreResistantBought;
         upgrades.smg.strongHold.bought = savedState.smgStrongHoldBought;
         upgrades.smg.pressureBullets.bought = savedState.smgPressureBulletsBought;
+		upgrades.smg.armouredBody.bought = savedState.smgArmouredBodyBought;
         upgrades.smg.wickedAimer.bought = savedState.smgWickedAimerBought;
         upgrades.smg.bashingRounds.bought = savedState.smgBashingRoundsBought;
         upgrades.smg.autoAimer.bought = savedState.smgAutoAimerBought;
@@ -683,8 +709,10 @@ function loadGameState() {
         upgrades.smg.neverMissBarrage.bought = savedState.smgNeverMissBarrageBought;
         
         upgrades.shotgun.moreBarrels.bought = savedState.shotgunMoreBarrelsBought;
+		upgrades.shotgun.moreResistant.bought = savedState.shotgunMoreResistantBought;
         upgrades.shotgun.powerfulBurst.bought = savedState.shotgunPowerfulBurstBought;
         upgrades.shotgun.devastatingBurst.bought = savedState.shotgunDevastatingBurstBought;
+		upgrades.shotgun.armouredBody.bought = savedState.shotgunArmouredBodyBought;
         upgrades.shotgun.megaBurst.bought = savedState.shotgunMegaBurstBought;
         upgrades.shotgun.scattershot.bought = savedState.shotgunScattershotBought;
         upgrades.shotgun.gigaBurst.bought = savedState.shotgunGigaBurstBought;
@@ -694,8 +722,10 @@ function loadGameState() {
         upgrades.shotgun.buckshot.bought = savedState.shotgunBuckshotBought;
         
         upgrades.sniperRifle.deadlyPrecision.bought = savedState.sniperRifleDeadlyPrecisionBought;
+		upgrades.sniperRifle.moreResistant.bought = savedState.sniperRifleMoreResistantBought;
         upgrades.sniperRifle.cripplingShots.bought = savedState.sniperRifleCripplingShotsBought;
         upgrades.sniperRifle.headShot.bought = savedState.sniperRifleHeadShotBought;
+		upgrades.sniperRifle.armouredBody.bought = savedState.sniperRifleArmouredBodyBought;
         upgrades.sniperRifle.dangerousRifling.bought = savedState.sniperRifleDangerousRiflingBought;
         upgrades.sniperRifle.luckyShot.bought = savedState.sniperRifleLuckyShotBought;
         upgrades.sniperRifle.enhancedTracers.bought = savedState.sniperRifleEnhancedTracersBought;
@@ -705,8 +735,10 @@ function loadGameState() {
         upgrades.sniperRifle.heatseekingSensors.bought = savedState.sniperRifleHeatseekingSensorsBought;
         
         upgrades.ak47.heatTippedBullets.bought = savedState.ak47HeatTippedBulletsBought;
+		upgrades.ak47.moreResistant.bought = savedState.ak47MoreResistantBought;
         upgrades.ak47.staggeringBullets.bought = savedState.ak47StaggeringBulletsBought;
         upgrades.ak47.rippingBullets.bought = savedState.ak47RippingBulletsBought;
+		upgrades.ak47.armouredBody.bought = savedState.ak47ArmouredBodyBought;
         upgrades.ak47.vehementBullets.bought = savedState.ak47VehementBulletsBought;
         upgrades.ak47.overbearingVelocity.bought = savedState.ak47OverbearingVelocityBought;
         upgrades.ak47.poweredVelocity.bought = savedState.ak47PoweredVelocityBought;
@@ -716,8 +748,10 @@ function loadGameState() {
         upgrades.ak47.unfathomablePressure.bought = savedState.ak47UnfathomablePressureBought;
 
         upgrades.rocketLauncher.potentRockets.bought = savedState.rocketLauncherPotentRocketsBought;
+		upgrades.rocketLauncher.moreResistant.bought = savedState.rocketLauncherMoreResistantBought;
         upgrades.rocketLauncher.violentExplosions.bought = savedState.rocketLauncherViolentExplosionsBought;
         upgrades.rocketLauncher.repeatedExplosions.bought = savedState.rocketLauncherRepeatedExplosionsBought;
+		upgrades.rocketLauncher.armouredBody.bought = savedState.rocketLauncherArmouredBodyBought;
         upgrades.rocketLauncher.biggerExplosions.bought = savedState.rocketLauncherBiggerExplosionsBought;
         upgrades.rocketLauncher.extraGunpowder.bought = savedState.rocketLauncherExtraGunpowderBought;
         upgrades.rocketLauncher.shatteringExplosions.bought = savedState.rocketLauncherShatteringExplosionsBought;
@@ -727,8 +761,10 @@ function loadGameState() {
         upgrades.rocketLauncher.kamikaze.bought = savedState.rocketLauncherKamikazeBought;
 
         upgrades.tommyGun.preciseAccuracy.bought = savedState.tommyGunPreciseAccuracyBought;
+		upgrades.tommyGun.moreResistant.bought = savedState.tommyGunMoreResistantBought;
         upgrades.tommyGun.tightPressure.bought = savedState.tommyGunTightPressureBought;
         upgrades.tommyGun.lessPunishing.bought = savedState.tommyGunLessPunishingBought;
+		upgrades.tommyGun.armouredBody.bought = savedState.tommyGunArmouredBodyBought;
         upgrades.tommyGun.powerfulOutcomes.bought = savedState.tommyGunPowerfulOutcomesBought;
         upgrades.tommyGun.vehementBurst.bought = savedState.tommyGunVehementBurstBought;
         upgrades.tommyGun.theVector.bought = savedState.tommyGunTheVectorBought;
@@ -738,8 +774,10 @@ function loadGameState() {
         upgrades.tommyGun.unavoidable.bought = savedState.tommyGunUnavoidableBought;
 
         upgrades.doubleBarrel.lethalShots.bought = savedState.doubleBarrelLethalShotsBought;
+		upgrades.doubleBarrel.moreResistant.bought = savedState.doubleBarrelMoreResistantBought;
         upgrades.doubleBarrel.arcSwitchingBarrels.bought = savedState.doubleBarrelArcSwitchingBarrelsBought;
         upgrades.doubleBarrel.doubleTrouble.bought = savedState.doubleBarrelDoubleTroubleBought;
+		upgrades.doubleBarrel.armouredBody.bought = savedState.doubleBarrelArmouredBodyBought;
         upgrades.doubleBarrel.energized.bought = savedState.doubleBarrelEnergizedBought;
         upgrades.doubleBarrel.doubleSwarm.bought = savedState.doubleBarrelDoubleSwarmBought;
         upgrades.doubleBarrel.clumpedShots.bought = savedState.doubleBarrelClumpedShotsBought;
@@ -749,8 +787,10 @@ function loadGameState() {
         upgrades.doubleBarrel.doubleYeah.bought = savedState.doubleBarrelDoubleYeahBought;
 
         upgrades.uzi.focussedSpread.bought = savedState.uziFocussedSpreadBought;
+		upgrades.uzi.moreResistant.bought = savedState.uziMoreResistantBought;
         upgrades.uzi.quickfiringSalvo.bought = savedState.uziQuickfiringSalvoBought;
         upgrades.uzi.tinyRippers.bought = savedState.uziTinyRippersBought;
+		upgrades.uzi.armouredBody.bought = savedState.uziArmouredBodyBought;
         upgrades.uzi.circuitousSpread.bought = savedState.uziCircuitousSpreadBought;
         upgrades.uzi.bulletOverload.bought = savedState.uziBulletOverloadBought;
         upgrades.uzi.bulletDrizzle.bought = savedState.uziBulletDrizzleBought;
@@ -760,8 +800,10 @@ function loadGameState() {
         upgrades.uzi.easyToUse.bought = savedState.uziEasyToUseBought;
 
         upgrades.huntingRifle.powerfulHunter.bought = savedState.huntingRiflePowerfulHunterBought;
+		upgrades.huntingRifle.moreResistant.bought = savedState.huntingRifleMoreResistantBought;
         upgrades.huntingRifle.headHunter.bought = savedState.huntingRifleHeadHunterBought;
         upgrades.huntingRifle.noEscape.bought = savedState.huntingRifleNoEscapeBought;
+		upgrades.huntingRifle.armouredBody.bought = savedState.huntingRifleArmouredBodyBought;
         upgrades.huntingRifle.criminalHunter.bought = savedState.huntingRifleCriminalHunterBought;
         upgrades.huntingRifle.targetHunter.bought = savedState.huntingRifleTargetHunterBought;
         upgrades.huntingRifle.longTracers.bought = savedState.huntingRifleLongTracersBought;
@@ -771,8 +813,10 @@ function loadGameState() {
         upgrades.huntingRifle.masterHunting.bought = savedState.huntingRifleMasterHuntingBought;
 		
 		upgrades.musket.harderSlugs.bought = savedState.musketHarderSlugsBought;
+		upgrades.musket.moreResistant.bought = savedState.musketMoreResistantBought;
         upgrades.musket.metalSlugs.bought = savedState.musketMetalSlugsBought;
         upgrades.musket.ironSlugs.bought = savedState.musketIronSlugsBought;
+		upgrades.musket.armouredBody.bought = savedState.musketArmouredBodyBought;
         upgrades.musket.blowShot.bought = savedState.musketBlowShotBought;
         upgrades.musket.exceededReach.bought = savedState.musketExceededReachBought;
         upgrades.musket.miniCannonballs.bought = savedState.musketMiniCannonballsBought;
@@ -1077,8 +1121,8 @@ function resetProgress() {
         rocketLauncherSplashDamageLevel = 0;
 		rocketLauncherHPLevel = 0;
 
-        tommyGunFirerateUpgradeCost = 15000000;
-        tommyGunPotencyUpgradeCost = 10000000;
+        tommyGunFirerateUpgradeCost = 12000000;
+        tommyGunPotencyUpgradeCost = 8000000;
         tommyGunAccuracyUpgradeCost = 20000000;
 		tommyGunHPUpgradeCost = 25000000;
         tommyGunFirerateLevel = 0;
@@ -1095,8 +1139,8 @@ function resetProgress() {
         doubleBarrelMultiFireLevel = 0;
 		doubleBarrelHPLevel = 0;
 
-        uziFirerateUpgradeCost = 1500000000;
-        uziPotencyUpgradeCost = 1000000000;
+        uziFirerateUpgradeCost = 1000000000;
+        uziPotencyUpgradeCost = 750000000;
 		uziHPUpgradeCost = 1750000000;
         uziFirerateLevel = 0;
         uziPotencyLevel = 0;

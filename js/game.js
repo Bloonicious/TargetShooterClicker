@@ -92,11 +92,11 @@ let weapons = {
         "purchased": false,
         "cost": 400000,
         "stats": {
-            "pointsPerShot": 1250,
+            "pointsPerShot": 1750,
             "fireRate": 5000,
             "hp": 60,
 			"hpMax": 60,
-            "damage": 625,
+            "damage": 875,
             "range": 90,
             "accuracy": 100,
             "bulletsPerShot": 1,
@@ -244,7 +244,7 @@ let enemies = {
             "attackRate": 1500,
 			"healRate": 3000,
             "healAmount": 0.2,
-			"healRange": 1000
+			"healRange": 500
         },
     },
     "boss": {
@@ -474,19 +474,19 @@ const upgrades = {
             }
         },
         thousandFingers: {
-            cost: 100000,
+            cost: 50000,
             effect: function() {
                 touchGunPointsPerClick += 0.5 * getTotalPotencyUpgrades(); // Increases touch gun value based on the current potency levels of those weapons
             }
         },
         antirestingCream: {
-            cost: 500000,
+            cost: 200000,
             effect: function() {
                 touchGunPointsPerClick *= 3;
             }
         },
         powerfulHands: {
-            cost: 20000000,
+            cost: 6000000,
             effect: function() {
                 touchGunPointsPerClick *= 5;
             }
@@ -496,63 +496,63 @@ const upgrades = {
             effect: function() {}
         },
         millionFingers: {
-            cost: 200000000,
+            cost: 100000000,
             effect: function() {
                 touchGunPointsPerClick += 5 * getTotalPotencyUpgrades();
             }
         },
         stingingTaps: {
-            cost: 1000000000,
+            cost: 500000000,
             effect: function() {
                 touchGunPointsPerClick *= 4;
             }
         },
         gotToTap: {
-            cost: 5000000000,
+            cost: 3000000000,
             effect: function() {
                 touchGunPointsPerClick *= 3;
             }
         },
         fingerSwarm: {
-            cost: 50000000000,
+            cost: 30000000000,
             effect: function() {
                 touchGunPointsPerClick *= 4;
             }
         },
         billionFingers: {
-            cost: 300000000000,
+            cost: 150000000000,
             effect: function() {
                 touchGunPointsPerClick += 50 * getTotalPotencyUpgrades();
             }
         },
         needMore: {
-            cost: 1000000000000,
+            cost: 750000000000,
             effect: function() {
                 touchGunPointsPerClick *= 5;
             }
         },
         fingerPistols: {
-            cost: 10000000000000,
+            cost: 5000000000000,
             effect: function() {}
         },
         superAwakenUpgrade: {
-            cost: 100000000000000,
+            cost: 50000000000000,
             effect: function() {}
         },
         trillionFingers: {
-            cost: 400000000000000,
+            cost: 200000000000000,
             effect: function() {
                 touchGunPointsPerClick += 500 * getTotalPotencyUpgrades();
             }
         },
         heavyFingers: {
-            cost: 1000000000000000,
+            cost: 500000000000000,
             effect: function() {
                 touchGunPointsPerClick *= 4;
             }
         },
         magicHands: {
-            cost: 20000000000000000,
+            cost: 10000000000000000,
             effect: function() {
                 touchGunPointsPerClick *= 6;
             }
@@ -1519,7 +1519,7 @@ let lastFrameTime = 0;
 
 const defaultEnemies = {
     "basic": {
-        "name": "Basic Enemy",
+        "name": "Basic",
         "image": "assets/images/basic_enemy.png",
         "pointsPerKill": 10,
         "stats": {
@@ -1531,7 +1531,7 @@ const defaultEnemies = {
         },
     },
     "fast": {
-        "name": "Fast Enemy",
+        "name": "Fast",
         "image": "assets/images/fast_enemy.png",
         "pointsPerKill": 5,
         "stats": {
@@ -1543,7 +1543,7 @@ const defaultEnemies = {
         },
     },
     "tank": {
-        "name": "Tanky Enemy",
+        "name": "Tank",
         "image": "assets/images/tanky_enemy.png",
         "pointsPerKill": 20,
         "stats": {
@@ -1566,11 +1566,11 @@ const defaultEnemies = {
             "attackRate": 1500,
 			"healRate": 3000,
             "healAmount": 0.2,
-			"healRange": 1000
+			"healRange": 500
         },
     },
     "boss": {
-        "name": "Boss Enemy",
+        "name": "Boss",
         "image": "assets/images/boss_enemy.png",
         "pointsPerKill": 500,
         "stats": {
@@ -1792,7 +1792,7 @@ function purchase(item) {
             purchaseUpgrade('rocketLauncherFirerate', rocketLauncherFirerateLevel, rocketLauncherFirerateUpgradeCost, 2, -200, 'firerate');
             break;
         case 'rocketLauncherPotency':
-            purchaseUpgrade('rocketLauncherPotency', rocketLauncherPotencyLevel, rocketLauncherPotencyUpgradeCost, 1.4, 1250, 'potency');
+            purchaseUpgrade('rocketLauncherPotency', rocketLauncherPotencyLevel, rocketLauncherPotencyUpgradeCost, 1.4, 1750, 'potency');
             break;
 		case 'rocketLauncherHP':
             purchaseUpgrade('rocketLauncherHP', rocketLauncherHPLevel, rocketLauncherHPUpgradeCost, 1.3, 6, 'hp');
@@ -1928,6 +1928,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 }
                 if (upgrades.touchGun.thousandFingers.bought) {
                     valueIncrement += (upgradeType === 'touchGun') ? 0.5 : (upgradeType === 'touchGunAwaken') ? 50 : 5000;
+					updateNumerousFingers(upgradeType);
                 }
                 if (upgrades.touchGun.antirestingCream.bought) {
                     valueIncrement *= 3;
@@ -1937,6 +1938,7 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 }
                 if (upgrades.touchGun.millionFingers.bought) {
                     valueIncrement += (upgradeType === 'touchGun') ? 5 : (upgradeType === 'touchGunAwaken') ? 500 : 50000;
+					updateNumerousFingers(upgradeType);
                 }
                 if (upgrades.touchGun.stingingTaps.bought) {
                     valueIncrement *= 4;
@@ -1949,12 +1951,14 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                 }
                 if (upgrades.touchGun.billionFingers.bought) {
                     valueIncrement += (upgradeType === 'touchGun') ? 50 : (upgradeType === 'touchGunAwaken') ? 5000 : 500000;
+					updateNumerousFingers(upgradeType);
                 }
                 if (upgrades.touchGun.needMore.bought) {
                     valueIncrement *= 5;
                 }
                 if (upgrades.touchGun.trillionFingers.bought) {
                     valueIncrement += (upgradeType === 'touchGun') ? 500 : (upgradeType === 'touchGunAwaken') ? 50000 : 5000000;
+					updateNumerousFingers(upgradeType);
                 }
                 if (upgrades.touchGun.heavyFingers.bought) {
                     valueIncrement *= 4;
@@ -2096,46 +2100,57 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                                 pistolPotencyUpgradeCost = cost;
                                 pistolPotencyLevel = level;
                                 updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
+								updateNumerousFingers('touchGun');
                             } else if (weaponId === 'smg') {
                                 smgPotencyUpgradeCost = cost;
                                 smgPotencyLevel = level;
                                 updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
+								updateNumerousFingers('touchGun');
                             } else if (weaponId === 'shotgun') {
                                 shotgunPotencyUpgradeCost = cost;
                                 shotgunPotencyLevel = level;
                                 updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
+								updateNumerousFingers('touchGun');
                             } else if (weaponId === 'sniperRifle') {
                                 sniperRiflePotencyUpgradeCost = cost;
                                 sniperRiflePotencyLevel = level;
                                 updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
+								updateNumerousFingers('touchGun');
                             } else if (weaponId === 'ak47') {
                                 ak47PotencyUpgradeCost = cost;
                                 ak47PotencyLevel = level;
                                 updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
+								updateNumerousFingers('touchGun');
                             } else if (weaponId === 'rocketLauncher') {
                                 rocketLauncherPotencyUpgradeCost = cost;
                                 rocketLauncherPotencyLevel = level;
                                 updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
+								updateNumerousFingers('touchGun');
                             } else if (weaponId === 'tommyGun') {
                                 tommyGunPotencyUpgradeCost = cost;
                                 tommyGunPotencyLevel = level;
                                 updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
+								updateNumerousFingers('touchGun');
                             } else if (weaponId === 'doubleBarrel') {
                                 doubleBarrelPotencyUpgradeCost = cost;
                                 doubleBarrelPotencyLevel = level;
                                 updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
+								updateNumerousFingers('touchGun');
                             } else if (weaponId === 'uzi') {
                                 uziPotencyUpgradeCost = cost;
                                 uziPotencyLevel = level;
                                 updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
+								updateNumerousFingers('touchGun');
                             } else if (weaponId === 'huntingRifle') {
                                 huntingRiflePotencyUpgradeCost = cost;
                                 huntingRiflePotencyLevel = level;
                                 updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
+								updateNumerousFingers('touchGun');
                             } else if (weaponId === 'musket') {
                                 musketPotencyUpgradeCost = cost;
                                 musketPotencyLevel = level;
                                 updatePotency(stats, valueIncrement, upgrades[weaponId], weaponId);
+								updateNumerousFingers('touchGun');
                             }
                             break;
 							
@@ -3135,6 +3150,7 @@ function updateCostDisplay() {
 	
 	document.getElementById('wave-counter').innerText = `${currentWave}`;
 	
+	// Update these big upgrade logic functions
 	updateFingerPistols();
 }
 
@@ -4323,7 +4339,7 @@ function applyDirectDamage(weapon, enemyDiv) {
         floatingText.style.top = `${enemyFaceY}px`;
 		
 		// Add animation for floating upwards
-        floatingText.style.animation = 'floatUp 2s ease-out';
+        floatingText.style.animation = 'floatUp 1.5s ease-out';
 
         // Append the floating text to the battlefield
         floatingTextContainer.appendChild(floatingText);
@@ -4478,7 +4494,7 @@ function battleLoop(timestamp) {
         const enemyDiv = document.getElementById(`enemy-${enemy.id}`);
         if (enemyDiv && enemy.stats.hp > 0) {
             if (enemy.type === 'healer') {
-                handleHealerBehavior(enemy, enemyDiv, deltaTime);
+                handleHealerBehavior(enemy, enemyDiv, deltaTime, activeEnemies);
             } else {
                 let closestWeapon = null;
                 let minDistance = Infinity;
@@ -4575,53 +4591,44 @@ function battleLoop(timestamp) {
     requestAnimationFrame(battleLoop);
 }
 
-function handleHealerBehavior(enemy, enemyDiv, deltaTime) {
+function handleHealerBehavior(healer, healerDiv, deltaTime, activeEnemies) {
     const currentTime = new Date().getTime();
-    const lastHealed = lastHealedTimes[enemy.id] || 0;
+    const lastHealed = lastHealedTimes[enemies.healer.id] || 0;
 
-    if (currentTime - lastHealed >= enemy.stats.healRate) {
+    if (currentTime - lastHealed >= enemies.healer.stats.healRate) {
+        // Loop through active enemies to check for healing
         activeEnemies.forEach(ally => {
-            const allyDiv = document.getElementById(`enemy-${ally.id}`);
-            if (allyDiv && ally.stats.hp > 0 && ally.id !== enemy.id) {
-                let healerLeft = parseInt(enemyDiv.style.left);
-                let allyLeft = parseInt(allyDiv.style.left);
+            if (ally.stats.hp > 0 && ally !== enemies.healer) { // Exclude the healer itself from healing
+                const allyDiv = document.getElementById(`enemy-${ally.id}`);
+                if (allyDiv) {
+                    // Calculate distance between healer and ally
+                    const distance = calculateDistance(healerDiv, allyDiv);
+                    if (distance <= enemies.healer.stats.healRange) {
+                        // Heal the ally
+                        const healAmount = (enemies.healer.stats.healAmount) * ally.stats.hpMax;
+                        ally.stats.hp = Math.min(ally.stats.hpMax, ally.stats.hp + healAmount);
+                        updateHpBar(allyDiv, ally.stats);
 
-                // Check if the ally is within healing range
-                if (Math.abs(healerLeft - allyLeft) <= enemy.stats.healRange) {
-                    const healAmount = ally.stats.hpMax * enemy.stats.healAmount;
-                    ally.stats.hp = Math.min(ally.stats.hpMax, ally.stats.hp + healAmount);
-                    updateHpBar(allyDiv, ally.stats);
-
-                    // Display healing text
-                    const healingTextContainer = document.getElementById('floating-heal-number-container');
-                    const healingText = document.createElement('div');
-                    healingText.textContent = `+${formatNumber(healAmount)}`;
-                    healingText.classList.add('floating-text');
-                    healingText.classList.add('healing-text');
-                    healingText.style.position = 'absolute';
-
-                    // Calculate the position of the ally's face
-                    const allyBoundingBox = allyDiv.getBoundingClientRect();
-                    const allyFaceX = allyBoundingBox.left + allyBoundingBox.width / 2;
-                    const allyFaceY = allyBoundingBox.top;
-
-                    // Set the position of the floating text to appear in front of the ally's face
-                    healingText.style.left = `${allyFaceX}px`;
-                    healingText.style.top = `${allyFaceY}px`;
-
-                    // Add animation for floating upwards
-                    healingText.style.animation = 'floatUp 2s ease-out';
-
-                    // Append the healing text to the battlefield
-                    healingTextContainer.appendChild(healingText);
-
-                    setTimeout(() => {
-                        healingText.remove();
-                    }, 1000);
+                        // Display healing text
+                        displayHealingText(allyDiv, `+${formatNumber(healAmount)}`, 'healing-text');
+                    }
                 }
             }
         });
-        lastHealedTimes[enemy.id] = currentTime;
+
+        // Self-healing
+        if (enemies.healer.stats.hp < enemies.healer.stats.hpMax) {
+            console.log(`Healer (${enemies.healer.id}) is healing itself.`);
+            const selfHealAmount = (enemies.healer.stats.healAmount) * enemies.healer.stats.hpMax;
+            enemies.healer.stats.hp = Math.min(enemies.healer.stats.hpMax, enemies.healer.stats.hp + selfHealAmount);
+            updateHpBar(healerDiv, enemies.healer.stats);
+            // Display self-healing text
+            displayHealingText(healerDiv, `+${formatNumber(selfHealAmount)}`, 'healing-text');
+        }
+
+        // Update the last healed time
+        lastHealedTimes[enemies.healer.id] = currentTime;
+        console.log(`Last healed time for healer (${enemies.healer.id}): ${currentTime}`);
     }
 
     // Movement and attacking logic
@@ -4632,9 +4639,9 @@ function handleHealerBehavior(enemy, enemyDiv, deltaTime) {
         const weaponDiv = document.getElementById(`weapon-${weapon.id}`);
         if (weaponDiv && weapon.stats.hp > 0) {
             let weaponLeft = parseInt(weaponDiv.style.left);
-            let enemyLeft = parseInt(enemyDiv.style.left);
+            let healerLeft = parseInt(healerDiv.style.left);
 
-            let distance = Math.abs(enemyLeft - weaponLeft);
+            let distance = Math.abs(healerLeft - weaponLeft);
             if (distance < minWeaponDistance) {
                 minWeaponDistance = distance;
                 closestWeapon = weapon;
@@ -4645,46 +4652,37 @@ function handleHealerBehavior(enemy, enemyDiv, deltaTime) {
     if (closestWeapon) {
         const weaponDiv = document.getElementById(`weapon-${closestWeapon.id}`);
         let weaponLeft = parseInt(weaponDiv.style.left);
-        let enemyLeft = parseInt(enemyDiv.style.left);
-
-        const movementSpeed = enemy.stats.walkingSpeed * deltaTime * 10; // Adjust speed multiplier as necessary
-
-        if (enemyLeft > weaponLeft + enemy.stats.range * 10) {
-            enemyDiv.style.left = `${enemyLeft - movementSpeed}px`;
-        } else if (enemyLeft < weaponLeft - enemy.stats.range * 10) {
-            enemyDiv.style.left = `${enemyLeft + movementSpeed}px`;
+        let healerLeft = parseInt(healerDiv.style.left);
+        const movementSpeed = healer.stats.walkingSpeed * deltaTime * 10;
+        if (healerLeft > weaponLeft + healer.stats.range * 10) {
+            healerDiv.style.left = `${healerLeft - movementSpeed}px`;
+        } else if (healerLeft < weaponLeft - healer.stats.range * 10) {
+            healerDiv.style.left = `${healerLeft + movementSpeed}px`;
         } else {
-            const lastAttacked = lastAttackedTimes[enemy.id] || 0;
-
-            if (currentTime - lastAttacked >= enemy.stats.attackRate) {
-                closestWeapon.stats.hp -= enemy.stats.damage;
+            const lastAttacked = lastAttackedTimes[healer.id] || 0;
+            if (currentTime - lastAttacked >= healer.stats.attackRate) {
+                closestWeapon.stats.hp -= healer.stats.damage;
                 updateHpBar(weaponDiv, closestWeapon.stats);
-                lastAttackedTimes[enemy.id] = currentTime;
-
+                lastAttackedTimes[healer.id] = currentTime;
                 // Floating damage text
                 const floatingTextContainer = document.getElementById('floating-damage-number-container');
                 const floatingText = document.createElement('div');
-                floatingText.textContent = formatNumber(enemy.stats.damage);
+                floatingText.textContent = formatNumber(healer.stats.damage);
                 floatingText.classList.add('floating-text');
                 floatingText.style.position = 'absolute';
-
                 // Calculate the position of the weapon's face
                 const weaponBoundingBox = weaponDiv.getBoundingClientRect();
                 const weaponFaceX = weaponBoundingBox.left + weaponBoundingBox.width / 2;
                 const weaponFaceY = weaponBoundingBox.top;
-
                 // Set the position of the floating text to appear in front of the weapon's face
                 floatingText.style.left = `${weaponFaceX}px`;
                 floatingText.style.top = `${weaponFaceY}px`;
-
                 // Add animation for floating upwards
                 floatingText.style.animation = 'floatUp 2s ease-out';
-
                 // Append the floating text to the battlefield
                 floatingTextContainer.appendChild(floatingText);
-
                 if (closestWeapon.stats.hp <= 0) {
-                    console.log(`${closestWeapon.id} was eliminated by ${enemy.id}`);
+                    console.log(`${closestWeapon.id} was eliminated by ${healer.id}`);
                     currentWeapons = currentWeapons.filter(w => w.id !== closestWeapon.id);
                     weaponDiv.remove();
                 }
@@ -4694,6 +4692,29 @@ function handleHealerBehavior(enemy, enemyDiv, deltaTime) {
             }
         }
     }
+}
+
+function calculateDistance(element1, element2) {
+    const rect1 = element1.getBoundingClientRect();
+    const rect2 = element2.getBoundingClientRect();
+    const dx = rect1.left - rect2.left;
+    const dy = rect1.top - rect2.top;
+    return Math.sqrt(dx * dx + dy * dy);
+}
+
+function displayHealingText(element, text, className) {
+    const container = document.getElementById('floating-heal-number-container');
+    const healingText = document.createElement('div');
+    healingText.textContent = text;
+    healingText.classList.add(className);
+    healingText.style.position = 'absolute';
+    const rect = element.getBoundingClientRect();
+    healingText.style.left = `${rect.left + rect.width / 2}px`;
+    healingText.style.top = `${rect.top}px`;
+    container.appendChild(healingText);
+    setTimeout(() => {
+        healingText.remove();
+    }, 1000);
 }
 
 function updateHpBar(entityDiv, stats) {
@@ -4708,6 +4729,48 @@ function updateHpBar(entityDiv, stats) {
 
 function getEquippedWeapons() {
     return Object.values(weapons).filter(weapon => weapon.purchased);
+}
+
+function updateNumerousFingers(upgradeType) {
+    // Initialize a variable to track the total increment
+    let totalIncrement = 0;
+
+    // Calculate the base increment based on the upgrade type
+    let baseIncrement;
+    switch (upgradeType) {
+        case 'touchGun':
+            baseIncrement = 0.5;
+            break;
+        case 'touchGunAwaken':
+            baseIncrement = 50;
+            break;
+        case 'touchGunSuperAwaken':
+            baseIncrement = 5000;
+            break;
+        default:
+            baseIncrement = 0;
+    }
+
+    // Adjust the base increment based on the potency levels
+    let potencyMultiplier = 1 + getTotalPotencyUpgrades();
+    let adjustedIncrement = baseIncrement * potencyMultiplier;
+
+    // Check if each upgrade tier is bought and add its adjusted increment to the total
+    if (upgrades.touchGun.thousandFingers.bought) {
+        totalIncrement += adjustedIncrement;
+    }
+    if (upgrades.touchGun.millionFingers.bought) {
+        totalIncrement += adjustedIncrement * 10; // Increment is 10 times higher for million fingers
+    }
+    if (upgrades.touchGun.billionFingers.bought) {
+        totalIncrement += adjustedIncrement * 100; // Increment is 100 times higher for billion fingers
+    }
+    if (upgrades.touchGun.trillionFingers.bought) {
+        totalIncrement += adjustedIncrement * 1000; // Increment is 1000 times higher for trillion fingers
+    }
+
+    // Apply the total increment to touchGunPointsPerClick
+    touchGunPointsPerClick += totalIncrement;
 }
 
 function updateFingerPistols() {

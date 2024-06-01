@@ -199,11 +199,11 @@ let enemies = {
     "basic": {
         "name": "Basic",
         "image": "assets/images/basic_enemy.png",
-        "pointsPerKill": 10,
+        "pointsPerKill": 20,
         "stats": {
             "hp": 10,
             "damage": 2,
-            "range": 6,
+            "range": 7.5,
             "walkingSpeed": 15,
             "attackRate": 750
         },
@@ -211,11 +211,11 @@ let enemies = {
     "fast": {
         "name": "Fast",
         "image": "assets/images/fast_enemy.png",
-        "pointsPerKill": 5,
+        "pointsPerKill": 10,
         "stats": {
             "hp": 5,
             "damage": 1,
-            "range": 5,
+            "range": 7.5,
             "walkingSpeed": 30,
             "attackRate": 500
         },
@@ -223,19 +223,19 @@ let enemies = {
     "tank": {
         "name": "Tank",
         "image": "assets/images/tanky_enemy.png",
-        "pointsPerKill": 20,
+        "pointsPerKill": 40,
         "stats": {
             "hp": 50,
             "damage": 1.5,
-            "range": 8,
+            "range": 8.75,
             "walkingSpeed": 5,
-            "attackRate": 1000
+            "attackRate": 1250
         },
     },
 	"healer": {
         "name": "Healer",
         "image": "assets/images/healing_enemy.png",
-        "pointsPerKill": 30,
+        "pointsPerKill": 60,
         "stats": {
             "hp": 20,
             "damage": 0.5,
@@ -247,13 +247,26 @@ let enemies = {
 			"healRange": 500
         },
     },
+	"armoured": {
+        "name": "Armoured",
+        "image": "assets/images/armoured_enemy.png",
+        "pointsPerKill": 50,
+        "stats": {
+            "hp": 40,
+            "damage": 1.2,
+            "range": 8.75,
+            "walkingSpeed": 7,
+            "attackRate": 1000,
+			"armour": 0.5
+        },
+    },
     "boss": {
         "name": "Boss",
         "image": "assets/images/boss_enemy.png",
-        "pointsPerKill": 500,
+        "pointsPerKill": 1000,
         "stats": {
-            "hp": 1000,
-            "damage": 10,
+            "hp": 750,
+            "damage": 7.5,
             "range": 10,
             "walkingSpeed": 5,
             "attackRate": 1000
@@ -371,6 +384,8 @@ let musketHPLevel = 0;
 
 let points = 0;
 let totalPointsEarned = 0;
+let totalTouchGunClicks = 0;
+let totalEnemiesKilled = 0;
 
 let numberFormat = 'standard'; // Default number format
 
@@ -409,9 +424,11 @@ let achievements = [
 
 let statistics = {
     totalLifetimePoints: 0,
+	totalTouchGunClicks: 0,
     totalWeaponsPurchased: 0,
     totalBigUpgradesPurchased: 0,
 	totalAchievementsAchieved: 0,
+	totalEnemiesKilled: 0,
     totalPotencyUpgrades: 0,
     totalFirerateUpgrades: 0,
     totalMultiFireUpgrades: 0,
@@ -492,7 +509,7 @@ const upgrades = {
             }
         },
         awakenUpgrade: {
-            cost: 100000000,
+            cost: 50000000,
             effect: function() {}
         },
         millionFingers: {
@@ -557,6 +574,22 @@ const upgrades = {
                 touchGunPointsPerClick *= 6;
             }
         },
+		healthyFingers: {
+            cost: 50000000000000000,
+            effect: function() {}
+        },
+		quadrillionFingers: {
+            cost: 250000000000000000,
+            effect: function() {
+                touchGunPointsPerClick += 10000 * getTotalPotencyUpgrades();
+            }
+        },
+		tapExpert: {
+            cost: 750000000000000000,
+            effect: function() {
+                touchGunPointsPerClick *= 8;
+            }
+        },
         // Add more upgrades for touchGun here
     },
     pistol: {
@@ -568,7 +601,7 @@ const upgrades = {
             }
         },
 		moreResistant: {
-            cost: 3000,
+            cost: 2000,
             effect: function() {
                 weapons.pistol.stats.hp *= 2; // Doubles the amount of HP
                 weapons.pistol.stats.hpMax *= 2; // Doubles the amount of maximum HP
@@ -581,17 +614,17 @@ const upgrades = {
                 weapons.pistol.stats.damage *= 3; // Triples the damage per shot
             }
         },
+		armouredBody: {
+            cost: 80000,
+            effect: function() {
+                weapons.pistol.stats.hp *= 2; // Doubles the amount of HP
+                weapons.pistol.stats.hpMax *= 2; // Doubles the amount of maximum HP
+            }
+        },
         easierReloading: {
             cost: 200000,
             effect: function() {
                 weapons.pistol.stats.fireRate -= 150; // Reduces the fire rate speed (in milliseconds) for the pistol
-            }
-        },
-		armouredBody: {
-            cost: 500000,
-            effect: function() {
-                weapons.pistol.stats.hp *= 2; // Doubles the amount of HP
-                weapons.pistol.stats.hpMax *= 2; // Doubles the amount of maximum HP
             }
         },
         louderFiring: {
@@ -599,6 +632,13 @@ const upgrades = {
             effect: function() {
                 weapons.pistol.stats.pointsPerShot *= 3; // Triples the amount of points per shot
                 weapons.pistol.stats.damage *= 3; // Triples the damage per shot
+            }
+        },
+		thickerBody: {
+            cost: 1500000,
+            effect: function() {
+                weapons.pistol.stats.hp *= 2; // Doubles the amount of HP
+                weapons.pistol.stats.hpMax *= 2; // Doubles the amount of maximum HP
             }
         },
         metalPiercing: {
@@ -644,6 +684,13 @@ const upgrades = {
                 weapons.pistol.stats.damage *= 6; // Sextuples the damage per shot
             }
         },
+		breakthrough: {
+            cost: 100000000000000,
+            effect: function() {
+                weapons.pistol.stats.pointsPerShot *= 6; // Sextuples the amount of points per shot
+                weapons.pistol.stats.damage *= 6; // Sextuples the damage per shot
+            }
+        },
         // Add more upgrades for pistol here
     },
     smg: {
@@ -655,75 +702,89 @@ const upgrades = {
             }
         },
 		moreResistant: {
-            cost: 30000,
+            cost: 20000,
             effect: function() {
                 weapons.smg.stats.hp *= 2;
                 weapons.smg.stats.hpMax *= 2;
             }
         },
         strongHold: {
-            cost: 500000,
-            effect: function() {
-                weapons.smg.stats.pointsPerShot *= 3;
-                weapons.smg.stats.damage *= 3;
-            }
-        },
-        pressureBullets: {
-            cost: 6000000,
+            cost: 300000,
             effect: function() {
                 weapons.smg.stats.pointsPerShot *= 3;
                 weapons.smg.stats.damage *= 3;
             }
         },
 		armouredBody: {
-            cost: 7500000,
+            cost: 800000,
             effect: function() {
                 weapons.smg.stats.hp *= 2;
                 weapons.smg.stats.hpMax *= 2;
             }
         },
+        pressureBullets: {
+            cost: 4000000,
+            effect: function() {
+                weapons.smg.stats.pointsPerShot *= 3;
+                weapons.smg.stats.damage *= 3;
+            }
+        },
         wickedAimer: {
-            cost: 25000000,
+            cost: 15000000,
             effect: function() {
                 weapons.smg.stats.fireRate *= 0.8;
             }
         },
+		thickerBody: {
+            cost: 20000000,
+            effect: function() {
+                weapons.smg.stats.hp *= 2;
+                weapons.smg.stats.hpMax *= 2;
+            }
+        },
         bashingRounds: {
-            cost: 250000000,
+            cost: 100000000,
             effect: function() {
                 weapons.smg.stats.pointsPerShot *= 4;
                 weapons.smg.stats.damage *= 4;
             }
         },
         autoAimer: {
-            cost: 3000000000,
+            cost: 1250000000,
             effect: function() {
                 weapons.smg.stats.pointsPerShot *= 4;
                 weapons.smg.stats.damage *= 4;
             }
         },
         lightweight: {
-            cost: 15000000000,
+            cost: 8750000000,
             effect: function() {
                 weapons.smg.stats.fireRate *= 0.85;
             }
         },
         metalPassers: {
-            cost: 75000000000,
+            cost: 45000000000,
             effect: function() {
                 weapons.smg.stats.pointsPerShot *= 5;
                 weapons.smg.stats.damage *= 5;
             }
         },
         inescapableBarrage: {
-            cost: 1000000000000,
+            cost: 650000000000,
             effect: function() {
                 weapons.smg.stats.pointsPerShot *= 5;
                 weapons.smg.stats.damage *= 5;
             }
         },
         neverMissBarrage: {
-            cost: 25000000000000,
+            cost: 12500000000000,
+            effect: function() {
+                weapons.smg.stats.pointsPerShot *= 6;
+                weapons.smg.stats.damage *= 6;
+            }
+        },
+		bluestrippedBullets: {
+            cost: 175000000000000,
             effect: function() {
                 weapons.smg.stats.pointsPerShot *= 6;
                 weapons.smg.stats.damage *= 6;
@@ -739,121 +800,142 @@ const upgrades = {
             }
         },
 		moreResistant: {
-            cost: 200000,
+            cost: 150000,
             effect: function() {
                 weapons.shotgun.stats.hp *= 2;
                 weapons.shotgun.stats.hpMax *= 2;
             }
         },
         powerfulBurst: {
-            cost: 1500000,
+            cost: 750000,
             effect: function() {
                 weapons.shotgun.stats.pointsPerShot *= 2;
                 weapons.shotgun.stats.damage *= 2;
             }
         },
-        devastatingBurst: {
-            cost: 50000000,
-            effect: function() {
-                weapons.shotgun.stats.pointsPerShot *= 3;
-                weapons.shotgun.stats.damage *= 3;
-            }
-        },
 		armouredBody: {
-            cost: 75000000,
+            cost: 3000000,
             effect: function() {
                 weapons.shotgun.stats.hp *= 2;
                 weapons.shotgun.stats.hpMax *= 2;
             }
         },
-        megaBurst: {
-            cost: 650000000,
+        devastatingBurst: {
+            cost: 30000000,
             effect: function() {
                 weapons.shotgun.stats.pointsPerShot *= 3;
                 weapons.shotgun.stats.damage *= 3;
             }
         },
+        megaBurst: {
+            cost: 400000000,
+            effect: function() {
+                weapons.shotgun.stats.pointsPerShot *= 3;
+                weapons.shotgun.stats.damage *= 3;
+            }
+        },
+		thickerBody: {
+            cost: 500000000,
+            effect: function() {
+                weapons.shotgun.stats.hp *= 2;
+                weapons.shotgun.stats.hpMax *= 2;
+            }
+        },
         scattershot: {
-            cost: 20000000000,
+            cost: 10000000000,
             effect: function() {
                 weapons.shotgun.stats.bulletsPerShot *= 2; // Multiplies the number of barrels by 2
             }
         },
         gigaBurst: {
-            cost: 80000000000,
+            cost: 50000000000,
             effect: function() {
                 weapons.shotgun.stats.pointsPerShot *= 4;
                 weapons.shotgun.stats.damage *= 4;
             }
         },
         omegaBurst: {
-            cost: 800000000000,
+            cost: 500000000000,
             effect: function() {
                 weapons.shotgun.stats.pointsPerShot *= 4;
                 weapons.shotgun.stats.damage *= 4;
             }
         },
         teraBurst: {
-            cost: 10000000000000,
+            cost: 7000000000000,
             effect: function() {
                 weapons.shotgun.stats.pointsPerShot *= 5;
                 weapons.shotgun.stats.damage *= 5;
             }
         },
         ultimatumBurst: {
-            cost: 150000000000000,
+            cost: 90000000000000,
             effect: function() {
                 weapons.shotgun.stats.pointsPerShot *= 5;
                 weapons.shotgun.stats.damage *= 5;
             }
         },
         buckshot: {
-            cost: 600000000000000,
+            cost: 500000000000000,
             effect: function() {
                 weapons.shotgun.stats.bulletsPerShot *= 2;
+            }
+        },
+		closeObliteration: {
+            cost: 4000000000000000,
+            effect: function() {
+                weapons.shotgun.stats.pointsPerShot *= 6;
+                weapons.shotgun.stats.damage *= 6;
             }
         },
         // Add more upgrades for shotgun here
     },
     sniperRifle: {
         deadlyPrecision: {
-            cost: 1500000,
+            cost: 1250000,
             effect: function() {
                 weapons.sniperRifle.stats.criticalDamage += 1; // Increases the critical damage multiplier by 1
             }
         },
 		moreResistant: {
-            cost: 2500000,
+            cost: 2250000,
             effect: function() {
                 weapons.sniperRifle.stats.hp *= 2;
                 weapons.sniperRifle.stats.hpMax *= 2;
             }
         },
         cripplingShots: {
-            cost: 12500000,
+            cost: 7500000,
             effect: function() {
                 weapons.sniperRifle.stats.pointsPerShot *= 2;
                 weapons.sniperRifle.stats.damage *= 2;
             }
         },
-        headShot: {
-            cost: 250000000,
-            effect: function() {
-                weapons.sniperRifle.stats.criticalDamage += 2;
-            }
-        },
 		armouredBody: {
-            cost: 250000000,
+            cost: 25000000,
             effect: function() {
                 weapons.sniperRifle.stats.hp *= 2;
                 weapons.sniperRifle.stats.hpMax *= 2;
             }
         },
+        headShot: {
+            cost: 80000000,
+            effect: function() {
+                weapons.sniperRifle.stats.criticalDamage += 2;
+            }
+        },
         dangerousRifling: {
-            cost: 1111000000,
+            cost: 555000000,
             effect: function() {
                 weapons.sniperRifle.stats.pointsPerShot *= 3;
                 weapons.sniperRifle.stats.damage *= 3;
+            }
+        },
+		thickerBody: {
+            cost: 1000000000,
+            effect: function() {
+                weapons.sniperRifle.stats.hp *= 2;
+                weapons.sniperRifle.stats.hpMax *= 2;
             }
         },
         luckyShot: {
@@ -863,14 +945,14 @@ const upgrades = {
             }
         },
         enhancedTracers: {
-            cost: 40000000000,
+            cost: 15000000000,
             effect: function() {
                 weapons.sniperRifle.stats.pointsPerShot *= 3;
                 weapons.sniperRifle.stats.damage *= 3;
             }
         },
         infraredScope: {
-            cost: 300000000000,
+            cost: 150000000000,
             effect: function() {
                 weapons.sniperRifle.stats.pointsPerShot *= 2;
                 weapons.sniperRifle.stats.damage *= 2;
@@ -878,109 +960,130 @@ const upgrades = {
             }
         },
         electroshockTracers: {
-            cost: 2000000000000,
+            cost: 1000000000000,
             effect: function() {
                 weapons.sniperRifle.stats.pointsPerShot *= 4;
                 weapons.sniperRifle.stats.damage *= 4;
             }
         },
         lethalTracers: {
-            cost: 20000000000000,
+            cost: 10000000000000,
             effect: function() {
                 weapons.sniperRifle.stats.pointsPerShot *= 4;
                 weapons.sniperRifle.stats.damage *= 4;
             }
         },
         heatseekingSensors: {
-            cost: 120000000000000,
+            cost: 80000000000000,
             effect: function() {
                 weapons.sniperRifle.stats.pointsPerShot *= 3;
                 weapons.sniperRifle.stats.damage *= 3;
                 weapons.sniperRifle.stats.criticalChance += 5;
             }
         },
+		sharpTracers: {
+            cost: 300000000000000,
+            effect: function() {
+                weapons.sniperRifle.stats.pointsPerShot *= 6;
+                weapons.sniperRifle.stats.damage *= 6;
+            }
+        },
         // Add more upgrades for sniperRifle here
     },
     ak47: {
         heatTippedBullets: {
-            cost: 8000000,
+            cost: 6000000,
             effect: function() {
                 weapons.ak47.stats.pointsPerShot *= 2;
                 weapons.ak47.stats.damage *= 2;
             }
         },
 		moreResistant: {
-            cost: 12000000,
+            cost: 9000000,
             effect: function() {
                 weapons.ak47.stats.hp *= 2;
                 weapons.ak47.stats.hpMax *= 2;
             }
         },
         staggeringBullets: {
-            cost: 200000000,
-            effect: function() {
-                weapons.ak47.stats.pointsPerShot *= 3;
-                weapons.ak47.stats.damage *= 3;
-            }
-        },
-        rippingBullets: {
-            cost: 3500000000,
+            cost: 150000000,
             effect: function() {
                 weapons.ak47.stats.pointsPerShot *= 3;
                 weapons.ak47.stats.damage *= 3;
             }
         },
 		armouredBody: {
-            cost: 5000000000,
+            cost: 225000000,
             effect: function() {
                 weapons.ak47.stats.hp *= 2;
                 weapons.ak47.stats.hpMax *= 2;
             }
         },
+        rippingBullets: {
+            cost: 2500000000,
+            effect: function() {
+                weapons.ak47.stats.pointsPerShot *= 3;
+                weapons.ak47.stats.damage *= 3;
+            }
+        },
         vehementBullets: {
-            cost: 50000000000,
+            cost: 35000000000,
             effect: function() {
                 weapons.ak47.stats.pointsPerShot *= 4;
                 weapons.ak47.stats.damage *= 4;
             }
         },
+		thickerBody: {
+            cost: 20000000000,
+            effect: function() {
+                weapons.ak47.stats.hp *= 2;
+                weapons.ak47.stats.hpMax *= 2;
+            }
+        },
         overbearingVelocity: {
-            cost: 750000000000,
+            cost: 500000000000,
             effect: function() {
                 weapons.ak47.stats.pointsPerShot *= 4;
                 weapons.ak47.stats.damage *= 4;
             }
         },
         poweredVelocity: {
-            cost: 4000000000000,
+            cost: 3000000000000,
             effect: function() {
                 weapons.ak47.stats.pointsPerShot *= 2;
                 weapons.ak47.stats.damage *= 2;
             }
         },
         instantaneousVelocity: {
-            cost: 40000000000000,
+            cost: 30000000000000,
             effect: function() {
                 weapons.ak47.stats.pointsPerShot *= 5;
                 weapons.ak47.stats.damage *= 5;
             }
         },
         spikyBullets: {
-            cost: 400000000000000,
+            cost: 300000000000000,
             effect: function() {
                 weapons.ak47.stats.pointsPerShot *= 5;
                 weapons.ak47.stats.damage *= 5;
             }
         },
         ferociousBullets: {
-            cost: 6000000000000000,
+            cost: 4500000000000000,
             effect: function() {
                 weapons.ak47.stats.pointsPerShot *= 6;
                 weapons.ak47.stats.damage *= 6;
             }
         },
         unfathomablePressure: {
-            cost: 90000000000000000,
+            cost: 67500000000000000,
+            effect: function() {
+                weapons.ak47.stats.pointsPerShot *= 6;
+                weapons.ak47.stats.damage *= 6;
+            }
+        },
+		windPressure: {
+            cost: 750000000000000000,
             effect: function() {
                 weapons.ak47.stats.pointsPerShot *= 6;
                 weapons.ak47.stats.damage *= 6;
@@ -990,85 +1093,99 @@ const upgrades = {
     },
     rocketLauncher: {
         potentRockets: {
-            cost: 75000000,
+            cost: 45000000,
             effect: function() {
                 weapons.rocketLauncher.stats.pointsPerShot *= 2;
                 weapons.rocketLauncher.stats.damage *= 2;
             }
         },
 		moreResistant: {
-            cost: 100000000,
+            cost: 60000000,
             effect: function() {
                 weapons.rocketLauncher.stats.hp *= 2;
                 weapons.rocketLauncher.stats.hpMax *= 2;
             }
         },
         violentExplosions: {
-            cost: 1000000000,
+            cost: 500000000,
             effect: function() {
                 weapons.rocketLauncher.stats.splashDamage += 0.2;
             }
         },
-        repeatedExplosions: {
-            cost: 5000000000,
-            effect: function() {
-                weapons.rocketLauncher.stats.pointsPerShot *= 3;
-                weapons.rocketLauncher.stats.damage *= 3;
-            }
-        },
 		armouredBody: {
-            cost: 15000000000,
+            cost: 750000000,
             effect: function() {
                 weapons.rocketLauncher.stats.hp *= 2;
                 weapons.rocketLauncher.stats.hpMax *= 2;
             }
         },
+        repeatedExplosions: {
+            cost: 3000000000,
+            effect: function() {
+                weapons.rocketLauncher.stats.pointsPerShot *= 3;
+                weapons.rocketLauncher.stats.damage *= 3;
+            }
+        },
         biggerExplosions: {
-            cost: 75000000000,
+            cost: 50000000000,
             effect: function() {
                 weapons.rocketLauncher.stats.splashRadius += 150;
             }
         },
+		thickerBody: {
+            cost: 90000000000,
+            effect: function() {
+                weapons.rocketLauncher.stats.hp *= 2;
+                weapons.rocketLauncher.stats.hpMax *= 2;
+            }
+        },
         extraGunpowder: {
-            cost: 200000000000,
+            cost: 100000000000,
             effect: function() {
                 weapons.rocketLauncher.stats.pointsPerShot *= 3;
                 weapons.rocketLauncher.stats.damage *= 3;
             }
         },
         shatteringExplosions: {
-            cost: 2500000000000,
+            cost: 1000000000000,
             effect: function() {
                 weapons.rocketLauncher.stats.pointsPerShot *= 4;
                 weapons.rocketLauncher.stats.damage *= 4;
             }
         },
         napalmRockets: {
-            cost: 25000000000000,
+            cost: 10000000000000,
             effect: function() {
                 weapons.rocketLauncher.stats.pointsPerShot *= 4;
                 weapons.rocketLauncher.stats.damage *= 4;
             }
         },
         impulsiveExplosions: {
-            cost: 100000000000000,
+            cost: 50000000000000,
             effect: function() {
                 weapons.rocketLauncher.stats.splashDamage += 0.2;
             }
         },
         rampantTips: {
-            cost: 500000000000000,
+            cost: 200000000000000,
             effect: function() {
                 weapons.rocketLauncher.stats.pointsPerShot *= 5;
                 weapons.rocketLauncher.stats.damage *= 5;
             }
         },
         kamikaze: {
-            cost: 3000000000000000,
+            cost: 1500000000000000,
             effect: function() {
                 weapons.rocketLauncher.stats.pointsPerShot *= 2;
                 weapons.rocketLauncher.stats.damage *= 2;
                 weapons.rocketLauncher.stats.splashRadius += 150;
+            }
+        },
+		strongPetroleum: {
+            cost: 15000000000000000,
+            effect: function() {
+                weapons.rocketLauncher.stats.pointsPerShot *= 5;
+                weapons.rocketLauncher.stats.damage *= 5;
             }
         },
         // Add more upgrades for rocketLauncher here
@@ -1094,17 +1211,17 @@ const upgrades = {
                 weapons.tommyGun.stats.damage *= 2;
             }
         },
+		armouredBody: {
+            cost: 5000000000,
+            effect: function() {
+                weapons.tommyGun.stats.hp *= 2;
+                weapons.tommyGun.stats.hpMax *= 2;
+            }
+        },
         lessPunishing: {
             cost: 5000000000,
             effect: function() {
                  weapons.tommyGun.stats.inaccuracyPenalty += 0.17; // Reduces the accuracy penalty of the tommy gun
-            }
-        },
-		armouredBody: {
-            cost: 10000000000,
-            effect: function() {
-                weapons.tommyGun.stats.hp *= 2;
-                weapons.tommyGun.stats.hpMax *= 2;
             }
         },
         powerfulOutcomes: {
@@ -1112,6 +1229,13 @@ const upgrades = {
             effect: function() {
                 weapons.tommyGun.stats.pointsPerShot *= 3;
                 weapons.tommyGun.stats.damage *= 3;
+            }
+        },
+		thickerBody: {
+            cost: 60000000000,
+            effect: function() {
+                weapons.tommyGun.stats.hp *= 2;
+                weapons.tommyGun.stats.hpMax *= 2;
             }
         },
         vehementBurst: {
@@ -1157,6 +1281,13 @@ const upgrades = {
                 weapons.tommyGun.stats.accuracy += 10;
             }
         },
+		vociferousDischarge: {
+            cost: 133000000000000000,
+            effect: function() {
+                weapons.tommyGun.stats.pointsPerShot *= 6;
+                weapons.tommyGun.stats.damage *= 6;
+            }
+        },
         // Add more upgrades for tommyGun here
     },
     doubleBarrel: {
@@ -1181,17 +1312,17 @@ const upgrades = {
                 weapons.doubleBarrel.stats.damage *= 3;
             }
         },
+		armouredBody: {
+            cost: 20000000000,
+            effect: function() {
+                weapons.doubleBarrel.stats.hp *= 2;
+                weapons.doubleBarrel.stats.hpMax *= 2;
+            }
+        },
         doubleTrouble: {
             cost: 200000000000,
             effect: function() {
                 weapons.doubleBarrel.stats.bulletsPerShot *= 2;
-            }
-        },
-		armouredBody: {
-            cost: 300000000000,
-            effect: function() {
-                weapons.doubleBarrel.stats.hp *= 2;
-                weapons.doubleBarrel.stats.hpMax *= 2;
             }
         },
         energized: {
@@ -1199,6 +1330,13 @@ const upgrades = {
             effect: function() {
                 weapons.doubleBarrel.stats.pointsPerShot *= 3;
                 weapons.doubleBarrel.stats.damage *= 3;
+            }
+        },
+		thickerBody: {
+            cost: 1000000000000,
+            effect: function() {
+                weapons.doubleBarrel.stats.hp *= 2;
+                weapons.doubleBarrel.stats.hpMax *= 2;
             }
         },
         doubleSwarm: {
@@ -1241,6 +1379,13 @@ const upgrades = {
                 weapons.doubleBarrel.stats.bulletsPerShot *= 2;
             }
         },
+		bruteForce: {
+            cost: 5000000000000000000,
+            effect: function() {
+                weapons.doubleBarrel.stats.pointsPerShot *= 6;
+                weapons.doubleBarrel.stats.damage *= 6;
+            }
+        },
         // Add more upgrades for doubleBarrel here
     },
     uzi: {
@@ -1265,6 +1410,13 @@ const upgrades = {
                 weapons.uzi.stats.damage *= 3;
             }
         },
+		armouredBody: {
+            cost: 75000000000,
+            effect: function() {
+                weapons.uzi.stats.hp *= 2;
+                weapons.uzi.stats.hpMax *= 2;
+            }
+        },
         tinyRippers: {
             cost: 350000000000,
             effect: function() {
@@ -1272,18 +1424,18 @@ const upgrades = {
                 weapons.uzi.stats.damage *= 3;
             }
         },
-		armouredBody: {
-            cost: 400000000000,
-            effect: function() {
-                weapons.uzi.stats.hp *= 2;
-                weapons.uzi.stats.hpMax *= 2;
-            }
-        },
         circuitousSpread: {
             cost: 3000000000000,
             effect: function() {
                 weapons.uzi.stats.pointsPerShot *= 4;
                 weapons.uzi.stats.damage *= 4;
+            }
+        },
+		thickerBody: {
+            cost: 4000000000000,
+            effect: function() {
+                weapons.uzi.stats.hp *= 2;
+                weapons.uzi.stats.hpMax *= 2;
             }
         },
         bulletOverload: {
@@ -1328,6 +1480,13 @@ const upgrades = {
                 weapons.uzi.stats.damage *= 6;
             }
         },
+		bulletStorm: {
+            cost: 35000000000000000000,
+            effect: function() {
+                weapons.uzi.stats.pointsPerShot *= 4;
+                weapons.uzi.stats.damage *= 4;
+            }
+        },
         // Add more upgrades for uzi here
     },
     huntingRifle: {
@@ -1351,6 +1510,13 @@ const upgrades = {
                 weapons.huntingRifle.stats.criticalDamage += 0.5; // Increases the critical damage multiplier by 0.5
             }
         },
+		armouredBody: {
+            cost: 250000000000,
+            effect: function() {
+                weapons.huntingRifle.stats.hp *= 2;
+                weapons.huntingRifle.stats.hpMax *= 2;
+            }
+        },
         noEscape: {
             cost: 400000000000,
             effect: function() {
@@ -1358,18 +1524,18 @@ const upgrades = {
                 weapons.huntingRifle.stats.damage *= 3;
             }
         },
-		armouredBody: {
-            cost: 800000000000,
-            effect: function() {
-                weapons.huntingRifle.stats.hp *= 2;
-                weapons.huntingRifle.stats.hpMax *= 2;
-            }
-        },
         criminalHunter: {
             cost: 3000000000000,
             effect: function() {
                 weapons.huntingRifle.stats.pointsPerShot *= 3;
                 weapons.huntingRifle.stats.damage *= 3;
+            }
+        },
+		thickerBody: {
+            cost: 6000000000000,
+            effect: function() {
+                weapons.huntingRifle.stats.hp *= 2;
+                weapons.huntingRifle.stats.hpMax *= 2;
             }
         },
         targetHunter: {
@@ -1417,6 +1583,13 @@ const upgrades = {
                 weapons.huntingRifle.stats.criticalDamage *= 1.5;
             }
         },
+		monsterHunter: {
+            cost: 5500000000000000000,
+            effect: function() {
+                weapons.huntingRifle.stats.pointsPerShot *= 6;
+                weapons.huntingRifle.stats.damage *= 6;
+            }
+        },
         // Add more upgrades for huntingRifle here
     },
 	musket: {
@@ -1435,24 +1608,24 @@ const upgrades = {
             }
         },
         metalSlugs: {
-            cost: 2000000000000,
-            effect: function() {
-                weapons.musket.stats.pointsPerShot *= 3;
-                weapons.musket.stats.damage *= 3;
-            }
-        },
-        ironSlugs: {
-            cost: 14000000000000,
+            cost: 1500000000000,
             effect: function() {
                 weapons.musket.stats.pointsPerShot *= 3;
                 weapons.musket.stats.damage *= 3;
             }
         },
 		armouredBody: {
-            cost: 15000000000000,
+            cost: 2500000000000,
             effect: function() {
                 weapons.musket.stats.hp *= 2;
                 weapons.musket.stats.hpMax *= 2;
+            }
+        },
+        ironSlugs: {
+            cost: 10000000000000,
+            effect: function() {
+                weapons.musket.stats.pointsPerShot *= 3;
+                weapons.musket.stats.damage *= 3;
             }
         },
         blowShot: {
@@ -1460,6 +1633,13 @@ const upgrades = {
             effect: function() {
                 weapons.musket.stats.pointsPerShot *= 4;
                 weapons.musket.stats.damage *= 4;
+            }
+        },
+		thickerBody: {
+            cost: 75000000000000,
+            effect: function() {
+                weapons.musket.stats.hp *= 2;
+                weapons.musket.stats.hpMax *= 2;
             }
         },
         exceededReach: {
@@ -1503,12 +1683,19 @@ const upgrades = {
                 weapons.musket.stats.damage *= 6;
             }
         },
+		oversizedSlugs: {
+            cost: 450000000000000000000,
+            effect: function() {
+                weapons.musket.stats.pointsPerShot *= 4;
+                weapons.musket.stats.damage *= 4;
+            }
+        },
         // Add more upgrades for musket here
     }
     // Add more weapons and upgrades as needed
 };
 
-let currentWave = 0;
+let currentWave = 1;
 let currentWeapons = [];
 let activeEnemies = [];
 let battleInProgress = false;
@@ -1516,16 +1703,17 @@ const lastFiredTimes = {};
 const lastAttackedTimes = {};
 const lastHealedTimes = {};
 let lastFrameTime = 0;
+let encounteredEnemies = new Set();
 
 const defaultEnemies = {
     "basic": {
         "name": "Basic",
         "image": "assets/images/basic_enemy.png",
-        "pointsPerKill": 10,
+        "pointsPerKill": 20,
         "stats": {
             "hp": 10,
             "damage": 2,
-            "range": 6,
+            "range": 7.5,
             "walkingSpeed": 15,
             "attackRate": 750
         },
@@ -1533,11 +1721,11 @@ const defaultEnemies = {
     "fast": {
         "name": "Fast",
         "image": "assets/images/fast_enemy.png",
-        "pointsPerKill": 5,
+        "pointsPerKill": 10,
         "stats": {
             "hp": 5,
             "damage": 1,
-            "range": 5,
+            "range": 7.5,
             "walkingSpeed": 30,
             "attackRate": 500
         },
@@ -1545,19 +1733,19 @@ const defaultEnemies = {
     "tank": {
         "name": "Tank",
         "image": "assets/images/tanky_enemy.png",
-        "pointsPerKill": 20,
+        "pointsPerKill": 40,
         "stats": {
             "hp": 50,
             "damage": 1.5,
-            "range": 8,
+            "range": 8.75,
             "walkingSpeed": 5,
-            "attackRate": 1000
+            "attackRate": 1250
         },
     },
 	"healer": {
         "name": "Healer",
         "image": "assets/images/healing_enemy.png",
-        "pointsPerKill": 30,
+        "pointsPerKill": 60,
         "stats": {
             "hp": 20,
             "damage": 0.5,
@@ -1569,13 +1757,26 @@ const defaultEnemies = {
 			"healRange": 500
         },
     },
+	"armoured": {
+        "name": "Armoured",
+        "image": "assets/images/armoured_enemy.png",
+        "pointsPerKill": 50,
+        "stats": {
+            "hp": 40,
+            "damage": 1.2,
+            "range": 8.75,
+            "walkingSpeed": 7,
+            "attackRate": 1000,
+			"armour": 0.5
+        },
+    },
     "boss": {
         "name": "Boss",
         "image": "assets/images/boss_enemy.png",
-        "pointsPerKill": 500,
+        "pointsPerKill": 1000,
         "stats": {
-            "hp": 1000,
-            "damage": 10,
+            "hp": 750,
+            "damage": 7.5,
             "range": 10,
             "walkingSpeed": 5,
             "attackRate": 1000
@@ -1641,6 +1842,7 @@ function earnPoints() {
     shoot('touchGun', pointsPerShot, false, false);
     updatePointsDisplay();
     totalPointsEarned += pointsPerShot;
+	totalTouchGunClicks++;
     updateLifetimePointsDisplay();
 }
 
@@ -1964,6 +2166,13 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
                     valueIncrement *= 4;
                 }
                 if (upgrades.touchGun.magicHands.bought) {
+                    valueIncrement *= 6;
+                }
+				if (upgrades.touchGun.quadrillionFingers.bought) {
+                    valueIncrement += (upgradeType === 'touchGun') ? 10000 : (upgradeType === 'touchGunAwaken') ? 1000000 : 100000000;
+					updateNumerousFingers(upgradeType);
+                }
+				if (upgrades.touchGun.tapExpert.bought) {
                     valueIncrement *= 6;
                 }
                 touchGunPointsPerClick += valueIncrement;
@@ -2330,6 +2539,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.versatileGunshots?.bought) valueIncrement *= 5;
             if (weaponUpgrades.empowered?.bought) valueIncrement *= 5;
             if (weaponUpgrades.oneHitBullets?.bought) valueIncrement *= 6;
+			if (weaponUpgrades.breakthrough?.bought) valueIncrement *= 6;
             if (upgrades.touchGun?.fingerPistols?.bought) valueIncrement *= Math.pow(1.1, getTotalTouchGunUpgrades());
             break;
         case 'smg':
@@ -2341,6 +2551,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.metalPassers?.bought) valueIncrement *= 5;
             if (weaponUpgrades.inescapableBarrage?.bought) valueIncrement *= 5;
             if (weaponUpgrades.neverMissBarrage?.bought) valueIncrement *= 6;
+			if (weaponUpgrades.bluestrippedBullets?.bought) valueIncrement *= 6;
             break;
         case 'shotgun':
             if (weaponUpgrades.powerfulBurst?.bought) valueIncrement *= 2;
@@ -2350,6 +2561,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.omegaBurst?.bought) valueIncrement *= 4;
             if (weaponUpgrades.teraBurst?.bought) valueIncrement *= 5;
             if (weaponUpgrades.ultimatumBurst?.bought) valueIncrement *= 5;
+			if (weaponUpgrades.closeObliteration?.bought) valueIncrement *= 6;
             break;
         case 'sniperRifle':
             if (weaponUpgrades.cripplingShots?.bought) valueIncrement *= 2;
@@ -2359,6 +2571,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.electroshockTracers?.bought) valueIncrement *= 4;
             if (weaponUpgrades.lethalTracers?.bought) valueIncrement *= 4;
             if (weaponUpgrades.heatseekingSensors?.bought) valueIncrement *= 3;
+			if (weaponUpgrades.sharpTracers?.bought) valueIncrement *= 6;
             break;
         case 'ak47':
             if (weaponUpgrades.heatTippedBullets?.bought) valueIncrement *= 2;
@@ -2371,6 +2584,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.spikyBullets?.bought) valueIncrement *= 5;
             if (weaponUpgrades.ferociousBullets?.bought) valueIncrement *= 6;
             if (weaponUpgrades.unfathomablePressure?.bought) valueIncrement *= 6;
+			if (weaponUpgrades.windPressure?.bought) valueIncrement *= 4;
             break;
         case 'rocketLauncher':
             if (weaponUpgrades.potentRockets?.bought) valueIncrement *= 2;
@@ -2380,6 +2594,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.napalmRockets?.bought) valueIncrement *= 4;
             if (weaponUpgrades.rampantTips?.bought) valueIncrement *= 5;
             if (weaponUpgrades.kamikaze?.bought) valueIncrement *= 2;
+			if (weaponUpgrades.strongPetroleum?.bought) valueIncrement *= 5;
             break;
         case 'tommyGun':
             if (weaponUpgrades.tightPressure?.bought) valueIncrement *= 2;
@@ -2390,6 +2605,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.dischargedRippers?.bought) valueIncrement *= 5;
             if (weaponUpgrades.unstoppableBarrage?.bought) valueIncrement *= 5;
             if (weaponUpgrades.unavoidable?.bought) valueIncrement *= 3;
+			if (weaponUpgrades.vociferousDischarge?.bought) valueIncrement *= 6;
             break;
         case 'doubleBarrel':
             if (weaponUpgrades.lethalShots?.bought) valueIncrement *= 2;
@@ -2399,6 +2615,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.tightShots?.bought) valueIncrement *= 4;
             if (weaponUpgrades.heavyForce?.bought) valueIncrement *= 5;
             if (weaponUpgrades.unbearableForce?.bought) valueIncrement *= 5;
+			if (weaponUpgrades.bruteForce?.bought) valueIncrement *= 6;
             break;
         case 'uzi':
             if (weaponUpgrades.focussedSpread?.bought) valueIncrement *= 2;
@@ -2411,6 +2628,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.cantDodgeThis?.bought) valueIncrement *= 5;
             if (weaponUpgrades.bulletFletcher?.bought) valueIncrement *= 6;
             if (weaponUpgrades.easyToUse?.bought) valueIncrement *= 6;
+			if (weaponUpgrades.bulletStorm?.bought) valueIncrement *= 4;
             break;
         case 'huntingRifle':
             if (weaponUpgrades.powerfulHunter?.bought) valueIncrement *= 2;
@@ -2422,6 +2640,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.beastHunter?.bought) valueIncrement *= 5;
             if (weaponUpgrades.markedTracers?.bought) valueIncrement *= 5;
             if (weaponUpgrades.masterHunting?.bought) valueIncrement *= 3;
+			if (weaponUpgrades.monsterHunter?.bought) valueIncrement *= 6;
             break;
 		case 'musket':
 		    if (weaponUpgrades.harderSlugs?.bought) valueIncrement *= 2;
@@ -2433,6 +2652,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.acidicSlugs?.bought) valueIncrement *= 5;
 			if (weaponUpgrades.penetrativeSlugs?.bought) valueIncrement *= 6;
 			if (weaponUpgrades.robustMechanisms?.bought) valueIncrement *= 6;
+			if (weaponUpgrades.oversizedSlugs?.bought) valueIncrement *= 4;
 		    break;
         default:
             break;
@@ -2444,50 +2664,28 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
 
 // Updates hp from the upgradeType 'hp'
 function updateHP(stats, valueIncrement, weaponUpgrades, weapon) {
+	// Get the current prestige level
+    const currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
+    const prestigeMultiplier = prestigeLevels[currentPrestigeLevel].multiplier;
+
+    // Adjust valueIncrement based on prestige multiplier
+    valueIncrement *= prestigeMultiplier;
+	
     switch (weapon) {
         case 'pistol':
-		    if (weaponUpgrades.moreResistant?.bought) valueIncrement *= 2;
-            if (weaponUpgrades.armouredBody?.bought) valueIncrement *= 2;
-			break;
         case 'smg':
-		    if (weaponUpgrades.moreResistant?.bought) valueIncrement *= 2;
-            if (weaponUpgrades.armouredBody?.bought) valueIncrement *= 2;
-			break;
         case 'shotgun':
-		    if (weaponUpgrades.moreResistant?.bought) valueIncrement *= 2;
-            if (weaponUpgrades.armouredBody?.bought) valueIncrement *= 2;
-			break;
-        case 'sniperRifle':
-		    if (weaponUpgrades.moreResistant?.bought) valueIncrement *= 2;
-            if (weaponUpgrades.armouredBody?.bought) valueIncrement *= 2;
-			break;
-        case 'ak47':
-		    if (weaponUpgrades.moreResistant?.bought) valueIncrement *= 2;
-            if (weaponUpgrades.armouredBody?.bought) valueIncrement *= 2;
-			break;
-        case 'rocketLauncher':
-		    if (weaponUpgrades.moreResistant?.bought) valueIncrement *= 2;
-            if (weaponUpgrades.armouredBody?.bought) valueIncrement *= 2;
-			break;
-        case 'tommyGun':
-		    if (weaponUpgrades.moreResistant?.bought) valueIncrement *= 2;
-            if (weaponUpgrades.armouredBody?.bought) valueIncrement *= 2;
-			break;
+		case 'sniperRifle':
+		case 'ak47':
+		case 'rocketLauncher':
+		case 'tommyGun':
         case 'doubleBarrel':
-		    if (weaponUpgrades.moreResistant?.bought) valueIncrement *= 2;
-            if (weaponUpgrades.armouredBody?.bought) valueIncrement *= 2;
-			break;
-        case 'uzi':
-		    if (weaponUpgrades.moreResistant?.bought) valueIncrement *= 2;
-            if (weaponUpgrades.armouredBody?.bought) valueIncrement *= 2;
-			break;
+		case 'uzi':
         case 'huntingRifle':
-		    if (weaponUpgrades.moreResistant?.bought) valueIncrement *= 2;
-            if (weaponUpgrades.armouredBody?.bought) valueIncrement *= 2;
-			break;
 		case 'musket':
 		    if (weaponUpgrades.moreResistant?.bought) valueIncrement *= 2;
             if (weaponUpgrades.armouredBody?.bought) valueIncrement *= 2;
+			if (weaponUpgrades.thickerBody?.bought) valueIncrement *= 2;
 			break;
         default:
             break;
@@ -2741,29 +2939,6 @@ function bigUpgrades(weapon, upgrade, cost) {
 
 // Function to update weapon and upgrade costs in the HTML
 function updateCostDisplay() {
-    const pistolPointsPerSecond = (weapons.pistol.stats.pointsPerShot / weapons.pistol.stats.fireRate) * 1000; // Convert fire rate from milliseconds to seconds
-    const pistolDamagePerSecond = (weapons.pistol.stats.damage / weapons.pistol.stats.fireRate) * 1000; // Convert fire rate from milliseconds to seconds
-    const smgPointsPerSecond = (weapons.smg.stats.pointsPerShot / weapons.smg.stats.fireRate) * 1000;
-    const smgDamagePerSecond = (weapons.smg.stats.damage / weapons.smg.stats.fireRate) * 1000;
-    const shotgunPointsPerSecond = (weapons.shotgun.stats.pointsPerShot * weapons.shotgun.stats.bulletsPerShot / weapons.shotgun.stats.fireRate) * 1000;
-    const shotgunDamagePerSecond = (weapons.shotgun.stats.damage * weapons.shotgun.stats.bulletsPerShot / weapons.shotgun.stats.fireRate) * 1000;
-    const sniperRiflePointsPerSecond = (weapons.sniperRifle.stats.pointsPerShot / weapons.sniperRifle.stats.fireRate) * 1000;
-    const sniperRifleDamagePerSecond = (weapons.sniperRifle.stats.damage / weapons.sniperRifle.stats.fireRate) * 1000;
-    const ak47PointsPerSecond = (weapons.ak47.stats.pointsPerShot / weapons.ak47.stats.fireRate) * 1000;
-    const ak47DamagePerSecond = (weapons.ak47.stats.damage / weapons.ak47.stats.fireRate) * 1000;
-    const rocketLauncherPointsPerSecond = (weapons.rocketLauncher.stats.pointsPerShot / weapons.rocketLauncher.stats.fireRate) * 1000;
-    const rocketLauncherDamagePerSecond = (weapons.rocketLauncher.stats.damage / weapons.rocketLauncher.stats.fireRate) * 1000;
-    const tommyGunPointsPerSecond = (weapons.tommyGun.stats.pointsPerShot / weapons.tommyGun.stats.fireRate) * 1000;
-    const tommyGunDamagePerSecond = (weapons.tommyGun.stats.damage / weapons.tommyGun.stats.fireRate) * 1000;
-    const doubleBarrelPointsPerSecond = (weapons.doubleBarrel.stats.pointsPerShot * weapons.doubleBarrel.stats.bulletsPerShot / weapons.doubleBarrel.stats.fireRate) * 1000;
-    const doubleBarrelDamagePerSecond = (weapons.doubleBarrel.stats.damage * weapons.doubleBarrel.stats.bulletsPerShot / weapons.doubleBarrel.stats.fireRate) * 1000;
-    const uziPointsPerSecond = (weapons.uzi.stats.pointsPerShot / weapons.uzi.stats.fireRate) * 1000;
-    const uziDamagePerSecond = (weapons.uzi.stats.damage / weapons.uzi.stats.fireRate) * 1000;
-    const huntingRiflePointsPerSecond = (weapons.huntingRifle.stats.pointsPerShot / weapons.huntingRifle.stats.fireRate) * 1000;
-    const huntingRifleDamagePerSecond = (weapons.huntingRifle.stats.damage / weapons.huntingRifle.stats.fireRate) * 1000;
-	const musketPointsPerSecond = (weapons.musket.stats.pointsPerShot / weapons.musket.stats.fireRate) * 1000;
-    const musketDamagePerSecond = (weapons.musket.stats.damage / weapons.musket.stats.fireRate) * 1000;
-
     for (const weaponId in weapons) {
         const weapon = weapons[weaponId];
 		const costElement = document.getElementById(`${weaponId}-cost`);
@@ -2782,6 +2957,10 @@ function updateCostDisplay() {
 		const attackRateElement = document.getElementById(`${weaponId}AttackRate-value`);
 		const walkingSpeedElement = document.getElementById(`${weaponId}WalkingSpeed-value`);
 		const multiShotElement = document.getElementById(`${weaponId}MultiShot-value`);
+		const pointsPerSecondElement = document.getElementById(`${weaponId}PPS-value`);
+        const damagePerSecondElement = document.getElementById(`${weaponId}DPS-value`);
+		const pointsPerSecond = (weapon.stats.pointsPerShot * weapon.stats.bulletsPerShot / weapon.stats.fireRate) * 1000;
+        const damagePerSecond = (weapon.stats.damage * weapon.stats.bulletsPerShot / weapon.stats.fireRate) * 1000;
 
         if (costElement) {
             costElement.textContent = formatNumber(weapon.cost);
@@ -2850,6 +3029,14 @@ function updateCostDisplay() {
 		if (multiShotElement) {
             multiShotElement.textContent = weapon.stats.bulletsPerShot;
         }
+		
+		if (pointsPerSecondElement) {
+            pointsPerSecondElement.textContent = formatNumber(pointsPerSecond);
+        }
+		
+		if (damagePerSecondElement) {
+            damagePerSecondElement.textContent = formatNumber(damagePerSecond);
+        }
     }
     
     document.getElementById('touchGun-cost').textContent = formatNumber(touchGunCost);
@@ -2871,16 +3058,12 @@ function updateCostDisplay() {
 	document.getElementById('pistolHP-cost').textContent = formatNumber(pistolHPUpgradeCost);
     document.getElementById('pistolFirerate-level').textContent = pistolFirerateLevel;
     document.getElementById('pistolPotency-level').textContent = pistolPotencyLevel;
-    document.getElementById('pistolPPS-value').textContent = formatNumber(pistolPointsPerSecond);
-    document.getElementById('pistolDPS-value').textContent = formatNumber(pistolDamagePerSecond);
     
     document.getElementById('smgFirerate-cost').textContent = formatNumber(smgFirerateUpgradeCost);
     document.getElementById('smgPotency-cost').textContent = formatNumber(smgPotencyUpgradeCost);
 	document.getElementById('smgHP-cost').textContent = formatNumber(smgHPUpgradeCost);
     document.getElementById('smgFirerate-level').textContent = smgFirerateLevel;
     document.getElementById('smgPotency-level').textContent = smgPotencyLevel;
-    document.getElementById('smgPPS-value').textContent = formatNumber(smgPointsPerSecond);
-    document.getElementById('smgDPS-value').textContent = formatNumber(smgDamagePerSecond);
     
     document.getElementById('shotgunFirerate-cost').textContent = formatNumber(shotgunFirerateUpgradeCost);
     document.getElementById('shotgunPotency-cost').textContent = formatNumber(shotgunPotencyUpgradeCost);
@@ -2889,8 +3072,6 @@ function updateCostDisplay() {
     document.getElementById('shotgunFirerate-level').textContent = shotgunFirerateLevel;
     document.getElementById('shotgunPotency-level').textContent = shotgunPotencyLevel;
     document.getElementById('shotgunMultiFire-level').textContent = shotgunMultiFireLevel;
-    document.getElementById('shotgunPPS-value').textContent = formatNumber(shotgunPointsPerSecond);
-    document.getElementById('shotgunDPS-value').textContent = formatNumber(shotgunDamagePerSecond);
     
     document.getElementById('sniperRifleFirerate-cost').textContent = formatNumber(sniperRifleFirerateUpgradeCost);
     document.getElementById('sniperRiflePotency-cost').textContent = formatNumber(sniperRiflePotencyUpgradeCost);
@@ -2901,18 +3082,14 @@ function updateCostDisplay() {
     document.getElementById('sniperRiflePotency-level').textContent = sniperRiflePotencyLevel;
     document.getElementById('sniperRifleCriticalShot-level').textContent = sniperRifleCriticalShotLevel;
     document.getElementById('sniperRifleCriticalDamage-level').textContent = sniperRifleCriticalDamageLevel;
-    document.getElementById('sniperRiflePPS-value').textContent = formatNumber(sniperRiflePointsPerSecond);
     document.getElementById('sniperRifleCriticalChance-value-battle').textContent = weapons.sniperRifle.stats.criticalChance;
     document.getElementById('sniperRifleCriticalDamage-value-battle').textContent = weapons.sniperRifle.stats.criticalDamage;
-    document.getElementById('sniperRifleDPS-value').textContent = formatNumber(sniperRifleDamagePerSecond);
 
     document.getElementById('ak47Firerate-cost').textContent = formatNumber(ak47FirerateUpgradeCost);
     document.getElementById('ak47Potency-cost').textContent = formatNumber(ak47PotencyUpgradeCost);
 	document.getElementById('ak47HP-cost').textContent = formatNumber(ak47HPUpgradeCost);
     document.getElementById('ak47Firerate-level').textContent = ak47FirerateLevel;
     document.getElementById('ak47Potency-level').textContent = ak47PotencyLevel;
-    document.getElementById('ak47PPS-value').textContent = formatNumber(ak47PointsPerSecond);
-    document.getElementById('ak47DPS-value').textContent = formatNumber(ak47DamagePerSecond);
 
     document.getElementById('rocketLauncherFirerate-cost').textContent = formatNumber(rocketLauncherFirerateUpgradeCost);
     document.getElementById('rocketLauncherPotency-cost').textContent = formatNumber(rocketLauncherPotencyUpgradeCost);
@@ -2925,8 +3102,6 @@ function updateCostDisplay() {
     document.getElementById('rocketLauncherSplashDamage-level').textContent = rocketLauncherSplashDamageLevel;
     document.getElementById('rocketLauncherSplashRadius-value-battle').textContent = weapons.rocketLauncher.stats.splashRadius * 0.5;
     document.getElementById('rocketLauncherSplashDamage-value-battle').textContent = weapons.rocketLauncher.stats.splashDamage;
-    document.getElementById('rocketLauncherPPS-value').textContent = formatNumber(rocketLauncherPointsPerSecond);
-    document.getElementById('rocketLauncherDPS-value').textContent = formatNumber(rocketLauncherDamagePerSecond);
 
     document.getElementById('tommyGunFirerate-cost').textContent = formatNumber(tommyGunFirerateUpgradeCost);
     document.getElementById('tommyGunPotency-cost').textContent = formatNumber(tommyGunPotencyUpgradeCost);
@@ -2935,8 +3110,6 @@ function updateCostDisplay() {
     document.getElementById('tommyGunFirerate-level').textContent = tommyGunFirerateLevel;
     document.getElementById('tommyGunPotency-level').textContent = tommyGunPotencyLevel;
     document.getElementById('tommyGunAccuracy-level').textContent = tommyGunAccuracyLevel;
-    document.getElementById('tommyGunPPS-value').textContent = formatNumber(tommyGunPointsPerSecond);
-    document.getElementById('tommyGunDPS-value').textContent = formatNumber(tommyGunDamagePerSecond);
 
     document.getElementById('doubleBarrelFirerate-cost').textContent = formatNumber(doubleBarrelFirerateUpgradeCost);
     document.getElementById('doubleBarrelPotency-cost').textContent = formatNumber(doubleBarrelPotencyUpgradeCost);
@@ -2945,16 +3118,12 @@ function updateCostDisplay() {
     document.getElementById('doubleBarrelFirerate-level').textContent = doubleBarrelFirerateLevel;
     document.getElementById('doubleBarrelPotency-level').textContent = doubleBarrelPotencyLevel;
     document.getElementById('doubleBarrelMultiFire-level').textContent = doubleBarrelMultiFireLevel;
-    document.getElementById('doubleBarrelPPS-value').textContent = formatNumber(doubleBarrelPointsPerSecond);
-    document.getElementById('doubleBarrelDPS-value').textContent = formatNumber(doubleBarrelDamagePerSecond);
 
     document.getElementById('uziFirerate-cost').textContent = formatNumber(uziFirerateUpgradeCost);
     document.getElementById('uziPotency-cost').textContent = formatNumber(uziPotencyUpgradeCost);
 	document.getElementById('uziHP-cost').textContent = formatNumber(uziHPUpgradeCost);
     document.getElementById('uziFirerate-level').textContent = uziFirerateLevel;
     document.getElementById('uziPotency-level').textContent = uziPotencyLevel;
-    document.getElementById('uziPPS-value').textContent = formatNumber(uziPointsPerSecond);
-    document.getElementById('uziDPS-value').textContent = formatNumber(uziDamagePerSecond);
 
     document.getElementById('huntingRifleFirerate-cost').textContent = formatNumber(huntingRifleFirerateUpgradeCost);
     document.getElementById('huntingRiflePotency-cost').textContent = formatNumber(huntingRiflePotencyUpgradeCost);
@@ -2965,10 +3134,8 @@ function updateCostDisplay() {
     document.getElementById('huntingRiflePotency-level').textContent = huntingRiflePotencyLevel;
     document.getElementById('huntingRifleCriticalShot-level').textContent = huntingRifleCriticalShotLevel;
     document.getElementById('huntingRifleCriticalDamage-level').textContent = huntingRifleCriticalDamageLevel;
-    document.getElementById('huntingRiflePPS-value').textContent = formatNumber(huntingRiflePointsPerSecond);
 	document.getElementById('huntingRifleCriticalChance-value-battle').textContent = weapons.huntingRifle.stats.criticalChance;
     document.getElementById('huntingRifleCriticalDamage-value-battle').textContent = weapons.huntingRifle.stats.criticalDamage;
-    document.getElementById('huntingRifleDPS-value').textContent = formatNumber(huntingRifleDamagePerSecond);
 	
 	document.getElementById('musketFirerate-cost').textContent = formatNumber(musketFirerateUpgradeCost);
     document.getElementById('musketPotency-cost').textContent = formatNumber(musketPotencyUpgradeCost);
@@ -2977,8 +3144,6 @@ function updateCostDisplay() {
     document.getElementById('musketFirerate-level').textContent = musketFirerateLevel;
     document.getElementById('musketPotency-level').textContent = musketPotencyLevel;
 	document.getElementById('musketRange-level').textContent = musketRangeLevel;
-    document.getElementById('musketPPS-value').textContent = formatNumber(musketPointsPerSecond);
-    document.getElementById('musketDPS-value').textContent = formatNumber(musketDamagePerSecond);
 
     // Check if fire rate level is at maximum for each weapon
     if (pistolFirerateLevel === 20) {
@@ -3152,6 +3317,7 @@ function updateCostDisplay() {
 	
 	// Update these big upgrade logic functions
 	updateFingerPistols();
+	updateHealthyFingers();
 }
 
 // Function to format numbers into units
@@ -3713,6 +3879,8 @@ function prestige() {
             // Apply the prestige multiplier to the weapon stats
             weapons[weaponId].stats.pointsPerShot *= totalMultiplier;
             weapons[weaponId].stats.damage *= totalMultiplier;
+			weapons[weaponId].stats.hp *= totalMultiplier;
+			weapons[weaponId].stats.hpMax *= totalMultiplier;
         } else {
             console.warn(`Initial stats for ${weaponId} are undefined.`);
         }
@@ -3741,7 +3909,8 @@ function prestige() {
         'pointyFingers', 'ambidextrous', 'thousandFingers', 'antirestingCream',
         'powerfulHands', 'awakenUpgrade', 'millionFingers', 'stingingTaps',
         'gotToTap', 'fingerSwarm', 'billionFingers', 'needMore', 'fingerPistols',
-        'superAwakenUpgrade', 'trillionFingers', 'heavyFingers', 'magicHands'
+        'superAwakenUpgrade', 'trillionFingers', 'heavyFingers', 'magicHands',
+		'healthyFingers', 'quadrillionFingers', 'tapExpert'
     ];
     touchGunUpgrades.forEach(upgrade => {
         upgrades.touchGun[upgrade].bought = false;
@@ -3860,7 +4029,7 @@ function prestige() {
 	enemies = JSON.parse(JSON.stringify(defaultEnemies));
     localStorage.setItem('enemies', JSON.stringify(defaultEnemies));
 	
-	currentWave = 0;
+	currentWave = 1;
     activeEnemies = [];
     currentWeapons = [];
 	battleInProgress = false;
@@ -3917,6 +4086,11 @@ function updateStatisticsDisplay() {
     if (lifetimePointsElement) {
         lifetimePointsElement.textContent = formatNumber(statistics.totalLifetimePoints);
     }
+	
+	const totalTouchGunClicksElement = document.getElementById('total-touch-gun-clicks');
+    if (totalTouchGunClicksElement) {
+        totalTouchGunClicksElement.textContent = statistics.totalTouchGunClicks;
+    }
 
     const totalWeaponsPurchasedElement = document.getElementById('total-weapons-purchased');
     if (totalWeaponsPurchasedElement) {
@@ -3931,6 +4105,11 @@ function updateStatisticsDisplay() {
 	const totalAchievementsElement = document.getElementById('total-achievements-achieved');
     if (totalAchievementsElement) {
         totalAchievementsElement.textContent = statistics.totalAchievementsAchieved;
+    }
+	
+	const totalEnemiesKilledElement = document.getElementById('total-enemies-killed');
+    if (totalEnemiesKilledElement) {
+        totalEnemiesKilledElement.textContent = statistics.totalEnemiesKilled;
     }
 
     const weaponUpgradesDiv = document.getElementById('total-weapon-upgrades');
@@ -3965,6 +4144,9 @@ function updateStatisticsDisplay() {
 function setStatistics() {
     // Calculate and assign the total lifetime points display
     statistics.totalLifetimePoints = totalPointsEarned;
+	
+	// Calculate and assign the total touch gun clicks display
+    statistics.totalTouchGunClicks = totalTouchGunClicks;
 
     // Calculate and assign the total weapons purchased
     statistics.totalWeaponsPurchased = getTotalWeaponsPurchased();
@@ -3974,6 +4156,9 @@ function setStatistics() {
 	
 	// Calculate and assign the total achievements achieved
     statistics.totalAchievementsAchieved = getTotalAchievementsAchieved();
+	
+	// Calculate and assign the total enemies killed achieved
+    statistics.totalEnemiesKilled = totalEnemiesKilled;
 
     // Calculate and assign other statistics based on game data
     statistics.totalPotencyUpgrades = getTotalPotencyUpgrades();
@@ -4069,7 +4254,6 @@ function startBattle() {
         weapons[weaponId].stats.hp = weapons[weaponId].stats.hpMax;
     }
 
-    currentWave++;
     document.getElementById('wave-counter').innerText = `${currentWave}`;
     document.getElementById('game-status').innerText = 'Game Status: In Progress';
 	const startBattleBtn = document.getElementById('start-battle-btn');
@@ -4094,7 +4278,6 @@ function startBattle() {
 
 function surrenderBattle() {
     battleInProgress = false;
-    currentWave = Math.max(0, currentWave - 1);
     document.getElementById('wave-counter').innerText = `${currentWave}`;
     document.getElementById('game-status').innerText = 'Game Status: Surrendered';
     document.getElementById('surrender-btn').style.display = 'none';
@@ -4133,6 +4316,7 @@ function generateEnemies(wave) {
             image: enemies["boss"].image,
             pointsPerKill: enemies["boss"].pointsPerKill,
         });
+		encounterEnemy("boss");
     } else {
         const enemyCount = baseEnemyCount + Math.floor(wave / bossWaveInterval);
         for (let i = 0; i < enemyCount; i++) {
@@ -4153,6 +4337,7 @@ function generateEnemies(wave) {
                 image: enemies[enemyType].image,
                 pointsPerKill: enemies[enemyType].pointsPerKill,
             });
+			encounterEnemy(enemyType);
         }
         if (wave >= 6 && Math.random() < 0) {
             const healerStats = enemies["healer"].stats;
@@ -4174,6 +4359,27 @@ function generateEnemies(wave) {
                 image: enemies["healer"].image,
                 pointsPerKill: enemies["healer"].pointsPerKill,
             });
+			encounterEnemy("healer");
+        }
+		else if (wave >= 11 && Math.random() < 0) {
+            const armouredStats = enemies["armoured"].stats;
+            enemiesList.push({
+                id: `armoured-${wave}`,
+                type: "armoured",
+                name: enemies["armoured"].name,
+                stats: {
+                    hp: scaleHP(armouredStats.hp, wave),
+                    damage: scaleDamage(armouredStats.damage, wave),
+                    range: armouredStats.range,
+                    walkingSpeed: armouredStats.walkingSpeed,
+                    attackRate: armouredStats.attackRate,
+                    armour: armouredStats.armour,
+                    hpMax: scaleHP(armouredStats.hp, wave)
+                },
+                image: enemies["armoured"].image,
+                pointsPerKill: enemies["armoured"].pointsPerKill,
+            });
+			encounterEnemy("armoured");
         }
     }
 
@@ -4181,9 +4387,12 @@ function generateEnemies(wave) {
 }
 
 function getRandomEnemyType(wave) {
-    const enemyTypes = Object.keys(enemies).filter(type => type !== "boss" && type !== "healer");
+    const enemyTypes = Object.keys(enemies).filter(type => type !== "boss" && type !== "healer" && type !== "armoured");
     if (wave >= 6) {
         enemyTypes.push("healer");
+    }
+    if (wave >= 11) { // Add armoured enemies starting from wave 10
+        enemyTypes.push("armoured");
     }
     const randomIndex = Math.floor(Math.random() * enemyTypes.length);
     return enemyTypes[randomIndex];
@@ -4277,7 +4486,6 @@ function getProjectileImage(weaponType) {
             return '';
     }
 }
-
 function shootProjectile(weapon, weaponDiv, enemyDiv) {
     if (!enemyDiv) {
         console.error("Enemy is undefined.");
@@ -4286,36 +4494,63 @@ function shootProjectile(weapon, weaponDiv, enemyDiv) {
 
     const battlefield = document.getElementById('battlefield');
     const projectileImage = getProjectileImage(weapon.id);
-    const projectileDiv = document.createElement('div');
-    projectileDiv.className = 'projectile';
-    projectileDiv.style.left = weaponDiv.style.left;
-    projectileDiv.style.top = weaponDiv.style.top;
-    projectileDiv.innerHTML = `<img src="${projectileImage}" alt="Projectile">`;
-    battlefield.appendChild(projectileDiv);
-
-    let projectileLeft = parseInt(projectileDiv.style.left);
     const enemyLeft = parseInt(enemyDiv.style.left);
-    const speed = 15; // Adjust speed as necessary for desired gameplay
+    const enemyTop = parseInt(enemyDiv.style.top);
+    const weaponLeft = parseInt(weaponDiv.style.left);
+    const weaponTop = parseInt(weaponDiv.style.top);
 
-    function moveProjectile() {
-        projectileLeft += speed;
-        projectileDiv.style.left = `${projectileLeft}px`;
+    // Minimum travel distance before checking for collision
+    const minTravelDistance = 15;
 
-        if (Math.abs(projectileLeft - enemyLeft) <= 10) {
-            battlefield.removeChild(projectileDiv);
-            
-            // Apply splash damage if rocket launcher
-            if (weapon.id === 'rocketLauncher') {
-                applySplashDamage(weapon, enemyDiv);
+    // Handle multiple projectiles per shot
+    for (let i = 0; i < weapon.stats.bulletsPerShot; i++) {
+        const projectileDiv = document.createElement('div');
+        projectileDiv.className = 'projectile';
+        projectileDiv.style.left = weaponDiv.style.left;
+        projectileDiv.style.top = weaponDiv.style.top;
+        projectileDiv.innerHTML = `<img src="${projectileImage}" alt="Projectile">`;
+        battlefield.appendChild(projectileDiv);
+
+        let projectileLeft = weaponLeft;
+        let projectileTop = weaponTop;
+        const speed = 15; // Adjust speed as necessary for desired gameplay
+
+        // Factor in accuracy for weapons with less than 100 accuracy
+        const accuracyDeviation = (100 - weapon.stats.accuracy) / 100;
+        const deviationX = weapon.stats.accuracy < 100 ? (Math.random() - 0.5) * accuracyDeviation * 100 : 0;
+        const deviationY = weapon.stats.accuracy < 100 ? (Math.random() - 0.5) * accuracyDeviation * 100 : 0;
+
+        // Cutoff distance or timeout (e.g., 5 seconds)
+        const cutoffTime = 5000; // 5 seconds
+        const startTime = Date.now();
+
+        function moveProjectile() {
+            projectileLeft += speed + deviationX;
+            projectileTop += (enemyTop - projectileTop) / (enemyLeft - projectileLeft) * speed + deviationY;
+            projectileDiv.style.left = `${projectileLeft}px`;
+            projectileDiv.style.top = `${projectileTop}px`;
+
+            const distanceToEnemy = Math.sqrt((projectileLeft - enemyLeft) ** 2 + (projectileTop - enemyTop) ** 2);
+            const distanceFromWeapon = Math.sqrt((projectileLeft - weaponLeft) ** 2 + (projectileTop - weaponTop) ** 2);
+
+            if (distanceToEnemy <= 15 && distanceFromWeapon >= minTravelDistance) {
+                battlefield.removeChild(projectileDiv);
+
+                // Apply splash damage if rocket launcher
+                if (weapon.id === 'rocketLauncher') {
+                    applySplashDamage(weapon, enemyDiv);
+                } else {
+                    applyDirectDamage(weapon, enemyDiv);
+                }
+            } else if (Date.now() - startTime > cutoffTime) {
+                battlefield.removeChild(projectileDiv);
             } else {
-                applyDirectDamage(weapon, enemyDiv);
+                requestAnimationFrame(moveProjectile);
             }
-        } else {
-            requestAnimationFrame(moveProjectile);
         }
-    }
 
-    requestAnimationFrame(moveProjectile);
+        requestAnimationFrame(moveProjectile);
+    }
 }
 
 function applyDirectDamage(weapon, enemyDiv) {
@@ -4343,28 +4578,51 @@ function applyDirectDamage(weapon, enemyDiv) {
 
         // Append the floating text to the battlefield
         floatingTextContainer.appendChild(floatingText);
-        if (weapon.id === 'sniperRifle' || weapon.id === 'huntingRifle') {
-            // Calculate critical hit
+		
+		// Handle accuracy and inaccuracy penalty
+        if (weapon.stats.accuracy < 100) {
+            const hitChance = weapon.stats.accuracy / 100;
+            if (Math.random() > hitChance) {
+                const inaccuracyPenalty = weapon.stats.inaccuracyPenalty || 1;
+                damage *= (1 - inaccuracyPenalty);
+                floatingText.textContent = `Missed! -${formatNumber(damage)}`;
+                floatingText.classList.add('miss');
+            }
+        }
+
+        // Apply armour reduction if applicable
+        if (enemy.type === 'armoured' && !['sniperRifle', 'huntingRifle', 'rocketLauncher'].includes(weapon.id)) {
+            damage *= enemies.armoured.stats.armour;
+            floatingText.textContent = `Weak! ${formatNumber(damage)}`;
+            floatingText.classList.add('armour');
+        } else if (!floatingText.textContent.startsWith('Missed!')) {
+            floatingText.textContent = formatNumber(damage);
+        }
+
+        // Handle critical hits
+        if (['sniperRifle', 'huntingRifle'].includes(weapon.id)) {
             const criticalChance = Math.min(100, weapon.stats.criticalChance);
             const criticalMultiplier = weapon.stats.criticalDamage;
             if (criticalChance >= Math.random() * 100) {
                 damage *= criticalMultiplier;
-                console.log(`${weapon.id} landed a critical hit!`);
-                floatingText.textContent = ' Crit! ' + formatNumber(damage);
+                floatingText.textContent = 'Crit! ' + formatNumber(damage);
                 floatingText.classList.add('critical');
-				floatingText.style.position = 'absolute';
             }
         }
+		
         enemy.stats.hp -= damage;
         updateHpBar(enemyDiv, enemy.stats);
         if (enemy.stats.hp <= 0) {
             activeEnemies = activeEnemies.filter(e => e.id !== enemy.id);
             const wave = currentWave;
             const pointsPerKill = enemy.pointsPerKill * Math.pow(1.3, wave - 1);
-            points += pointsPerKill;
+            const currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
+            const prestigeMultiplier = prestigeLevels[currentPrestigeLevel].multiplier;
+            points += pointsPerKill * prestigeMultiplier;
             updatePointsDisplay();
             console.log(`${enemy.id} was eliminated by ${weapon.id}`);
             enemyDiv.remove();
+			totalEnemiesKilled++;
         }
 		setTimeout(() => {
             floatingText.remove();
@@ -4423,9 +4681,16 @@ function applySplashDamage(weapon, targetEnemyDiv) {
 
                 // Check if the enemy is defeated
                 if (enemy.stats.hp <= 0) {
+					activeEnemies = activeEnemies.filter(e => e.id !== enemy.id);
+					const wave = currentWave;
+					const pointsPerKill = enemy.pointsPerKill * Math.pow(1.3, wave - 1);
+                    const currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
+                    const prestigeMultiplier = prestigeLevels[currentPrestigeLevel].multiplier;
+                    points += pointsPerKill * prestigeMultiplier;
+                    updatePointsDisplay();
                     console.log(`${enemy.id} was eliminated by splash damage from ${weapon.id}`);
-                    activeEnemies = activeEnemies.filter(e => e.id !== enemy.id);
                     enemyDiv.remove();
+		            totalEnemiesKilled++;
                 }
 
                 // Remove the splash text after a certain duration
@@ -4573,6 +4838,7 @@ function battleLoop(timestamp) {
     // Check if all enemies are defeated
     if (activeEnemies.length === 0) {
         battleInProgress = false;
+		currentWave = Math.max(1, currentWave + 1); // Increase wave but not below 1
         document.getElementById('game-status').innerText = 'Game Status: Victory!';
         document.getElementById('surrender-btn').style.display = 'none';
         return;
@@ -4581,7 +4847,6 @@ function battleLoop(timestamp) {
     // Check if all weapons are defeated
     if (currentWeapons.length === 0) {
         battleInProgress = false;
-        currentWave = Math.max(1, currentWave - 1); // Decrease wave but not below 1
         document.getElementById('game-status').innerText = 'Game Status: Defeat!';
         document.getElementById('surrender-btn').style.display = 'none';
         return;
@@ -4618,7 +4883,6 @@ function handleHealerBehavior(healer, healerDiv, deltaTime, activeEnemies) {
 
         // Self-healing
         if (enemies.healer.stats.hp < enemies.healer.stats.hpMax) {
-            console.log(`Healer (${enemies.healer.id}) is healing itself.`);
             const selfHealAmount = (enemies.healer.stats.healAmount) * enemies.healer.stats.hpMax;
             enemies.healer.stats.hp = Math.min(enemies.healer.stats.hpMax, enemies.healer.stats.hp + selfHealAmount);
             updateHpBar(healerDiv, enemies.healer.stats);
@@ -4628,7 +4892,6 @@ function handleHealerBehavior(healer, healerDiv, deltaTime, activeEnemies) {
 
         // Update the last healed time
         lastHealedTimes[enemies.healer.id] = currentTime;
-        console.log(`Last healed time for healer (${enemies.healer.id}): ${currentTime}`);
     }
 
     // Movement and attacking logic
@@ -4717,6 +4980,61 @@ function displayHealingText(element, text, className) {
     }, 1000);
 }
 
+function generateEncyclopaedia() {
+    const encyclopaediaDiv = document.getElementById('encyclopaedia');
+    encyclopaediaDiv.innerHTML = ''; // Clear previous content
+
+    encounteredEnemies.forEach(enemyType => {
+        const enemy = enemies[enemyType];
+        const enemyDiv = document.createElement('div');
+        enemyDiv.className = 'encyclopaedia-entry';
+
+        const enemyImage = document.createElement('img');
+        enemyImage.src = enemy.image;
+        enemyImage.alt = enemy.name;
+
+        const enemyName = document.createElement('h3');
+        enemyName.textContent = enemy.name;
+
+        const enemyStats = document.createElement('ul');
+        for (const [key, value] of Object.entries(enemy.stats)) {
+            const statItem = document.createElement('li');
+            statItem.textContent = `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}`;
+            enemyStats.appendChild(statItem);
+        }
+
+        const pointsPerKill = document.createElement('p');
+        pointsPerKill.textContent = `Points per Kill: ${enemy.pointsPerKill}`;
+
+        enemyDiv.appendChild(enemyImage);
+        enemyDiv.appendChild(enemyName);
+        enemyDiv.appendChild(enemyStats);
+        enemyDiv.appendChild(pointsPerKill);
+
+        encyclopaediaDiv.appendChild(enemyDiv);
+    });
+}
+
+function encounterEnemy(enemyType) {
+    if (enemies[enemyType] && !encounteredEnemies.has(enemyType)) {
+        encounteredEnemies.add(enemyType);
+        saveEncounteredEnemies(); // Save to local storage
+        generateEncyclopaedia(); // Regenerate the encyclopaedia
+    }
+}
+
+function saveEncounteredEnemies() {
+    localStorage.setItem('encounteredEnemies', JSON.stringify([...encounteredEnemies]));
+}
+
+function loadEncounteredEnemies() {
+    const savedEnemies = localStorage.getItem('encounteredEnemies');
+    if (savedEnemies) {
+        encounteredEnemies = new Set(JSON.parse(savedEnemies));
+    }
+    generateEncyclopaedia(); // Generate the encyclopaedia based on loaded data
+}
+
 function updateHpBar(entityDiv, stats) {
     const hpBarInner = entityDiv.querySelector('.hp-bar-inner');
     const hpCurrent = entityDiv.querySelector('.hp-current');
@@ -4732,8 +5050,10 @@ function getEquippedWeapons() {
 }
 
 function updateNumerousFingers(upgradeType) {
+	const currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
+    const prestigeMultiplier = prestigeLevels[currentPrestigeLevel].multiplier;
     // Initialize a variable to track the total increment
-    let totalIncrement = 0;
+    let totalIncrement = 0 * prestigeMultiplier;
 
     // Calculate the base increment based on the upgrade type
     let baseIncrement;
@@ -4767,6 +5087,9 @@ function updateNumerousFingers(upgradeType) {
     }
     if (upgrades.touchGun.trillionFingers.bought) {
         totalIncrement += adjustedIncrement * 1000; // Increment is 1000 times higher for trillion fingers
+    }
+	if (upgrades.touchGun.quadrillionFingers.bought) {
+        totalIncrement += adjustedIncrement * 20000; // Increment is 20000 times higher for quadrillion fingers
     }
 
     // Apply the total increment to touchGunPointsPerClick
@@ -4812,6 +5135,43 @@ function updatePistolStats() {
         let potencyMultiplier = 1 + pistolPotencyLevel;
         weapons.pistol.stats.pointsPerShot *= potencyMultiplier;
         weapons.pistol.stats.damage *= potencyMultiplier;
+	}
+}
+
+// Function to update Healthy Fingers upgrade
+function updateHealthyFingers() {
+	if (upgrades.touchGun.healthyFingers.bought) {
+        // Initialize a variable to track the total increment
+        let totalIncrement = 0;
+
+        // Calculate the base increment based on the upgrade type
+        let baseIncrement = 1; // Assume a base increment for touchGun
+
+        // Calculate the efficiency increment from potency upgrades
+        let potencyMultiplier = 1 + (0.05 * getTotalPotencyUpgrades());
+
+        // Adjust the base increment based on the potency levels
+        let adjustedIncrement = baseIncrement * potencyMultiplier;
+
+        // Check if each upgrade tier is bought and add its adjusted increment to the total
+        if (upgrades.touchGun.thousandFingers.bought) {
+            totalIncrement += adjustedIncrement;
+        }
+        if (upgrades.touchGun.millionFingers.bought) {
+            totalIncrement += adjustedIncrement * 10; // Increment is 10 times higher for million fingers
+        }
+        if (upgrades.touchGun.billionFingers.bought) {
+            totalIncrement += adjustedIncrement * 100; // Increment is 100 times higher for billion fingers
+        }
+        if (upgrades.touchGun.trillionFingers.bought) {
+            totalIncrement += adjustedIncrement * 1000; // Increment is 1000 times higher for trillion fingers
+        }
+        if (upgrades.touchGun.quadrillionFingers.bought) {
+            totalIncrement += adjustedIncrement * 20000; // Increment is 20000 times higher for quadrillion fingers
+        }
+		
+		// Apply the total increment to touchGunPointsPerClick
+        touchGunPointsPerClick += totalIncrement;
 	}
 }
 
@@ -4876,6 +5236,8 @@ function initializeUI() {
     updateStatisticsDisplay();
     updateLifetimePointsDisplay();
 	updateFingerPistols();
+	updateHealthyFingers();
+	loadEncounteredEnemies();
 
     // Start earning points automatically for purchased weapons
     setInterval(automaticPointsGeneration, 1000); // Check every second for points generation

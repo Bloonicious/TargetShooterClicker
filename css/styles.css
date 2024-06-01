@@ -209,6 +209,16 @@ body {
     animation: floatUp 2s ease-out; /* Apply the floatUp animation */
 }
 
+.floating-text.armour {
+    position: absolute;
+    font-family: monospace;
+    font-size: 16px;
+    color: cyan; /* Color for weak hits */
+    transition: all 0.5s ease-out; /* Add transition for smooth appearance */
+    z-index: 2; /* Ensure the floating text appears above other elements */
+    animation: floatUp 2s ease-out; /* Apply the floatUp animation */
+}
+
 /* Define the base styles for the splash text */
 .floating-text-splash {
     position: absolute;
@@ -477,4 +487,56 @@ body {
 
 .weapon-box p {
     margin: 5px 0;
+}
+
+#encyclopaedia {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.encyclopaedia-entry {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+.encyclopaedia-entry img {
+    max-width: 100%;
+    height: auto;
+}
+
+.encyclopaedia-entry h3 {
+    margin: 10px 0;
+}
+
+.encyclopaedia-entry ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.encyclopaedia-entry ul li {
+    margin: 5px 0;
+}
+
+/* CSS for the discovery container */
+#discovery-container {
+    position: fixed;
+    top: 10px; /* Adjust top position as needed */
+    right: 10px; /* Adjust right position as needed */
+    width: 300px; /* Adjust width as needed */
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    color: #fff;
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+/* CSS for the discovery alert */
+#discovery-alert {
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
 }

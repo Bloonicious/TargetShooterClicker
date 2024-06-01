@@ -12,6 +12,10 @@
     <div id="achievements-container">
         <div id="achievements-alert"></div>
     </div>
+	
+	<div id="discovery-container">
+        <div id="discovery-alert"></div>
+    </div>
     
     <!-- Container for tab buttons -->
     <div class="tab-buttons">
@@ -281,7 +285,7 @@
                     <p id="rocketLauncher-potency-display">Rocket Launcher Potency Level: <span id="rocketLauncherPotency-level">0</span> (<span id="rocketLauncherPotency-value">1250</span> points)</p>
                     <p id="rocketLauncher-splash-radius-display">Rocket Launcher Splash Radius Level: <span id="rocketLauncherSplashRadius-level">0</span> (<span id="rocketLauncherSplashRadius-value">500</span>)</p>
                     <p id="rocketLauncher-splash-damage-display">Rocket Launcher Splash Damage Level: <span id="rocketLauncherSplashDamage-level">0</span> (<span id="rocketLauncherSplashDamage-value">0.4</span>x)</p>
-                    <p id="rocketLauncher-pps-display">Rocket Launcher Points Per Second: <span id="rocketLauncherPPS-value">250</span></p>
+                    <p id="rocketLauncher-pps-display">Rocket Launcher Points Per Second: <span id="rocketLauncherPPS-value">350</span></p>
                 </div>
                 <div class="weapon-zone" id="tommyGun-zone">
                     <!-- Tommy Gun ASCII representation -->
@@ -596,6 +600,24 @@
                     <span class="upgrade-cost">Cost: 10,000,000,000,000,000</span>
                     <p class="upgrade-description">Sextuples touch gun efficiency</p>
                 </div>
+				
+				<div class="upgrade-option touchGun" id="touchGun-healthyFingers">
+                    <button onclick="bigUpgrades('touchGun', 'healthyFingers', 50000000000000000)">Touch Gun: Healthy Fingers</button>
+                    <span class="upgrade-cost">Cost: 50,000,000,000,000,000</span>
+                    <p class="upgrade-description">Every potency upgrade level increases the touch gun's efficiency by 5%</p>
+                </div>
+				
+				<div class="upgrade-option touchGun" id="touchGun-quadrillionFingers">
+                    <button onclick="bigUpgrades('touchGun', 'quadrillionFingers', 250000000000000000)">Touch Gun: Quadrillion Fingers</button>
+                    <span class="upgrade-cost">Cost: 250,000,000,000,000,000</span>
+                    <p class="upgrade-description">For every weapon potency upgrade level you get, it increases the efficiency of the touch gun by 10,000</p>
+                </div>
+				
+				<div class="upgrade-option touchGun" id="touchGun-tapExpert">
+                    <button onclick="bigUpgrades('touchGun', 'tapExpert', 750000000000000000)">Touch Gun: Tap Expert</button>
+                    <span class="upgrade-cost">Cost: 750,000,000,000,000,000</span>
+                    <p class="upgrade-description">Octuples touch gun efficiency</p>
+                </div>
                 
                 <!-- Pistol Big Upgrades -->
                 <div class="upgrade-option pistol" id="pistol-biggerBullets">
@@ -605,8 +627,8 @@
                 </div>
 				
 				<div class="upgrade-option pistol" id="pistol-moreResistant">
-                    <button onclick="bigUpgrades('pistol', 'moreResistant', 3000)">Pistol: More Resistant</button>
-                    <span class="upgrade-cost">Cost: 3,000</span>
+                    <button onclick="bigUpgrades('pistol', 'moreResistant', 2000)">Pistol: More Resistant</button>
+                    <span class="upgrade-cost">Cost: 2,000</span>
                     <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 
@@ -615,23 +637,29 @@
                     <span class="upgrade-cost">Cost: 40,000</span>
                     <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
                 </div>
+				
+				<div class="upgrade-option pistol" id="pistol-armouredBody">
+                    <button onclick="bigUpgrades('pistol', 'armouredBody', 80000)">Pistol: Armoured Body</button>
+                    <span class="upgrade-cost">Cost: 80,000</span>
+                    <p class="upgrade-description">Doubles the amount of HP</p>
+                </div>
 
                 <div class="upgrade-option pistol" id="pistol-easierReloading">
                     <button onclick="bigUpgrades('pistol', 'easierReloading', 200000)">Pistol: Easier Reloading</button>
                     <span class="upgrade-cost">Cost: 200,000</span>
                     <p class="upgrade-description">Reduces the reload speed time by 150ms</p>
                 </div>
-				
-				<div class="upgrade-option pistol" id="pistol-armouredBody">
-                    <button onclick="bigUpgrades('pistol', 'armouredBody', 500000)">Pistol: Armoured Body</button>
-                    <span class="upgrade-cost">Cost: 500,000</span>
-                    <p class="upgrade-description">Doubles the amount of HP</p>
-                </div>
 
                 <div class="upgrade-option pistol" id="pistol-louderFiring">
                     <button onclick="bigUpgrades('pistol', 'louderFiring', 1000000)">Pistol: Louder Firing</button>
                     <span class="upgrade-cost">Cost: 1,000,000</span>
                     <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
+                </div>
+				
+				<div class="upgrade-option pistol" id="pistol-thickerBody">
+                    <button onclick="bigUpgrades('pistol', 'thickerBody', 1500000)">Pistol: Thicker Body</button>
+                    <span class="upgrade-cost">Cost: 1,500,000</span>
+                    <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 
                 <div class="upgrade-option pistol" id="pistol-metalPiercing">
@@ -669,6 +697,12 @@
                     <span class="upgrade-cost">Cost: 7,500,000,000,000</span>
                     <p class="upgrade-description">Sextuples the amount of points yielded from target shots</p>
                 </div>
+				
+				<div class="upgrade-option pistol" id="pistol-breakthrough">
+                    <button onclick="bigUpgrades('pistol', 'breakthrough', 100000000000000)">Pistol: Breakthrough</button>
+                    <span class="upgrade-cost">Cost: 100,000,000,000,000</span>
+                    <p class="upgrade-description">Sextuples the amount of points yielded from target shots</p>
+                </div>
 
                 <!-- SMG Big Upgrades -->
                 <div class="upgrade-option smg" id="smg-betterSpread">
@@ -678,68 +712,80 @@
                 </div>
 				
 				<div class="upgrade-option smg" id="smg-moreResistant">
-                    <button onclick="bigUpgrades('smg', 'moreResistant', 30000)">SMG: More Resistant</button>
-                    <span class="upgrade-cost">Cost: 30,000</span>
+                    <button onclick="bigUpgrades('smg', 'moreResistant', 20000)">SMG: More Resistant</button>
+                    <span class="upgrade-cost">Cost: 20,000</span>
                     <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 
                 <div class="upgrade-option smg" id="smg-strongHold">
-                    <button onclick="bigUpgrades('smg', 'strongHold', 500000)">SMG: Strong Hold</button>
-                    <span class="upgrade-cost">Cost: 500,000</span>
-                    <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
-                </div>
-
-                <div class="upgrade-option smg" id="smg-pressureBullets">
-                    <button onclick="bigUpgrades('smg', 'pressureBullets', 6000000)">SMG: Pressure Bullets</button>
-                    <span class="upgrade-cost">Cost: 6,000,000</span>
+                    <button onclick="bigUpgrades('smg', 'strongHold', 300000)">SMG: Strong Hold</button>
+                    <span class="upgrade-cost">Cost: 300,000</span>
                     <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
                 </div>
 				
 				<div class="upgrade-option smg" id="smg-armouredBody">
-                    <button onclick="bigUpgrades('smg', 'armouredBody', 7500000)">SMG: Armoured Body</button>
-                    <span class="upgrade-cost">Cost: 7,500,000</span>
+                    <button onclick="bigUpgrades('smg', 'armouredBody', 800000)">SMG: Armoured Body</button>
+                    <span class="upgrade-cost">Cost: 800,000</span>
                     <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 
+                <div class="upgrade-option smg" id="smg-pressureBullets">
+                    <button onclick="bigUpgrades('smg', 'pressureBullets', 4000000)">SMG: Pressure Bullets</button>
+                    <span class="upgrade-cost">Cost: 4,000,000</span>
+                    <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
+                </div>
+
                 <div class="upgrade-option smg" id="smg-wickedAimer">
-                    <button onclick="bigUpgrades('smg', 'wickedAimer', 25000000)">SMG: Wicked Aimer</button>
-                    <span class="upgrade-cost">Cost: 25,000,000</span>
+                    <button onclick="bigUpgrades('smg', 'wickedAimer', 15000000)">SMG: Wicked Aimer</button>
+                    <span class="upgrade-cost">Cost: 15,000,000</span>
                     <p class="upgrade-description">Reduces the firerate time by 20%</p>
+                </div>
+				
+				<div class="upgrade-option smg" id="smg-thickerBody">
+                    <button onclick="bigUpgrades('smg', 'thickerBody', 20000000)">SMG: Thicker Body</button>
+                    <span class="upgrade-cost">Cost: 20,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 
                 <div class="upgrade-option smg" id="smg-bashingRounds">
-                    <button onclick="bigUpgrades('smg', 'bashingRounds', 250000000)">SMG: Bashing Rounds</button>
-                    <span class="upgrade-cost">Cost: 250,000,000</span>
+                    <button onclick="bigUpgrades('smg', 'bashingRounds', 100000000)">SMG: Bashing Rounds</button>
+                    <span class="upgrade-cost">Cost: 100,000,000</span>
                     <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
                 </div>
 
                 <div class="upgrade-option smg" id="smg-autoAimer">
-                    <button onclick="bigUpgrades('smg', 'autoAimer', 3000000000)">SMG: Auto Aimer</button>
-                    <span class="upgrade-cost">Cost: 3,000,000,000</span>
+                    <button onclick="bigUpgrades('smg', 'autoAimer', 1250000000)">SMG: Auto Aimer</button>
+                    <span class="upgrade-cost">Cost: 1,250,000,000</span>
                     <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
                 </div>
 
                 <div class="upgrade-option smg" id="smg-lightweight">
-                    <button onclick="bigUpgrades('smg', 'lightweight', 15000000000)">SMG: Lightweight</button>
-                    <span class="upgrade-cost">Cost: 15,000,000,000</span>
+                    <button onclick="bigUpgrades('smg', 'lightweight', 8750000000)">SMG: Lightweight</button>
+                    <span class="upgrade-cost">Cost: 8,750,000,000</span>
                     <p class="upgrade-description">Reduces the firerate time by 15%</p>
                 </div>
 
                 <div class="upgrade-option smg" id="smg-metalPassers">
-                    <button onclick="bigUpgrades('smg', 'metalPassers', 75000000000)">SMG: Metal Passers</button>
-                    <span class="upgrade-cost">Cost: 75,000,000,000</span>
+                    <button onclick="bigUpgrades('smg', 'metalPassers', 45000000000)">SMG: Metal Passers</button>
+                    <span class="upgrade-cost">Cost: 45,000,000,000</span>
                     <p class="upgrade-description">Quintuples the amount of points yielded from target shots</p>
                 </div>
 
                 <div class="upgrade-option smg" id="smg-inescapableBarrage">
-                    <button onclick="bigUpgrades('smg', 'inescapableBarrage', 1000000000000)">SMG: Inescapable Barrage</button>
-                    <span class="upgrade-cost">Cost: 1,000,000,000,000</span>
+                    <button onclick="bigUpgrades('smg', 'inescapableBarrage', 650000000000)">SMG: Inescapable Barrage</button>
+                    <span class="upgrade-cost">Cost: 650,000,000,000</span>
                     <p class="upgrade-description">Quintuples the amount of points yielded from target shots</p>
                 </div>
 
                 <div class="upgrade-option smg" id="smg-neverMissBarrage">
-                    <button onclick="bigUpgrades('smg', 'neverMissBarrage', 25000000000000)">SMG: Never-Miss Barrage</button>
-                    <span class="upgrade-cost">Cost: 25,000,000,000,000</span>
+                    <button onclick="bigUpgrades('smg', 'neverMissBarrage', 12500000000000)">SMG: Never-Miss Barrage</button>
+                    <span class="upgrade-cost">Cost: 12,500,000,000,000</span>
+                    <p class="upgrade-description">Sextuples the amount of points yielded from target shots</p>
+                </div>
+				
+				<div class="upgrade-option smg" id="smg-bluestrippedBullets">
+                    <button onclick="bigUpgrades('smg', 'bluestrippedBullets', 175000000000000)">SMG: Blue-stripped Bullets</button>
+                    <span class="upgrade-cost">Cost: 175,000,000,000,000</span>
                     <p class="upgrade-description">Sextuples the amount of points yielded from target shots</p>
                 </div>
 
@@ -751,288 +797,336 @@
                 </div>
 				
 				<div class="upgrade-option shotgun" id="shotgun-moreResistant">
-                    <button onclick="bigUpgrades('shotgun', 'moreResistant', 200000)">Shotgun: More Resistant</button>
-                    <span class="upgrade-cost">Cost: 200,000</span>
+                    <button onclick="bigUpgrades('shotgun', 'moreResistant', 150000)">Shotgun: More Resistant</button>
+                    <span class="upgrade-cost">Cost: 150,000</span>
                     <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 
                 <div class="upgrade-option shotgun" id="shotgun-powerfulBurst">
-                    <button onclick="bigUpgrades('shotgun', 'powerfulBurst', 1500000)">Shotgun: Powerful Burst</button>
-                    <span class="upgrade-cost">Cost: 1,500,000</span>
+                    <button onclick="bigUpgrades('shotgun', 'powerfulBurst', 750000)">Shotgun: Powerful Burst</button>
+                    <span class="upgrade-cost">Cost: 750,000</span>
                     <p class="upgrade-description">Doubles the amount of points yielded from target shots</p>
-                </div>
-
-                <div class="upgrade-option shotgun" id="shotgun-devastatingBurst">
-                    <button onclick="bigUpgrades('shotgun', 'devastatingBurst', 50000000)">Shotgun: Devastating Burst</button>
-                    <span class="upgrade-cost">Cost: 50,000,000</span>
-                    <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
                 </div>
 				
 				<div class="upgrade-option shotgun" id="shotgun-armouredBody">
-                    <button onclick="bigUpgrades('shotgun', 'armouredBody', 75000000)">Shotgun: Armoured Body</button>
-                    <span class="upgrade-cost">Cost: 75,000,000</span>
+                    <button onclick="bigUpgrades('shotgun', 'armouredBody', 3000000)">Shotgun: Armoured Body</button>
+                    <span class="upgrade-cost">Cost: 3,000,000</span>
                     <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 
-                <div class="upgrade-option shotgun" id="shotgun-megaBurst">
-                    <button onclick="bigUpgrades('shotgun', 'megaBurst', 650000000)">Shotgun: Mega Burst</button>
-                    <span class="upgrade-cost">Cost: 650,000,000</span>
+                <div class="upgrade-option shotgun" id="shotgun-devastatingBurst">
+                    <button onclick="bigUpgrades('shotgun', 'devastatingBurst', 30000000)">Shotgun: Devastating Burst</button>
+                    <span class="upgrade-cost">Cost: 30,000,000</span>
                     <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
                 </div>
 
+                <div class="upgrade-option shotgun" id="shotgun-megaBurst">
+                    <button onclick="bigUpgrades('shotgun', 'megaBurst', 400000000)">Shotgun: Mega Burst</button>
+                    <span class="upgrade-cost">Cost: 400,000,000</span>
+                    <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
+                </div>
+				
+				<div class="upgrade-option shotgun" id="shotgun-thickerBody">
+                    <button onclick="bigUpgrades('shotgun', 'thickerBody', 500000000)">Shotgun: Thicker Body</button>
+                    <span class="upgrade-cost">Cost: 500,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of HP</p>
+                </div>
+
                 <div class="upgrade-option shotgun" id="shotgun-scattershot">
-                    <button onclick="bigUpgrades('shotgun', 'scattershot', 2000000000)">Shotgun: Scattershot</button>
-                    <span class="upgrade-cost">Cost: 20,000,000,000</span>
+                    <button onclick="bigUpgrades('shotgun', 'scattershot', 1000000000)">Shotgun: Scattershot</button>
+                    <span class="upgrade-cost">Cost: 10,000,000,000</span>
                     <p class="upgrade-description">Doubles the amount of bullets shot from the shotgun!</p>
                 </div>
 
                 <div class="upgrade-option shotgun" id="shotgun-gigaBurst">
-                    <button onclick="bigUpgrades('shotgun', 'gigaBurst', 80000000000)">Shotgun: Giga Burst</button>
-                    <span class="upgrade-cost">Cost: 80,000,000,000</span>
+                    <button onclick="bigUpgrades('shotgun', 'gigaBurst', 50000000000)">Shotgun: Giga Burst</button>
+                    <span class="upgrade-cost">Cost: 50,000,000,000</span>
                     <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
                 </div>
 
                 <div class="upgrade-option shotgun" id="shotgun-omegaBurst">
-                    <button onclick="bigUpgrades('shotgun', 'omegaBurst', 800000000000)">Shotgun: Omega Burst</button>
-                    <span class="upgrade-cost">Cost: 800,000,000,000</span>
+                    <button onclick="bigUpgrades('shotgun', 'omegaBurst', 500000000000)">Shotgun: Omega Burst</button>
+                    <span class="upgrade-cost">Cost: 500,000,000,000</span>
                     <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
                 </div>
 
                 <div class="upgrade-option shotgun" id="shotgun-teraBurst">
-                    <button onclick="bigUpgrades('shotgun', 'teraBurst', 10000000000000)">Shotgun: Tera Burst</button>
-                    <span class="upgrade-cost">Cost: 10,000,000,000,000</span>
+                    <button onclick="bigUpgrades('shotgun', 'teraBurst', 7000000000000)">Shotgun: Tera Burst</button>
+                    <span class="upgrade-cost">Cost: 7,000,000,000,000</span>
                     <p class="upgrade-description">Quintuples the amount of points yielded from target shots</p>
                 </div>
 
                 <div class="upgrade-option shotgun" id="shotgun-ultimatumBurst">
-                    <button onclick="bigUpgrades('shotgun', 'ultimatumBurst', 150000000000000)">Shotgun: Ultimatum Burst</button>
-                    <span class="upgrade-cost">Cost: 150,000,000,000,000</span>
+                    <button onclick="bigUpgrades('shotgun', 'ultimatumBurst', 90000000000000)">Shotgun: Ultimatum Burst</button>
+                    <span class="upgrade-cost">Cost: 90,000,000,000,000</span>
                     <p class="upgrade-description">Quintuples the amount of points yielded from target shots</p>
                 </div>
 
                 <div class="upgrade-option shotgun" id="shotgun-buckshot">
-                    <button onclick="bigUpgrades('shotgun', 'buckshot', 600000000000000)">Shotgun: Buckshot</button>
-                    <span class="upgrade-cost">Cost: 600,000,000,000,000</span>
+                    <button onclick="bigUpgrades('shotgun', 'buckshot', 500000000000000)">Shotgun: Buckshot</button>
+                    <span class="upgrade-cost">Cost: 500,000,000,000,000</span>
                     <p class="upgrade-description">Doubles the amount of bullets shot from the shotgun!</p>
+                </div>
+				
+				<div class="upgrade-option shotgun" id="shotgun-closeObliteration">
+                    <button onclick="bigUpgrades('shotgun', 'closeObliteration', 4000000000000000)">Shotgun: Close Obliteration</button>
+                    <span class="upgrade-cost">Cost: 4,000,000,000,000,000</span>
+                    <p class="upgrade-description">Sextuples the amount of points yielded from target shots</p>
                 </div>
 
                 <!-- Sniper Rifle Big Upgrades -->
                 <div class="upgrade-option sniperRifle" id="sniperRifle-deadlyPrecision">
-                    <button onclick="bigUpgrades('sniperRifle', 'deadlyPrecision', 1500000)">Sniper Rifle: Deadly Precision</button>
-                    <span class="upgrade-cost">Cost: 1,500,000</span>
+                    <button onclick="bigUpgrades('sniperRifle', 'deadlyPrecision', 1250000)">Sniper Rifle: Deadly Precision</button>
+                    <span class="upgrade-cost">Cost: 1,250,000</span>
                     <p class="upgrade-description">Increases the critical damage multiplier factor by 1</p>
                 </div>
 				
 				<div class="upgrade-option sniperRifle" id="sniperRifle-moreResistant">
-                    <button onclick="bigUpgrades('sniperRifle', 'moreResistant', 200000)">Sniper Rifle: More Resistant</button>
-                    <span class="upgrade-cost">Cost: 2,500,000</span>
+                    <button onclick="bigUpgrades('sniperRifle', 'moreResistant', 2250000)">Sniper Rifle: More Resistant</button>
+                    <span class="upgrade-cost">Cost: 2,250,000</span>
                     <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 
                 <div class="upgrade-option sniperRifle" id="sniperRifle-cripplingShots">
-                    <button onclick="bigUpgrades('sniperRifle', 'cripplingShots', 12500000)">Sniper Rifle: Crippling Shots</button>
-                    <span class="upgrade-cost">Cost: 12,500,000</span>
+                    <button onclick="bigUpgrades('sniperRifle', 'cripplingShots', 7500000)">Sniper Rifle: Crippling Shots</button>
+                    <span class="upgrade-cost">Cost: 7,500,000</span>
                     <p class="upgrade-description">Doubles the amount of points yielded from target shots</p>
-                </div>
-
-                <div class="upgrade-option sniperRifle" id="sniperRifle-headShot">
-                    <button onclick="bigUpgrades('sniperRifle', 'headShot', 250000000)">Sniper Rifle: Head Shot!</button>
-                    <span class="upgrade-cost">Cost: 250,000,000</span>
-                    <p class="upgrade-description">Increases the critical damage multiplier factor by 2</p>
                 </div>
 				
 				<div class="upgrade-option sniperRifle" id="sniperRifle-armouredBody">
-                    <button onclick="bigUpgrades('sniperRifle', 'armouredBody', 250000000)">Sniper Rifle: Armoured Body</button>
-                    <span class="upgrade-cost">Cost: 250,000,000</span>
+                    <button onclick="bigUpgrades('sniperRifle', 'armouredBody', 25000000)">Sniper Rifle: Armoured Body</button>
+                    <span class="upgrade-cost">Cost: 25,000,000</span>
                     <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 
+                <div class="upgrade-option sniperRifle" id="sniperRifle-headShot">
+                    <button onclick="bigUpgrades('sniperRifle', 'headShot', 80000000)">Sniper Rifle: Head Shot!</button>
+                    <span class="upgrade-cost">Cost: 80,000,000</span>
+                    <p class="upgrade-description">Increases the critical damage multiplier factor by 2</p>
+                </div>
+
                 <div class="upgrade-option sniperRifle" id="sniperRifle-dangerousRifling">
-                    <button onclick="bigUpgrades('sniperRifle', 'dangerousRifling', 1111000000)">Sniper Rifle: Dangerous Rifling</button>
-                    <span class="upgrade-cost">Cost: 1,111,000,000</span>
+                    <button onclick="bigUpgrades('sniperRifle', 'dangerousRifling', 555000000)">Sniper Rifle: Dangerous Rifling</button>
+                    <span class="upgrade-cost">Cost: 555,000,000</span>
                     <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
+                </div>
+				
+				<div class="upgrade-option sniperRifle" id="sniperRifle-thickerBody">
+                    <button onclick="bigUpgrades('sniperRifle', 'thickerBody', 1000000000)">Sniper Rifle: Thicker Body</button>
+                    <span class="upgrade-cost">Cost: 1,000,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 
                 <div class="upgrade-option sniperRifle" id="sniperRifle-luckyShot">
-                    <button onclick="bigUpgrades('sniperRifle', 'luckyShot', 7777000000)">Sniper Rifle: Lucky Shot</button>
-                    <span class="upgrade-cost">Cost: 7,777,000,000</span>
+                    <button onclick="bigUpgrades('sniperRifle', 'luckyShot', 3333000000)">Sniper Rifle: Lucky Shot</button>
+                    <span class="upgrade-cost">Cost: 3,333,000,000</span>
                     <p class="upgrade-description">Increases the critical chance factor by an additional 10%</p>
                 </div>
 
                 <div class="upgrade-option sniperRifle" id="sniperRifle-enhancedTracers">
-                    <button onclick="bigUpgrades('sniperRifle', 'enhancedTracers', 40000000000)">Sniper Rifle: Enhanced Tracers</button>
-                    <span class="upgrade-cost">Cost: 40,000,000,000</span>
+                    <button onclick="bigUpgrades('sniperRifle', 'enhancedTracers', 15000000000)">Sniper Rifle: Enhanced Tracers</button>
+                    <span class="upgrade-cost">Cost: 15,000,000,000</span>
                     <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
                 </div>
 
                 <div class="upgrade-option sniperRifle" id="sniperRifle-infraredScope">
-                    <button onclick="bigUpgrades('sniperRifle', 'infraredScope', 300000000000)">Sniper Rifle: Infrared Scope</button>
-                    <span class="upgrade-cost">Cost: 300,000,000,000</span>
+                    <button onclick="bigUpgrades('sniperRifle', 'infraredScope', 150000000000)">Sniper Rifle: Infrared Scope</button>
+                    <span class="upgrade-cost">Cost: 150,000,000,000</span>
                     <p class="upgrade-description">Doubles the amount of points yielded from target shots and increases the critical damage multiplier by 50%</p>
                 </div>
 
                 <div class="upgrade-option sniperRifle" id="sniperRifle-electroshockTracers">
                     <button onclick="bigUpgrades('sniperRifle', 'electroshockTracers', 2000000000000)">Sniper Rifle: Electroshock Tracers</button>
-                    <span class="upgrade-cost">Cost: 2,000,000,000,000</span>
+                    <span class="upgrade-cost">Cost: 1,000,000,000,000</span>
                     <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
                 </div>
 
                 <div class="upgrade-option sniperRifle" id="sniperRifle-lethalTracers">
-                    <button onclick="bigUpgrades('sniperRifle', 'lethalTracers', 20000000000000)">Sniper Rifle: Lethal Tracers</button>
-                    <span class="upgrade-cost">Cost: 20,000,000,000,000</span>
+                    <button onclick="bigUpgrades('sniperRifle', 'lethalTracers', 10000000000000)">Sniper Rifle: Lethal Tracers</button>
+                    <span class="upgrade-cost">Cost: 10,000,000,000,000</span>
                     <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
                 </div>
 
                 <div class="upgrade-option sniperRifle" id="sniperRifle-heatseekingSensors">
-                    <button onclick="bigUpgrades('sniperRifle', 'heatseekingSensors', 120000000000000)">Sniper Rifle: Heat-seeking Sensors</button>
-                    <span class="upgrade-cost">Cost: 120,000,000,000,000</span>
+                    <button onclick="bigUpgrades('sniperRifle', 'heatseekingSensors', 80000000000000)">Sniper Rifle: Heat-seeking Sensors</button>
+                    <span class="upgrade-cost">Cost: 80,000,000,000,000</span>
                     <p class="upgrade-description">Triples the amount of points from targets and increases the critical chance factor by 5%</p>
+                </div>
+				
+				<div class="upgrade-option sniperRifle" id="sniperRifle-sharpTracers">
+                    <button onclick="bigUpgrades('sniperRifle', 'sharpTracers', 300000000000000)">Sniper Rifle: Sharp Tracers</button>
+                    <span class="upgrade-cost">Cost: 300,000,000,000,000</span>
+                    <p class="upgrade-description">Sextuples the amount of points yielded from target shots</p>
                 </div>
 
                 <!-- AK-47 Big Upgrades -->
                 <div class="upgrade-option ak47" id="ak47-heatTippedBullets">
-                    <button onclick="bigUpgrades('ak47', 'heatTippedBullets', 12000000)">AK-47: Heat-tipped Bullets</button>
-                    <span class="upgrade-cost">Cost: 8,000,000</span>
+                    <button onclick="bigUpgrades('ak47', 'heatTippedBullets', 6000000)">AK-47: Heat-tipped Bullets</button>
+                    <span class="upgrade-cost">Cost: 6,000,000</span>
                     <p class="upgrade-description">Doubles the amount of points yielded from target shots</p>
                 </div>
 				
 				<div class="upgrade-option ak47" id="ak47-moreResistant">
-                    <button onclick="bigUpgrades('ak47', 'moreResistant', 12000000)">AK-47: More Resistant</button>
-                    <span class="upgrade-cost">Cost: 12,000,000</span>
+                    <button onclick="bigUpgrades('ak47', 'moreResistant', 9000000)">AK-47: More Resistant</button>
+                    <span class="upgrade-cost">Cost: 9,000,000</span>
                     <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 
                 <div class="upgrade-option ak47" id="ak47-staggeringBullets">
-                    <button onclick="bigUpgrades('ak47', 'staggeringBullets', 200000000)">AK-47: Staggering Bullets</button>
-                    <span class="upgrade-cost">Cost: 200,000,000</span>
-                    <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
-                </div>
-
-                <div class="upgrade-option ak47" id="ak47-rippingBullets">
-                    <button onclick="bigUpgrades('ak47', 'rippingBullets', 3500000000)">AK-47: Ripping Bullets</button>
-                    <span class="upgrade-cost">Cost: 3,500,000,000</span>
+                    <button onclick="bigUpgrades('ak47', 'staggeringBullets', 150000000)">AK-47: Staggering Bullets</button>
+                    <span class="upgrade-cost">Cost: 150,000,000</span>
                     <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
                 </div>
 				
 				<div class="upgrade-option ak47" id="ak47-armouredBody">
-                    <button onclick="bigUpgrades('ak47', 'armouredBody', 5000000000)">AK-47: Armoured Body</button>
-                    <span class="upgrade-cost">Cost: 5,000,000,000</span>
+                    <button onclick="bigUpgrades('ak47', 'armouredBody', 225000000)">AK-47: Armoured Body</button>
+                    <span class="upgrade-cost">Cost: 225,000,000</span>
                     <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 
+                <div class="upgrade-option ak47" id="ak47-rippingBullets">
+                    <button onclick="bigUpgrades('ak47', 'rippingBullets', 2500000000)">AK-47: Ripping Bullets</button>
+                    <span class="upgrade-cost">Cost: 2,500,000,000</span>
+                    <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
+                </div>
+
                 <div class="upgrade-option ak47" id="ak47-vehementBullets">
-                    <button onclick="bigUpgrades('ak47', 'vehementBullets', 50000000000)">AK-47: Vehement Bullets</button>
-                    <span class="upgrade-cost">Cost: 50,000,000,000</span>
+                    <button onclick="bigUpgrades('ak47', 'vehementBullets', 35000000000)">AK-47: Vehement Bullets</button>
+                    <span class="upgrade-cost">Cost: 35,000,000,000</span>
                     <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
+                </div>
+				
+				<div class="upgrade-option ak47" id="ak47-thickerBody">
+                    <button onclick="bigUpgrades('ak47', 'thickerBody', 20000000000)">AK-47: Thicker Body</button>
+                    <span class="upgrade-cost">Cost: 20,000,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 
                 <div class="upgrade-option ak47" id="ak47-overbearingVelocity">
-                    <button onclick="bigUpgrades('ak47', 'overbearingVelocity', 750000000000)">AK-47: Overbearing Velocity</button>
-                    <span class="upgrade-cost">Cost: 750,000,000,000</span>
+                    <button onclick="bigUpgrades('ak47', 'overbearingVelocity', 500000000000)">AK-47: Overbearing Velocity</button>
+                    <span class="upgrade-cost">Cost: 500,000,000,000</span>
                     <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
                 </div>
 
                 <div class="upgrade-option ak47" id="ak47-poweredVelocity">
-                    <button onclick="bigUpgrades('ak47', 'poweredVelocity', 4000000000000)">AK-47: Powered Velocity</button>
-                    <span class="upgrade-cost">Cost: 4,000,000,000,000</span>
+                    <button onclick="bigUpgrades('ak47', 'poweredVelocity', 3000000000000)">AK-47: Powered Velocity</button>
+                    <span class="upgrade-cost">Cost: 3,000,000,000,000</span>
                     <p class="upgrade-description">Doubles the amount of points yielded from target shots</p>
                 </div>
 
                 <div class="upgrade-option ak47" id="ak47-instantaneousVelocity">
-                    <button onclick="bigUpgrades('ak47', 'instantaneousVelocity', 40000000000000)">AK-47: Instantaneous Velocity</button>
-                    <span class="upgrade-cost">Cost: 40,000,000,000,000</span>
+                    <button onclick="bigUpgrades('ak47', 'instantaneousVelocity', 30000000000000)">AK-47: Instantaneous Velocity</button>
+                    <span class="upgrade-cost">Cost: 30,000,000,000,000</span>
                     <p class="upgrade-description">Quintuples the amount of points yielded from target shots</p>
                 </div>
 
                 <div class="upgrade-option ak47" id="ak47-spikyBullets">
-                    <button onclick="bigUpgrades('ak47', 'spikyBullets', 400000000000000)">AK-47: Spiky Bullets</button>
-                    <span class="upgrade-cost">Cost: 400,000,000,000,000</span>
+                    <button onclick="bigUpgrades('ak47', 'spikyBullets', 300000000000000)">AK-47: Spiky Bullets</button>
+                    <span class="upgrade-cost">Cost: 300,000,000,000,000</span>
                     <p class="upgrade-description">Quintuples the amount of points yielded from target shots</p>
                 </div>
 
                 <div class="upgrade-option ak47" id="ak47-ferociousBullets">
-                    <button onclick="bigUpgrades('ak47', 'ferociousBullets', 6000000000000000)">AK-47: Ferocious Bullets</button>
-                    <span class="upgrade-cost">Cost: 6,000,000,000,000,000</span>
+                    <button onclick="bigUpgrades('ak47', 'ferociousBullets', 4500000000000000)">AK-47: Ferocious Bullets</button>
+                    <span class="upgrade-cost">Cost: 4,500,000,000,000,000</span>
                     <p class="upgrade-description">Sextuples the amount of points yielded from target shots</p>
                 </div>
 
                 <div class="upgrade-option ak47" id="ak47-unfathomablePressure">
-                    <button onclick="bigUpgrades('ak47', 'unfathomablePressure', 90000000000000000)">AK-47: Unfathomable Pressure</button>
-                    <span class="upgrade-cost">Cost: 90,000,000,000,000,000</span>
+                    <button onclick="bigUpgrades('ak47', 'unfathomablePressure', 67500000000000000)">AK-47: Unfathomable Pressure</button>
+                    <span class="upgrade-cost">Cost: 67,500,000,000,000,000</span>
                     <p class="upgrade-description">Sextuples the amount of points yielded from target shots</p>
+                </div>
+				
+				<div class="upgrade-option ak47" id="ak47-windPressure">
+                    <button onclick="bigUpgrades('ak47', 'windPressure', 750000000000000000)">AK-47: Wind Pressure</button>
+                    <span class="upgrade-cost">Cost: 750,000,000,000,000,000</span>
+                    <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
                 </div>
 
                 <!-- Rocket Launcher Big Upgrades -->
                 <div class="upgrade-option rocketLauncher" id="rocketLauncher-potentRockets">
-                    <button onclick="bigUpgrades('rocketLauncher', 'potentRockets', 75000000)">Rocket Launcher: Potent Rockets</button>
-                    <span class="upgrade-cost">Cost: 75,000,000</span>
+                    <button onclick="bigUpgrades('rocketLauncher', 'potentRockets', 45000000)">Rocket Launcher: Potent Rockets</button>
+                    <span class="upgrade-cost">Cost: 45,000,000</span>
                     <p class="upgrade-description">Doubles the amount of points yielded from target shots</p>
                 </div>
 				
 				<div class="upgrade-option rocketLauncher" id="rocketLauncher-moreResistant">
-                    <button onclick="bigUpgrades('rocketLauncher', 'moreResistant', 100000000)">Rocket Launcher: More Resistant</button>
-                    <span class="upgrade-cost">Cost: 100,000,000</span>
+                    <button onclick="bigUpgrades('rocketLauncher', 'moreResistant', 60000000)">Rocket Launcher: More Resistant</button>
+                    <span class="upgrade-cost">Cost: 60,000,000</span>
                     <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 
                 <div class="upgrade-option rocketLauncher" id="rocketLauncher-violentExplosions">
-                    <button onclick="bigUpgrades('rocketLauncher', 'violentExplosions', 1000000000)">Rocket Launcher: Violent Explosions</button>
-                    <span class="upgrade-cost">Cost: 1,000,000,000</span>
+                    <button onclick="bigUpgrades('rocketLauncher', 'violentExplosions', 500000000)">Rocket Launcher: Violent Explosions</button>
+                    <span class="upgrade-cost">Cost: 500,000,000</span>
                     <p class="upgrade-description">Increases the splash damage by an additional 20%</p>
-                </div>
-
-                <div class="upgrade-option rocketLauncher" id="rocketLauncher-repeatedExplosions">
-                    <button onclick="bigUpgrades('rocketLauncher', 'repeatedExplosions', 5000000000)">Rocket Launcher: Repeated Explosions</button>
-                    <span class="upgrade-cost">Cost: 5,000,000,000</span>
-                    <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
                 </div>
 				
 				<div class="upgrade-option rocketLauncher" id="rocketLauncher-armouredBody">
-                    <button onclick="bigUpgrades('rocketLauncher', 'armouredBody', 15000000000)">Rocket Launcher: Armoured Body</button>
-                    <span class="upgrade-cost">Cost: 15,000,000,000</span>
+                    <button onclick="bigUpgrades('rocketLauncher', 'armouredBody', 750000000)">Rocket Launcher: Armoured Body</button>
+                    <span class="upgrade-cost">Cost: 750,000,000</span>
                     <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 
+                <div class="upgrade-option rocketLauncher" id="rocketLauncher-repeatedExplosions">
+                    <button onclick="bigUpgrades('rocketLauncher', 'repeatedExplosions', 3000000000)">Rocket Launcher: Repeated Explosions</button>
+                    <span class="upgrade-cost">Cost: 3,000,000,000</span>
+                    <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
+                </div>
+
                 <div class="upgrade-option rocketLauncher" id="rocketLauncher-biggerExplosions">
-                    <button onclick="bigUpgrades('rocketLauncher', 'biggerExplosions', 75000000000)">Rocket Launcher: Bigger Explosions</button>
-                    <span class="upgrade-cost">Cost: 75,000,000,000</span>
+                    <button onclick="bigUpgrades('rocketLauncher', 'biggerExplosions', 50000000000)">Rocket Launcher: Bigger Explosions</button>
+                    <span class="upgrade-cost">Cost: 50,000,000,000</span>
                     <p class="upgrade-description">Increases the splash radius by 1 tile</p>
+                </div>
+				
+				<div class="upgrade-option rocketLauncher" id="rocketLauncher-thickerBody">
+                    <button onclick="bigUpgrades('rocketLauncher', 'thickerBody', 90000000000)">Rocket Launcher: Thicker Body</button>
+                    <span class="upgrade-cost">Cost: 90,000,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 
                 <div class="upgrade-option rocketLauncher" id="rocketLauncher-extraGunpowder">
-                    <button onclick="bigUpgrades('rocketLauncher', 'extraGunpowder', 20000000000)">Rocket Launcher: Extra Gunpowder</button>
-                    <span class="upgrade-cost">Cost: 200,000,000,000</span>
+                    <button onclick="bigUpgrades('rocketLauncher', 'extraGunpowder', 10000000000)">Rocket Launcher: Extra Gunpowder</button>
+                    <span class="upgrade-cost">Cost: 100,000,000,000</span>
                     <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
                 </div>
 
                 <div class="upgrade-option rocketLauncher" id="rocketLauncher-shatteringExplosions">
-                    <button onclick="bigUpgrades('rocketLauncher', 'shatteringExplosions', 2500000000000)">Rocket Launcher: Shattering Explosions</button>
-                    <span class="upgrade-cost">Cost: 2,500,000,000,000</span>
+                    <button onclick="bigUpgrades('rocketLauncher', 'shatteringExplosions', 1000000000000)">Rocket Launcher: Shattering Explosions</button>
+                    <span class="upgrade-cost">Cost: 1,000,000,000,000</span>
                     <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
                 </div>
                 
                 <div class="upgrade-option rocketLauncher" id="rocketLauncher-napalmRockets">
-                    <button onclick="bigUpgrades('rocketLauncher', 'napalmRockets', 25000000000000)">Rocket Launcher: Napalm Rockets</button>
-                    <span class="upgrade-cost">Cost: 25,000,000,000,000</span>
+                    <button onclick="bigUpgrades('rocketLauncher', 'napalmRockets', 10000000000000)">Rocket Launcher: Napalm Rockets</button>
+                    <span class="upgrade-cost">Cost: 10,000,000,000,000</span>
                     <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
                 </div>
                 
                 <div class="upgrade-option rocketLauncher" id="rocketLauncher-impulsiveExplosions">
-                    <button onclick="bigUpgrades('rocketLauncher', 'impulsiveExplosions', 100000000000000)">Rocket Launcher: Impulsive Explosions</button>
-                    <span class="upgrade-cost">Cost: 100,000,000,000,000</span>
+                    <button onclick="bigUpgrades('rocketLauncher', 'impulsiveExplosions', 50000000000000)">Rocket Launcher: Impulsive Explosions</button>
+                    <span class="upgrade-cost">Cost: 50,000,000,000,000</span>
                     <p class="upgrade-description">Increases the splash damage by an additional 20%</p>
                 </div>
 
                 <div class="upgrade-option rocketLauncher" id="rocketLauncher-rampantTips">
-                    <button onclick="bigUpgrades('rocketLauncher', 'rampantTips', 500000000000000)">Rocket Launcher: Rampant Tips</button>
-                    <span class="upgrade-cost">Cost: 500,000,000,000,000</span>
+                    <button onclick="bigUpgrades('rocketLauncher', 'rampantTips', 200000000000000)">Rocket Launcher: Rampant Tips</button>
+                    <span class="upgrade-cost">Cost: 200,000,000,000,000</span>
                     <p class="upgrade-description">Quintuples the amount of points yielded from target shots</p>
                 </div>
 
                 <div class="upgrade-option rocketLauncher" id="rocketLauncher-kamikaze">
-                    <button onclick="bigUpgrades('rocketLauncher', 'kamikaze', 3000000000000000)">Rocket Launcher: Kamikaze</button>
-                    <span class="upgrade-cost">Cost: 3,000,000,000,000,000</span>
+                    <button onclick="bigUpgrades('rocketLauncher', 'kamikaze', 1500000000000000)">Rocket Launcher: Kamikaze</button>
+                    <span class="upgrade-cost">Cost: 1,500,000,000,000,000</span>
                     <p class="upgrade-description">Doubles the amount of points from targets and increases splash radius by 1 tile</p>
+                </div>
+				
+				<div class="upgrade-option rocketLauncher" id="rocketLauncher-strongPetroleum">
+                    <button onclick="bigUpgrades('rocketLauncher', 'strongPetroleum', 15000000000000000)">Rocket Launcher: Strong Petroleum</button>
+                    <span class="upgrade-cost">Cost: 15,000,000,000,000,000</span>
+                    <p class="upgrade-description">Quintuples the amount of points yielded from target shots</p>
                 </div>
 
                 <!-- Tommy Gun Big Upgrades -->
@@ -1053,23 +1147,29 @@
                     <span class="upgrade-cost">Cost: 1,250,000,000</span>
                     <p class="upgrade-description">Doubles the amount of points yielded from target shots</p>
                 </div>
+				
+				<div class="upgrade-option tommyGun" id="tommyGun-armouredBody">
+                    <button onclick="bigUpgrades('tommyGun', 'armouredBody', 5000000000)">Tommy Gun: Armoured Body</button>
+                    <span class="upgrade-cost">Cost: 5,000,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of HP</p>
+                </div>
 
                 <div class="upgrade-option tommyGun" id="tommyGun-lessPunishing">
                     <button onclick="bigUpgrades('tommyGun', 'lessPunishing', 5000000000)">Tommy Gun: Less Punishing</button>
                     <span class="upgrade-cost">Cost: 5,000,000,000</span>
                     <p class="upgrade-description">Reduces the accuracy penalty from missed shots from 50% to 33%</p>
                 </div>
-				
-				<div class="upgrade-option tommyGun" id="tommyGun-armouredBody">
-                    <button onclick="bigUpgrades('tommyGun', 'armouredBody', 15000000000)">Tommy Gun: Armoured Body</button>
-                    <span class="upgrade-cost">Cost: 10,000,000,000</span>
-                    <p class="upgrade-description">Doubles the amount of HP</p>
-                </div>
 
                 <div class="upgrade-option tommyGun" id="tommyGun-powerfulOutcomes">
                     <button onclick="bigUpgrades('tommyGun', 'powerfulOutcomes', 30000000000)">Tommy Gun: Powerful Outcomes</button>
                     <span class="upgrade-cost">Cost: 30,000,000,000</span>
                     <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
+                </div>
+				
+				<div class="upgrade-option tommyGun" id="tommyGun-thickerBody">
+                    <button onclick="bigUpgrades('tommyGun', 'thickerBody', 60000000000)">Tommy Gun: Thicker Body</button>
+                    <span class="upgrade-cost">Cost: 60,000,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 
                 <div class="upgrade-option tommyGun" id="tommyGun-vehementBurst">
@@ -1107,6 +1207,12 @@
                     <span class="upgrade-cost">Cost: 15,000,000,000,000,000</span>
                     <p class="upgrade-description">Triples the amount of points and increases the accuracy factor by 10%</p>
                 </div>
+				
+				<div class="upgrade-option tommyGun" id="tommyGun-vociferousDischarge">
+                    <button onclick="bigUpgrades('tommyGun', 'vociferousDischarge', 133000000000000000)">Tommy Gun: Vociferous Discharge</button>
+                    <span class="upgrade-cost">Cost: 133,000,000,000,000,000</span>
+                    <p class="upgrade-description">Sextuples the amount of points yielded from target shots</p>
+                </div>
 
                 <!-- Double-Barrel Big Upgrades -->
                 <div class="upgrade-option doubleBarrel" id="doubleBarrel-lethalShots">
@@ -1126,23 +1232,29 @@
                     <span class="upgrade-cost">Cost: 10,000,000,000</span>
                     <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
                 </div>
+				
+				<div class="upgrade-option doubleBarrel" id="doubleBarrel-armouredBody">
+                    <button onclick="bigUpgrades('doubleBarrel', 'armouredBody', 20000000000)">Double Barrel: Armoured Body</button>
+                    <span class="upgrade-cost">Cost: 20,000,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of HP</p>
+                </div>
 
                 <div class="upgrade-option doubleBarrel" id="doubleBarrel-doubleTrouble">
                     <button onclick="bigUpgrades('doubleBarrel', 'doubleTrouble', 200000000000)">Double Barrel: Double Trouble</button>
                     <span class="upgrade-cost">Cost: 200,000,000,000</span>
                     <p class="upgrade-description">Doubles the amount of projectiles fired each barrel!</p>
                 </div>
-				
-				<div class="upgrade-option doubleBarrel" id="doubleBarrel-armouredBody">
-                    <button onclick="bigUpgrades('doubleBarrel', 'armouredBody', 300000000000)">Double Barrel: Armoured Body</button>
-                    <span class="upgrade-cost">Cost: 300,000,000,000</span>
-                    <p class="upgrade-description">Doubles the amount of HP</p>
-                </div>
 
                 <div class="upgrade-option doubleBarrel" id="doubleBarrel-energized">
                     <button onclick="bigUpgrades('doubleBarrel', 'energized', 1000000000000)">Double Barrel: Energized</button>
                     <span class="upgrade-cost">Cost: 1,000,000,000,000</span>
                     <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
+                </div>
+				
+				<div class="upgrade-option doubleBarrel" id="doubleBarrel-thickerBody">
+                    <button onclick="bigUpgrades('doubleBarrel', 'thickerBody', 1000000000000)">Double Barrel: Thicker Body</button>
+                    <span class="upgrade-cost">Cost: 1,000,000,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 
                 <div class="upgrade-option doubleBarrel" id="doubleBarrel-doubleSwarm">
@@ -1180,6 +1292,12 @@
                     <span class="upgrade-cost">Cost: 650,000,000,000,000,000</span>
                     <p class="upgrade-description">Doubles the amount of projectiles fired each barrel!</p>
                 </div>
+				
+				<div class="upgrade-option doubleBarrel" id="doubleBarrel-bruteForce">
+                    <button onclick="bigUpgrades('doubleBarrel', 'bruteForce', 5000000000000000000)">Double Barrel: Brute Force</button>
+                    <span class="upgrade-cost">Cost: 5,000,000,000,000,000,000</span>
+                    <p class="upgrade-description">Sextuples the amount of points yielded from target shots</p>
+                </div>
 
                 <!-- Uzi Big Upgrades -->
                 <div class="upgrade-option uzi" id="uzi-focussedSpread">
@@ -1199,23 +1317,29 @@
                     <span class="upgrade-cost">Cost: 55,000,000,000</span>
                     <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
                 </div>
+				
+				<div class="upgrade-option uzi" id="uzi-armouredBody">
+                    <button onclick="bigUpgrades('uzi', 'armouredBody', 75000000000)">Uzi: Armoured Body</button>
+                    <span class="upgrade-cost">Cost: 75,000,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of HP</p>
+                </div>
 
                 <div class="upgrade-option uzi" id="uzi-tinyRippers">
                     <button onclick="bigUpgrades('uzi', 'tinyRippers', 350000000000)">Uzi: Tiny Rippers</button>
                     <span class="upgrade-cost">Cost: 350,000,000,000</span>
                     <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
                 </div>
-				
-				<div class="upgrade-option uzi" id="uzi-armouredBody">
-                    <button onclick="bigUpgrades('uzi', 'armouredBody', 400000000000)">Uzi: Armoured Body</button>
-                    <span class="upgrade-cost">Cost: 400,000,000,000</span>
-                    <p class="upgrade-description">Doubles the amount of HP</p>
-                </div>
 
                 <div class="upgrade-option uzi" id="uzi-circuitousSpread">
                     <button onclick="bigUpgrades('uzi', 'circuitousSpread', 3000000000000)">Uzi: Circuitous Spread</button>
                     <span class="upgrade-cost">Cost: 3,000,000,000,000</span>
                     <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
+                </div>
+				
+				<div class="upgrade-option uzi" id="uzi-thickerBody">
+                    <button onclick="bigUpgrades('uzi', 'thickerBody', 4000000000000)">Uzi: Thicker Body</button>
+                    <span class="upgrade-cost">Cost: 4,000,000,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 
                 <div class="upgrade-option uzi" id="uzi-bulletOverload">
@@ -1253,6 +1377,12 @@
                     <span class="upgrade-cost">Cost: 3,000,000,000,000,000,000</span>
                     <p class="upgrade-description">Sextuples the amount of points yielded from target shots</p>
                 </div>
+				
+				<div class="upgrade-option uzi" id="uzi-bulletStorm">
+                    <button onclick="bigUpgrades('uzi', 'bulletStorm', 35000000000000000000)">Uzi: Bullet Storm</button>
+                    <span class="upgrade-cost">Cost: 35,000,000,000,000,000,000</span>
+                    <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
+                </div>
 
                 <!-- Hunting Rifle Big Upgrades -->
                 <div class="upgrade-option huntingRifle" id="huntingRifle-powerfulHunter">
@@ -1272,23 +1402,29 @@
                     <span class="upgrade-cost">Cost: 125,000,000,000</span>
                     <p class="upgrade-description">Increases the critical damage multiplier factor by 0.5</p>
                 </div>
+				
+				<div class="upgrade-option huntingRifle" id="huntingRifle-armouredBody">
+                    <button onclick="bigUpgrades('huntingRifle', 'armouredBody', 250000000000)">Hunting Rifle: Armoured Body</button>
+                    <span class="upgrade-cost">Cost: 250,000,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of HP</p>
+                </div>
 
                 <div class="upgrade-option huntingRifle" id="huntingRifle-noEscape">
                     <button onclick="bigUpgrades('huntingRifle', 'noEscape', 400000000000)">Hunting Rifle: No Escape</button>
                     <span class="upgrade-cost">Cost: 400,000,000,000</span>
                     <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
                 </div>
-				
-				<div class="upgrade-option huntingRifle" id="huntingRifle-armouredBody">
-                    <button onclick="bigUpgrades('huntingRifle', 'armouredBody', 800000000000)">Hunting Rifle: Armoured Body</button>
-                    <span class="upgrade-cost">Cost: 600,000,000,000</span>
-                    <p class="upgrade-description">Doubles the amount of HP</p>
-                </div>
 
                 <div class="upgrade-option huntingRifle" id="huntingRifle-criminalHunter">
                     <button onclick="bigUpgrades('huntingRifle', 'criminalHunter', 3000000000000)">Hunting Rifle: Criminal Hunter</button>
                     <span class="upgrade-cost">Cost: 3,000,000,000,000</span>
                     <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
+                </div>
+				
+				<div class="upgrade-option huntingRifle" id="huntingRifle-thickerBody">
+                    <button onclick="bigUpgrades('huntingRifle', 'thickerBody', 6000000000000)">Hunting Rifle: Thicker Body</button>
+                    <span class="upgrade-cost">Cost: 6,000,000,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 
                 <div class="upgrade-option huntingRifle" id="huntingRifle-targetHunter">
@@ -1327,6 +1463,12 @@
                     <p class="upgrade-description">Triples the points from targets and increases the critical damage factor effectiveness by 50%!</p>
                 </div>
 				
+				<div class="upgrade-option huntingRifle" id="huntingRifle-monsterHunter">
+                    <button onclick="bigUpgrades('huntingRifle', 'monsterHunter', 5500000000000000000)">Hunting Rifle: Monster Hunter</button>
+                    <span class="upgrade-cost">Cost: 5,500,000,000,000,000,000</span>
+                    <p class="upgrade-description">Sextuples the amount of points yielded from target shots</p>
+                </div>
+				
 				<!-- Musket Big Upgrades -->
                 <div class="upgrade-option musket" id="musket-harderSlugs">
                     <button onclick="bigUpgrades('musket', 'harderSlugs', 100000000000)">Musket: Harder Slugs</button>
@@ -1346,22 +1488,28 @@
                     <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
                 </div>
 				
+				<div class="upgrade-option musket" id="musket-armouredBody">
+                    <button onclick="bigUpgrades('musket', 'armouredBody', 2500000000000)">Musket: Armoured Body</button>
+                    <span class="upgrade-cost">Cost: 2,500,000,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of HP</p>
+                </div>
+				
 				<div class="upgrade-option musket" id="musket-ironSlugs">
                     <button onclick="bigUpgrades('musket', 'ironSlugs', 10000000000000)">Musket: Iron Slugs</button>
                     <span class="upgrade-cost">Cost: 10,000,000,000,000</span>
                     <p class="upgrade-description">Triples the amount of points yielded from target shots</p>
                 </div>
 				
-				<div class="upgrade-option musket" id="musket-armouredBody">
-                    <button onclick="bigUpgrades('musket', 'armouredBody', 15000000000000)">Musket: Armoured Body</button>
-                    <span class="upgrade-cost">Cost: 15,000,000,000,000</span>
-                    <p class="upgrade-description">Doubles the amount of HP</p>
-                </div>
-				
 				<div class="upgrade-option musket" id="musket-blowShot">
                     <button onclick="bigUpgrades('musket', 'blowShot', 125000000000000)">Musket: Blow Shot</button>
                     <span class="upgrade-cost">Cost: 125,000,000,000,000</span>
                     <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
+                </div>
+				
+				<div class="upgrade-option musket" id="musket-thickerBody">
+                    <button onclick="bigUpgrades('musket', 'thickerBody', 75000000000000)">Musket: Thicker Body</button>
+                    <span class="upgrade-cost">Cost: 75,000,000,000,000</span>
+                    <p class="upgrade-description">Doubles the amount of HP</p>
                 </div>
 				
 				<div class="upgrade-option musket" id="musket-exceededReach">
@@ -1399,6 +1547,12 @@
                     <span class="upgrade-cost">Cost: 40,000,000,000,000,000,000</span>
                     <p class="upgrade-description">Sextuples the amount of points yielded from target shots</p>
                 </div>
+				
+				<div class="upgrade-option musket" id="musket-oversizedSlugs">
+                    <button onclick="bigUpgrades('musket', 'oversizedSlugs', 450000000000000000000)">Musket: Oversized Slugs</button>
+                    <span class="upgrade-cost">Cost: 450,000,000,000,000,000,000</span>
+                    <p class="upgrade-description">Quadruples the amount of points yielded from target shots</p>
+                </div>
             </div>
         </div>
         <!-- Bought subtab content -->
@@ -1419,6 +1573,7 @@
 		    <button class="subtab-button" data-target="battle-subtab">Battle</button>
             <button class="subtab-button" data-target="stats-subtab">Stats</button>
             <button class="subtab-button" data-target="loadout-subtab">Loadout</button>
+			<button class="subtab-button" data-target="encyclopaedia-subtab">Encyclopaedia</button>
         </div>
 		
 		<div id="battle-subtab" class="subtab-content" style="display: block;">
@@ -1589,6 +1744,11 @@
             <!-- Weapon selection boxes will be dynamically generated here -->
             <div id="loadout-selection"></div>
         </div>
+		
+		<div id="encyclopaedia-subtab" class="subtab-content" style="display:none">
+            <!-- Encyclopaedia will be dynamically generated here -->
+            <div id="encyclopaedia"></div>
+        </div>
         <!-- For battle and target shooting mechanisms -->
     </div>
     
@@ -1604,13 +1764,68 @@
         3. Big Upgrades: On the "Upgrades" tab, you'll find plenty of improvements for your weapons. Improving your weapons increases their Points Per Shot, their firerate and their special stats. They do come with such a hefty cost but only one-time purchases so definitely worth getting.
         <br><br>
         4. Settings: If you feel like turning off the gunshots, changing your numberformat or saving your game data, it's possible to configure them through the "Settings" tab.
+		<br><br>
+        5. Battle: Upon reaching there, there's four subtabs: Battle, Stats, Loadout and Encyclopaedia. Battle is for battling against a horde of monsters in an automatic RPG system, but you'll need at least one weapon equipped in your loadout to play. Stats is for checking all the current weapon stats in battle, as well as being able to upgrade some of their stats, such as HP. Loadout is for assigning purchased weapons in your battle loadout, so you can battle against waves of monsters. And finally the Encyclopaedia allows you to check what enemies you've encountered, such as viewing their stats.
+		<br><br>
+        6. Prestige: If you're rich enough, then it's finally time to Prestige your progress! When prestiging your progress will be soft-reset, however you'll keep your earned achievements, your total statistics and your multiplier. Your multiplier doubles for every prestige level invested into, the more rich, the more merrier!
         <br><br>
-        5. You're Ready To Go!: Keep upgrading your weapons, installing big improvements on them and become the Ultimate Shooting Range Master!</p>
+        7. You're Ready To Go!: Keep upgrading your weapons, installing big improvements on them and become the Ultimate Shooting Range Master!</p>
     </div>
 
     <div id="changelog" class="tab">
         <!-- Changelog content here -->
         <h1>Changelog</h1>
+		<h3>1st June 2024:</h3>
+		<h5>Update 1.6:</h5>
+        <p>
+        - Added a new enemy: Armoured. Armoured enemies have slightly lower hitpoints and damage output than Tanks, but they can resist 50% less damage from all bullets. However, tracers shot from snipers and rockets fired from rocket launchers will still deal the full damage potential to them.
+		<br>
+        -- They'll appear once you hit wave 11 and above.
+		<br>
+		- 11th branch of big upgrades added for all weapons, specifically for increasing their points per shot and damage for the endgame.
+		<br>
+		- 3rd branch of HP big upgrades has been added for all weapons (Thicker Body), specifically to retain consistency throughout Battle mode.
+		<br>
+		- 3 new touch gun big upgrades added (Healthy Fingers, Quadrillion Fingers, Tap Expert).
+		<br>
+        - Added an "Encyclopaedia" subtab in battle, to view the current discovered enemies and their stats
+		<br>
+        - Added 2 new stats: Total Touch Gun Clicks and Total Enemies Killed.
+		<br>
+        - Updated the tutorial
+		<br>
+        - Balance adjustments:
+        <br>
+        -- Battle mode:
+		<br>
+		--- All enemies now drop twice as much points from being defeated.
+		<br>
+		--- Weapons with "Multi-Fire" and "Accuracy" stats should properly work and take into account in battle.
+		<br>
+		--- Fixed a bug where starting a wave and then saved/loaded game progress would unintentionally increase the wave count without beating the former wave
+		<br>
+		--- Boss: Damage and HP both reduced by 25%. This is to make the early waves more easier and applicable.
+		<br>
+		--- Tank: Hit speed increased by 25% (1000ms -> 1250ms). Tanks were still too tough to deal with!
+		<br>
+		-- Big Upgrades:
+		<br>
+		--- HP: Moved "Armoured Body" into the 4th upgrade row (from 5th) but is a lot cheaper now! The first HP upgrade "More Resistant" was also made cheaper.
+		<br>
+		--- SMG: Further reduced big upgrade costs, starting from the big upgrade "Strong Hold".
+		<br>
+		--- Shotgun: Further reduced big upgrade costs, starting from the big upgrade "Powerful Burst".
+		<br>
+		--- Sniper Rifle: Further reduced big upgrade costs, starting from the big upgrade "Deadly Precision".
+		<br>
+		--- AK-47: Further reduced big upgrade costs, starting from the big upgrade "Heat-tipped Bullets".
+		<br>
+		--- Rocket Launcher: Further reduced big upgrade costs, starting from the big upgrade "Potent Rockets".
+		<br>
+		-- Prestige:
+		<br>
+		--- Prestiging now also increases the maximum hp of all weapons based on the current multiplier (also multiplies the hp stat upgrades!)
+		</p>
 		<h3>30th May 2024:</h3>
 		<h5>Update 1.5.2:</h5>
         <p>
@@ -1858,9 +2073,11 @@
         <h1>Statistics</h1>
         <div id="statistics-content">
             <p>Total Lifetime Points: <span id="lifetime-points">0</span></p>
+			<p>Total Touch Gun Clicks: <span id="total-touch-gun-clicks">0</span></p>
             <p>Total Weapons Purchased: <span id="total-weapons-purchased">0/0</span></p>
             <p>Total Big Upgrades Purchased: <span id="total-big-upgrades">0/0</span></p>
 			<p>Total Achievements Achieved: <span id="total-achievements-achieved">0/0</span></p>
+			<p>Total Enemies Killed: <span id="total-enemies-killed">0</span></p>
             <h2>Weapon Upgrade Levels</h2>
             <div id="total-weapon-upgrades">
                 <!-- Weapon upgrade levels will be dynamically added here -->

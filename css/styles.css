@@ -16,6 +16,25 @@ body {
     background-color: black;
 }
 
+/* Make elements fixed and unscrollable */
+.tab-buttons {
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1; /* Ensure they appear above other elements */
+	top: -1%;
+}
+
+#version-number {
+	position: fixed;
+    text-align: right;
+	overflow: hidden;
+    margin-bottom: 20px;
+	right: 30%; /* Position the target on the right */
+    top: 0.1%; /* Center vertically */
+	font-size: 20px;
+}
+
 /* Style tab buttons */
 .tab-buttons {
     margin-bottom: 20px;
@@ -50,6 +69,21 @@ body {
 .tab#statistics,
 .tab#prestige {
     display: block; /* Show the content of non-main tabs */
+}
+
+#main,
+#upgrades,
+#tutorial,
+#battle,
+#changelog,
+#settings,
+#achievements,
+#statistics,
+#prestige {
+    position: absolute;
+    top: 3%;
+	width: 100%; /* Ensure the content takes the full width */
+    padding: 20px; /* Add padding for spacing */
 }
 
 /* Subtab button styles */
@@ -110,16 +144,13 @@ body {
     background-color: #222;
 }
 
-#game-screen {
-    position: relative;
-}
-
 /* Adjust the position of the target within the weapon zone */
 .target {
     font-family: monospace;
     color: red;
     position: absolute;
-    right: 5px; /* Adjust as needed */
+    right: 5px; /* Position the target on the right */
+    top: 30%; /* Center vertically */
     z-index: 1; /* Ensure the target appears above other elements */
 }
 
@@ -143,6 +174,30 @@ body {
     color: red;
     position: relative;
     margin-bottom: 20px; /* Add margin for spacing between weapon zones */
+	border: 1px solid gray;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.weapon-zone img.weapon {
+    position: relative;
+    left: 80px; /* Move the image 50px to the right */
+    z-index: 1; /* Ensure the weapon appears above other elements */
+	width: 80px;
+	height: 80px;
+}
+
+.weapon-zone img#touchGun-target {
+	position: absolute;
+	right: 5px; /* Position the target on the right */
+    top: 10%; /* Center vertically */
+    width: 120px;
+	height: 120px;
+}
+
+.weapon-zone img.target {
+    width: 150px;
+	height: 150px;
 }
 
 /* Style for weapon */
@@ -189,45 +244,42 @@ body {
     }
 }
 
-.floating-text.critical {
-    position: absolute;
-    font-family: monospace;
-    font-size: 16px;
-    color: red; /* Color for critical hits */
-    transition: all 0.5s ease-out; /* Add transition for smooth appearance */
-    z-index: 2; /* Ensure the floating text appears above other elements */
-    animation: floatUp 2s ease-out; /* Apply the floatUp animation */
-}
-
-.floating-text.miss {
-    position: absolute;
-    font-family: monospace;
-    font-size: 16px;
-    color: crimson; /* Color for missing hits */
-    transition: all 0.5s ease-out; /* Add transition for smooth appearance */
-    z-index: 2; /* Ensure the floating text appears above other elements */
-    animation: floatUp 2s ease-out; /* Apply the floatUp animation */
-}
-
-.floating-text.armour {
-    position: absolute;
-    font-family: monospace;
-    font-size: 16px;
-    color: cyan; /* Color for weak hits */
-    transition: all 0.5s ease-out; /* Add transition for smooth appearance */
-    z-index: 2; /* Ensure the floating text appears above other elements */
-    animation: floatUp 2s ease-out; /* Apply the floatUp animation */
-}
-
-/* Define the base styles for the splash text */
+/* Floating text styles */
+.floating-text.critical,
+.floating-text.miss,
+.floating-text.armour,
 .floating-text-splash {
     position: absolute;
     font-family: monospace;
     font-size: 16px;
+    transition: all 0.5s ease-out;
+    z-index: 2;
+    animation: floatUp 2s ease-out;
+}
+
+.floating-text.critical {
+    color: red; /* Color for critical hits */
+}
+
+.floating-text.miss {
+    color: crimson; /* Color for missing hits */
+}
+
+.floating-text.armour {
+    color: cyan; /* Color for weak hits */
+}
+
+.floating-text-splash {
     color: orange; /* Set the text color to orange */
-    transition: all 0.5s ease-out; /* Add transition for smooth appearance */
-    z-index: 0; /* Ensure the floating text appears above other elements */
-    animation: floatUp 2s ease-out; /* Apply the floatUp animation */
+}
+
+.floating-text-container {
+    position: absolute;
+    top: -25%;
+    left: -1.5%;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 }
 
 .healing-text {
@@ -311,9 +363,12 @@ body {
 
 /* CSS for the achievements alert */
 #achievements-alert {
+	position: absolute;
     margin-bottom: 10px;
     text-align: center;
     font-weight: bold;
+	right: 20%;
+	top: 0%;
 }
 
 /* Adjust the styles of those buttons if necessary */

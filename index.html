@@ -16,6 +16,10 @@
 	<div id="discovery-container">
         <div id="discovery-alert"></div>
     </div>
+	
+	<div id="version-number">
+        <p><b>v1.6.1</b></p>
+    </div>
     
     <!-- Container for tab buttons -->
     <div class="tab-buttons">
@@ -34,10 +38,6 @@
     <div id="main" class="tab">
         <!-- Main game interface content here -->
         <h1>Target Shooter Clicker</h1>
-        <div id="game-screen">
-            <!-- Container for floating point text -->
-            <div id="floating-text-container"></div>
-        </div>
         <div id="score">
             <h2>Points: <span id="score-value-main">0</span></h2>
 			<h3>Total PPS: <span id="total-pps-main">0</span></h3>
@@ -49,26 +49,10 @@
             <!-- Container for weapon zones -->
             <div id="weapon-zones">
                 <!-- Touch Gun Weapon Zone -->
-                <div class="weapon-zone" id="touch-gun-zone">
-                    <!-- Touch Gun ASCII representation -->
-                    <pre id="touch-gun">
-                      ___________
-                     |           |
-                     |    __|__  |
-                     |   |_____| |
-                     |___________|
-                    </pre>
-                    <!-- Target for Touch Gun -->
-                    <pre class="target" id="touchGun-target">
-                       ___
-                     //   \\
-                    //     \\
-                   //       \\
-                   \\       //
-                    \\_____//
-                     \\___//
-                       ‾‾‾
-                    </pre>
+                <div class="weapon-zone" id="touchGun-zone">
+                    <img class="weapon" src="assets/images/touch_gun.png" alt="Touch Gun">
+                    <img class="target" id="touchGun-target" src="assets/images/target.png" alt="Touch Gun Target">
+					<div class="floating-text-container"></div>
                     <!-- Purchase buttons and level displays for Touch Gun -->
                     <div class="button-row">
                         <button id="touchGun-purchase" onclick="purchase('touchGun')">Purchase Touch Gun (Cost: <span id="touchGun-cost">100</span>)</button>
@@ -80,25 +64,11 @@
                 </div>
                 <!-- Pistol Weapon Zone -->
                 <div class="weapon-zone" id="pistol-zone">
-                    <!-- Pistol ASCII representation -->
-                    <pre id="pistol">
-                         ___________
-                        |            |
-                        |   __|__    |
-                        |  |_____|   |
-                        |____________|
-                    </pre>
+                    <!-- Pistol PNG representation -->
+                    <img class="weapon" src="assets/images/pistol.png" alt="Pistol">
                     <!-- Target for Pistol -->
-                    <pre class="target" id="pistol-target">
-                       ___
-                     //   \\
-                    //     \\
-                   //       \\
-                   \\       //
-                    \\_____//
-                     \\___//
-                       ‾‾‾
-                    </pre>
+                    <img class="target" id="pistol-target" src="assets/images/target.png" alt="Pistol Target">
+					<div class="floating-text-container"></div>
                     <!-- Purchase buttons and level displays for Pistol -->
                     <div class="button-row">
                         <button id="pistol-purchase" onclick="purchase('pistol')">Purchase Pistol (Cost: <span id="pistol-cost">10</span>)</button>
@@ -111,27 +81,11 @@
                     <p id="pistol-pps-display">Pistol Points Per Second: <span id="pistolPPS-value">1</span></p>
                 </div>
                 <div class="weapon-zone" id="smg-zone">
-                    <!-- SMG ASCII representation -->
-                    <pre id="smg">
-                        <!-- ASCII representation of the SMG -->
-                           ___________
-                          /           \
-                         /             \
-                         |   __|__     |
-                         |  |_____|    |
-                         |_____________|
-                    </pre>
+                    <!-- SMG PNG representation -->
+                    <img class="weapon" src="assets/images/smg.png" alt="SMG">
                     <!-- Target for SMG -->
-                    <pre class="target" id="smg-target">
-                       ___
-                     //   \\
-                    //     \\
-                   //       \\
-                   \\       //
-                    \\_____//
-                     \\___//
-                       ‾‾‾
-                    </pre>
+                    <img class="target" id="smg-target" src="assets/images/target.png" alt="SMG Target">
+					<div class="floating-text-container"></div>
                     <!-- Purchase button and upgrades for SMG -->
                     <div class="button-row">
                         <button id="smg-purchase" onclick="purchase('smg')">Purchase SMG (Cost: <span id="smg-cost">100</span>)</button>
@@ -144,25 +98,11 @@
                     <p id="smg-pps-display">SMG Points Per Second: <span id="smgPPS-value">5</span></p>
                 </div>
                 <div class="weapon-zone" id="shotgun-zone">
-                    <!-- Shotgun ASCII representation -->
-                    <pre id="shotgun">
-                        <!-- ASCII representation of the shotgun -->
-                             ______________
-                            /             \
-                          |     _         \
-                          |____|_|___/    |
-                          \__________\___|
-                    </pre>
-                    <pre class="target" id="shotgun-target">
-                       ___
-                     //   \\
-                    //     \\
-                   //       \\
-                   \\       //
-                    \\_____//
-                     \\___//
-                       ‾‾‾
-                    </pre>
+                    <!-- Shotgun PNG representation -->
+                    <img class="weapon" src="assets/images/shotgun.png" alt="Shotgun">
+                    <!-- Target for Shotgun -->
+                    <img class="target" id="shotgun-target" src="assets/images/target.png" alt="Shotgun Target">
+					<div class="floating-text-container"></div>
                     <!-- Purchase button and upgrades for Shotgun -->
                     <div class="button-row">
                         <button id="shotgun-purchase" onclick="purchase('shotgun')">Purchase Shotgun (Cost: <span id="shotgun-cost">500</span>)</button>
@@ -176,27 +116,12 @@
                     <p id="shotgun-multifire-display">Shotgun Multi-Fire Level: <span id="shotgunMultiFire-level">0</span> (<span id="shotgunMultiFire-value">3</span> shots)</p>
                     <p id="shotgun-pps-display">Shotgun Points Per Second: <span id="shotgunPPS-value">8</span></p>
                 </div>
-                <div class="weapon-zone" id="sniper-rifle-zone">
-                    <!-- Sniper Rifle ASCII representation -->
-                    <pre id="sniper-rifle">
-                        <!-- ASCII representation of the sniper rifle -->
-                             ________________
-                            |     __        |
-                            |    |__|       |
-                           |              |
-                           |              |
-                           |______________|
-                    </pre>
-                    <pre class="target" id="sniperRifle-target">
-                       ___
-                     //   \\
-                    //     \\
-                   //       \\
-                   \\       //
-                    \\_____//
-                     \\___//
-                       ‾‾‾
-                    </pre>
+                <div class="weapon-zone" id="sniperRifle-zone">
+                    <!-- Sniper Rifle PNG representation -->
+                    <img class="weapon" src="assets/images/sniper_rifle.png" alt="Sniper Rifle">
+                    <!-- Target for Sniper Rifle -->
+                    <img class="target" id="sniperRifle-target" src="assets/images/target.png" alt="Sniper Rifle Target">
+					<div class="floating-text-container"></div>
                     <!-- Purchase button and upgrades for Sniper Rifle -->
                     <div class="button-row">
                         <button id="sniperRifle-purchase" onclick="purchase('sniperRifle')">Purchase Sniper Rifle (Cost: <span id="sniperRifle-cost">7500</span>)</button>
@@ -213,27 +138,11 @@
                     <p id="sniper-rifle-pps-display">Sniper Rifle Points Per Second: <span id="sniperRiflePPS-value">30</span></p>
                 </div>
                 <div class="weapon-zone" id="ak47-zone">
-                    <!-- AK-47 ASCII representation -->
-                    <pre id="ak47">
-                        <!-- ASCII representation of the AK-47 -->
-                        _______________
-                       |  |          |
-                       |  |________  |
-                       |__________| |
-                                  | |
-                                  | |
-                    </pre>
+                    <!-- AK-47 PNG representation -->
+                    <img class="weapon" src="assets/images/ak47.png" alt="AK-47">
                     <!-- Target for AK-47 -->
-                    <pre class="target" id="ak47-target">
-                       ___
-                     //   \\
-                    //     \\
-                   //       \\
-                   \\       //
-                    \\_____//
-                     \\___//
-                       ‾‾‾
-                    </pre>
+                    <img class="target" id="ak47-target" src="assets/images/target.png" alt="AK-47 Target">
+					<div class="floating-text-container"></div>
                     <!-- Purchase button and upgrades for AK-47 -->
                     <div class="button-row">
                         <button id="ak47-purchase" onclick="purchase('ak47')">Purchase AK-47 (Cost: <span id="ak47-cost">60000</span>)</button>
@@ -246,32 +155,11 @@
                     <p id="ak47-pps-display">AK-47 Points Per Second: <span id="ak47PPS-value">300</span></p>
                 </div>
                 <div class="weapon-zone" id="rocketLauncher-zone">
-                    <!-- Rocket Launcher ASCII representation -->
-                    <pre id="rocketLauncher">
-                        <!-- ASCII representation of the Rocket Launcher -->
-                         / \ 
-                        / _ \
-                       | / \ |
-                       ||   || _______
-                       ||   || |\     \
-                       ||   || ||\     \
-                       ||   || || \    |
-                       ||   || ||  \__/
-                       ||   || ||   ||
-                       ||   || ||   ||
-                    ___________||___||_||___||_________
-                  </pre>
-                  <!-- Target for Rocket Launcher -->
-                  <pre class="target" id="rocketLauncher-target">
-                       ___
-                     //   \\
-                    //     \\
-                   //       \\
-                   \\       //
-                    \\_____//
-                     \\___//
-                       ‾‾‾
-                   </pre>
+                    <!-- Rocket Launcher PNG representation -->
+                    <img class="weapon" src="assets/images/rocket_launcher.png" alt="Rocket Launcher">
+                    <!-- Target for Rocket Launcher -->
+                    <img class="target" id="rocketLauncher-target" src="assets/images/target.png" alt="Rocket Launcher Target">
+					<div class="floating-text-container"></div>
                     <!-- Purchase button and upgrades for Rocket Launcher -->
                     <div class="button-row">
                         <button id="rocketLauncher-purchase" onclick="purchase('rocketLauncher')">Purchase Rocket Launcher (Cost: <span id="rocketLauncher-cost">400000</span>)</button>
@@ -288,32 +176,11 @@
                     <p id="rocketLauncher-pps-display">Rocket Launcher Points Per Second: <span id="rocketLauncherPPS-value">350</span></p>
                 </div>
                 <div class="weapon-zone" id="tommyGun-zone">
-                    <!-- Tommy Gun ASCII representation -->
-                    <pre id="tommyGun">
-                        <!-- ASCII representation of the Tommy Gun -->
-                     ______
-                    /  \   \
-                    |  |    \
-                    |  |     \
-                    \  \______\
-                     \________|
-                     |   ___  |
-                     |  |___| |
-                     |________|
-                     |________|
-                     |________|
-                    </pre>
+                    <!-- Tommy Gun PNG representation -->
+                    <img class="weapon" src="assets/images/tommy_gun.png" alt="Tommy Gun">
                     <!-- Target for Tommy Gun -->
-                    <pre class="target" id="tommyGun-target">
-                       ___
-                     //   \\
-                    //     \\
-                   //       \\
-                   \\       //
-                    \\_____//
-                     \\___//
-                       ‾‾‾
-                    </pre>
+                    <img class="target" id="tommyGun-target" src="assets/images/target.png" alt="Tommy Gun Target">
+					<div class="floating-text-container"></div>
                     <!-- Purchase button and upgrades for Tommy Gun -->
                     <div class="button-row">
                         <button id="tommyGun-purchase" onclick="purchase('tommyGun')">Purchase Tommy Gun (Cost: <span id="tommyGun-cost">2500000</span>)</button>
@@ -328,25 +195,11 @@
                     <p id="tommyGun-pps-display">Tommy Gun Points Per Second: <span id="tommyGunPPS-value">3000</span></p>
                 </div>
                 <div class="weapon-zone" id="doubleBarrel-zone">
-                    <!-- Double-Barrel ASCII representation -->
-                    <pre id="doubleBarrel">
-                        <!-- ASCII representation of the double-barrel -->
-                             ______________
-                            /             \
-                          |     _         \
-                          |____|_|___/    |
-                          \__________\___|
-                    </pre>
-                    <pre class="target" id="doubleBarrel-target">
-                       ___
-                     //   \\
-                    //     \\
-                   //       \\
-                   \\       //
-                    \\_____//
-                     \\___//
-                       ‾‾‾
-                    </pre>
+                    <!-- Double Barrel PNG representation -->
+                    <img class="weapon" src="assets/images/double_barrel.png" alt="Double Barrel">
+                    <!-- Target for Double Barrel -->
+                    <img class="target" id="doubleBarrel-target" src="assets/images/target.png" alt="Double Barrel Target">
+					<div class="floating-text-container"></div>
                     <!-- Purchase button and upgrades for Double-Barrel -->
                     <div class="button-row">
                         <button id="doubleBarrel-purchase" onclick="purchase('doubleBarrel')">Purchase Double-Barrel (Cost: <span id="doubleBarrel-cost">30000000</span>)</button>
@@ -361,24 +214,11 @@
                     <p id="doubleBarrel-pps-display">Double-Barrel Points Per Second: <span id="doubleBarrelPPS-value">6000</span></p>
                 </div>
                 <div class="weapon-zone" id="uzi-zone">
-                    <!-- Uzi ASCII representation -->
-                    <pre id="uzi">
-                        <!-- ASCII representation of the Uzi -->
-                           _________
-                          |         |
-                          |_________|
-                    </pre>
-                  <!-- Target for Uzi -->
-                  <pre class="target" id="uzi-target">
-                       ___
-                     //   \\
-                    //     \\
-                   //       \\
-                   \\       //
-                    \\_____//
-                     \\___//
-                       ‾‾‾
-                    </pre>
+                    <!-- Uzi PNG representation -->
+                    <img class="weapon" src="assets/images/uzi.png" alt="Uzi">
+                    <!-- Target for Uzi -->
+                    <img class="target" id="uzi-target" src="assets/images/target.png" alt="Uzi Target">
+					<div class="floating-text-container"></div>
                     <!-- Purchase button and upgrades for Uzi -->
                     <div class="button-row">
                         <button id="uzi-purchase" onclick="purchase('uzi')">Purchase Uzi (Cost: <span id="uzi-cost">175000000</span>)</button>
@@ -390,28 +230,12 @@
                     <p id="uzi-potency-display">Uzi Potency Level: <span id="uziPotency-level">0</span> (<span id="uziPotency-value">4500</span> points)</p>
                     <p id="uzi-pps-display">Uzi Points Per Second: <span id="uziPPS-value">60000</span></p>
                 </div>
-                <div class="weapon-zone" id="hunting-rifle-zone">
-                    <!-- Hunting Rifle ASCII representation -->
-                    <pre id="hunting-rifle">
-                        <!-- ASCII representation of the hunting rifle -->
-                             ____________
-                            |  __   __   |
-                            | |__| |__|  |
-                           |              |
-                           |              |
-                           |______________|
-                    </pre>
+                <div class="weapon-zone" id="huntingRifle-zone">
+                    <!-- Hunting Rifle PNG representation -->
+                    <img class="weapon" src="assets/images/hunting_rifle.png" alt="Hunting Rifle">
                     <!-- Target for Hunting Rifle -->
-                    <pre class="target" id="huntingRifle-target">
-                       ___
-                     //   \\
-                    //     \\
-                   //       \\
-                   \\       //
-                    \\_____//
-                     \\___//
-                       ‾‾‾
-                    </pre>
+                    <img class="target" id="huntingRifle-target" src="assets/images/target.png" alt="Hunting Rifle Target">
+					<div class="floating-text-container"></div>
                     <!-- Purchase button and upgrades for Hunting Rifle -->
                     <div class="button-row">
                         <button id="huntingRifle-purchase" onclick="purchase('huntingRifle')">Purchase Hunting Rifle (Cost: <span id="huntingRifle-cost">1250000000000</span>)</button>
@@ -428,27 +252,11 @@
                     <p id="hunting-rifle-pps-display">Hunting Rifle Points Per Second: <span id="huntingRiflePPS-value">83333</span></p>
                 </div>
 				<div class="weapon-zone" id="musket-zone">
-                    <!-- Hunting Rifle ASCII representation -->
-                    <pre id="musket">
-                        <!-- ASCII representation of the musket -->
-                                   __
-                                  / _)          
-                         _.----._/ /            
-                       /          /             
-                    __/ (  |  (  |              
-                   /__.-'|_|--|_|
-                    </pre>
+                    <!-- Musket PNG representation -->
+                    <img class="weapon" src="assets/images/musket.png" alt="Musket">
                     <!-- Target for Musket -->
-                    <pre class="target" id="musket-target">
-                       ___
-                     //   \\
-                    //     \\
-                   //       \\
-                   \\       //
-                    \\_____//
-                     \\___//
-                       ‾‾‾
-                    </pre>
+                    <img class="target" id="musket-target" src="assets/images/target.png" alt="Musket Target">
+					<div class="floating-text-container"></div>
                     <!-- Purchase button and upgrades for Hunting Rifle -->
                     <div class="button-row">
                         <button id="musket-purchase" onclick="purchase('musket')">Purchase Musket (Cost: <span id="musket-cost">8500000000000</span>)</button>
@@ -1775,6 +1583,21 @@
     <div id="changelog" class="tab">
         <!-- Changelog content here -->
         <h1>Changelog</h1>
+		<h3>2nd June 2024:</h3>
+		<h5>Update 1.6.1:</h5>
+        <p>
+        - We've updated our main UI, to make it a lot more user-friendly
+		<br>
+        -- The weapons and targets no longer have ASCII art assets sadly, so we've ended up using the more modern designs!
+		<br>
+		- Fixed a bug where weapons and enemies weren't properly initialized upon game updates
+		<br>
+		- Fixed an issue where rocket launcher's splash radius could be further upgraded past level 5
+		<br>
+		- Fixed an issue where the points text would be incorrectly positioned through the target when shot
+		<br>
+		- Added a maximum level cap on musket's range upgrade
+		</p>
 		<h3>1st June 2024:</h3>
 		<h5>Update 1.6:</h5>
         <p>

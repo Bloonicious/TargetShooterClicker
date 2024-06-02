@@ -1,199 +1,215 @@
 let weapons = {
     "pistol": {
         "name": "Pistol",
-		"image": "assets/images/pistol.png",
+        "image": "assets/images/pistol.png",
         "purchased": false,
         "cost": 10,
         "stats": {
             "pointsPerShot": 1,
             "fireRate": 1000,
             "hp": 10,
-			"hpMax": 10,
+            "hpMax": 10,
             "damage": 1,
             "range": 60,
             "accuracy": 100,
             "bulletsPerShot": 1,
-			"walkingSpeed": 30
+            "walkingSpeed": 30
         }
     },
     "smg": {
         "name": "SMG",
-		"image": "assets/images/smg.png",
+        "image": "assets/images/smg.png",
         "purchased": false,
         "cost": 100,
         "stats": {
             "pointsPerShot": 1,
             "fireRate": 200,
             "hp": 20,
-			"hpMax": 20,
+            "hpMax": 20,
             "damage": 1,
             "range": 50,
             "accuracy": 100,
             "bulletsPerShot": 1,
-			"walkingSpeed": 45
+            "walkingSpeed": 45
         },
     },
     "shotgun": {
         "name": "Shotgun",
-		"image": "assets/images/shotgun.png",
+        "image": "assets/images/shotgun.png",
         "purchased": false,
         "cost": 500,
         "stats": {
             "pointsPerShot": 4,
             "fireRate": 1500,
             "hp": 50,
-			"hpMax": 50,
+            "hpMax": 50,
             "damage": 4,
             "range": 30,
             "accuracy": 100,
             "bulletsPerShot": 3,
-			"walkingSpeed": 60
-          }
+            "walkingSpeed": 60
+        }
     },
     "sniperRifle": {
         "name": "Sniper Rifle",
-		"image": "assets/images/sniper_rifle.png",
+        "image": "assets/images/sniper_rifle.png",
         "purchased": false,
         "cost": 7500,
         "stats": {
             "pointsPerShot": 120,
             "fireRate": 4000,
             "hp": 30,
-			"hpMax": 30,
+            "hpMax": 30,
             "damage": 60,
             "range": 100,
             "accuracy": 100,
             "bulletsPerShot": 1,
-			"walkingSpeed": 15,
+            "walkingSpeed": 15,
             "criticalChance": 25,
             "criticalDamage": 2,
-          }
+        }
     },
     "ak47": {
         "name": "AK-47",
-		"image": "assets/images/ak47.png",
+        "image": "assets/images/ak47.png",
         "purchased": false,
         "cost": 60000,
         "stats": {
             "pointsPerShot": 150,
             "fireRate": 500,
             "hp": 80,
-			"hpMax": 80,
+            "hpMax": 80,
             "damage": 75,
             "range": 70,
             "accuracy": 100,
             "bulletsPerShot": 1,
-			"walkingSpeed": 30
-          }
+            "walkingSpeed": 30
+        }
     },
     "rocketLauncher": {
         "name": "Rocket Launcher",
-		"image": "assets/images/rocket_launcher.png",
+        "image": "assets/images/rocket_launcher.png",
         "purchased": false,
         "cost": 400000,
         "stats": {
             "pointsPerShot": 1750,
             "fireRate": 5000,
             "hp": 60,
-			"hpMax": 60,
+            "hpMax": 60,
             "damage": 875,
             "range": 90,
             "accuracy": 100,
             "bulletsPerShot": 1,
-			"walkingSpeed": 10,
+            "walkingSpeed": 10,
             "splashRadius": 500,
             "splashDamage": 0.4
-          }
+        }
     },
     "tommyGun": {
         "name": "Tommy Gun",
-		"image": "assets/images/tommy_gun.png",
+        "image": "assets/images/tommy_gun.png",
         "purchased": false,
         "cost": 2500000,
         "stats": {
             "pointsPerShot": 600,
             "fireRate": 150,
             "hp": 150,
-			"hpMax": 150,
+            "hpMax": 150,
             "damage": 300,
             "range": 70,
             "accuracy": 50,
             "bulletsPerShot": 1,
-			"walkingSpeed": 35,
+            "walkingSpeed": 35,
             "inaccuracyPenalty": 0.5,
-          }
+        }
     },
     "doubleBarrel": {
         "name": "Double Barrel",
-		"image": "assets/images/double_barrel.png",
+        "image": "assets/images/double_barrel.png",
         "purchased": false,
         "cost": 30000000,
         "stats": {
             "pointsPerShot": 6000,
             "fireRate": 2000,
             "hp": 400,
-			"hpMax": 400,
+            "hpMax": 400,
             "damage": 3000,
             "range": 40,
             "accuracy": 100,
             "bulletsPerShot": 2,
-			"walkingSpeed": 55
-          }
+            "walkingSpeed": 55
+        }
     },
     "uzi": {
         "name": "Uzi",
-		"image": "assets/images/uzi.png",
+        "image": "assets/images/uzi.png",
         "purchased": false,
         "cost": 175000000,
         "stats": {
             "pointsPerShot": 4500,
             "fireRate": 75,
             "hp": 750,
-			"hpMax": 750,
+            "hpMax": 750,
             "damage": 2250,
             "range": 40,
             "accuracy": 100,
             "bulletsPerShot": 1,
-			"walkingSpeed": 75
-          }
+            "walkingSpeed": 75
+        }
     },
     "huntingRifle": {
         "name": "Hunting Rifle",
-		"image": "assets/images/hunting_rifle.png",
+        "image": "assets/images/hunting_rifle.png",
         "purchased": false,
         "cost": 1250000000,
         "stats": {
             "pointsPerShot": 250000,
             "fireRate": 3000,
             "hp": 500,
-			"hpMax": 500,
+            "hpMax": 500,
             "damage": 125000,
             "range": 100,
             "accuracy": 100,
             "bulletsPerShot": 1,
-			"walkingSpeed": 20,
+            "walkingSpeed": 20,
             "criticalChance": 40,
             "criticalDamage": 1.5
-          }
+        }
     },
-	"musket": {
+    "musket": {
         "name": "Musket",
-		"image": "assets/images/musket.png",
+        "image": "assets/images/musket.png",
         "purchased": false,
         "cost": 8500000000,
         "stats": {
             "pointsPerShot": 750000,
             "fireRate": 1500,
             "hp": 750,
-			"hpMax": 750,
+            "hpMax": 750,
             "damage": 375000,
             "range": 90,
             "accuracy": 100,
             "bulletsPerShot": 1,
-			"walkingSpeed": 30
-          }
+            "walkingSpeed": 30
+        }
+    },
+    "testWeapon": {
+        "name": "Test Weapon",
+        "image": "assets/images/pistol.png",
+        "purchased": false,
+        "cost": 999999999,
+        "stats": {
+            "pointsPerShot": 99999999,
+            "fireRate": 9999,
+            "hp": 9999,
+            "hpMax": 9999,
+            "damage": 9999999,
+            "range": 80,
+            "accuracy": 100,
+            "bulletsPerShot": 1,
+            "walkingSpeed": 50
+        }
     }
-    // Add other weapons here
 };
 let enemies = {
     "basic": {
@@ -232,7 +248,7 @@ let enemies = {
             "attackRate": 1250
         },
     },
-	"healer": {
+    "healer": {
         "name": "Healer",
         "image": "assets/images/healing_enemy.png",
         "pointsPerKill": 60,
@@ -242,12 +258,12 @@ let enemies = {
             "range": 10,
             "walkingSpeed": 10,
             "attackRate": 1500,
-			"healRate": 3000,
+            "healRate": 3000,
             "healAmount": 0.2,
-			"healRange": 500
+            "healRange": 500
         },
     },
-	"armoured": {
+    "armoured": {
         "name": "Armoured",
         "image": "assets/images/armoured_enemy.png",
         "pointsPerKill": 50,
@@ -257,7 +273,7 @@ let enemies = {
             "range": 8.75,
             "walkingSpeed": 7,
             "attackRate": 1000,
-			"armour": 0.5
+            "armour": 0.5
         },
     },
     "boss": {
@@ -270,6 +286,18 @@ let enemies = {
             "range": 10,
             "walkingSpeed": 5,
             "attackRate": 1000
+        },
+    },
+	"testEnemy": {
+        "name": "Test Enemy",
+        "image": "assets/images/basic_enemy.png",
+        "pointsPerKill": 100,
+        "stats": {
+            "hp": 75,
+            "damage": 1,
+            "range": 10,
+            "walkingSpeed": 10,
+            "attackRate": 2000
         },
     }
     // Add other enemies here
@@ -1705,6 +1733,202 @@ const lastHealedTimes = {};
 let lastFrameTime = 0;
 let encounteredEnemies = new Set();
 
+const defaultWeapons = {
+    "pistol": {
+        "name": "Pistol",
+        "image": "assets/images/pistol.png",
+        "purchased": false,
+        "cost": 10,
+        "stats": {
+            "pointsPerShot": 1,
+            "fireRate": 1000,
+            "hp": 10,
+            "hpMax": 10,
+            "damage": 1,
+            "range": 60,
+            "accuracy": 100,
+            "bulletsPerShot": 1,
+            "walkingSpeed": 30
+        }
+    },
+    "smg": {
+        "name": "SMG",
+        "image": "assets/images/smg.png",
+        "purchased": false,
+        "cost": 100,
+        "stats": {
+            "pointsPerShot": 1,
+            "fireRate": 200,
+            "hp": 20,
+            "hpMax": 20,
+            "damage": 1,
+            "range": 50,
+            "accuracy": 100,
+            "bulletsPerShot": 1,
+            "walkingSpeed": 45
+        },
+    },
+    "shotgun": {
+        "name": "Shotgun",
+        "image": "assets/images/shotgun.png",
+        "purchased": false,
+        "cost": 500,
+        "stats": {
+            "pointsPerShot": 4,
+            "fireRate": 1500,
+            "hp": 50,
+            "hpMax": 50,
+            "damage": 4,
+            "range": 30,
+            "accuracy": 100,
+            "bulletsPerShot": 3,
+            "walkingSpeed": 60
+        }
+    },
+    "sniperRifle": {
+        "name": "Sniper Rifle",
+        "image": "assets/images/sniper_rifle.png",
+        "purchased": false,
+        "cost": 7500,
+        "stats": {
+            "pointsPerShot": 120,
+            "fireRate": 4000,
+            "hp": 30,
+            "hpMax": 30,
+            "damage": 60,
+            "range": 100,
+            "accuracy": 100,
+            "bulletsPerShot": 1,
+            "walkingSpeed": 15,
+            "criticalChance": 25,
+            "criticalDamage": 2,
+        }
+    },
+    "ak47": {
+        "name": "AK-47",
+        "image": "assets/images/ak47.png",
+        "purchased": false,
+        "cost": 60000,
+        "stats": {
+            "pointsPerShot": 150,
+            "fireRate": 500,
+            "hp": 80,
+            "hpMax": 80,
+            "damage": 75,
+            "range": 70,
+            "accuracy": 100,
+            "bulletsPerShot": 1,
+            "walkingSpeed": 30
+        }
+    },
+    "rocketLauncher": {
+        "name": "Rocket Launcher",
+        "image": "assets/images/rocket_launcher.png",
+        "purchased": false,
+        "cost": 400000,
+        "stats": {
+            "pointsPerShot": 1750,
+            "fireRate": 5000,
+            "hp": 60,
+            "hpMax": 60,
+            "damage": 875,
+            "range": 90,
+            "accuracy": 100,
+            "bulletsPerShot": 1,
+            "walkingSpeed": 10,
+            "splashRadius": 500,
+            "splashDamage": 0.4
+        }
+    },
+    "tommyGun": {
+        "name": "Tommy Gun",
+        "image": "assets/images/tommy_gun.png",
+        "purchased": false,
+        "cost": 2500000,
+        "stats": {
+            "pointsPerShot": 600,
+            "fireRate": 150,
+            "hp": 150,
+            "hpMax": 150,
+            "damage": 300,
+            "range": 70,
+            "accuracy": 50,
+            "bulletsPerShot": 1,
+            "walkingSpeed": 35,
+            "inaccuracyPenalty": 0.5,
+        }
+    },
+    "doubleBarrel": {
+        "name": "Double Barrel",
+        "image": "assets/images/double_barrel.png",
+        "purchased": false,
+        "cost": 30000000,
+        "stats": {
+            "pointsPerShot": 6000,
+            "fireRate": 2000,
+            "hp": 400,
+            "hpMax": 400,
+            "damage": 3000,
+            "range": 40,
+            "accuracy": 100,
+            "bulletsPerShot": 2,
+            "walkingSpeed": 55
+        }
+    },
+    "uzi": {
+        "name": "Uzi",
+        "image": "assets/images/uzi.png",
+        "purchased": false,
+        "cost": 175000000,
+        "stats": {
+            "pointsPerShot": 4500,
+            "fireRate": 75,
+            "hp": 750,
+            "hpMax": 750,
+            "damage": 2250,
+            "range": 40,
+            "accuracy": 100,
+            "bulletsPerShot": 1,
+            "walkingSpeed": 75
+        }
+    },
+    "huntingRifle": {
+        "name": "Hunting Rifle",
+        "image": "assets/images/hunting_rifle.png",
+        "purchased": false,
+        "cost": 1250000000,
+        "stats": {
+            "pointsPerShot": 250000,
+            "fireRate": 3000,
+            "hp": 500,
+            "hpMax": 500,
+            "damage": 125000,
+            "range": 100,
+            "accuracy": 100,
+            "bulletsPerShot": 1,
+            "walkingSpeed": 20,
+            "criticalChance": 40,
+            "criticalDamage": 1.5
+        }
+    },
+    "musket": {
+        "name": "Musket",
+        "image": "assets/images/musket.png",
+        "purchased": false,
+        "cost": 8500000000,
+        "stats": {
+            "pointsPerShot": 750000,
+            "fireRate": 1500,
+            "hp": 750,
+            "hpMax": 750,
+            "damage": 375000,
+            "range": 90,
+            "accuracy": 100,
+            "bulletsPerShot": 1,
+            "walkingSpeed": 30
+        }
+    }
+};
 const defaultEnemies = {
     "basic": {
         "name": "Basic",
@@ -1742,7 +1966,7 @@ const defaultEnemies = {
             "attackRate": 1250
         },
     },
-	"healer": {
+    "healer": {
         "name": "Healer",
         "image": "assets/images/healing_enemy.png",
         "pointsPerKill": 60,
@@ -1752,12 +1976,12 @@ const defaultEnemies = {
             "range": 10,
             "walkingSpeed": 10,
             "attackRate": 1500,
-			"healRate": 3000,
+            "healRate": 3000,
             "healAmount": 0.2,
-			"healRange": 500
+            "healRange": 500
         },
     },
-	"armoured": {
+    "armoured": {
         "name": "Armoured",
         "image": "assets/images/armoured_enemy.png",
         "pointsPerKill": 50,
@@ -1767,7 +1991,7 @@ const defaultEnemies = {
             "range": 8.75,
             "walkingSpeed": 7,
             "attackRate": 1000,
-			"armour": 0.5
+            "armour": 0.5
         },
     },
     "boss": {
@@ -1780,8 +2004,9 @@ const defaultEnemies = {
             "range": 10,
             "walkingSpeed": 5,
             "attackRate": 1000
-        }
+        },
     }
+    // Add other enemies here
 };
 
 let fingerPistolsMultiplier = 1;
@@ -2425,9 +2650,14 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
 
                         case upgradeType.endsWith('SplashRadius'):
                             if (weaponId === 'rocketLauncher') {
-                                rocketLauncherSplashRadiusUpgradeCost = cost;
-                                rocketLauncherSplashRadiusLevel = level;
-                                updateSplashRadius(stats, valueIncrement, upgrades[weaponId], weaponId);
+								if (level <= 5) {
+                                    rocketLauncherSplashRadiusUpgradeCost = cost;
+                                    rocketLauncherSplashRadiusLevel = level;
+                                    updateSplashRadius(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                } else {
+                                    console.log("Maximum level reached for rocket launcher splash radius.");
+                                    alert("Rocket Launcher's splash radius has been maxed out!");
+                                }
                             }
                             break;
 
@@ -2473,9 +2703,14 @@ function purchaseUpgrade(upgradeType, level, cost, costMultiplier, valueIncremen
 						
 						case upgradeType.endsWith('Range'):
                             if (weaponId === 'musket') {
-                                musketRangeUpgradeCost = cost;
-                                musketRangeLevel = level;
-                                updateRange(stats, valueIncrement, upgrades[weaponId], weaponId);
+								if (level <= 10) {
+                                    musketRangeUpgradeCost = cost;
+                                    musketRangeLevel = level;
+                                    updateRange(stats, valueIncrement, upgrades[weaponId], weaponId);
+                                } else {
+                                    console.log("Maximum level reached for musket range.");
+                                    alert("Musket's range has been maxed out!");
+                                }
                             }
                             break;
 
@@ -3266,6 +3501,16 @@ function updateCostDisplay() {
             musketFirerateCostDisplay.textContent = "MAX";
         }
     }
+	if (musketRangeLevel === 10) {
+        const musketRangeLevelDisplay = document.getElementById('musketRange-level');
+        if (musketRangeLevelDisplay) {
+            musketRangeLevelDisplay.textContent = "Max";
+        }
+        const musketRangeCostDisplay = document.getElementById('musketRange-cost');
+        if (musketRangeCostDisplay) {
+            musketRangeCostDisplay.textContent = "MAX";
+        }
+    }
     if (upgrades.touchGun.awakenUpgrade.bought) {
         document.getElementById('touchGunAwaken-purchase').style.display = 'block';
         document.getElementById('touchGunAwaken-display').style.display = 'block';
@@ -3595,9 +3840,11 @@ function playWeaponSoundEffect(weaponId) {
 
 // Function to handle shooting
 function shoot(weaponId, pointsPerShot, critical, miss) {
-    // Define floatingTextContainer variable
-    const floatingTextContainer = document.getElementById('floating-text-container');
-    // Generate points and display them as floating text
+    // Get the floating text container for the current weapon zone
+    const weaponZone = document.getElementById(`${weaponId}-zone`);
+    const floatingTextContainer = weaponZone.querySelector('.floating-text-container');
+
+    // Create the floating text element
     const floatingText = document.createElement('div');
     floatingText.textContent = '+' + formatNumber(pointsPerShot);
     floatingText.classList.add('floating-text');
@@ -3605,12 +3852,12 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     // Set text color based on critical and miss status
     if (critical) {
         floatingText.textContent += ' Crit!';
-        floatingText.classList.add('critical'); // Add critical class for critical hits
+        floatingText.classList.add('critical');
     }
     
     if (miss) {
         floatingText.textContent += ' Miss!';
-        floatingText.classList.add('miss'); // Add miss class for missed shots
+        floatingText.classList.add('miss');
     }
 
     // Get the target element based on the weaponId
@@ -3618,19 +3865,19 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     const target = document.getElementById(targetId);
 
     if (!target) {
-        // If target element doesn't exist, do nothing
         return;
     }
 
     // Calculate position at the center of the target
     const targetRect = target.getBoundingClientRect();
-    const centerX = targetRect.left + window.pageXOffset + targetRect.width / 2;
-    const centerY = targetRect.top + window.pageYOffset + targetRect.height / 2;
+    const weaponZoneRect = weaponZone.getBoundingClientRect();
+    const centerX = targetRect.left - weaponZoneRect.left + targetRect.width / 2;
+    const centerY = targetRect.top - weaponZoneRect.top + targetRect.height / 2;
 
     // Set floating text position
-    floatingText.style.left = centerX + 'px';
-    floatingText.style.top = centerY + 'px';
-    floatingText.style.animation = 'floatUp 2s ease-out'; // Add animation for floating upwards
+    floatingText.style.left = `${centerX}px`;
+    floatingText.style.top = `${centerY}px`;
+    floatingText.style.animation = 'floatUp 2s ease-out';
 
     // Append the floating text to the container
     floatingTextContainer.appendChild(floatingText);
@@ -3638,61 +3885,49 @@ function shoot(weaponId, pointsPerShot, critical, miss) {
     // Remove the floating text after a short delay
     setTimeout(() => {
         floatingText.remove();
-    }, 1000); // Adjust the delay as needed
+    }, 1000);
 
-    // Increment the total points if it's not a rocket launcher or a rocket launcher's splash damage
-    if (weaponId !== 'rocketLauncher' || (weaponId === 'rocketLauncher' && !miss)) {
-        points += pointsPerShot;
-        statistics.totalLifetimePoints += pointsPerShot; // Update total lifetime points
-        updatePointsDisplay();
-        updateLifetimePointsDisplay();
-    }
+    // Update points
+    points += pointsPerShot;
+    statistics.totalLifetimePoints += pointsPerShot;
+    updatePointsDisplay();
+    updateLifetimePointsDisplay();
 
-    // Handle rocket launcher's splash radius and damage
+    // Handle rocket launcher's splash damage
     if (weaponId === 'rocketLauncher') {
-        // Get all shooting-range targets
         const targets = document.querySelectorAll('.target');
-
-        // Calculate position of rocket launcher target
         const rocketTarget = document.getElementById('rocketLauncher-target');
         const rocketTargetRect = rocketTarget.getBoundingClientRect();
         const rocketTargetX = rocketTargetRect.left + rocketTargetRect.width / 2;
         const rocketTargetY = rocketTargetRect.top + rocketTargetRect.height / 2;
 
-        // Loop through all targets to check for splash damage
         targets.forEach(t => {
             const tRect = t.getBoundingClientRect();
             const tCenterX = tRect.left + tRect.width / 2;
             const tCenterY = tRect.top + tRect.height / 2;
-
-            // Calculate distance between rocket launcher target and current target
             const distanceX = Math.abs(rocketTargetX - tCenterX);
             const distanceY = Math.abs(rocketTargetY - tCenterY);
 
-            // Check if target is within splash radius
             if (distanceX <= weapons.rocketLauncher.stats.splashRadius && distanceY <= weapons.rocketLauncher.stats.splashRadius && !(distanceX === 0 && distanceY === 0)) {
-				// Get the current prestige level
                 const currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
                 const prestigeMultiplier = prestigeLevels[currentPrestigeLevel].multiplier;
-				
-                // Apply splash damage
-                const splashDamage = weapons.rocketLauncher.stats.pointsPerShot * weapons.rocketLauncher.stats.splashDamage * prestigeMultiplier; // 40% of points per shot
+                const splashDamage = weapons.rocketLauncher.stats.pointsPerShot * weapons.rocketLauncher.stats.splashDamage * prestigeMultiplier;
+                
                 points += splashDamage;
-                statistics.totalLifetimePoints += splashDamage; // Update total lifetime points with splash damage
+                statistics.totalLifetimePoints += splashDamage;
                 updatePointsDisplay();
                 updateLifetimePointsDisplay();
 
-                // Show splash damage text for each affected target
                 const splashText = document.createElement('div');
                 splashText.textContent = '+' + formatNumber(splashDamage);
                 splashText.classList.add('floating-text-splash');
-                splashText.style.left = tCenterX + 'px';
-                splashText.style.top = tCenterY + 'px';
-                splashText.style.animation = 'floatUp 2s ease-out'; // Add animation for floating upwards
+                splashText.style.left = `${tCenterX - weaponZoneRect.left}px`;
+                splashText.style.top = `${tCenterY - weaponZoneRect.top}px`;
+                splashText.style.animation = 'floatUp 2s ease-out';
                 floatingTextContainer.appendChild(splashText);
                 setTimeout(() => {
                     splashText.remove();
-                }, 1000); // Adjust the delay as needed
+                }, 1000);
             }
         });
     }
@@ -4025,9 +4260,6 @@ function prestige() {
 	musketHPLevel = 0;
 	
 	fingerPistolsMultiplier = 1;
-	
-	enemies = JSON.parse(JSON.stringify(defaultEnemies));
-    localStorage.setItem('enemies', JSON.stringify(defaultEnemies));
 	
 	currentWave = 1;
     activeEnemies = [];

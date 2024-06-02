@@ -316,25 +316,9 @@ function saveGameState() {
         description: achievement.description,
         achieved: achievement.achieved
     }));
-	
-	// Default keys
-    const defaultWeaponKeys = Object.keys(weapons);
-    const defaultEnemyKeys = Object.keys(enemies);
-    
-    // Remove outdated keys from local storage
-    Object.keys(localStorage).forEach(key => {
-        if (key !== 'weapons' && key !== 'enemies' && !defaultWeaponKeys.includes(key) && !defaultEnemyKeys.includes(key)) {
-            localStorage.removeItem(key);
-        }
-    });
-	
-	// Save the current state of weapons and enemies
-    localStorage.setItem('weapons', JSON.stringify(weapons));
-    localStorage.setItem('enemies', JSON.stringify(enemies));
-	
-    const gameState = {
+    var gameState = {
 		weapons: weapons,
-        enemies: enemies,
+		enemies: enemies,
         achievements: achievementsData,
         statistics: statistics,
         points: points,
@@ -649,6 +633,8 @@ function saveGameState() {
 
     var gameStateJSON = JSON.stringify(gameState);
 
+    localStorage.setItem('weapons', JSON.stringify(weapons));
+    localStorage.setItem('enemies', JSON.stringify(enemies));
     localStorage.setItem('gameState', gameStateJSON);
 }
 
@@ -656,31 +642,23 @@ function saveGameState() {
 function loadGameState() {
     const savedState = JSON.parse(localStorage.getItem('gameState'));
     if (savedState) {
-		// Update weapons from loaded game state
-        if (savedState.weapons) {
-            Object.keys(savedState.weapons).forEach(weaponId => {
-                weapons[weaponId] = savedState.weapons[weaponId];
-            });
+        let storedWeapons = localStorage.getItem('weapons');
+        let storedEnemies = localStorage.getItem('enemies');
+
+        if (storedWeapons) {
+            weapons = JSON.parse(storedWeapons);
         }
-        // Remove outdated keys from local storage
-        Object.keys(localStorage).forEach(key => {
-            if (!Object.keys(weapons).includes(key)) {
-                localStorage.removeItem(key);
+
+        if (storedEnemies) {
+            try {
+                enemies = JSON.parse(storedEnemies);
+            } catch (e) {
+                console.error('Failed to parse enemies from local storage:', e);
+                enemies = JSON.parse(JSON.stringify(defaultEnemies));
             }
-        });
-        
-        // Update enemies from loaded game state
-        if (savedState.enemies) {
-            Object.keys(savedState.enemies).forEach(enemyId => {
-                enemies[enemyId] = savedState.enemies[enemyId];
-            });
+        } else {
+            enemies = JSON.parse(JSON.stringify(defaultEnemies));
         }
-        // Remove outdated keys from local storage
-        Object.keys(localStorage).forEach(key => {
-            if (!Object.keys(enemies).includes(key)) {
-                localStorage.removeItem(key);
-            }
-        });
         // Update statistics from loaded game state
         const savedAchievements = savedState.achievements;
         if (savedAchievements) {
@@ -699,6 +677,8 @@ function loadGameState() {
             updateStatisticsDisplay();
         }
         
+		weapons = savedState.weapons;
+		enemies = savedState.enemies;
         points = savedState.points;
 		totalPointsEarned = savedState.totalPointsEarned;
 		totalTouchGunClicks = savedState.totalTouchGunClicks;
@@ -1011,17 +991,7 @@ function loadGameState() {
         if (battleInProgress) {
             battleLoop();
         }
-		
-		// Remove "test" keys if they exist
-        if (weapons.hasOwnProperty("test") || weapons.hasOwnProperty("testWeapon")) {
-            delete weapons["test"];
-			delete weapons["testWeapon"];
-        }
-        if (enemies.hasOwnProperty("test") || enemies.hasOwnProperty("testEnemy")) {
-            delete enemies["test"];
-			delete enemies["testEnemy"];
-        }
-		
+
         // Load the purchased big upgrades interface
         loadPurchasedBigUpgrades(savedState.purchasedBigUpgrades);
 
@@ -1084,10 +1054,11 @@ function resetProgress() {
     
     if (confirmation) {
         localStorage.removeItem('gameState');
-		localStorage.removeItem('weapons');
-		localStorage.removeItem('enemies');
+        localStorage.removeItem('weapons');
 		localStorage.removeItem('battleState');
 		localStorage.removeItem('encounteredEnemies');
+		enemies = JSON.parse(JSON.stringify(defaultEnemies));
+        localStorage.setItem('enemies', JSON.stringify(defaultEnemies));
 		
 		// Reset all variables to their default values
         points = 0;
@@ -1151,9 +1122,6 @@ function resetProgress() {
         touchGunUpgrades.forEach(upgrade => {
             upgrades.touchGun[upgrade].bought = false;
         });
-		
-		weapons = defaultWeapons;
-		enemies = defaultEnemies;
         
         touchGunCost = 100;
         touchGunPointsPerClick = 1;
@@ -1265,6 +1233,8 @@ function resetProgress() {
 		musketHPLevel = 0;
 		
 		fingerPistolsMultiplier = 1;
+
+        localStorage.setItem('enemies', JSON.stringify(defaultEnemies));
 		
 		currentWave = 1;
         activeEnemies = [];

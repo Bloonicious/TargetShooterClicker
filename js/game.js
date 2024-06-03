@@ -192,23 +192,6 @@ let weapons = {
             "bulletsPerShot": 1,
             "walkingSpeed": 30
         }
-    },
-    "testWeapon": {
-        "name": "Test Weapon",
-        "image": "assets/images/pistol.png",
-        "purchased": false,
-        "cost": 999999999,
-        "stats": {
-            "pointsPerShot": 99999999,
-            "fireRate": 9999,
-            "hp": 9999,
-            "hpMax": 9999,
-            "damage": 9999999,
-            "range": 80,
-            "accuracy": 100,
-            "bulletsPerShot": 1,
-            "walkingSpeed": 50
-        }
     }
 };
 let enemies = {
@@ -286,18 +269,6 @@ let enemies = {
             "range": 10,
             "walkingSpeed": 5,
             "attackRate": 1000
-        },
-    },
-	"testEnemy": {
-        "name": "Test Enemy",
-        "image": "assets/images/basic_enemy.png",
-        "pointsPerKill": 100,
-        "stats": {
-            "hp": 75,
-            "damage": 1,
-            "range": 10,
-            "walkingSpeed": 10,
-            "attackRate": 2000
         },
     }
     // Add other enemies here
@@ -4851,6 +4822,7 @@ function applyDirectDamage(weapon, enemyDiv) {
             const currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
             const prestigeMultiplier = prestigeLevels[currentPrestigeLevel].multiplier;
             points += pointsPerKill * prestigeMultiplier;
+			totalPointsEarned += pointsPerKill * prestigeMultiplier;
             updatePointsDisplay();
             console.log(`${enemy.id} was eliminated by ${weapon.id}`);
             enemyDiv.remove();
@@ -4919,6 +4891,7 @@ function applySplashDamage(weapon, targetEnemyDiv) {
                     const currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
                     const prestigeMultiplier = prestigeLevels[currentPrestigeLevel].multiplier;
                     points += pointsPerKill * prestigeMultiplier;
+					totalPointsEarned += pointsPerKill * prestigeMultiplier;
                     updatePointsDisplay();
                     console.log(`${enemy.id} was eliminated by splash damage from ${weapon.id}`);
                     enemyDiv.remove();
@@ -5247,24 +5220,27 @@ function generateEncyclopaedia() {
     });
 }
 
-function encounterEnemy(enemyType) {
-    if (enemies[enemyType] && !encounteredEnemies.has(enemyType)) {
-        encounteredEnemies.add(enemyType);
-        saveEncounteredEnemies(); // Save to local storage
-        generateEncyclopaedia(); // Regenerate the encyclopaedia
-    }
-}
-
+// Function to save encountered enemies to local storage
 function saveEncounteredEnemies() {
     localStorage.setItem('encounteredEnemies', JSON.stringify([...encounteredEnemies]));
 }
 
+// Function to load encountered enemies from local storage
 function loadEncounteredEnemies() {
     const savedEnemies = localStorage.getItem('encounteredEnemies');
     if (savedEnemies) {
         encounteredEnemies = new Set(JSON.parse(savedEnemies));
     }
     generateEncyclopaedia(); // Generate the encyclopaedia based on loaded data
+}
+
+// Function to handle encountering an enemy
+function encounterEnemy(enemyType) {
+    if (enemies[enemyType] && !encounteredEnemies.has(enemyType)) {
+        encounteredEnemies.add(enemyType);
+        saveEncounteredEnemies(); // Save to local storage
+        generateEncyclopaedia(); // Regenerate the encyclopaedia
+    }
 }
 
 function updateHpBar(entityDiv, stats) {

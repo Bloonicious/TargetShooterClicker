@@ -316,46 +316,30 @@ function saveGameState() {
         description: achievement.description,
         achieved: achievement.achieved
     }));
-	
-	// Default keys
-    const defaultWeaponKeys = Object.keys(weapons);
-    const defaultEnemyKeys = Object.keys(enemies);
-    
-    // Remove outdated keys from local storage
-    Object.keys(localStorage).forEach(key => {
-        if (key !== 'weapons' && key !== 'enemies' && !defaultWeaponKeys.includes(key) && !defaultEnemyKeys.includes(key)) {
-            localStorage.removeItem(key);
-        }
-    });
-	
-	// Save the current state of weapons and enemies
-    localStorage.setItem('weapons', JSON.stringify(weapons));
-    localStorage.setItem('enemies', JSON.stringify(enemies));
-	
+
     const gameState = {
-		weapons: weapons,
+        weapons: weapons,
         enemies: enemies,
         achievements: achievementsData,
         statistics: statistics,
         points: points,
         totalPointsEarned: totalPointsEarned,
-		totalTouchGunClicks: totalTouchGunClicks,
-		totalEnemiesKilled: totalEnemiesKilled,
-        
+        totalTouchGunClicks: totalTouchGunClicks,
+        totalEnemiesKilled: totalEnemiesKilled,
+
         touchGunCost: touchGunCost,
         touchGunPointsPerClick: touchGunPointsPerClick,
         touchGunLevel: touchGunLevel,
-        
+
         awokenTouchGunCost: awokenTouchGunCost,
         awokenTouchGunLevel: awokenTouchGunLevel,
-        
+
         superAwokenTouchGunCost: superAwokenTouchGunCost,
         superAwokenTouchGunLevel: superAwokenTouchGunLevel,
 
         numberFormat: numberFormat, // Add the selected number format to the game state
         prestigeLevel: parseInt(localStorage.getItem('prestigeLevel')) || 0,
 
-        // Add big upgrade data for each weapon
         touchGunPointyFingersBought: upgrades.touchGun.pointyFingers.bought,
         touchGunAmbidextrousBought: upgrades.touchGun.ambidextrous.bought,
         touchGunThousandFingersBought: upgrades.touchGun.thousandFingers.bought,
@@ -373,215 +357,215 @@ function saveGameState() {
         touchGunTrillionFingersBought: upgrades.touchGun.trillionFingers.bought,
         touchGunHeavyFingersBought: upgrades.touchGun.heavyFingers.bought,
         touchGunMagicHandsBought: upgrades.touchGun.magicHands.bought,
-		touchGunHealthyFingersBought: upgrades.touchGun.healthyFingers.bought,
-		touchGunQuadrillionFingersBought: upgrades.touchGun.quadrillionFingers.bought,
-		touchGunTapExpertBought: upgrades.touchGun.tapExpert.bought,
-        
+        touchGunHealthyFingersBought: upgrades.touchGun.healthyFingers.bought,
+        touchGunQuadrillionFingersBought: upgrades.touchGun.quadrillionFingers.bought,
+        touchGunTapExpertBought: upgrades.touchGun.tapExpert.bought,
+
         pistolBiggerBulletsBought: upgrades.pistol.biggerBullets.bought,
-		pistolMoreResistantBought: upgrades.pistol.moreResistant.bought,
+        pistolMoreResistantBought: upgrades.pistol.moreResistant.bought,
         pistolLargerCalibreBought: upgrades.pistol.largerCalibre.bought,
-		pistolArmouredBodyBought: upgrades.pistol.armouredBody.bought,
+        pistolArmouredBodyBought: upgrades.pistol.armouredBody.bought,
         pistolEasierReloadingBought: upgrades.pistol.easierReloading.bought,
         pistolLouderFiringBought: upgrades.pistol.louderFiring.bought,
-		pistolThickerBodyBought: upgrades.pistol.thickerBody.bought,
+        pistolThickerBodyBought: upgrades.pistol.thickerBody.bought,
         pistolMetalPiercingBought: upgrades.pistol.metalPiercing.bought,
         pistolSpecializedMechanismsBought: upgrades.pistol.specializedMechanisms.bought,
         pistolFineTuningBought: upgrades.pistol.fineTuning.bought,
         pistolVersatileGunshotsBought: upgrades.pistol.versatileGunshots.bought,
         pistolEmpoweredBought: upgrades.pistol.empowered.bought,
         pistolOneHitBulletsBought: upgrades.pistol.oneHitBullets.bought,
-		pistolBreakthroughBought: upgrades.pistol.breakthrough.bought,
-        
+        pistolBreakthroughBought: upgrades.pistol.breakthrough.bought,
+
         smgBetterSpreadBought: upgrades.smg.betterSpread.bought,
-		smgMoreResistantBought: upgrades.smg.moreResistant.bought,
+        smgMoreResistantBought: upgrades.smg.moreResistant.bought,
         smgStrongHoldBought: upgrades.smg.strongHold.bought,
-		smgArmouredBodyBought: upgrades.smg.armouredBody.bought,
+        smgArmouredBodyBought: upgrades.smg.armouredBody.bought,
         smgPressureBulletsBought: upgrades.smg.pressureBullets.bought,
         smgWickedAimerBought: upgrades.smg.wickedAimer.bought,
-		smgThickerBodyBought: upgrades.smg.thickerBody.bought,
+        smgThickerBodyBought: upgrades.smg.thickerBody.bought,
         smgBashingRoundsBought: upgrades.smg.bashingRounds.bought,
         smgAutoAimerBought: upgrades.smg.autoAimer.bought,
         smgLightweightBought: upgrades.smg.lightweight.bought,
         smgMetalPassersBought: upgrades.smg.metalPassers.bought,
         smgInescapableBarrageBought: upgrades.smg.inescapableBarrage.bought,
         smgNeverMissBarrageBought: upgrades.smg.neverMissBarrage.bought,
-		smgBluestrippedBulletsBought: upgrades.smg.bluestrippedBullets.bought,
-        
+        smgBluestrippedBulletsBought: upgrades.smg.bluestrippedBullets.bought,
+
         shotgunMoreBarrelsBought: upgrades.shotgun.moreBarrels.bought,
-		shotgunMoreResistantBought: upgrades.shotgun.moreResistant.bought,
+        shotgunMoreResistantBought: upgrades.shotgun.moreResistant.bought,
         shotgunPowerfulBurstBought: upgrades.shotgun.powerfulBurst.bought,
-		shotgunArmouredBodyBought: upgrades.shotgun.armouredBody.bought,
+        shotgunArmouredBodyBought: upgrades.shotgun.armouredBody.bought,
         shotgunDevastatingBurstBought: upgrades.shotgun.devastatingBurst.bought,
         shotgunMegaBurstBought: upgrades.shotgun.megaBurst.bought,
-		shotgunThickerBodyBought: upgrades.shotgun.thickerBody.bought,
+        shotgunThickerBodyBought: upgrades.shotgun.thickerBody.bought,
         shotgunScattershotBought: upgrades.shotgun.scattershot.bought,
         shotgunGigaBurstBought: upgrades.shotgun.gigaBurst.bought,
         shotgunOmegaBurstBought: upgrades.shotgun.omegaBurst.bought,
         shotgunTeraBurstBought: upgrades.shotgun.teraBurst.bought,
         shotgunUltimatumBurstBought: upgrades.shotgun.ultimatumBurst.bought,
         shotgunBuckshotBought: upgrades.shotgun.buckshot.bought,
-		shotgunCloseObliterationBought: upgrades.shotgun.closeObliteration.bought,
-        
+        shotgunCloseObliterationBought: upgrades.shotgun.closeObliteration.bought,
+
         sniperRifleDeadlyPrecisionBought: upgrades.sniperRifle.deadlyPrecision.bought,
-		sniperRifleMoreResistantBought: upgrades.sniperRifle.moreResistant.bought,
+        sniperRifleMoreResistantBought: upgrades.sniperRifle.moreResistant.bought,
         sniperRifleCripplingShotsBought: upgrades.sniperRifle.cripplingShots.bought,
-		sniperRifleArmouredBodyBought: upgrades.sniperRifle.armouredBody.bought,
+        sniperRifleArmouredBodyBought: upgrades.sniperRifle.armouredBody.bought,
         sniperRifleHeadShotBought: upgrades.sniperRifle.headShot.bought,
         sniperRifleDangerousRiflingBought: upgrades.sniperRifle.dangerousRifling.bought,
-		sniperRifleThickerBodyBought: upgrades.sniperRifle.thickerBody.bought,
+        sniperRifleThickerBodyBought: upgrades.sniperRifle.thickerBody.bought,
         sniperRifleLuckyShotBought: upgrades.sniperRifle.luckyShot.bought,
         sniperRifleEnhancedTracersBought: upgrades.sniperRifle.enhancedTracers.bought,
         sniperRifleInfraredScopeBought: upgrades.sniperRifle.infraredScope.bought,
         sniperRifleElectroshockTracersBought: upgrades.sniperRifle.electroshockTracers.bought,
         sniperRifleLethalTracersBought: upgrades.sniperRifle.lethalTracers.bought,
         sniperRifleHeatseekingSensorsBought: upgrades.sniperRifle.heatseekingSensors.bought,
-		sniperRifleSharpTracersBought: upgrades.sniperRifle.sharpTracers.bought,
-        
+        sniperRifleSharpTracersBought: upgrades.sniperRifle.sharpTracers.bought,
+
         ak47HeatTippedBulletsBought: upgrades.ak47.heatTippedBullets.bought,
-		ak47MoreResistantBought: upgrades.ak47.moreResistant.bought,
+        ak47MoreResistantBought: upgrades.ak47.moreResistant.bought,
         ak47StaggeringBulletsBought: upgrades.ak47.staggeringBullets.bought,
-		ak47ArmouredBodyBought: upgrades.ak47.armouredBody.bought,
+        ak47ArmouredBodyBought: upgrades.ak47.armouredBody.bought,
         ak47RippingBulletsBought: upgrades.ak47.rippingBullets.bought,
         ak47VehementBulletsBought: upgrades.ak47.vehementBullets.bought,
-		ak47ThickerBodyBought: upgrades.ak47.thickerBody.bought,
+        ak47ThickerBodyBought: upgrades.ak47.thickerBody.bought,
         ak47OverbearingVelocityBought: upgrades.ak47.overbearingVelocity.bought,
         ak47PoweredVelocityBought: upgrades.ak47.poweredVelocity.bought,
         ak47InstantaneousVelocityBought: upgrades.ak47.instantaneousVelocity.bought,
         ak47SpikyBulletsBought: upgrades.ak47.spikyBullets.bought,
         ak47FerociousBulletsBought: upgrades.ak47.ferociousBullets.bought,
         ak47UnfathomablePressureBought: upgrades.ak47.unfathomablePressure.bought,
-		ak47WindPressureBought: upgrades.ak47.windPressure.bought,
-        
+        ak47WindPressureBought: upgrades.ak47.windPressure.bought,
+
         rocketLauncherPotentRocketsBought: upgrades.rocketLauncher.potentRockets.bought,
-		rocketLauncherMoreResistantBought: upgrades.rocketLauncher.moreResistant.bought,
+        rocketLauncherMoreResistantBought: upgrades.rocketLauncher.moreResistant.bought,
         rocketLauncherViolentExplosionsBought: upgrades.rocketLauncher.violentExplosions.bought,
-		rocketLauncherArmouredBodyBought: upgrades.rocketLauncher.armouredBody.bought,
+        rocketLauncherArmouredBodyBought: upgrades.rocketLauncher.armouredBody.bought,
         rocketLauncherRepeatedExplosionsBought: upgrades.rocketLauncher.repeatedExplosions.bought,
         rocketLauncherBiggerExplosionsBought: upgrades.rocketLauncher.biggerExplosions.bought,
-		rocketLauncherThickerBodyBought: upgrades.rocketLauncher.thickerBody.bought,
+        rocketLauncherThickerBodyBought: upgrades.rocketLauncher.thickerBody.bought,
         rocketLauncherExtraGunpowderBought: upgrades.rocketLauncher.extraGunpowder.bought,
         rocketLauncherShatteringExplosionsBought: upgrades.rocketLauncher.shatteringExplosions.bought,
         rocketLauncherNapalmRocketsBought: upgrades.rocketLauncher.napalmRockets.bought,
         rocketLauncherImpulsiveExplosionsBought: upgrades.rocketLauncher.impulsiveExplosions.bought,
         rocketLauncherRampantTipsBought: upgrades.rocketLauncher.rampantTips.bought,
         rocketLauncherKamikazeBought: upgrades.rocketLauncher.kamikaze.bought,
-		rocketLauncherStrongPetroleumBought: upgrades.rocketLauncher.strongPetroleum.bought,
-        
+        rocketLauncherStrongPetroleumBought: upgrades.rocketLauncher.strongPetroleum.bought,
+
         tommyGunPreciseAccuracyBought: upgrades.tommyGun.preciseAccuracy.bought,
-		tommyGunMoreResistantBought: upgrades.tommyGun.moreResistant.bought,
+        tommyGunMoreResistantBought: upgrades.tommyGun.moreResistant.bought,
         tommyGunTightPressureBought: upgrades.tommyGun.tightPressure.bought,
-		tommyGunArmouredBodyBought: upgrades.tommyGun.armouredBody.bought,
+        tommyGunArmouredBodyBought: upgrades.tommyGun.armouredBody.bought,
         tommyGunLessPunishingBought: upgrades.tommyGun.lessPunishing.bought,
         tommyGunPowerfulOutcomesBought: upgrades.tommyGun.powerfulOutcomes.bought,
-		tommyGunThickerBodyBought: upgrades.tommyGun.thickerBody.bought,
+        tommyGunThickerBodyBought: upgrades.tommyGun.thickerBody.bought,
         tommyGunVehementBurstBought: upgrades.tommyGun.vehementBurst.bought,
         tommyGunTheVectorBought: upgrades.tommyGun.theVector.bought,
         tommyGunDangerZoneBought: upgrades.tommyGun.dangerZone.bought,
         tommyGunDischargedRippersBought: upgrades.tommyGun.dischargedRippers.bought,
         tommyGunUnstoppableBarrageBought: upgrades.tommyGun.unstoppableBarrage.bought,
         tommyGunUnavoidableBought: upgrades.tommyGun.unavoidable.bought,
-		tommyGunVociferousDischargeBought: upgrades.tommyGun.vociferousDischarge.bought,
+        tommyGunVociferousDischargeBought: upgrades.tommyGun.vociferousDischarge.bought,
 
         doubleBarrelLethalShotsBought: upgrades.doubleBarrel.lethalShots.bought,
-		doubleBarrelMoreResistantBought: upgrades.doubleBarrel.moreResistant.bought,
+        doubleBarrelMoreResistantBought: upgrades.doubleBarrel.moreResistant.bought,
         doubleBarrelArcSwitchingBarrelsBought: upgrades.doubleBarrel.arcSwitchingBarrels.bought,
-		doubleBarrelArmouredBodyBought: upgrades.doubleBarrel.armouredBody.bought,
+        doubleBarrelArmouredBodyBought: upgrades.doubleBarrel.armouredBody.bought,
         doubleBarrelDoubleTroubleBought: upgrades.doubleBarrel.doubleTrouble.bought,
         doubleBarrelEnergizedBought: upgrades.doubleBarrel.energized.bought,
-		doubleBarrelThickerBodyBought: upgrades.doubleBarrel.thickerBody.bought,
+        doubleBarrelThickerBodyBought: upgrades.doubleBarrel.thickerBody.bought,
         doubleBarrelDoubleSwarmBought: upgrades.doubleBarrel.doubleSwarm.bought,
         doubleBarrelClumpedShotsBought: upgrades.doubleBarrel.clumpedShots.bought,
         doubleBarrelTightShotsBought: upgrades.doubleBarrel.tightShots.bought,
         doubleBarrelHeavyForceBought: upgrades.doubleBarrel.heavyForce.bought,
         doubleBarrelUnbearableForceBought: upgrades.doubleBarrel.unbearableForce.bought,
         doubleBarrelDoubleYeahBought: upgrades.doubleBarrel.doubleYeah.bought,
-		doubleBarrelBruteForceBought: upgrades.doubleBarrel.bruteForce.bought,
+        doubleBarrelBruteForceBought: upgrades.doubleBarrel.bruteForce.bought,
 
         uziFocussedSpreadBought: upgrades.uzi.focussedSpread.bought,
-		uziMoreResistantBought: upgrades.uzi.moreResistant.bought,
+        uziMoreResistantBought: upgrades.uzi.moreResistant.bought,
         uziQuickfiringSalvoBought: upgrades.uzi.quickfiringSalvo.bought,
-		uziArmouredBodyBought: upgrades.uzi.armouredBody.bought,
+        uziArmouredBodyBought: upgrades.uzi.armouredBody.bought,
         uziTinyRippersBought: upgrades.uzi.tinyRippers.bought,
         uziCircuitousSpreadBought: upgrades.uzi.circuitousSpread.bought,
-		uziThickerBodyBought: upgrades.uzi.thickerBody.bought,
+        uziThickerBodyBought: upgrades.uzi.thickerBody.bought,
         uziBulletOverloadBought: upgrades.uzi.bulletOverload.bought,
         uziBulletDrizzleBought: upgrades.uzi.bulletDrizzle.bought,
         uziAlwaysHittingBought: upgrades.uzi.alwaysHitting.bought,
         uziCantDodgeThisBought: upgrades.uzi.cantDodgeThis.bought,
         uziBulletFletcherBought: upgrades.uzi.bulletFletcher.bought,
         uziEasyToUseBought: upgrades.uzi.easyToUse.bought,
-		uziBulletStormBought: upgrades.uzi.bulletStorm.bought,
+        uziBulletStormBought: upgrades.uzi.bulletStorm.bought,
 
         huntingRiflePowerfulHunterBought: upgrades.huntingRifle.powerfulHunter.bought,
-		huntingRifleMoreResistantBought: upgrades.huntingRifle.moreResistant.bought,
+        huntingRifleMoreResistantBought: upgrades.huntingRifle.moreResistant.bought,
         huntingRifleHeadHunterBought: upgrades.huntingRifle.headHunter.bought,
-		huntingRifleArmouredBodyBought: upgrades.huntingRifle.armouredBody.bought,
+        huntingRifleArmouredBodyBought: upgrades.huntingRifle.armouredBody.bought,
         huntingRifleNoEscapeBought: upgrades.huntingRifle.noEscape.bought,
         huntingRifleCriminalHunterBought: upgrades.huntingRifle.criminalHunter.bought,
-		huntingRifleThickerBodyBought: upgrades.huntingRifle.thickerBody.bought,
+        huntingRifleThickerBodyBought: upgrades.huntingRifle.thickerBody.bought,
         huntingRifleTargetHunterBought: upgrades.huntingRifle.targetHunter.bought,
         huntingRifleLongTracersBought: upgrades.huntingRifle.longTracers.bought,
         huntingRifleTitanicTracersBought: upgrades.huntingRifle.titanicTracers.bought,
         huntingRifleBeastHunterBought: upgrades.huntingRifle.beastHunter.bought,
         huntingRifleMarkedTracersBought: upgrades.huntingRifle.markedTracers.bought,
         huntingRifleMasterHuntingBought: upgrades.huntingRifle.masterHunting.bought,
-		huntingRifleMonsterHunterBought: upgrades.huntingRifle.monsterHunter.bought,
-		
-		musketHarderSlugsBought: upgrades.musket.harderSlugs.bought,
-		musketMoreResistantBought: upgrades.musket.moreResistant.bought,
+        huntingRifleMonsterHunterBought: upgrades.huntingRifle.monsterHunter.bought,
+
+        musketHarderSlugsBought: upgrades.musket.harderSlugs.bought,
+        musketMoreResistantBought: upgrades.musket.moreResistant.bought,
         musketMetalSlugsBought: upgrades.musket.metalSlugs.bought,
-		musketArmouredBodyBought: upgrades.musket.armouredBody.bought,
+        musketArmouredBodyBought: upgrades.musket.armouredBody.bought,
         musketIronSlugsBought: upgrades.musket.ironSlugs.bought,
         musketBlowShotBought: upgrades.musket.blowShot.bought,
-		musketThickerBodyBought: upgrades.musket.thickerBody.bought,
+        musketThickerBodyBought: upgrades.musket.thickerBody.bought,
         musketExceededReachBought: upgrades.musket.exceededReach.bought,
         musketMiniCannonballsBought: upgrades.musket.miniCannonballs.bought,
         musketLeadPoisoningBought: upgrades.musket.leadPoisoning.bought,
         musketAcidicSlugsBought: upgrades.musket.acidicSlugs.bought,
-		musketPenetrativeSlugsBought: upgrades.musket.penetrativeSlugs.bought,
-		musketRobustMechanismsBought: upgrades.musket.robustMechanisms.bought,
-		musketOversizedSlugsBought: upgrades.musket.oversizedSlugs.bought,
-        
+        musketPenetrativeSlugsBought: upgrades.musket.penetrativeSlugs.bought,
+        musketRobustMechanismsBought: upgrades.musket.robustMechanisms.bought,
+        musketOversizedSlugsBought: upgrades.musket.oversizedSlugs.bought,
+
         pistolFirerateUpgradeCost: pistolFirerateUpgradeCost,
         pistolPotencyUpgradeCost: pistolPotencyUpgradeCost,
-		pistolHPUpgradeCost: pistolHPUpgradeCost,
+        pistolHPUpgradeCost: pistolHPUpgradeCost,
         pistolFirerateLevel: pistolFirerateLevel,
         pistolPotencyLevel: pistolPotencyLevel,
-		pistolHPLevel: pistolPotencyLevel,
-        
+        pistolHPLevel: pistolPotencyLevel,
+
         smgFirerateUpgradeCost: smgFirerateUpgradeCost,
         smgPotencyUpgradeCost: smgPotencyUpgradeCost,
-		smgHPUpgradeCost: smgHPUpgradeCost,
+        smgHPUpgradeCost: smgHPUpgradeCost,
         smgFirerateLevel: smgFirerateLevel,
         smgPotencyLevel: smgPotencyLevel,
-		smgHPLevel: smgHPLevel,
-        
+        smgHPLevel: smgHPLevel,
+
         shotgunFirerateUpgradeCost: shotgunFirerateUpgradeCost,
         shotgunPotencyUpgradeCost: shotgunPotencyUpgradeCost,
         shotgunMultiFireUpgradeCost: shotgunMultiFireUpgradeCost,
-		shotgunHPUpgradeCost: shotgunHPUpgradeCost,
+        shotgunHPUpgradeCost: shotgunHPUpgradeCost,
         shotgunFirerateLevel: shotgunFirerateLevel,
         shotgunPotencyLevel: shotgunPotencyLevel,
         shotgunMultiFireLevel: shotgunMultiFireLevel,
-		shotgunHPLevel: shotgunHPLevel,
-        
+        shotgunHPLevel: shotgunHPLevel,
+
         sniperRifleFirerateUpgradeCost: sniperRifleFirerateUpgradeCost,
         sniperRiflePotencyUpgradeCost: sniperRiflePotencyUpgradeCost,
         sniperRifleCriticalShotUpgradeCost: sniperRifleCriticalShotUpgradeCost,
         sniperRifleCriticalDamageUpgradeCost: sniperRifleCriticalDamageUpgradeCost,
-		sniperRifleHPUpgradeCost: sniperRifleHPUpgradeCost,
+        sniperRifleHPUpgradeCost: sniperRifleHPUpgradeCost,
         sniperRifleFirerateLevel: sniperRifleFirerateLevel,
         sniperRiflePotencyLevel: sniperRiflePotencyLevel,
         sniperRifleCriticalShotLevel: sniperRifleCriticalShotLevel,
         sniperRifleCriticalDamageLevel: sniperRifleCriticalDamageLevel,
-		sniperRifleHPLevel: sniperRifleHPLevel,
+        sniperRifleHPLevel: sniperRifleHPLevel,
 
         ak47FirerateUpgradeCost: ak47FirerateUpgradeCost,
         ak47PotencyUpgradeCost: ak47PotencyUpgradeCost,
-		ak47HPUpgradeCost: ak47HPUpgradeCost,
+        ak47HPUpgradeCost: ak47HPUpgradeCost,
         ak47FirerateLevel: ak47FirerateLevel,
         ak47PotencyLevel: ak47PotencyLevel,
-		ak47HPLevel: ak47HPLevel,
+        ak47HPLevel: ak47HPLevel,
 
         rocketLauncherFirerateUpgradeCost: rocketLauncherFirerateUpgradeCost,
         rocketLauncherPotencyUpgradeCost: rocketLauncherPotencyUpgradeCost,
@@ -619,17 +603,17 @@ function saveGameState() {
         huntingRiflePotencyLevel: huntingRiflePotencyLevel,
         huntingRifleCriticalShotLevel: huntingRifleCriticalShotLevel,
         huntingRifleCriticalDamageLevel: huntingRifleCriticalDamageLevel,
-		
-		musketFirerateUpgradeCost: musketFirerateUpgradeCost,
+
+        musketFirerateUpgradeCost: musketFirerateUpgradeCost,
         musketPotencyUpgradeCost: musketPotencyUpgradeCost,
         musketRangeUpgradeCost: musketRangeUpgradeCost,
         musketFirerateLevel: musketFirerateLevel,
         musketPotencyLevel: musketPotencyLevel,
         musketRangeLevel: musketRangeLevel,
-		
-		fingerPistolsMultiplier: fingerPistolsMultiplier,
-		
-		currentWave: currentWave,
+
+        fingerPistolsMultiplier: fingerPistolsMultiplier,
+
+        currentWave: currentWave,
         activeEnemies: activeEnemies.map(enemy => ({
             id: enemy.id,
             type: enemy.type,
@@ -641,10 +625,93 @@ function saveGameState() {
         currentWeapons: currentWeapons.map(weapon => ({
             id: weapon.id,
             stats: weapon.stats,
-			image: weapon.image
+            image: weapon.image
         })),
 
         purchasedBigUpgrades: getPurchasedBigUpgrades()
+    };
+	
+	// Add big upgrade data for each weapon
+    const categories = [
+        'touchGun', 'pistol', 'smg', 'shotgun', 'sniperRifle',
+        'ak47', 'rocketLauncher', 'tommyGun', 'doubleBarrel',
+        'uzi', 'huntingRifle', 'musket'
+    ];
+
+    const upgradesList = {
+        touchGun: [
+            'pointyFingers', 'ambidextrous', 'thousandFingers', 'powerfulHands',
+            'antirestingCream', 'awakenUpgrade', 'millionFingers', 'stingingTaps',
+            'gotToTap', 'fingerSwarm', 'billionFingers', 'needMore', 'fingerPistols',
+            'superAwakenUpgrade', 'trillionFingers', 'heavyFingers', 'magicHands',
+            'healthyFingers', 'quadrillionFingers', 'tapExpert'
+        ],
+        pistol: [
+            'biggerBullets', 'moreResistant', 'largerCalibre', 'armouredBody',
+            'easierReloading', 'louderFiring', 'thickerBody', 'metalPiercing',
+            'specializedMechanisms', 'fineTuning', 'versatileGunshots', 'empowered',
+            'oneHitBullets', 'breakthrough'
+        ],
+        smg: [
+            'betterSpread', 'moreResistant', 'strongHold', 'armouredBody',
+            'pressureBullets', 'wickedAimer', 'thickerBody', 'bashingRounds',
+            'autoAimer', 'lightweight', 'metalPassers', 'inescapableBarrage',
+            'neverMissBarrage', 'bluestrippedBullets'
+        ],
+        shotgun: [
+            'moreBarrels', 'moreResistant', 'powerfulBurst', 'armouredBody',
+            'devastatingBurst', 'megaBurst', 'thickerBody', 'scattershot',
+            'gigaBurst', 'omegaBurst', 'teraBurst', 'ultimatumBurst',
+            'buckshot', 'closeObliteration'
+        ],
+        sniperRifle: [
+            'deadlyPrecision', 'moreResistant', 'cripplingShots', 'armouredBody',
+            'headShot', 'dangerousRifling', 'thickerBody', 'luckyShot',
+            'enhancedTracers', 'infraredScope', 'electroshockTracers', 'lethalTracers',
+            'heatseekingSensors', 'sharpTracers'
+        ],
+        ak47: [
+            'heatTippedBullets', 'moreResistant', 'staggeringBullets', 'armouredBody',
+            'rippingBullets', 'vehementBullets', 'thickerBody', 'overbearingVelocity',
+            'poweredVelocity', 'instantaneousVelocity', 'spikyBullets', 'ferociousBullets',
+            'unfathomablePressure', 'windPressure'
+        ],
+        rocketLauncher: [
+            'potentRockets', 'moreResistant', 'violentExplosions', 'armouredBody',
+            'repeatedExplosions', 'biggerExplosions', 'thickerBody', 'extraGunpowder',
+            'shatteringExplosions', 'napalmRockets', 'impulsiveExplosions', 'rampantTips',
+            'kamikaze', 'strongPetroleum'
+        ],
+        tommyGun: [
+            'preciseAccuracy', 'moreResistant', 'tightPressure', 'armouredBody',
+            'lessPunishing', 'powerfulOutcomes', 'thickerBody', 'vehementBurst',
+            'theVector', 'dangerZone', 'dischargedRippers', 'unstoppableBarrage',
+            'unavoidable', 'vociferousDischarge'
+        ],
+        doubleBarrel: [
+            'lethalShots', 'moreResistant', 'arcSwitchingBarrels', 'armouredBody',
+            'doubleTrouble', 'energized', 'thickerBody', 'doubleSwarm',
+            'clumpedShots', 'tightShots', 'heavyForce', 'unbearableForce',
+            'doubleYeah', 'bruteForce'
+        ],
+        uzi: [
+            'focussedSpread', 'moreResistant', 'quickfiringSalvo', 'armouredBody',
+            'tinyRippers', 'circuitousSpread', 'thickerBody', 'bulletOverload',
+            'bulletDrizzle', 'alwaysHitting', 'cantDodgeThis', 'bulletFletcher',
+            'easyToUse', 'bulletStorm'
+        ],
+        huntingRifle: [
+            'powerfulHunter', 'moreResistant', 'headHunter', 'armouredBody',
+            'noEscape', 'criminalHunter', 'thickerBody', 'targetHunter',
+            'longTracers', 'titanicTracers', 'beastHunter', 'markedTracers',
+            'masterHunting', 'monsterHunter'
+        ],
+        musket: [
+            'harderSlugs', 'moreResistant', 'metalSlugs', 'armouredBody',
+            'ironSlugs', 'blowShot', 'thickerBody', 'exceededReach',
+            'miniCannonballs', 'leadPoisoning', 'acidicSlugs', 'penetrativeSlugs',
+            'robustMechanisms', 'oversizedSlugs'
+        ]
     };
 
     var gameStateJSON = JSON.stringify(gameState);
@@ -662,25 +729,13 @@ function loadGameState() {
                 weapons[weaponId] = savedState.weapons[weaponId];
             });
         }
-        // Remove outdated keys from local storage
-        Object.keys(localStorage).forEach(key => {
-            if (!Object.keys(weapons).includes(key)) {
-                localStorage.removeItem(key);
-            }
-        });
-        
+
         // Update enemies from loaded game state
         if (savedState.enemies) {
             Object.keys(savedState.enemies).forEach(enemyId => {
                 enemies[enemyId] = savedState.enemies[enemyId];
             });
         }
-        // Remove outdated keys from local storage
-        Object.keys(localStorage).forEach(key => {
-            if (!Object.keys(enemies).includes(key)) {
-                localStorage.removeItem(key);
-            }
-        });
         // Update statistics from loaded game state
         const savedAchievements = savedState.achievements;
         if (savedAchievements) {
@@ -716,8 +771,21 @@ function loadGameState() {
 
         numberFormat = savedState.numberFormat;
 
-        // Load big upgrade data for each weapon
-        upgrades.touchGun.pointyFingers.bought = savedState.touchGunPointyFingersBought;
+        for (const category in upgrades) {
+            if (Object.hasOwnProperty.call(upgrades, category)) {
+                const subcategory = upgrades[category];
+                for (const upgrade in subcategory) {
+                    if (Object.hasOwnProperty.call(subcategory, upgrade)) {
+                        const bought = `${category}${upgrade}.bought`;
+                        if (savedState.hasOwnProperty(bought)) {
+                            subcategory[upgrade].bought = savedState[bought];
+                        }
+                    }
+                }
+            }
+        }
+		
+		upgrades.touchGun.pointyFingers.bought = savedState.touchGunPointyFingersBought;
         upgrades.touchGun.ambidextrous.bought = savedState.touchGunAmbidextrousBought;
         upgrades.touchGun.thousandFingers.bought = savedState.touchGunThousandFingersBought;
         upgrades.touchGun.antirestingCream.bought = savedState.touchGunAntirestingCreamBought;
@@ -1012,17 +1080,7 @@ function loadGameState() {
             battleLoop();
         }
 		
-		// Remove "test" keys if they exist
-        if (weapons.hasOwnProperty("test") || weapons.hasOwnProperty("testWeapon")) {
-            delete weapons["test"];
-			delete weapons["testWeapon"];
-        }
-        if (enemies.hasOwnProperty("test") || enemies.hasOwnProperty("testEnemy")) {
-            delete enemies["test"];
-			delete enemies["testEnemy"];
-        }
-		
-        // Load the purchased big upgrades interface
+		// Load the purchased big upgrades interface
         loadPurchasedBigUpgrades(savedState.purchasedBigUpgrades);
 
         // Call the setNumberFormat function to update the display based on the loaded format
@@ -1034,7 +1092,34 @@ function loadGameState() {
         // Update achievements and statistics display
         updateAchievements();
         updateStatistics();
+		
+		// Remove "test" keys if they exist
+        if (weapons.hasOwnProperty("test") || weapons.hasOwnProperty("testWeapon")) {
+            delete weapons["test"];
+			delete weapons["testWeapon"];
+        }
+        if (enemies.hasOwnProperty("test") || enemies.hasOwnProperty("testEnemy")) {
+            delete enemies["test"];
+			delete enemies["testEnemy"];
+        }
+		
+		let existingData = JSON.parse(localStorage.getItem('gameData')) || {};
+
+        existingData.weapons = mergeData(defaultWeapons, existingData.weapons || {});
+        existingData.enemies = mergeData(defaultEnemies, existingData.enemies || {});
+
+        localStorage.setItem('gameData', JSON.stringify(existingData));
+        return existingData;
     }
+}
+
+function mergeData(defaultData, existingData) {
+    for (let key in defaultData) {
+        if (!existingData.hasOwnProperty(key)) {
+            existingData[key] = defaultData[key];
+        }
+    }
+    return existingData;
 }
 
 function updateWeaponDisplays() {

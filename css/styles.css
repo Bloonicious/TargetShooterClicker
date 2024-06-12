@@ -409,7 +409,7 @@ body {
 
 .upgrade-option {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Five boxes per row */
+    grid-template-columns: repeat(4, 1fr); /* Five boxes per row */
     gap: 15px; /* Gap between boxes */
     list-style: none; /* Remove default list styles */
 }
@@ -448,6 +448,18 @@ body {
     font-family: 'Lilita One', cursive;
     color: black;
     background-color: #f5dcd3; /* Pale pink */
+    border: none;
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+#loadout-selection button,
+#available-equipments button {
+    font-family: 'Lilita One', cursive;
+    color: black;
+    background-color: gray; /* Gray */
     border: none;
     padding: 10px 20px; /* Adjust padding as needed */
     border-radius: 5px;

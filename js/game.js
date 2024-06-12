@@ -1,4 +1,4 @@
-let weapons = {
+const defaultWeapons = {
     "pistol": {
         "name": "Pistol",
         "image": "assets/images/pistol.png",
@@ -13,7 +13,8 @@ let weapons = {
             "range": 60,
             "accuracy": 100,
             "bulletsPerShot": 1,
-            "walkingSpeed": 30
+            "walkingSpeed": 30,
+			"projectileSpeed": 10
         }
     },
     "smg": {
@@ -30,7 +31,8 @@ let weapons = {
             "range": 50,
             "accuracy": 100,
             "bulletsPerShot": 1,
-            "walkingSpeed": 45
+            "walkingSpeed": 45,
+			"projectileSpeed": 15
         },
     },
     "shotgun": {
@@ -47,7 +49,8 @@ let weapons = {
             "range": 30,
             "accuracy": 100,
             "bulletsPerShot": 3,
-            "walkingSpeed": 60
+            "walkingSpeed": 60,
+			"projectileSpeed": 12
         }
     },
     "sniperRifle": {
@@ -60,13 +63,14 @@ let weapons = {
             "fireRate": 4000,
             "hp": 30,
             "hpMax": 30,
-            "damage": 60,
+            "damage": 120,
             "range": 100,
             "accuracy": 100,
             "bulletsPerShot": 1,
             "walkingSpeed": 15,
             "criticalChance": 25,
             "criticalDamage": 2,
+			"projectileSpeed": 20
         }
     },
     "ak47": {
@@ -79,11 +83,12 @@ let weapons = {
             "fireRate": 500,
             "hp": 80,
             "hpMax": 80,
-            "damage": 75,
+            "damage": 150,
             "range": 70,
             "accuracy": 100,
             "bulletsPerShot": 1,
-            "walkingSpeed": 30
+            "walkingSpeed": 30,
+			"projectileSpeed": 12
         }
     },
     "rocketLauncher": {
@@ -96,13 +101,14 @@ let weapons = {
             "fireRate": 5000,
             "hp": 60,
             "hpMax": 60,
-            "damage": 875,
+            "damage": 1750,
             "range": 90,
             "accuracy": 100,
             "bulletsPerShot": 1,
             "walkingSpeed": 10,
             "splashRadius": 500,
-            "splashDamage": 0.4
+            "splashDamage": 0.4,
+			"projectileSpeed": 16
         }
     },
     "tommyGun": {
@@ -115,12 +121,13 @@ let weapons = {
             "fireRate": 150,
             "hp": 150,
             "hpMax": 150,
-            "damage": 300,
+            "damage": 600,
             "range": 70,
             "accuracy": 50,
             "bulletsPerShot": 1,
             "walkingSpeed": 35,
             "inaccuracyPenalty": 0.5,
+			"projectileSpeed": 15
         }
     },
     "doubleBarrel": {
@@ -129,15 +136,16 @@ let weapons = {
         "purchased": false,
         "cost": 30000000,
         "stats": {
-            "pointsPerShot": 6000,
+            "pointsPerShot": 9000,
             "fireRate": 2000,
             "hp": 400,
             "hpMax": 400,
-            "damage": 3000,
+            "damage": 9000,
             "range": 40,
             "accuracy": 100,
             "bulletsPerShot": 2,
-            "walkingSpeed": 55
+            "walkingSpeed": 55,
+			"projectileSpeed": 15
         }
     },
     "uzi": {
@@ -146,15 +154,16 @@ let weapons = {
         "purchased": false,
         "cost": 175000000,
         "stats": {
-            "pointsPerShot": 4500,
+            "pointsPerShot": 6000,
             "fireRate": 75,
             "hp": 750,
             "hpMax": 750,
-            "damage": 2250,
+            "damage": 6000,
             "range": 40,
             "accuracy": 100,
             "bulletsPerShot": 1,
-            "walkingSpeed": 75
+            "walkingSpeed": 75,
+			"projectileSpeed": 18
         }
     },
     "huntingRifle": {
@@ -163,17 +172,18 @@ let weapons = {
         "purchased": false,
         "cost": 1250000000,
         "stats": {
-            "pointsPerShot": 250000,
+            "pointsPerShot": 300000,
             "fireRate": 3000,
             "hp": 500,
             "hpMax": 500,
-            "damage": 125000,
+            "damage": 300000,
             "range": 100,
             "accuracy": 100,
             "bulletsPerShot": 1,
             "walkingSpeed": 20,
             "criticalChance": 40,
-            "criticalDamage": 1.5
+            "criticalDamage": 1.5,
+			"projectileSpeed": 20
         }
     },
     "musket": {
@@ -182,19 +192,20 @@ let weapons = {
         "purchased": false,
         "cost": 8500000000,
         "stats": {
-            "pointsPerShot": 750000,
+            "pointsPerShot": 1333000,
             "fireRate": 1500,
             "hp": 750,
             "hpMax": 750,
-            "damage": 375000,
+            "damage": 1333000,
             "range": 90,
             "accuracy": 100,
             "bulletsPerShot": 1,
-            "walkingSpeed": 30
+            "walkingSpeed": 30,
+			"projectileSpeed": 18
         }
     }
 };
-let enemies = {
+const defaultEnemies = {
     "basic": {
         "name": "Basic",
         "image": "assets/images/basic_enemy.png",
@@ -204,7 +215,8 @@ let enemies = {
             "damage": 2,
             "range": 7.5,
             "walkingSpeed": 15,
-            "attackRate": 750
+            "attackRate": 750,
+			"hitbox": 5
         },
     },
     "fast": {
@@ -216,7 +228,8 @@ let enemies = {
             "damage": 1,
             "range": 7.5,
             "walkingSpeed": 30,
-            "attackRate": 500
+            "attackRate": 500,
+			"hitbox": 5
         },
     },
     "tank": {
@@ -228,7 +241,8 @@ let enemies = {
             "damage": 1.5,
             "range": 8.75,
             "walkingSpeed": 5,
-            "attackRate": 1250
+            "attackRate": 1250,
+			"hitbox": 10
         },
     },
     "healer": {
@@ -243,7 +257,8 @@ let enemies = {
             "attackRate": 1500,
             "healRate": 3000,
             "healAmount": 0.2,
-            "healRange": 500
+            "healRange": 500,
+			"hitbox": 7
         },
     },
     "armoured": {
@@ -256,7 +271,8 @@ let enemies = {
             "range": 8.75,
             "walkingSpeed": 7,
             "attackRate": 1000,
-            "armour": 0.5
+            "armour": 0.5,
+			"hitbox": 8
         },
     },
     "boss": {
@@ -268,11 +284,15 @@ let enemies = {
             "damage": 7.5,
             "range": 10,
             "walkingSpeed": 5,
-            "attackRate": 1000
+            "attackRate": 1000,
+			"hitbox": 15
         },
     }
     // Add other enemies here
 };
+
+let weapons = deepCopy(defaultWeapons);
+let enemies = deepCopy(defaultEnemies);
 
 let touchGunCost = 100;
 let touchGunPointsPerClick = 1;
@@ -386,25 +406,36 @@ let totalPointsEarned = 0;
 let totalTouchGunClicks = 0;
 let totalEnemiesKilled = 0;
 
+let currentWave = 1;
+let currentWeapons = [];
+let activeEnemies = [];
+let battleInProgress = false;
+const lastFiredTimes = {};
+const lastAttackedTimes = {};
+const lastHealedTimes = {};
+let lastFrameTime = 0;
+let encounteredEnemies = new Set();
+
 let numberFormat = 'standard'; // Default number format
 
 let achievements = [
-    { name: "Target Practicer", description: "Start your target-shooting practice by earning your first point from the touch gun.", condition: () => points > 0, achieved: false },
-    { name: "You're Doing Great!", description: "Reach 1,000 points.", condition: () => points >= 1000, achieved: false },
-    { name: "Target Mauler", description: "Reach 10,000 points.", condition: () => points >= 10000, achieved: false },
-    { name: "Target Assassin", description: "Reach 100,000 points.", condition: () => points >= 100000, achieved: false },
-    { name: "Target Millionaire", description: "Reach 1,000,000 points.", condition: () => points >= 1000000, achieved: false },
-    { name: "Target Billionaire", description: "Reach 1,000,000,000 points.", condition: () => points >= 1000000000, achieved: false },
-    { name: "Target Trillionaire", description: "Reach 1,000,000,000,000 points.", condition: () => points >= 1000000000000, achieved: false },
-    { name: "Target Quadrillionaire", description: "Reach 1,000,000,000,000,000 points.", condition: () => points >= 1000000000000000, achieved: false },
-    { name: "Target Quintillionaire", description: "Reach 1,000,000,000,000,000,000 points.", condition: () => points >= 1000000000000000000, achieved: false },
-	{ name: "Target Sextillionaire", description: "Reach 1,000,000,000,000,000,000,000 points.", condition: () => points >= 1000000000000000000000, achieved: false },
+    { name: "Target Practicer", description: "Start your target-shooting practice by earning your first point from the touch gun.", condition: () => totalPointsEarned > 0, achieved: false },
+    { name: "You're Doing Great!", description: "Reach 1,000 points.", condition: () => totalPointsEarned >= 1000, achieved: false },
+    { name: "Target Mauler", description: "Reach 10,000 points.", condition: () => totalPointsEarned >= 10000, achieved: false },
+    { name: "Target Assassin", description: "Reach 100,000 points.", condition: () => totalPointsEarned >= 100000, achieved: false },
+    { name: "Target Millionaire", description: "Reach 1,000,000 points.", condition: () => totalPointsEarned >= 1000000, achieved: false },
+    { name: "Target Billionaire", description: "Reach 1,000,000,000 points.", condition: () => totalPointsEarned >= 1000000000, achieved: false },
+    { name: "Target Trillionaire", description: "Reach 1,000,000,000,000 points.", condition: () => totalPointsEarned >= 1000000000000, achieved: false },
+    { name: "Target Quadrillionaire", description: "Reach 1,000,000,000,000,000 points.", condition: () => totalPointsEarned >= 1000000000000000, achieved: false },
+    { name: "Target Quintillionaire", description: "Reach 1,000,000,000,000,000,000 points.", condition: () => totalPointsEarned >= 1000000000000000000, achieved: false },
+	{ name: "Target Sextillionaire", description: "Reach 1,000,000,000,000,000,000,000 points.", condition: () => totalPointsEarned >= 1000000000000000000000, achieved: false },
 	{ name: "My First Weapon", description: "Purchase a weapon.", condition: () => getTotalWeapons() > 0, achieved: false },
 	{ name: "Extreme Firepower", description: "Purchase 10 weapons.", condition: () => getTotalWeapons() >= 10, achieved: false },
 	{ name: "Power Shot", description: "Reach a total PPS of 1,000.", condition: () => getTotalPPS() >= 1000, achieved: false },
 	{ name: "Lethal Shot", description: "Reach a total PPS of 10,000.", condition: () => getTotalPPS() >= 10000, achieved: false },
 	{ name: "Mega Shot", description: "Reach a total PPS of 1,000,000.", condition: () => getTotalPPS() >= 1000000, achieved: false },
 	{ name: "Giga Shot", description: "Reach a total PPS of 1,000,000,000.", condition: () => getTotalPPS() >= 1000000000, achieved: false },
+	{ name: "Tera Shot", description: "Reach a total PPS of 1,000,000,000,000.", condition: () => getTotalPPS() >= 1000000000000, achieved: false },
     { name: "Potency Leveller", description: "Upgrade the stat 'Potency' a total of 10 times (for any weapon type).", condition: () => getTotalPotencyUpgrades() >= 10, achieved: false },
     { name: "Potency Expert", description: "Upgrade the stat 'Potency' a total of 100 times (for any weapon type).", condition: () => getTotalPotencyUpgrades() >= 100, achieved: false },
     { name: "Potency Master", description: "Upgrade the stat 'Potency' a total of 500 times (for any weapon type).", condition: () => getTotalPotencyUpgrades() >= 500, achieved: false },
@@ -418,7 +449,12 @@ let achievements = [
     { name: "Bullet Storm", description: "Upgrade the stat 'Multi-Fire' a total of 5 times (only for Shotguns and Double Barrels).", condition: () => getTotalMultiFireUpgrades() >= 5, achieved: false },
     { name: "Bullet Hell", description: "Upgrade the stat 'Multi-Fire' a total of 25 times (only for Shotguns and Double Barrels).", condition: () => getTotalMultiFireUpgrades() >= 25, achieved: false },
 	{ name: "Deadly Shot", description: "Upgrade the stat 'Critical Chance' a total of 5 times (only for sniper weapons).", condition: () => getTotalCriticalShotUpgrades() >= 5, achieved: false },
-	{ name: "Deadly Precision", description: "Upgrade the stat 'Critical Chance' a total of 25 times (only for sniper weapons).", condition: () => getTotalCriticalShotUpgrades() >= 25, achieved: false }
+	{ name: "Deadly Precision", description: "Upgrade the stat 'Critical Chance' a total of 25 times (only for sniper weapons).", condition: () => getTotalCriticalShotUpgrades() >= 25, achieved: false },
+	{ name: "Monster Slayer", description: "Defeat a total of 100 enemies.", condition: () => totalEnemiesKilled >= 100, achieved: false },
+	{ name: "Boss Slayer", description: "Defeat a boss enemy.", condition: () => 0, achieved: false },
+	{ name: "Survivor", description: "Defeat 5 waves in battle mode.", condition: () => currentWave >= 5, achieved: false },
+	{ name: "Armed Tank", description: "Get any weapon above 10,000 HP in battle mode.", condition: () => getArmedTank(), achieved: false },
+	{ name: "Medallist", description: "Prestige 1 time.", condition: () => 0, achieved: false }
 ];
 
 let statistics = {
@@ -654,6 +690,13 @@ const upgrades = {
                 weapons.pistol.stats.damage *= 4; // Quadruples the damage per shot
             }
         },
+		fortifiedBody: {
+            cost: 750000000,
+            effect: function() {
+                weapons.pistol.stats.hp *= 2; // Doubles the amount of HP
+                weapons.pistol.stats.hpMax *= 2; // Doubles the amount of maximum HP
+            }
+        },
         fineTuning: {
             cost: 1500000000,
             effect: function() {
@@ -688,6 +731,13 @@ const upgrades = {
             effect: function() {
                 weapons.pistol.stats.pointsPerShot *= 6; // Sextuples the amount of points per shot
                 weapons.pistol.stats.damage *= 6; // Sextuples the damage per shot
+            }
+        },
+		goldenBullets: {
+            cost: 1000000000000000,
+            effect: function() {
+                weapons.pistol.stats.pointsPerShot *= 4; // Quadruples the amount of points per shot
+                weapons.pistol.stats.damage *= 4; // Quadruples the damage per shot
             }
         },
         // Add more upgrades for pistol here
@@ -755,6 +805,13 @@ const upgrades = {
                 weapons.smg.stats.damage *= 4;
             }
         },
+		fortifiedBody: {
+            cost: 1750000000,
+            effect: function() {
+                weapons.smg.stats.hp *= 2;
+                weapons.smg.stats.hpMax *= 2;
+            }
+        },
         lightweight: {
             cost: 8750000000,
             effect: function() {
@@ -787,6 +844,13 @@ const upgrades = {
             effect: function() {
                 weapons.smg.stats.pointsPerShot *= 6;
                 weapons.smg.stats.damage *= 6;
+            }
+        },
+		persistentSpray: {
+            cost: 2000000000000000,
+            effect: function() {
+                weapons.smg.stats.pointsPerShot *= 4;
+                weapons.smg.stats.damage *= 4;
             }
         },
         // Add more upgrades for smg here
@@ -853,6 +917,13 @@ const upgrades = {
                 weapons.shotgun.stats.damage *= 4;
             }
         },
+		fortifiedBody: {
+            cost: 30000000000,
+            effect: function() {
+                weapons.shotgun.stats.hp *= 2;
+                weapons.shotgun.stats.hpMax *= 2;
+            }
+        },
         omegaBurst: {
             cost: 500000000000,
             effect: function() {
@@ -882,6 +953,13 @@ const upgrades = {
         },
 		closeObliteration: {
             cost: 4000000000000000,
+            effect: function() {
+                weapons.shotgun.stats.pointsPerShot *= 6;
+                weapons.shotgun.stats.damage *= 6;
+            }
+        },
+		aggressiveBurst: {
+            cost: 40000000000000000,
             effect: function() {
                 weapons.shotgun.stats.pointsPerShot *= 6;
                 weapons.shotgun.stats.damage *= 6;
@@ -950,6 +1028,13 @@ const upgrades = {
                 weapons.sniperRifle.stats.damage *= 3;
             }
         },
+        fortifiedBody: {
+            cost: 60000000000,
+            effect: function() {
+                weapons.sniperRifle.stats.hp *= 2;
+                weapons.sniperRifle.stats.hpMax *= 2;
+            }
+        },
         infraredScope: {
             cost: 150000000000,
             effect: function() {
@@ -985,6 +1070,15 @@ const upgrades = {
             effect: function() {
                 weapons.sniperRifle.stats.pointsPerShot *= 6;
                 weapons.sniperRifle.stats.damage *= 6;
+            }
+        },
+		cctvScope: {
+            cost: 3000000000000000,
+            effect: function() {
+                weapons.sniperRifle.stats.pointsPerShot *= 4;
+                weapons.sniperRifle.stats.damage *= 4;
+				weapons.sniperRifle.stats.criticalDamage *= 1.5;
+				weapons.sniperRifle.stats.range += 10;
             }
         },
         // Add more upgrades for sniperRifle here
@@ -1053,6 +1147,13 @@ const upgrades = {
                 weapons.ak47.stats.damage *= 2;
             }
         },
+		fortifiedBody: {
+            cost: 800000000000,
+            effect: function() {
+                weapons.ak47.stats.hp *= 2;
+                weapons.ak47.stats.hpMax *= 2;
+            }
+        },
         instantaneousVelocity: {
             cost: 30000000000000,
             effect: function() {
@@ -1084,8 +1185,15 @@ const upgrades = {
 		windPressure: {
             cost: 750000000000000000,
             effect: function() {
-                weapons.ak47.stats.pointsPerShot *= 6;
-                weapons.ak47.stats.damage *= 6;
+                weapons.ak47.stats.pointsPerShot *= 4;
+                weapons.ak47.stats.damage *= 4;
+            }
+        },
+		crushingShots: {
+            cost: 7500000000000000000,
+            effect: function() {
+                weapons.ak47.stats.pointsPerShot *= 5;
+                weapons.ak47.stats.damage *= 5;
             }
         },
         // Add more upgrades for ak47 here
@@ -1152,6 +1260,13 @@ const upgrades = {
                 weapons.rocketLauncher.stats.damage *= 4;
             }
         },
+		fortifiedBody: {
+            cost: 2500000000000,
+            effect: function() {
+                weapons.rocketLauncher.stats.hp *= 2;
+                weapons.rocketLauncher.stats.hpMax *= 2;
+            }
+        },
         napalmRockets: {
             cost: 10000000000000,
             effect: function() {
@@ -1185,6 +1300,13 @@ const upgrades = {
             effect: function() {
                 weapons.rocketLauncher.stats.pointsPerShot *= 5;
                 weapons.rocketLauncher.stats.damage *= 5;
+            }
+        },
+		rocketMayhem: {
+            cost: 150000000000000000,
+            effect: function() {
+                weapons.rocketLauncher.stats.pointsPerShot *= 6;
+                weapons.rocketLauncher.stats.damage *= 6;
             }
         },
         // Add more upgrades for rocketLauncher here
@@ -1251,6 +1373,13 @@ const upgrades = {
                 weapons.tommyGun.stats.damage *= 4;
             }
         },
+		fortifiedBody: {
+            cost: 5000000000000,
+            effect: function() {
+                weapons.tommyGun.stats.hp *= 2;
+                weapons.tommyGun.stats.hpMax *= 2;
+            }
+        },
         dangerZone: {
             cost: 17500000000000,
             effect: function() {
@@ -1282,6 +1411,13 @@ const upgrades = {
         },
 		vociferousDischarge: {
             cost: 133000000000000000,
+            effect: function() {
+                weapons.tommyGun.stats.pointsPerShot *= 6;
+                weapons.tommyGun.stats.damage *= 6;
+            }
+        },
+		dischargedBlowback: {
+            cost: 1667000000000000000,
             effect: function() {
                 weapons.tommyGun.stats.pointsPerShot *= 6;
                 weapons.tommyGun.stats.damage *= 6;
@@ -1351,6 +1487,13 @@ const upgrades = {
                 weapons.doubleBarrel.stats.damage *= 4;
             }
         },
+		fortifiedBody: {
+            cost: 75000000000000,
+            effect: function() {
+                weapons.doubleBarrel.stats.hp *= 2;
+                weapons.doubleBarrel.stats.hpMax *= 2;
+            }
+        },
         tightShots: {
             cost: 1000000000000000,
             effect: function() {
@@ -1380,6 +1523,13 @@ const upgrades = {
         },
 		bruteForce: {
             cost: 5000000000000000000,
+            effect: function() {
+                weapons.doubleBarrel.stats.pointsPerShot *= 6;
+                weapons.doubleBarrel.stats.damage *= 6;
+            }
+        },
+		terroristicForce: {
+            cost: 55000000000000000000,
             effect: function() {
                 weapons.doubleBarrel.stats.pointsPerShot *= 6;
                 weapons.doubleBarrel.stats.damage *= 6;
@@ -1451,6 +1601,13 @@ const upgrades = {
                 weapons.uzi.stats.damage *= 2;
             }
         },
+		fortifiedBody: {
+            cost: 225000000000000,
+            effect: function() {
+                weapons.uzi.stats.hp *= 2;
+                weapons.uzi.stats.hpMax *= 2;
+            }
+        },
         alwaysHitting: {
             cost: 1500000000000000,
             effect: function() {
@@ -1484,6 +1641,13 @@ const upgrades = {
             effect: function() {
                 weapons.uzi.stats.pointsPerShot *= 4;
                 weapons.uzi.stats.damage *= 4;
+            }
+        },
+		tinyAtrocities: {
+            cost: 400000000000000000000,
+            effect: function() {
+                weapons.uzi.stats.pointsPerShot *= 5;
+                weapons.uzi.stats.damage *= 5;
             }
         },
         // Add more upgrades for uzi here
@@ -1551,6 +1715,13 @@ const upgrades = {
                 weapons.huntingRifle.stats.damage *= 4;
             }
         },
+		fortifiedBody: {
+            cost: 650000000000000,
+            effect: function() {
+                weapons.huntingRifle.stats.hp *= 2;
+                weapons.huntingRifle.stats.hpMax *= 2;
+            }
+        },
         titanicTracers: {
             cost: 1250000000000000,
             effect: function() {
@@ -1584,6 +1755,13 @@ const upgrades = {
         },
 		monsterHunter: {
             cost: 5500000000000000000,
+            effect: function() {
+                weapons.huntingRifle.stats.pointsPerShot *= 6;
+                weapons.huntingRifle.stats.damage *= 6;
+            }
+        },
+		antienemyTracers: {
+            cost: 57500000000000000000,
             effect: function() {
                 weapons.huntingRifle.stats.pointsPerShot *= 6;
                 weapons.huntingRifle.stats.damage *= 6;
@@ -1654,6 +1832,13 @@ const upgrades = {
                 weapons.musket.stats.damage *= 4;
             }
         },
+		fortifiedBody: {
+            cost: 3000000000000000,
+            effect: function() {
+                weapons.musket.stats.hp *= 2;
+                weapons.musket.stats.hpMax *= 2;
+            }
+        },
         leadPoisoning: {
             cost: 20000000000000000,
             effect: function() {
@@ -1689,295 +1874,107 @@ const upgrades = {
                 weapons.musket.stats.damage *= 4;
             }
         },
+		behemothSlugs: {
+            cost: 5000000000000000000000,
+            effect: function() {
+                weapons.musket.stats.pointsPerShot *= 5;
+                weapons.musket.stats.damage *= 5;
+            }
+        },
         // Add more upgrades for musket here
     }
     // Add more weapons and upgrades as needed
 };
 
-let currentWave = 1;
-let currentWeapons = [];
-let activeEnemies = [];
-let battleInProgress = false;
-const lastFiredTimes = {};
-const lastAttackedTimes = {};
-const lastHealedTimes = {};
-let lastFrameTime = 0;
-let encounteredEnemies = new Set();
-
-const defaultWeapons = {
-    "pistol": {
-        "name": "Pistol",
-        "image": "assets/images/pistol.png",
-        "purchased": false,
-        "cost": 10,
-        "stats": {
-            "pointsPerShot": 1,
-            "fireRate": 1000,
-            "hp": 10,
-            "hpMax": 10,
-            "damage": 1,
-            "range": 60,
-            "accuracy": 100,
-            "bulletsPerShot": 1,
-            "walkingSpeed": 30
-        }
-    },
-    "smg": {
-        "name": "SMG",
-        "image": "assets/images/smg.png",
-        "purchased": false,
-        "cost": 100,
-        "stats": {
-            "pointsPerShot": 1,
-            "fireRate": 200,
-            "hp": 20,
-            "hpMax": 20,
-            "damage": 1,
-            "range": 50,
-            "accuracy": 100,
-            "bulletsPerShot": 1,
-            "walkingSpeed": 45
-        },
-    },
-    "shotgun": {
-        "name": "Shotgun",
-        "image": "assets/images/shotgun.png",
-        "purchased": false,
-        "cost": 500,
-        "stats": {
-            "pointsPerShot": 4,
-            "fireRate": 1500,
-            "hp": 50,
-            "hpMax": 50,
-            "damage": 4,
-            "range": 30,
-            "accuracy": 100,
-            "bulletsPerShot": 3,
-            "walkingSpeed": 60
-        }
-    },
-    "sniperRifle": {
-        "name": "Sniper Rifle",
-        "image": "assets/images/sniper_rifle.png",
-        "purchased": false,
-        "cost": 7500,
-        "stats": {
-            "pointsPerShot": 120,
-            "fireRate": 4000,
-            "hp": 30,
-            "hpMax": 30,
-            "damage": 60,
-            "range": 100,
-            "accuracy": 100,
-            "bulletsPerShot": 1,
-            "walkingSpeed": 15,
-            "criticalChance": 25,
-            "criticalDamage": 2,
-        }
-    },
-    "ak47": {
-        "name": "AK-47",
-        "image": "assets/images/ak47.png",
-        "purchased": false,
-        "cost": 60000,
-        "stats": {
-            "pointsPerShot": 150,
-            "fireRate": 500,
-            "hp": 80,
-            "hpMax": 80,
-            "damage": 75,
-            "range": 70,
-            "accuracy": 100,
-            "bulletsPerShot": 1,
-            "walkingSpeed": 30
-        }
-    },
-    "rocketLauncher": {
-        "name": "Rocket Launcher",
-        "image": "assets/images/rocket_launcher.png",
-        "purchased": false,
-        "cost": 400000,
-        "stats": {
-            "pointsPerShot": 1750,
-            "fireRate": 5000,
-            "hp": 60,
-            "hpMax": 60,
-            "damage": 875,
-            "range": 90,
-            "accuracy": 100,
-            "bulletsPerShot": 1,
-            "walkingSpeed": 10,
-            "splashRadius": 500,
-            "splashDamage": 0.4
-        }
-    },
-    "tommyGun": {
-        "name": "Tommy Gun",
-        "image": "assets/images/tommy_gun.png",
-        "purchased": false,
-        "cost": 2500000,
-        "stats": {
-            "pointsPerShot": 600,
-            "fireRate": 150,
-            "hp": 150,
-            "hpMax": 150,
-            "damage": 300,
-            "range": 70,
-            "accuracy": 50,
-            "bulletsPerShot": 1,
-            "walkingSpeed": 35,
-            "inaccuracyPenalty": 0.5,
-        }
-    },
-    "doubleBarrel": {
-        "name": "Double Barrel",
-        "image": "assets/images/double_barrel.png",
-        "purchased": false,
-        "cost": 30000000,
-        "stats": {
-            "pointsPerShot": 6000,
-            "fireRate": 2000,
-            "hp": 400,
-            "hpMax": 400,
-            "damage": 3000,
-            "range": 40,
-            "accuracy": 100,
-            "bulletsPerShot": 2,
-            "walkingSpeed": 55
-        }
-    },
-    "uzi": {
-        "name": "Uzi",
-        "image": "assets/images/uzi.png",
-        "purchased": false,
-        "cost": 175000000,
-        "stats": {
-            "pointsPerShot": 4500,
-            "fireRate": 75,
-            "hp": 750,
-            "hpMax": 750,
-            "damage": 2250,
-            "range": 40,
-            "accuracy": 100,
-            "bulletsPerShot": 1,
-            "walkingSpeed": 75
-        }
-    },
-    "huntingRifle": {
-        "name": "Hunting Rifle",
-        "image": "assets/images/hunting_rifle.png",
-        "purchased": false,
-        "cost": 1250000000,
-        "stats": {
-            "pointsPerShot": 250000,
-            "fireRate": 3000,
-            "hp": 500,
-            "hpMax": 500,
-            "damage": 125000,
-            "range": 100,
-            "accuracy": 100,
-            "bulletsPerShot": 1,
-            "walkingSpeed": 20,
-            "criticalChance": 40,
-            "criticalDamage": 1.5
-        }
-    },
-    "musket": {
-        "name": "Musket",
-        "image": "assets/images/musket.png",
-        "purchased": false,
-        "cost": 8500000000,
-        "stats": {
-            "pointsPerShot": 750000,
-            "fireRate": 1500,
-            "hp": 750,
-            "hpMax": 750,
-            "damage": 375000,
-            "range": 90,
-            "accuracy": 100,
-            "bulletsPerShot": 1,
-            "walkingSpeed": 30
-        }
-    }
+const upgradesList = {
+    touchGun: [
+        'pointyFingers', 'ambidextrous', 'thousandFingers', 'powerfulHands',
+        'antirestingCream', 'awakenUpgrade', 'millionFingers', 'stingingTaps',
+        'gotToTap', 'fingerSwarm', 'billionFingers', 'needMore', 'fingerPistols',
+        'superAwakenUpgrade', 'trillionFingers', 'heavyFingers', 'magicHands',
+        'healthyFingers', 'quadrillionFingers', 'tapExpert'
+    ],
+    pistol: [
+        'biggerBullets', 'moreResistant', 'largerCalibre', 'armouredBody',
+        'easierReloading', 'louderFiring', 'thickerBody', 'metalPiercing',
+        'specializedMechanisms', 'fortifiedBody', 'fineTuning', 'versatileGunshots',
+		'empowered', 'oneHitBullets', 'breakthrough', 'goldenBullets'
+    ],
+    smg: [
+        'betterSpread', 'moreResistant', 'strongHold', 'armouredBody',
+        'pressureBullets', 'wickedAimer', 'thickerBody', 'bashingRounds',
+        'autoAimer', 'fortifiedBody', 'lightweight', 'metalPassers', 
+		'inescapableBarrage', 'neverMissBarrage', 'bluestrippedBullets', 'persistentSpray'
+    ],
+    shotgun: [
+        'moreBarrels', 'moreResistant', 'powerfulBurst', 'armouredBody',
+        'devastatingBurst', 'megaBurst', 'thickerBody', 'scattershot',
+        'gigaBurst', 'fortifiedBody', 'omegaBurst', 'teraBurst',
+		'ultimatumBurst', 'buckshot', 'closeObliteration', 'aggressiveBurst'
+    ],
+    sniperRifle: [
+        'deadlyPrecision', 'moreResistant', 'cripplingShots', 'armouredBody',
+        'headShot', 'dangerousRifling', 'thickerBody', 'luckyShot',
+        'enhancedTracers', 'fortifiedBody', 'infraredScope', 'electroshockTracers', 
+		'lethalTracers', 'heatseekingSensors', 'sharpTracers', 'cctvScope'
+    ],
+    ak47: [
+        'heatTippedBullets', 'moreResistant', 'staggeringBullets', 'armouredBody',
+        'rippingBullets', 'vehementBullets', 'thickerBody', 'overbearingVelocity',
+        'poweredVelocity', 'fortifiedBody', 'instantaneousVelocity', 'spikyBullets', 
+		'ferociousBullets', 'unfathomablePressure', 'windPressure', 'crushingShots'
+    ],
+    rocketLauncher: [
+        'potentRockets', 'moreResistant', 'violentExplosions', 'armouredBody',
+        'repeatedExplosions', 'biggerExplosions', 'thickerBody', 'extraGunpowder',
+        'shatteringExplosions', 'fortifiedBody', 'napalmRockets', 'impulsiveExplosions', 
+		'rampantTips', 'kamikaze', 'strongPetroleum', 'rocketMayhem'
+    ],
+    tommyGun: [
+        'preciseAccuracy', 'moreResistant', 'tightPressure', 'armouredBody',
+        'lessPunishing', 'powerfulOutcomes', 'thickerBody', 'vehementBurst',
+        'theVector', 'fortifiedBody', 'dangerZone', 'dischargedRippers', 
+		'unstoppableBarrage', 'unavoidable', 'vociferousDischarge', 'dischargedBlowback'
+    ],
+    doubleBarrel: [
+        'lethalShots', 'moreResistant', 'arcSwitchingBarrels', 'armouredBody',
+        'doubleTrouble', 'energized', 'thickerBody', 'doubleSwarm',
+        'clumpedShots', 'fortifiedBody', 'tightShots', 'heavyForce', 
+		'unbearableForce', 'doubleYeah', 'bruteForce', 'terroristicForce'
+    ],
+    uzi: [
+        'focussedSpread', 'moreResistant', 'quickfiringSalvo', 'armouredBody',
+        'tinyRippers', 'circuitousSpread', 'thickerBody', 'bulletOverload',
+        'bulletDrizzle', 'fortifiedBody', 'alwaysHitting', 'cantDodgeThis', 
+		'bulletFletcher', 'easyToUse', 'bulletStorm', 'tinyAtrocities'
+    ],
+    huntingRifle: [
+        'powerfulHunter', 'moreResistant', 'headHunter', 'armouredBody',
+        'noEscape', 'criminalHunter', 'thickerBody', 'targetHunter',
+        'longTracers', 'fortifiedBody', 'titanicTracers', 'beastHunter', 
+		'markedTracers', 'masterHunting', 'monsterHunter', 'antienemyTracers'
+    ],
+    musket: [
+        'harderSlugs', 'moreResistant', 'metalSlugs', 'armouredBody',
+        'ironSlugs', 'blowShot', 'thickerBody', 'exceededReach',
+        'miniCannonballs', 'fortifiedBody', 'leadPoisoning', 'acidicSlugs', 
+		'penetrativeSlugs', 'robustMechanisms', 'oversizedSlugs', 'behemothSlugs'
+    ]
 };
-const defaultEnemies = {
-    "basic": {
-        "name": "Basic",
-        "image": "assets/images/basic_enemy.png",
-        "pointsPerKill": 20,
-        "stats": {
-            "hp": 10,
-            "damage": 2,
-            "range": 7.5,
-            "walkingSpeed": 15,
-            "attackRate": 750
-        },
-    },
-    "fast": {
-        "name": "Fast",
-        "image": "assets/images/fast_enemy.png",
-        "pointsPerKill": 10,
-        "stats": {
-            "hp": 5,
-            "damage": 1,
-            "range": 7.5,
-            "walkingSpeed": 30,
-            "attackRate": 500
-        },
-    },
-    "tank": {
-        "name": "Tank",
-        "image": "assets/images/tanky_enemy.png",
-        "pointsPerKill": 40,
-        "stats": {
-            "hp": 50,
-            "damage": 1.5,
-            "range": 8.75,
-            "walkingSpeed": 5,
-            "attackRate": 1250
-        },
-    },
-    "healer": {
-        "name": "Healer",
-        "image": "assets/images/healing_enemy.png",
-        "pointsPerKill": 60,
-        "stats": {
-            "hp": 20,
-            "damage": 0.5,
-            "range": 10,
-            "walkingSpeed": 10,
-            "attackRate": 1500,
-            "healRate": 3000,
-            "healAmount": 0.2,
-            "healRange": 500
-        },
-    },
-    "armoured": {
-        "name": "Armoured",
-        "image": "assets/images/armoured_enemy.png",
-        "pointsPerKill": 50,
-        "stats": {
-            "hp": 40,
-            "damage": 1.2,
-            "range": 8.75,
-            "walkingSpeed": 7,
-            "attackRate": 1000,
-            "armour": 0.5
-        },
-    },
-    "boss": {
-        "name": "Boss",
-        "image": "assets/images/boss_enemy.png",
-        "pointsPerKill": 1000,
-        "stats": {
-            "hp": 750,
-            "damage": 7.5,
-            "range": 10,
-            "walkingSpeed": 5,
-            "attackRate": 1000
-        },
-    }
-    // Add other enemies here
+
+let availableEquipments = {}; // To store the equipment dropped by enemies
+let unlockedSlots = {};
+
+const equipments = {
+    "woodenVest": { name: "Wooden Vest", type: "Common", boostType: "HP", boostValue: 0.05, count: 1 },
+    "ironVest": { name: "Iron Vest", type: "Rare", boostType: "HP", boostValue: 0.10, count: 1 },
+    "goldenVest": { name: "Golden Vest", type: "Epic", boostType: "HP", boostValue: 0.25, count: 1 },
+    "woodenTrigger": { name: "Wooden Trigger", type: "Common", boostType: "Firing Rate", boostValue: 0.05, count: 1 },
+    "ironTrigger": { name: "Iron Trigger", type: "Rare", boostType: "Firing Rate", boostValue: 0.10, count: 1 },
+    "goldenTrigger": { name: "Golden Trigger", type: "Epic", boostType: "Firing Rate", boostValue: 0.25, count: 1 },
+    "woodenBarrel": { name: "Wooden Barrel", type: "Common", boostType: "Damage", boostValue: 0.05, count: 1 },
+    "ironBarrel": { name: "Iron Barrel", type: "Rare", boostType: "Damage", boostValue: 0.10, count: 1 },
+    "goldenBarrel": { name: "Golden Barrel", type: "Epic", boostType: "Damage", boostValue: 0.25, count: 1 }
 };
 
 let fingerPistolsMultiplier = 1;
@@ -1985,6 +1982,11 @@ let initialPistolStats = {
     pointsPerShot: weapons.pistol.stats.pointsPerShot,
     damage: weapons.pistol.stats.damage
 };
+
+// Function to deep copy an object
+function deepCopy(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
 
 // Function to update points display
 function updatePointsDisplay() {
@@ -2040,6 +2042,689 @@ function earnPoints() {
     totalPointsEarned += pointsPerShot;
 	totalTouchGunClicks++;
     updateLifetimePointsDisplay();
+}
+
+// Function to update weapon stats based on upgrades and their costs
+function updateWeaponStats(valueIncrement, weaponUpgrades) {
+    for (const weaponId in weapons) {
+        if (weapons.hasOwnProperty(weaponId)) {
+            const weapon = weapons[weaponId];
+            const baseStats = { ...defaultWeapons[weaponId].stats };  // Get the base stats from defaultWeapons
+            const baseCost = defaultWeapons[weaponId].cost;  // Get the base cost from defaultWeapons
+			
+			// Get the current prestige level
+            const currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
+            const prestigeMultiplier = prestigeLevels[currentPrestigeLevel].multiplier;
+			
+			let weaponUpgrades = upgrades[weaponId];
+
+            // Initialize stats with base stats
+            weapon.stats = { ...baseStats };
+
+            // Initialize cost with base cost
+            weapon.cost = baseCost;
+			
+			if (weaponId === 'pistol') {
+				weapon.stats.pointsPerShot += 1 * pistolPotencyLevel;
+				weapon.stats.damage += 1 * 0.5 * pistolPotencyLevel;
+				weapon.stats.fireRate -= 25 * pistolFirerateLevel;
+				weapon.stats.hp += 1 * pistolHPLevel;
+			    weapon.stats.hpMax += 1 * pistolHPLevel;
+				
+			    if (weaponUpgrades.biggerBullets.bought) {
+					weapon.stats.pointsPerShot *= 2;
+					weapon.stats.damage *= 2;
+				}
+                if (weaponUpgrades.largerCalibre.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.easierReloading.bought) {
+					weapon.stats.fireRate -= 150;
+				}
+				if (weaponUpgrades.louderFiring.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.metalPiercing.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.specializedMechanisms.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.fineTuning.bought) {
+					weapon.stats.pointsPerShot *= 1.5;
+					weapon.stats.damage *= 1.5;
+				}
+				if (weaponUpgrades.versatileGunshots.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+				if (weaponUpgrades.empowered.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+				if (weaponUpgrades.oneHitBullets.bought) {
+					weapon.stats.pointsPerShot *= 6;
+					weapon.stats.damage *= 6;
+				}
+				if (weaponUpgrades.breakthrough.bought) {
+					weapon.stats.pointsPerShot *= 6;
+					weapon.stats.damage *= 6;
+				}
+				if (weaponUpgrades.goldenBullets.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+			}
+			else if (weaponId === 'smg') {
+				weapon.stats.pointsPerShot += 1 * smgPotencyLevel;
+				weapon.stats.damage += 1 * 0.5 * smgPotencyLevel;
+				weapon.stats.fireRate -= 10 * smgFirerateLevel;
+				weapon.stats.hp += 2 * smgHPLevel;
+				weapon.stats.hpMax += 2 * smgHPLevel;
+				
+			    if (weaponUpgrades.betterSpread.bought) {
+					weapon.stats.pointsPerShot *= 2;
+					weapon.stats.damage *= 2;
+				}
+                if (weaponUpgrades.strongHold.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.pressureBullets.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.wickedAimer.bought) {
+					weapon.stats.fireRate *= 0.8;
+				}
+				if (weaponUpgrades.bashingRounds.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.autoAimer.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.lightweight.bought) {
+					weapon.stats.fireRate *= 0.85;
+				}
+				if (weaponUpgrades.metalPassers.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+				if (weaponUpgrades.inescapableBarrage.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+				if (weaponUpgrades.neverMissBarrage.bought) {
+					weapon.stats.pointsPerShot *= 6;
+					weapon.stats.damage *= 6;
+				}
+				if (weaponUpgrades.bluestrippedBullets.bought) {
+					weapon.stats.pointsPerShot *= 6;
+					weapon.stats.damage *= 6;
+				}
+				if (weaponUpgrades.persistentSpray.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+			}
+			else if (weaponId === 'shotgun') {
+				weapon.stats.pointsPerShot += 4 * shotgunPotencyLevel;
+				weapon.stats.damage += 4 * 0.5 * shotgunPotencyLevel;
+				weapon.stats.fireRate -= 50 * shotgunFirerateLevel;
+				weapon.stats.hp += 5 * shotgunHPLevel;
+				weapon.stats.hpMax += 5 * shotgunHPLevel;
+				weapon.stats.bulletsPerShot += 1 * shotgunMultiFireLevel;
+				
+			    if (weaponUpgrades.moreBarrels.bought) {
+					weapon.stats.bulletsPerShot += 2;
+				}
+                if (weaponUpgrades.powerfulBurst.bought) {
+					weapon.stats.pointsPerShot *= 2;
+					weapon.stats.damage *= 2;
+				}
+				if (weaponUpgrades.devastatingBurst.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.megaBurst.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.scattershot.bought) {
+					weapon.stats.bulletsPerShot *= 2;
+				}
+				if (weaponUpgrades.gigaBurst.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.omegaBurst.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.teraBurst.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+				if (weaponUpgrades.ultimatumBurst.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+				if (weaponUpgrades.buckshot.bought) {
+					weapon.stats.bulletsPerShot *= 2;
+				}
+				if (weaponUpgrades.closeObliteration.bought) {
+					weapon.stats.pointsPerShot *= 6;
+					weapon.stats.damage *= 6;
+				}
+				if (weaponUpgrades.aggressiveBurst.bought) {
+					weapon.stats.pointsPerShot *= 6;
+					weapon.stats.damage *= 6;
+				}
+			}
+			else if (weaponId === 'sniperRifle') {
+				weapon.stats.pointsPerShot += 120 * sniperRiflePotencyLevel;
+				weapon.stats.damage += 120 * 0.5 * sniperRiflePotencyLevel;
+				weapon.stats.fireRate -= 200 * sniperRifleFirerateLevel;
+				weapon.stats.hp += 3 * sniperRifleHPLevel;
+				weapon.stats.hpMax += 3 * sniperRifleHPLevel;
+				weapon.stats.criticalChance += 2 * sniperRifleCriticalShotLevel;
+				weapon.stats.criticalDamage += 0.2 * sniperRifleCriticalDamageLevel;
+				
+			    if (weaponUpgrades.deadlyPrecision.bought) {
+					weapon.stats.criticalDamage += 1;
+				}
+                if (weaponUpgrades.cripplingShots.bought) {
+					weapon.stats.pointsPerShot *= 2;
+					weapon.stats.damage *= 2;
+				}
+				if (weaponUpgrades.headShot.bought) {
+					weapon.stats.criticalDamage += 2;
+				}
+				if (weaponUpgrades.dangerousRifling.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.luckyShot.bought) {
+					weapon.stats.criticalChance += 10;
+				}
+				if (weaponUpgrades.enhancedTracers.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.infraredScope.bought) {
+					weapon.stats.pointsPerShot *= 2;
+					weapon.stats.damage *= 2;
+					weapon.stats.criticalDamage *= 1.5;
+				}
+				if (weaponUpgrades.electroshockTracers.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.lethalTracers.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.heatseekingSensors.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+					weapon.stats.criticalChance += 5;
+				}
+				if (weaponUpgrades.sharpTracers.bought) {
+					weapon.stats.pointsPerShot *= 6;
+					weapon.stats.damage *= 6;
+				}
+				if (weaponUpgrades.cctvScope.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+					weapon.stats.criticalDamage *= 1.5;
+					weapon.stats.range += 10;
+				}
+			}
+			else if (weaponId === 'ak47') {
+				weapon.stats.pointsPerShot += 150 * ak47PotencyLevel;
+				weapon.stats.damage += 150 * 0.5 * ak47PotencyLevel;
+				weapon.stats.fireRate -= 20 * ak47FirerateLevel;
+				weapon.stats.hp += 8 * ak47HPLevel;
+				weapon.stats.hpMax += 8 * ak47HPLevel;
+				
+			    if (weaponUpgrades.heatTippedBullets.bought) {
+					weapon.stats.pointsPerShot *= 2;
+					weapon.stats.damage *= 2;
+				}
+                if (weaponUpgrades.staggeringBullets.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.rippingBullets.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.vehementBullets.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.overbearingVelocity.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.poweredVelocity.bought) {
+					weapon.stats.pointsPerShot *= 2;
+					weapon.stats.damage *= 2;
+				}
+				if (weaponUpgrades.instantaneousVelocity.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+				if (weaponUpgrades.spikyBullets.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+				if (weaponUpgrades.ferociousBullets.bought) {
+					weapon.stats.pointsPerShot *= 6;
+					weapon.stats.damage *= 6;
+				}
+				if (weaponUpgrades.unfathomablePressure.bought) {
+					weapon.stats.pointsPerShot *= 6;
+					weapon.stats.damage *= 6;
+				}
+				if (weaponUpgrades.windPressure.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.crushingShots.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+			}
+			else if (weaponId === 'rocketLauncher') {
+				weapon.stats.pointsPerShot += 1750 * rocketLauncherPotencyLevel;
+				weapon.stats.damage += 1750 * 0.5 * rocketLauncherPotencyLevel;
+				weapon.stats.fireRate -= 200 * rocketLauncherFirerateLevel;
+				weapon.stats.hp += 6 * rocketLauncherHPLevel;
+				weapon.stats.hpMax += 6 * rocketLauncherHPLevel;
+				weapon.stats.splashRadius += 150 * rocketLauncherSplashRadiusLevel;
+				weapon.stats.splashDamage += 0.05 * rocketLauncherSplashDamageLevel;
+				
+			    if (weaponUpgrades.potentRockets.bought) {
+					weapon.stats.pointsPerShot *= 2;
+					weapon.stats.damage *= 2;
+				}
+                if (weaponUpgrades.violentExplosions.bought) {
+					weapon.stats.splashDamage += 0.2;
+				}
+				if (weaponUpgrades.repeatedExplosions.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.biggerExplosions.bought) {
+					weapon.stats.splashRadius += 150;
+				}
+				if (weaponUpgrades.extraGunpowder.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.shatteringExplosions.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.napalmRockets.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.impulsiveExplosions.bought) {
+					weapon.stats.splashDamage += 0.2;
+				}
+				if (weaponUpgrades.rampantTips.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+				if (weaponUpgrades.kamikaze.bought) {
+					weapon.stats.pointsPerShot *= 2;
+					weapon.stats.damage *= 2;
+					weapon.stats.splashRadius += 150;
+				}
+				if (weaponUpgrades.strongPetroleum.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+				if (weaponUpgrades.rocketMayhem.bought) {
+					weapon.stats.pointsPerShot *= 6;
+					weapon.stats.damage *= 6;
+				}
+			}
+			else if (weaponId === 'tommyGun') {
+				weapon.stats.pointsPerShot += 600 * tommyGunPotencyLevel;
+				weapon.stats.damage += 600 * 0.5 * tommyGunPotencyLevel;
+				weapon.stats.fireRate -= 5 * tommyGunFirerateLevel;
+				weapon.stats.hp += 15 * tommyGunHPLevel;
+				weapon.stats.hpMax += 15 * tommyGunHPLevel;
+				weapon.stats.accuracy += 2 * tommyGunAccuracyLevel;
+				
+			    if (weaponUpgrades.preciseAccuracy.bought) {
+					weapon.stats.accuracy += 10;
+				}
+                if (weaponUpgrades.tightPressure.bought) {
+					weapon.stats.pointsPerShot *= 2;
+					weapon.stats.damage *= 2;
+				}
+				if (weaponUpgrades.lessPunishing.bought) {
+					weapon.stats.inaccuracyPenalty += 0.17;
+				}
+				if (weaponUpgrades.powerfulOutcomes.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.vehementBurst.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.theVector.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.dangerZone.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.dischargedRippers.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+				if (weaponUpgrades.unstoppableBarrage.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+				if (weaponUpgrades.unavoidable.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+					weapon.stats.accuracy += 10;
+				}
+				if (weaponUpgrades.vociferousDischarge.bought) {
+					weapon.stats.pointsPerShot *= 6;
+					weapon.stats.damage *= 6;
+				}
+				if (weaponUpgrades.dischargedBlowback.bought) {
+					weapon.stats.pointsPerShot *= 6;
+					weapon.stats.damage *= 6;
+				}
+			}
+			else if (weaponId === 'doubleBarrel') {
+				weapon.stats.pointsPerShot += 9000 * doubleBarrelPotencyLevel;
+				weapon.stats.damage += 9000 * 0.5 * doubleBarrelPotencyLevel;
+				weapon.stats.fireRate -= 50 * doubleBarrelFirerateLevel;
+				weapon.stats.hp += 40 * doubleBarrelHPLevel;
+				weapon.stats.hpMax += 40 * doubleBarrelHPLevel;
+				weapon.stats.bulletsPerShot += 2 * doubleBarrelMultiFireLevel;
+				
+			    if (weaponUpgrades.lethalShots.bought) {
+					weapon.stats.pointsPerShot *= 2;
+					weapon.stats.damage *= 2;
+				}
+                if (weaponUpgrades.arcSwitchingBarrels.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.doubleTrouble.bought) {
+					weapon.stats.bulletsPerShot *= 2;
+				}
+				if (weaponUpgrades.energized.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.doubleSwarm.bought) {
+					weapon.stats.bulletsPerShot *= 2;
+				}
+				if (weaponUpgrades.clumpedShots.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.tightShots.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.heavyForce.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+				if (weaponUpgrades.unbearableForce.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+				if (weaponUpgrades.doubleYeah.bought) {
+					weapon.stats.bulletsPerShot *= 2;
+				}
+				if (weaponUpgrades.bruteForce.bought) {
+					weapon.stats.pointsPerShot *= 6;
+					weapon.stats.damage *= 6;
+				}
+				if (weaponUpgrades.terroristicForce.bought) {
+					weapon.stats.pointsPerShot *= 6;
+					weapon.stats.damage *= 6;
+				}
+			}
+			else if (weaponId === 'uzi') {
+				weapon.stats.pointsPerShot += 6000 * uziPotencyLevel;
+				weapon.stats.damage += 6000 * 0.5 * uziPotencyLevel;
+				weapon.stats.fireRate -= 2.5 * uziFirerateLevel;
+				weapon.stats.hp += 75 * uziHPLevel;
+				weapon.stats.hpMax += 75 * uziHPLevel;
+				
+			    if (weaponUpgrades.focussedSpread.bought) {
+					weapon.stats.pointsPerShot *= 2;
+					weapon.stats.damage *= 2;
+				}
+                if (weaponUpgrades.quickfiringSalvo.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.tinyRippers.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.circuitousSpread.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.bulletOverload.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.bulletDrizzle.bought) {
+					weapon.stats.pointsPerShot *= 2;
+					weapon.stats.damage *= 2;
+				}
+				if (weaponUpgrades.alwaysHitting.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+				if (weaponUpgrades.cantDodgeThis.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+				if (weaponUpgrades.bulletFletcher.bought) {
+					weapon.stats.pointsPerShot *= 6;
+					weapon.stats.damage *= 6;
+				}
+				if (weaponUpgrades.easyToUse.bought) {
+					weapon.stats.pointsPerShot *= 6;
+					weapon.stats.damage *= 6;
+				}
+				if (weaponUpgrades.bulletStorm.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.tinyAtrocities.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+			}
+			else if (weaponId === 'huntingRifle') {
+				weapon.stats.pointsPerShot += 300000 * huntingRiflePotencyLevel;
+				weapon.stats.damage += 300000 * 0.5 * huntingRiflePotencyLevel;
+				weapon.stats.fireRate -= 100 * huntingRifleFirerateLevel;
+				weapon.stats.hp += 50 * huntingRifleHPLevel;
+				weapon.stats.hpMax += 50 * huntingRifleHPLevel;
+				weapon.stats.criticalChance += 2 * huntingRifleCriticalShotLevel;
+				weapon.stats.criticalDamage += 0.1 * huntingRifleCriticalDamageLevel;
+				
+			    if (weaponUpgrades.powerfulHunter.bought) {
+					weapon.stats.pointsPerShot *= 2;
+					weapon.stats.damage *= 2;
+				}
+                if (weaponUpgrades.headHunter.bought) {
+					weapon.stats.criticalDamage += 0.5;
+				}
+				if (weaponUpgrades.noEscape.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.criminalHunter.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.targetHunter.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.longTracers.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.titanicTracers.bought) {
+					weapon.stats.pointsPerShot *= 2;
+					weapon.stats.damage *= 2;
+					weapon.stats.criticalChance -= 5;
+					weapon.stats.criticalDamage *= 2;
+				}
+				if (weaponUpgrades.beastHunter.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+				if (weaponUpgrades.markedTracers.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+				if (weaponUpgrades.masterHunting.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+					weapon.stats.criticalDamage *= 1.5;
+				}
+				if (weaponUpgrades.monsterHunter.bought) {
+					weapon.stats.pointsPerShot *= 6;
+					weapon.stats.damage *= 6;
+				}
+				if (weaponUpgrades.antienemyTracers.bought) {
+					weapon.stats.pointsPerShot *= 6;
+					weapon.stats.damage *= 6;
+				}
+			}
+			else if (weaponId === 'musket') {
+				weapon.stats.pointsPerShot += 1333000 * musketPotencyLevel;
+				weapon.stats.damage += 1333000 * 0.5 * musketPotencyLevel;
+				weapon.stats.fireRate -= 50 * musketFirerateLevel;
+				weapon.stats.hp += 75 * musketHPLevel;
+				weapon.stats.hpMax += 75 * musketHPLevel;
+				weapon.stats.range += 10 * musketRangeLevel;
+				
+			    if (weaponUpgrades.harderSlugs.bought) {
+					weapon.stats.pointsPerShot *= 2;
+					weapon.stats.damage *= 2;
+				}
+                if (weaponUpgrades.metalSlugs.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.ironSlugs.bought) {
+					weapon.stats.pointsPerShot *= 3;
+					weapon.stats.damage *= 3;
+				}
+				if (weaponUpgrades.blowShot.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.exceededReach.bought) {
+					weapon.stats.range += 10;
+				}
+				if (weaponUpgrades.miniCannonballs.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.leadPoisoning.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+				if (weaponUpgrades.acidicSlugs.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+				if (weaponUpgrades.penetrativeSlugs.bought) {
+					weapon.stats.pointsPerShot *= 6;
+					weapon.stats.damage *= 6;
+				}
+				if (weaponUpgrades.robustMechanisms.bought) {
+					weapon.stats.pointsPerShot *= 6;
+					weapon.stats.damage *= 6;
+				}
+				if (weaponUpgrades.oversizedSlugs.bought) {
+					weapon.stats.pointsPerShot *= 4;
+					weapon.stats.damage *= 4;
+				}
+				if (weaponUpgrades.behemothSlugs.bought) {
+					weapon.stats.pointsPerShot *= 5;
+					weapon.stats.damage *= 5;
+				}
+			}
+			
+			if (weaponUpgrades.moreResistant?.bought) {
+				weapon.stats.hp *= 2;
+				weapon.stats.hpMax *= 2;
+			}
+            if (weaponUpgrades.armouredBody?.bought) {
+				weapon.stats.hp *= 2;
+				weapon.stats.hpMax *= 2;
+			}
+			if (weaponUpgrades.thickerBody?.bought) {
+				weapon.stats.hp *= 2;
+				weapon.stats.hpMax *= 2;
+			}
+			if (weaponUpgrades.fortifiedBody?.bought) {
+				weapon.stats.hp *= 2;
+				weapon.stats.hpMax *= 2;
+			}
+			
+			weapon.stats.pointsPerShot *= prestigeMultiplier;
+			weapon.stats.damage *= prestigeMultiplier;
+			weapon.stats.hp *= prestigeMultiplier;
+			weapon.stats.hpMax *= prestigeMultiplier;
+        }
+    }
+}
+
+// Function to update enemy stats based on client updates
+function updateEnemyStats() {
+    for (const enemyId in enemies) {
+        if (enemies.hasOwnProperty(enemyId)) {
+            const enemy = enemies[enemyId];
+            const baseStats = { ...defaultEnemies[enemyId].stats };  // Get the base stats from defaultEnemies
+			const basePPK = defaultEnemies[enemyId].pointsPerKill;  // Get the points per kill stat from defaultEnemies
+			
+			// Get the current prestige level
+            const currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
+            const prestigeMultiplier = prestigeLevels[currentPrestigeLevel].multiplier;
+
+            // Initialize stats with base stats
+            enemies[enemyId].stats = { ...baseStats };
+			
+			// Initialize points per kill with care
+            enemies[enemyId].pointsPerKill = basePPK * prestigeMultiplier;
+        }
+    }
 }
 
 // Function for automatic points generation based on weapon fire rates
@@ -2217,7 +2902,7 @@ function purchase(item) {
             purchaseUpgrade('doubleBarrelFirerate', doubleBarrelFirerateLevel, doubleBarrelFirerateUpgradeCost, 1.8, -50, 'firerate');
             break;
         case 'doubleBarrelPotency':
-            purchaseUpgrade('doubleBarrelPotency', doubleBarrelPotencyLevel, doubleBarrelPotencyUpgradeCost, 1.4, 6000, 'potency');
+            purchaseUpgrade('doubleBarrelPotency', doubleBarrelPotencyLevel, doubleBarrelPotencyUpgradeCost, 1.4, 9000, 'potency');
             break;
 		case 'doubleBarrelHP':
             purchaseUpgrade('doubleBarrelHP', doubleBarrelHPLevel, doubleBarrelHPUpgradeCost, 1.3, 40, 'hp');
@@ -2229,7 +2914,7 @@ function purchase(item) {
             purchaseUpgrade('uziFirerate', uziFirerateLevel, uziFirerateUpgradeCost, 2.6, -2.5, 'firerate');
             break;
         case 'uziPotency':
-            purchaseUpgrade('uziPotency', uziPotencyLevel, uziPotencyUpgradeCost, 1.4, 4500, 'potency');
+            purchaseUpgrade('uziPotency', uziPotencyLevel, uziPotencyUpgradeCost, 1.4, 6000, 'potency');
             break;
 		case 'uziHP':
             purchaseUpgrade('uziHP', uziHPLevel, uziHPUpgradeCost, 1.3, 75, 'hp');
@@ -2238,7 +2923,7 @@ function purchase(item) {
             purchaseUpgrade('huntingRifleFirerate', huntingRifleFirerateLevel, huntingRifleFirerateUpgradeCost, 1.8, -100, 'firerate');
             break;
         case 'huntingRiflePotency':
-            purchaseUpgrade('huntingRiflePotency', huntingRiflePotencyLevel, huntingRiflePotencyUpgradeCost, 1.4, 250000, 'potency');
+            purchaseUpgrade('huntingRiflePotency', huntingRiflePotencyLevel, huntingRiflePotencyUpgradeCost, 1.4, 300000, 'potency');
             break;
 		case 'huntingRifleHP':
             purchaseUpgrade('huntingRifleHP', huntingRifleHPLevel, huntingRifleHPUpgradeCost, 1.3, 50, 'hp');
@@ -2253,7 +2938,7 @@ function purchase(item) {
             purchaseUpgrade('musketFirerate', musketFirerateLevel, musketFirerateUpgradeCost, 2, -50, 'firerate');
             break;
         case 'musketPotency':
-            purchaseUpgrade('musketPotency', musketPotencyLevel, musketPotencyUpgradeCost, 1.4, 750000, 'potency');
+            purchaseUpgrade('musketPotency', musketPotencyLevel, musketPotencyUpgradeCost, 1.4, 1333000, 'potency');
             break;
 		case 'musketHP':
             purchaseUpgrade('musketHP', musketHPLevel, musketHPUpgradeCost, 1.3, 75, 'hp');
@@ -2296,8 +2981,8 @@ function purchaseWeapon(weaponId) {
 }
 
 // Detect weapon stats from the weapons.json
-function getWeaponStats(weaponName) {
-    const weapon = weapons[weaponName];
+function getWeaponStats(weaponId) {
+    const weapon = weapons[weaponId];
     return weapon ? weapon.stats : null;
 }
 
@@ -2746,6 +3431,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.empowered?.bought) valueIncrement *= 5;
             if (weaponUpgrades.oneHitBullets?.bought) valueIncrement *= 6;
 			if (weaponUpgrades.breakthrough?.bought) valueIncrement *= 6;
+			if (weaponUpgrades.goldenBullets?.bought) valueIncrement *= 4;
             if (upgrades.touchGun?.fingerPistols?.bought) valueIncrement *= Math.pow(1.1, getTotalTouchGunUpgrades());
             break;
         case 'smg':
@@ -2758,6 +3444,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.inescapableBarrage?.bought) valueIncrement *= 5;
             if (weaponUpgrades.neverMissBarrage?.bought) valueIncrement *= 6;
 			if (weaponUpgrades.bluestrippedBullets?.bought) valueIncrement *= 6;
+			if (weaponUpgrades.persistentSpray?.bought) valueIncrement *= 4;
             break;
         case 'shotgun':
             if (weaponUpgrades.powerfulBurst?.bought) valueIncrement *= 2;
@@ -2768,6 +3455,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.teraBurst?.bought) valueIncrement *= 5;
             if (weaponUpgrades.ultimatumBurst?.bought) valueIncrement *= 5;
 			if (weaponUpgrades.closeObliteration?.bought) valueIncrement *= 6;
+			if (weaponUpgrades.aggressiveBurst?.bought) valueIncrement *= 6;
             break;
         case 'sniperRifle':
             if (weaponUpgrades.cripplingShots?.bought) valueIncrement *= 2;
@@ -2778,6 +3466,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.lethalTracers?.bought) valueIncrement *= 4;
             if (weaponUpgrades.heatseekingSensors?.bought) valueIncrement *= 3;
 			if (weaponUpgrades.sharpTracers?.bought) valueIncrement *= 6;
+			if (weaponUpgrades.cctvScope?.bought) valueIncrement *= 4;
             break;
         case 'ak47':
             if (weaponUpgrades.heatTippedBullets?.bought) valueIncrement *= 2;
@@ -2791,6 +3480,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.ferociousBullets?.bought) valueIncrement *= 6;
             if (weaponUpgrades.unfathomablePressure?.bought) valueIncrement *= 6;
 			if (weaponUpgrades.windPressure?.bought) valueIncrement *= 4;
+			if (weaponUpgrades.crushingShots?.bought) valueIncrement *= 5;
             break;
         case 'rocketLauncher':
             if (weaponUpgrades.potentRockets?.bought) valueIncrement *= 2;
@@ -2801,6 +3491,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.rampantTips?.bought) valueIncrement *= 5;
             if (weaponUpgrades.kamikaze?.bought) valueIncrement *= 2;
 			if (weaponUpgrades.strongPetroleum?.bought) valueIncrement *= 5;
+			if (weaponUpgrades.rocketMayhem?.bought) valueIncrement *= 6;
             break;
         case 'tommyGun':
             if (weaponUpgrades.tightPressure?.bought) valueIncrement *= 2;
@@ -2812,6 +3503,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.unstoppableBarrage?.bought) valueIncrement *= 5;
             if (weaponUpgrades.unavoidable?.bought) valueIncrement *= 3;
 			if (weaponUpgrades.vociferousDischarge?.bought) valueIncrement *= 6;
+			if (weaponUpgrades.dischargedBlowback?.bought) valueIncrement *= 6;
             break;
         case 'doubleBarrel':
             if (weaponUpgrades.lethalShots?.bought) valueIncrement *= 2;
@@ -2822,6 +3514,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.heavyForce?.bought) valueIncrement *= 5;
             if (weaponUpgrades.unbearableForce?.bought) valueIncrement *= 5;
 			if (weaponUpgrades.bruteForce?.bought) valueIncrement *= 6;
+			if (weaponUpgrades.terroristicForce?.bought) valueIncrement *= 6;
             break;
         case 'uzi':
             if (weaponUpgrades.focussedSpread?.bought) valueIncrement *= 2;
@@ -2835,6 +3528,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.bulletFletcher?.bought) valueIncrement *= 6;
             if (weaponUpgrades.easyToUse?.bought) valueIncrement *= 6;
 			if (weaponUpgrades.bulletStorm?.bought) valueIncrement *= 4;
+			if (weaponUpgrades.tinyAtrocities?.bought) valueIncrement *= 5;
             break;
         case 'huntingRifle':
             if (weaponUpgrades.powerfulHunter?.bought) valueIncrement *= 2;
@@ -2847,6 +3541,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
             if (weaponUpgrades.markedTracers?.bought) valueIncrement *= 5;
             if (weaponUpgrades.masterHunting?.bought) valueIncrement *= 3;
 			if (weaponUpgrades.monsterHunter?.bought) valueIncrement *= 6;
+			if (weaponUpgrades.antienemyTracers?.bought) valueIncrement *= 6;
             break;
 		case 'musket':
 		    if (weaponUpgrades.harderSlugs?.bought) valueIncrement *= 2;
@@ -2859,6 +3554,7 @@ function updatePotency(stats, valueIncrement, weaponUpgrades, weapon) {
 			if (weaponUpgrades.penetrativeSlugs?.bought) valueIncrement *= 6;
 			if (weaponUpgrades.robustMechanisms?.bought) valueIncrement *= 6;
 			if (weaponUpgrades.oversizedSlugs?.bought) valueIncrement *= 4;
+			if (weaponUpgrades.behemothSlugs?.bought) valueIncrement *= 5;
 		    break;
         default:
             break;
@@ -2892,6 +3588,7 @@ function updateHP(stats, valueIncrement, weaponUpgrades, weapon) {
 		    if (weaponUpgrades.moreResistant?.bought) valueIncrement *= 2;
             if (weaponUpgrades.armouredBody?.bought) valueIncrement *= 2;
 			if (weaponUpgrades.thickerBody?.bought) valueIncrement *= 2;
+			if (weaponUpgrades.fortifiedBody?.bought) valueIncrement *= 2;
 			break;
         default:
             break;
@@ -3003,6 +3700,7 @@ function updateCriticalDamage(stats, valueIncrement, weaponUpgrades, weapon) {
             break;
         case 'sniperRifle':
             if (weaponUpgrades.infraredScope?.bought) valueIncrement *= 1.5;
+			if (weaponUpgrades.cctvScope?.bought) valueIncrement *= 1.5;
             break;
         case 'ak47':
         case 'rocketLauncher':
@@ -4035,6 +4733,16 @@ function getTotalAchievementsAchieved() {
     return `${totalAchievementsAchieved}/${achievements.length}`;
 }
 
+// Function to track the armed tank achievement progress
+function getArmedTank() {
+    for (const weaponId in weapons) {
+        if (weapons[weaponId].stats.hpMax > 10000) {
+            return true;
+        }
+    }
+    return false;
+}
+
 // Function to handle prestige
 function prestige() {
     // Get the current prestige level
@@ -4062,6 +4770,12 @@ function prestige() {
     if (!confirmation) {
         return;
     }
+	
+	// Set the flag to indicate progress prestigion
+	isProgressReset = false;
+    isProgressPrestiged = true;
+	
+	achievements[35].achieved = true;
 
     // Deduct the cost of prestige from the points
     currentPoints -= nextPrestigeLevel.cost;
@@ -4104,11 +4818,6 @@ function prestige() {
 
     // Reset lastPointsTime for all weapons
     lastPointsTime = {};
-	
-	// Increases points per kill via prestige multiplier
-    for (const enemyId in enemies) {
-        enemies[enemyId].pointsPerKill *= totalMultiplier;
-    }
 
     // Reset touch gun big upgrades
     const touchGunUpgrades = [
@@ -4253,14 +4962,37 @@ function prestige() {
     // Format and update points display
     document.getElementById('score-value-main').textContent = formatNumber(currentPoints);
     document.getElementById('score-value-upgrades').textContent = formatNumber(currentPoints);
+	
+	// Reset loadout selections and unlocked slots
+    document.querySelectorAll('.loadout-slot').forEach(slot => {
+        const weaponSelect = slot.querySelector('.weapon-slot');
+        if (weaponSelect) {
+            weaponSelect.value = null;
+        }
+
+        slot.querySelectorAll('.equipment-slot').forEach(equipmentSelect => {
+            equipmentSelect.value = null;
+            equipmentSelect.disabled = true;
+        });
+    });
+
+    currentWeapons = [];
+    currentEquipments = [];
+    unlockedSlots = {};
+    availableEquipments = {};
 
     // Update and reinitialize the interfaces
     updatePointsDisplay();
     updateCostDisplay();
     updateAchievements();
     updateStatistics();
+	updateEnemyStats();
+	loadEncounteredEnemies();
     initializeUpgradeCosts();
     saveGameState();
+	
+	// Prestiging complete, unset the flag
+    isProgressPrestiged = false;
 }
 
 // Call the prestige function when the page loads to update the button text and prestige level display
@@ -4386,14 +5118,40 @@ function updateLifetimePointsDisplay() {
     }
 }
 
-// Function to update the loadout selection
 function updateLoadoutSelection() {
+    // Store current selections
+    const currentSelections = [];
+    document.querySelectorAll('.loadout-slot').forEach(slot => {
+        const slotIndex = slot.dataset.slotIndex;
+        const weaponSelect = slot.querySelector('.weapon-slot');
+        const selectedWeapon = weaponSelect ? weaponSelect.value : '';
+
+        const equipmentSelections = [];
+        slot.querySelectorAll('.equipment-slot').forEach(equipmentSelect => {
+            equipmentSelections.push({
+                equipmentIndex: equipmentSelect.dataset.equipmentIndex,
+                selectedEquipment: equipmentSelect.value,
+                unlocked: !equipmentSelect.disabled
+            });
+        });
+
+        currentSelections.push({
+            slotIndex,
+            selectedWeapon,
+            equipmentSelections
+        });
+    });
+
     const loadoutContainer = document.getElementById('loadout-selection');
     loadoutContainer.innerHTML = ''; // Clear existing content
 
     const weaponOptions = Object.keys(weapons).filter(weaponId => weapons[weaponId].purchased);
 
     for (let i = 0; i < 6; i++) {
+        const loadoutDiv = document.createElement('div');
+        loadoutDiv.className = 'loadout-slot';
+        loadoutDiv.dataset.slotIndex = i;
+
         const select = document.createElement('select');
         select.className = 'weapon-slot';
         select.dataset.slotIndex = i;
@@ -4413,11 +5171,123 @@ function updateLoadoutSelection() {
             select.appendChild(option);
         });
 
-        loadoutContainer.appendChild(select);
+        loadoutDiv.appendChild(select);
+
+        // Create equipment slots for each weapon loadout slot
+        for (let j = 0; j < 3; j++) {
+            const equipmentSelect = document.createElement('select');
+            equipmentSelect.className = 'equipment-slot';
+            equipmentSelect.dataset.slotIndex = i;
+            equipmentSelect.dataset.equipmentIndex = j;
+            equipmentSelect.onchange = handleEquipmentSelection;
+
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.disabled = true;
+            defaultOption.selected = true;
+            defaultOption.textContent = 'Select Equipment';
+            equipmentSelect.appendChild(defaultOption);
+
+            Object.keys(availableEquipments).forEach(equipmentId => {
+                const option = document.createElement('option');
+                option.value = equipmentId;
+                option.textContent = `${availableEquipments[equipmentId].name} (${availableEquipments[equipmentId].type}) (x${availableEquipments[equipmentId].count})`;
+                equipmentSelect.appendChild(option);
+            });
+
+            equipmentSelect.disabled = !isSlotUnlocked(i, j);
+            if (!isSlotUnlocked(i, j)) {
+                const unlockButton = document.createElement('button');
+                const cost = getUnlockCost(i, j);
+                unlockButton.textContent = `Unlock Slot ${j + 1} (Cost: ${formatNumber(cost)} points)`;
+                unlockButton.onclick = () => spendPointsToUnlockEquipmentSlot(i, j, cost, unlockButton);
+                loadoutDiv.appendChild(unlockButton);
+            } else {
+                equipmentSelect.disabled = false;
+            }
+
+            loadoutDiv.appendChild(equipmentSelect);
+        }
+
+        loadoutContainer.appendChild(loadoutDiv);
+    }
+
+    // Reapply stored selections
+    currentSelections.forEach(selection => {
+        const slot = document.querySelector(`.loadout-slot[data-slot-index="${selection.slotIndex}"]`);
+        if (slot) {
+            const weaponSelect = slot.querySelector('.weapon-slot');
+            if (weaponSelect) {
+                weaponSelect.value = selection.selectedWeapon;
+            }
+
+            selection.equipmentSelections.forEach(equipmentSelection => {
+                const equipmentSelect = slot.querySelector(`.equipment-slot[data-slot-index="${selection.slotIndex}"][data-equipment-index="${equipmentSelection.equipmentIndex}"]`);
+                if (equipmentSelect) {
+                    equipmentSelect.value = equipmentSelection.selectedEquipment;
+                    equipmentSelect.disabled = !equipmentSelection.unlocked;
+                }
+            });
+        }
+    });
+
+    handleWeaponSelection();
+    handleEquipmentSelection();
+}
+
+function isSlotUnlocked(weaponSlotIndex, equipmentIndex) {
+    return unlockedSlots[`${weaponSlotIndex}-${equipmentIndex}`] || false;
+}
+
+function getUnlockCost(weaponSlotIndex, equipmentIndex) {
+    const costMatrix = [
+        [100, 10000, 1000000],
+        [1000, 100000, 10000000],
+        [10000, 1000000, 100000000],
+        [100000, 10000000, 1000000000],
+        [1000000, 100000000, 10000000000],
+        [10000000, 1000000000, 100000000000]
+    ];
+    return costMatrix[weaponSlotIndex][equipmentIndex];
+}
+
+function updateAvailableEquipments() {
+    const equipmentList = document.getElementById('equipment-list');
+    equipmentList.innerHTML = ''; // Clear existing content
+
+    Object.keys(availableEquipments).forEach(equipmentId => {
+        const equipment = availableEquipments[equipmentId];
+        const equipmentDiv = document.createElement('div');
+        equipmentDiv.className = 'equipment-item';
+        equipmentDiv.dataset.equipmentId = equipmentId;
+
+        const equipmentLabel = document.createElement('span');
+        equipmentLabel.textContent = `${equipment.name} (${equipment.type}) (x${equipment.count}) - Sell Price: ${getSellPrice(equipment.type)}`;
+
+        const sellButton = document.createElement('button');
+        sellButton.textContent = 'Sell';
+        sellButton.onclick = () => sellEquipment(equipmentId);
+
+        equipmentDiv.appendChild(equipmentLabel);
+        equipmentDiv.appendChild(sellButton);
+        equipmentList.appendChild(equipmentDiv);
+    });
+}
+
+// Function to determine sell price based on equipment rarity
+function getSellPrice(type) {
+    switch (type) {
+        case 'Common':
+            return 100;
+        case 'Rare':
+            return 500;
+        case 'Epic':
+            return 2500;
+        default:
+            return 0;
     }
 }
 
-// Function to update and handle the weapon selection
 function handleWeaponSelection() {
     const selectedWeapons = new Set();
     const selects = document.querySelectorAll('.weapon-slot');
@@ -4443,6 +5313,146 @@ function handleWeaponSelection() {
             }
         }
     });
+    handleEquipmentSelection();
+}
+
+function handleEquipmentSelection() {
+    const selectedEquipments = new Set();
+    const selects = document.querySelectorAll('.equipment-slot');
+
+    currentEquipments = []; // Clear currentEquipments array
+
+    selects.forEach(select => {
+        if (select.value) {
+            selectedEquipments.add(select.value);
+            currentEquipments.push({ ...availableEquipments[select.value], id: select.value }); // Add selected equipment to currentEquipments
+        }
+    });
+
+    // Reset weapon stats to their base values before applying equipment boosts
+    currentWeapons.forEach(weapon => {
+        weapon.stats = { ...weapons[weapon.id].stats }; // Reset to original stats
+    });
+
+    // Apply boosts to the selected weapons
+    const weaponSlots = document.querySelectorAll('.weapon-slot');
+    weaponSlots.forEach(slot => {
+        const weaponId = slot.value;
+        if (weaponId) {
+            const weapon = currentWeapons.find(w => w.id === weaponId);
+            const slotIndex = slot.dataset.slotIndex;
+
+            let totalHPBoost = 0;
+            let totalFiringRateBoost = 0;
+            let totalDamageBoost = 0;
+
+            selects.forEach(equipmentSelect => {
+                if (equipmentSelect.dataset.slotIndex === slotIndex && equipmentSelect.value) {
+                    const equipment = availableEquipments[equipmentSelect.value]; // Use availableEquipments instead of equipments
+
+                    if (!equipment) {
+                        console.error(`Equipment with ID ${equipmentSelect.value} is undefined`);
+                        return;
+                    }
+
+                    switch (equipment.boostType) {
+                        case 'HP':
+                            totalHPBoost += equipment.boostValue;
+                            break;
+                        case 'Firing Rate':
+                            totalFiringRateBoost += equipment.boostValue;
+                            break;
+                        case 'Damage':
+                            totalDamageBoost += equipment.boostValue;
+                            break;
+                    }
+                }
+            });
+
+            // Apply the boosts to the weapon stats
+            weapon.stats.hpMax *= (1 + totalHPBoost);
+            weapon.stats.fireRate *= (1 - totalFiringRateBoost);
+            weapon.stats.damage *= (1 + totalDamageBoost);
+
+            // Ensure stats are rounded to prevent fractional issues
+            weapon.stats.hpMax = Math.round(weapon.stats.hpMax);
+            weapon.stats.fireRate = Math.round(weapon.stats.fireRate * 100) / 100; // Keep two decimal places
+            weapon.stats.damage = Math.round(weapon.stats.damage * 100) / 100; // Keep two decimal places
+        }
+    });
+
+    // Ensure equipment is only assigned to one weapon at a time
+    selects.forEach(select => {
+        const selectedValue = select.value;
+        const options = select.options;
+
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].value && selectedEquipments.has(options[i].value) && options[i].value !== selectedValue) {
+                options[i].disabled = true;
+            } else {
+                options[i].disabled = false;
+            }
+        }
+    });
+}
+
+function unlockEquipmentSlot(weaponSlotIndex, equipmentIndex) {
+    // Skip unlocking the first equipment slot during reset
+    if (isProgressReset && equipmentIndex === 0) {
+        return;
+    }
+
+    const equipmentSelect = document.querySelector(`.equipment-slot[data-slot-index="${weaponSlotIndex}"][data-equipment-index="${equipmentIndex}"]`);
+    if (equipmentSelect) {
+        equipmentSelect.disabled = false;
+        unlockedSlots[`${weaponSlotIndex}-${equipmentIndex}`] = true;
+    }
+}
+
+function spendPointsToUnlockEquipmentSlot(weaponSlotIndex, equipmentIndex, cost, button) {
+    if (points >= cost) {
+        points -= cost;
+        unlockEquipmentSlot(weaponSlotIndex, equipmentIndex);
+        updatePointsDisplay(); // Update the points display on the UI
+        button.style.display = 'none'; // Hide the unlock button
+    } else {
+        alert('Not enough points!');
+    }
+}
+
+function sellEquipment(equipmentId) {
+    const equipment = availableEquipments[equipmentId];
+    if (!equipment) return;
+
+    let pointsEarned = getSellPrice(equipment.type);
+
+    // Add points to player's total
+    points += pointsEarned;
+
+    if (equipment.count > 1) {
+        availableEquipments[equipmentId].count -= 1;
+    } else {
+        delete availableEquipments[equipmentId];
+    }
+    updateAvailableEquipments(); // Update the available equipment list
+    updateLoadoutSelection(); // Update the loadout selection to reflect the sale
+}
+
+function sellAllEquipments() {
+    if (confirm('Are you sure you want to sell all equipments?')) {
+        Object.keys(availableEquipments).forEach(equipmentId => {
+            const equipment = availableEquipments[equipmentId];
+            let pointsEarned = getSellPrice(equipment.type);
+
+            // Add points to player's total
+            points += pointsEarned * equipment.count;
+        });
+
+        // Clear all available equipments
+        availableEquipments = {};
+        updateAvailableEquipments(); // Update the available equipment list
+        updateLoadoutSelection(); // Update the loadout selection to reflect the sale
+    }
 }
 
 function startBattle() {
@@ -4453,9 +5463,12 @@ function startBattle() {
         return;
     }
 	
-	for (const weaponId in weapons) {
-        weapons[weaponId].stats.hp = weapons[weaponId].stats.hpMax;
-    }
+	// Ensure equipment selection is applied
+    handleEquipmentSelection();
+	
+	currentWeapons.forEach(weapon => {
+        weapon.stats.hp = weapon.stats.hpMax; // Reset current HP to max HP
+    });
 
     document.getElementById('wave-counter').innerText = `${currentWave}`;
     document.getElementById('game-status').innerText = 'Game Status: In Progress';
@@ -4514,12 +5527,13 @@ function generateEnemies(wave) {
                 range: bossStats.range,
                 walkingSpeed: bossStats.walkingSpeed,
                 attackRate: bossStats.attackRate,
+                hitbox: bossStats.hitbox,
                 hpMax: scaleHP(bossStats.hp, wave)
             },
             image: enemies["boss"].image,
             pointsPerKill: enemies["boss"].pointsPerKill,
         });
-		encounterEnemy("boss");
+        encounterEnemy("boss");
     } else {
         const enemyCount = baseEnemyCount + Math.floor(wave / bossWaveInterval);
         for (let i = 0; i < enemyCount; i++) {
@@ -4535,12 +5549,13 @@ function generateEnemies(wave) {
                     range: enemyStats.range,
                     walkingSpeed: enemyStats.walkingSpeed,
                     attackRate: enemyStats.attackRate,
+                    hitbox: enemyStats.hitbox,
                     hpMax: scaleHP(enemyStats.hp, wave)
                 },
                 image: enemies[enemyType].image,
                 pointsPerKill: enemies[enemyType].pointsPerKill,
             });
-			encounterEnemy(enemyType);
+            encounterEnemy(enemyType);
         }
         if (wave >= 6 && Math.random() < 0) {
             const healerStats = enemies["healer"].stats;
@@ -4556,15 +5571,15 @@ function generateEnemies(wave) {
                     attackRate: healerStats.attackRate,
                     healRate: healerStats.healRate,
                     healAmount: healerStats.healAmount,
-					healRange: healerStats.healRange,
+                    healRange: healerStats.healRange,
+                    hitbox: healerStats.hitbox,
                     hpMax: scaleHP(healerStats.hp, wave)
                 },
                 image: enemies["healer"].image,
                 pointsPerKill: enemies["healer"].pointsPerKill,
             });
-			encounterEnemy("healer");
-        }
-		else if (wave >= 11 && Math.random() < 0) {
+            encounterEnemy("healer");
+        } else if (wave >= 11 && Math.random() < 0) {
             const armouredStats = enemies["armoured"].stats;
             enemiesList.push({
                 id: `armoured-${wave}`,
@@ -4577,12 +5592,13 @@ function generateEnemies(wave) {
                     walkingSpeed: armouredStats.walkingSpeed,
                     attackRate: armouredStats.attackRate,
                     armour: armouredStats.armour,
+                    hitbox: armouredStats.hitbox,
                     hpMax: scaleHP(armouredStats.hp, wave)
                 },
                 image: enemies["armoured"].image,
                 pointsPerKill: enemies["armoured"].pointsPerKill,
             });
-			encounterEnemy("armoured");
+            encounterEnemy("armoured");
         }
     }
 
@@ -4689,67 +5705,76 @@ function getProjectileImage(weaponType) {
             return '';
     }
 }
-function shootProjectile(weapon, weaponDiv, enemyDiv) {
-    if (!enemyDiv) {
-        console.error("Enemy is undefined.");
+
+function shootProjectile(weapon, weaponDiv, targetEnemyDiv) {
+    if (!targetEnemyDiv) {
+        console.error("Target enemy is undefined.");
         return;
     }
 
     const battlefield = document.getElementById('battlefield');
     const projectileImage = getProjectileImage(weapon.id);
-    const enemyLeft = parseInt(enemyDiv.style.left);
-    const enemyTop = parseInt(enemyDiv.style.top);
     const weaponLeft = parseInt(weaponDiv.style.left);
     const weaponTop = parseInt(weaponDiv.style.top);
+    const enemyLeft = parseInt(targetEnemyDiv.style.left);
+    const enemyTop = parseInt(targetEnemyDiv.style.top);
 
-    // Minimum travel distance before checking for collision
+    const projectileSpeed = weapon.stats.projectileSpeed;
     const minTravelDistance = 15;
 
-    // Handle multiple projectiles per shot
     for (let i = 0; i < weapon.stats.bulletsPerShot; i++) {
         const projectileDiv = document.createElement('div');
         projectileDiv.className = 'projectile';
-        projectileDiv.style.left = weaponDiv.style.left;
-        projectileDiv.style.top = weaponDiv.style.top;
+        projectileDiv.style.left = `${weaponLeft}px`;
+        projectileDiv.style.top = `${weaponTop}px`;
         projectileDiv.innerHTML = `<img src="${projectileImage}" alt="Projectile">`;
         battlefield.appendChild(projectileDiv);
 
         let projectileLeft = weaponLeft;
         let projectileTop = weaponTop;
-        const speed = 15; // Adjust speed as necessary for desired gameplay
 
-        // Factor in accuracy for weapons with less than 100 accuracy
-        const accuracyDeviation = (100 - weapon.stats.accuracy) / 100;
-        const deviationX = weapon.stats.accuracy < 100 ? (Math.random() - 0.5) * accuracyDeviation * 100 : 0;
-        const deviationY = weapon.stats.accuracy < 100 ? (Math.random() - 0.5) * accuracyDeviation * 100 : 0;
+        // Only apply deviation if accuracy is less than 100
+        const accuracyDeviation = weapon.stats.accuracy < 100 ? (100 - weapon.stats.accuracy) / 100 : 0;
+        const deviationX = accuracyDeviation > 0 ? (Math.random() - 0.5) * accuracyDeviation * 100 : 0;
+        const deviationY = accuracyDeviation > 0 ? (Math.random() - 0.5) * accuracyDeviation * 100 : 0;
 
-        // Cutoff distance or timeout (e.g., 5 seconds)
-        const cutoffTime = 5000; // 5 seconds
+        const cutoffTime = 5000;  // 5 seconds
         const startTime = Date.now();
 
         function moveProjectile() {
-            projectileLeft += speed + deviationX;
-            projectileTop += (enemyTop - projectileTop) / (enemyLeft - projectileLeft) * speed + deviationY;
+            const deltaX = (enemyLeft - weaponLeft) + deviationX;
+            const deltaY = (enemyTop - weaponTop) + deviationY;
+            const angle = Math.atan2(deltaY, deltaX);
+
+            projectileLeft += projectileSpeed * Math.cos(angle);
+            projectileTop += projectileSpeed * Math.sin(angle);
+
             projectileDiv.style.left = `${projectileLeft}px`;
             projectileDiv.style.top = `${projectileTop}px`;
 
-            const distanceToEnemy = Math.sqrt((projectileLeft - enemyLeft) ** 2 + (projectileTop - enemyTop) ** 2);
-            const distanceFromWeapon = Math.sqrt((projectileLeft - weaponLeft) ** 2 + (projectileTop - weaponTop) ** 2);
+            const dx = projectileLeft - enemyLeft;
+            const dy = projectileTop - enemyTop;
+            const distance = Math.sqrt(dx * dx + dy * dy);
 
-            if (distanceToEnemy <= 15 && distanceFromWeapon >= minTravelDistance) {
-                battlefield.removeChild(projectileDiv);
+            // Adjust hit detection based on the enemy's hitbox size
+            const enemyHitbox = targetEnemyDiv.enemyData.stats.hitbox; // Correctly access the stats
+            const adjustedDistance = Math.max(distance - enemyHitbox, 0);
 
-                // Apply splash damage if rocket launcher
-                if (weapon.id === 'rocketLauncher') {
-                    applySplashDamage(weapon, enemyDiv);
+            if (adjustedDistance < minTravelDistance || (Date.now() - startTime > cutoffTime)) {
+                if (adjustedDistance < minTravelDistance) {
+                    if (weapon.id === 'rocketLauncher') {
+                        applySplashDamage(weapon, targetEnemyDiv);
+                    } else {
+                        applyDirectDamage(weapon, targetEnemyDiv);
+                    }
+                    battlefield.removeChild(projectileDiv);
                 } else {
-                    applyDirectDamage(weapon, enemyDiv);
+                    battlefield.removeChild(projectileDiv);
                 }
-            } else if (Date.now() - startTime > cutoffTime) {
-                battlefield.removeChild(projectileDiv);
-            } else {
-                requestAnimationFrame(moveProjectile);
+                return;
             }
+
+            requestAnimationFrame(moveProjectile);
         }
 
         requestAnimationFrame(moveProjectile);
@@ -4761,6 +5786,7 @@ function applyDirectDamage(weapon, enemyDiv) {
     const enemy = activeEnemies.find(e => e.id === enemyDiv.id.split('enemy-')[1]); // Correctly extract enemy ID
     if (enemy) {
         let damage = weapon.stats.damage;
+		let isCriticalHit = false;
 		const floatingTextContainer = document.getElementById('floating-damage-number-container');
         const floatingText = document.createElement('div');
 		floatingText.textContent = formatNumber(damage);
@@ -4807,26 +5833,40 @@ function applyDirectDamage(weapon, enemyDiv) {
             const criticalChance = Math.min(100, weapon.stats.criticalChance);
             const criticalMultiplier = weapon.stats.criticalDamage;
             if (criticalChance >= Math.random() * 100) {
+				isCriticalHit = true;
                 damage *= criticalMultiplier;
                 floatingText.textContent = 'Crit! ' + formatNumber(damage);
                 floatingText.classList.add('critical');
+				console.log(`${weapon.id} landed a critical hit!`);
             }
         }
 		
         enemy.stats.hp -= damage;
         updateHpBar(enemyDiv, enemy.stats);
         if (enemy.stats.hp <= 0) {
+			if (enemy.type === 'boss') {
+				achievements[32].achieved = true;
+			}
             activeEnemies = activeEnemies.filter(e => e.id !== enemy.id);
             const wave = currentWave;
             const pointsPerKill = enemy.pointsPerKill * Math.pow(1.3, wave - 1);
-            const currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
-            const prestigeMultiplier = prestigeLevels[currentPrestigeLevel].multiplier;
-            points += pointsPerKill * prestigeMultiplier;
-			totalPointsEarned += pointsPerKill * prestigeMultiplier;
+            points += pointsPerKill;
+			totalPointsEarned += pointsPerKill;
             updatePointsDisplay();
-            console.log(`${enemy.id} was eliminated by ${weapon.id}`);
+			if (['sniperRifle', 'huntingRifle'].includes(weapon.id)) {
+                if (isCriticalHit) {
+				    console.log(`${enemy.id} was eliminated by critical damage from ${weapon.id}`);
+                } else {
+			        console.log(`${enemy.id} was eliminated by ${weapon.id}`);
+			    }
+            } else {
+			    console.log(`${enemy.id} was eliminated by ${weapon.id}`);
+			}
             enemyDiv.remove();
 			totalEnemiesKilled++;
+			
+			// Drop loot upon enemy death
+            dropLoot(enemy);
         }
 		setTimeout(() => {
             floatingText.remove();
@@ -4888,14 +5928,15 @@ function applySplashDamage(weapon, targetEnemyDiv) {
 					activeEnemies = activeEnemies.filter(e => e.id !== enemy.id);
 					const wave = currentWave;
 					const pointsPerKill = enemy.pointsPerKill * Math.pow(1.3, wave - 1);
-                    const currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
-                    const prestigeMultiplier = prestigeLevels[currentPrestigeLevel].multiplier;
-                    points += pointsPerKill * prestigeMultiplier;
-					totalPointsEarned += pointsPerKill * prestigeMultiplier;
+                    points += pointsPerKill;
+					totalPointsEarned += pointsPerKill;
                     updatePointsDisplay();
                     console.log(`${enemy.id} was eliminated by splash damage from ${weapon.id}`);
                     enemyDiv.remove();
 		            totalEnemiesKilled++;
+					
+					// Drop loot upon enemy death
+                    dropLoot(enemy);
                 }
 
                 // Remove the splash text after a certain duration
@@ -4937,22 +5978,24 @@ function battleLoop(timestamp) {
 
             if (closestEnemy) {
                 const enemyDiv = document.getElementById(`enemy-${closestEnemy.id}`);
-                let enemyLeft = parseInt(enemyDiv.style.left);
-                let weaponLeft = parseInt(weaponDiv.style.left);
+                if (enemyDiv) {
+                    let enemyLeft = parseInt(enemyDiv.style.left);
+                    let weaponLeft = parseInt(weaponDiv.style.left);
 
-                const movementSpeed = weapon.stats.walkingSpeed * deltaTime * 10; // Adjust speed multiplier as necessary
+                    const movementSpeed = weapon.stats.walkingSpeed * deltaTime * 10; // Adjust speed multiplier as necessary
 
-                if (weaponLeft < enemyLeft - weapon.stats.range * 10) {
-                    weaponDiv.style.left = `${weaponLeft + movementSpeed}px`;
-                } else if (weaponLeft > enemyLeft + weapon.stats.range * 10) {
-                    weaponDiv.style.left = `${weaponLeft - movementSpeed}px`;
-                } else {
-                    const currentTime = new Date().getTime();
-                    const lastFired = lastFiredTimes[weapon.id] || 0;
+                    if (weaponLeft < enemyLeft - weapon.stats.range * 10) {
+                        weaponDiv.style.left = `${weaponLeft + movementSpeed}px`;
+                    } else if (weaponLeft > enemyLeft + weapon.stats.range * 10) {
+                        weaponDiv.style.left = `${weaponLeft - movementSpeed}px`;
+                    } else {
+                        const currentTime = new Date().getTime();
+                        const lastFired = lastFiredTimes[weapon.id] || 0;
 
-                    if (currentTime - lastFired >= weapon.stats.fireRate) {
-                        shootProjectile(weapon, weaponDiv, enemyDiv);
-                        lastFiredTimes[weapon.id] = currentTime;
+                        if (currentTime - lastFired >= weapon.stats.fireRate) {
+                            shootProjectile(weapon, weaponDiv, enemyDiv);
+                            lastFiredTimes[weapon.id] = currentTime;
+                        }
                     }
                 }
             }
@@ -4985,54 +6028,56 @@ function battleLoop(timestamp) {
 
                 if (closestWeapon) {
                     const weaponDiv = document.getElementById(`weapon-${closestWeapon.id}`);
-                    let weaponLeft = parseInt(weaponDiv.style.left);
-                    let enemyLeft = parseInt(enemyDiv.style.left);
+                    if (weaponDiv) {
+                        let weaponLeft = parseInt(weaponDiv.style.left);
+                        let enemyLeft = parseInt(enemyDiv.style.left);
 
-                    const movementSpeed = enemy.stats.walkingSpeed * deltaTime * 10; // Adjust speed multiplier as necessary
+                        const movementSpeed = enemy.stats.walkingSpeed * deltaTime * 10; // Adjust speed multiplier as necessary
 
-                    if (enemyLeft > weaponLeft + enemy.stats.range * 10) {
-                        enemyDiv.style.left = `${enemyLeft - movementSpeed}px`;
-                    } else if (enemyLeft < weaponLeft - enemy.stats.range * 10) {
-                        enemyDiv.style.left = `${enemyLeft + movementSpeed}px`;
-                    } else {
-                        const currentTime = new Date().getTime();
-                        const lastAttacked = lastAttackedTimes[enemy.id] || 0;
+                        if (enemyLeft > weaponLeft + enemy.stats.range * 10) {
+                            enemyDiv.style.left = `${enemyLeft - movementSpeed}px`;
+                        } else if (enemyLeft < weaponLeft - enemy.stats.range * 10) {
+                            enemyDiv.style.left = `${enemyLeft + movementSpeed}px`;
+                        } else {
+                            const currentTime = new Date().getTime();
+                            const lastAttacked = lastAttackedTimes[enemy.id] || 0;
 
-                        if (currentTime - lastAttacked >= enemy.stats.attackRate) {
-                            closestWeapon.stats.hp -= enemy.stats.damage;
-                            updateHpBar(weaponDiv, closestWeapon.stats);
-                            lastAttackedTimes[enemy.id] = currentTime;
+                            if (currentTime - lastAttacked >= enemy.stats.attackRate) {
+                                closestWeapon.stats.hp -= enemy.stats.damage;
+                                updateHpBar(weaponDiv, closestWeapon.stats);
+                                lastAttackedTimes[enemy.id] = currentTime;
 
-                            // Floating damage text
-                            const floatingTextContainer = document.getElementById('floating-damage-number-container');
-                            const floatingText = document.createElement('div');
-                            floatingText.textContent = formatNumber(enemy.stats.damage);
-                            floatingText.classList.add('floating-text');
-                            floatingText.style.position = 'absolute';
+                                // Floating damage text
+                                const floatingTextContainer = document.getElementById('floating-damage-number-container');
+                                const floatingText = document.createElement('div');
+                                floatingText.textContent = formatNumber(enemy.stats.damage);
+                                floatingText.classList.add('floating-text');
+                                floatingText.style.position = 'absolute';
 
-                            // Calculate the position of the weapon's face
-                            const weaponBoundingBox = weaponDiv.getBoundingClientRect();
-                            const weaponFaceX = weaponBoundingBox.left + weaponBoundingBox.width / 2;
-                            const weaponFaceY = weaponBoundingBox.top;
+                                // Calculate the position of the weapon's face
+                                const weaponBoundingBox = weaponDiv.getBoundingClientRect();
+                                const weaponFaceX = weaponBoundingBox.left + weaponBoundingBox.width / 2;
+                                const weaponFaceY = weaponBoundingBox.top;
 
-                            // Set the position of the floating text to appear in front of the weapon's face
-                            floatingText.style.left = `${weaponFaceX}px`;
-                            floatingText.style.top = `${weaponFaceY}px`;
+                                // Set the position of the floating text to appear in front of the weapon's face
+                                floatingText.style.left = `${weaponFaceX}px`;
+                                floatingText.style.top = `${weaponFaceY}px`;
 
-                            // Add animation for floating upwards
-                            floatingText.style.animation = 'floatUp 2s ease-out';
+                                // Add animation for floating upwards
+                                floatingText.style.animation = 'floatUp 2s ease-out';
 
-                            // Append the floating text to the battlefield
-                            floatingTextContainer.appendChild(floatingText);
+                                // Append the floating text to the battlefield
+                                floatingTextContainer.appendChild(floatingText);
 
-                            if (closestWeapon.stats.hp <= 0) {
-                                console.log(`${closestWeapon.id} was eliminated by ${enemy.id}`);
-                                currentWeapons = currentWeapons.filter(w => w.id !== closestWeapon.id);
-                                weaponDiv.remove();
+                                if (closestWeapon.stats.hp <= 0) {
+                                    console.log(`${closestWeapon.id} was eliminated by ${enemy.id}`);
+                                    currentWeapons = currentWeapons.filter(w => w.id !== closestWeapon.id);
+                                    weaponDiv.remove();
+                                }
+                                setTimeout(() => {
+                                    floatingText.remove();
+                                }, 1000);
                             }
-                            setTimeout(() => {
-                                floatingText.remove();
-                            }, 1000);
                         }
                     }
                 }
@@ -5043,9 +6088,10 @@ function battleLoop(timestamp) {
     // Check if all enemies are defeated
     if (activeEnemies.length === 0) {
         battleInProgress = false;
-		currentWave = Math.max(1, currentWave + 1); // Increase wave but not below 1
+        currentWave = Math.max(1, currentWave + 1); // Increase wave but not below 1
         document.getElementById('game-status').innerText = 'Game Status: Victory!';
         document.getElementById('surrender-btn').style.display = 'none';
+        handleWeaponSelection();
         return;
     }
 
@@ -5054,6 +6100,7 @@ function battleLoop(timestamp) {
         battleInProgress = false;
         document.getElementById('game-status').innerText = 'Game Status: Defeat!';
         document.getElementById('surrender-btn').style.display = 'none';
+        handleWeaponSelection();
         return;
     }
 
@@ -5257,6 +6304,71 @@ function getEquippedWeapons() {
     return Object.values(weapons).filter(weapon => weapon.purchased);
 }
 
+function dropLoot(enemy) {
+    if (Math.random() < 0.1) { // 10% chance to drop equipment
+        const dropChance = Math.random();
+        let droppedEquipment;
+
+        if (dropChance < 0.05) { // 5% chance for epic
+            droppedEquipment = getRandomEquipmentByRarity('Epic');
+        } else if (dropChance < 0.2) { // 15% chance for rare
+            droppedEquipment = getRandomEquipmentByRarity('Rare');
+        } else { // 80% chance for common
+            droppedEquipment = getRandomEquipmentByRarity('Common');
+        }
+
+        if (droppedEquipment) {
+            // Ensure dropped equipment has an id
+            const equipmentId = generateUniqueId(droppedEquipment);
+            if (availableEquipments[equipmentId]) {
+                availableEquipments[equipmentId].count += 1;
+            } else {
+                availableEquipments[equipmentId] = { ...droppedEquipment, id: equipmentId, count: 1 };
+            }
+            updateAvailableEquipments(); // Update the available equipment list
+            updateLoadoutSelection(); // Update the loadout selection to include new equipment
+        }
+    } else if (enemy.type === 'boss' && Math.random() < 1) { // 100% chance to drop equipment
+        const dropChance = Math.random();
+        let droppedEquipment;
+
+        if (dropChance < 0.15) { // 15% chance for epic
+            droppedEquipment = getRandomEquipmentByRarity('Epic');
+        } else if (dropChance < 0.25) { // 25% chance for rare
+            droppedEquipment = getRandomEquipmentByRarity('Rare');
+        } else { // 60% chance for common
+            droppedEquipment = getRandomEquipmentByRarity('Common');
+        }
+
+        if (droppedEquipment) {
+            // Ensure dropped equipment has an id
+            const equipmentId = generateUniqueId(droppedEquipment);
+            if (availableEquipments[equipmentId]) {
+                availableEquipments[equipmentId].count += 1;
+            } else {
+                availableEquipments[equipmentId] = { ...droppedEquipment, id: equipmentId, count: 1 };
+            }
+            updateAvailableEquipments(); // Update the available equipment list
+            updateLoadoutSelection(); // Update the loadout selection to include new equipment
+        }
+    }
+}
+
+// Function to generate a unique ID for equipment
+function generateUniqueId(equipment) {
+    return equipment.name + '_' + Math.random().toString(36).substr(2, 9);
+}
+
+// Function to get random equipment by rarity
+function getRandomEquipmentByRarity(rarity) {
+    const filteredEquipments = Object.values(equipments).filter(equipment => equipment.type.toLowerCase() === rarity.toLowerCase());
+    if (filteredEquipments.length > 0) {
+        const randomIndex = Math.floor(Math.random() * filteredEquipments.length);
+        return filteredEquipments[randomIndex];
+    }
+    return null;
+}
+
 function updateNumerousFingers(upgradeType) {
 	const currentPrestigeLevel = parseInt(localStorage.getItem('prestigeLevel')) || 0;
     const prestigeMultiplier = prestigeLevels[currentPrestigeLevel].multiplier;
@@ -5319,8 +6431,8 @@ function updateFingerPistols() {
 function updatePistolStats() {
 	if (upgrades.touchGun.fingerPistols.bought) {
         // Reset stats to initial values
-        weapons.pistol.stats.pointsPerShot = initialPistolStats.pointsPerShot;
-        weapons.pistol.stats.damage = initialPistolStats.damage;
+        stats.pointsPerShot = initialPistolStats.pointsPerShot;
+        stats.damage = initialPistolStats.damage;
 
         // Apply big upgrades
         let valueIncrement = 1;
@@ -5334,15 +6446,17 @@ function updatePistolStats() {
         if (weaponUpgrades.versatileGunshots?.bought) valueIncrement *= 5;
         if (weaponUpgrades.empowered?.bought) valueIncrement *= 5;
         if (weaponUpgrades.oneHitBullets?.bought) valueIncrement *= 6;
+		if (weaponUpgrades.breakthrough?.bought) valueIncrement *= 6;
+		if (weaponUpgrades.goldenBullets?.bought) valueIncrement *= 4;
 
         // Apply the combined multiplier for points per shot and damage
-        weapons.pistol.stats.pointsPerShot *= valueIncrement * fingerPistolsMultiplier;
-        weapons.pistol.stats.damage *= valueIncrement * fingerPistolsMultiplier;
+        stats.pointsPerShot *= valueIncrement * fingerPistolsMultiplier;
+        stats.damage *= valueIncrement * fingerPistolsMultiplier;
 
         // Apply the potency multiplier
         let potencyMultiplier = 1 + pistolPotencyLevel;
-        weapons.pistol.stats.pointsPerShot *= potencyMultiplier;
-        weapons.pistol.stats.damage *= potencyMultiplier;
+        stats.pointsPerShot *= potencyMultiplier;
+        stats.damage *= potencyMultiplier;
 	}
 }
 
@@ -5439,6 +6553,8 @@ function initializeStatistics() {
 
 // Function to initialize the game's UI
 function initializeUI() {
+	updateWeaponStats();
+    updateEnemyStats();
     updateCostDisplay();
     updateAchievementsDisplay();
     updateStatisticsDisplay();

@@ -6431,8 +6431,8 @@ function updateFingerPistols() {
 function updatePistolStats() {
 	if (upgrades.touchGun.fingerPistols.bought) {
         // Reset stats to initial values
-        stats.pointsPerShot = initialPistolStats.pointsPerShot;
-        stats.damage = initialPistolStats.damage;
+        weapons.pistol.stats.pointsPerShot = initialPistolStats.pointsPerShot;
+        weapons.pistol.stats.damage = initialPistolStats.damage;
 
         // Apply big upgrades
         let valueIncrement = 1;
@@ -6450,13 +6450,13 @@ function updatePistolStats() {
 		if (weaponUpgrades.goldenBullets?.bought) valueIncrement *= 4;
 
         // Apply the combined multiplier for points per shot and damage
-        stats.pointsPerShot *= valueIncrement * fingerPistolsMultiplier;
-        stats.damage *= valueIncrement * fingerPistolsMultiplier;
+        weapons.pistol.stats.pointsPerShot *= valueIncrement * fingerPistolsMultiplier;
+        weapons.pistol.stats.damage *= valueIncrement * fingerPistolsMultiplier;
 
         // Apply the potency multiplier
         let potencyMultiplier = 1 + pistolPotencyLevel;
-        stats.pointsPerShot *= potencyMultiplier;
-        stats.damage *= potencyMultiplier;
+        weapons.pistol.stats.pointsPerShot *= potencyMultiplier;
+        weapons.pistol.stats.damage *= potencyMultiplier;
 	}
 }
 
